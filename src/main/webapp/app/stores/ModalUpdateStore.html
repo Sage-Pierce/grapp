@@ -1,0 +1,32 @@
+<div class="modal-header">
+   <h3 class="modal-title">{{modalUpdateStoreVM.title}}</h3>
+</div>
+<form class="modal-body">
+   <fieldset class="form-group">
+      <label for="storeName">Step 1) Store Name</label>
+      <input id="storeName" type="text" placeholder="Store Name" ng-model="modalUpdateStoreVM.storeName" class="form-control">
+   </fieldset>
+   <fieldset class="form-group">
+      <label>Step 2) Place Marker at Location of Store</label>
+      <ui-gmap-google-map id="storeLocationMap"
+                          class="half-map"
+                          center="modalUpdateStoreVM.map.center"
+                          zoom="modalUpdateStoreVM.map.zoom"
+                          options="modalUpdateStoreVM.map.options"
+                          events="modalUpdateStoreVM.map.events"
+                          control="modalUpdateStoreVM.map.control">
+         <ui-gmap-search-box template="modalUpdateStoreVM.searchBox.template"
+                             events="modalUpdateStoreVM.searchBox.events"
+                             position="'TOP_RIGHT'">
+         </ui-gmap-search-box>
+         <ui-gmap-marker idKey="'storeLocationMarker'"
+                         coords="modalUpdateStoreVM.storeLocation"
+                         options="modalUpdateStoreVM.storeLocationMarkerOptions">
+         </ui-gmap-marker>
+      </ui-gmap-google-map>
+   </fieldset>
+</form>
+<div class="modal-footer">
+   <button class="btn btn-warning" ng-click="modalUpdateStoreVM.cancel()">Cancel</button>
+   <button class="btn btn-primary" ng-disabled="!modalUpdateStoreVM.isDataValid()" ng-click="modalUpdateStoreVM.finish()">Finish</button>
+</div>

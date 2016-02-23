@@ -9,7 +9,6 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.wisegas.grapp.domain.value.GrappUserListItem</class>
         <class>com.wisegas.grapp.domain.value.GrappStoreNodeItem</class>
-        <class>com.wisegas.grapp.domain.value.GrappStoreNodeLink</class>
         <class>com.wisegas.grapp.domain.entity.GrappItem</class>
         <class>com.wisegas.grapp.domain.entity.GrappUser</class>
         <class>com.wisegas.grapp.domain.entity.GrappUserList</class>
@@ -19,7 +18,7 @@
         <class>com.wisegas.grapp.domain.entity.GrappStoreLayoutFeature</class>
         <exclude-unlisted-classes/>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>

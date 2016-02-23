@@ -1,0 +1,43 @@
+<div class="tab-row">
+   <h4 class="text-center">Store Outline</h4>
+   <div class="btn-group btn-group-justified">
+      <label class="btn btn-primary"
+             ng-model="mainStoreMapLayoutVM.radioModel"
+             uib-btn-radio="'outer'"
+             ng-change="mainStoreMapLayoutVM.radioChanged()"
+             uncheckable>
+         {{mainStoreMapLayoutVM.radioModel === 'outer' ? 'Finish' : 'Outer'}}
+      </label>
+      <label class="btn btn-primary"
+             ng-model="mainStoreMapLayoutVM.radioModel"
+             uib-btn-radio="'inner'"
+             ng-change="mainStoreMapLayoutVM.radioChanged()"
+             uncheckable>
+         {{mainStoreMapLayoutVM.radioModel === 'inner' ? 'Finish' : 'Inner'}}
+      </label>
+   </div>
+   <h4 class="vertical-strut text-center">Features</h4>
+   <div class="btn-group-vertical full-width">
+      <label class="btn btn-primary"
+             ng-model="mainStoreMapLayoutVM.radioModel"
+             uib-btn-radio="'draw'"
+             ng-change="mainStoreMapLayoutVM.radioChanged()"
+             uncheckable>
+         Draw
+      </label>
+      <label class="btn btn-primary"
+             ng-model="mainStoreMapLayoutVM.radioModel"
+             uib-btn-radio="'editDelete'"
+             ng-change="mainStoreMapLayoutVM.radioChanged()"
+             uncheckable>
+         Edit | Delete
+      </label>
+      <label class="btn btn-primary"
+             ng-model="mainStoreMapLayoutVM.radioModel"
+             uib-btn-radio="'copyMove'"
+             ng-change="mainStoreMapLayoutVM.radioChanged()"
+             uncheckable>
+         Copy/Move | Delete
+      </label>
+   </div>
+</div>

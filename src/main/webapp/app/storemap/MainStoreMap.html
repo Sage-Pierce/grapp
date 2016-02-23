@@ -1,0 +1,20 @@
+<h2 class="text-center">{{mainStoreMapVM.grappStoreName}}</h2>
+<div class="row">
+   <grapp-map class="col-md-9 no-padding"
+              control="mainStoreMapVM.mapControl"
+              grapp-store-layout="mainStoreMapVM.grappStoreLayout"
+              grapp-store-location="mainStoreMapVM.grappStoreLocation">
+   </grapp-map>
+   <div class="col-md-3 no-padding">
+      <ul class="nav nav-pills nav-justified">
+         <li ui-sref-active="active"><a ui-sref="main.storeMap.layout">Layout</a></li>
+         <li ui-sref-active="active"><a ui-sref="main.storeMap.nodes">Nodes</a></li>
+      </ul>
+      <div ui-view="tabContent"></div>
+      <!--<tabset justified="true">-->
+         <!--<tab heading="Layout" ui-sref="main.storeEdit.layout" ui-sref-active="active"></tab>-->
+         <!--<tab heading="Nodes" ui-sref="main.storeEdit.nodes" ui-sref-active="active"></tab>-->
+         <!--<div ui-view="tabContent"></div>-->
+      <!--</tabset>-->
+   </div>
+</div>

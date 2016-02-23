@@ -1,0 +1,33 @@
+{
+  "name": "Grapp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Sage-Pierce/personal_working",
+  "authors": [
+    "spierce <spierce@unifocus.com>"
+  ],
+  "description": "Gr-Application",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "Grocery",
+    "Lists",
+    "Shopping",
+    "Maps"
+  ],
+  "license": "MIT",
+  "ignore": [],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-bootstrap": "~0.14.3",
+    "angular-cookies": "~1.4.8",
+    "angular-google-maps": "2.1.5",
+    "angular-hal": "~0.1.5",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "oauth-js": "~0.5.0",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,31 @@
+<ui-gmap-google-map options="grappMapVM.options"
+                    center="grappMapVM.center"
+                    zoom="grappMapVM.zoom"
+                    events="grappMapVM.mapEvents"
+                    control="grappMapVM.mapControl">
+   <ui-gmap-drawing-manager options="grappMapVM.options"
+                            events="grappMapVM.drawingManagerEvents"
+                            control="grappMapVM.drawingManagerControl">
+   </ui-gmap-drawing-manager>
+   <ui-gmap-polygons models="grappMapVM.storeOutlines"
+                     path="'path'"
+                     stroke="{weight: 1}"
+                     fill="'fill'"
+                     zIndex="'zIndex'"
+                     fit="'fit'"
+                     clickable="'clickable'"
+                     static="true"
+                     events="grappMapVM.polygonEvents"
+                     control="grappMapVM.outlineControl">
+   </ui-gmap-polygons>
+   <ui-gmap-polygons models="grappMapVM.storeFeatures"
+                     path="'path'"
+                     stroke="{weight: 1}"
+                     fill="'fill'"
+                     zindex="'zIndex'"
+                     clickable="'clickable'"
+                     static="true"
+                     events="grappMapVM.polygonEvents"
+                     control="grappMapVM.featureControl">
+   </ui-gmap-polygons>
+</ui-gmap-google-map>
