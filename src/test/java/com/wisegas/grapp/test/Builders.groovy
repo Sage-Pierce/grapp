@@ -6,13 +6,11 @@ import com.wisegas.grapp.domain.entity.GrappStoreNode
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.domain.entity.GrappUserList
 import com.wisegas.grapp.domain.value.GrappStoreNodeItem
-import com.wisegas.grapp.domain.value.GrappStoreNodeLink
 import com.wisegas.grapp.domain.value.GrappUserListItem
 import com.wisegas.grapp.test.builders.GrappItemBuilder
 import com.wisegas.grapp.test.builders.GrappStoreBuilder
 import com.wisegas.grapp.test.builders.GrappStoreNodeBuilder
 import com.wisegas.grapp.test.builders.GrappStoreNodeItemBuilder
-import com.wisegas.grapp.test.builders.GrappStoreNodeLinkBuilder
 import com.wisegas.grapp.test.builders.GrappUserBuilder
 import com.wisegas.grapp.test.builders.GrappUserListBuilder
 import com.wisegas.grapp.test.builders.GrappUserListItemBuilder
@@ -37,10 +35,6 @@ class Builders {
 
    static GrappStoreNode grappStoreNode() {
       GrappStoreNodeBuilder.grappStoreNode()
-   }
-
-   static GrappStoreNodeLink grappStoreNodeLink() {
-      GrappStoreNodeLinkBuilder.grappStoreNodeLink()
    }
 
    static GrappItem grappItem() {
