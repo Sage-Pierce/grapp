@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* com.wisegas.heroku.Main
+web: java -cp target/classes:target/dependency/* com.wisegas.webserver.Main

@@ -1,4 +1,4 @@
-package com.wisegas.heroku;
+package com.wisegas.webserver;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
