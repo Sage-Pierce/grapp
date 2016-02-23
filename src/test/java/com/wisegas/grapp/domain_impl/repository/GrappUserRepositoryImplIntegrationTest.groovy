@@ -1,7 +1,7 @@
-package com.wisegas.grapp.domain_impl.service_impl
+package com.wisegas.grapp.domain_impl.repository
 
 import com.wisegas.grapp.domain.entity.GrappUser
-import com.wisegas.grapp.domain.service.GrappUserRepository
+import com.wisegas.grapp.domain.repository.GrappUserRepository
 import com.wisegas.grapp.test.Builders
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared

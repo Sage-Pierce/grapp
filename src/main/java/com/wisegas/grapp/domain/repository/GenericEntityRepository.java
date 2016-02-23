@@ -1,4 +1,4 @@
-package com.wisegas.grapp.domain.service;
+package com.wisegas.grapp.domain.repository;
 
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.persistence.jpa.value.EntityID;

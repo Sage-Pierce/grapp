@@ -1,7 +1,7 @@
-package com.wisegas.grapp.domain_impl.service_impl;
+package com.wisegas.grapp.domain_impl.repository;
 
 import com.wisegas.grapp.domain.entity.GrappStoreLayoutFeature;
-import com.wisegas.grapp.domain.service.GrappStoreLayoutFeatureRepository;
+import com.wisegas.grapp.domain.repository.GrappStoreLayoutFeatureRepository;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

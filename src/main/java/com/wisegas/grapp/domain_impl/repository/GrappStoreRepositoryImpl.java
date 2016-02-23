@@ -1,7 +1,7 @@
-package com.wisegas.grapp.domain_impl.service_impl;
+package com.wisegas.grapp.domain_impl.repository;
 
 import com.wisegas.grapp.domain.entity.GrappStore;
-import com.wisegas.grapp.domain.service.GrappStoreRepository;
+import com.wisegas.grapp.domain.repository.GrappStoreRepository;
 import com.wisegas.grapp.domain.value.GrappUserID;
 
 import javax.inject.Named;

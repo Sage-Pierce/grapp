@@ -1,6 +1,6 @@
-package com.wisegas.grapp.domain_impl.service_impl
+package com.wisegas.grapp.domain_impl.repository
 
-import com.wisegas.grapp.domain.service.GenericEntityRepository
+import com.wisegas.grapp.domain.repository.GenericEntityRepository
 import com.wisegas.grapp.test.Builders
 import com.wisegas.persistence.jpa.entity.SimpleEntity
 import com.wisegas.test.BaseIntegrationTest

@@ -1,4 +1,4 @@
-package com.wisegas.grapp.domain.service;
+package com.wisegas.grapp.domain.repository;
 
 import com.wisegas.grapp.domain.entity.GrappStore;
 import com.wisegas.grapp.domain.value.GrappUserID;
