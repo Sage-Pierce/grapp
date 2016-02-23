@@ -14,20 +14,32 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.grapp.restresource"/>
+                            base-package="com.wisegas.grapp.domain_impl com.wisegas.grapp.service_impl"/>
     <context:annotation-config/>
 
-    <!--&lt;!&ndash; Configure and tell Spring which Entity Manager Factory to use &ndash;&gt;-->
-    <!--<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->
-        <!--<property name="persistenceUnitName" value="persistenceUnit"/>-->
-    <!--</bean>-->
+    <!-- Specify DB Params -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/grapp"/>
+        <property name="username" value="sa"/>
+        <property name="password" value="sasasa"/>
+    </bean>
 
-    <!--&lt;!&ndash; Configure and tell Spring which Transaction Manager to use &ndash;&gt;-->
-    <!--<bean id="platformTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">-->
-        <!--<property name="entityManagerFactory" ref="entityManagerFactory" />-->
-    <!--</bean>-->
+    <!-- Configure and tell Spring which Entity Manager Factory to use -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+    </bean>
 
-    <!--&lt;!&ndash; Tell Spring Transaction Manager to look for Transactional modules via @Transactional &ndash;&gt;-->
-    <!--<tx:annotation-driven transaction-manager="platformTransactionManager" />-->
+    <!-- Configure and tell Spring which Transaction Manager to use -->
+    <bean id="platformTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- Tell Spring Transaction Manager to look for Transactional modules via @Transactional -->
+    <tx:annotation-driven transaction-manager="platformTransactionManager" />
 
 </beans>
