@@ -20,3 +20,4 @@ node_modules/
 *-concat.*s
 target/
 tmp/
+*.env
