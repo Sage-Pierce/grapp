@@ -1,4 +1,4 @@
-package com.wisegas.persistence.jpa.repository_api;
+package com.wisegas.persistence.jpa.api;
 
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.persistence.jpa.value.EntityID;

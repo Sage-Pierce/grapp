@@ -4,7 +4,7 @@ import com.wisegas.grapp.domain.entity.GrappStore
 import com.wisegas.grapp.domain.repository.GrappStoreRepository
 import com.wisegas.grapp.domain.value.GrappUserID
 import com.wisegas.grapp.test.Builders
-import com.wisegas.persistence.jpa.repository_impl.GenericRepositoryImplIntegrationTest
+import com.wisegas.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
 

@@ -1,7 +1,7 @@
-package com.wisegas.persistence.jpa.repository_impl;
+package com.wisegas.persistence.jpa.impl;
 
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.persistence.jpa.repository_api.GenericRepository;
+import com.wisegas.persistence.jpa.api.GenericRepository;
 import com.wisegas.persistence.jpa.value.EntityID;
 
 import javax.persistence.EntityManager;

@@ -1,8 +1,8 @@
-package com.wisegas.persistence.jpa.repository_impl
+package com.wisegas.persistence.jpa.impl
 
 import com.wisegas.grapp.test.Builders
 import com.wisegas.persistence.jpa.entity.SimpleEntity
-import com.wisegas.persistence.jpa.repository_api.GenericRepository
+import com.wisegas.persistence.jpa.api.GenericRepository
 import com.wisegas.test.BaseIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
