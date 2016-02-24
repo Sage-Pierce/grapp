@@ -12,7 +12,6 @@ import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
 
 @ContextConfiguration("classpath*:META-INF/Beans.xml")
-@TransactionConfiguration(transactionManager = "platformTransactionManager")
 abstract class BaseIntegrationTest extends Specification {
 
    @PersistenceContext

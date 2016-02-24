@@ -3,13 +3,14 @@ package com.wisegas.grapp.domain_impl.repository
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.domain.repository.GrappUserRepository
 import com.wisegas.grapp.test.Builders
+import com.wisegas.persistence.jpa.repository_impl.GenericRepositoryImplIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
 
 import javax.inject.Inject
 
 @Transactional
-class GrappUserRepositoryImplIntegrationTest extends GenericEntityRepositoryImplIntegrationTest<GrappUser> {
+class GrappUserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<GrappUser> {
 
    @Inject
    GrappUserRepository grappUserRepository

@@ -2,6 +2,7 @@ package com.wisegas.grapp.test.builders
 
 import com.wisegas.grapp.domain.entity.GrappStore
 import com.wisegas.lang.GeoPoint
+import com.wisegas.test.EntityBuilder
 
 class GrappStoreBuilder {
 

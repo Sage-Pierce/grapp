@@ -1,4 +1,4 @@
-package com.wisegas.grapp.test.builders
+package com.wisegas.test
 
 class EntityBuilder {
 

@@ -1,11 +1,12 @@
 package com.wisegas.grapp.domain.entity
 
 import com.wisegas.grapp.test.Builders
+import com.wisegas.persistence.jpa.entity.EntityIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
 
 @Transactional
-class GrappUserIntegrationTest extends EntityIntegrationTest<GrappUser> {
+class GrappUserIntegrationTest extends GrappEntityIntegrationTest<GrappUser> {
    @Shared
    GrappUser grappUser
 

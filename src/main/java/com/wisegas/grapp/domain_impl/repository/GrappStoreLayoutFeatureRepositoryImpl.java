@@ -2,12 +2,13 @@ package com.wisegas.grapp.domain_impl.repository;
 
 import com.wisegas.grapp.domain.entity.GrappStoreLayoutFeature;
 import com.wisegas.grapp.domain.repository.GrappStoreLayoutFeatureRepository;
+import com.wisegas.persistence.jpa.repository_impl.GenericRepositoryImpl;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 @Named
 @Singleton
-public class GrappStoreLayoutFeatureRepositoryImpl extends GenericEntityRepositoryImpl<GrappStoreLayoutFeature> implements GrappStoreLayoutFeatureRepository {
+public class GrappStoreLayoutFeatureRepositoryImpl extends GenericRepositoryImpl<GrappStoreLayoutFeature> implements GrappStoreLayoutFeatureRepository {
 
 }

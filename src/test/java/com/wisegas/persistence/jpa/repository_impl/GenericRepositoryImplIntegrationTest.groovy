@@ -1,8 +1,8 @@
-package com.wisegas.grapp.domain_impl.repository
+package com.wisegas.persistence.jpa.repository_impl
 
-import com.wisegas.grapp.domain.repository.GenericEntityRepository
 import com.wisegas.grapp.test.Builders
 import com.wisegas.persistence.jpa.entity.SimpleEntity
+import com.wisegas.persistence.jpa.repository_api.GenericRepository
 import com.wisegas.test.BaseIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
@@ -11,10 +11,10 @@ import javax.inject.Inject
 import java.lang.reflect.ParameterizedType
 
 @Transactional
-abstract class GenericEntityRepositoryImplIntegrationTest<T extends SimpleEntity> extends BaseIntegrationTest {
+abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> extends BaseIntegrationTest {
 
    @Inject
-   protected GenericEntityRepository<T> repository
+   protected GenericRepository<T> repository
 
    @Shared
    T testEntity

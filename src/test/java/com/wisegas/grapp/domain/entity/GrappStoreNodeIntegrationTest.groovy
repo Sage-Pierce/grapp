@@ -2,11 +2,12 @@ package com.wisegas.grapp.domain.entity
 
 import com.wisegas.grapp.test.Builders
 import com.wisegas.lang.GeoPoint
+import com.wisegas.persistence.jpa.entity.EntityIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
 
 @Transactional
-class GrappStoreNodeIntegrationTest extends EntityIntegrationTest<GrappStoreNode> {
+class GrappStoreNodeIntegrationTest extends GrappEntityIntegrationTest<GrappStoreNode> {
    @Shared
    GrappStoreNode grappStoreNode1
 

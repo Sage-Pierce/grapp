@@ -4,13 +4,14 @@ import com.wisegas.grapp.domain.entity.GrappStore
 import com.wisegas.grapp.domain.repository.GrappStoreRepository
 import com.wisegas.grapp.domain.value.GrappUserID
 import com.wisegas.grapp.test.Builders
+import com.wisegas.persistence.jpa.repository_impl.GenericRepositoryImplIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Shared
 
 import javax.inject.Inject
 
 @Transactional
-class GrappStoreRepositoryImplIntegrationTest extends GenericEntityRepositoryImplIntegrationTest<GrappStore> {
+class GrappStoreRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<GrappStore> {
 
    @Shared
    GrappUserID grappStoreOwnerID

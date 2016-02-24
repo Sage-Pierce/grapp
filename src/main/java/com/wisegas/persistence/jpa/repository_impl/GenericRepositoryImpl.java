@@ -1,20 +1,20 @@
-package com.wisegas.grapp.domain_impl.repository;
+package com.wisegas.persistence.jpa.repository_impl;
 
-import com.wisegas.grapp.domain.repository.GenericEntityRepository;
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.persistence.jpa.repository_api.GenericRepository;
 import com.wisegas.persistence.jpa.value.EntityID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 
-public abstract class GenericEntityRepositoryImpl<T extends SimpleEntity> implements GenericEntityRepository<T> {
+public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements GenericRepository<T> {
    @PersistenceContext
    protected EntityManager entityManager;
 
    private final Class<T> entityClass;
 
-   public GenericEntityRepositoryImpl() {
+   public GenericRepositoryImpl() {
       entityClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
    }
 
