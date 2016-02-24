@@ -1,6 +1,6 @@
 package com.wisegas.persistence.jpa.converter;
 
-import com.wisegas.value.GeoPoint;
+import com.wisegas.lang.GeoPoint;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

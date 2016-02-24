@@ -1,7 +1,7 @@
 package com.wisegas.grapp.test.builders
 
 import com.wisegas.grapp.domain.entity.GrappStoreNode
-import com.wisegas.value.GeoPoint
+import com.wisegas.lang.GeoPoint
 
 class GrappStoreNodeBuilder {
 

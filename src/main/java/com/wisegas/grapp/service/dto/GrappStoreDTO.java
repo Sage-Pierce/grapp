@@ -1,7 +1,7 @@
 package com.wisegas.grapp.service.dto;
 
-import com.wisegas.value.GeoPoint;
-import com.wisegas.value.NamedDTO;
+import com.wisegas.lang.GeoPoint;
+import com.wisegas.lang.NamedDTO;
 
 public class GrappStoreDTO extends NamedDTO {
 

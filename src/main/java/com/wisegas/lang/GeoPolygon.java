@@ -1,4 +1,4 @@
-package com.wisegas.value;
+package com.wisegas.lang;
 
 import java.util.ArrayList;
 import java.util.Collections;

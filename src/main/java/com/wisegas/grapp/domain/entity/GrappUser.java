@@ -2,7 +2,7 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappUserID;
-import com.wisegas.value.GeoPoint;
+import com.wisegas.lang.GeoPoint;
 
 import javax.persistence.*;
 import java.util.ArrayList;

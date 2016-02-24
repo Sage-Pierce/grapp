@@ -1,6 +1,6 @@
 package com.wisegas.grapp.service.dto;
 
-import com.wisegas.value.NamedDTO;
+import com.wisegas.lang.NamedDTO;
 
 public class GrappUserDTO extends NamedDTO {
 

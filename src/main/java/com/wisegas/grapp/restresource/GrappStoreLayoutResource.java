@@ -3,7 +3,7 @@ package com.wisegas.grapp.restresource;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutFeatureDTO;
-import com.wisegas.value.GeoPolygon;
+import com.wisegas.lang.GeoPolygon;
 import com.wisegas.webserver.hal.HALResource;
 import com.wisegas.webserver.hal.HALResourceLinkBuilder;
 import com.wisegas.webserver.hal.api.HALLink;

@@ -1,6 +1,6 @@
 package com.wisegas.grapp.domain.entity
 
-import com.wisegas.value.GeoPoint
+import com.wisegas.lang.GeoPoint
 import spock.lang.Specification
 
 class GrappUserTest extends Specification {

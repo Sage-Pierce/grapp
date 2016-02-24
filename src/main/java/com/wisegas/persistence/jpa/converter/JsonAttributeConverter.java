@@ -1,6 +1,6 @@
 package com.wisegas.persistence.jpa.converter;
 
-import com.wisegas.value.JsonValue;
+import com.wisegas.lang.JsonValue;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

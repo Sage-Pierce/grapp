@@ -1,4 +1,4 @@
-package com.wisegas.value;
+package com.wisegas.lang;
 
 public class BaseDTO {
 

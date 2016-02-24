@@ -1,4 +1,4 @@
-package com.wisegas.value;
+package com.wisegas.lang;
 
 import com.google.gson.Gson;
 

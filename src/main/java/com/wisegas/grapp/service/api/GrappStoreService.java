@@ -1,7 +1,7 @@
 package com.wisegas.grapp.service.api;
 
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
-import com.wisegas.value.GeoPoint;
+import com.wisegas.lang.GeoPoint;
 
 import java.util.List;
 

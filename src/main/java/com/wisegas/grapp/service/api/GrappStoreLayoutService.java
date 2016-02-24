@@ -2,7 +2,7 @@ package com.wisegas.grapp.service.api;
 
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutFeatureDTO;
-import com.wisegas.value.GeoPolygon;
+import com.wisegas.lang.GeoPolygon;
 
 public interface GrappStoreLayoutService {
    GrappStoreLayoutDTO findByID(String id);

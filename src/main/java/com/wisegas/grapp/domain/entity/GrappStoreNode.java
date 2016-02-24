@@ -4,7 +4,7 @@ import com.wisegas.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappStoreNodeID;
 import com.wisegas.grapp.domain.value.GrappStoreNodeItem;
-import com.wisegas.value.GeoPoint;
+import com.wisegas.lang.GeoPoint;
 
 import javax.persistence.*;
 import java.util.ArrayList;

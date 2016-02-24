@@ -4,7 +4,7 @@ import com.wisegas.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.domain.value.GrappStoreLayoutFeatureID;
 import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
-import com.wisegas.value.GeoPolygon;
+import com.wisegas.lang.GeoPolygon;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package com.wisegas.grapp.service_impl.factory
 
 import com.wisegas.grapp.domain.entity.GrappStore
 import com.wisegas.grapp.domain.entity.GrappUser
-import com.wisegas.value.GeoPoint
+import com.wisegas.lang.GeoPoint
 import spock.lang.Specification
 
 class GrappStoreDTOFactoryTest extends Specification {

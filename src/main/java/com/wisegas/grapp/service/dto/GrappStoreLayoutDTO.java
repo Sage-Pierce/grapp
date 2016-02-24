@@ -1,7 +1,7 @@
 package com.wisegas.grapp.service.dto;
 
-import com.wisegas.value.BaseDTO;
-import com.wisegas.value.GeoPolygon;
+import com.wisegas.lang.BaseDTO;
+import com.wisegas.lang.GeoPolygon;
 
 import java.util.List;
 

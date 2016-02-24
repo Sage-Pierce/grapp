@@ -10,7 +10,7 @@ import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutFeatureDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutFeatureDTOFactory;
-import com.wisegas.value.GeoPolygon;
+import com.wisegas.lang.GeoPolygon;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
