@@ -11,6 +11,7 @@
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
        default-lazy-init="true">
+    <context:property-placeholder/>
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
@@ -19,7 +20,7 @@
 
     <!-- Instantiate DB URI (For Production and Development) -->
     <bean class="java.net.URI" id="dbUrl">
-        <constructor-arg index="0" name="str" type="java.lang.String" value="postgres://postgres:sasasa@localhost:5432/grapp"/>
+        <constructor-arg value="${DATABASE_URL}"/>
     </bean>
 
     <!-- Specify DB Params -->
