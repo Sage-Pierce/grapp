@@ -5,12 +5,10 @@ import com.wisegas.grapp.domain.entity.GrappStore;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
 import com.wisegas.persistence.jpa.value.DBObject;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "\"GrappStoreNodeItem\"")
 public class GrappStoreNodeItem extends DBObject {
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStore grappStore;

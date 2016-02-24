@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "\"GrappStore\"")
 public class GrappStore extends NamedEntity<GrappStoreID> {
    @Embedded
    private GrappStoreID id;

@@ -5,8 +5,10 @@ import com.wisegas.grapp.domain.value.GrappItemID;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "\"GrappItem\"")
 public class GrappItem extends SimpleEntity<GrappItemID> {
    @Embedded
    private GrappItemID id;

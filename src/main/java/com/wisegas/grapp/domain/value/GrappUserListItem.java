@@ -4,13 +4,11 @@ import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.entity.GrappUserList;
 import com.wisegas.persistence.jpa.value.DBObject;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "\"GrappUserListItem\"")
 public class GrappUserListItem extends DBObject implements Serializable {
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappUserList grappUserList;

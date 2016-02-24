@@ -8,6 +8,7 @@ import com.wisegas.value.GeoPolygon;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "\"GrappStoreLayoutFeature\"")
 public class GrappStoreLayoutFeature extends SimpleEntity<GrappStoreLayoutFeatureID> {
    @Embedded
    private GrappStoreLayoutFeatureID id;

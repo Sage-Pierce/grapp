@@ -4,15 +4,14 @@ import com.wisegas.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappStoreNodeID;
 import com.wisegas.grapp.domain.value.GrappStoreNodeItem;
-import com.wisegas.grapp.domain.value.GrappStoreNodeLink;
 import com.wisegas.value.GeoPoint;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
+@Table(name = "\"GrappStoreNode\"")
 public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    @Embedded
    private GrappStoreNodeID id;

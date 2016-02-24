@@ -9,7 +9,7 @@ public class JerseyApplication extends ResourceConfig {
 
    public JerseyApplication() {
       // Register REST Controllers
-      packages("com.wisegas.grapp.webserviceresource");
+      packages("com.wisegas.grapp.restresource");
 
       // Register Filters
       register(RequestContextFilter.class);

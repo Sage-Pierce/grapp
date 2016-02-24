@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "\"GrappUser\"")
 public class GrappUser extends NamedEntity<GrappUserID> {
    @Embedded
    private GrappUserID id;

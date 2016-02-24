@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Entity
+@Table(name = "\"GrappStoreLayout\"")
 public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
    @Embedded
    private GrappStoreLayoutID id;
