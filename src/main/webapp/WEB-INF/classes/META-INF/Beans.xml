@@ -28,9 +28,15 @@
     <!-- Configure and tell Spring which Entity Manager Factory to use -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="packagesToScan" value="com.wisegas.grapp.domain"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgresPlusDialect</prop>
+            </props>
         </property>
     </bean>
 

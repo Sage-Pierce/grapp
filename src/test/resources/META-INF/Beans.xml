@@ -14,7 +14,7 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.grapp"/>
+                            base-package="com.wisegas.grapp.domain_impl com.wisegas.grapp.service_impl"/>
     <context:annotation-config/>
 
     <!-- Specify H2 as our datasource (for tests ONLY) -->
@@ -28,9 +28,15 @@
     <!-- Configure and tell Spring which Entity Manager Factory to use -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="packagesToScan" value="com.wisegas.grapp.domain"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+            </props>
         </property>
     </bean>
 
