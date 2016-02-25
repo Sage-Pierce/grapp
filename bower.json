@@ -6,7 +6,7 @@
     "spierce <spierce@unifocus.com>"
   ],
   "description": "Gr-Application",
-  "main": "index.html",
+  "main": "src/main/webapp/index.html",
   "moduleType": [
     "node"
   ],
