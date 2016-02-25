@@ -28,8 +28,12 @@
          $state.go("main.welcome");
       });
 
-      halClient.$get("http://localhost:5000/rest/")
-         .then(GrappRoot.load);
+      var server = "localhost:5000/rest/";
+      halClient.$get("https://" + server)
+         .then(GrappRoot.load, function() {
+            halClient.$get("http://" + server)
+               .then(GrappRoot.load);
+         });
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely
