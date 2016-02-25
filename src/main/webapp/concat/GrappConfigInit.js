@@ -28,7 +28,7 @@
          $state.go("main.welcome");
       });
 
-      var server = "localhost:5000/rest/";
+      var server = "localhost:8080/rest/";
       halClient.$get("https://" + server)
          .then(GrappRoot.load, function() {
             halClient.$get("http://" + server)
