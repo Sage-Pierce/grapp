@@ -28,11 +28,8 @@
          $state.go("main.welcome");
       });
 
-      halClient.$get("http://localhost:5000/rest/")
-         .then(GrappRoot.load, function() {
-            halClient.$get("https://grapplication.herokuapp.com/rest")
-               .then(GrappRoot.load);
-         });
+      halClient.$get("https://grapplication.herokuapp.com/rest/")
+         .then(GrappRoot.load);
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely
