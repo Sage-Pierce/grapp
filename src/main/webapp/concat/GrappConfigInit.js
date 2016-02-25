@@ -28,10 +28,9 @@
          $state.go("main.welcome");
       });
 
-      var server = "localhost:8080/rest/";
-      halClient.$get("https://" + server)
+      halClient.$get("http://localhost:5000/rest/")
          .then(GrappRoot.load, function() {
-            halClient.$get("http://" + server)
+            halClient.$get("https://grapplication.herokuapp.com/rest")
                .then(GrappRoot.load);
          });
 
