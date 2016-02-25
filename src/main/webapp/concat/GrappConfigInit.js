@@ -28,7 +28,7 @@
          $state.go("main.welcome");
       });
 
-      halClient.$get("http://localhost:8080/rest/")
+      halClient.$get("http://localhost:5000/rest/")
          .then(GrappRoot.load);
 
       uiGmapGoogleMapApi.then(function() {

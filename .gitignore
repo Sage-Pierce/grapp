@@ -17,7 +17,6 @@ grunt/
 *.MF
 node_modules/
 *.bin
-*-concat.*s
 target/
 tmp/
 *.env
