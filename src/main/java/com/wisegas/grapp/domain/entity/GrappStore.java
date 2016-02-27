@@ -19,6 +19,7 @@ public class GrappStore extends NamedEntity<GrappStoreID> {
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappUser owner;
 
+   @Column(length = 63)
    @Convert(converter = GeoPointConverter.class)
    private GeoPoint location;
 

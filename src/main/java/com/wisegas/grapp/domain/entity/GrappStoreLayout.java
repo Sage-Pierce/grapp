@@ -18,9 +18,11 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStore grappStore;
 
+   @Column(length = 2047)
    @Convert(converter = GeoPolygonConverter.class)
    private GeoPolygon outerOutline;
 
+   @Column(length = 2047)
    @Convert(converter = GeoPolygonConverter.class)
    private GeoPolygon innerOutline;
 

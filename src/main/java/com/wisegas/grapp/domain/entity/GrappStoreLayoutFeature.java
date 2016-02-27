@@ -16,6 +16,7 @@ public class GrappStoreLayoutFeature extends SimpleEntity<GrappStoreLayoutFeatur
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreLayout grappStoreLayout;
 
+   @Column(length = 2047)
    @Convert(converter = GeoPolygonConverter.class)
    private GeoPolygon polygon;
 
