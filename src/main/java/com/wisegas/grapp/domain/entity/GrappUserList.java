@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "\"GrappUserList\"")
 public class GrappUserList extends NamedEntity<GrappUserListID> {
-   @Embedded
+   @EmbeddedId
    private GrappUserListID id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)

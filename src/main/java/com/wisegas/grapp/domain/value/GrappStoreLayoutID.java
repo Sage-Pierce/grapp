@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GrappStoreLayoutID extends EntityID {
    @Basic
-   private String value;
+   private String id;
 
    public static GrappStoreLayoutID generate() {
       return new GrappStoreLayoutID(generateValue());
@@ -22,12 +22,12 @@ public class GrappStoreLayoutID extends EntityID {
 
    }
 
-   private GrappStoreLayoutID(String value) {
-      this.value = value;
+   private GrappStoreLayoutID(String id) {
+      this.id = id;
    }
 
    @Override
-   public String getValue() {
-      return value;
+   protected Object idHash() {
+      return id;
    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "\"GrappUser\"")
 public class GrappUser extends NamedEntity<GrappUserID> {
-   @Embedded
+   @EmbeddedId
    private GrappUserID id;
 
    private String email;

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"GrappStoreLayoutFeature\"")
 public class GrappStoreLayoutFeature extends SimpleEntity<GrappStoreLayoutFeatureID> {
-   @Embedded
+   @EmbeddedId
    private GrappStoreLayoutFeatureID id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)

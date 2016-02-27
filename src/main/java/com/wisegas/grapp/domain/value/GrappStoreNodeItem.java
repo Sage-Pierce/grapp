@@ -3,19 +3,22 @@ package com.wisegas.grapp.domain.value;
 import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.entity.GrappStore;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
-import com.wisegas.persistence.jpa.value.DBObject;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "\"GrappStoreNodeItem\"")
-public class GrappStoreNodeItem extends DBObject {
+public class GrappStoreNodeItem implements Serializable {
+   @Id
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStore grappStore;
 
+   @Id
    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
    private GrappStoreNode grappStoreNode;
 
+   @Id
    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
    private GrappItem grappItem;
 

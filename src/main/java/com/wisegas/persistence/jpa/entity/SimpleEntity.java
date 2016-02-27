@@ -1,12 +1,11 @@
 package com.wisegas.persistence.jpa.entity;
 
-import com.wisegas.persistence.jpa.value.DBObject;
 import com.wisegas.persistence.jpa.value.EntityID;
 
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class SimpleEntity<T extends EntityID> extends DBObject {
+public abstract class SimpleEntity<T extends EntityID> {
 
    @Override
    public boolean equals(Object object) {

@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "\"GrappStore\"")
 public class GrappStore extends NamedEntity<GrappStoreID> {
-   @Embedded
+   @EmbeddedId
    private GrappStoreID id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)

@@ -4,13 +4,14 @@ import com.wisegas.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.domain.value.GrappItemID;
 
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "\"GrappItem\"")
 public class GrappItem extends SimpleEntity<GrappItemID> {
-   @Embedded
+   @EmbeddedId
    private GrappItemID id;
 
    private String name;

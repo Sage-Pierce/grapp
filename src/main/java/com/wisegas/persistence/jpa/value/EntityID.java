@@ -7,7 +7,7 @@ public abstract class EntityID implements Serializable {
 
    @Override
    public String toString() {
-      return getValue();
+      return idHash().toString();
    }
 
    @Override
@@ -17,10 +17,10 @@ public abstract class EntityID implements Serializable {
 
    @Override
    public int hashCode() {
-      return getValue().hashCode();
+      return idHash().hashCode();
    }
 
-   public abstract String getValue();
+   protected abstract Object idHash();
 
    protected static String generateValue() {
       return UUID.randomUUID().toString();

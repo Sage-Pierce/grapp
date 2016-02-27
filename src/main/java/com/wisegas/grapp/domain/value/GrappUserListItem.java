@@ -2,17 +2,18 @@ package com.wisegas.grapp.domain.value;
 
 import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.entity.GrappUserList;
-import com.wisegas.persistence.jpa.value.DBObject;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "\"GrappUserListItem\"")
-public class GrappUserListItem extends DBObject implements Serializable {
+public class GrappUserListItem implements Serializable {
+   @Id
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappUserList grappUserList;
 
+   @Id
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
    private GrappItem grappItem;
 

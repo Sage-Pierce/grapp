@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Embeddable
 public class GrappStoreLayoutFeatureID extends EntityID implements Serializable {
    @Basic
-   private String value;
+   private String id;
 
    public static GrappStoreLayoutFeatureID generate() {
       return new GrappStoreLayoutFeatureID(generateValue());
@@ -23,12 +23,12 @@ public class GrappStoreLayoutFeatureID extends EntityID implements Serializable 
 
    }
 
-   private GrappStoreLayoutFeatureID(String value) {
-      this.value = value;
+   private GrappStoreLayoutFeatureID(String id) {
+      this.id = id;
    }
 
    @Override
-   public String getValue() {
-      return value;
+   protected Object idHash() {
+      return id;
    }
 }
