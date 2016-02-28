@@ -62,7 +62,10 @@
                strokeWeight: 1,
                fillColor: "#194d4d",
                fillOpacity: 1,
-               zIndex: 3
+               zIndex: 3,
+               clickable: true,
+               editable: false,
+               draggable: false
             }
          };
 
@@ -160,7 +163,11 @@
       function setOutlinePolygon(outlineId, gMapPolygon) {
          var gMapPolygonPlural = getOutlinePluralById(outlineId);
          gMapPolygonPlural.gObject = gMapPolygon;
-         gMapPolygon.setOptions({fillColor: gMapPolygonPlural.model.fill.color, zIndex: gMapPolygonPlural.model.zIndex});
+         gMapPolygon.setOptions({
+            fillColor: gMapPolygonPlural.model.fill.color,
+            zIndex: gMapPolygonPlural.model.zIndex,
+            clickable: gMapPolygonPlural.model.clickable
+         });
          gMapPolygon.setEditable(true);
          postProcessAddedGMapPolygon(outlineId, gMapPolygon);
       }

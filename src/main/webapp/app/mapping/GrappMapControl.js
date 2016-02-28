@@ -38,7 +38,11 @@
       function setOutlinePolygon(outlineId, gMapPolygon) {
          var gMapPolygonPlural = getOutlinePluralById(outlineId);
          gMapPolygonPlural.gObject = gMapPolygon;
-         gMapPolygon.setOptions({fillColor: gMapPolygonPlural.model.fill.color, zIndex: gMapPolygonPlural.model.zIndex});
+         gMapPolygon.setOptions({
+            fillColor: gMapPolygonPlural.model.fill.color,
+            zIndex: gMapPolygonPlural.model.zIndex,
+            clickable: gMapPolygonPlural.model.clickable
+         });
          gMapPolygon.setEditable(true);
          postProcessAddedGMapPolygon(outlineId, gMapPolygon);
       }

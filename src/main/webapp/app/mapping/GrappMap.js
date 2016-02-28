@@ -62,7 +62,10 @@
                strokeWeight: 1,
                fillColor: "#194d4d",
                fillOpacity: 1,
-               zIndex: 3
+               zIndex: 3,
+               clickable: true,
+               editable: false,
+               draggable: false
             }
          };
 
