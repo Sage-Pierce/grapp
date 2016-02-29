@@ -13,7 +13,7 @@ class GrappStoreLayoutIntegrationTest extends BaseIntegrationTest {
    @Shared
    GrappStoreLayout layout
    @Shared
-   GrappStoreLayoutFeature feature
+   GrappStoreFeature feature
 
    @Override
    def setupSpecDB() {

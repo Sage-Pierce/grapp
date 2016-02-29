@@ -10,7 +10,7 @@ public final class GrappStoreLayoutDTOFactory {
       grappStoreLayoutDTO.setId(grappStoreLayout.getId().toString());
       grappStoreLayoutDTO.setOuterOutline(grappStoreLayout.getOuterOutline());
       grappStoreLayoutDTO.setInnerOutline(grappStoreLayout.getInnerOutline());
-      grappStoreLayoutDTO.setFeatures(GrappStoreLayoutFeatureDTOFactory.createDTOs(grappStoreLayout.getFeatures()));
+      grappStoreLayoutDTO.setFeatures(GrappStoreFeatureDTOFactory.createDTOs(grappStoreLayout.getFeatures()));
       return grappStoreLayoutDTO;
    }
 

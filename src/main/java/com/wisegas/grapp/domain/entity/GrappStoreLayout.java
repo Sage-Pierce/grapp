@@ -2,7 +2,7 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutFeatureID;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
 import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
 import com.wisegas.lang.GeoPolygon;
 
@@ -28,7 +28,7 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreLayout", orphanRemoval = true)
    @MapKey(name = "id")
-   private Map<GrappStoreLayoutFeatureID, GrappStoreLayoutFeature> features = new HashMap<>();
+   private Map<GrappStoreFeatureID, GrappStoreFeature> features = new HashMap<>();
 
    public GrappStoreLayout(GrappStore grappStore) {
       id = GrappStoreLayoutID.generate();
@@ -64,33 +64,33 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       this.innerOutline = innerPolygon;
    }
 
-   public GrappStoreLayoutFeature reshapeFeature(GrappStoreLayoutFeatureID grappStoreLayoutFeatureID, GeoPolygon polygon) {
-      if (features.containsKey(grappStoreLayoutFeatureID)) {
-         GrappStoreLayoutFeature grappStoreLayoutFeature = features.get(grappStoreLayoutFeatureID);
-         grappStoreLayoutFeature.setPolygon(polygon);
-         return grappStoreLayoutFeature;
+   public GrappStoreFeature reshapeFeature(GrappStoreFeatureID grappStoreFeatureID, GeoPolygon polygon) {
+      if (features.containsKey(grappStoreFeatureID)) {
+         GrappStoreFeature grappStoreFeature = features.get(grappStoreFeatureID);
+         grappStoreFeature.setPolygon(polygon);
+         return grappStoreFeature;
       }
       else {
-         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreLayoutFeatureID, getId()));
+         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureID, getId()));
       }
    }
 
-   public Collection<GrappStoreLayoutFeature> getFeatures() {
+   public Collection<GrappStoreFeature> getFeatures() {
       return features.values();
    }
 
-   public GrappStoreLayoutFeature addFeature(GeoPolygon polygon) {
-      GrappStoreLayoutFeature feature = new GrappStoreLayoutFeature(this, polygon);
+   public GrappStoreFeature addFeature(GeoPolygon polygon) {
+      GrappStoreFeature feature = new GrappStoreFeature(this, polygon);
       features.put(feature.getId(), feature);
       return feature;
    }
 
-   public void removeFeature(GrappStoreLayoutFeatureID grappStoreLayoutFeatureID) {
-      if (features.containsKey(grappStoreLayoutFeatureID)) {
-         features.remove(grappStoreLayoutFeatureID);
+   public void removeFeature(GrappStoreFeatureID grappStoreFeatureID) {
+      if (features.containsKey(grappStoreFeatureID)) {
+         features.remove(grappStoreFeatureID);
       }
       else {
-         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreLayoutFeatureID, getId()));
+         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureID, getId()));
       }
    }
 

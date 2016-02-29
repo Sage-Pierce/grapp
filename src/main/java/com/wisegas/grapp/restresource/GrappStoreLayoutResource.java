@@ -2,7 +2,7 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
-import com.wisegas.grapp.service.dto.GrappStoreLayoutFeatureDTO;
+import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.lang.GeoPolygon;
 import com.wisegas.webserver.hal.HALResource;
 import com.wisegas.webserver.hal.HALResourceLinkBuilder;
@@ -54,8 +54,8 @@ public class GrappStoreLayoutResource extends HALResource {
    @Path("features")
    public Response addFeature(@PathParam("id") final String layoutID,
                               @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreLayoutFeatureDTO grappStoreLayoutFeatureDTO = grappStoreLayoutService.addFeature(layoutID, polygon);
-      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreLayoutFeatureDTO).withLinks(GrappStoreLayoutFeatureResource.createLinks(grappStoreLayoutFeatureDTO));
+      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.addFeature(layoutID, polygon);
+      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(GrappStoreFeatureResource.createLinks(grappStoreFeatureDTO));
       return buildHALResponse(halRepresentation);
    }
 
@@ -64,8 +64,8 @@ public class GrappStoreLayoutResource extends HALResource {
    public Response reshapeFeature(@PathParam("id") final String layoutID,
                                   @QueryParam("featureID") final String featureID,
                                   @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreLayoutFeatureDTO grappStoreLayoutFeatureDTO = grappStoreLayoutService.reshapeFeature(layoutID, featureID, polygon);
-      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreLayoutFeatureDTO).withLinks(GrappStoreLayoutFeatureResource.createLinks(grappStoreLayoutFeatureDTO));
+      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.reshapeFeature(layoutID, featureID, polygon);
+      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(GrappStoreFeatureResource.createLinks(grappStoreFeatureDTO));
       return buildHALResponse(halRepresentation);
    }
 

@@ -2,16 +2,16 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutFeatureID;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
 import com.wisegas.lang.GeoPolygon;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "\"GrappStoreLayoutFeature\"")
-public class GrappStoreLayoutFeature extends SimpleEntity<GrappStoreLayoutFeatureID> {
+@Table(name = "\"GrappStoreFeature\"")
+public class GrappStoreFeature extends SimpleEntity<GrappStoreFeatureID> {
    @EmbeddedId
-   private GrappStoreLayoutFeatureID id;
+   private GrappStoreFeatureID id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreLayout grappStoreLayout;
@@ -20,18 +20,18 @@ public class GrappStoreLayoutFeature extends SimpleEntity<GrappStoreLayoutFeatur
    @Convert(converter = GeoPolygonConverter.class)
    private GeoPolygon polygon;
 
-   public GrappStoreLayoutFeature(GrappStoreLayout grappStoreLayout, GeoPolygon polygon) {
-      id = GrappStoreLayoutFeatureID.generate();
+   public GrappStoreFeature(GrappStoreLayout grappStoreLayout, GeoPolygon polygon) {
+      id = GrappStoreFeatureID.generate();
       setGrappStoreLayout(grappStoreLayout);
       setPolygon(polygon);
    }
 
-   protected GrappStoreLayoutFeature() {
+   protected GrappStoreFeature() {
 
    }
 
    @Override
-   public GrappStoreLayoutFeatureID getId() {
+   public GrappStoreFeatureID getId() {
       return id;
    }
 

@@ -3,7 +3,7 @@ package com.wisegas.grapp.service.dto;
 import com.wisegas.lang.BaseDTO;
 import com.wisegas.lang.GeoPolygon;
 
-public class GrappStoreLayoutFeatureDTO extends BaseDTO {
+public class GrappStoreFeatureDTO extends BaseDTO {
 
    private GeoPolygon polygon;
 

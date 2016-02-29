@@ -1,15 +1,15 @@
 package com.wisegas.grapp.service_impl.api;
 
+import com.wisegas.grapp.domain.entity.GrappStoreFeature;
 import com.wisegas.grapp.domain.entity.GrappStoreLayout;
-import com.wisegas.grapp.domain.entity.GrappStoreLayoutFeature;
 import com.wisegas.grapp.domain.repository.GrappStoreLayoutRepository;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutFeatureID;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
 import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
-import com.wisegas.grapp.service.dto.GrappStoreLayoutFeatureDTO;
+import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutDTOFactory;
-import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutFeatureDTOFactory;
+import com.wisegas.grapp.service_impl.factory.GrappStoreFeatureDTOFactory;
 import com.wisegas.lang.GeoPolygon;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,22 +49,22 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
    }
 
    @Override
-   public GrappStoreLayoutFeatureDTO addFeature(String layoutID, GeoPolygon polygon) {
+   public GrappStoreFeatureDTO addFeature(String layoutID, GeoPolygon polygon) {
       GrappStoreLayout layout = grappStoreLayoutRepository.findByID(GrappStoreLayoutID.fromString(layoutID));
-      GrappStoreLayoutFeature feature = layout.addFeature(polygon);
-      return GrappStoreLayoutFeatureDTOFactory.createDTO(feature);
+      GrappStoreFeature feature = layout.addFeature(polygon);
+      return GrappStoreFeatureDTOFactory.createDTO(feature);
    }
 
    @Override
-   public GrappStoreLayoutFeatureDTO reshapeFeature(String layoutID, String featureID, GeoPolygon polygon) {
+   public GrappStoreFeatureDTO reshapeFeature(String layoutID, String featureID, GeoPolygon polygon) {
       GrappStoreLayout layout = grappStoreLayoutRepository.findByID(GrappStoreLayoutID.fromString(layoutID));
-      GrappStoreLayoutFeature feature = layout.reshapeFeature(GrappStoreLayoutFeatureID.fromString(featureID), polygon);
-      return GrappStoreLayoutFeatureDTOFactory.createDTO(feature);
+      GrappStoreFeature feature = layout.reshapeFeature(GrappStoreFeatureID.fromString(featureID), polygon);
+      return GrappStoreFeatureDTOFactory.createDTO(feature);
    }
 
    @Override
    public void removeFeature(String layoutID, String featureID) {
       GrappStoreLayout layout = grappStoreLayoutRepository.findByID(GrappStoreLayoutID.fromString(layoutID));
-      layout.removeFeature(GrappStoreLayoutFeatureID.fromString(featureID));
+      layout.removeFeature(GrappStoreFeatureID.fromString(featureID));
    }
 }
