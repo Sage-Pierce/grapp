@@ -17,7 +17,7 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    private GrappStoreNodeID id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
-   private GrappStore grappStore;
+   private GrappStoreLayout grappStoreLayout;
 
    @Column(length = 63)
    @Convert(converter = GeoPointConverter.class)
@@ -26,9 +26,9 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreNode", orphanRemoval = true)
    private List<GrappStoreNodeItem> grappStoreNodeItems = new ArrayList<>();
 
-   public GrappStoreNode(GrappStore grappStore, GeoPoint location, String name) {
+   public GrappStoreNode(GrappStoreLayout grappStoreLayout, GeoPoint location, String name) {
       id = GrappStoreNodeID.generate();
-      setGrappStore(grappStore);
+      setGrappStoreLayout(grappStoreLayout);
       setLocation(location);
       setName(name);
    }
@@ -40,10 +40,6 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    @Override
    public GrappStoreNodeID getId() {
       return id;
-   }
-
-   public GrappStore getGrappStore() {
-      return grappStore;
    }
 
    public GeoPoint getLocation() {
@@ -58,7 +54,7 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
       return grappStoreNodeItems;
    }
 
-   private void setGrappStore(GrappStore grappStore) {
-      this.grappStore = grappStore;
+   private void setGrappStoreLayout(GrappStoreLayout grappStoreLayout) {
+      this.grappStoreLayout = grappStoreLayout;
    }
 }

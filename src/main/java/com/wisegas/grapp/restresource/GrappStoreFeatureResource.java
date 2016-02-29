@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
 
-@Path("/features/{id}")
+@Path("/features/{id}/")
 public class GrappStoreFeatureResource extends HALResource {
 
    private final GrappStoreFeatureService grappStoreFeatureService;

@@ -10,6 +10,7 @@ public class GrappStoreLayoutDTO extends BaseDTO {
    private GeoPolygon outerOutline;
    private GeoPolygon innerOutline;
    private List<GrappStoreFeatureDTO> features;
+   private List<GrappStoreNodeDTO> nodes;
 
    public GeoPolygon getOuterOutline() {
       return outerOutline;
@@ -34,5 +35,13 @@ public class GrappStoreLayoutDTO extends BaseDTO {
 
    public void setFeatures(List<GrappStoreFeatureDTO> features) {
       this.features = features;
+   }
+
+   public List<GrappStoreNodeDTO> getNodes() {
+      return nodes;
+   }
+
+   public void setNodes(List<GrappStoreNodeDTO> nodes) {
+      this.nodes = nodes;
    }
 }

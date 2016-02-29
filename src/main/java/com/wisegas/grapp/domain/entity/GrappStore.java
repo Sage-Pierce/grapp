@@ -26,12 +26,6 @@ public class GrappStore extends NamedEntity<GrappStoreID> {
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStore", orphanRemoval = true)
    private GrappStoreLayout grappStoreLayout = new GrappStoreLayout(this);
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStore", orphanRemoval = true)
-   private List<GrappStoreNode> grappStoreNodes = new ArrayList<>();
-
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStore", orphanRemoval = true)
-   private List<GrappStoreNodeItem> grappStoreNodeItems = new ArrayList<>();
-
    public GrappStore(GrappUser owner, String name, GeoPoint location) {
       id = GrappStoreID.generate();
       setOwner(owner);
@@ -62,20 +56,6 @@ public class GrappStore extends NamedEntity<GrappStoreID> {
 
    public GrappStoreLayout getGrappStoreLayout() {
       return grappStoreLayout;
-   }
-
-   public List<GrappStoreNode> getGrappStoreNodes() {
-      return grappStoreNodes;
-   }
-
-   public GrappStoreNode addNode(GeoPoint location, String name) {
-      GrappStoreNode grappStoreNode = new GrappStoreNode(this, location, name);
-      grappStoreNodes.add(grappStoreNode);
-      return grappStoreNode;
-   }
-
-   public List<GrappStoreNodeItem> getGrappStoreNodeItems() {
-      return grappStoreNodeItems;
    }
 
    private void setOwner(GrappUser owner) {

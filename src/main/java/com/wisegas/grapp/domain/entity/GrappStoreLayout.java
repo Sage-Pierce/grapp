@@ -1,5 +1,7 @@
 package com.wisegas.grapp.domain.entity;
 
+import com.wisegas.grapp.domain.value.GrappStoreNodeID;
+import com.wisegas.lang.GeoPoint;
 import com.wisegas.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
@@ -29,6 +31,10 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreLayout", orphanRemoval = true)
    @MapKey(name = "id")
    private Map<GrappStoreFeatureID, GrappStoreFeature> features = new HashMap<>();
+
+   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreLayout", orphanRemoval = true)
+   @MapKey(name = "id")
+   private Map<GrappStoreNodeID, GrappStoreNode> nodes = new HashMap<>();
 
    public GrappStoreLayout(GrappStore grappStore) {
       id = GrappStoreLayoutID.generate();
@@ -64,6 +70,10 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       this.innerOutline = innerPolygon;
    }
 
+   public Collection<GrappStoreFeature> getFeatures() {
+      return features.values();
+   }
+
    public GrappStoreFeature reshapeFeature(GrappStoreFeatureID grappStoreFeatureID, GeoPolygon polygon) {
       if (features.containsKey(grappStoreFeatureID)) {
          GrappStoreFeature grappStoreFeature = features.get(grappStoreFeatureID);
@@ -73,10 +83,6 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       else {
          throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureID, getId()));
       }
-   }
-
-   public Collection<GrappStoreFeature> getFeatures() {
-      return features.values();
    }
 
    public GrappStoreFeature addFeature(GeoPolygon polygon) {
@@ -91,6 +97,36 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       }
       else {
          throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureID, getId()));
+      }
+   }
+
+   public Collection<GrappStoreNode> getNodes() {
+      return nodes.values();
+   }
+
+   public GrappStoreNode moveNode(GrappStoreNodeID grappStoreNodeID, GeoPoint location) {
+      if (nodes.containsKey(grappStoreNodeID)) {
+         GrappStoreNode grappStoreNode = nodes.get(grappStoreNodeID);
+         grappStoreNode.setLocation(location);
+         return grappStoreNode;
+      }
+      else {
+         throw new RuntimeException(String.format("Node (%s) not found in Layout (%s).", grappStoreNodeID, getId()));
+      }
+   }
+
+   public GrappStoreNode addNode(GeoPoint location) {
+      GrappStoreNode node = new GrappStoreNode(this, location, "Grapp Store Node #" + nodes.size());
+      nodes.put(node.getId(), node);
+      return node;
+   }
+
+   public void removeNode(GrappStoreNodeID grappStoreNodeID) {
+      if (nodes.containsKey(grappStoreNodeID)) {
+         nodes.remove(grappStoreNodeID);
+      }
+      else {
+         throw new RuntimeException(String.format("Node ($s) not found in Layout (%s).", grappStoreNodeID, getId()));
       }
    }
 
