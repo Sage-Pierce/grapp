@@ -10,9 +10,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "\"GrappStoreNodeItem\"")
 public class GrappStoreNodeItem implements Serializable {
-   @Id
-   @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
-   private GrappStore grappStore;
 
    @Id
    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
@@ -31,10 +28,6 @@ public class GrappStoreNodeItem implements Serializable {
 
    }
 
-   public GrappStore getGrappStore() {
-      return grappStore;
-   }
-
    public GrappStoreNode getGrappStoreNode() {
       return grappStoreNode;
    }
@@ -44,7 +37,6 @@ public class GrappStoreNodeItem implements Serializable {
    }
 
    private void setGrappStoreNode(GrappStoreNode grappStoreNode) {
-      this.grappStore = grappStoreNode.getGrappStore();
       this.grappStoreNode = grappStoreNode;
    }
 
