@@ -268,7 +268,13 @@
       mainStoreMapLayoutVM.radioModel = null;
       mainStoreMapLayoutVM.radioChanged = radioChanged;
 
+      initialize();
+
       ////////////////////
+
+      function initialize() {
+         mapControl.setEventHandler(null);
+      }
 
       function radioChanged() {
          var mode = mainStoreMapLayoutVM.radioModel;

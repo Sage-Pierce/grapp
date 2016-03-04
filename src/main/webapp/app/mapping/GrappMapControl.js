@@ -11,15 +11,21 @@
       self.addFeature = addFeature;
       self.removeFeatureById = removeFeatureById;
       self.applyToFeatures = applyToFeatures;
+      self.addNode = addNode;
+      self.removeNodeById = removeNodeById;
       self.mapClicked = mapClicked;
       self.polygonComplete = polygonComplete;
       self.polygonClicked = polygonClicked;
       self.polygonRightClicked = polygonRightClicked;
       self.polygonDragEnd = polygonDragEnd;
+      self.markerClicked = markerClicked;
+      self.markerRightClicked = markerRightClicked;
+      self.markerDragEnd = markerDragEnd;
       self.setMapControl = setMapControl;
       self.setDrawingManagerControl = setDrawingManagerControl;
       self.setOutlineControl = setOutlineControl;
       self.setFeatureControl = setFeatureControl;
+      self.setNodeControl = setNodeControl;
       self.setEventHandler = setEventHandler;
       self.setDrawingMode = setDrawingMode;
 
@@ -27,6 +33,7 @@
       var drawingManagerControl = null;
       var outlineControl = null;
       var featureControl = null;
+      var nodeControl = null;
       var eventHandler = null;
 
       ////////////////////
@@ -66,6 +73,20 @@
          featureControl.getPlurals().values().forEach(function(plural) {
             operator(plural.gObject);
          });
+      }
+
+      function addNode(nodeId, gMapMarker) {
+         nodeControl.getPlurals().put(nodeId, {gObject: gMapMarker});
+         postProcessAddedGMapMarker(nodeId, gMapMarker);
+      }
+
+      function removeNodeById(nodeId) {
+         var nodePlurals = nodeControl.getPlurals();
+         var gMapMarkerPlural = nodePlurals.get(nodeId);
+         var gMapMarker = gMapMarkerPlural.gObject;
+         nodePlurals.remove(nodeId);
+         google.maps.event.clearInstanceListeners(gMapMarker);
+         gMapMarker.setMap(null);
       }
 
       function mapClicked(map, mouseEvent) {
@@ -113,6 +134,24 @@
          }
       }
 
+      function markerClicked(modelId, gMapMarker, mouseEvent) {
+         if (eventHandler && eventHandler.markerClicked) {
+            eventHandler.markerClicked(modelId, gMapMarker, mouseEvent);
+         }
+      }
+
+      function markerRightClicked(modelId, gMapMarker, mouseEvent) {
+         if (gMapMarker.getMap() && eventHandler && eventHandler.markerRightClicked) {
+            eventHandler.markerRightClicked(modelId, gMapMarker, mouseEvent);
+         }
+      }
+
+      function markerDragEnd(modelId, gMapMarker, mouseEvent) {
+         if (gMapMarker.getMap() && eventHandler && eventHandler.markerDragEnd) {
+            eventHandler.markerDragEnd(modelId, gMapMarker, mouseEvent);
+         }
+      }
+
       function setMapControl(mc) {
          mapControl = mc;
       }
@@ -127,6 +166,10 @@
 
       function setFeatureControl(fc) {
          featureControl = fc;
+      }
+
+      function setNodeControl(nc) {
+         nodeControl = nc;
       }
 
       function setEventHandler(eh) {
@@ -160,6 +203,14 @@
          google.maps.event.addListener(gMapPolygon, "rightclick", function(polyMouseEvent) { self.polygonRightClicked(modelId, gMapPolygon, polyMouseEvent); });
          google.maps.event.addListener(gMapPolygon, "dragend", function(mouseEvent) { self.polygonDragEnd(modelId, gMapPolygon, mouseEvent); });
          gMapPolygon.setMap(mapControl.getGMap());
+      }
+
+      function postProcessAddedGMapMarker(modelId, gMapMarker) {
+         google.maps.event.clearInstanceListeners(gMapMarker);
+         google.maps.event.addListener(gMapMarker, "click", function(mouseEvent) { self.markerClicked(modelId, gMapMarker, mouseEvent); });
+         google.maps.event.addListener(gMapMarker, "rightclick", function(mouseEvent) { self.markerRightClicked(modelId, gMapMarker, mouseEvent); });
+         google.maps.event.addListener(gMapMarker, "dragend", function(mouseEvent) { self.markerDragEnd(modelId, gMapMarker, mouseEvent); });
+         gMapMarker.setMap(mapControl.getGMap());
       }
    }
 })();

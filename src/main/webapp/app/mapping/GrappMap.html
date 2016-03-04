@@ -11,7 +11,7 @@
                      path="'path'"
                      stroke="{weight: 1}"
                      fill="'fill'"
-                     zIndex="'zIndex'"
+                     zindex="'zIndex'"
                      fit="'fit'"
                      clickable="'clickable'"
                      static="true"
@@ -28,4 +28,10 @@
                      events="grappMapVM.polygonEvents"
                      control="grappMapVM.featureControl">
    </ui-gmap-polygons>
+   <ui-gmap-markers models="grappMapVM.storeNodes"
+                    coords="'coords'"
+                    options="'options'"
+                    events="grappMapVM.markerEvents"
+                    control="grappMapVM.nodeControl">
+   </ui-gmap-markers>
 </ui-gmap-google-map>

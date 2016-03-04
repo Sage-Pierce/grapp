@@ -33,8 +33,10 @@
       grappMapVM.drawingManagerControl = {};
       grappMapVM.outlineControl = {};
       grappMapVM.featureControl = {};
+      grappMapVM.nodeControl = {};
       grappMapVM.storeOutlines = null;
       grappMapVM.storeFeatures = null;
+      grappMapVM.storeNodes = null;
 
       var control = this.control;
       var grappStoreLocation = this.grappStoreLocation;
@@ -66,6 +68,10 @@
                clickable: true,
                editable: false,
                draggable: false
+            },
+            markerOptions: {
+               zIndex: 4,
+               draggable: true
             }
          };
 
@@ -82,28 +88,39 @@
          grappMapVM.polygonEvents = {
             click: function(polygon, eventName, model, args) { control.polygonClicked(model.id, polygon, args[0]); },
             rightclick: function(polygon, eventName, model, args) { control.polygonRightClicked(model.id, polygon, args[0]); },
-            dragend: function (polygon, eventName, model, args) { control.polygonDragEnd(model.id, polygon, args[0]); }
+            dragend: function(polygon, eventName, model, args) { control.polygonDragEnd(model.id, polygon, args[0]); }
+         };
+
+         grappMapVM.markerEvents = {
+            click: function(marker, eventName, model, args) { control.markerClicked(model.id, marker, args[0]); },
+            rightclick: function(marker, eventName, model, args) { control.markerRightClicked(model.id, marker, args[0]); },
+            dragend: function(marker, eventName, model, args) { control.markerDragEnd(model.id, marker, args[0]); }
          };
 
          control.setMapControl(grappMapVM.mapControl);
          control.setDrawingManagerControl(grappMapVM.drawingManagerControl);
          control.setOutlineControl(grappMapVM.outlineControl);
          control.setFeatureControl(grappMapVM.featureControl);
+         control.setNodeControl(grappMapVM.nodeControl);
 
          grappMapVM.storeOutlines = [
-            convertGrappPolygonTogMapPolygon(grappStoreLayout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
-            convertGrappPolygonTogMapPolygon(grappStoreLayout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
+            convertGrappPolygonToGMapPolygon(grappStoreLayout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
+            convertGrappPolygonToGMapPolygon(grappStoreLayout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
          ];
 
          grappMapVM.storeFeatures = grappStoreLayout.features.map(function(grappPolygon) {
-            return convertGrappPolygonTogMapPolygon(grappPolygon, {color: "#194d4d", opacity: 1}, 2);
+            return convertGrappPolygonToGMapPolygon(grappPolygon, {color: "#194d4d", opacity: 1}, 2);
+         });
+
+         grappMapVM.storeNodes = grappStoreLayout.nodes.map(function(node) {
+            return convertGrappNodeToGMapMarker(node);
          });
       }
 
-      function convertGrappPolygonTogMapPolygon(grappPolygon, fill, zIndex, fit) {
+      function convertGrappPolygonToGMapPolygon(grappPolygon, fill, zIndex, fit) {
          return {
             id: grappPolygon.id,
-            path: convertGrappPolygonVerticesTogMapPolygonPath(grappPolygon.vertices),
+            path: convertGrappPolygonVerticesToGMapPolygonPath(grappPolygon.vertices),
             fill: fill,
             zIndex: zIndex,
             fit: fit,
@@ -113,13 +130,24 @@
          };
       }
 
-      function convertGrappPolygonVerticesTogMapPolygonPath(vertices) {
+      function convertGrappPolygonVerticesToGMapPolygonPath(vertices) {
          return vertices.map(function(vertex) {
             return {
                latitude: vertex.lat,
                longitude: vertex.lng
             };
          });
+      }
+
+      function convertGrappNodeToGMapMarker(node) {
+         return {
+            id: node.id,
+            coords: {
+               latitude: node.location.lat,
+               longitude: node.location.lng
+            },
+            options: grappMapVM.options.markerOptions
+         };
       }
    }
 })();

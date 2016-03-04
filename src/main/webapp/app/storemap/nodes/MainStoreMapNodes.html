@@ -1,1 +1,12 @@
-<h3>Nodes Stuff</h3>
+<div class="tab-row">
+   <h4 class="text-center">Node Type</h4>
+   <div class="btn-group btn-group-justified">
+      <label ng-repeat="nodeType in mainStoreMapNodesVM.nodeTypes"
+             class="btn btn-primary"
+             ng-model="mainStoreMapNodesVM.radioModel"
+             uib-btn-radio="nodeType"
+             ng-change="mainStoreMapNodesVM.radioChanged()">
+         {{nodeType.displayString}}
+      </label>
+   </div>
+</div>
