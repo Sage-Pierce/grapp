@@ -26,30 +26,35 @@
 
       function GrappStoreModel(grappStoreRsc) {
          var self = this;
-         self.location = convertGrappPointTogMapPoint(grappStoreRsc.location);
+         self.location = convertGrappPointToGMapPosition(grappStoreRsc.location);
+         self.updateName = updateName;
+         self.updateLocation = updateLocation;
+         self.remove = remove;
 
-         self.updateName = function(name) {
+         ////////////////////
+
+         function updateName(name) {
             return grappStoreRsc.$put("updateName", {name: name}).then(function(resource) {
                self.name = resource.name;
             });
-         };
+         }
 
-         self.updateLocation = function(gMapPoint) {
-            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(convertgMapPointToGrappPoint(gMapPoint))}).then(function(resource) {
-               self.location = convertGrappPointTogMapPoint(resource.location);
+         function updateLocation(gMapPoint) {
+            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(convertGMapPositionToGrappPoint(gMapPoint))}).then(function(resource) {
+               self.location = convertGrappPointToGMapPosition(resource.location);
             });
-         };
+         }
 
-         self.delete = function() {
+         function remove() {
             return grappStoreRsc.$del("self");
-         };
+         }
 
-         function convertGrappPointTogMapPoint(grappPoint) {
+         function convertGrappPointToGMapPosition(grappPoint) {
             return grappPoint ? {latitude: grappPoint.lat, longitude: grappPoint.lng} : null;
          }
 
-         function convertgMapPointToGrappPoint(gMapPoint) {
-            return {lat: gMapPoint.latitude || gMapPoint.lat(), lng: gMapPoint.longitude || gMapPoint.lng()};
+         function convertGMapPositionToGrappPoint(position) {
+            return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
          }
       }
    }
@@ -134,7 +139,7 @@
       }
 
       function deleteSelectedStore() {
-         mainStoresVM.selectedStore.delete().then(function() {
+         mainStoresVM.selectedStore.remove().then(function() {
             removeObjectFromArray(mainStoresVM.grappStores, mainStoresVM.selectedStore);
          });
       }

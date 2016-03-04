@@ -142,7 +142,7 @@
       function convertGrappNodeToGMapMarker(node) {
          return {
             id: node.id,
-            coords: {
+            position: {
                latitude: node.location.lat,
                longitude: node.location.lng
             },

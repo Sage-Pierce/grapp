@@ -78,7 +78,7 @@
       }
 
       function deleteSelectedStore() {
-         mainStoresVM.selectedStore.delete().then(function() {
+         mainStoresVM.selectedStore.remove().then(function() {
             removeObjectFromArray(mainStoresVM.grappStores, mainStoresVM.selectedStore);
          });
       }

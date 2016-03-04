@@ -21,10 +21,10 @@
 
       function GrappStoreLayoutModel(grappStoreLayoutRsc) {
          var self = this;
-         self.outerOutline = createGMapPolygonModelFromGrappPolygonRsc({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
-         self.innerOutline = createGMapPolygonModelFromGrappPolygonRsc({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
-         self.features = grappStoreLayoutRsc.features.map(createGMapPolygonModelFromGrappFeatureRsc);
-         self.nodes = grappStoreLayoutRsc.nodes.map(createGMapMarkerModelFromGrappStoreNodeRsc);
+         self.outerOutline = createGMapPolygonModelFromGrappPolygon({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
+         self.innerOutline = createGMapPolygonModelFromGrappPolygon({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
+         self.features = grappStoreLayoutRsc.features.map(createGMapPolygonModelFromGrappFeature);
+         self.nodes = grappStoreLayoutRsc.nodes.map(createGMapMarkerModelFromGrappStoreNode);
          self.getFeatureById = getFeatureById;
          self.addFeature = addFeature;
          self.removeFeatureById = removeFeatureById;
@@ -39,9 +39,9 @@
          }
 
          function addFeature(path) {
-            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(path.map(convertGMapPointToGrappPoint))})
+            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(path.map(convertGMapPositionToGrappPoint))})
                .then(function(featureRsc) {
-                  var polygonModel = createGMapPolygonModelFromGrappFeatureRsc(featureRsc);
+                  var polygonModel = createGMapPolygonModelFromGrappFeature(featureRsc);
                   self.features.push(polygonModel);
                   return polygonModel;
                });
@@ -60,10 +60,10 @@
             return _.findWhere(self.nodes, {id: id});
          }
 
-         function addNode(point) {
-            return grappStoreLayoutRsc.$post("addNode", {location: JSON.stringify(convertGMapPointToGrappPoint(point))})
+         function addNode(position) {
+            return grappStoreLayoutRsc.$post("addNode", {location: JSON.stringify(convertGMapPositionToGrappPoint(position))})
                .then(function(nodeRsc) {
-                  var nodeModel = createGMapMarkerModelFromGrappStoreNodeRsc(nodeRsc);
+                  var nodeModel = createGMapMarkerModelFromGrappStoreNode(nodeRsc);
                   self.nodes.push(nodeModel);
                   return nodeModel;
                });
@@ -78,11 +78,11 @@
             }
          }
 
-         function createGMapPolygonModelFromGrappFeatureRsc(featureRsc) {
-            return createGMapPolygonModelFromGrappPolygonRsc(featureRsc, "reshapeFeature", true);
+         function createGMapPolygonModelFromGrappFeature(featureRsc) {
+            return createGMapPolygonModelFromGrappPolygon(featureRsc, "reshapeFeature", true);
          }
 
-         function createGMapPolygonModelFromGrappPolygonRsc(grappPolygonRsc, updateRel, isFeature) {
+         function createGMapPolygonModelFromGrappPolygon(grappPolygonRsc, updateRel, isFeature) {
             return {
                id: grappPolygonRsc.id,
                vertices: grappPolygonRsc.polygon ? grappPolygonRsc.polygon.vertices : [],
@@ -92,7 +92,7 @@
          }
 
          function commitGMapPolygonModelPath(updateRel, gMapPolygonModel, path) {
-            var grappPolygonVertices = path.map(convertGMapPointToGrappPoint);
+            var grappPolygonVertices = path.map(convertGMapPositionToGrappPoint);
             var params = {
                featureID: gMapPolygonModel.id,
                polygon: stringifyVerticesIntoGrappPolygon(grappPolygonVertices)
@@ -106,7 +106,7 @@
             return JSON.stringify({vertices: grappPolygonVertices});
          }
 
-         function createGMapMarkerModelFromGrappStoreNodeRsc(grappStoreNodeRsc) {
+         function createGMapMarkerModelFromGrappStoreNode(grappStoreNodeRsc) {
             return {
                id: grappStoreNodeRsc.id,
                location: grappStoreNodeRsc.location,
@@ -115,7 +115,7 @@
          }
 
          function commitGMapMarkerModelPosition(gMapMarkerModel, position) {
-            var grappPoint = convertGMapPointToGrappPoint(position);
+            var grappPoint = convertGMapPositionToGrappPoint(position);
             var params = {
                nodeID: gMapMarkerModel.id,
                location: JSON.stringify(grappPoint)
@@ -125,7 +125,7 @@
             });
          }
 
-         function convertGMapPointToGrappPoint(point) {
+         function convertGMapPositionToGrappPoint(point) {
             return {lat: point.latitude || point.lat(), lng: point.longitude || point.lng()};
          }
       }
