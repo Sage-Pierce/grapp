@@ -7,6 +7,8 @@
    MainStoreMapLayout.$inject = ["grappStoreLayout", "mapControl", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditDeleteFeatureEventHandler", "CopyMoveDeleteFeatureEventHandler"];
    function MainStoreMapLayout(grappStoreLayout, mapControl, EditOutlineEventHandler, DrawFeatureEventHandler, EditDeleteFeatureEventHandler, CopyMoveDeleteFeatureEventHandler) {
       var mainStoreMapLayoutVM = this;
+      mainStoreMapLayoutVM.outlineRadioEventHandlerModels = null;
+      mainStoreMapLayoutVM.featureRadioEventHandlerModels = null;
       mainStoreMapLayoutVM.radioModel = null;
       mainStoreMapLayoutVM.radioChanged = radioChanged;
 
@@ -16,25 +18,26 @@
 
       function initialize() {
          mapControl.setEventHandler(null);
+
+         mainStoreMapLayoutVM.outlineRadioEventHandlerModels = [
+            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, grappStoreLayout.outerOutline), "Outer"),
+            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, grappStoreLayout.innerOutline), "Inner")
+         ];
+
+         mainStoreMapLayoutVM.featureRadioEventHandlerModels = [
+            new RadioEventHandlerModel(new DrawFeatureEventHandler(mapControl, grappStoreLayout), "Draw"),
+            new RadioEventHandlerModel(new EditDeleteFeatureEventHandler(mapControl, grappStoreLayout), "Edit | Delete"),
+            new RadioEventHandlerModel(new CopyMoveDeleteFeatureEventHandler(mapControl, grappStoreLayout), "Copy/Move | Delete")
+         ];
       }
 
       function radioChanged() {
-         var mode = mainStoreMapLayoutVM.radioModel;
-         if (mode === "outer" || mode === "inner") {
-            mapControl.setEventHandler(new EditOutlineEventHandler(mapControl, mode === "outer" ? grappStoreLayout.outerOutline : grappStoreLayout.innerOutline));
-         }
-         else if (mode === "draw") {
-            mapControl.setEventHandler(new DrawFeatureEventHandler(mapControl, grappStoreLayout));
-         }
-         else if (mode === "editDelete") {
-            mapControl.setEventHandler(new EditDeleteFeatureEventHandler(mapControl, grappStoreLayout));
-         }
-         else if (mode === "copyMove") {
-            mapControl.setEventHandler(new CopyMoveDeleteFeatureEventHandler(mapControl, grappStoreLayout));
-         }
-         else {
-            mapControl.setEventHandler(null);
-         }
+         mapControl.setEventHandler(mainStoreMapLayoutVM.radioModel && mainStoreMapLayoutVM.radioModel.eventHandler);
+      }
+
+      function RadioEventHandlerModel(eventHandler, displayString) {
+         this.eventHandler = eventHandler;
+         this.displayString = displayString;
       }
    }
 })();
