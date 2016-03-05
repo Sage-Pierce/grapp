@@ -28,7 +28,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--&lt;!&ndash; Jetty &ndash;&gt;-->
+        <!-- Jetty -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
