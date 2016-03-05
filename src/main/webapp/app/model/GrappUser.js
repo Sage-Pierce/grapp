@@ -26,33 +26,36 @@
 
       function GrappUserModel(grappUserRsc) {
          var self = this;
+         self.updateDisplayName = updateDisplayName;
+         self.createStore = createStore;
+         self.loadStores = loadStores;
 
-         self.updateDisplayName = function(displayName) {
+         ////////////////////
+
+         function updateDisplayName(displayName) {
             return grappUserRsc.$put("updateName", {name: displayName}).then(function() {
                self.name = displayName;
             });
-         };
+         }
 
-         self.createStore = function(storeName, gMapPoint) {
-            return grappUserRsc.$post("createStore", {storeName: storeName, storeLocation: JSON.stringify(convertgMapPointToGrappPoint(gMapPoint))}).then(GrappStore.load);
-         };
+         function createStore(storeName, gMapPoint) {
+            return grappUserRsc.$post("createStore", {storeName: storeName, storeLocation: JSON.stringify(convertGMapPositionToGrappPoint(gMapPoint))}).then(GrappStore.load);
+         }
 
-         self.loadStores = function() {
+         function loadStores() {
             return grappUserRsc.$get("getStores").then(function(response) {
                return response.$has("stores") ? createGrappStoreModelsPromiseFromResponse(response) : $q.resolve([]);
             });
-         };
+         }
 
-         function convertgMapPointToGrappPoint(gMapPoint) {
-            return {lat: gMapPoint.latitude || gMapPoint.lat(), lng: gMapPoint.longitude || gMapPoint.lng()};
+         function convertGMapPositionToGrappPoint(position) {
+            return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
          }
 
          function createGrappStoreModelsPromiseFromResponse(response) {
             return response.$get("stores").then(function(resources) {
                var storeResources = Array.isArray(resources) ? resources : [resources];
-               return storeResources.map(function(storeResource) {
-                  return GrappStore.load(storeResource);
-               });
+               return storeResources.map(GrappStore.load);
             });
          }
       }

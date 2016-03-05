@@ -125,8 +125,8 @@
             });
          }
 
-         function convertGMapPositionToGrappPoint(point) {
-            return {lat: point.latitude || point.lat(), lng: point.longitude || point.lng()};
+         function convertGMapPositionToGrappPoint(position) {
+            return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
          }
       }
    }

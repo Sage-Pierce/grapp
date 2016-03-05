@@ -48,7 +48,7 @@
       }
 
       function polygonRightClicked(modelId, gMapPolygon) {
-         if (gMapPolygonCopyModel && gMapPolygonCopyModel.isForgMapPolygon(gMapPolygon)) {
+         if (gMapPolygonCopyModel && gMapPolygonCopyModel.isForGMapPolygon(gMapPolygon)) {
             gMapPolygonCopyModel.deselect();
             gMapPolygonCopyModel = null;
          }
@@ -68,7 +68,7 @@
          var self = this;
          self.select = select;
          self.deselect = deselect;
-         self.isForgMapPolygon = isForgMapPolygon;
+         self.isForGMapPolygon = isForGMapPolygon;
          self.copyToLatLng = copyToLatLng;
 
          var copyOffsets = null;
@@ -113,8 +113,8 @@
             });
          }
 
-         function isForgMapPolygon(othergMapPolygon) {
-            return gMapPolygon === othergMapPolygon;
+         function isForGMapPolygon(otherGMapPolygon) {
+            return gMapPolygon === otherGMapPolygon;
          }
 
          function createStrokeOptions(color, weight) {

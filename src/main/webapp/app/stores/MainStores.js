@@ -79,12 +79,8 @@
 
       function deleteSelectedStore() {
          mainStoresVM.selectedStore.remove().then(function() {
-            removeObjectFromArray(mainStoresVM.grappStores, mainStoresVM.selectedStore);
+            mainStoresVM.grappStores = _.without(mainStoresVM.grappStores, mainStoresVM.selectedStore);
          });
-      }
-
-      function removeObjectFromArray(array, object) {
-         array.splice(array.indexOf(object), 1);
       }
    }
 })();

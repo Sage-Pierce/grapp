@@ -34,23 +34,25 @@
          ////////////////////
 
          function updateName(name) {
-            return grappStoreRsc.$put("updateName", {name: name}).then(function(resource) {
-               self.name = resource.name;
-            });
+            return grappStoreRsc.$put("updateName", {name: name})
+               .then(function(resource) {
+                  self.name = resource.name;
+               });
          }
 
-         function updateLocation(gMapPoint) {
-            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(convertGMapPositionToGrappPoint(gMapPoint))}).then(function(resource) {
-               self.location = convertGrappPointToGMapPosition(resource.location);
-            });
+         function updateLocation(position) {
+            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(convertGMapPositionToGrappPoint(position))})
+               .then(function(resource) {
+                  self.location = convertGrappPointToGMapPosition(resource.location);
+               });
          }
 
          function remove() {
             return grappStoreRsc.$del("self");
          }
 
-         function convertGrappPointToGMapPosition(grappPoint) {
-            return grappPoint ? {latitude: grappPoint.lat, longitude: grappPoint.lng} : null;
+         function convertGrappPointToGMapPosition(point) {
+            return point ? {latitude: point.lat, longitude: point.lng} : null;
          }
 
          function convertGMapPositionToGrappPoint(position) {
