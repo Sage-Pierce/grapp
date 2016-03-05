@@ -9,7 +9,7 @@
       var modalUpdateStoreVM = this;
       modalUpdateStoreVM.title = storeName ? "Update Store" : "Create New Store";
       modalUpdateStoreVM.storeName = storeName || "";
-      modalUpdateStoreVM.storePosition = storeLocation && {latitude: storeLocation.lat, longitude: storeLocation.lng};
+      modalUpdateStoreVM.storePosition = storeLocation && convertLocationToPosition(storeLocation);
       modalUpdateStoreVM.mapSettings = null;
       modalUpdateStoreVM.mapControl = {};
       modalUpdateStoreVM.searchBox = null;
@@ -40,7 +40,7 @@
             events: {
                click: function (source, eventName, args) {
                   $timeout(function () {
-                     setStorePosition(args[0].latLng);
+                     modalUpdateStoreVM.storePosition = convertLocationToPosition(args[0].latLng);
                   });
                }
             }
@@ -80,8 +80,8 @@
          gMap.setZoom(location ? 16 : gMapOptions.zoom);
       }
 
-      function setStorePosition(position) {
-         modalUpdateStoreVM.storePosition = {latitude: position.latitude || position.lat(), longitude: position.longitude || position.lng()};
+      function convertLocationToPosition(location) {
+         return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
       }
 
       function convertPositionToGrappPoint(position) {
