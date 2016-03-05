@@ -15,7 +15,7 @@
 
       ////////////////////
 
-      function mapClicked(map, mouseEvent) {
+      function mapClicked(modelId, map, mouseEvent) {
          grappStoreLayout.addNode(mouseEvent.latLng)
             .then(function(model) {
                mapControl.addNode(model.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));

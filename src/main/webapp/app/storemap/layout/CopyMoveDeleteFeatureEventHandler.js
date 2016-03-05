@@ -28,7 +28,7 @@
          enableDragging(false);
       }
 
-      function mapClicked(map, mouseEvent) {
+      function mapClicked(modelId, map, mouseEvent) {
          if (gMapPolygonCopyModel) {
             var gMapPolygon = gMapPolygonCopyModel.copyToLatLng(mouseEvent.latLng);
             grappStoreLayout.addFeature(gMapPolygon.getPath().getArray())

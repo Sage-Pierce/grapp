@@ -13,14 +13,8 @@
       self.removeFeatureById = removeFeatureById;
       self.addNode = addNode;
       self.removeNodeById = removeNodeById;
-      self.mapClicked = mapClicked;
       self.polygonComplete = polygonComplete;
-      self.polygonClicked = polygonClicked;
-      self.polygonRightClicked = polygonRightClicked;
-      self.polygonDragEnd = polygonDragEnd;
-      self.markerClicked = markerClicked;
-      self.markerRightClicked = markerRightClicked;
-      self.markerDragEnd = markerDragEnd;
+      self.handleGObjectMouseEvent = handleGObjectMouseEvent;
       self.setEventHandler = setEventHandler;
       self.setDrawingMode = setDrawingMode;
       self.setControls = setControls;
@@ -85,12 +79,6 @@
          gMapMarker.setMap(null);
       }
 
-      function mapClicked(map, mouseEvent) {
-         if (eventHandler && eventHandler.mapClicked) {
-            eventHandler.mapClicked(map, mouseEvent);
-         }
-      }
-
       function polygonComplete(gMapPolygon) {
          // This is done to represent the fact that this
          // GMapPolygon is just a representation of something
@@ -106,45 +94,18 @@
          // ID and it is added to the Plurals
          gMapPolygon.setMap(null);
          // -------------------------------------------------
-
          if (eventHandler && eventHandler.polygonComplete) {
             eventHandler.polygonComplete(gMapPolygon);
          }
       }
 
-      function polygonClicked(modelId, gMapPolygon, polyMouseEvent) {
-         if (eventHandler && eventHandler.polygonClicked) {
-            eventHandler.polygonClicked(modelId, gMapPolygon, polyMouseEvent);
-         }
-      }
-
-      function polygonRightClicked(modelId, gMapPolygon, polyMouseEvent) {
-         if (gMapPolygon.getMap() && eventHandler && eventHandler.polygonRightClicked) {
-            eventHandler.polygonRightClicked(modelId, gMapPolygon, polyMouseEvent);
-         }
-      }
-
-      function polygonDragEnd(modelId, gMapPolygon, mouseEvent) {
-         if (gMapPolygon.getMap() && eventHandler && eventHandler.polygonDragEnd) {
-            eventHandler.polygonDragEnd(modelId, gMapPolygon, mouseEvent);
-         }
-      }
-
-      function markerClicked(modelId, gMapMarker, mouseEvent) {
-         if (eventHandler && eventHandler.markerClicked) {
-            eventHandler.markerClicked(modelId, gMapMarker, mouseEvent);
-         }
-      }
-
-      function markerRightClicked(modelId, gMapMarker, mouseEvent) {
-         if (gMapMarker.getMap() && eventHandler && eventHandler.markerRightClicked) {
-            eventHandler.markerRightClicked(modelId, gMapMarker, mouseEvent);
-         }
-      }
-
-      function markerDragEnd(modelId, gMapMarker, mouseEvent) {
-         if (gMapMarker.getMap() && eventHandler && eventHandler.markerDragEnd) {
-            eventHandler.markerDragEnd(modelId, gMapMarker, mouseEvent);
+      function handleGObjectMouseEvent(eventName, modelId, gObject, event) {
+         // This Event is valid if it has occurred on:
+         // 1) A Map; or
+         // 2) A GObject with a non-null Map (guard against "ghost" Events)
+         var isValidGObjectEvent = modelId === "map" || gObject.getMap();
+         if (isValidGObjectEvent && eventHandler && eventHandler[eventName]) {
+            eventHandler[eventName](modelId, gObject, event);
          }
       }
 
@@ -183,17 +144,17 @@
 
       function postProcessAddedGMapPolygon(modelId, gMapPolygon) {
          google.maps.event.clearInstanceListeners(gMapPolygon);
-         google.maps.event.addListener(gMapPolygon, "click", function(polyMouseEvent) { self.polygonClicked(modelId, gMapPolygon, polyMouseEvent); });
-         google.maps.event.addListener(gMapPolygon, "rightclick", function(polyMouseEvent) { self.polygonRightClicked(modelId, gMapPolygon, polyMouseEvent); });
-         google.maps.event.addListener(gMapPolygon, "dragend", function(mouseEvent) { self.polygonDragEnd(modelId, gMapPolygon, mouseEvent); });
+         google.maps.event.addListener(gMapPolygon, "click", function(polyMouseEvent) { self.handleGObjectMouseEvent("polygonClicked", modelId, gMapPolygon, polyMouseEvent); });
+         google.maps.event.addListener(gMapPolygon, "rightclick", function(polyMouseEvent) { self.handleGObjectMouseEvent("polygonRightClicked", modelId, gMapPolygon, polyMouseEvent); });
+         google.maps.event.addListener(gMapPolygon, "dragend", function(mouseEvent) { self.handleGObjectMouseEvent("polygonDragEnd", modelId, gMapPolygon, mouseEvent); });
          gMapPolygon.setMap(mapControl.getGMap());
       }
 
       function postProcessAddedGMapMarker(modelId, gMapMarker) {
          google.maps.event.clearInstanceListeners(gMapMarker);
-         google.maps.event.addListener(gMapMarker, "click", function(mouseEvent) { self.markerClicked(modelId, gMapMarker, mouseEvent); });
-         google.maps.event.addListener(gMapMarker, "rightclick", function(mouseEvent) { self.markerRightClicked(modelId, gMapMarker, mouseEvent); });
-         google.maps.event.addListener(gMapMarker, "dragend", function(mouseEvent) { self.markerDragEnd(modelId, gMapMarker, mouseEvent); });
+         google.maps.event.addListener(gMapMarker, "click", function(mouseEvent) { self.handleGObjectMouseEvent("markerClicked", modelId, gMapMarker, mouseEvent); });
+         google.maps.event.addListener(gMapMarker, "rightclick", function(mouseEvent) { self.handleGObjectMouseEvent("markerRightClicked", modelId, gMapMarker, mouseEvent); });
+         google.maps.event.addListener(gMapMarker, "dragend", function(mouseEvent) { self.handleGObjectMouseEvent("markerDragEnd", modelId, gMapMarker, mouseEvent); });
          gMapMarker.setMap(mapControl.getGMap());
       }
    }

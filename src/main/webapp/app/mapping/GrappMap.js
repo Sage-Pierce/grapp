@@ -75,36 +75,20 @@
       function initializeEvents() {
          grappMapVM.events = {
             map: {
-               click: function (map, eventName, args) {
-                  grappMapControl.mapClicked(map, args[0]);
-               }
+               click: function (map, eventName, args) { grappMapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); }
             },
             drawingManager: {
-               polygoncomplete: function (drawingManager, eventName, model, args) {
-                  grappMapControl.polygonComplete(args[0]);
-               }
+               polygoncomplete: function (drawingManager, eventName, model, args) { grappMapControl.polygonComplete(args[0]); }
             },
             polygon: {
-               click: function (polygon, eventName, model, args) {
-                  grappMapControl.polygonClicked(model.id, polygon, args[0]);
-               },
-               rightclick: function (polygon, eventName, model, args) {
-                  grappMapControl.polygonRightClicked(model.id, polygon, args[0]);
-               },
-               dragend: function (polygon, eventName, model, args) {
-                  grappMapControl.polygonDragEnd(model.id, polygon, args[0]);
-               }
+               click: function (polygon, eventName, model, args) { grappMapControl.handleGObjectMouseEvent("polygonClicked", model.id, polygon, args[0]); },
+               rightclick: function (polygon, eventName, model, args) { grappMapControl.handleGObjectMouseEvent("polygonRightClicked", model.id, polygon, args[0]); },
+               dragend: function (polygon, eventName, model, args) { grappMapControl.handleGObjectMouseEvent("polygonDragEnd", model.id, polygon, args[0]); }
             },
             marker: {
-               click: function (marker, eventName, model, args) {
-                  grappMapControl.markerClicked(model.id, marker, args[0]);
-               },
-               rightclick: function (marker, eventName, model, args) {
-                  grappMapControl.markerRightClicked(model.id, marker, args[0]);
-               },
-               dragend: function (marker, eventName, model, args) {
-                  grappMapControl.markerDragEnd(model.id, marker, args[0]);
-               }
+               click: function (marker, eventName, model, args) { grappMapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]); },
+               rightclick: function (marker, eventName, model, args) { grappMapControl.handleGObjectMouseEvent("markerRightClicked", model.id, marker, args[0]); },
+               dragend: function (marker, eventName, model, args) { grappMapControl.handleGObjectMouseEvent("markerDragEnd", model.id, marker, args[0]); }
             }
          };
       }
@@ -148,19 +132,16 @@
          };
       }
 
-      function convertLocationToPosition(location) {
-         return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
-      }
-
       function convertGrappNodeToGMapMarker(node) {
          return {
             id: node.id,
-            position: {
-               latitude: node.location.lat,
-               longitude: node.location.lng
-            },
-            options: grappMapVM.options.markerOptions
+            position: convertLocationToPosition(node.location),
+            options: grappMapVM.mapSettings.options.markerOptions
          };
+      }
+
+      function convertLocationToPosition(location) {
+         return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
       }
    }
 })();
