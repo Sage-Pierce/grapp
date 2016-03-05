@@ -26,7 +26,7 @@
 
       function GrappStoreModel(grappStoreRsc) {
          var self = this;
-         self.location = convertGrappPointToGMapPosition(grappStoreRsc.location);
+         self.location = grappStoreRsc.location;
          self.updateName = updateName;
          self.updateLocation = updateLocation;
          self.remove = remove;
@@ -40,23 +40,15 @@
                });
          }
 
-         function updateLocation(position) {
-            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(convertGMapPositionToGrappPoint(position))})
+         function updateLocation(location) {
+            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(location)})
                .then(function(resource) {
-                  self.location = convertGrappPointToGMapPosition(resource.location);
+                  self.location = resource.location;
                });
          }
 
          function remove() {
             return grappStoreRsc.$del("self");
-         }
-
-         function convertGrappPointToGMapPosition(point) {
-            return point ? {latitude: point.lat, longitude: point.lng} : null;
-         }
-
-         function convertGMapPositionToGrappPoint(position) {
-            return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
          }
       }
    }

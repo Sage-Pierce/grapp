@@ -8,11 +8,11 @@
    function ModalUpdateStore($uibModalInstance, $timeout, storeName, storeLocation) {
       var modalUpdateStoreVM = this;
       modalUpdateStoreVM.title = storeName ? "Update Store" : "Create New Store";
-      modalUpdateStoreVM.storeName = storeName ? storeName : "";
-      modalUpdateStoreVM.storeLocation = storeLocation ? storeLocation : null;
-      modalUpdateStoreVM.map = null;
+      modalUpdateStoreVM.storeName = storeName || "";
+      modalUpdateStoreVM.storePosition = storeLocation && {latitude: storeLocation.lat, longitude: storeLocation.lng};
+      modalUpdateStoreVM.mapSettings = null;
+      modalUpdateStoreVM.mapControl = {};
       modalUpdateStoreVM.searchBox = null;
-      modalUpdateStoreVM.storeLocationMarkerOptions = null;
       modalUpdateStoreVM.isDataValid = isDataValid;
       modalUpdateStoreVM.finish = finish;
       modalUpdateStoreVM.cancel = cancel;
@@ -22,71 +22,70 @@
       ////////////////////
 
       function initialize() {
-         modalUpdateStoreVM.map = {
-            center: {
-               latitude: 0,
-               longitude: 0
-            },
-            zoom: 0,
+         initializeMapSettings();
+         initializeSearchBox();
+         $timeout(function() {
+            google.maps.event.trigger(modalUpdateStoreVM.mapControl.getGMap(), "resize");
+            repositionMapByLocation(storeLocation);
+         });
+      }
+
+      function initializeMapSettings() {
+         modalUpdateStoreVM.mapSettings = {
+            center: {latitude: 0, longitude: 0},
+            zoom: 2,
             options: {
                draggableCursor: "pointer"
             },
             events: {
-               click: function(source, eventName, args) {
-                  $timeout(function() { setStoreLocation(args[0].latLng); });
+               click: function (source, eventName, args) {
+                  $timeout(function () {
+                     setStorePosition(args[0].latLng);
+                  });
                }
-            },
-            control: {}
+            }
          };
+      }
 
+      function initializeSearchBox() {
          modalUpdateStoreVM.searchBox = {
             template: "app/stores/SearchBox.html",
             events: {
-               places_changed: function(searchBox) {
+               places_changed: function (searchBox) {
                   var places = searchBox.getPlaces();
                   if (places && places != 'undefined' || places.length > 0) {
-                     repositionMapByPlace(places[0]);
+                     repositionMapByLocation(places[0].geometry.location);
                   }
                }
             }
          };
-
-         modalUpdateStoreVM.storeLocationMarkerOptions = {
-            draggable: true
-         };
-
-         $timeout(function() {
-            google.maps.event.trigger(modalUpdateStoreVM.map.control.getGMap(), "resize");
-            modalUpdateStoreVM.map.center = {
-               latitude: storeLocation ? storeLocation.latitude : 0,
-               longitude: storeLocation ? storeLocation.longitude : 0
-            };
-            modalUpdateStoreVM.map.zoom = storeLocation ? 16 : 2;
-         });
       }
 
       function isDataValid() {
-         return modalUpdateStoreVM.storeName && modalUpdateStoreVM.storeName.length > 0 && modalUpdateStoreVM.storeLocation;
+         return modalUpdateStoreVM.storeName && modalUpdateStoreVM.storeName.length > 0 && modalUpdateStoreVM.storePosition;
       }
 
       function finish() {
-         $uibModalInstance.close({name: modalUpdateStoreVM.storeName, location: modalUpdateStoreVM.storeLocation});
+         $uibModalInstance.close({name: modalUpdateStoreVM.storeName, location: convertPositionToGrappPoint(modalUpdateStoreVM.storePosition)});
       }
 
       function cancel() {
          $uibModalInstance.dismiss();
       }
 
-      function setStoreLocation(latLng) {
-         modalUpdateStoreVM.storeLocation = {latitude: latLng.lat(), longitude: latLng.lng()};
+      function repositionMapByLocation(location) {
+         var gMap = modalUpdateStoreVM.mapControl.getGMap();
+         var gMapOptions = gMap.getOptions();
+         gMap.setCenter(location || gMapOptions.center);
+         gMap.setZoom(location ? 16 : gMapOptions.zoom);
       }
 
-      function repositionMapByPlace(place) {
-         modalUpdateStoreVM.map.center = {
-            latitude: place.geometry.location.lat(),
-            longitude: place.geometry.location.lng()
-         };
-         modalUpdateStoreVM.map.zoom = 16;
+      function setStorePosition(position) {
+         modalUpdateStoreVM.storePosition = {latitude: position.latitude || position.lat(), longitude: position.longitude || position.lng()};
+      }
+
+      function convertPositionToGrappPoint(position) {
+         return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
       }
    }
 })();

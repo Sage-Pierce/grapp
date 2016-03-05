@@ -38,18 +38,15 @@
             });
          }
 
-         function createStore(storeName, gMapPoint) {
-            return grappUserRsc.$post("createStore", {storeName: storeName, storeLocation: JSON.stringify(convertGMapPositionToGrappPoint(gMapPoint))}).then(GrappStore.load);
+         function createStore(storeName, point) {
+            return grappUserRsc.$post("createStore", {storeName: storeName, storeLocation: JSON.stringify(point)})
+               .then(GrappStore.load);
          }
 
          function loadStores() {
             return grappUserRsc.$get("getStores").then(function(response) {
                return response.$has("stores") ? createGrappStoreModelsPromiseFromResponse(response) : $q.resolve([]);
             });
-         }
-
-         function convertGMapPositionToGrappPoint(position) {
-            return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
          }
 
          function createGrappStoreModelsPromiseFromResponse(response) {

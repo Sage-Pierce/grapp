@@ -48,8 +48,8 @@
 
       function initialize() {
          grappMapVM.center = {
-            latitude: grappStoreLocation ? grappStoreLocation.latitude : 0,
-            longitude: grappStoreLocation ? grappStoreLocation.longitude : 0
+            latitude: grappStoreLocation ? grappStoreLocation.lat : 0,
+            longitude: grappStoreLocation ? grappStoreLocation.lng : 0
          };
 
          grappMapVM.zoom = grappStoreLocation ? 18 : 3;
