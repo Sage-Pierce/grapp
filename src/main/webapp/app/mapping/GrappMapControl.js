@@ -8,9 +8,9 @@
       var self = this;
       self.getOutlineById = getOutlineById;
       self.setOutlinePolygon = setOutlinePolygon;
+      self.applyToFeatures = applyToFeatures;
       self.addFeature = addFeature;
       self.removeFeatureById = removeFeatureById;
-      self.applyToFeatures = applyToFeatures;
       self.addNode = addNode;
       self.removeNodeById = removeNodeById;
       self.mapClicked = mapClicked;
@@ -21,13 +21,9 @@
       self.markerClicked = markerClicked;
       self.markerRightClicked = markerRightClicked;
       self.markerDragEnd = markerDragEnd;
-      self.setMapControl = setMapControl;
-      self.setDrawingManagerControl = setDrawingManagerControl;
-      self.setOutlineControl = setOutlineControl;
-      self.setFeatureControl = setFeatureControl;
-      self.setNodeControl = setNodeControl;
       self.setEventHandler = setEventHandler;
       self.setDrawingMode = setDrawingMode;
+      self.setControls = setControls;
 
       var mapControl = null;
       var drawingManagerControl = null;
@@ -54,6 +50,12 @@
          postProcessAddedGMapPolygon(outlineId, gMapPolygon);
       }
 
+      function applyToFeatures(operator) {
+         featureControl.getPlurals().values().forEach(function(plural) {
+            operator(plural.gObject);
+         });
+      }
+
       function addFeature(featureId, gMapPolygon) {
          featureControl.getPlurals().put(featureId, {gObject: gMapPolygon});
          postProcessAddedGMapPolygon(featureId, gMapPolygon);
@@ -67,12 +69,6 @@
          google.maps.event.clearInstanceListeners(gMapPolygon);
          gMapPolygon.setOptions({clickable: false});
          gMapPolygon.setMap(null);
-      }
-
-      function applyToFeatures(operator) {
-         featureControl.getPlurals().values().forEach(function(plural) {
-            operator(plural.gObject);
-         });
       }
 
       function addNode(nodeId, gMapMarker) {
@@ -152,26 +148,6 @@
          }
       }
 
-      function setMapControl(mc) {
-         mapControl = mc;
-      }
-
-      function setDrawingManagerControl(dmc) {
-         drawingManagerControl = dmc;
-      }
-
-      function setOutlineControl(oc) {
-         outlineControl = oc;
-      }
-
-      function setFeatureControl(fc) {
-         featureControl = fc;
-      }
-
-      function setNodeControl(nc) {
-         nodeControl = nc;
-      }
-
       function setEventHandler(eh) {
          if (eventHandler && eventHandler.finish) {
             eventHandler.finish();
@@ -191,6 +167,14 @@
          else {
             drawingManager.setDrawingMode(null);
          }
+      }
+
+      function setControls(controls) {
+         mapControl = controls.map;
+         drawingManagerControl = controls.drawingManager;
+         outlineControl = controls.outline;
+         featureControl = controls.feature;
+         nodeControl = controls.node;
       }
 
       function getOutlinePluralById(outlineId) {

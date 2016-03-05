@@ -66,7 +66,7 @@
       }
 
       function finish() {
-         $uibModalInstance.close({name: modalUpdateStoreVM.storeName, location: convertPositionToGrappPoint(modalUpdateStoreVM.storePosition)});
+         $uibModalInstance.close({name: modalUpdateStoreVM.storeName, location: convertPositionToGrappLocation(modalUpdateStoreVM.storePosition)});
       }
 
       function cancel() {
@@ -84,7 +84,7 @@
          return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
       }
 
-      function convertPositionToGrappPoint(position) {
+      function convertPositionToGrappLocation(position) {
          return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
       }
    }

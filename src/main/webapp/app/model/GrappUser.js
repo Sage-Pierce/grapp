@@ -38,8 +38,8 @@
             });
          }
 
-         function createStore(storeName, point) {
-            return grappUserRsc.$post("createStore", {storeName: storeName, storeLocation: JSON.stringify(point)})
+         function createStore(storeName, location) {
+            return grappUserRsc.$post("createStore", {storeName: storeName, storeLocation: JSON.stringify(location)})
                .then(GrappStore.load);
          }
 

@@ -13,9 +13,9 @@
          templateUrl: "app/mapping/GrappMap.html",
          scope: {},
          bindToController: {
-            control: "=",
-            grappStoreLocation: "=?",
-            grappStoreLayout: "="
+            grappMapControl: "=",
+            grappStoreLocation: "=",
+            grappLayout: "="
          }
       };
    }
@@ -23,96 +23,114 @@
    GrappMap.$inject = [];
    function GrappMap() {
       var grappMapVM = this;
-      grappMapVM.center = null;
-      grappMapVM.zoom = 3;
-      grappMapVM.options = null;
-      grappMapVM.mapEvents = null;
-      grappMapVM.drawingManagerEvents = null;
-      grappMapVM.polygonEvents = null;
-      grappMapVM.mapControl = {};
-      grappMapVM.drawingManagerControl = {};
-      grappMapVM.outlineControl = {};
-      grappMapVM.featureControl = {};
-      grappMapVM.nodeControl = {};
+      grappMapVM.mapSettings = null;
+      grappMapVM.events = null;
+      grappMapVM.controls = null;
       grappMapVM.storeOutlines = null;
       grappMapVM.storeFeatures = null;
       grappMapVM.storeNodes = null;
 
-      var control = this.control;
+      var grappMapControl = this.grappMapControl;
       var grappStoreLocation = this.grappStoreLocation;
-      var grappStoreLayout = this.grappStoreLayout;
+      var grappLayout = this.grappLayout;
 
       initialize();
 
       ////////////////////
 
       function initialize() {
-         grappMapVM.center = {
-            latitude: grappStoreLocation ? grappStoreLocation.lat : 0,
-            longitude: grappStoreLocation ? grappStoreLocation.lng : 0
+         initializeMapSettings(grappStoreLocation);
+         initializeEvents();
+         initializeControls();
+         initializeLayoutObjects(grappLayout);
+      }
+
+      function initializeMapSettings(location) {
+         grappMapVM.mapSettings = {
+            center: convertLocationToPosition(location),
+            zoom: 18,
+            options: {
+               draggableCursor: "pointer",
+               draggingCursor: "pointer",
+               disableDefaultUI: true,
+               zoomControl: true,
+               drawingControl: false,
+               polygonOptions: {
+                  strokeWeight: 1,
+                  fillColor: "#194d4d",
+                  fillOpacity: 1,
+                  zIndex: 3,
+                  clickable: true,
+                  editable: false,
+                  draggable: false
+               },
+               markerOptions: {
+                  zIndex: 4,
+                  draggable: true
+               }
+            }
          };
+      }
 
-         grappMapVM.zoom = grappStoreLocation ? 18 : 3;
-
-         grappMapVM.options = {
-            draggableCursor: "pointer",
-            draggingCursor: "pointer",
-            disableDefaultUI: true,
-            zoomControl: true,
-            drawingControl: false,
-            polygonOptions: {
-               strokeWeight: 1,
-               fillColor: "#194d4d",
-               fillOpacity: 1,
-               zIndex: 3,
-               clickable: true,
-               editable: false,
-               draggable: false
+      function initializeEvents() {
+         grappMapVM.events = {
+            map: {
+               click: function (map, eventName, args) {
+                  grappMapControl.mapClicked(map, args[0]);
+               }
             },
-            markerOptions: {
-               zIndex: 4,
-               draggable: true
+            drawingManager: {
+               polygoncomplete: function (drawingManager, eventName, model, args) {
+                  grappMapControl.polygonComplete(args[0]);
+               }
+            },
+            polygon: {
+               click: function (polygon, eventName, model, args) {
+                  grappMapControl.polygonClicked(model.id, polygon, args[0]);
+               },
+               rightclick: function (polygon, eventName, model, args) {
+                  grappMapControl.polygonRightClicked(model.id, polygon, args[0]);
+               },
+               dragend: function (polygon, eventName, model, args) {
+                  grappMapControl.polygonDragEnd(model.id, polygon, args[0]);
+               }
+            },
+            marker: {
+               click: function (marker, eventName, model, args) {
+                  grappMapControl.markerClicked(model.id, marker, args[0]);
+               },
+               rightclick: function (marker, eventName, model, args) {
+                  grappMapControl.markerRightClicked(model.id, marker, args[0]);
+               },
+               dragend: function (marker, eventName, model, args) {
+                  grappMapControl.markerDragEnd(model.id, marker, args[0]);
+               }
             }
          };
+      }
 
-         grappMapVM.mapEvents = {
-            click: function(map, eventName, args) {
-               control.mapClicked(map, args[0]);
-            }
+      function initializeControls() {
+         grappMapVM.controls = {
+            map: {},
+            drawingManager: {},
+            outline: {},
+            feature: {},
+            node: {}
          };
+         grappMapControl.setControls(grappMapVM.controls);
+      }
 
-         grappMapVM.drawingManagerEvents = {
-            polygoncomplete: function(drawingManager, eventName, model, args) { control.polygonComplete(args[0]); }
-         };
-
-         grappMapVM.polygonEvents = {
-            click: function(polygon, eventName, model, args) { control.polygonClicked(model.id, polygon, args[0]); },
-            rightclick: function(polygon, eventName, model, args) { control.polygonRightClicked(model.id, polygon, args[0]); },
-            dragend: function(polygon, eventName, model, args) { control.polygonDragEnd(model.id, polygon, args[0]); }
-         };
-
-         grappMapVM.markerEvents = {
-            click: function(marker, eventName, model, args) { control.markerClicked(model.id, marker, args[0]); },
-            rightclick: function(marker, eventName, model, args) { control.markerRightClicked(model.id, marker, args[0]); },
-            dragend: function(marker, eventName, model, args) { control.markerDragEnd(model.id, marker, args[0]); }
-         };
-
-         control.setMapControl(grappMapVM.mapControl);
-         control.setDrawingManagerControl(grappMapVM.drawingManagerControl);
-         control.setOutlineControl(grappMapVM.outlineControl);
-         control.setFeatureControl(grappMapVM.featureControl);
-         control.setNodeControl(grappMapVM.nodeControl);
-
+      function initializeLayoutObjects(layout) {
          grappMapVM.storeOutlines = [
-            convertGrappPolygonToGMapPolygon(grappStoreLayout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
-            convertGrappPolygonToGMapPolygon(grappStoreLayout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
+            convertGrappPolygonToGMapPolygon(layout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
+            convertGrappPolygonToGMapPolygon(layout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
          ];
 
-         grappMapVM.storeFeatures = grappStoreLayout.features.map(function(grappPolygon) {
+         grappMapVM.storeFeatures = layout.features.map(function (grappPolygon) {
             return convertGrappPolygonToGMapPolygon(grappPolygon, {color: "#194d4d", opacity: 1}, 2);
          });
 
-         grappMapVM.storeNodes = grappStoreLayout.nodes.map(function(node) {
+         grappMapVM.storeNodes = layout.nodes.map(function (node) {
             return convertGrappNodeToGMapMarker(node);
          });
       }
@@ -120,7 +138,7 @@
       function convertGrappPolygonToGMapPolygon(grappPolygon, fill, zIndex, fit) {
          return {
             id: grappPolygon.id,
-            path: convertGrappPolygonVerticesToGMapPolygonPath(grappPolygon.vertices),
+            path: grappPolygon.vertices.map(convertLocationToPosition),
             fill: fill,
             zIndex: zIndex,
             fit: fit,
@@ -130,13 +148,8 @@
          };
       }
 
-      function convertGrappPolygonVerticesToGMapPolygonPath(vertices) {
-         return vertices.map(function(vertex) {
-            return {
-               latitude: vertex.lat,
-               longitude: vertex.lng
-            };
-         });
+      function convertLocationToPosition(location) {
+         return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
       }
 
       function convertGrappNodeToGMapMarker(node) {

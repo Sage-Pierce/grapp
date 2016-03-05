@@ -1,11 +1,11 @@
-<ui-gmap-google-map options="grappMapVM.options"
-                    center="grappMapVM.center"
-                    zoom="grappMapVM.zoom"
-                    events="grappMapVM.mapEvents"
-                    control="grappMapVM.mapControl">
-   <ui-gmap-drawing-manager options="grappMapVM.options"
-                            events="grappMapVM.drawingManagerEvents"
-                            control="grappMapVM.drawingManagerControl">
+<ui-gmap-google-map options="grappMapVM.mapSettings.options"
+                    center="grappMapVM.mapSettings.center"
+                    zoom="grappMapVM.mapSettings.zoom"
+                    events="grappMapVM.events.map"
+                    control="grappMapVM.controls.map">
+   <ui-gmap-drawing-manager options="grappMapVM.mapSettings.options"
+                            events="grappMapVM.events.drawingManager"
+                            control="grappMapVM.controls.drawingManager">
    </ui-gmap-drawing-manager>
    <ui-gmap-polygons models="grappMapVM.storeOutlines"
                      path="'path'"
@@ -15,8 +15,8 @@
                      fit="'fit'"
                      clickable="'clickable'"
                      static="true"
-                     events="grappMapVM.polygonEvents"
-                     control="grappMapVM.outlineControl">
+                     events="grappMapVM.events.polygon"
+                     control="grappMapVM.controls.outline">
    </ui-gmap-polygons>
    <ui-gmap-polygons models="grappMapVM.storeFeatures"
                      path="'path'"
@@ -25,13 +25,13 @@
                      zindex="'zIndex'"
                      clickable="'clickable'"
                      static="true"
-                     events="grappMapVM.polygonEvents"
-                     control="grappMapVM.featureControl">
+                     events="grappMapVM.events.polygon"
+                     control="grappMapVM.controls.feature">
    </ui-gmap-polygons>
    <ui-gmap-markers models="grappMapVM.storeNodes"
                     coords="'position'"
                     options="'options'"
-                    events="grappMapVM.markerEvents"
-                    control="grappMapVM.nodeControl">
+                    events="grappMapVM.events.marker"
+                    control="grappMapVM.controls.node">
    </ui-gmap-markers>
 </ui-gmap-google-map>
