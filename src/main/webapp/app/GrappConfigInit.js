@@ -32,7 +32,7 @@
          "https://grapplication.herokuapp.com/rest/",
          "http://localhost:5000/rest/"
       ];
-      halClient.$get(servers[1]).then(GrappRoot.load, console.log);
+      halClient.$get(servers[0]).then(GrappRoot.load, console.log);
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely
