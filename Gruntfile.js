@@ -1,47 +1,48 @@
 "use strict";
 
 module.exports = function (grunt) {
+   var webappRoot = "src/main/webapp/";
    grunt.initConfig({
       pkg: grunt.file.readJSON("package.json"),
       watch: {
          config: {
-            files: ["src/main/webapp/app/GrappConfigInit.js"],
+            files: [webappRoot + "app/GrappConfigInit.js"],
             tasks: ["jshint", "concat:config"]
          },
          mapping: {
-            files: ["src/main/webapp/app/mapping/*.js"],
+            files: [webappRoot + "app/mapping/*.js"],
             tasks: ["jshint", "concat:mapping"]
          },
          model: {
-            files: ["src/main/webapp/app/model/*.js"],
+            files: [webappRoot + "app/model/*.js"],
             tasks: ["jshint", "concat:model"]
          },
          shoppinglists: {
-            files: ["src/main/webapp/app/shoppinglists/*.js"],
+            files: [webappRoot + "app/shoppinglists/*.js"],
             tasks: ["jshint", "concat:shoppinglists"]
          },
          storemap: {
-            files: ["src/main/webapp/app/storemap/*.js"],
+            files: [webappRoot + "app/storemap/*.js"],
             tasks: ["jshint", "concat:storemap"]
          },
          storemaplayout: {
-            files: ["src/main/webapp/app/storemap/layout/*.js"],
+            files: [webappRoot + "app/storemap/layout/*.js"],
             tasks: ["jshint", "concat:storemaplayout"]
          },
          storemapnodes: {
-            files: ["src/main/webapp/app/storemap/nodes/*.js"],
+            files: [webappRoot + "app/storemap/nodes/*.js"],
             tasks: ["jshint", "concat:storemapnodes"]
          },
          stores: {
-            files: ["src/main/webapp/app/stores/*.js"],
+            files: [webappRoot + "app/stores/*.js"],
             tasks: ["jshint", "concat:stores"]
          },
          value: {
-            files: ["src/main/webapp/app/value/*.js"],
+            files: [webappRoot + "app/value/*.js"],
             tasks: ["jshint", "concat:value"]
          },
          welcome: {
-            files: ["src/main/webapp/app/welcome/*.js"],
+            files: [webappRoot + "app/welcome/*.js"],
             tasks: ["jshint", "concat:welcome"]
          }
       },
@@ -50,63 +51,63 @@ module.exports = function (grunt) {
             jshintrc: ".jshintrc"
          },
          all: [
-            "src/main/webapp/app/*.js",
-            "src/main/webapp/app/mapping/*.js",
-            "src/main/webapp/app/model/*.js",
-            "src/main/webapp/app/shoppinglists/*.js",
-            "src/main/webapp/app/storemap/*.js",
-            "src/main/webapp/app/stores/*.js",
-            "src/main/webapp/app/value/*.js",
-            "src/main/webapp/app/welcome/*.js"
+            webappRoot + "app/*.js",
+            webappRoot + "app/mapping/*.js",
+            webappRoot + "app/model/*.js",
+            webappRoot + "app/shoppinglists/*.js",
+            webappRoot + "app/storemap/*.js",
+            webappRoot + "app/stores/*.js",
+            webappRoot + "app/value/*.js",
+            webappRoot + "app/welcome/*.js"
          ]
       },
       concat: {
          config: {
-            src: ["src/main/webapp/app/GrappConfigInit.js"],
-            dest: "src/main/webapp/concat/GrappConfigInit.js"
+            src: [webappRoot + "app/GrappConfigInit.js"],
+            dest: webappRoot + "concat/GrappConfigInit.js"
          },
          mapping: {
-            src: ["src/main/webapp/app/mapping/*.js"],
-            dest: "src/main/webapp/concat/mapping-concat.js"
+            src: [webappRoot + "app/mapping/*.js"],
+            dest: webappRoot + "concat/mapping-concat.js"
          },
          model: {
-            src: ["src/main/webapp/app/model/*.js"],
-            dest: "src/main/webapp/concat/model-concat.js"
+            src: [webappRoot + "app/model/*.js"],
+            dest: webappRoot + "concat/model-concat.js"
          },
          shoppinglists: {
-            src: ["src/main/webapp/app/shoppinglists/*.js"],
-            dest: "src/main/webapp/concat/shoppinglists-concat.js"
+            src: [webappRoot + "app/shoppinglists/*.js"],
+            dest: webappRoot + "concat/shoppinglists-concat.js"
          },
          storemap: {
-            src: ["src/main/webapp/app/storemap/*.js"],
-            dest: "src/main/webapp/concat/storemap-concat.js"
+            src: [webappRoot + "app/storemap/*.js"],
+            dest: webappRoot + "concat/storemap-concat.js"
          },
          storemaplayout: {
-            src: ["src/main/webapp/app/storemap/layout/*.js"],
-            dest: "src/main/webapp/concat/storemaplayout-concat.js"
+            src: [webappRoot + "app/storemap/layout/*.js"],
+            dest: webappRoot + "concat/storemaplayout-concat.js"
          },
          storemapnodes: {
-            src: ["src/main/webapp/app/storemap/nodes/*.js"],
-            dest: "src/main/webapp/concat/storemapnodes-concat.js"
+            src: [webappRoot + "app/storemap/nodes/*.js"],
+            dest: webappRoot + "concat/storemapnodes-concat.js"
          },
          stores: {
-            src: ["src/main/webapp/app/stores/*.js"],
-            dest: "src/main/webapp/concat/stores-concat.js"
+            src: [webappRoot + "app/stores/*.js"],
+            dest: webappRoot + "concat/stores-concat.js"
          },
          value: {
-            src: ["src/main/webapp/app/value/*.js"],
-            dest: "src/main/webapp/concat/value-concat.js"
+            src: [webappRoot + "app/value/*.js"],
+            dest: webappRoot + "concat/value-concat.js"
          },
          welcome: {
-            src: ["src/main/webapp/app/welcome/*.js"],
-            dest: "src/main/webapp/concat/welcome-concat.js"
+            src: [webappRoot + "app/welcome/*.js"],
+            dest: webappRoot + "concat/welcome-concat.js"
          }
       },
       connect: {
          server: {
             options: {
                port: 8000,
-               base: "src/main/webapp/"
+               base: webappRoot
             }
          }
       }
