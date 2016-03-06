@@ -25,6 +25,8 @@ public class GrappRootResource extends HALResource {
          HALResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
          HALResourceLinkBuilder.linkTo(GrappLoginResource.class).method("logIn").queryParams("email", "avatar").withRel("logIn"),
          HALResourceLinkBuilder.linkTo(GrappUserResource.class).withRel("userByID"),
+         HALResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("storeName", "storeLocation").withRel("createStore"),
+         HALResourceLinkBuilder.linkTo(GrappStoresResource.class).withRel("stores"),
          HALResourceLinkBuilder.linkTo(GrappStoreResource.class).withRel("storeByID"),
          HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).withRel("storeLayoutByID")
       );

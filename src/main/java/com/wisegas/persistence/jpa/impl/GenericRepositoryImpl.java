@@ -7,6 +7,7 @@ import com.wisegas.persistence.jpa.value.EntityID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements GenericRepository<T> {
    @PersistenceContext
@@ -22,6 +23,13 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    public T add(T t) {
       entityManager.persist(t);
       return t;
+   }
+
+   @Override
+   public List<T> getAll() {
+      return (List<T>)entityManager.createQuery(" SELECT entity" +
+                                                " FROM " + getEntityClassName() + " entity")
+                                   .getResultList();
    }
 
    @Override

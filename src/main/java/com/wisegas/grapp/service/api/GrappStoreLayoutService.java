@@ -13,15 +13,15 @@ public interface GrappStoreLayoutService {
 
    GrappStoreLayoutDTO updateInnerOutline(String id, GeoPolygon innerPolygon);
 
-   GrappStoreFeatureDTO addFeature(String layoutID, GeoPolygon polygon);
+   GrappStoreFeatureDTO addFeature(String id, GeoPolygon polygon);
 
-   GrappStoreFeatureDTO reshapeFeature(String layoutID, String featureID, GeoPolygon polygon);
+   GrappStoreFeatureDTO reshapeFeature(String id, String featureID, GeoPolygon polygon);
 
-   void removeFeature(String layoutID, String featureID);
+   void removeFeature(String id, String featureID);
 
-   GrappStoreNodeDTO addNode(String layoutID, GeoPoint location);
+   GrappStoreNodeDTO addNode(String id, GeoPoint location);
 
-   GrappStoreNodeDTO moveNode(String layoutID, String nodeID, GeoPoint location);
+   GrappStoreNodeDTO moveNode(String id, String nodeID, GeoPoint location);
 
-   void removeNode(String layoutID, String nodeID);
+   void removeNode(String id, String nodeID);
 }

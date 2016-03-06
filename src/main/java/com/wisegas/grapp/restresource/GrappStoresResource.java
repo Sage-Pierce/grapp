@@ -11,28 +11,27 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/users/{ownerID}/stores/")
-public class GrappUserStoresResource extends HALResource {
+@Path("/stores/")
+public class GrappStoresResource extends HALResource {
 
    private final GrappStoreService grappStoreService;
 
    @Inject
-   public GrappUserStoresResource(GrappStoreService grappStoreService) {
+   public GrappStoresResource(GrappStoreService grappStoreService) {
       this.grappStoreService = grappStoreService;
    }
 
    @POST
-   public Response create(@PathParam(value = "ownerID") final String ownerID,
-                          @QueryParam(value = "storeName") final String storeName,
-                          @QueryParam(value = "storeLocation") final GeoPoint storeLocation) {
-      GrappStoreDTO grappStoreDTO = grappStoreService.createForOwner(ownerID, storeName, storeLocation);
+   public Response createStore(@QueryParam(value = "storeName") final String storeName,
+                               @QueryParam(value = "storeLocation") final GeoPoint storeLocation) {
+      GrappStoreDTO grappStoreDTO = grappStoreService.create(storeName, storeLocation);
       HALRepresentation halRepresentation = GrappStoreResource.asRepresentation(grappStoreDTO);
       return buildHALResponse(halRepresentation);
    }
 
    @GET
-   public Response getAllForOwner(@PathParam(value = "ownerID") final String ownerID) {
-      List<GrappStoreDTO> grappStoreDTOs = grappStoreService.findAllForOwner(ownerID);
+   public Response findAll() {
+      List<GrappStoreDTO> grappStoreDTOs = grappStoreService.findAll();
       HALRepresentation halRepresentation = halRepresentationFactory.createEmpty().withEmbeddeds("stores", GrappStoreResource.asRepresentations(grappStoreDTOs));
       return buildHALResponse(halRepresentation);
    }

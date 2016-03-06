@@ -2,7 +2,6 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappUserID;
-import com.wisegas.lang.GeoPoint;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,9 +16,6 @@ public class GrappUser extends NamedEntity<GrappUserID> {
    private String email;
 
    private String avatar;
-
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "owner", orphanRemoval = true)
-   private List<GrappStore> grappStores = new ArrayList<>();
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappUser", orphanRemoval = true)
    private List<GrappUserList> grappUserLists = new ArrayList<>();
@@ -60,16 +56,6 @@ public class GrappUser extends NamedEntity<GrappUserID> {
 
    public List<GrappUserList> getGrappUserLists() {
       return grappUserLists;
-   }
-
-   public List<GrappStore> getGrappStores() {
-      return grappStores;
-   }
-
-   public GrappStore addGrappStore(String name, GeoPoint location) {
-      GrappStore grappStore = new GrappStore(this, name, location);
-      grappStores.add(grappStore);
-      return grappStore;
    }
 
    private void setEmail(String email) {

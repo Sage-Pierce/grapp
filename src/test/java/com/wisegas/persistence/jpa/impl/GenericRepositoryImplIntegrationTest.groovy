@@ -41,6 +41,17 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       testEntityManager.contains(entity)
    }
 
+   def "All instances of the Entity-under-test can be retrieved"() {
+      when:
+      def result = repository.getAll()
+
+      then:
+      result.size() >= 1
+
+      and:
+      result.contains(testEntity)
+   }
+
    def "The Entity-under-test can be found by ID"() {
       expect:
       repository.findByID(testEntity.getId())

@@ -45,9 +45,7 @@ public class GrappUserResource extends HALResource {
    protected static List<HALLink> createLinks(GrappUserDTO grappUserDTO) {
       return asList(
          HALResourceLinkBuilder.linkTo(GrappUserResource.class).pathArgs(grappUserDTO.getId()).withSelfRel(),
-         HALResourceLinkBuilder.linkTo(GrappUserResource.class).method("updateName").pathArgs(grappUserDTO.getId()).queryParams("name").withRel("updateName"),
-         HALResourceLinkBuilder.linkTo(GrappUserStoresResource.class).pathArgs(grappUserDTO.getId()).queryParams("storeName", "storeLocation").withRel("createStore"),
-         HALResourceLinkBuilder.linkTo(GrappUserStoresResource.class).pathArgs(grappUserDTO.getId()).withRel("getStores")
+         HALResourceLinkBuilder.linkTo(GrappUserResource.class).method("updateName").pathArgs(grappUserDTO.getId()).queryParams("name").withRel("updateName")
       );
    }
 }

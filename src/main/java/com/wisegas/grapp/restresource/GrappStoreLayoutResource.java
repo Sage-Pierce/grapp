@@ -54,55 +54,55 @@ public class GrappStoreLayoutResource extends HALResource {
 
    @POST
    @Path("features")
-   public Response addFeature(@PathParam("id") final String layoutID,
+   public Response addFeature(@PathParam("id") final String id,
                               @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.addFeature(layoutID, polygon);
+      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.addFeature(id, polygon);
       HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(GrappStoreFeatureResource.createLinks(grappStoreFeatureDTO));
       return buildHALResponse(halRepresentation);
    }
 
    @PUT
    @Path("features/reshape")
-   public Response reshapeFeature(@PathParam("id") final String layoutID,
+   public Response reshapeFeature(@PathParam("id") final String id,
                                   @QueryParam("featureID") final String featureID,
                                   @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.reshapeFeature(layoutID, featureID, polygon);
+      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.reshapeFeature(id, featureID, polygon);
       HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(GrappStoreFeatureResource.createLinks(grappStoreFeatureDTO));
       return buildHALResponse(halRepresentation);
    }
 
    @DELETE
    @Path("features/remove")
-   public Response removeFeature(@PathParam("id") final String layoutID,
+   public Response removeFeature(@PathParam("id") final String id,
                                  @QueryParam("featureID") final String featureID) {
-      grappStoreLayoutService.removeFeature(layoutID, featureID);
+      grappStoreLayoutService.removeFeature(id, featureID);
       return Response.ok().build();
    }
 
    @POST
    @Path("nodes")
-   public Response addNode(@PathParam("id") final String layoutID,
+   public Response addNode(@PathParam("id") final String id,
                            @QueryParam("location") final GeoPoint location) {
-      GrappStoreNodeDTO grappStoreNodeDTO = grappStoreLayoutService.addNode(layoutID, location);
+      GrappStoreNodeDTO grappStoreNodeDTO = grappStoreLayoutService.addNode(id, location);
       HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreNodeDTO).withLinks(GrappStoreNodeResource.createLinks(grappStoreNodeDTO));
       return buildHALResponse(halRepresentation);
    }
 
    @PUT
    @Path("nodes/move")
-   public Response moveNode(@PathParam("id") final String layoutID,
+   public Response moveNode(@PathParam("id") final String id,
                             @QueryParam("nodeID") final String nodeID,
                             @QueryParam("location") final GeoPoint location) {
-      GrappStoreNodeDTO grappStoreNodeDTO = grappStoreLayoutService.moveNode(layoutID, nodeID, location);
+      GrappStoreNodeDTO grappStoreNodeDTO = grappStoreLayoutService.moveNode(id, nodeID, location);
       HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreNodeDTO).withLinks(GrappStoreNodeResource.createLinks(grappStoreNodeDTO));
       return buildHALResponse(halRepresentation);
    }
 
    @DELETE
    @Path("nodes/remove")
-   public Response removeNode(@PathParam("id") final String layoutID,
+   public Response removeNode(@PathParam("id") final String id,
                               @QueryParam("nodeID") final String nodeID) {
-      grappStoreLayoutService.removeNode(layoutID, nodeID);
+      grappStoreLayoutService.removeNode(id, nodeID);
       return Response.ok().build();
    }
 

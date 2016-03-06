@@ -1,11 +1,8 @@
 package com.wisegas.grapp.service_impl.api;
 
 import com.wisegas.grapp.domain.entity.GrappStore;
-import com.wisegas.grapp.domain.entity.GrappUser;
 import com.wisegas.grapp.domain.repository.GrappStoreRepository;
-import com.wisegas.grapp.domain.repository.GrappUserRepository;
 import com.wisegas.grapp.domain.value.GrappStoreID;
-import com.wisegas.grapp.domain.value.GrappUserID;
 import com.wisegas.grapp.service.api.GrappStoreService;
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreDTOFactory;
@@ -23,24 +20,21 @@ import java.util.List;
 public class GrappStoreServiceImpl implements GrappStoreService {
 
    private final GrappStoreRepository grappStoreRepository;
-   private final GrappUserRepository grappUserRepository;
 
    @Inject
-   public GrappStoreServiceImpl(GrappStoreRepository grappStoreRepository, GrappUserRepository grappUserRepository) {
+   public GrappStoreServiceImpl(GrappStoreRepository grappStoreRepository) {
       this.grappStoreRepository = grappStoreRepository;
-      this.grappUserRepository = grappUserRepository;
    }
 
    @Override
-   public GrappStoreDTO createForOwner(String ownerID, String name, GeoPoint location) {
-      GrappUser grappUser = grappUserRepository.findByID(GrappUserID.fromString(ownerID));
-      GrappStore grappStore = grappUser.addGrappStore(name, location);
-      return GrappStoreDTOFactory.createDTO(grappStore);
+   public GrappStoreDTO create(String name, GeoPoint location) {
+      GrappStore grappStore = new GrappStore(name, location);
+      return GrappStoreDTOFactory.createDTO(grappStoreRepository.add(grappStore));
    }
 
    @Override
-   public List<GrappStoreDTO> findAllForOwner(String ownerID) {
-      List<GrappStore> grappStores = grappStoreRepository.findAllForOwner(GrappUserID.fromString(ownerID));
+   public List<GrappStoreDTO> findAll() {
+      List<GrappStore> grappStores = grappStoreRepository.getAll();
       return GrappStoreDTOFactory.createDTOs(grappStores);
    }
 

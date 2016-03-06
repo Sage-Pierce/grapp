@@ -6,9 +6,9 @@ import com.wisegas.lang.GeoPoint;
 import java.util.List;
 
 public interface GrappStoreService {
-   GrappStoreDTO createForOwner(String ownerID, String name, GeoPoint location);
+   GrappStoreDTO create(String name, GeoPoint location);
 
-   List<GrappStoreDTO> findAllForOwner(String ownerID);
+   List<GrappStoreDTO> findAll();
 
    GrappStoreDTO findByID(String id);
 

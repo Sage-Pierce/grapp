@@ -11,7 +11,6 @@ class GrappStoreBuilder {
    static GrappStore grappStore() {
       unique++
       EntityBuilder.wrapBuilder(new GrappStore(
-         GrappUserBuilder.grappUser(),
          "Test Store ${unique}",
          new GeoPoint(0, 0)
       ))
