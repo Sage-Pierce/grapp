@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .controller("MainStores", MainStores);
 
-   MainStores.$inject = ["$uibModal", "$state", "grappUser"];
-   function MainStores($uibModal, $state, grappUser) {
+   MainStores.$inject = ["$uibModal", "$state", "GrappStore"];
+   function MainStores($uibModal, $state, GrappStore) {
       var mainStoresVM = this;
       mainStoresVM.grappStores = [];
       mainStoresVM.selectedStore = null;
@@ -22,7 +22,7 @@
       ////////////////////
 
       function initialize() {
-         grappUser.loadStores().then(function(grappStores) {
+         GrappStore.loadAll().then(function(grappStores) {
             mainStoresVM.grappStores = grappStores;
          });
       }
@@ -42,7 +42,7 @@
       function createStore() {
          openModalUpdateStore(null, null).then(function(result) {
             mainStoresVM.isLoading = true;
-            grappUser.createStore(result.name, result.location).then(function(grappStore) {
+            GrappStore.create(result.name, result.location).then(function(grappStore) {
                mainStoresVM.grappStores.push(grappStore);
             }).finally(function() {
                mainStoresVM.isLoading = false;

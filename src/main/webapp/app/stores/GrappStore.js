@@ -7,10 +7,20 @@
    GrappStore.$inject = ["GrappRoot"];
    function GrappStore(GrappRoot) {
       var self = this;
+      self.create = create;
+      self.loadAll = loadAll;
       self.loadByID = loadByID;
       self.load = load;
 
       ////////////////////
+
+      function create(name, location) {
+         return GrappRoot.createResourceModel("store", {storeName: name, storeLocation: JSON.stringify(location)}, createModel);
+      }
+
+      function loadAll() {
+         return GrappRoot.loadResourceModels("stores", createModel);
+      }
 
       function loadByID(grappStoreID) {
          return GrappRoot.loadResourceModelByID("store", grappStoreID, createModel);
