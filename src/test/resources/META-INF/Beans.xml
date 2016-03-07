@@ -46,10 +46,10 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-    <!-- Tell Spring Transaction Manager to look for Transactional modules via @Transactional -->
+    <!-- Tell Spring Transaction Manager to look for Transactional Beans via @Transactional -->
     <tx:annotation-driven transaction-manager="platformTransactionManager" />
 
-    <!-- An EntityManager to inject in to our IntegrationTestEntityManager -->
+    <!-- A 'shared' EntityManager to be made available for Injection (TESTS ONLY) -->
     <bean id="sharedEntityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
