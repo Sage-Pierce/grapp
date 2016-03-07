@@ -49,4 +49,15 @@
     <!-- Tell Spring Transaction Manager to look for Transactional modules via @Transactional -->
     <tx:annotation-driven transaction-manager="platformTransactionManager" />
 
+    <!-- An EntityManager to inject in to our IntegrationTestEntityManager -->
+    <bean id="sharedEntityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- An IntegrationTestEntityManager to use with Integration Tests -->
+    <bean id="testEntityManager" class="com.wisegas.test.IntegrationTestEntityManager">
+        <constructor-arg ref="sharedEntityManager"/>
+        <constructor-arg ref="platformTransactionManager"/>
+    </bean>
+
 </beans>

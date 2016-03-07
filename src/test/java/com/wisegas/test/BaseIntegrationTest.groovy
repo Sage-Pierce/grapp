@@ -9,20 +9,17 @@ import spock.lang.Specification
 
 import javax.inject.Inject
 import javax.persistence.EntityManager
+import javax.persistence.EntityManagerFactory
 import javax.persistence.PersistenceContext
 
 @ContextConfiguration("classpath*:META-INF/Beans.xml")
 abstract class BaseIntegrationTest extends Specification {
 
-   @PersistenceContext
-   private EntityManager entityManager
    @Inject
-   private PlatformTransactionManager platformTransactionManager
-   @Shared
-   private Boolean isDBSetup
+   protected IntegrationTestEntityManager testEntityManager
 
    @Shared
-   IntegrationTestEntityManager testEntityManager
+   private Boolean isDBSetup
 
    def setupSpec() {
       isDBSetup = false
@@ -31,7 +28,6 @@ abstract class BaseIntegrationTest extends Specification {
    @BeforeTransaction
    def beforeTransaction() {
       if (!isDBSetup) {
-         testEntityManager = new IntegrationTestEntityManager(entityManager, platformTransactionManager);
          setupSpecDB()
          isDBSetup = true
       }
