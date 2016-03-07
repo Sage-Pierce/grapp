@@ -11,6 +11,8 @@
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
        default-lazy-init="true">
+
+    <!-- Allows placement of Environment Variables in this XML -->
     <context:property-placeholder/>
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
