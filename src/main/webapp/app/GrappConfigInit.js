@@ -29,8 +29,9 @@
       });
 
       var servers = [
-         "https://grapplication.herokuapp.com/rest/",
-         "http://localhost:5000/rest/"
+         "https://grapplication.herokuapp.com/rest/", // When running on Heroku
+         "http://localhost:5000/rest/",               // When running Heroku locally
+         "http://localhost:8080/rest/"                // When running the server manually
       ];
       halClient.$get(servers[0]).then(GrappRoot.load, console.log);
 
