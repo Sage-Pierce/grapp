@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 import javax.inject.Inject
 
-@ContextConfiguration("classpath*:META-INF/Beans.xml")
+@ContextConfiguration("classpath*:Beans.xml")
 abstract class BaseIntegrationTest extends Specification {
 
    @Inject

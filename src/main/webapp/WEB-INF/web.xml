@@ -33,6 +33,6 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/classes/META-INF/Beans.xml</param-value>
+        <param-value>/WEB-INF/classes/Beans.xml</param-value>
     </context-param>
 </web-app>
