@@ -5,7 +5,7 @@ import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
 import com.wisegas.grapp.service.api.GrappStoreFeatureService;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreFeatureDTOFactory;
-import org.springframework.transaction.annotation.Transactional;
+import com.wisegas.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;

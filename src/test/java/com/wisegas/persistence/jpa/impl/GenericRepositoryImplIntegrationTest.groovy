@@ -5,7 +5,6 @@ import com.wisegas.persistence.jpa.entity.SimpleEntity
 import com.wisegas.persistence.jpa.api.GenericRepository
 import com.wisegas.test.BaseIntegrationTest
 import org.springframework.transaction.annotation.Transactional
-import spock.lang.Shared
 
 import javax.inject.Inject
 import java.lang.reflect.ParameterizedType
@@ -16,12 +15,12 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
    @Inject
    protected GenericRepository<T> repository
 
-   @Shared
-   T testEntity
+   protected T testEntity
 
-   @Override
-   def setupSpecDB() {
+   def setup() {
       testEntity = testEntityManager.save(createTestEntity())
+      testEntityManager.flush()
+      testEntityManager.clear()
    }
 
    def "The Entity-under-test can be saved without throwing any Exceptions and will be present in our persistence mechanism"() {

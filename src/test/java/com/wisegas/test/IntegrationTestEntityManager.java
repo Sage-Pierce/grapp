@@ -47,6 +47,8 @@ public class IntegrationTestEntityManager {
       entityManager.flush();
    }
 
+   public void clear() { entityManager.clear(); }
+
    public boolean contains(Object entity) {
       return entityManager.contains(entity);
    }

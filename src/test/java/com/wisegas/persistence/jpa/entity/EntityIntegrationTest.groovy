@@ -2,19 +2,18 @@ package com.wisegas.persistence.jpa.entity
 
 import com.wisegas.test.BaseIntegrationTest
 import org.springframework.transaction.annotation.Transactional
-import spock.lang.Shared
 
 @Transactional
 abstract class EntityIntegrationTest<T extends SimpleEntity> extends BaseIntegrationTest {
-   @Shared
-   T testEntity1
-   @Shared
-   T testEntity2
 
-   @Override
-   def setupSpecDB() {
+   protected T testEntity1
+   protected T testEntity2
+
+   def setup() {
       testEntity1 = testEntityManager.save(createTestEntity())
       testEntity2 = testEntityManager.save(createTestEntity())
+      testEntityManager.flush()
+      testEntityManager.clear()
    }
 
    def "The Object-under-test is found in the persistence mechanism after saving"() {

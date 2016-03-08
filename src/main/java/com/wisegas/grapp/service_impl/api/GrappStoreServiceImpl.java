@@ -7,7 +7,7 @@ import com.wisegas.grapp.service.api.GrappStoreService;
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreDTOFactory;
 import com.wisegas.lang.GeoPoint;
-import org.springframework.transaction.annotation.Transactional;
+import com.wisegas.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;

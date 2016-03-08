@@ -6,23 +6,14 @@ import com.wisegas.grapp.service.dto.GrappUserDTO
 import com.wisegas.grapp.test.Builders
 import com.wisegas.test.BaseIntegrationTest
 import org.springframework.transaction.annotation.Transactional
-import spock.lang.Shared
 
 import javax.inject.Inject
 
 @Transactional
 class GrappLoginServiceImplIntegrationTest extends BaseIntegrationTest {
 
-   @Shared
-   GrappUser savedUser
-
    @Inject
-   GrappLoginService grappLoginService
-
-   @Override
-   def setupSpecDB() {
-      savedUser = testEntityManager.save(Builders.grappUser().having { it.email = "test@test.com" })
-   }
+   private GrappLoginService grappLoginService
 
    def "a GrappUser is created if not currently in the DB"() {
       when:
@@ -35,6 +26,8 @@ class GrappLoginServiceImplIntegrationTest extends BaseIntegrationTest {
    }
 
    def "a GrappUser will be found if it is already in the DB"() {
+      GrappUser savedUser = testEntityManager.save(Builders.grappUser().having { it.email = "test@test.com" })
+
       when:
       GrappUserDTO userResource = grappLoginService.logIn(savedUser.getEmail(), null)
 

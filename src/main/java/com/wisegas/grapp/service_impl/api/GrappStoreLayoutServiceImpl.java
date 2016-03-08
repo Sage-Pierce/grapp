@@ -16,7 +16,7 @@ import com.wisegas.grapp.service_impl.factory.GrappStoreFeatureDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreNodeDTOFactory;
 import com.wisegas.lang.GeoPoint;
 import com.wisegas.lang.GeoPolygon;
-import org.springframework.transaction.annotation.Transactional;
+import com.wisegas.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -5,7 +5,6 @@ import com.wisegas.grapp.domain.repository.GrappUserRepository
 import com.wisegas.grapp.test.Builders
 import com.wisegas.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import org.springframework.transaction.annotation.Transactional
-import spock.lang.Shared
 
 import javax.inject.Inject
 
@@ -13,18 +12,12 @@ import javax.inject.Inject
 class GrappUserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<GrappUser> {
 
    @Inject
-   GrappUserRepository grappUserRepository
-
-   @Shared
-   GrappUser grappUser
-
-   @Override
-   def setupSpecDB() {
-      super.setupSpecDB()
-      grappUser = testEntityManager.save(Builders.grappUser().having { it.email = "fun@home.com" })
-   }
+   private GrappUserRepository grappUserRepository
 
    def "A GrappUser can be found by E-Mail"() {
+      given:
+      testEntityManager.save(Builders.grappUser().having { it.email = "fun@home.com" })
+
       when: "We try to find our Test Entity by E-Mail"
       def result = grappUserRepository.findByEmail(emailToLookFor)
 
