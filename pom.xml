@@ -4,9 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jersey.version>2.22.1</jersey.version>
+        <gson.version>2.6.2</gson.version>
+        <h2.version>1.4.191</h2.version>
+        <halbuilder.version>4.0.3</halbuilder.version>
+        <hibernate.version>5.1.0.Final</hibernate.version>
+        <jersey.version>2.22.2</jersey.version>
         <jetty.version>9.3.7.v20160115</jetty.version>
-        <spring.version>4.2.4.RELEASE</spring.version>
+        <log4j.version>1.2.17</log4j.version>
+        <postgresql.version>9.4.1208.jre7</postgresql.version>
+        <spock.version>1.0-groovy-2.4</spock.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
     </properties>
 
     <groupId>com.wisegas</groupId>
@@ -76,7 +83,7 @@
         <dependency>
             <groupId>com.theoryinpractise</groupId>
             <artifactId>halbuilder-json</artifactId>
-            <version>4.0.2</version>
+            <version>${halbuilder.version}</version>
         </dependency>
 
         <!-- JSR-330 Dependency Injection, AOP, and Spring implementation -->
@@ -110,14 +117,14 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.1.0.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- Postgres -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4-1206-jdbc42</version>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <!-- Heroku DB -->
@@ -131,27 +138,27 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.6.1</version>
+            <version>${gson.version}</version>
         </dependency>
 
         <!-- Logging -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
         </dependency>
 
         <!-- TEST DEPENDENCIES -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.191</version>
+            <version>${h2.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-spring</artifactId>
-            <version>1.0-groovy-2.4</version>
+            <version>${spock.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -168,7 +175,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.5.1</version>
                 <inherited>true</inherited>
                 <configuration>
                     <source>1.8</source>
@@ -196,7 +203,6 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
-                    <!--<contextPath>/</contextPath>-->
                     <webApp>
                         <contextPath>/</contextPath>
                         <webInfIncludeJarPattern>.*/.*jersey-[^/]\.jar$</webInfIncludeJarPattern>
