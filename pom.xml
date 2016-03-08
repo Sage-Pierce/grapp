@@ -10,7 +10,7 @@
         <hibernate.version>5.1.0.Final</hibernate.version>
         <jersey.version>2.22.2</jersey.version>
         <jetty.version>9.3.7.v20160115</jetty.version>
-        <log4j.version>1.2.17</log4j.version>
+        <log4j.version>2.5</log4j.version>
         <postgresql.version>9.4.1208.jre7</postgresql.version>
         <spock.version>1.0-groovy-2.4</spock.version>
         <spring.version>4.2.5.RELEASE</spring.version>
@@ -143,8 +143,8 @@
 
         <!-- Logging -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
 
