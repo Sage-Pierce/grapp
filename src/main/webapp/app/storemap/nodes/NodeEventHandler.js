@@ -16,7 +16,7 @@
       ////////////////////
 
       function mapClicked(modelId, map, mouseEvent) {
-         grappStoreLayout.addNode(mouseEvent.latLng)
+         grappStoreLayout.addNode(nodeType, mouseEvent.latLng)
             .then(function(model) {
                mapControl.addNode(model.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));
             });
@@ -38,6 +38,7 @@
       function createGMapMarker(options, position) {
          var fullMarkerOptions = _.clone(options);
          fullMarkerOptions.position = position;
+         fullMarkerOptions.icon = nodeType.iconUrl;
          return new google.maps.Marker(fullMarkerOptions);
       }
    }

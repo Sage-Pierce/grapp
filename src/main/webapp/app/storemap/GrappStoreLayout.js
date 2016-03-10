@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .service("GrappStoreLayout", GrappStoreLayout);
 
-   GrappStoreLayout.$inject = ["GrappRoot"];
-   function GrappStoreLayout(GrappRoot) {
+   GrappStoreLayout.$inject = ["GrappRoot", "GrappStoreNodeType"];
+   function GrappStoreLayout(GrappRoot, GrappStoreNodeType) {
       var self = this;
       self.loadByID = loadByID;
 
@@ -60,8 +60,8 @@
             return _.findWhere(self.nodes, {id: id});
          }
 
-         function addNode(position) {
-            return grappStoreLayoutRsc.$post("addNode", {location: JSON.stringify(convertGMapPositionToGrappLocation(position))})
+         function addNode(grappStoreNodeType, position) {
+            return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(convertGMapPositionToGrappLocation(position))})
                .then(function(nodeRsc) {
                   var nodeModel = createGMapMarkerModelFromGrappStoreNode(nodeRsc);
                   self.nodes.push(nodeModel);
@@ -110,6 +110,7 @@
             return {
                id: grappStoreNodeRsc.id,
                location: grappStoreNodeRsc.location,
+               type: GrappStoreNodeType.fromCode(grappStoreNodeRsc.type),
                commitLocation: function(position) { commitGMapMarkerModelPosition(this, position); }
             };
          }

@@ -28,11 +28,14 @@ public class GrappStoreFeatureResource extends HALResource {
    @GET
    public Response findByID(@PathParam("id") final String id) {
       GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreFeatureService.findByID(id);
-      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(createLinks(grappStoreFeatureDTO));
-      return buildHALResponse(halRepresentation);
+      return buildHALResponse(asRepresentationOf(grappStoreFeatureDTO));
    }
 
-   protected static List<HALLink> createLinks(GrappStoreFeatureDTO grappStoreFeatureDTO) {
+   protected static HALRepresentation asRepresentationOf(GrappStoreFeatureDTO grappStoreFeatureDTO) {
+      return halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(createLinks(grappStoreFeatureDTO));
+   }
+
+   private static List<HALLink> createLinks(GrappStoreFeatureDTO grappStoreFeatureDTO) {
       return Collections.singletonList(
          HALResourceLinkBuilder.linkTo(GrappStoreFeatureResource.class).pathArgs(grappStoreFeatureDTO.getId()).withSelfRel()
       );

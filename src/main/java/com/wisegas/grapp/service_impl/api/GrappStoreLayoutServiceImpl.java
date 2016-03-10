@@ -4,15 +4,15 @@ import com.wisegas.grapp.domain.entity.GrappStoreFeature;
 import com.wisegas.grapp.domain.entity.GrappStoreLayout;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
 import com.wisegas.grapp.domain.repository.GrappStoreLayoutRepository;
-import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
-import com.wisegas.grapp.domain.value.GrappStoreNodeID;
+import com.wisegas.grapp.domain.value.*;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
+import com.wisegas.grapp.service.dto.GrappStoreLayoutUpdateResultDTO;
 import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreFeatureDTOFactory;
+import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutUpdateResultDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreNodeDTOFactory;
 import com.wisegas.lang.GeoPoint;
 import com.wisegas.lang.GeoPolygon;
@@ -21,6 +21,7 @@ import com.wisegas.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.Collections;
 
 @Named
 @Singleton
@@ -74,10 +75,10 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
    }
 
    @Override
-   public GrappStoreNodeDTO addNode(String id, GeoPoint location) {
+   public GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTO> addNode(String id, String type, GeoPoint location) {
       GrappStoreLayout layout = grappStoreLayoutRepository.findByID(GrappStoreLayoutID.fromString(id));
-      GrappStoreNode grappStoreNode = layout.addNode(location);
-      return GrappStoreNodeDTOFactory.createDTO(grappStoreNode);
+      GrappStoreNode node = layout.addNode(GrappStoreNodeType.fromName(type), location);
+      return GrappStoreLayoutUpdateResultDTOFactory.createDTO(layout, GrappStoreNodeDTOFactory.createDTO(node), Collections.emptyList());
    }
 
    @Override

@@ -1,5 +1,6 @@
 package com.wisegas.grapp.domain.entity;
 
+import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 import com.wisegas.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappStoreNodeID;
@@ -23,14 +24,18 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    @Convert(converter = GeoPointConverter.class)
    private GeoPoint location;
 
+   @Enumerated(EnumType.STRING)
+   private GrappStoreNodeType type;
+
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreNode", orphanRemoval = true)
    private List<GrappStoreNodeItem> grappStoreNodeItems = new ArrayList<>();
 
-   public GrappStoreNode(GrappStoreLayout grappStoreLayout, GeoPoint location, String name) {
+   public GrappStoreNode(GrappStoreLayout grappStoreLayout, String name, GrappStoreNodeType type, GeoPoint location) {
       id = GrappStoreNodeID.generate();
       setGrappStoreLayout(grappStoreLayout);
-      setLocation(location);
       setName(name);
+      setType(type);
+      setLocation(location);
    }
 
    protected GrappStoreNode() {
@@ -40,6 +45,14 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    @Override
    public GrappStoreNodeID getId() {
       return id;
+   }
+
+   public GrappStoreNodeType getType() {
+      return type;
+   }
+
+   public void setType(GrappStoreNodeType type) {
+      this.type = type;
    }
 
    public GeoPoint getLocation() {

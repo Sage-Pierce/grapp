@@ -27,7 +27,7 @@ public class GrappStoreResource extends HALResource {
 
    @GET
    public Response findByID(@PathParam(value = "id") final String id) {
-      return buildHALResponse(asRepresentation(grappStoreService.findByID(id)));
+      return buildHALResponse(asRepresentationOf(grappStoreService.findByID(id)));
    }
 
    @PUT
@@ -35,7 +35,7 @@ public class GrappStoreResource extends HALResource {
    public Response updateName(@PathParam(value = "id") final String id,
                               @QueryParam(value = "name") final String name) {
       GrappStoreDTO grappStoreDTO = grappStoreService.updateName(id, name);
-      return buildHALResponse(asRepresentation(grappStoreDTO));
+      return buildHALResponse(asRepresentationOf(grappStoreDTO));
    }
 
    @PUT
@@ -43,7 +43,7 @@ public class GrappStoreResource extends HALResource {
    public Response updateLocation(@PathParam(value = "id") final String id,
                                   @QueryParam(value = "location") final GeoPoint location) {
       GrappStoreDTO grappStoreDTO = grappStoreService.updateLocation(id, location);
-      return buildHALResponse(asRepresentation(grappStoreDTO));
+      return buildHALResponse(asRepresentationOf(grappStoreDTO));
    }
 
    @DELETE
@@ -55,16 +55,16 @@ public class GrappStoreResource extends HALResource {
    protected static List<HALRepresentation> asRepresentations(Iterable<GrappStoreDTO> grappStoreDTOs) {
       List<HALRepresentation> representations = new ArrayList<>();
       for (GrappStoreDTO grappStoreDTO : grappStoreDTOs) {
-         representations.add(asRepresentation(grappStoreDTO));
+         representations.add(asRepresentationOf(grappStoreDTO));
       }
       return representations;
    }
 
-   protected static HALRepresentation asRepresentation(GrappStoreDTO grappStoreDTO) {
+   protected static HALRepresentation asRepresentationOf(GrappStoreDTO grappStoreDTO) {
       return halRepresentationFactory.createFor(grappStoreDTO).withLinks(createLinks(grappStoreDTO));
    }
 
-   protected static List<HALLink> createLinks(GrappStoreDTO grappStoreDTO) {
+   private static List<HALLink> createLinks(GrappStoreDTO grappStoreDTO) {
       return Arrays.asList(
          HALResourceLinkBuilder.linkTo(GrappStoreResource.class).pathArgs(grappStoreDTO.getId()).withSelfRel(),
          HALResourceLinkBuilder.linkTo(GrappStoreResource.class).method("updateName").pathArgs(grappStoreDTO.getId()).queryParams("name").withRel("updateName"),

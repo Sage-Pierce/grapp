@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @Singleton
@@ -35,7 +36,7 @@ public class GrappStoreServiceImpl implements GrappStoreService {
    @Override
    public List<GrappStoreDTO> findAll() {
       List<GrappStore> grappStores = grappStoreRepository.getAll();
-      return GrappStoreDTOFactory.createDTOs(grappStores);
+      return grappStores.stream().map(GrappStoreDTOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override

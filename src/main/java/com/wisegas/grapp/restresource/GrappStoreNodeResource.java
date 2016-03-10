@@ -28,11 +28,14 @@ public class GrappStoreNodeResource extends HALResource {
    @GET
    public Response findByID(@PathParam("id") final String id) {
       GrappStoreNodeDTO grappStoreNodeDTO = grappStoreNodeService.findByID(id);
-      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappStoreNodeDTO).withLinks(createLinks(grappStoreNodeDTO));
-      return buildHALResponse(halRepresentation);
+      return buildHALResponse(asRepresentationOf(grappStoreNodeDTO));
    }
 
-   protected static List<HALLink> createLinks(GrappStoreNodeDTO grappStoreNodeDTO) {
+   protected static HALRepresentation asRepresentationOf(GrappStoreNodeDTO grappStoreNodeDTO) {
+      return halRepresentationFactory.createFor(grappStoreNodeDTO).withLinks(createLinks(grappStoreNodeDTO));
+   }
+
+   private static List<HALLink> createLinks(GrappStoreNodeDTO grappStoreNodeDTO) {
       return Collections.singletonList(
          HALResourceLinkBuilder.linkTo(GrappStoreNodeResource.class).pathArgs(grappStoreNodeDTO.getId()).withSelfRel()
       );

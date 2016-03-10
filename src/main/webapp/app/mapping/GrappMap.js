@@ -136,6 +136,7 @@
          return {
             id: node.id,
             position: convertLocationToPosition(node.location),
+            icon: node.type.iconUrl,
             options: grappMapVM.mapSettings.options.markerOptions
          };
       }

@@ -3,7 +3,6 @@ package com.wisegas.grapp.restresource;
 import com.wisegas.grapp.service.api.GrappLoginService;
 import com.wisegas.grapp.service.dto.GrappUserDTO;
 import com.wisegas.webserver.hal.HALResource;
-import com.wisegas.webserver.hal.api.HALRepresentation;
 
 import javax.inject.Inject;
 import javax.ws.rs.PUT;
@@ -26,7 +25,6 @@ public class GrappLoginResource extends HALResource {
    public Response logIn(@QueryParam(value = "email") final String email,
                          @QueryParam(value = "avatar") final String avatar) {
       GrappUserDTO grappUserDTO = grappLoginService.logIn(email, avatar);
-      HALRepresentation halRepresentation = halRepresentationFactory.createFor(grappUserDTO).withLinks(GrappUserResource.createLinks(grappUserDTO));
-      return buildHALResponse(halRepresentation);
+      return buildHALResponse(GrappUserResource.asRepresentationOf(grappUserDTO));
    }
 }

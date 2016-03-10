@@ -27,7 +27,7 @@ public class GrappUserResource extends HALResource {
    @GET
    public Response findByID(@PathParam(value = "id") final String id) {
       GrappUserDTO grappUserDTO = grappUserService.findByID(id);
-      return buildHALResponse(asRepresentation(grappUserDTO));
+      return buildHALResponse(asRepresentationOf(grappUserDTO));
    }
 
    @PUT
@@ -35,14 +35,14 @@ public class GrappUserResource extends HALResource {
    public Response updateName(@PathParam(value = "id") final String id,
                               @QueryParam(value = "name") final String name) {
       GrappUserDTO grappUserDTO = grappUserService.updateName(id, name);
-      return buildHALResponse(asRepresentation(grappUserDTO));
+      return buildHALResponse(asRepresentationOf(grappUserDTO));
    }
 
-   protected static HALRepresentation asRepresentation(GrappUserDTO grappUserDTO) {
+   protected static HALRepresentation asRepresentationOf(GrappUserDTO grappUserDTO) {
       return halRepresentationFactory.createFor(grappUserDTO).withLinks(createLinks(grappUserDTO));
    }
 
-   protected static List<HALLink> createLinks(GrappUserDTO grappUserDTO) {
+   private static List<HALLink> createLinks(GrappUserDTO grappUserDTO) {
       return asList(
          HALResourceLinkBuilder.linkTo(GrappUserResource.class).pathArgs(grappUserDTO.getId()).withSelfRel(),
          HALResourceLinkBuilder.linkTo(GrappUserResource.class).method("updateName").pathArgs(grappUserDTO.getId()).queryParams("name").withRel("updateName")

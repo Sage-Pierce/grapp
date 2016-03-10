@@ -1,11 +1,9 @@
 package com.wisegas.grapp.domain.entity;
 
-import com.wisegas.grapp.domain.value.GrappStoreNodeID;
+import com.wisegas.grapp.domain.value.*;
 import com.wisegas.lang.GeoPoint;
 import com.wisegas.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
 import com.wisegas.lang.GeoPolygon;
 
 import javax.persistence.*;
@@ -100,6 +98,10 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       }
    }
 
+   public GrappStoreNode getNode(GrappStoreNodeID grappStoreNodeID) {
+      return nodes.get(grappStoreNodeID);
+   }
+
    public Collection<GrappStoreNode> getNodes() {
       return nodes.values();
    }
@@ -115,8 +117,8 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       }
    }
 
-   public GrappStoreNode addNode(GeoPoint location) {
-      GrappStoreNode node = new GrappStoreNode(this, location, "Grapp Store Node #" + nodes.size());
+   public GrappStoreNode addNode(GrappStoreNodeType type, GeoPoint location) {
+      GrappStoreNode node = new GrappStoreNode(this, "Grapp Store Node #" + nodes.size(), type, location);
       nodes.put(node.getId(), node);
       return node;
    }
