@@ -83,7 +83,7 @@ public class GrappStoreLayoutResource extends HALResource {
                            @QueryParam("location") final GeoPoint location) {
       GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTO> result = grappStoreLayoutService.addNode(id, type, location);
       return buildHALResponse(GrappStoreNodeResource.asRepresentationOf(result.getTarget())
-                                                    .withEmbeddeds("affectedNodes", result.getAffectedNodeDTOs().stream()
+                                                    .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                           .map(GrappStoreNodeResource::asRepresentationOf)
                                                                                           .collect(Collectors.toList())));
    }

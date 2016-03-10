@@ -12,7 +12,7 @@ public class GrappStoreLayoutUpdateResultDTOFactory {
    public static <T> GrappStoreLayoutUpdateResultDTO<T> createDTO(GrappStoreLayout grappStoreLayout, T targetDTO, List<String> affectedNodeIDs) {
       GrappStoreLayoutUpdateResultDTO<T> resultDTO = new GrappStoreLayoutUpdateResultDTO<>();
       resultDTO.setTarget(targetDTO);
-      resultDTO.setAffectedNodeDTOs(affectedNodeIDs.stream().map(GrappStoreNodeID::fromString).map(grappStoreLayout::getNode).map(GrappStoreNodeDTOFactory::createDTO).collect(Collectors.toList()));
+      resultDTO.setAffectedNodes(affectedNodeIDs.stream().map(GrappStoreNodeID::fromString).map(grappStoreLayout::getNode).map(GrappStoreNodeDTOFactory::createDTO).collect(Collectors.toList()));
       return resultDTO;
    }
 }

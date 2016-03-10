@@ -5,7 +5,7 @@ import java.util.List;
 public class GrappStoreLayoutUpdateResultDTO<T> {
 
    private T target;
-   private List<GrappStoreNodeDTO> affectedNode;
+   private List<GrappStoreNodeDTO> affectedNodes;
 
    public T getTarget() {
       return target;
@@ -15,11 +15,11 @@ public class GrappStoreLayoutUpdateResultDTO<T> {
       this.target = target;
    }
 
-   public List<GrappStoreNodeDTO> getAffectedNodeDTOs() {
-      return affectedNode;
+   public List<GrappStoreNodeDTO> getAffectedNodes() {
+      return affectedNodes;
    }
 
-   public void setAffectedNodeDTOs(List<GrappStoreNodeDTO> affectedNodeDTOs) {
-      this.affectedNode = affectedNodeDTOs;
+   public void setAffectedNodes(List<GrappStoreNodeDTO> affectedNodes) {
+      this.affectedNodes = affectedNodes;
    }
 }
