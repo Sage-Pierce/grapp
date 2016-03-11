@@ -1,11 +1,12 @@
 package com.wisegas.grapp.service_impl.api;
 
+import com.wisegas.common.lang.annotation.ApplicationService;
+import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.domain.entity.GrappUser;
 import com.wisegas.grapp.domain.repository.GrappUserRepository;
 import com.wisegas.grapp.service.api.GrappLoginService;
 import com.wisegas.grapp.service.dto.GrappUserDTO;
 import com.wisegas.grapp.service_impl.factory.GrappUserDTOFactory;
-import com.wisegas.common.lang.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +15,7 @@ import javax.inject.Singleton;
 @Named
 @Singleton
 @Transactional
+@ApplicationService
 public class GrappLoginServiceImpl implements GrappLoginService {
 
    private final GrappUserRepository grappUserRepository;

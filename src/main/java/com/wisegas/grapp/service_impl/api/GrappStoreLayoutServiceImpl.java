@@ -1,5 +1,7 @@
 package com.wisegas.grapp.service_impl.api;
 
+import com.wisegas.common.lang.annotation.ApplicationService;
+import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.domain.entity.GrappStoreFeature;
 import com.wisegas.grapp.domain.entity.GrappStoreLayout;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
@@ -16,7 +18,6 @@ import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutUpdateResultDTOFac
 import com.wisegas.grapp.service_impl.factory.GrappStoreNodeDTOFactory;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
-import com.wisegas.common.lang.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,6 +27,7 @@ import java.util.Collections;
 @Named
 @Singleton
 @Transactional
+@ApplicationService
 public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
 
    private final GrappStoreLayoutRepository grappStoreLayoutRepository;

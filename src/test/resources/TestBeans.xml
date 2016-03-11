@@ -63,6 +63,17 @@
         <aop:advisor advice-ref="transactionalAdvice" pointcut-ref="transactional"/>
     </aop:config>
 
+    <!-- Bean used to reset DomainEventPublisher -->
+    <bean id="domainEventPublisherResetter" class="com.wisegas.common.domain.model.DomainEventPublisherResetter"/>
+
+    <!-- AOP Advice for DomainEventPublisherResetter -->
+    <aop:config>
+        <aop:aspect id="domainEventPublisherResetterAspect" ref="domainEventPublisherResetter">
+            <aop:pointcut id="applicationService" expression="@within(com.wisegas.common.lang.annotation.ApplicationService)"/>
+            <aop:before pointcut-ref="applicationService" method="call"/>
+        </aop:aspect>
+    </aop:config>
+
     <!-- A 'shared' EntityManager to be made available for Injection (TESTS ONLY) -->
     <bean id="sharedEntityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>

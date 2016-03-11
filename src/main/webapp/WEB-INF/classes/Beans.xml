@@ -53,6 +53,11 @@
         </property>
     </bean>
 
+    <!-- Configure and tell Spring which Transaction Manager to use -->
+    <bean id="platformTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
     <!-- AOP Advice for Transactional Beans -->
     <tx:advice id="transactionalAdvice" transaction-manager="platformTransactionManager">
         <tx:attributes>
@@ -66,12 +71,15 @@
         <aop:advisor advice-ref="transactionalAdvice" pointcut-ref="transactional"/>
     </aop:config>
 
-    <!-- Configure and tell Spring which Transaction Manager to use -->
-    <bean id="platformTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
-    </bean>
+    <!-- Bean used to reset DomainEventPublisher -->
+    <bean id="domainEventPublisherResetter" class="com.wisegas.common.domain.model.DomainEventPublisherResetter"/>
 
-    <!-- Tell Spring Transaction Manager to look for Transactional Beans via @Transactional -->
-    <tx:annotation-driven transaction-manager="platformTransactionManager" />
+    <!-- AOP Advice for DomainEventPublisherResetter -->
+    <aop:config>
+        <aop:aspect id="domainEventPublisherResetterAspect" ref="domainEventPublisherResetter">
+           <aop:pointcut id="applicationService" expression="@within(com.wisegas.common.lang.annotation.ApplicationService)"/>
+           <aop:before pointcut-ref="applicationService" method="call"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
