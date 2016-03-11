@@ -6,11 +6,6 @@ import java.util.UUID;
 public abstract class EntityID implements Serializable {
 
    @Override
-   public String toString() {
-      return idHash().toString();
-   }
-
-   @Override
    public boolean equals(Object object) {
       return object != null && getClass().equals(object.getClass()) && hashCode() == object.hashCode();
    }
@@ -18,6 +13,11 @@ public abstract class EntityID implements Serializable {
    @Override
    public int hashCode() {
       return idHash().hashCode();
+   }
+
+   @Override
+   public String toString() {
+      return idHash().toString();
    }
 
    protected static String generateValue() {
