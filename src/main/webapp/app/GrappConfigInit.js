@@ -31,7 +31,7 @@
       var servers = [
          "https://grapplication.herokuapp.com/rest/", // When running on Heroku
          "http://localhost:5000/rest/",               // When running Heroku locally
-         "http://localhost:8008/rest/"                // When running the server manually
+         "http://localhost:8008/rest/"                // When running the server manually (Need to set PORT Environment Var.)
       ];
       halClient.$get(servers[0]).then(GrappRoot.load, console.log);
 
