@@ -62,7 +62,7 @@
 
     <!-- How to identify Transactional Beans -->
     <aop:config>
-        <aop:pointcut id="transactional" expression="@annotation(com.wisegas.transaction.annotation.Transactional) || @within(com.wisegas.transaction.annotation.Transactional)"/>
+        <aop:pointcut id="transactional" expression="@annotation(com.wisegas.common.lang.annotation.Transactional) || @within(com.wisegas.common.lang.annotation.Transactional)"/>
         <aop:advisor advice-ref="transactionalAdvice" pointcut-ref="transactional"/>
     </aop:config>
 

@@ -2,7 +2,7 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.grapp.service.api.GrappLoginService;
 import com.wisegas.grapp.service.dto.GrappUserDTO;
-import com.wisegas.webserver.hal.HALResource;
+import com.wisegas.common.webserver.hal.HALResource;
 
 import javax.inject.Inject;
 import javax.ws.rs.PUT;

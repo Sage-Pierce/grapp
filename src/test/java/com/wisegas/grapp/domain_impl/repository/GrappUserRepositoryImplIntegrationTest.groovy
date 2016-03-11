@@ -3,7 +3,7 @@ package com.wisegas.grapp.domain_impl.repository
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.domain.repository.GrappUserRepository
 import com.wisegas.grapp.test.Builders
-import com.wisegas.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
+import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

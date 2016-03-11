@@ -5,12 +5,12 @@ import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutUpdateResultDTO;
 import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
-import com.wisegas.lang.GeoPoint;
-import com.wisegas.lang.GeoPolygon;
-import com.wisegas.webserver.hal.HALResource;
-import com.wisegas.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.webserver.hal.api.HALLink;
-import com.wisegas.webserver.hal.api.HALRepresentation;
+import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.lang.value.GeoPolygon;
+import com.wisegas.common.webserver.hal.HALResource;
+import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
+import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

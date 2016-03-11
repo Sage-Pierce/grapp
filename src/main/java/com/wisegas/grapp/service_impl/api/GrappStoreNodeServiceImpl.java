@@ -5,7 +5,7 @@ import com.wisegas.grapp.domain.value.GrappStoreNodeID;
 import com.wisegas.grapp.service.api.GrappStoreNodeService;
 import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreNodeDTOFactory;
-import com.wisegas.transaction.annotation.Transactional;
+import com.wisegas.common.lang.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;

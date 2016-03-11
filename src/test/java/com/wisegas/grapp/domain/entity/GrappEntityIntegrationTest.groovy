@@ -1,8 +1,8 @@
 package com.wisegas.grapp.domain.entity
 
 import com.wisegas.grapp.test.Builders;
-import com.wisegas.persistence.jpa.entity.EntityIntegrationTest;
-import com.wisegas.persistence.jpa.entity.SimpleEntity
+import com.wisegas.common.persistence.jpa.entity.EntityIntegrationTest;
+import com.wisegas.common.persistence.jpa.entity.SimpleEntity
 
 import java.lang.reflect.ParameterizedType;
 

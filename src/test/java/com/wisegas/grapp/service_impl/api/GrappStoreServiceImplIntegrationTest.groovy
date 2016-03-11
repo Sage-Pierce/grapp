@@ -1,8 +1,8 @@
 package com.wisegas.grapp.service_impl.api
 
 import com.wisegas.grapp.service.api.GrappStoreService
-import com.wisegas.lang.GeoPoint
-import com.wisegas.test.BaseIntegrationTest;
+import com.wisegas.common.lang.value.GeoPoint
+import com.wisegas.common.test.BaseIntegrationTest;
 
 import javax.inject.Inject;
 

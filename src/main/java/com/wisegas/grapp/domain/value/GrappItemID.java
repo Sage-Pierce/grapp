@@ -1,6 +1,6 @@
 package com.wisegas.grapp.domain.value;
 
-import com.wisegas.persistence.jpa.value.EntityID;
+import com.wisegas.common.persistence.jpa.value.EntityID;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;

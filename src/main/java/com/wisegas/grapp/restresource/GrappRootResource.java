@@ -1,8 +1,8 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.webserver.hal.HALResource;
-import com.wisegas.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.HALResource;
+import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
+import com.wisegas.common.webserver.hal.api.HALLink;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

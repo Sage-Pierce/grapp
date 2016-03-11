@@ -4,8 +4,8 @@ import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutUpdateResultDTO;
 import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
-import com.wisegas.lang.GeoPoint;
-import com.wisegas.lang.GeoPolygon;
+import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.lang.value.GeoPolygon;
 
 public interface GrappStoreLayoutService {
    GrappStoreLayoutDTO findByID(String id);

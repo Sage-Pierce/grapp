@@ -14,9 +14,9 @@ import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreFeatureDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreLayoutUpdateResultDTOFactory;
 import com.wisegas.grapp.service_impl.factory.GrappStoreNodeDTOFactory;
-import com.wisegas.lang.GeoPoint;
-import com.wisegas.lang.GeoPolygon;
-import com.wisegas.transaction.annotation.Transactional;
+import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.lang.value.GeoPolygon;
+import com.wisegas.common.lang.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;

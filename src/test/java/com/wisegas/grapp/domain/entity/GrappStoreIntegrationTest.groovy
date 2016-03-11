@@ -1,8 +1,8 @@
 package com.wisegas.grapp.domain.entity
 
 import com.wisegas.grapp.test.Builders
-import com.wisegas.lang.GeoPoint
-import com.wisegas.lang.GeoPolygon
+import com.wisegas.common.lang.value.GeoPoint
+import com.wisegas.common.lang.value.GeoPolygon
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional

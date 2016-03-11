@@ -1,10 +1,10 @@
 package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.grapp.domain.value.*;
-import com.wisegas.lang.GeoPoint;
-import com.wisegas.persistence.jpa.converter.GeoPolygonConverter;
-import com.wisegas.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.lang.GeoPolygon;
+import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
+import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.common.lang.value.GeoPolygon;
 
 import javax.persistence.*;
 import java.util.*;

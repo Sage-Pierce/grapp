@@ -3,7 +3,7 @@ package com.wisegas.grapp.service_impl.api
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.service.api.GrappUserService
 import com.wisegas.grapp.test.Builders;
-import com.wisegas.test.BaseIntegrationTest
+import com.wisegas.common.test.BaseIntegrationTest
 
 import javax.inject.Inject
 

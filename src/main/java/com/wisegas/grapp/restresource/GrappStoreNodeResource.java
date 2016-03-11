@@ -2,10 +2,10 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.grapp.service.api.GrappStoreNodeService;
 import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
-import com.wisegas.webserver.hal.HALResource;
-import com.wisegas.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.webserver.hal.api.HALLink;
-import com.wisegas.webserver.hal.api.HALRepresentation;
+import com.wisegas.common.webserver.hal.HALResource;
+import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
+import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

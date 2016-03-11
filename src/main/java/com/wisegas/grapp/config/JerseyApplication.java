@@ -1,6 +1,6 @@
 package com.wisegas.grapp.config;
 
-import com.wisegas.webserver.jersey.filters.CORSResponseFilter;
+import com.wisegas.common.webserver.jersey.filters.CORSResponseFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;

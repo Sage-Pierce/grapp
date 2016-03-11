@@ -4,7 +4,7 @@ import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.service.api.GrappLoginService
 import com.wisegas.grapp.service.dto.GrappUserDTO
 import com.wisegas.grapp.test.Builders
-import com.wisegas.test.BaseIntegrationTest
+import com.wisegas.common.test.BaseIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

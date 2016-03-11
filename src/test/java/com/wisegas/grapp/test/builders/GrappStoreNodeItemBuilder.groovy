@@ -1,7 +1,7 @@
 package com.wisegas.grapp.test.builders
 
 import com.wisegas.grapp.domain.value.GrappStoreNodeItem
-import com.wisegas.test.EntityBuilder
+import com.wisegas.common.test.EntityBuilder
 
 class GrappStoreNodeItemBuilder {
 

@@ -1,6 +1,6 @@
 package com.wisegas.grapp.domain.entity;
 
-import com.wisegas.persistence.jpa.entity.NamedEntity;
+import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappUserListID;
 import com.wisegas.grapp.domain.value.GrappUserListItem;
 
