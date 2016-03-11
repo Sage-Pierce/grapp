@@ -1,4 +1,4 @@
-package com.wisegas.grapp.service_impl.api;
+package com.wisegas.grapp.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;

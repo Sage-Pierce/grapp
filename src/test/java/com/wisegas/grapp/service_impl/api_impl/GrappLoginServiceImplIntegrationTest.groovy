@@ -1,4 +1,4 @@
-package com.wisegas.grapp.service_impl.api
+package com.wisegas.grapp.service_impl.api_impl
 
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.service.api.GrappLoginService

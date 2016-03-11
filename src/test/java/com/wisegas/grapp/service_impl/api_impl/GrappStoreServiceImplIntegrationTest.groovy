@@ -1,4 +1,4 @@
-package com.wisegas.grapp.service_impl.api
+package com.wisegas.grapp.service_impl.api_impl
 
 import com.wisegas.grapp.service.api.GrappStoreService
 import com.wisegas.common.lang.value.GeoPoint
