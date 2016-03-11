@@ -20,9 +20,9 @@ public abstract class EntityID implements Serializable {
       return idHash().hashCode();
    }
 
-   protected abstract Object idHash();
-
    protected static String generateValue() {
       return UUID.randomUUID().toString();
    }
+
+   protected abstract Object idHash();
 }
