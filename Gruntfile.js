@@ -37,6 +37,10 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/stores/*.js"],
             tasks: ["jshint", "concat:stores"]
          },
+         util: {
+            files: [webappRoot + "app/util/*.js"],
+            tasks: ["jshint", "concat:util"]
+         },
          value: {
             files: [webappRoot + "app/value/*.js"],
             tasks: ["jshint", "concat:value"]
@@ -58,6 +62,7 @@ module.exports = function (grunt) {
             webappRoot + "app/storemap/*.js",
             webappRoot + "app/stores/*.js",
             webappRoot + "app/value/*.js",
+            webappRoot + "app/util/*.js",
             webappRoot + "app/welcome/*.js"
          ]
       },
@@ -93,6 +98,10 @@ module.exports = function (grunt) {
          stores: {
             src: [webappRoot + "app/stores/*.js"],
             dest: webappRoot + "concat/stores-concat.js"
+         },
+         util: {
+            src: [webappRoot + "app/util/*.js"],
+            dest: webappRoot + "concat/util-concat.js"
          },
          value: {
             src: [webappRoot + "app/value/*.js"],

@@ -63,14 +63,13 @@
          function addNode(grappStoreNodeType, position) {
             return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(convertGMapPositionToGrappLocation(position))})
                .then(function(layoutNodeUpdateRsc) {
-                  var nodeModel = createGMapMarkerModelFromGrappStoreNode(layoutNodeUpdateRsc);
-                  self.nodes.push(nodeModel);
-                  var result = {node: nodeModel};
-                  return layoutNodeUpdateRsc.$has("affectedNodes") ? layoutNodeUpdateRsc.$get("affectedNodes").then(function(affectedNodes) {
-                     var affectedNodesArray = _.isArray(affectedNodes) ? affectedNodes : [affectedNodes];
-                     result.affectedNodes = affectedNodesArray.map(updateGMapMarkerModelFromGrappStoreNode);
-                     return result;
-                  }) : result;
+                  var result = {node: createGMapMarkerModelFromGrappStoreNode(layoutNodeUpdateRsc)};
+                  self.nodes.push(result.node);
+                  return layoutNodeUpdateRsc.$has("affectedNodes") ? layoutNodeUpdateRsc.$get("affectedNodes")
+                     .then(function(affectedNodesRsc) {
+                        result.affectedNodes = _.arrayify(affectedNodesRsc).map(updateGMapMarkerModelFromGrappStoreNode);
+                        return result;
+                     }) : result;
                });
          }
 
