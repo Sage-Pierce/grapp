@@ -12,6 +12,7 @@
       self.addFeature = addFeature;
       self.removeFeatureById = removeFeatureById;
       self.addNode = addNode;
+      self.setNodeOptions = setNodeOptions;
       self.removeNodeById = removeNodeById;
       self.polygonComplete = polygonComplete;
       self.handleGObjectMouseEvent = handleGObjectMouseEvent;
@@ -68,6 +69,11 @@
       function addNode(nodeId, gMapMarker) {
          nodeControl.getPlurals().put(nodeId, {gObject: gMapMarker});
          postProcessAddedGMapMarker(nodeId, gMapMarker);
+      }
+
+      function setNodeOptions(nodeId, gMapMarkerOptions) {
+         var gMapMarker = nodeControl.getPlurals().get(nodeId).gObject;
+         gMapMarker.setOptions(gMapMarkerOptions);
       }
 
       function removeNodeById(nodeId) {

@@ -17,8 +17,15 @@
 
       function mapClicked(modelId, map, mouseEvent) {
          grappStoreLayout.addNode(nodeType, mouseEvent.latLng)
-            .then(function(model) {
-               mapControl.addNode(model.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));
+            .then(function(result) {
+               mapControl.addNode(result.node.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));
+               if (result.affectedNodes) {
+                  result.affectedNodes.forEach(function(affectedNode) {
+                     mapControl.setNodeOptions(affectedNode.id, {
+                        icon: affectedNode.type.iconUrl
+                     });
+                  });
+               }
             });
       }
 
