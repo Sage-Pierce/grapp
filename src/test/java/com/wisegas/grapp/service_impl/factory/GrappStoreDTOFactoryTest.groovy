@@ -1,15 +1,13 @@
 package com.wisegas.grapp.service_impl.factory
 
-import com.wisegas.grapp.domain.entity.GrappStore
-import com.wisegas.grapp.domain.entity.GrappUser
-import com.wisegas.common.lang.value.GeoPoint
+import com.wisegas.grapp.test.Builders
 import spock.lang.Specification
 
 class GrappStoreDTOFactoryTest extends Specification {
 
    def "A GrappStoreDTO can be created from a GrappStore"() {
       given:
-      def grappStore = new GrappStore(new GrappUser(), "Test Store", new GeoPoint(0, 0))
+      def grappStore = Builders.grappStore()
 
       when:
       def result = GrappStoreDTOFactory.createDTO(grappStore)

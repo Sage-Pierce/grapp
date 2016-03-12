@@ -1,10 +1,13 @@
 package com.wisegas.grapp.service_impl.api_impl;
 
+import com.wisegas.common.domain.model.DomainEventPublisher;
+import com.wisegas.common.domain.model.DomainEventSubscriber;
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.domain.entity.GrappStoreFeature;
 import com.wisegas.grapp.domain.entity.GrappStoreLayout;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
+import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.domain.repository.GrappStoreLayoutRepository;
 import com.wisegas.grapp.domain.value.*;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
@@ -22,7 +25,8 @@ import com.wisegas.common.lang.value.GeoPolygon;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @Singleton
@@ -78,9 +82,11 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
 
    @Override
    public GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTO> addNode(String id, String type, GeoPoint location) {
+      GrappStoreNodeModificationEventSubscriber nodeModificationEventSubscriber = new GrappStoreNodeModificationEventSubscriber();
+      DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
       GrappStoreLayout layout = grappStoreLayoutRepository.findByID(GrappStoreLayoutID.fromString(id));
       GrappStoreNode node = layout.addNode(GrappStoreNodeType.fromName(type), location);
-      return GrappStoreLayoutUpdateResultDTOFactory.createDTO(layout, GrappStoreNodeDTOFactory.createDTO(node), Collections.emptyList());
+      return GrappStoreLayoutUpdateResultDTOFactory.createDTO(layout, GrappStoreNodeDTOFactory.createDTO(node), nodeModificationEventSubscriber.getNodeIDs());
    }
 
    @Override
@@ -94,5 +100,24 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
    public void removeNode(String id, String nodeID) {
       GrappStoreLayout layout = grappStoreLayoutRepository.findByID(GrappStoreLayoutID.fromString(id));
       layout.removeNode(GrappStoreNodeID.fromString(nodeID));
+   }
+
+   private static class GrappStoreNodeModificationEventSubscriber implements DomainEventSubscriber<GrappStoreNodeModifiedEvent> {
+
+      private final List<String> nodeIDs = new ArrayList<>();
+
+      @Override
+      public Class<GrappStoreNodeModifiedEvent> getSubscribedEventType() {
+         return GrappStoreNodeModifiedEvent.class;
+      }
+
+      @Override
+      public void handleEvent(GrappStoreNodeModifiedEvent domainEvent) {
+         nodeIDs.add(domainEvent.getNodeID());
+      }
+
+      public List<String> getNodeIDs() {
+         return nodeIDs;
+      }
    }
 }

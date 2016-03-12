@@ -1,5 +1,7 @@
 package com.wisegas.grapp.domain.entity;
 
+import com.wisegas.common.domain.model.DomainEventPublisher;
+import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
@@ -52,7 +54,10 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    }
 
    public void setType(GrappStoreNodeType type) {
-      this.type = type;
+      if (this.type != type) {
+         this.type = type;
+         DomainEventPublisher.instance().publish(new GrappStoreNodeModifiedEvent(id.toString()));
+      }
    }
 
    public GeoPoint getLocation() {
