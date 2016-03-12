@@ -72,13 +72,14 @@
     </aop:config>
 
     <!-- Bean used to reset DomainEventPublisher -->
-    <bean id="domainEventPublisherResetter" class="com.wisegas.common.domain.model.DomainEventPublisherResetter"/>
+    <bean id="domainEventPublisherManager" class="com.wisegas.common.domain.model.DomainEventPublisherManager"/>
 
-    <!-- AOP Advice for DomainEventPublisherResetter -->
+    <!-- AOP Advice for DomainEventPublisherManager -->
     <aop:config>
-        <aop:aspect id="domainEventPublisherResetterAspect" ref="domainEventPublisherResetter">
+        <aop:aspect id="domainEventPublisherResetterAspect" ref="domainEventPublisherManager">
            <aop:pointcut id="applicationService" expression="@within(com.wisegas.common.lang.annotation.ApplicationService)"/>
-           <aop:before pointcut-ref="applicationService" method="call"/>
+           <aop:before pointcut-ref="applicationService" method="enterPublishingContext"/>
+           <aop:after pointcut-ref="applicationService" method="exitPublishingContext"/>
         </aop:aspect>
     </aop:config>
 

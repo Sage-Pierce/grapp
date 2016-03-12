@@ -12,7 +12,7 @@ public class DomainEventPublisher {
       }
    };
 
-   private List<DomainEventSubscriber> subscribers = Collections.emptyList();
+   private List<DomainEventSubscriber> subscribers = new ArrayList<>();
    private boolean publishing;
 
    public static DomainEventPublisher instance() {
