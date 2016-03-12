@@ -118,6 +118,9 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
    }
 
    public GrappStoreNode addNode(GrappStoreNodeType type, GeoPoint location) {
+      if (type.isSingleton()) {
+         ensureNoNodesOfType(type);
+      }
       GrappStoreNode node = new GrappStoreNode(this, "Grapp Store Node #" + nodes.size(), type, location);
       nodes.put(node.getId(), node);
       return node;
@@ -129,6 +132,14 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
       }
       else {
          throw new RuntimeException(String.format("Node ($s) not found in Layout (%s).", grappStoreNodeID, getId()));
+      }
+   }
+
+   private void ensureNoNodesOfType(GrappStoreNodeType type) {
+      for (GrappStoreNode node : nodes.values()) {
+         if (node.getType() == type) {
+            node.setType(GrappStoreNodeType.defaultNonSingleton());
+         }
       }
    }
 
