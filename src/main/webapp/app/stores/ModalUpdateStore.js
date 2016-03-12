@@ -50,6 +50,9 @@
       function initializeSearchBox() {
          modalUpdateStoreVM.searchBox = {
             template: "app/stores/SearchBox.html",
+            options: {
+
+            },
             events: {
                places_changed: function (searchBox) {
                   var places = searchBox.getPlaces();
