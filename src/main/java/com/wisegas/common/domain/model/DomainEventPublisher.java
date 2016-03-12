@@ -1,7 +1,6 @@
 package com.wisegas.common.domain.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DomainEventPublisher {
@@ -21,7 +20,7 @@ public class DomainEventPublisher {
 
    public void reset() {
       if (!publishing) {
-         subscribers = new ArrayList<>();
+         subscribers.clear();
       }
    }
 

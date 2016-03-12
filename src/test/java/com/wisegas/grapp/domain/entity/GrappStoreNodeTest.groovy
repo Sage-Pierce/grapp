@@ -2,16 +2,15 @@ package com.wisegas.grapp.domain.entity
 
 import com.wisegas.common.domain.model.DomainEventPublisher
 import com.wisegas.common.domain.model.DomainEventSubscriber
+import com.wisegas.common.test.DomainEventAwareTest
 import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent
 import com.wisegas.grapp.domain.value.GrappStoreNodeType
 import com.wisegas.grapp.test.Builders
-import spock.lang.Specification
 
-class GrappStoreNodeTest extends Specification {
+class GrappStoreNodeTest extends DomainEventAwareTest {
 
    def "Changing a GrappStoreNode's Type causes a Domain Event to be published"() {
       given:
-      DomainEventPublisher.instance().reset()
       GrappStoreNode node = Builders.grappStoreNode().having { it.type = GrappStoreNodeType.ENTRANCE }
 
       and:
