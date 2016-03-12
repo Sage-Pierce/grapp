@@ -1,13 +1,13 @@
 package com.wisegas.grapp.domain.entity
 
 import com.wisegas.grapp.test.Builders
-import com.wisegas.common.test.BaseIntegrationTest
+import com.wisegas.common.test.IntegrationTest
 import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.lang.value.GeoPolygon
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class GrappStoreLayoutIntegrationTest extends BaseIntegrationTest {
+class GrappStoreLayoutIntegrationTest extends IntegrationTest {
 
    def "Features in a Layout can be reshaped by ID"() {
       given:

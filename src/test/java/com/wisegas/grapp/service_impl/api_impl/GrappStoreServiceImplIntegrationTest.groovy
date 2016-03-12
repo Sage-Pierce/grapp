@@ -2,11 +2,11 @@ package com.wisegas.grapp.service_impl.api_impl
 
 import com.wisegas.grapp.service.api.GrappStoreService
 import com.wisegas.common.lang.value.GeoPoint
-import com.wisegas.common.test.BaseIntegrationTest;
+import com.wisegas.common.test.IntegrationTest;
 
 import javax.inject.Inject;
 
-public class GrappStoreServiceImplIntegrationTest extends BaseIntegrationTest {
+public class GrappStoreServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
    private GrappStoreService grappStoreService

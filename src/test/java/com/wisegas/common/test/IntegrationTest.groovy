@@ -6,7 +6,7 @@ import spock.lang.Specification
 import javax.inject.Inject
 
 @ContextConfiguration("classpath*:TestBeans.xml")
-abstract class BaseIntegrationTest extends Specification {
+abstract class IntegrationTest extends Specification {
 
    @Inject
    protected IntegrationTestEntityManager testEntityManager

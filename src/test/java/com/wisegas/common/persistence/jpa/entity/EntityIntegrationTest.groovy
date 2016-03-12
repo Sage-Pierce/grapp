@@ -1,11 +1,10 @@
 package com.wisegas.common.persistence.jpa.entity
 
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity
-import com.wisegas.common.test.BaseIntegrationTest
+import com.wisegas.common.test.IntegrationTest
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-abstract class EntityIntegrationTest<T extends SimpleEntity> extends BaseIntegrationTest {
+abstract class EntityIntegrationTest<T extends SimpleEntity> extends IntegrationTest {
 
    protected T testEntity1
    protected T testEntity2

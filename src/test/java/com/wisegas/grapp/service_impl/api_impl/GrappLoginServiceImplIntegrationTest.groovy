@@ -4,11 +4,11 @@ import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.service.api.GrappLoginService
 import com.wisegas.grapp.service.dto.GrappUserDTO
 import com.wisegas.grapp.test.Builders
-import com.wisegas.common.test.BaseIntegrationTest
+import com.wisegas.common.test.IntegrationTest
 
 import javax.inject.Inject
 
-class GrappLoginServiceImplIntegrationTest extends BaseIntegrationTest {
+class GrappLoginServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
    private GrappLoginService grappLoginService

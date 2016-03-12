@@ -3,11 +3,11 @@ package com.wisegas.grapp.service_impl.api_impl
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.service.api.GrappUserService
 import com.wisegas.grapp.test.Builders;
-import com.wisegas.common.test.BaseIntegrationTest
+import com.wisegas.common.test.IntegrationTest
 
 import javax.inject.Inject
 
-public class GrappUserServiceImplIntegrationTest extends BaseIntegrationTest {
+public class GrappUserServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
    private GrappUserService grappUserService
