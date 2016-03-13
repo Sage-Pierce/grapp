@@ -2,6 +2,7 @@ package com.wisegas.grapp.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
+import com.wisegas.grapp.domain.entity.GrappStoreNode;
 import com.wisegas.grapp.domain.repository.GrappStoreNodeRepository;
 import com.wisegas.grapp.domain.value.GrappStoreNodeID;
 import com.wisegas.grapp.service.api.GrappStoreNodeService;
@@ -28,5 +29,12 @@ public class GrappStoreNodeServiceImpl implements GrappStoreNodeService {
    @Override
    public GrappStoreNodeDTO findByID(String id) {
       return GrappStoreNodeDTOFactory.createDTO(grappStoreNodeRepository.findByID(GrappStoreNodeID.fromString(id)));
+   }
+
+   @Override
+   public GrappStoreNodeDTO updateByID(String id, String name) {
+      GrappStoreNode grappStoreNode = grappStoreNodeRepository.findByID(GrappStoreNodeID.fromString(id));
+      grappStoreNode.setName(name);
+      return GrappStoreNodeDTOFactory.createDTO(grappStoreNode);
    }
 }

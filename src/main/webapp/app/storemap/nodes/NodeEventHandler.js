@@ -4,9 +4,11 @@
    angular.module("Grapp")
       .value("NodeEventHandler", NodeEventHandler);
 
-   function NodeEventHandler(mapControl, grappStoreLayout, grappStoreNodeType) {
+   function NodeEventHandler(mapControl, nodeSelector, grappStoreLayout, grappStoreNodeType) {
       var self = this;
+      self.finish = finish;
       self.mapClicked = mapClicked;
+      self.markerClicked = markerClicked;
       self.markerRightClicked = markerRightClicked;
       self.markerDragEnd = markerDragEnd;
       self.setNodeType = setNodeType;
@@ -14,6 +16,10 @@
       var nodeType = grappStoreNodeType;
 
       ////////////////////
+
+      function finish() {
+         nodeSelector.deselect()
+      }
 
       function mapClicked(modelId, map, mouseEvent) {
          grappStoreLayout.addNode(nodeType, mouseEvent.latLng)
@@ -27,6 +33,10 @@
                   });
                }
             });
+      }
+
+      function markerClicked(modelId, gMapMarker, mouseEvent) {
+         nodeSelector.select(grappStoreLayout.getNodeById(modelId));
       }
 
       function markerRightClicked(modelId, gMapMarker, mouseEvent) {

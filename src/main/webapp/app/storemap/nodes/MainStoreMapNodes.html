@@ -1,4 +1,4 @@
-<div class="tab-row">
+<div class="tab-content">
    <h4 class="text-center">Node Type</h4>
    <div class="btn-group btn-group-justified">
       <label ng-repeat="nodeType in mainStoreMapNodesVM.nodeTypes"
@@ -9,4 +9,19 @@
          {{nodeType.displayString}}
       </label>
    </div>
+   <h4 class="vertical-strut text-center">Selected Node</h4>
+   <form>
+      <div class="form-group row">
+         <label for="nodeNameInput" class="col-sm-2 form-control-label">Name:</label>
+         <div class="col-sm-10">
+            <input id="nodeNameInput"
+                   type="text"
+                   class="form-control"
+                   placeholder="Node Name"
+                   ng-model="mainStoreMapNodesVM.selectedNodeName"
+                   ng-blur="mainStoreMapNodesVM.nodeNameChanged()"
+                   ng-disabled="!mainStoreMapNodesVM.isANodeSelected()"/>
+         </div>
+      </div>
+   </form>
 </div>

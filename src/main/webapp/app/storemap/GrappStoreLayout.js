@@ -110,11 +110,13 @@
             return JSON.stringify({vertices: grappPolygonVertices});
          }
 
-         function createGMapMarkerModelFromGrappStoreNode(grappStoreNodeRsc) {
+         function createGMapMarkerModelFromGrappStoreNode(grappStoreNode) {
             return {
-               id: grappStoreNodeRsc.id,
-               location: grappStoreNodeRsc.location,
-               type: GrappStoreNodeType.fromCode(grappStoreNodeRsc.type),
+               id: grappStoreNode.id,
+               name: grappStoreNode.name,
+               type: GrappStoreNodeType.fromCode(grappStoreNode.type),
+               location: grappStoreNode.location,
+               commitName: function(name) { commitNodeModelParams(this, {name: name}); },
                commitLocation: function(position) { commitGMapMarkerModelPosition(this, position); }
             };
          }
@@ -130,10 +132,17 @@
             });
          }
 
-         function updateGMapMarkerModelFromGrappStoreNode(grappStoreNodeRsc) {
-            var gMapMarkerModel = getNodeById(grappStoreNodeRsc.id);
-            gMapMarkerModel.type = GrappStoreNodeType.fromCode(grappStoreNodeRsc.type);
+         function updateGMapMarkerModelFromGrappStoreNode(grappStoreNode) {
+            var gMapMarkerModel = getNodeById(grappStoreNode.id);
+            gMapMarkerModel.type = GrappStoreNodeType.fromCode(grappStoreNode.type);
             return gMapMarkerModel;
+         }
+
+         function commitNodeModelParams(nodeModel, params) {
+            GrappRoot.updateResourceByID("node", nodeModel.id, params)
+               .then(function(nodeRsc) {
+                  nodeModel.name = nodeRsc.name;
+               });
          }
 
          function convertGMapPositionToGrappLocation(position) {

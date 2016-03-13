@@ -12,6 +12,7 @@
       self.createResourceModel = createResourceModel;
       self.loadResourceModels = loadResourceModels;
       self.loadResourceModelByID = loadResourceModelByID;
+      self.updateResourceByID = updateResourceByID;
       self.mergeResourceIntoModel = mergeResourceIntoModel;
 
       self.deferred = $q.defer();
@@ -53,7 +54,17 @@
       function loadResourceModelByID(resourceName, id, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
             return grappRoot.$get(resourceName + "ByID", {id: id}).then(function(resource) {
-               return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
+               return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
+            });
+         });
+      }
+
+      function updateResourceByID(resourceName, id, params) {
+         var fullParams = _.clone(params);
+         fullParams.id = id;
+         return afterLoad().then(function(grappRoot) {
+            return grappRoot.$put(resourceName + "ByID", fullParams).then(function(resource) {
+               return resource;
             });
          });
       }
