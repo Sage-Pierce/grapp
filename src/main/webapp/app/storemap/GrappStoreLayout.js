@@ -48,10 +48,10 @@
          }
 
          function removeFeatureById(id) {
-            var indexOfFeature = _.findIndex(self.features, function(feature) { return feature.id === id; });
-            if (indexOfFeature >= 0) {
+            var featureModel = getFeatureById(id);
+            if (featureModel) {
                grappStoreLayoutRsc.$del("removeFeature", {featureID: id}).then(function() {
-                  self.features.splice(indexOfFeature, 1);
+                  self.features = _.without(self.features, featureModel);
                });
             }
          }
@@ -74,10 +74,10 @@
          }
 
          function removeNodeById(id) {
-            var indexOfNode = _.findIndex(self.nodes, function(node) { return node.id === id; });
-            if (indexOfNode >= 0) {
+            var nodeModel = getNodeById(id);
+            if (nodeModel) {
                grappStoreLayoutRsc.$del("removeNode", {nodeID: id}).then(function() {
-                  self.nodes.splice(indexOfNode, 1);
+                  self.nodes = _.without(self.nodes, nodeModel);
                });
             }
          }
