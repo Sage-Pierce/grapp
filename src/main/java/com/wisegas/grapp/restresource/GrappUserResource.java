@@ -10,9 +10,8 @@ import com.wisegas.common.webserver.hal.api.HALRepresentation;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.Collections;
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 @Path("/users/{id}/")
 public class GrappUserResource extends HALResource {
@@ -42,10 +41,17 @@ public class GrappUserResource extends HALResource {
       return halRepresentationFactory.createFor(grappUserDTO).withLinks(createLinks(grappUserDTO));
    }
 
+   protected static HALLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
+   }
+
    private static List<HALLink> createLinks(GrappUserDTO grappUserDTO) {
-      return asList(
-         HALResourceLinkBuilder.linkTo(GrappUserResource.class).pathArgs(grappUserDTO.getId()).withSelfRel(),
-         HALResourceLinkBuilder.linkTo(GrappUserResource.class).method("updateName").pathArgs(grappUserDTO.getId()).queryParams("name").withRel("updateName")
+      return Collections.singletonList(
+         createSelfLinkBuilder().pathArgs(grappUserDTO.getId()).withSelfRel()
       );
+   }
+
+   private static HALResourceLinkBuilder createSelfLinkBuilder() {
+      return HALResourceLinkBuilder.linkTo(GrappUserResource.class).queryParams("name");
    }
 }

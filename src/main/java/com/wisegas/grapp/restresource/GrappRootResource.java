@@ -21,12 +21,12 @@ public class GrappRootResource extends HALResource {
    private static List<HALLink> createLinks() {
       return Arrays.asList(
          HALResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
-         HALResourceLinkBuilder.linkTo(GrappLoginResource.class).method("logIn").queryParams("email", "avatar").withRel("logIn"),
-         HALResourceLinkBuilder.linkTo(GrappUserResource.class).withRel("userByID"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).withRel("storeLayoutByID"),
-         HALResourceLinkBuilder.linkTo(GrappStoreNodeResource.class).queryParams("name").withRel("nodeByID"),
-         HALResourceLinkBuilder.linkTo(GrappStoreResource.class).withRel("storeByID"),
-         HALResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("storeName", "storeLocation").withRel("stores")
+         GrappLoginResource.createRootLink("logIn"),
+         GrappUserResource.createRootLink("userById"),
+         GrappStoreLayoutResource.createRootLink("storeLayoutById"),
+         GrappStoreNodeResource.createRootLink("nodeById"),
+         GrappStoreResource.createRootLink("storeById"),
+         GrappStoresResource.createRootLink("stores")
       );
    }
 }

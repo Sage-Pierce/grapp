@@ -109,9 +109,13 @@ public class GrappStoreLayoutResource extends HALResource {
       return halRepresentationFactory.createFor(grappStoreLayoutDTO).withLinks(createLinks(grappStoreLayoutDTO));
    }
 
+   protected static HALLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
+   }
+
    private static List<HALLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return Arrays.asList(
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
+         createSelfLinkBuilder().pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
          HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),
          HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateInnerOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("innerOutline"),
          HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("addFeature"),
@@ -121,5 +125,9 @@ public class GrappStoreLayoutResource extends HALResource {
          HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("moveNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "location").withRel("moveNode"),
          HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode")
       );
+   }
+
+   private static HALResourceLinkBuilder createSelfLinkBuilder() {
+      return HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class);
    }
 }

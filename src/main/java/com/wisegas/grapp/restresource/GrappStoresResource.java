@@ -36,9 +36,17 @@ public class GrappStoresResource extends HALResource {
       return buildHALResponse(halRepresentationFactory.createForLinks(createLinks()).withEmbeddeds("stores", GrappStoreResource.asRepresentations(grappStoreDTOs)));
    }
 
+   protected static HALLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
+   }
+
    private static List<HALLink> createLinks() {
       return Collections.singletonList(
-         HALResourceLinkBuilder.linkTo(GrappStoresResource.class).withSelfRel()
+         createSelfLinkBuilder().withSelfRel()
       );
+   }
+
+   private static HALResourceLinkBuilder createSelfLinkBuilder() {
+      return HALResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("storeName", "storeLocation");
    }
 }

@@ -15,7 +15,7 @@
       ////////////////////
 
       function create(name, location) {
-         return GrappRoot.createResourceModel("store", {storeName: name, storeLocation: JSON.stringify(location)}, createModel);
+         return GrappRoot.createResourceModel("stores", {storeName: name, storeLocation: JSON.stringify(location)}, createModel);
       }
 
       function loadAll() {

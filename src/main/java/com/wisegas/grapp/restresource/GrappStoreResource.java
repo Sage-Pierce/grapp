@@ -11,9 +11,10 @@ import com.wisegas.common.webserver.hal.api.HALRepresentation;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/stores/{id}/")
 public class GrappStoreResource extends HALResource {
@@ -52,23 +53,27 @@ public class GrappStoreResource extends HALResource {
       return Response.ok().build();
    }
 
-   protected static List<HALRepresentation> asRepresentations(Iterable<GrappStoreDTO> grappStoreDTOs) {
-      List<HALRepresentation> representations = new ArrayList<>();
-      for (GrappStoreDTO grappStoreDTO : grappStoreDTOs) {
-         representations.add(asRepresentationOf(grappStoreDTO));
-      }
-      return representations;
+   protected static List<HALRepresentation> asRepresentations(Collection<GrappStoreDTO> grappStoreDTOs) {
+      return grappStoreDTOs.stream().map(GrappStoreResource::asRepresentationOf).collect(Collectors.toList());
    }
 
    protected static HALRepresentation asRepresentationOf(GrappStoreDTO grappStoreDTO) {
       return halRepresentationFactory.createFor(grappStoreDTO).withLinks(createLinks(grappStoreDTO));
    }
 
+   protected static HALLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
+   }
+
    private static List<HALLink> createLinks(GrappStoreDTO grappStoreDTO) {
       return Arrays.asList(
-         HALResourceLinkBuilder.linkTo(GrappStoreResource.class).pathArgs(grappStoreDTO.getId()).withSelfRel(),
+         createSelfLinkBuilder().pathArgs(grappStoreDTO.getId()).withSelfRel(),
          HALResourceLinkBuilder.linkTo(GrappStoreResource.class).method("updateName").pathArgs(grappStoreDTO.getId()).queryParams("name").withRel("updateName"),
          HALResourceLinkBuilder.linkTo(GrappStoreResource.class).method("updateLocation").pathArgs(grappStoreDTO.getId()).queryParams("location").withRel("updateLocation")
       );
+   }
+
+   private static HALResourceLinkBuilder createSelfLinkBuilder() {
+      return HALResourceLinkBuilder.linkTo(GrappStoreResource.class).queryParams("name", "location");
    }
 }

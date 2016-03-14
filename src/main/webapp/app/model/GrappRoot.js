@@ -29,9 +29,9 @@
          });
       }
 
-      function createResourceModel(resourceName, params, resourceModelCreatorCallback) {
+      function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$post("create" + resourceName.charAt(0).toUpperCase() + resourceName.slice(1), params)
+            return grappRoot.$post(pluralResourceName, params)
                .then(function(resource) {
                   return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
                });
@@ -53,7 +53,7 @@
 
       function loadResourceModelByID(resourceName, id, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$get(resourceName + "ByID", {id: id}).then(function(resource) {
+            return grappRoot.$get(resourceName + "ById", {id: id}).then(function(resource) {
                return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
             });
          });
@@ -63,7 +63,7 @@
          var fullParams = _.clone(params);
          fullParams.id = id;
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$put(resourceName + "ByID", fullParams).then(function(resource) {
+            return grappRoot.$put(resourceName + "ById", fullParams).then(function(resource) {
                return resource;
             });
          });
