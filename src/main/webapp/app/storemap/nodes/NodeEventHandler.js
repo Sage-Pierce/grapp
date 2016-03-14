@@ -22,7 +22,7 @@
       }
 
       function mapClicked(modelId, map, mouseEvent) {
-         grappStoreLayout.addNode(nodeType, mouseEvent.latLng)
+         grappStoreLayout.addNode(nodeType, _.convertPositionToLocation(mouseEvent.latLng))
             .then(function(result) {
                mapControl.addNode(result.node.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));
                if (result.affectedNodes) {
@@ -45,7 +45,7 @@
       }
 
       function markerDragEnd(modelId, gMapMarker, mouseEvent) {
-         grappStoreLayout.getNodeById(modelId).commitLocation(mouseEvent.latLng)
+         grappStoreLayout.getNodeById(modelId).commitLocation(_.convertPositionToLocation(mouseEvent.latLng));
       }
 
       function setNodeType(grappStoreNodeType) {

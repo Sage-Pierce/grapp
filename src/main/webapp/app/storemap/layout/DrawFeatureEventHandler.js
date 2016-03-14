@@ -21,7 +21,7 @@
       }
 
       function polygonComplete(gMapPolygon) {
-         grappStoreLayout.addFeature(gMapPolygon.getPath().getArray())
+         grappStoreLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
             .then(function(model) {
                mapControl.addFeature(model.id, gMapPolygon);
             });

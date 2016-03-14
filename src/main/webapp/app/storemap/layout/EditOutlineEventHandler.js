@@ -27,7 +27,7 @@
          var gMapPolygon = mapControl.getOutlineById(storeOutlinePartialModel.id);
          if (gMapPolygon) {
             gMapPolygon.setEditable(false);
-            storeOutlinePartialModel.commitPath(gMapPolygon.getPath().getArray());
+            storeOutlinePartialModel.commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
          }
       }
 
@@ -37,7 +37,7 @@
       }
 
       function polygonRightClicked(modelId, gMapPolygon, polyMouseEvent) {
-         if (polyMouseEvent.vertex !== null && gMapPolygon.getPath().getArray().length > 3) {
+         if (polyMouseEvent.hasOwnProperty("vertex") && _.extractPathFromGMapPolygon(gMapPolygon).length > 3) {
             gMapPolygon.getPath().removeAt(polyMouseEvent.vertex);
          }
       }

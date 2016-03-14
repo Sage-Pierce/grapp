@@ -31,7 +31,7 @@
       function mapClicked(modelId, map, mouseEvent) {
          if (gMapPolygonCopyModel) {
             var gMapPolygon = gMapPolygonCopyModel.copyToLatLng(mouseEvent.latLng);
-            grappStoreLayout.addFeature(gMapPolygon.getPath().getArray())
+            grappStoreLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
                .then(function(model) {
                   gMapPolygon.setDraggable(true);
                   mapControl.addFeature(model.id, gMapPolygon);
@@ -57,7 +57,7 @@
       }
 
       function polygonDragEnd(modelId, gMapPolygon) {
-         grappStoreLayout.getFeatureById(modelId).commitPath(gMapPolygon.getPath().getArray());
+         grappStoreLayout.getFeatureById(modelId).commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
       }
 
       function enableDragging(enable) {
@@ -79,7 +79,7 @@
          ////////////////////
 
          function initialize() {
-            copyOffsets = gMapPolygon.getPath().getArray().map(function(latLng) {
+            copyOffsets = _.extractPathFromGMapPolygon(gMapPolygon).map(function(latLng) {
                return {
                   latOffset: latLng.lat() - copyLatLng.lat(),
                   lngOffset: latLng.lng() - copyLatLng.lng()

@@ -38,8 +38,8 @@
             return _.findWhere(self.features, {id: id});
          }
 
-         function addFeature(path) {
-            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(path.map(_.convertPositionToLocation))})
+         function addFeature(vertices) {
+            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(vertices)})
                .then(function(featureRsc) {
                   var polygonModel = createGMapPolygonModelFromGrappFeature(featureRsc);
                   self.features.push(polygonModel);
@@ -60,8 +60,8 @@
             return _.findWhere(self.nodes, {id: id});
          }
 
-         function addNode(grappStoreNodeType, position) {
-            return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(_.convertPositionToLocation(position))})
+         function addNode(grappStoreNodeType, location) {
+            return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
                   var result = {node: createGMapMarkerModelFromGrappStoreNode(layoutNodeUpdateRsc)};
                   self.nodes.push(result.node);
@@ -91,18 +91,17 @@
                id: grappPolygonRsc.id,
                vertices: grappPolygonRsc.polygon ? grappPolygonRsc.polygon.vertices : [],
                isFeature: isFeature,
-               commitPath: function(path) { return commitGMapPolygonModelPath(updateRel, this, path); }
+               commitVertices: function(vertices) { return commitGMapPolygonModelVertices(updateRel, this, vertices); }
             };
          }
 
-         function commitGMapPolygonModelPath(updateRel, gMapPolygonModel, path) {
-            var grappPolygonVertices = path.map(_.convertPositionToLocation);
+         function commitGMapPolygonModelVertices(updateRel, gMapPolygonModel, vertices) {
             var params = {
                featureID: gMapPolygonModel.id,
-               polygon: stringifyVerticesIntoGrappPolygon(grappPolygonVertices)
+               polygon: stringifyVerticesIntoGrappPolygon(vertices)
             };
             return grappStoreLayoutRsc.$put(updateRel, params).then(function() {
-               gMapPolygonModel.vertices = grappPolygonVertices;
+               gMapPolygonModel.vertices = vertices;
             });
          }
 
@@ -121,14 +120,13 @@
             };
          }
 
-         function commitGMapMarkerModelPosition(gMapMarkerModel, position) {
-            var grappLocation = _.convertPositionToLocation(position);
+         function commitGMapMarkerModelPosition(gMapMarkerModel, location) {
             var params = {
                nodeID: gMapMarkerModel.id,
-               location: JSON.stringify(grappLocation)
+               location: JSON.stringify(location)
             };
             return grappStoreLayoutRsc.$put("moveNode", params).then(function() {
-               gMapMarkerModel.location = grappLocation;
+               gMapMarkerModel.location = location;
             });
          }
 

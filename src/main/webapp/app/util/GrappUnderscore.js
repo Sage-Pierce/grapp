@@ -17,6 +17,12 @@
             }
          }
       },
+      extractVerticesFromGMapPolygon: function(gMapPolygon) {
+         return this.extractPathFromGMapPolygon(gMapPolygon).map(this.convertPositionToLocation);
+      },
+      extractPathFromGMapPolygon: function(gMapPolygon) {
+         return gMapPolygon.getPath().getArray();
+      },
       convertLocationToPosition: function(location) {
          return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
       },

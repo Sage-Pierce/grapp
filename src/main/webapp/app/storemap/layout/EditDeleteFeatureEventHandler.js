@@ -23,7 +23,7 @@
       }
 
       function polygonRightClicked(modelId, gMapPolygon, polyMouseEvent) {
-         if (selectedGMapPolygonId.polygon === gMapPolygon && polyMouseEvent.hasOwnProperty("vertex") && gMapPolygon.getPath().getArray().length > 3) {
+         if (selectedGMapPolygonId.polygon === gMapPolygon && polyMouseEvent.hasOwnProperty("vertex") && _.extractPathFromGMapPolygon(gMapPolygon).length > 3) {
             gMapPolygon.getPath().removeAt(polyMouseEvent.vertex);
          }
          else {
@@ -38,7 +38,7 @@
       function setSelectedGMapPolygon(gMapPolygon) {
          if (selectedGMapPolygonId) {
             selectedGMapPolygonId.polygon.setEditable(false);
-            grappStoreLayout.getFeatureById(selectedGMapPolygonId.id).commitPath(selectedGMapPolygonId.polygon.getPath().getArray());
+            grappStoreLayout.getFeatureById(selectedGMapPolygonId.id).commitVertices(_.extractVerticesFromGMapPolygon(selectedGMapPolygonId.polygon));
          }
 
          selectedGMapPolygonId = gMapPolygon;
