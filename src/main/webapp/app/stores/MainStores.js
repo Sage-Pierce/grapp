@@ -73,7 +73,7 @@
       }
 
       function deleteSelectedStore() {
-         mainStoresVM.selectedStore.remove().then(function() {
+         mainStoresVM.selectedStore.delete().then(function() {
             mainStoresVM.grappStores = _.without(mainStoresVM.grappStores, mainStoresVM.selectedStore);
          });
       }

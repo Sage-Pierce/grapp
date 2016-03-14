@@ -37,7 +37,6 @@
       function GrappStoreModel(grappStoreRsc) {
          var self = this;
          self.commitAttributes = commitAttributes;
-         self.remove = remove;
 
          ////////////////////
 
@@ -47,10 +46,6 @@
                   self.name = resource.name;
                   self.location = resource.location;
                });
-         }
-
-         function remove() {
-            return grappStoreRsc.$del("self");
          }
       }
    }

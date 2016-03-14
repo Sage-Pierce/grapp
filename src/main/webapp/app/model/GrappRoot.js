@@ -73,11 +73,18 @@
                model[prop] = resource[prop];
             }
          }
-         return model;
+         return decorateResourceModel(resource, model);
       }
 
       function afterLoad() {
          return self.deferred.promise;
+      }
+
+      function decorateResourceModel(resource, model) {
+         model.delete = function() {
+            return resource.$del("self");
+         };
+         return model;
       }
    }
 })();
