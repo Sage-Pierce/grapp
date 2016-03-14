@@ -36,24 +36,10 @@
 
       function GrappStoreModel(grappStoreRsc) {
          var self = this;
-         self.location = grappStoreRsc.location;
-         self.updateName = updateName;
-         self.updateLocation = updateLocation;
+         self.commitAttributes = commitAttributes;
          self.remove = remove;
 
          ////////////////////
-
-         function updateName(name) {
-            return commitAttributes({name: name, location: JSON.stringify(self.location)});
-         }
-
-         function updateLocation(location) {
-            return commitAttributes({name: self.name, location: JSON.stringify(location)});
-         }
-
-         function remove() {
-            return grappStoreRsc.$del("self");
-         }
 
          function commitAttributes(attributes) {
             return grappStoreRsc.$put("self", attributes)
@@ -61,6 +47,10 @@
                   self.name = resource.name;
                   self.location = resource.location;
                });
+         }
+
+         function remove() {
+            return grappStoreRsc.$del("self");
          }
       }
    }

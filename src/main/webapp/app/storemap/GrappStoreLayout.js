@@ -21,10 +21,10 @@
 
       function GrappStoreLayoutModel(grappStoreLayoutRsc) {
          var self = this;
-         self.outerOutline = createGMapPolygonModelFromGrappPolygon({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
-         self.innerOutline = createGMapPolygonModelFromGrappPolygon({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
-         self.features = grappStoreLayoutRsc.features.map(createGMapPolygonModelFromGrappFeature);
-         self.nodes = grappStoreLayoutRsc.nodes.map(createGMapMarkerModelFromGrappStoreNode);
+         self.outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
+         self.innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
+         self.features = grappStoreLayoutRsc.features.map(createPolygonModelFromFeature);
+         self.nodes = grappStoreLayoutRsc.nodes.map(createNodeModelFromNode);
          self.getFeatureById = getFeatureById;
          self.addFeature = addFeature;
          self.removeFeatureById = removeFeatureById;
@@ -39,9 +39,9 @@
          }
 
          function addFeature(vertices) {
-            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(vertices)})
+            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoPolygon(vertices)})
                .then(function(featureRsc) {
-                  var polygonModel = createGMapPolygonModelFromGrappFeature(featureRsc);
+                  var polygonModel = createPolygonModelFromFeature(featureRsc);
                   self.features.push(polygonModel);
                   return polygonModel;
                });
@@ -63,11 +63,11 @@
          function addNode(grappStoreNodeType, location) {
             return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
-                  var result = {node: createGMapMarkerModelFromGrappStoreNode(layoutNodeUpdateRsc)};
+                  var result = {node: createNodeModelFromNode(layoutNodeUpdateRsc)};
                   self.nodes.push(result.node);
                   return layoutNodeUpdateRsc.$has("affectedNodes") ? layoutNodeUpdateRsc.$get("affectedNodes")
                      .then(function(affectedNodesRsc) {
-                        result.affectedNodes = _.arrayify(affectedNodesRsc).map(updateGMapMarkerModelFromGrappStoreNode);
+                        result.affectedNodes = _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode);
                         return result;
                      }) : result;
                });
@@ -82,58 +82,48 @@
             }
          }
 
-         function createGMapPolygonModelFromGrappFeature(featureRsc) {
-            return createGMapPolygonModelFromGrappPolygon(featureRsc, "reshapeFeature", true);
+         function createPolygonModelFromFeature(featureRsc) {
+            return createPolygonModelFromPolygon(featureRsc, "reshapeFeature", true);
          }
 
-         function createGMapPolygonModelFromGrappPolygon(grappPolygonRsc, updateRel, isFeature) {
+         function createPolygonModelFromPolygon(grappPolygonRsc, updateRel, isFeature) {
             return {
                id: grappPolygonRsc.id,
                vertices: grappPolygonRsc.polygon ? grappPolygonRsc.polygon.vertices : [],
                isFeature: isFeature,
-               commitVertices: function(vertices) { return commitGMapPolygonModelVertices(updateRel, this, vertices); }
+               commitVertices: function(vertices) { return commitPolygonModelVertices(updateRel, this, vertices); }
             };
          }
 
-         function commitGMapPolygonModelVertices(updateRel, gMapPolygonModel, vertices) {
+         function commitPolygonModelVertices(updateRel, polygonModel, vertices) {
             var params = {
-               featureID: gMapPolygonModel.id,
-               polygon: stringifyVerticesIntoGrappPolygon(vertices)
+               featureID: polygonModel.id,
+               polygon: stringifyVerticesIntoPolygon(vertices)
             };
             return grappStoreLayoutRsc.$put(updateRel, params).then(function() {
-               gMapPolygonModel.vertices = vertices;
+               polygonModel.vertices = vertices;
             });
          }
 
-         function stringifyVerticesIntoGrappPolygon(grappPolygonVertices) {
+         function stringifyVerticesIntoPolygon(grappPolygonVertices) {
             return JSON.stringify({vertices: grappPolygonVertices});
          }
 
-         function createGMapMarkerModelFromGrappStoreNode(grappStoreNode) {
+         function createNodeModelFromNode(grappStoreNode) {
             return {
                id: grappStoreNode.id,
                name: grappStoreNode.name,
                type: GrappStoreNodeType.fromCode(grappStoreNode.type),
                location: grappStoreNode.location,
                commitName: function(name) { commitNodeModelParams(this, {name: name}); },
-               commitLocation: function(position) { commitGMapMarkerModelPosition(this, position); }
+               commitLocation: function(position) { commitNodeModelPosition(this, position); }
             };
          }
 
-         function commitGMapMarkerModelPosition(gMapMarkerModel, location) {
-            var params = {
-               nodeID: gMapMarkerModel.id,
-               location: JSON.stringify(location)
-            };
-            return grappStoreLayoutRsc.$put("moveNode", params).then(function() {
-               gMapMarkerModel.location = location;
-            });
-         }
-
-         function updateGMapMarkerModelFromGrappStoreNode(grappStoreNode) {
-            var gMapMarkerModel = getNodeById(grappStoreNode.id);
-            gMapMarkerModel.type = GrappStoreNodeType.fromCode(grappStoreNode.type);
-            return gMapMarkerModel;
+         function updateNodeModelFromNode(node) {
+            var nodeModel = getNodeById(node.id);
+            nodeModel.type = GrappStoreNodeType.fromCode(node.type);
+            return nodeModel;
          }
 
          function commitNodeModelParams(nodeModel, params) {
@@ -141,6 +131,16 @@
                .then(function(nodeRsc) {
                   nodeModel.name = nodeRsc.name;
                });
+         }
+
+         function commitNodeModelPosition(nodeModel, location) {
+            var params = {
+               nodeID: nodeModel.id,
+               location: JSON.stringify(location)
+            };
+            return grappStoreLayoutRsc.$put("moveNode", params).then(function() {
+               nodeModel.location = location;
+            });
          }
       }
    }
