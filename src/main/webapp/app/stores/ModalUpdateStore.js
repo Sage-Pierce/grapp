@@ -9,7 +9,7 @@
       var modalUpdateStoreVM = this;
       modalUpdateStoreVM.title = storeName ? "Update Store" : "Create New Store";
       modalUpdateStoreVM.storeName = storeName || "";
-      modalUpdateStoreVM.storePosition = storeLocation && convertLocationToPosition(storeLocation);
+      modalUpdateStoreVM.storePosition = storeLocation && _.convertLocationToPosition(storeLocation);
       modalUpdateStoreVM.mapSettings = null;
       modalUpdateStoreVM.mapControl = {};
       modalUpdateStoreVM.searchBox = null;
@@ -40,7 +40,7 @@
             events: {
                click: function (source, eventName, args) {
                   $timeout(function () {
-                     modalUpdateStoreVM.storePosition = convertLocationToPosition(args[0].latLng);
+                     modalUpdateStoreVM.storePosition = _.convertLocationToPosition(args[0].latLng);
                   });
                }
             }
@@ -50,9 +50,7 @@
       function initializeSearchBox() {
          modalUpdateStoreVM.searchBox = {
             template: "app/stores/SearchBox.html",
-            options: {
-
-            },
+            options: {},
             events: {
                places_changed: function (searchBox) {
                   var places = searchBox.getPlaces();
@@ -69,7 +67,7 @@
       }
 
       function finish() {
-         $uibModalInstance.close({name: modalUpdateStoreVM.storeName, location: convertPositionToGrappLocation(modalUpdateStoreVM.storePosition)});
+         $uibModalInstance.close({name: modalUpdateStoreVM.storeName, location: _.convertPositionToLocation(modalUpdateStoreVM.storePosition)});
       }
 
       function cancel() {
@@ -81,14 +79,6 @@
          var gMapOptions = gMap.getOptions();
          gMap.setCenter(location || gMapOptions.center);
          gMap.setZoom(location ? 16 : gMapOptions.zoom);
-      }
-
-      function convertLocationToPosition(location) {
-         return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
-      }
-
-      function convertPositionToGrappLocation(position) {
-         return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
       }
    }
 })();

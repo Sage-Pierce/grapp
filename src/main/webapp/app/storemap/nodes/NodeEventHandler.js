@@ -53,10 +53,7 @@
       }
 
       function createGMapMarker(options, position) {
-         var fullMarkerOptions = _.clone(options);
-         fullMarkerOptions.position = position;
-         fullMarkerOptions.icon = nodeType.iconUrl;
-         return new google.maps.Marker(fullMarkerOptions);
+         return new google.maps.Marker(_.merge({position: position, icon: nodeType.iconUrl}, options));
       }
    }
 })();

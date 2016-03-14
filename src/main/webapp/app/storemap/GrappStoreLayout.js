@@ -39,7 +39,7 @@
          }
 
          function addFeature(path) {
-            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(path.map(convertGMapPositionToGrappLocation))})
+            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoGrappPolygon(path.map(_.convertPositionToLocation))})
                .then(function(featureRsc) {
                   var polygonModel = createGMapPolygonModelFromGrappFeature(featureRsc);
                   self.features.push(polygonModel);
@@ -61,7 +61,7 @@
          }
 
          function addNode(grappStoreNodeType, position) {
-            return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(convertGMapPositionToGrappLocation(position))})
+            return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(_.convertPositionToLocation(position))})
                .then(function(layoutNodeUpdateRsc) {
                   var result = {node: createGMapMarkerModelFromGrappStoreNode(layoutNodeUpdateRsc)};
                   self.nodes.push(result.node);
@@ -96,7 +96,7 @@
          }
 
          function commitGMapPolygonModelPath(updateRel, gMapPolygonModel, path) {
-            var grappPolygonVertices = path.map(convertGMapPositionToGrappLocation);
+            var grappPolygonVertices = path.map(_.convertPositionToLocation);
             var params = {
                featureID: gMapPolygonModel.id,
                polygon: stringifyVerticesIntoGrappPolygon(grappPolygonVertices)
@@ -122,7 +122,7 @@
          }
 
          function commitGMapMarkerModelPosition(gMapMarkerModel, position) {
-            var grappLocation = convertGMapPositionToGrappLocation(position);
+            var grappLocation = _.convertPositionToLocation(position);
             var params = {
                nodeID: gMapMarkerModel.id,
                location: JSON.stringify(grappLocation)
@@ -143,10 +143,6 @@
                .then(function(nodeRsc) {
                   nodeModel.name = nodeRsc.name;
                });
-         }
-
-         function convertGMapPositionToGrappLocation(position) {
-            return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
          }
       }
    }

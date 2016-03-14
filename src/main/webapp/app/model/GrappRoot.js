@@ -60,10 +60,8 @@
       }
 
       function updateResourceByID(resourceName, id, params) {
-         var fullParams = _.clone(params);
-         fullParams.id = id;
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$put(resourceName + "ById", fullParams).then(function(resource) {
+            return grappRoot.$put(resourceName + "ById", _.merge(params, {id: id})).then(function(resource) {
                return resource;
             });
          });

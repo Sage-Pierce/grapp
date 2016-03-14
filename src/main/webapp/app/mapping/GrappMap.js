@@ -47,7 +47,7 @@
 
       function initializeMapSettings(location) {
          grappMapVM.mapSettings = {
-            center: convertLocationToPosition(location),
+            center: _.convertLocationToPosition(location),
             zoom: 18,
             options: {
                draggableCursor: "pointer",
@@ -122,7 +122,7 @@
       function convertGrappPolygonToGMapPolygon(grappPolygon, fill, zIndex, fit) {
          return {
             id: grappPolygon.id,
-            path: grappPolygon.vertices.map(convertLocationToPosition),
+            path: grappPolygon.vertices.map(_.convertLocationToPosition),
             fill: fill,
             zIndex: zIndex,
             fit: fit,
@@ -135,14 +135,10 @@
       function convertGrappNodeToGMapMarker(node) {
          return {
             id: node.id,
-            position: convertLocationToPosition(node.location),
+            position: _.convertLocationToPosition(node.location),
             icon: node.type.iconUrl,
             options: grappMapVM.mapSettings.options.markerOptions
          };
-      }
-
-      function convertLocationToPosition(location) {
-         return {latitude: _.isFunction(location.lat) ? location.lat() : location.lat, longitude: _.isFunction(location.lng) ? location.lng() : location.lng};
       }
    }
 })();
