@@ -36,6 +36,10 @@ public class GrappStoreFeatureResource extends HALResource {
    }
 
    private static List<HALLink> createLinks(GrappStoreFeatureDTO grappStoreFeatureDTO) {
-      return Collections.singletonList(HALResourceLinkBuilder.linkTo(GrappStoreFeatureResource.class).pathArgs(grappStoreFeatureDTO.getId()).withSelfRel());
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreFeatureDTO.getId()).withSelfRel());
+   }
+
+   private static HALResourceLinkBuilder createSelfLinkBuilder() {
+      return HALResourceLinkBuilder.linkTo(GrappStoreFeatureResource.class);
    }
 }
