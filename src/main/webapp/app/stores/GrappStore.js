@@ -15,7 +15,7 @@
       ////////////////////
 
       function create(name, location) {
-         return GrappRoot.createResourceModel("stores", {storeName: name, storeLocation: JSON.stringify(location)}, createModel);
+         return GrappRoot.createResourceModel("stores", {name: name, location: JSON.stringify(location)}, createModel);
       }
 
       function loadAll() {
@@ -44,21 +44,23 @@
          ////////////////////
 
          function updateName(name) {
-            return grappStoreRsc.$put("updateName", {name: name})
-               .then(function(resource) {
-                  self.name = resource.name;
-               });
+            return commitAttributes({name: name, location: JSON.stringify(self.location)});
          }
 
          function updateLocation(location) {
-            return grappStoreRsc.$put("updateLocation", {location: JSON.stringify(location)})
-               .then(function(resource) {
-                  self.location = resource.location;
-               });
+            return commitAttributes({name: self.name, location: JSON.stringify(location)});
          }
 
          function remove() {
             return grappStoreRsc.$del("self");
+         }
+
+         function commitAttributes(attributes) {
+            return grappStoreRsc.$put("self", attributes)
+               .then(function(resource) {
+                  self.name = resource.name;
+                  self.location = resource.location;
+               });
          }
       }
    }

@@ -1,11 +1,11 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.grapp.service.api.GrappUserService;
-import com.wisegas.grapp.service.dto.GrappUserDTO;
 import com.wisegas.common.webserver.hal.HALResource;
 import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
 import com.wisegas.common.webserver.hal.api.HALLink;
 import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.grapp.service.api.GrappUserService;
+import com.wisegas.grapp.service.dto.GrappUserDTO;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -30,10 +30,9 @@ public class GrappUserResource extends HALResource {
    }
 
    @PUT
-   @Path("name")
-   public Response updateName(@PathParam(value = "id") final String id,
+   public Response updateByID(@PathParam(value = "id") final String id,
                               @QueryParam(value = "name") final String name) {
-      GrappUserDTO grappUserDTO = grappUserService.updateName(id, name);
+      GrappUserDTO grappUserDTO = grappUserService.updateByID(id, name);
       return buildHALResponse(asRepresentationOf(grappUserDTO));
    }
 
@@ -46,9 +45,7 @@ public class GrappUserResource extends HALResource {
    }
 
    private static List<HALLink> createLinks(GrappUserDTO grappUserDTO) {
-      return Collections.singletonList(
-         createSelfLinkBuilder().pathArgs(grappUserDTO.getId()).withSelfRel()
-      );
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappUserDTO.getId()).withSelfRel());
    }
 
    private static HALResourceLinkBuilder createSelfLinkBuilder() {

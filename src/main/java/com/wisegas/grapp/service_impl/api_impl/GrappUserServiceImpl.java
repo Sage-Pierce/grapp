@@ -32,7 +32,7 @@ public class GrappUserServiceImpl implements GrappUserService {
    }
 
    @Override
-   public GrappUserDTO updateName(String id, String name) {
+   public GrappUserDTO updateByID(String id, String name) {
       GrappUser grappUser = grappUserRepository.findByID(GrappUserID.fromString(id));
       grappUser.setName(name);
       return GrappUserDTOFactory.createDTO(grappUser);

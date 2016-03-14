@@ -1,11 +1,11 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.grapp.service.api.GrappStoreNodeService;
-import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 import com.wisegas.common.webserver.hal.HALResource;
 import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
 import com.wisegas.common.webserver.hal.api.HALLink;
 import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.grapp.service.api.GrappStoreNodeService;
+import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -45,9 +45,7 @@ public class GrappStoreNodeResource extends HALResource {
    }
 
    private static List<HALLink> createLinks(GrappStoreNodeDTO grappStoreNodeDTO) {
-      return Collections.singletonList(
-         createSelfLinkBuilder().pathArgs(grappStoreNodeDTO.getId()).withSelfRel()
-      );
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreNodeDTO.getId()).withSelfRel());
    }
 
    private static HALResourceLinkBuilder createSelfLinkBuilder() {

@@ -76,6 +76,8 @@
          mainVM.loading = true;
          GrappLogIn.afterLogIn().then(function(grappUser) {
             return grappUser.updateDisplayName(updatedDisplayName);
+         }).then(function() {
+            mainVM.grappUserName = updatedDisplayName;
          }).finally(function() {
             mainVM.loading = false;
          });
