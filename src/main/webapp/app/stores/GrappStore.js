@@ -41,6 +41,7 @@
          ////////////////////
 
          function commitAttributes(attributes) {
+            attributes.location = JSON.stringify(attributes.location);
             return grappStoreRsc.$put("self", attributes).then(function(resource) {
                self.name = resource.name;
                self.location = resource.location;
