@@ -2,7 +2,7 @@
    "use strict";
 
    angular.module("Grapp")
-      .value("GrappStoreNodeType", createEnum());
+      .constant("GrappStoreNodeType", createEnum());
 
    function createEnum() {
       return {

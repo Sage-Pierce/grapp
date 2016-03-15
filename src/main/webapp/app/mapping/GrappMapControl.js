@@ -2,11 +2,11 @@
    "use strict";
 
    angular.module("Grapp")
-      .factory("GrappMapControl", GrappMapControlFactory);
+      .factory("GrappMapControl", GrappMapControl);
 
-   GrappMapControlFactory.$inject = ["$timeout"];
-   function GrappMapControlFactory($timeout) {
-      function GrappMapControl() {
+   GrappMapControl.$inject = ["$timeout"];
+   function GrappMapControl($timeout) {
+      return function() {
          var self = this;
          self.getOutlineById = getOutlineById;
          self.setOutlinePolygon = setOutlinePolygon;
@@ -167,8 +167,6 @@
             google.maps.event.addListener(gMapMarker, "dragend", function(mouseEvent) { self.handleGObjectMouseEvent("markerDragEnd", modelId, gMapMarker, mouseEvent); });
             gMapMarker.setMap(mapControl.getGMap());
          }
-      }
-
-      return GrappMapControl;
+      };
    }
 })();
