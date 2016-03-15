@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .controller("ModalUpdateStore", ModalUpdateStore);
 
-   ModalUpdateStore.$inject = ["$uibModalInstance", "$timeout", "uiGmapIsReady", "storeName", "storeLocation"];
-   function ModalUpdateStore($uibModalInstance, $timeout, uiGmapIsReady, storeName, storeLocation) {
+   ModalUpdateStore.$inject = ["$uibModalInstance", "uiGmapUtil", "storeName", "storeLocation"];
+   function ModalUpdateStore($uibModalInstance, uiGmapUtil, storeName, storeLocation) {
       var modalUpdateStoreVM = this;
       modalUpdateStoreVM.title = storeName ? "Update Store" : "Create New Store";
       modalUpdateStoreVM.storeName = storeName || "";
@@ -24,7 +24,7 @@
       function initialize() {
          initializeMapSettings();
          initializeSearchBox();
-         uiGmapIsReady.promise().then(function() {
+         uiGmapUtil.afterGmapsAreReady().then(function() {
             google.maps.event.trigger(modalUpdateStoreVM.mapControl.getGMap(), "resize");
             repositionMapByLocation(storeLocation);
          });
@@ -39,7 +39,7 @@
             },
             events: {
                click: function (source, eventName, args) {
-                  $timeout(function () {
+                  uiGmapUtil.onNextAngularTurn().then(function () {
                      modalUpdateStoreVM.storePosition = _.convertLocationToPosition(args[0].latLng);
                   });
                }

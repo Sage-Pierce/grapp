@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .factory("GrappMapControl", GrappMapControl);
 
-   GrappMapControl.$inject = ["$timeout"];
-   function GrappMapControl($timeout) {
+   GrappMapControl.$inject = ["uiGmapUtil"];
+   function GrappMapControl(uiGmapUtil) {
       return function() {
          var self = this;
          self.getOutlineById = getOutlineById;
@@ -113,21 +113,23 @@
             // 2) A GObject with a non-null Map (guard against "ghost" Events)
             var isValidGObjectEvent = modelId === "map" || gObject.getMap();
             if (isValidGObjectEvent && eventHandler && eventHandler[eventName]) {
-               $timeout(function() {
+               uiGmapUtil.onNextAngularTurn().then(function() {
                   eventHandler[eventName](modelId, gObject, event);
                });
             }
          }
 
          function setEventHandler(eh) {
-            if (eventHandler && eventHandler.finish) {
-               eventHandler.finish();
-            }
+            uiGmapUtil.afterGmapsAreReady().then(function() {
+               if (eventHandler && eventHandler.finish) {
+                  eventHandler.finish();
+               }
 
-            eventHandler = eh;
-            if (eventHandler && eventHandler.start) {
-               eventHandler.start();
-            }
+               eventHandler = eh;
+               if (eventHandler && eventHandler.start) {
+                  eventHandler.start();
+               }
+            });
          }
 
          function setDrawingMode(drawingMode) {
