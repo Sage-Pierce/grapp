@@ -7,7 +7,7 @@
    function NodeSelector(mapControl) {
       var self = this;
       self.select = select;
-      self.deselct = deselect;
+      self.deselect = deselect;
       self.setNodeSelectionHandler = setNodeSelectionHandler;
 
       var selectedNode = null;

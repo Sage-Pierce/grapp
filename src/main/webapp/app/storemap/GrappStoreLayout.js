@@ -21,64 +21,77 @@
 
       function GrappStoreLayoutModel(grappStoreLayoutRsc) {
          var self = this;
-         self.outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
-         self.innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
-         self.features = grappStoreLayoutRsc.features.map(createPolygonModelFromFeature);
-         self.nodes = grappStoreLayoutRsc.nodes.map(createNodeModelFromNode);
+         self.getOuterOutline = getOuterOutline;
+         self.getInnerOutline = getInnerOutline;
          self.getFeatureById = getFeatureById;
+         self.getFeatures = getFeatures;
          self.addFeature = addFeature;
          self.removeFeatureById = removeFeatureById;
          self.getNodeById = getNodeById;
+         self.getNodes = getNodes;
          self.addNode = addNode;
          self.removeNodeById = removeNodeById;
 
+         var outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
+         var innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
+         var features = _.object(grappStoreLayoutRsc.features.map(function(feature) { return [feature.id, createPolygonModelFromFeature(feature)]; }));
+         var nodes = _.object(grappStoreLayoutRsc.nodes.map(function(node) { return [node.id, createNodeModelFromNode(node)]; }));
+
          ////////////////////
 
+         function getOuterOutline() {
+            return outerOutline;
+         }
+
+         function getInnerOutline() {
+            return innerOutline;
+         }
+
          function getFeatureById(id) {
-            return _.findWhere(self.features, {id: id});
+            return features[id];
+         }
+
+         function getFeatures() {
+            return _.values(features);
          }
 
          function addFeature(vertices) {
             return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoPolygon(vertices)})
                .then(function(featureRsc) {
-                  var polygonModel = createPolygonModelFromFeature(featureRsc);
-                  self.features.push(polygonModel);
-                  return polygonModel;
+                  features[featureRsc.id] = createPolygonModelFromFeature(featureRsc);
+                  return features[featureRsc.id];
                });
          }
 
          function removeFeatureById(id) {
-            var featureModel = getFeatureById(id);
-            if (featureModel) {
-               grappStoreLayoutRsc.$del("removeFeature", {featureID: id}).then(function() {
-                  self.features = _.without(self.features, featureModel);
-               });
+            if (features[id]) {
+               grappStoreLayoutRsc.$del("removeFeature", {featureID: id}).then(function() { delete features[id]; });
             }
          }
 
          function getNodeById(id) {
-            return _.findWhere(self.nodes, {id: id});
+            return nodes[id];
+         }
+
+         function getNodes() {
+            return _.values(nodes);
          }
 
          function addNode(grappStoreNodeType, location) {
             return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
-                  var result = {node: createNodeModelFromNode(layoutNodeUpdateRsc)};
-                  self.nodes.push(result.node);
+                  nodes[layoutNodeUpdateRsc.id] = createNodeModelFromNode(layoutNodeUpdateRsc);
+                  var result = {node: nodes[layoutNodeUpdateRsc.id]};
                   return layoutNodeUpdateRsc.$has("affectedNodes") ? layoutNodeUpdateRsc.$get("affectedNodes")
                      .then(function(affectedNodesRsc) {
-                        result.affectedNodes = _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode);
-                        return result;
+                        return _.merge(result, {affectedNodes: _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode)});
                      }) : result;
                });
          }
 
          function removeNodeById(id) {
-            var nodeModel = getNodeById(id);
-            if (nodeModel) {
-               grappStoreLayoutRsc.$del("removeNode", {nodeID: id}).then(function() {
-                  self.nodes = _.without(self.nodes, nodeModel);
-               });
+            if (nodes[id]) {
+               grappStoreLayoutRsc.$del("removeNode", {nodeID: id}).then(function() { delete nodes[id]; });
             }
          }
 

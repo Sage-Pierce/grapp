@@ -106,37 +106,37 @@
 
       function initializeLayoutObjects(layout) {
          grappMapVM.storeOutlines = [
-            convertGrappPolygonToGMapPolygon(layout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
-            convertGrappPolygonToGMapPolygon(layout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
+            createGMapPolygonFromModel(layout.getOuterOutline(), {color: "#194d4d", opacity: 1}, 0, true),
+            createGMapPolygonFromModel(layout.getInnerOutline(), {color: "#b3e5e6", opacity: 1}, 1, false)
          ];
 
-         grappMapVM.storeFeatures = layout.features.map(function (grappPolygon) {
-            return convertGrappPolygonToGMapPolygon(grappPolygon, {color: "#194d4d", opacity: 1}, 2);
+         grappMapVM.storeFeatures = layout.getFeatures().map(function (grappPolygon) {
+            return createGMapPolygonFromModel(grappPolygon, {color: "#194d4d", opacity: 1}, 2);
          });
 
-         grappMapVM.storeNodes = layout.nodes.map(function (node) {
-            return convertGrappNodeToGMapMarker(node);
+         grappMapVM.storeNodes = layout.getNodes().map(function (node) {
+            return createGMapMarkerFromNodeModel(node);
          });
       }
 
-      function convertGrappPolygonToGMapPolygon(grappPolygon, fill, zIndex, fit) {
+      function createGMapPolygonFromModel(polygonModel, fill, zIndex, fit) {
          return {
-            id: grappPolygon.id,
-            path: grappPolygon.vertices.map(_.convertLocationToPosition),
+            id: polygonModel.id,
+            path: polygonModel.vertices.map(_.convertLocationToPosition),
             fill: fill,
             zIndex: zIndex,
             fit: fit,
-            clickable: grappPolygon.isFeature,
+            clickable: polygonModel.isFeature,
             editable: false,
             draggable: false
          };
       }
 
-      function convertGrappNodeToGMapMarker(node) {
+      function createGMapMarkerFromNodeModel(nodeModel) {
          return {
-            id: node.id,
-            position: _.convertLocationToPosition(node.location),
-            icon: node.type.iconUrl,
+            id: nodeModel.id,
+            position: _.convertLocationToPosition(nodeModel.location),
+            icon: nodeModel.type.iconUrl,
             options: grappMapVM.mapSettings.options.markerOptions
          };
       }
