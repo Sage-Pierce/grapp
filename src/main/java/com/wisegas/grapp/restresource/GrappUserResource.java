@@ -24,15 +24,15 @@ public class GrappUserResource extends HALResource {
    }
 
    @GET
-   public Response findByID(@PathParam(value = "id") final String id) {
-      GrappUserDTO grappUserDTO = grappUserService.findByID(id);
+   public Response get(@PathParam(value = "id") final String id) {
+      GrappUserDTO grappUserDTO = grappUserService.get(id);
       return buildHALResponse(asRepresentationOf(grappUserDTO));
    }
 
    @PUT
-   public Response updateByID(@PathParam(value = "id") final String id,
-                              @QueryParam(value = "name") final String name) {
-      GrappUserDTO grappUserDTO = grappUserService.updateByID(id, name);
+   public Response update(@PathParam(value = "id") final String id,
+                          @QueryParam(value = "name") final String name) {
+      GrappUserDTO grappUserDTO = grappUserService.update(id, name);
       return buildHALResponse(asRepresentationOf(grappUserDTO));
    }
 

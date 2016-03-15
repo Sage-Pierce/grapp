@@ -28,15 +28,15 @@ public class GrappStoresResource extends HALResource {
    }
 
    @POST
-   public Response createStore(@QueryParam(value = "name") final String name,
-                               @QueryParam(value = "location") final GeoPoint location) {
+   public Response create(@QueryParam(value = "name") final String name,
+                          @QueryParam(value = "location") final GeoPoint location) {
       GrappStoreDTO grappStoreDTO = grappStoreService.create(name, location);
       return buildHALResponse(GrappStoreResource.asRepresentationOf(grappStoreDTO));
    }
 
    @GET
-   public Response findAll() {
-      List<GrappStoreDTO> grappStoreDTOs = grappStoreService.findAll();
+   public Response get() {
+      List<GrappStoreDTO> grappStoreDTOs = grappStoreService.getAll();
       return buildHALResponse(halRepresentationFactory.createForLinks(createLinks())
                                                       .withEmbeddeds("stores", grappStoreDTOs.stream()
                                                                                              .map(GrappStoreResource::asRepresentationOf)

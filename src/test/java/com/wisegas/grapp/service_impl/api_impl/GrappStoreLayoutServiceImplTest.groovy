@@ -25,7 +25,7 @@ class GrappStoreLayoutServiceImplTest extends ApplicationServiceTest {
       GrappStoreNode regularNode = layout.addNode(GrappStoreNodeType.REGULAR, new GeoPoint(0, 1))
 
       and:
-      grappStoreLayoutRepository.findByID(layout.getId()) >> layout
+      grappStoreLayoutRepository.get(layout.getId()) >> layout
 
       when:
       def result = grappStoreLayoutService.addNode(layout.getId().toString(), GrappStoreNodeType.ENTRANCE.name(), new GeoPoint(1, 1))

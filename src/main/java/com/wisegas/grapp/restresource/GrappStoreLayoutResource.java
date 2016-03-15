@@ -1,16 +1,16 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.grapp.service.api.GrappStoreLayoutService;
-import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
-import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
-import com.wisegas.grapp.service.dto.GrappStoreLayoutUpdateResultDTO;
-import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.webserver.hal.HALResource;
 import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
 import com.wisegas.common.webserver.hal.api.HALLink;
 import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.grapp.service.api.GrappStoreLayoutService;
+import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
+import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
+import com.wisegas.grapp.service.dto.GrappStoreLayoutUpdateResultDTO;
+import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -30,8 +30,8 @@ public class GrappStoreLayoutResource extends HALResource {
    }
 
    @GET
-   public Response findByID(@PathParam("id") final String id) {
-      GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.findByID(id);
+   public Response get(@PathParam("id") final String id) {
+      GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.get(id);
       return buildHALResponse(asRepresentationOf(grappStoreLayoutDTO));
    }
 

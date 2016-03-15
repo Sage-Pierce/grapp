@@ -27,13 +27,13 @@ public class GrappUserServiceImpl implements GrappUserService {
    }
 
    @Override
-   public GrappUserDTO findByID(String id) {
-      return GrappUserDTOFactory.createDTO(grappUserRepository.findByID(GrappUserID.fromString(id)));
+   public GrappUserDTO get(String id) {
+      return GrappUserDTOFactory.createDTO(grappUserRepository.get(GrappUserID.fromString(id)));
    }
 
    @Override
-   public GrappUserDTO updateByID(String id, String name) {
-      GrappUser grappUser = grappUserRepository.findByID(GrappUserID.fromString(id));
+   public GrappUserDTO update(String id, String name) {
+      GrappUser grappUser = grappUserRepository.get(GrappUserID.fromString(id));
       grappUser.setName(name);
       return GrappUserDTOFactory.createDTO(grappUser);
    }

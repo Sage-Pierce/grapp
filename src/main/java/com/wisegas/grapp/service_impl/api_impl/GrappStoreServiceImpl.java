@@ -36,26 +36,26 @@ public class GrappStoreServiceImpl implements GrappStoreService {
    }
 
    @Override
-   public List<GrappStoreDTO> findAll() {
+   public List<GrappStoreDTO> getAll() {
       List<GrappStore> grappStores = grappStoreRepository.getAll();
       return grappStores.stream().map(GrappStoreDTOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override
-   public GrappStoreDTO findByID(String id) {
-      return GrappStoreDTOFactory.createDTO(grappStoreRepository.findByID(GrappStoreID.fromString(id)));
+   public GrappStoreDTO get(String id) {
+      return GrappStoreDTOFactory.createDTO(grappStoreRepository.get(GrappStoreID.fromString(id)));
    }
 
    @Override
-   public GrappStoreDTO updateByID(String id, String name, GeoPoint location) {
-      GrappStore grappStore = grappStoreRepository.findByID(GrappStoreID.fromString(id));
+   public GrappStoreDTO update(String id, String name, GeoPoint location) {
+      GrappStore grappStore = grappStoreRepository.get(GrappStoreID.fromString(id));
       grappStore.setName(name);
       grappStore.setLocation(location);
       return GrappStoreDTOFactory.createDTO(grappStore);
    }
 
    @Override
-   public void deleteByID(String id) {
-      grappStoreRepository.remove(grappStoreRepository.findByID(GrappStoreID.fromString(id)));
+   public void delete(String id) {
+      grappStoreRepository.remove(grappStoreRepository.get(GrappStoreID.fromString(id)));
    }
 }

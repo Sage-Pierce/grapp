@@ -1,9 +1,9 @@
 package com.wisegas.common.persistence.jpa.impl
 
-import com.wisegas.grapp.test.Builders
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity
 import com.wisegas.common.persistence.jpa.api.GenericRepository
+import com.wisegas.common.persistence.jpa.entity.SimpleEntity
 import com.wisegas.common.test.IntegrationTest
+import com.wisegas.grapp.test.Builders
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
@@ -53,7 +53,7 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
 
    def "The Entity-under-test can be found by ID"() {
       expect:
-      repository.findByID(testEntity.getId())
+      repository.get(testEntity.getId())
    }
 
    def "The Entity-under-test can be deleted when within a Transaction"() {

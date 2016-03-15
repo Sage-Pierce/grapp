@@ -17,7 +17,7 @@ public class GrappUserServiceImplIntegrationTest extends IntegrationTest {
       GrappUser grappUser = testEntityManager.save(Builders.grappUser())
 
       when:
-      def result = grappUserService.updateByID(grappUser.getId().toString(), "NEW NAME")
+      def result = grappUserService.update(grappUser.getId().toString(), "NEW NAME")
 
       then:
       result.getName() == "NEW NAME"

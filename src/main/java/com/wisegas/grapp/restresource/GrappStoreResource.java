@@ -25,21 +25,21 @@ public class GrappStoreResource extends HALResource {
    }
 
    @GET
-   public Response findByID(@PathParam(value = "id") final String id) {
-      return buildHALResponse(asRepresentationOf(grappStoreService.findByID(id)));
+   public Response get(@PathParam(value = "id") final String id) {
+      return buildHALResponse(asRepresentationOf(grappStoreService.get(id)));
    }
 
    @PUT
-   public Response updateByID(@PathParam(value = "id") final String id,
-                              @QueryParam(value = "name") final String name,
-                              @QueryParam(value = "location") final GeoPoint location) {
-      GrappStoreDTO grappStoreDTO = grappStoreService.updateByID(id, name, location);
+   public Response update(@PathParam(value = "id") final String id,
+                          @QueryParam(value = "name") final String name,
+                          @QueryParam(value = "location") final GeoPoint location) {
+      GrappStoreDTO grappStoreDTO = grappStoreService.update(id, name, location);
       return buildHALResponse(asRepresentationOf(grappStoreDTO));
    }
 
    @DELETE
-   public Response deleteByID(@PathParam(value = "id") final String id) {
-      grappStoreService.deleteByID(id);
+   public Response delete(@PathParam(value = "id") final String id) {
+      grappStoreService.delete(id);
       return Response.ok().build();
    }
 

@@ -26,8 +26,8 @@ public class GrappStoreFeatureResource extends HALResource {
    }
 
    @GET
-   public Response findByID(@PathParam("id") final String id) {
-      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreFeatureService.findByID(id);
+   public Response get(@PathParam("id") final String id) {
+      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreFeatureService.get(id);
       return buildHALResponse(asRepresentationOf(grappStoreFeatureDTO));
    }
 

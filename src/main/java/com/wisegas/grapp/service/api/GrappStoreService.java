@@ -8,11 +8,11 @@ import java.util.List;
 public interface GrappStoreService {
    GrappStoreDTO create(String name, GeoPoint location);
 
-   List<GrappStoreDTO> findAll();
+   List<GrappStoreDTO> getAll();
 
-   GrappStoreDTO findByID(String id);
+   GrappStoreDTO get(String id);
 
-   GrappStoreDTO updateByID(String id, String name, GeoPoint location);
+   GrappStoreDTO update(String id, String name, GeoPoint location);
 
-   void deleteByID(String id);
+   void delete(String id);
 }

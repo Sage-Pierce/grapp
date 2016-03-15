@@ -10,7 +10,7 @@ public interface GenericRepository<T extends SimpleEntity> {
 
    List<T> getAll();
 
-   T findByID(EntityID entityID);
+   T get(EntityID entityID);
 
    T remove(T t);
 }
