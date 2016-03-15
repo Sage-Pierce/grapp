@@ -41,11 +41,10 @@
          ////////////////////
 
          function commitAttributes(attributes) {
-            return grappStoreRsc.$put("self", attributes)
-               .then(function(resource) {
-                  self.name = resource.name;
-                  self.location = resource.location;
-               });
+            return grappStoreRsc.$put("self", attributes).then(function(resource) {
+               self.name = resource.name;
+               self.location = resource.location;
+            });
          }
       }
    }

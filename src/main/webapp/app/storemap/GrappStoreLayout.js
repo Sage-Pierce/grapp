@@ -64,9 +64,8 @@
          }
 
          function removeFeatureById(id) {
-            if (features[id]) {
-               grappStoreLayoutRsc.$del("removeFeature", {featureID: id}).then(function() { delete features[id]; });
-            }
+            grappStoreLayoutRsc.$del("removeFeature", {featureID: id})
+               .then(function() { delete features[id]; });
          }
 
          function getNodeById(id) {
@@ -90,9 +89,8 @@
          }
 
          function removeNodeById(id) {
-            if (nodes[id]) {
-               grappStoreLayoutRsc.$del("removeNode", {nodeID: id}).then(function() { delete nodes[id]; });
-            }
+            grappStoreLayoutRsc.$del("removeNode", {nodeID: id})
+               .then(function() { delete nodes[id]; });
          }
 
          function createPolygonModelFromFeature(featureRsc) {
@@ -113,9 +111,8 @@
                featureID: polygonModel.id,
                polygon: stringifyVerticesIntoPolygon(vertices)
             };
-            return grappStoreLayoutRsc.$put(updateRel, params).then(function() {
-               polygonModel.vertices = vertices;
-            });
+            return grappStoreLayoutRsc.$put(updateRel, params)
+               .then(function() { polygonModel.vertices = vertices; });
          }
 
          function stringifyVerticesIntoPolygon(grappPolygonVertices) {
@@ -141,9 +138,7 @@
 
          function commitNodeModelParams(nodeModel, params) {
             GrappRoot.updateResourceByID("node", nodeModel.id, params)
-               .then(function(nodeRsc) {
-                  nodeModel.name = nodeRsc.name;
-               });
+               .then(function(nodeRsc) { nodeModel.name = nodeRsc.name; });
          }
 
          function commitNodeModelPosition(nodeModel, location) {
@@ -151,9 +146,8 @@
                nodeID: nodeModel.id,
                location: JSON.stringify(location)
             };
-            return grappStoreLayoutRsc.$put("moveNode", params).then(function() {
-               nodeModel.location = location;
-            });
+            return grappStoreLayoutRsc.$put("moveNode", params)
+               .then(function() { nodeModel.location = location; });
          }
       }
    }

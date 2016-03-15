@@ -31,9 +31,8 @@
          ////////////////////
 
          function updateDisplayName(displayName) {
-            return grappUserRsc.$put("self", {name: displayName}).then(function() {
-               self.name = displayName;
-            });
+            return grappUserRsc.$put("self", {name: displayName})
+               .then(function() { self.name = displayName; });
          }
       }
    }

@@ -31,39 +31,37 @@
 
       function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$post(pluralResourceName, params)
-               .then(function(resource) {
-                  return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
-               });
+            return grappRoot.$post(pluralResourceName, params).then(function(resource) {
+               return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
+            });
          });
       }
 
       function loadResourceModels(pluralResourceName, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
             return grappRoot.$get(pluralResourceName).then(function(pluralResource) {
-               return pluralResource.$has(pluralResourceName) ? pluralResource.$get(pluralResourceName).then(function(resources) {
-                  var arrayedResources = Array.isArray(resources) ? resources : [resources];
-                  return arrayedResources.map(function(resource) {
-                     return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
-                  });
-               }) : $q.resolve([]);
+               return pluralResource.$has(pluralResourceName) ? pluralResource.$get(pluralResourceName)
+                  .then(function(resources) {
+                     return _.arrayify(resources).map(function(resource) {
+                        return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
+                     });
+                  }) : $q.resolve([]);
             });
          });
       }
 
       function loadResourceModelByID(resourceName, id, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$get(resourceName + "ById", {id: id}).then(function(resource) {
-               return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
-            });
+            return grappRoot.$get(resourceName + "ById", {id: id})
+               .then(function(resource) {
+                  return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
+               });
          });
       }
 
       function updateResourceByID(resourceName, id, params) {
          return afterLoad().then(function(grappRoot) {
-            return grappRoot.$put(resourceName + "ById", _.merge(params, {id: id})).then(function(resource) {
-               return resource;
-            });
+            return grappRoot.$put(resourceName + "ById", _.merge(params, {id: id}));
          });
       }
 
