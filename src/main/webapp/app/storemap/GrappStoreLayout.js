@@ -80,11 +80,12 @@
             return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
                   nodes[layoutNodeUpdateRsc.id] = createNodeModelFromNode(layoutNodeUpdateRsc);
-                  var result = {node: nodes[layoutNodeUpdateRsc.id]};
-                  return layoutNodeUpdateRsc.$has("affectedNodes") ? layoutNodeUpdateRsc.$get("affectedNodes")
+                  return layoutNodeUpdateRsc.$get("affectedNodes")
                      .then(function(affectedNodesRsc) {
-                        return _.merge(result, {affectedNodes: _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode)});
-                     }) : result;
+                        return {node: nodes[layoutNodeUpdateRsc.id], affectedNodes: _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode)};
+                     }, function() {
+                        return {node: nodes[layoutNodeUpdateRsc.id]};
+                     });
                });
          }
 

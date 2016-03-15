@@ -40,12 +40,14 @@
       function loadResourceModels(pluralResourceName, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
             return grappRoot.$get(pluralResourceName).then(function(pluralResource) {
-               return pluralResource.$has(pluralResourceName) ? pluralResource.$get(pluralResourceName)
+               return pluralResource.$get(pluralResourceName)
                   .then(function(resources) {
                      return _.arrayify(resources).map(function(resource) {
                         return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
                      });
-                  }) : $q.resolve([]);
+                  }, function() {
+                     return [];
+                  });
             });
          });
       }
