@@ -16,6 +16,7 @@
       mainVM.showWelcome = showWelcome;
       mainVM.showShoppingLists = showShoppingLists;
       mainVM.showStores = showStores;
+      mainVM.showItems = showItems;
       mainVM.openModalUpdateDisplayName = openModalUpdateDisplayName;
 
       initialize();
@@ -56,6 +57,10 @@
 
       function showStores() {
          $state.go("main.stores");
+      }
+
+      function showItems() {
+         $state.go("main.items");
       }
 
       function openModalUpdateDisplayName() {

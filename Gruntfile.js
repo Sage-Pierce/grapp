@@ -9,6 +9,10 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/GrappConfigInit.js"],
             tasks: ["jshint", "concat:config"]
          },
+         items: {
+            files: [webappRoot + "app/items/*.js"],
+            tasks: ["jshint", "concat:items"]
+         },
          mapping: {
             files: [webappRoot + "app/mapping/*.js"],
             tasks: ["jshint", "concat:mapping"]
@@ -56,6 +60,7 @@ module.exports = function (grunt) {
          },
          all: [
             webappRoot + "app/*.js",
+            webappRoot + "app/items/*.js",
             webappRoot + "app/mapping/*.js",
             webappRoot + "app/model/*.js",
             webappRoot + "app/shoppinglists/*.js",
@@ -70,6 +75,10 @@ module.exports = function (grunt) {
          config: {
             src: [webappRoot + "app/GrappConfigInit.js"],
             dest: webappRoot + "concat/GrappConfigInit.js"
+         },
+         items: {
+            src: [webappRoot + "app/items/*.js"],
+            dest: webappRoot + "concat/items-concat.js"
          },
          mapping: {
             src: [webappRoot + "app/mapping/*.js"],

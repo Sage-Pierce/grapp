@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .service("uiGmapUtil", uiGmapUtil);
+      .service("uiGmapUtil", UIGMapUtil);
 
-   uiGmapUtil.$inject =["$q", "uiGmapIsReady"];
-   function uiGmapUtil($q, uiGmapIsReady) {
+   UIGMapUtil.$inject = ["$q", "uiGmapIsReady"];
+   function UIGMapUtil($q, uiGmapIsReady) {
       var self = this;
       self.afterGmapsAreReady = afterGmapsAreReady;
       self.onNextAngularTurn = onNextAngularTurn;
