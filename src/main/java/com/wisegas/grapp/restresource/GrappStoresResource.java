@@ -30,8 +30,7 @@ public class GrappStoresResource extends HALResource {
    @POST
    public Response create(@QueryParam(value = "name") final String name,
                           @QueryParam(value = "location") final GeoPoint location) {
-      GrappStoreDTO grappStoreDTO = grappStoreService.create(name, location);
-      return buildHALResponse(GrappStoreResource.asRepresentationOf(grappStoreDTO));
+      return buildHALResponse(GrappStoreResource.asRepresentationOf(grappStoreService.create(name, location)));
    }
 
    @GET

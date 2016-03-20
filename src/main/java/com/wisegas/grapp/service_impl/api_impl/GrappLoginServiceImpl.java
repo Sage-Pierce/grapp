@@ -11,6 +11,7 @@ import com.wisegas.grapp.service_impl.factory.GrappUserDTOFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.Optional;
 
 @Named
 @Singleton
@@ -33,11 +34,8 @@ public class GrappLoginServiceImpl implements GrappLoginService {
    }
 
    private GrappUser getGrappUserForEmail(String email) {
-      GrappUser grappUser = grappUserRepository.findByEmail(email);
-      if (grappUser == null) {
-         grappUser = persistGrappUserWithEmail(email);
-      }
-      return grappUser;
+      Optional<GrappUser> foundGrappUser = grappUserRepository.findByEmail(email);
+      return foundGrappUser.isPresent() ? foundGrappUser.get() : persistGrappUserWithEmail(email);
    }
 
    private GrappUser persistGrappUserWithEmail(String email) {

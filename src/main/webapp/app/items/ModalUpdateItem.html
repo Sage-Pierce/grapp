@@ -1,0 +1,12 @@
+<div class="modal-header">
+   <h3 class="modal-title">{{modalUpdateItemVM.title}}</h3>
+</div>
+<div class="modal-body">
+   <ul>
+      <input type="text" ng-model="modalUpdateItemVM.itemName" class="form-control">
+   </ul>
+</div>
+<div class="modal-footer">
+   <button class="btn btn-primary" ng-disabled="!modalUpdateItemVM.itemName" ng-click="modalUpdateItemVM.finish()">Finish</button>
+   <button class="btn btn-warning" ng-click="modalUpdateItemVM.cancel()">Cancel</button>
+</div>

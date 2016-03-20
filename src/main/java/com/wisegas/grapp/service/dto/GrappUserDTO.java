@@ -5,7 +5,6 @@ import com.wisegas.common.lang.dto.NamedDTO;
 public class GrappUserDTO extends NamedDTO {
 
    private String email;
-
    private String avatar;
 
    public String getEmail() {
