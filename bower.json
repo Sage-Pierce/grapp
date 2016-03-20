@@ -21,13 +21,16 @@
   "dependencies": {
     "angular": "^1.5.0",
     "angular-bootstrap": "^1.2.4",
-    "angular-bootstrap-grid-tree": "*",
     "angular-cookies": "^1.5.0",
     "angular-google-maps": "^2.3.2",
     "angular-hal": "^1.0.7",
     "angular-ui-router": "^0.2.18",
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.5.0",
-    "oauth-js": "^0.5.2"
+    "oauth-js": "^0.5.2",
+    "angular-ui-tree": "^2.15.0"
+  },
+  "resolutions": {
+    "angular": "^1.5.0"
   }
 }

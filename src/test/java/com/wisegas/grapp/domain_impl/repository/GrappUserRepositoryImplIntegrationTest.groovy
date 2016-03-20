@@ -1,9 +1,9 @@
 package com.wisegas.grapp.domain_impl.repository
 
+import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.grapp.domain.repository.GrappUserRepository
 import com.wisegas.grapp.test.Builders
-import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class GrappUserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
       def result = grappUserRepository.findByEmail(emailToLookFor)
 
       then: "The Test Entity should found based on the E-Mail we looked for"
-      shouldBeFound == (result != null)
+      shouldBeFound == result.isPresent()
 
       where:
       emailToLookFor | shouldBeFound
