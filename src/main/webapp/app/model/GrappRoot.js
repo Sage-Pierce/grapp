@@ -14,13 +14,14 @@
       self.loadResourceModelByID = loadResourceModelByID;
       self.updateResourceByID = updateResourceByID;
       self.mergeResourceIntoModel = mergeResourceIntoModel;
+      self.deleteResourceByID = deleteResourceByID;
 
-      self.deferred = $q.defer();
+      var deferred = $q.defer();
 
       ////////////////////
 
       function load(grappRootRsc) {
-         self.deferred.resolve(grappRootRsc);
+         deferred.resolve(grappRootRsc);
       }
 
       function logIn(parameters) {
@@ -76,12 +77,18 @@
          return decorateResourceModel(resource, model);
       }
 
+      function deleteResourceByID(resourceName, id) {
+         return afterLoad().then(function(grappRoot) {
+            return grappRoot.$del(resourceName + "ById", {id: id});
+         });
+      }
+
       function afterLoad() {
-         return self.deferred.promise;
+         return deferred.promise;
       }
 
       function decorateResourceModel(resource, model) {
-         model.delete = function() {
+         model.delete = model.delete || resource.$del && function() {
             return resource.$del("self");
          };
          return model;
