@@ -11,13 +11,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-@Path("/subItems/")
-public class GrappSubItemsResource extends HALResource {
+@Path("/items/")
+public class GrappItemsResource extends HALResource {
 
    private final GrappItemService grappItemService;
 
    @Inject
-   public GrappSubItemsResource(GrappItemService grappItemService) {
+   public GrappItemsResource(GrappItemService grappItemService) {
       this.grappItemService = grappItemService;
    }
 
@@ -32,7 +32,7 @@ public class GrappSubItemsResource extends HALResource {
    }
 
    private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappSubItemsResource.class).queryParams("superItemId", "name");
+      return HALResourceLinkBuilder.linkTo(GrappItemsResource.class).queryParams("superItemId", "name");
    }
 
 }

@@ -28,7 +28,7 @@ public class GrappRootResource extends HALResource {
          GrappStoreResource.createRootLink("storeById"),
          GrappStoresResource.createRootLink("stores"),
          GrappGeneralItemsResource.createRootLink("generalItems"),
-         GrappSubItemsResource.createRootLink("subItems"),
+         GrappItemsResource.createRootLink("items"),
          GrappItemResource.createRootLink("itemById")
       );
    }
