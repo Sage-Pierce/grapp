@@ -1,4 +1,5 @@
 <div class="col-sm-6 col-sm-offset-3" ui-tree>
+   <button type="button" class="btn btn-success full-width" ng-click="mainItemsVM.createGeneralItem()">New General Item</button>
    <ol ui-tree-nodes ng-model="mainItemsVM.items">
       <li ng-repeat="item in mainItemsVM.items" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
    </ol>

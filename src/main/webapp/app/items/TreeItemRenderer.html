@@ -3,6 +3,9 @@
       <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
    </a>
    {{item.name}}
+   <a class="clickable" ng-click="mainItemsVM.editItem(this)">
+      <span class="glyphicon glyphicon-pencil"></span>
+   </a>
    <a class="pull-right btn btn-danger btn-xs" ng-click="mainItemsVM.deleteItem(this)" data-nodrag>
       <span class="glyphicon glyphicon-remove"></span>
    </a>

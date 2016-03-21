@@ -4,10 +4,10 @@
    angular.module("Grapp")
       .controller("ModalUpdateItem", ModalUpdateItem);
 
-   ModalUpdateItem.$inject = ["$uibModalInstance", "itemName"];
-   function ModalUpdateItem($uibModalInstance, itemName) {
+   ModalUpdateItem.$inject = ["$uibModalInstance", "isGeneralItem", "itemName"];
+   function ModalUpdateItem($uibModalInstance, isGeneralItem, itemName) {
       var modalUpdateItemVM = this;
-      modalUpdateItemVM.title = itemName ? "Update Item" : "Create Item";
+      modalUpdateItemVM.title = (itemName ? "Edit" : "Create") + (isGeneralItem ? " General Item" : " Sub-Item");
       modalUpdateItemVM.itemName = itemName || "";
       modalUpdateItemVM.finish = finish;
       modalUpdateItemVM.cancel = cancel;
@@ -15,7 +15,7 @@
       ////////////////////
 
       function finish() {
-         $uibModalInstance.close({itemName: modalUpdateItemVM.itemName});
+         $uibModalInstance.close({name: modalUpdateItemVM.itemName});
       }
 
       function cancel() {
