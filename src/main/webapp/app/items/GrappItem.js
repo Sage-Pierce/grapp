@@ -29,6 +29,7 @@
          self.commitAttributes = commitAttributes;
          self.addSubItem = addSubItem;
          self.delete = del;
+         self.isGeneralItem = isGeneralItem;
          self.subItems = grappItemRsc.subItems.map(function(subItemRsc) { return GrappRoot.mergeResourceIntoModel(subItemRsc, new GrappItemModel(subItemRsc)); });
 
          ////////////////////
@@ -49,6 +50,10 @@
 
          function del() {
             return GrappRoot.deleteResourceByID("item", self.id);
+         }
+
+         function isGeneralItem() {
+            return self.superItemId === null;
          }
       }
    }

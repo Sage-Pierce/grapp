@@ -24,8 +24,8 @@
       }
 
       function createGeneralItem() {
-         openModalUpdateItem(true).then(function(result) {
-            GrappItem.createGeneralItem(result.itemName).then(function(itemModel) {
+         openModalUpdateItem(null, true).then(function(result) {
+            GrappItem.createGeneralItem(result.name).then(function(itemModel) {
                mainItemsVM.items.push(itemModel);
             });
          });
@@ -33,14 +33,14 @@
 
       function createItem(itemScope) {
          var itemModel = itemScope.$modelValue;
-         openModalUpdateItem(itemModel).then(function(result) {
-            itemModel.addSubItem(result.itemName);
+         openModalUpdateItem(null, false).then(function(result) {
+            itemModel.addSubItem(result.name);
          });
       }
 
       function editItem(itemScope) {
          var itemModel = itemScope.$modelValue;
-         openModalUpdateItem(itemModel).then(itemModel.commitAttributes);
+         openModalUpdateItem(itemModel, itemModel.isGeneralItem()).then(itemModel.commitAttributes);
       }
 
       function deleteItem(itemScope) {
@@ -49,15 +49,15 @@
          });
       }
 
-      function openModalUpdateItem(itemModel) {
+      function openModalUpdateItem(itemModel, isGeneralItem) {
          return $uibModal.open({
             animation: true,
             templateUrl: "app/items/ModalUpdateItem.html",
             controller: "ModalUpdateItem",
             controllerAs: "modalUpdateItemVM",
             resolve: {
-               isGeneralItem: function() { return itemModel.superItemId === null; },
-               itemName: function() { return itemModel.name; }
+               isGeneralItem: function() { return isGeneralItem; },
+               itemName: function() { return itemModel && itemModel.name; }
             }
          }).result;
       }
