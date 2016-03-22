@@ -11,6 +11,10 @@ public abstract class JerseyHalResource {
    protected UriInfo uriInfo;
 
    protected static Response buildHalResponse(HalRepresentation halRepresentation) {
-      return Response.ok().entity(halRepresentation.toString()).build();
+      return buildHalResponse(Response.Status.OK, halRepresentation);
+   }
+
+   protected static Response buildHalResponse(Response.Status status, HalRepresentation halRepresentation) {
+      return Response.status(status).entity(halRepresentation.toString()).build();
    }
 }
