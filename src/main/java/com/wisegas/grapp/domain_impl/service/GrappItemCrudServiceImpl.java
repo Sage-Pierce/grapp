@@ -1,5 +1,6 @@
 package com.wisegas.grapp.domain_impl.service;
 
+import com.wisegas.common.lang.exception.EntityConflictException;
 import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.domain.service.GrappItemCreationService;
@@ -52,7 +53,7 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService, Grapp
    private void assertItemNameUniqueness(String name) {
       Optional<GrappItem> foundGrappItem = grappItemRepository.findWithName(name);
       if (foundGrappItem.isPresent()) {
-         throw new RuntimeException("An Item with this name already exists: " + name + ", at " + stringifyItemHierarchy(foundGrappItem.get()));
+         throw new EntityConflictException("An Item with this name already exists: " + name + ", at " + stringifyItemHierarchy(foundGrappItem.get()));
       }
    }
 
