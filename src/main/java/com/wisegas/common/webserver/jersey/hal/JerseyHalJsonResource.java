@@ -7,6 +7,5 @@ import javax.ws.rs.Produces;
 
 @Produces({HalJsonRepresentationFactory.HAL_JSON})
 public abstract class JerseyHalJsonResource extends JerseyHalResource {
-
    protected static final HalRepresentationFactory halRepresentationFactory = new HalJsonRepresentationFactory();
 }
