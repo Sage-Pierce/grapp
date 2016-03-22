@@ -1,7 +1,7 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappUserService;
@@ -36,15 +36,15 @@ public class GrappUserResource extends JerseyHalResource {
       return buildHalResponse(asRepresentationOf(grappUserDTO));
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappUserDTO grappUserDTO) {
+   protected static HALRepresentation asRepresentationOf(GrappUserDTO grappUserDTO) {
       return halRepresentationFactory.createFor(grappUserDTO).withLinks(createLinks(grappUserDTO));
    }
 
-   protected static HalLink createRootLink(String rel) {
+   protected static HALLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HalLink> createLinks(GrappUserDTO grappUserDTO) {
+   private static List<HALLink> createLinks(GrappUserDTO grappUserDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappUserDTO.getId()).withSelfRel());
    }
 

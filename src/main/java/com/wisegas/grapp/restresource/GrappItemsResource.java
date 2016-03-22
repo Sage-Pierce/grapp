@@ -1,6 +1,6 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HALLink;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappItemService;
@@ -27,7 +27,7 @@ public class GrappItemsResource extends JerseyHalResource {
       return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createSubItem(superItemId, name)));
    }
 
-   protected static HalLink createRootLink(String rel) {
+   protected static HALLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 

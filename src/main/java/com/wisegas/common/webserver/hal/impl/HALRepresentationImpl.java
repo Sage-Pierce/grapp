@@ -1,8 +1,8 @@
 package com.wisegas.common.webserver.hal.impl;
 
 import com.theoryinpractise.halbuilder.api.*;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 
 import java.io.Writer;
 import java.net.URI;
@@ -11,34 +11,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class HalRepresentationImpl implements HalRepresentation, Representation {
+public class HALRepresentationImpl implements HALRepresentation, Representation {
 
    private final Representation delegate;
 
-   public HalRepresentationImpl(Representation delegate) {
+   public HALRepresentationImpl(Representation delegate) {
       this.delegate = delegate;
    }
 
-   public HalRepresentation withLinks(Iterable<HalLink> halLinks) {
-      for (HalLink halLink : halLinks) {
+   public HALRepresentation withLinks(Iterable<HALLink> halLinks) {
+      for (HALLink halLink : halLinks) {
          withLink(halLink);
       }
       return this;
    }
 
-   public HalRepresentation withLink(HalLink halLink) {
+   public HALRepresentation withLink(HALLink halLink) {
       delegate.withLink(halLink.getRel(), halLink.getHref());
       return this;
    }
 
-   public HalRepresentation withEmbeddeds(String rel, Iterable<HalRepresentation> halResources) {
-      for (HalRepresentation halRepresentation : halResources) {
+   public HALRepresentation withEmbeddeds(String rel, Iterable<HALRepresentation> halResources) {
+      for (HALRepresentation halRepresentation : halResources) {
          withEmbedded(rel, halRepresentation);
       }
       return this;
    }
 
-   public HalRepresentation withEmbedded(String rel, HalRepresentation halRepresentation) {
+   public HALRepresentation withEmbedded(String rel, HALRepresentation halRepresentation) {
       if (halRepresentation instanceof ReadableRepresentation) {
          delegate.withRepresentation(rel, (ReadableRepresentation) halRepresentation);
          return this;
@@ -53,67 +53,67 @@ public class HalRepresentationImpl implements HalRepresentation, Representation 
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, String href) {
+   public HALRepresentationImpl withLink(String rel, String href) {
       delegate.withLink(rel, href);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, URI uri) {
+   public HALRepresentationImpl withLink(String rel, URI uri) {
       delegate.withLink(rel, uri);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, String href, String name, String title, String hreflang, String profile) {
+   public HALRepresentationImpl withLink(String rel, String href, String name, String title, String hreflang, String profile) {
       delegate.withLink(rel, href, name, title, hreflang, profile);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withProperty(String name, Object value) {
+   public HALRepresentationImpl withProperty(String name, Object value) {
       delegate.withProperty(name, value);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withBean(Object value) {
+   public HALRepresentationImpl withBean(Object value) {
       delegate.withBean(value);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withFields(Object value) {
+   public HALRepresentationImpl withFields(Object value) {
       delegate.withFields(value);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withRepresentable(Representable representable) {
+   public HALRepresentationImpl withRepresentable(Representable representable) {
       delegate.withRepresentable(representable);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withFieldBasedRepresentation(String rel, String href, Object o) {
+   public HALRepresentationImpl withFieldBasedRepresentation(String rel, String href, Object o) {
       delegate.withFieldBasedRepresentation(rel, href, o);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withBeanBasedRepresentation(String rel, String href, Object o) {
+   public HALRepresentationImpl withBeanBasedRepresentation(String rel, String href, Object o) {
       delegate.withBeanBasedRepresentation(rel, href, o);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withNamespace(String namespace, String href) {
+   public HALRepresentationImpl withNamespace(String namespace, String href) {
       delegate.withNamespace(namespace, href);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withRepresentation(String rel, ReadableRepresentation resource) {
+   public HALRepresentationImpl withRepresentation(String rel, ReadableRepresentation resource) {
       delegate.withRepresentation(rel, resource);
       return this;
    }

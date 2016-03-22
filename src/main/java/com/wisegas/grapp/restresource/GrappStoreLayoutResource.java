@@ -2,8 +2,8 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
@@ -105,15 +105,15 @@ public class GrappStoreLayoutResource extends JerseyHalResource {
       return Response.ok().build();
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   protected static HALRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return halRepresentationFactory.createFor(grappStoreLayoutDTO).withLinks(createLinks(grappStoreLayoutDTO));
    }
 
-   protected static HalLink createRootLink(String rel) {
+   protected static HALLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HalLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   private static List<HALLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
          JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),

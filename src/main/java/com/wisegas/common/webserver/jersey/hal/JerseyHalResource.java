@@ -1,6 +1,6 @@
 package com.wisegas.common.webserver.jersey.hal;
 
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 import com.wisegas.common.webserver.hal.api.HalRepresentationFactory;
 import com.wisegas.common.webserver.hal.impl.HalJsonRepresentationFactory;
 
@@ -17,7 +17,7 @@ public abstract class JerseyHalResource {
    @Context
    protected UriInfo uriInfo;
 
-   protected static Response buildHalResponse(HalRepresentation halRepresentation) {
+   protected static Response buildHalResponse(HALRepresentation halRepresentation) {
       return Response.ok().entity(halRepresentation.toString()).build();
    }
 }

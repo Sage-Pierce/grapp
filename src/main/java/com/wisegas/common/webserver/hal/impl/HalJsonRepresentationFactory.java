@@ -1,8 +1,8 @@
 package com.wisegas.common.webserver.hal.impl;
 
 import com.theoryinpractise.halbuilder.json.JsonRepresentationFactory;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HALRepresentation;
 import com.wisegas.common.webserver.hal.api.HalRepresentationFactory;
 
 public final class HalJsonRepresentationFactory extends JsonRepresentationFactory implements HalRepresentationFactory {
@@ -15,9 +15,9 @@ public final class HalJsonRepresentationFactory extends JsonRepresentationFactor
       withFlag(JsonRepresentationFactory.COALESCE_ARRAYS);
    }
 
-   public HalRepresentation createFor(Object resource) {
-      return new HalRepresentationImpl(newRepresentation()).withBean(resource);
+   public HALRepresentation createFor(Object resource) {
+      return new HALRepresentationImpl(newRepresentation()).withBean(resource);
    }
 
-   public HalRepresentation createForLinks(Iterable<HalLink> links) { return new HalRepresentationImpl(newRepresentation()).withLinks(links); }
+   public HALRepresentation createForLinks(Iterable<HALLink> links) { return new HALRepresentationImpl(newRepresentation()).withLinks(links); }
 }

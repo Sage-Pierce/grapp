@@ -1,7 +1,7 @@
 package com.wisegas.common.webserver.hal.api;
 
 public interface HalRepresentationFactory {
-   HalRepresentation createFor(Object resource);
+   HALRepresentation createFor(Object resource);
 
-   HalRepresentation createForLinks(Iterable<HalLink> links);
+   HALRepresentation createForLinks(Iterable<HALLink> links);
 }

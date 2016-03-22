@@ -1,11 +1,11 @@
 package com.wisegas.common.webserver.hal.api;
 
-public interface HalRepresentation {
-   HalRepresentation withLinks(Iterable<HalLink> halLinks);
+public interface HALRepresentation {
+   HALRepresentation withLinks(Iterable<HALLink> halLinks);
 
-   HalRepresentation withLink(HalLink halLink);
+   HALRepresentation withLink(HALLink halLink);
 
-   HalRepresentation withEmbeddeds(String rel, Iterable<HalRepresentation> halResources);
+   HALRepresentation withEmbeddeds(String rel, Iterable<HALRepresentation> halResources);
 
-   HalRepresentation withEmbedded(String rel, HalRepresentation halRepresentation);
+   HALRepresentation withEmbedded(String rel, HALRepresentation halRepresentation);
 }

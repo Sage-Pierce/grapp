@@ -1,6 +1,6 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HALLink;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 
@@ -18,7 +18,7 @@ public class GrappRootResource extends JerseyHalResource {
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks()));
    }
 
-   private static List<HalLink> createLinks() {
+   private static List<HALLink> createLinks() {
       return Arrays.asList(
          JerseyHalResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
          GrappLoginResource.createRootLink("logIn"),
