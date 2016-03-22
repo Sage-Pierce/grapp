@@ -6,7 +6,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-public class JerseyHalResource {
+public abstract class JerseyHalResource {
    @Context
    protected UriInfo uriInfo;
 
