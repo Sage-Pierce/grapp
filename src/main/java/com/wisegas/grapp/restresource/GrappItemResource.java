@@ -1,9 +1,9 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
-import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappItemService;
 import com.wisegas.grapp.service.dto.GrappItemDTO;
 
@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Path("/items/{id}/")
-public class GrappItemResource extends HALResource {
+public class GrappItemResource extends JerseyHalResource {
 
    private final GrappItemService grappItemService;
 
@@ -25,13 +25,13 @@ public class GrappItemResource extends HALResource {
 
    @GET
    public Response get(@PathParam("id") final String id) {
-      return buildHALResponse(asRepresentationOf(grappItemService.get(id)));
+      return buildHalResponse(asRepresentationOf(grappItemService.get(id)));
    }
 
    @PUT
    public Response update(@PathParam("id") final String id,
                           @QueryParam("name") final String name) {
-      return buildHALResponse(asRepresentationOf(grappItemService.update(id, name)));
+      return buildHalResponse(asRepresentationOf(grappItemService.update(id, name)));
    }
 
    @DELETE
@@ -40,19 +40,19 @@ public class GrappItemResource extends HALResource {
       return Response.ok().build();
    }
 
-   protected static HALRepresentation asRepresentationOf(GrappItemDTO grappItemDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappItemDTO grappItemDTO) {
       return halRepresentationFactory.createFor(grappItemDTO).withLinks(createLinks(grappItemDTO));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks(GrappItemDTO grappItemDTO) {
+   private static List<HalLink> createLinks(GrappItemDTO grappItemDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappItemDTO.getId()).withSelfRel());
    }
 
-   private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappItemResource.class).queryParams("name");
+   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JerseyHalResourceLinkBuilder.linkTo(GrappItemResource.class).queryParams("name");
    }
 }

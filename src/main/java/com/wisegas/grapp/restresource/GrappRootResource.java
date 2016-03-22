@@ -1,8 +1,8 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,16 +11,16 @@ import java.util.Arrays;
 import java.util.List;
 
 @Path("/")
-public class GrappRootResource extends HALResource {
+public class GrappRootResource extends JerseyHalResource {
 
    @GET
    public Response getRoot() {
-      return buildHALResponse(halRepresentationFactory.createForLinks(createLinks()));
+      return buildHalResponse(halRepresentationFactory.createForLinks(createLinks()));
    }
 
-   private static List<HALLink> createLinks() {
+   private static List<HalLink> createLinks() {
       return Arrays.asList(
-         HALResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
+         JerseyHalResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
          GrappLoginResource.createRootLink("logIn"),
          GrappUserResource.createRootLink("userById"),
          GrappStoreLayoutResource.createRootLink("storeLayoutById"),

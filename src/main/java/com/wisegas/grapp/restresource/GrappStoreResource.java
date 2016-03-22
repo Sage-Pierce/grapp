@@ -1,10 +1,10 @@
 package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.lang.value.GeoPoint;
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
-import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreService;
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
 
@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Path("/stores/{id}/")
-public class GrappStoreResource extends HALResource {
+public class GrappStoreResource extends JerseyHalResource {
 
    private final GrappStoreService grappStoreService;
 
@@ -26,7 +26,7 @@ public class GrappStoreResource extends HALResource {
 
    @GET
    public Response get(@PathParam(value = "id") final String id) {
-      return buildHALResponse(asRepresentationOf(grappStoreService.get(id)));
+      return buildHalResponse(asRepresentationOf(grappStoreService.get(id)));
    }
 
    @PUT
@@ -34,7 +34,7 @@ public class GrappStoreResource extends HALResource {
                           @QueryParam(value = "name") final String name,
                           @QueryParam(value = "location") final GeoPoint location) {
       GrappStoreDTO grappStoreDTO = grappStoreService.update(id, name, location);
-      return buildHALResponse(asRepresentationOf(grappStoreDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreDTO));
    }
 
    @DELETE
@@ -43,19 +43,19 @@ public class GrappStoreResource extends HALResource {
       return Response.ok().build();
    }
 
-   protected static HALRepresentation asRepresentationOf(GrappStoreDTO grappStoreDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreDTO grappStoreDTO) {
       return halRepresentationFactory.createFor(grappStoreDTO).withLinks(createLinks(grappStoreDTO));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks(GrappStoreDTO grappStoreDTO) {
+   private static List<HalLink> createLinks(GrappStoreDTO grappStoreDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreDTO.getId()).withSelfRel());
    }
 
-   private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappStoreResource.class).queryParams("name", "location");
+   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JerseyHalResourceLinkBuilder.linkTo(GrappStoreResource.class).queryParams("name", "location");
    }
 }

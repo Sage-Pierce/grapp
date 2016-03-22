@@ -1,9 +1,9 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
-import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreFeatureService;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Path("/features/{id}/")
-public class GrappStoreFeatureResource extends HALResource {
+public class GrappStoreFeatureResource extends JerseyHalResource {
 
    private final GrappStoreFeatureService grappStoreFeatureService;
 
@@ -28,18 +28,18 @@ public class GrappStoreFeatureResource extends HALResource {
    @GET
    public Response get(@PathParam("id") final String id) {
       GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreFeatureService.get(id);
-      return buildHALResponse(asRepresentationOf(grappStoreFeatureDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreFeatureDTO));
    }
 
-   protected static HALRepresentation asRepresentationOf(GrappStoreFeatureDTO grappStoreFeatureDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreFeatureDTO grappStoreFeatureDTO) {
       return halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(createLinks(grappStoreFeatureDTO));
    }
 
-   private static List<HALLink> createLinks(GrappStoreFeatureDTO grappStoreFeatureDTO) {
+   private static List<HalLink> createLinks(GrappStoreFeatureDTO grappStoreFeatureDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreFeatureDTO.getId()).withSelfRel());
    }
 
-   private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappStoreFeatureResource.class);
+   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JerseyHalResourceLinkBuilder.linkTo(GrappStoreFeatureResource.class);
    }
 }

@@ -1,8 +1,8 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappItemService;
 
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/generalItems/")
-public class GrappGeneralItemsResource extends HALResource {
+public class GrappGeneralItemsResource extends JerseyHalResource {
 
    private final GrappItemService grappItemService;
 
@@ -27,26 +27,26 @@ public class GrappGeneralItemsResource extends HALResource {
 
    @POST
    public Response create(@QueryParam("name") final String name) {
-      return buildHALResponse(GrappItemResource.asRepresentationOf(grappItemService.createGeneralItem(name)));
+      return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createGeneralItem(name)));
    }
 
    @GET
    public Response get() {
-      return buildHALResponse(halRepresentationFactory.createForLinks(createLinks())
+      return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
                                                       .withEmbeddeds("generalItems", grappItemService.getGeneralItems().stream()
                                                                                                      .map(GrappItemResource::asRepresentationOf)
                                                                                                      .collect(Collectors.toList())));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks() {
+   private static List<HalLink> createLinks() {
       return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
    }
 
-   private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappGeneralItemsResource.class).queryParams("name");
+   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JerseyHalResourceLinkBuilder.linkTo(GrappGeneralItemsResource.class).queryParams("name");
    }
 }

@@ -1,9 +1,9 @@
 package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.lang.value.GeoPoint;
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreService;
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
 
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/stores/")
-public class GrappStoresResource extends HALResource {
+public class GrappStoresResource extends JerseyHalResource {
 
    private final GrappStoreService grappStoreService;
 
@@ -30,27 +30,27 @@ public class GrappStoresResource extends HALResource {
    @POST
    public Response create(@QueryParam(value = "name") final String name,
                           @QueryParam(value = "location") final GeoPoint location) {
-      return buildHALResponse(GrappStoreResource.asRepresentationOf(grappStoreService.create(name, location)));
+      return buildHalResponse(GrappStoreResource.asRepresentationOf(grappStoreService.create(name, location)));
    }
 
    @GET
    public Response get() {
       List<GrappStoreDTO> grappStoreDTOs = grappStoreService.getAll();
-      return buildHALResponse(halRepresentationFactory.createForLinks(createLinks())
+      return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
                                                       .withEmbeddeds("stores", grappStoreDTOs.stream()
                                                                                              .map(GrappStoreResource::asRepresentationOf)
                                                                                              .collect(Collectors.toList())));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks() {
+   private static List<HalLink> createLinks() {
       return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
    }
 
-   private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("name", "location");
+   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JerseyHalResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("name", "location");
    }
 }

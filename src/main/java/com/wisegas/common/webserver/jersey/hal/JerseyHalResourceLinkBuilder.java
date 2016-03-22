@@ -1,10 +1,10 @@
-package com.wisegas.common.webserver.hal;
+package com.wisegas.common.webserver.jersey.hal;
 
-import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.api.HalLink;
 
 import javax.ws.rs.core.UriBuilder;
 
-public final class HALResourceLinkBuilder {
+public final class JerseyHalResourceLinkBuilder {
 
    private static final String RELATIVE_REST_API_ROOT = "/rest";
    private static final String SELF_REL = "self";
@@ -14,34 +14,34 @@ public final class HALResourceLinkBuilder {
    private Object[] pathArgs;
    private String[] queryParams;
 
-   public static HALResourceLinkBuilder linkTo(Class controller) {
-      return new HALResourceLinkBuilder(controller);
+   public static JerseyHalResourceLinkBuilder linkTo(Class controller) {
+      return new JerseyHalResourceLinkBuilder(controller);
    }
 
-   public HALResourceLinkBuilder method(String methodName) {
+   public JerseyHalResourceLinkBuilder method(String methodName) {
       this.methodName = methodName;
       return this;
    }
 
-   public HALResourceLinkBuilder pathArgs(Object... pathArgs) {
+   public JerseyHalResourceLinkBuilder pathArgs(Object... pathArgs) {
       this.pathArgs = pathArgs;
       return this;
    }
 
-   public HALResourceLinkBuilder queryParams(String... queryParams) {
+   public JerseyHalResourceLinkBuilder queryParams(String... queryParams) {
       this.queryParams = queryParams;
       return this;
    }
 
-   public HALLink withSelfRel() {
+   public HalLink withSelfRel() {
       return withRel(SELF_REL);
    }
 
-   public HALLink withRel(String rel) {
+   public HalLink withRel(String rel) {
       UriBuilder uriBuilder = UriBuilder.fromResource(controller);
       uriBuilder = methodName == null ? uriBuilder : uriBuilder.path(controller, methodName);
       String uriString = pathArgs == null ? uriBuilder.toTemplate() : uriBuilder.build(pathArgs).toString();
-      return new HALLink(rel, RELATIVE_REST_API_ROOT + uriString + buildQueryFragment());
+      return new HalLink(rel, RELATIVE_REST_API_ROOT + uriString + buildQueryFragment());
    }
 
    private String buildQueryFragment() {
@@ -59,7 +59,7 @@ public final class HALResourceLinkBuilder {
       return builder.toString();
    }
 
-   private HALResourceLinkBuilder(Class controller) {
+   private JerseyHalResourceLinkBuilder(Class controller) {
       this.controller = controller;
    }
 }

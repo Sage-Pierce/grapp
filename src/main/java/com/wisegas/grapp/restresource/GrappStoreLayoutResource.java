@@ -2,10 +2,10 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
-import com.wisegas.common.webserver.hal.HALResource;
-import com.wisegas.common.webserver.hal.HALResourceLinkBuilder;
-import com.wisegas.common.webserver.hal.api.HALLink;
-import com.wisegas.common.webserver.hal.api.HALRepresentation;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/storeLayouts/{id}/")
-public class GrappStoreLayoutResource extends HALResource {
+public class GrappStoreLayoutResource extends JerseyHalResource {
 
    private final GrappStoreLayoutService grappStoreLayoutService;
 
@@ -32,7 +32,7 @@ public class GrappStoreLayoutResource extends HALResource {
    @GET
    public Response get(@PathParam("id") final String id) {
       GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.get(id);
-      return buildHALResponse(asRepresentationOf(grappStoreLayoutDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreLayoutDTO));
    }
 
    @PUT
@@ -40,7 +40,7 @@ public class GrappStoreLayoutResource extends HALResource {
    public Response updateOuterOutline(@PathParam("id") final String id,
                                       @QueryParam("polygon") final GeoPolygon polygon) {
       GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.updateOuterOutline(id, polygon);
-      return buildHALResponse(asRepresentationOf(grappStoreLayoutDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreLayoutDTO));
    }
 
    @PUT
@@ -48,7 +48,7 @@ public class GrappStoreLayoutResource extends HALResource {
    public Response updateInnerOutline(@PathParam("id") final String id,
                                       @QueryParam("polygon") final GeoPolygon polygon) {
       GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.updateInnerOutline(id, polygon);
-      return buildHALResponse(asRepresentationOf(grappStoreLayoutDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreLayoutDTO));
    }
 
    @POST
@@ -56,7 +56,7 @@ public class GrappStoreLayoutResource extends HALResource {
    public Response addFeature(@PathParam("id") final String id,
                               @QueryParam("polygon") final GeoPolygon polygon) {
       GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.addFeature(id, polygon);
-      return buildHALResponse(GrappStoreFeatureResource.asRepresentationOf(grappStoreFeatureDTO));
+      return buildHalResponse(GrappStoreFeatureResource.asRepresentationOf(grappStoreFeatureDTO));
    }
 
    @PUT
@@ -65,7 +65,7 @@ public class GrappStoreLayoutResource extends HALResource {
                                   @QueryParam("featureID") final String featureID,
                                   @QueryParam("polygon") final GeoPolygon polygon) {
       GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.reshapeFeature(id, featureID, polygon);
-      return buildHALResponse(GrappStoreFeatureResource.asRepresentationOf(grappStoreFeatureDTO));
+      return buildHalResponse(GrappStoreFeatureResource.asRepresentationOf(grappStoreFeatureDTO));
    }
 
    @DELETE
@@ -82,7 +82,7 @@ public class GrappStoreLayoutResource extends HALResource {
                            @QueryParam("type") final String type,
                            @QueryParam("location") final GeoPoint location) {
       GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTO> result = grappStoreLayoutService.addNode(id, type, location);
-      return buildHALResponse(GrappStoreNodeResource.asRepresentationOf(result.getTarget())
+      return buildHalResponse(GrappStoreNodeResource.asRepresentationOf(result.getTarget())
                                                     .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                           .map(GrappStoreNodeResource::asRepresentationOf)
                                                                                           .collect(Collectors.toList())));
@@ -94,7 +94,7 @@ public class GrappStoreLayoutResource extends HALResource {
                             @QueryParam("nodeID") final String nodeID,
                             @QueryParam("location") final GeoPoint location) {
       GrappStoreNodeDTO grappStoreNodeDTO = grappStoreLayoutService.moveNode(id, nodeID, location);
-      return buildHALResponse(GrappStoreNodeResource.asRepresentationOf(grappStoreNodeDTO));
+      return buildHalResponse(GrappStoreNodeResource.asRepresentationOf(grappStoreNodeDTO));
    }
 
    @DELETE
@@ -105,29 +105,29 @@ public class GrappStoreLayoutResource extends HALResource {
       return Response.ok().build();
    }
 
-   protected static HALRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return halRepresentationFactory.createFor(grappStoreLayoutDTO).withLinks(createLinks(grappStoreLayoutDTO));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   private static List<HalLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateInnerOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("innerOutline"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("addFeature"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("reshapeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID", "polygon").withRel("reshapeFeature"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID").withRel("removeFeature"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("type","location").withRel("addNode"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("moveNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "location").withRel("moveNode"),
-         HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode")
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateInnerOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("innerOutline"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("addFeature"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("reshapeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID", "polygon").withRel("reshapeFeature"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID").withRel("removeFeature"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("type","location").withRel("addNode"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("moveNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "location").withRel("moveNode"),
+         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode")
       );
    }
 
-   private static HALResourceLinkBuilder createSelfLinkBuilder() {
-      return HALResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class);
+   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class);
    }
 }
