@@ -1,7 +1,7 @@
 package com.wisegas.common.webserver.jersey.hal;
 
-import com.wisegas.common.webserver.hal.apiv2.HalRepresentationFactory;
-import com.wisegas.common.webserver.hal.implv2.HalJsonRepresentationFactory;
+import com.wisegas.common.webserver.hal.api.HalRepresentationFactory;
+import com.wisegas.common.webserver.hal.impl.HalJsonRepresentationFactory;
 
 import javax.ws.rs.Produces;
 

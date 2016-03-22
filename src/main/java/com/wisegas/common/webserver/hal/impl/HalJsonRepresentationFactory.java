@@ -1,9 +1,9 @@
-package com.wisegas.common.webserver.hal.implv2;
+package com.wisegas.common.webserver.hal.impl;
 
 import com.theoryinpractise.halbuilder.json.JsonRepresentationFactory;
-import com.wisegas.common.webserver.hal.apiv2.HalLink;
-import com.wisegas.common.webserver.hal.apiv2.HalRepresentation;
-import com.wisegas.common.webserver.hal.apiv2.HalRepresentationFactory;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HalRepresentationFactory;
 
 public final class HalJsonRepresentationFactory extends JsonRepresentationFactory implements HalRepresentationFactory {
 

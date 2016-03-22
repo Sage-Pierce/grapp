@@ -1,7 +1,7 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.apiv2.HalLink;
-import com.wisegas.common.webserver.hal.apiv2.HalRepresentation;
+import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappUserService;

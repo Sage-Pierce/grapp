@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.hal.apiv2;
+package com.wisegas.common.webserver.hal.api;
 
 public class HalLink {
 
