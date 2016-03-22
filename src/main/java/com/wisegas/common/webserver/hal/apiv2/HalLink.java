@@ -1,11 +1,11 @@
-package com.wisegas.common.webserver.hal.api;
+package com.wisegas.common.webserver.hal.apiv2;
 
-public class HALLink {
+public class HalLink {
 
    private String rel;
    private String href;
 
-   public HALLink(String rel, String href) {
+   public HalLink(String rel, String href) {
       this.rel = rel;
       this.href = href;
    }

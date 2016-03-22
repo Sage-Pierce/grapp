@@ -2,9 +2,9 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
-import com.wisegas.common.webserver.hal.api.HALLink;
-import com.wisegas.common.webserver.hal.api.HALRepresentation;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.hal.apiv2.HalLink;
+import com.wisegas.common.webserver.hal.apiv2.HalRepresentation;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/storeLayouts/{id}/")
-public class GrappStoreLayoutResource extends JerseyHalResource {
+public class GrappStoreLayoutResource extends JerseyHalJsonResource {
 
    private final GrappStoreLayoutService grappStoreLayoutService;
 
@@ -105,15 +105,15 @@ public class GrappStoreLayoutResource extends JerseyHalResource {
       return Response.ok().build();
    }
 
-   protected static HALRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return halRepresentationFactory.createFor(grappStoreLayoutDTO).withLinks(createLinks(grappStoreLayoutDTO));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   private static List<HalLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
          JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),

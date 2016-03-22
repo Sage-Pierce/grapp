@@ -1,8 +1,8 @@
 package com.wisegas.grapp.restresource;
 
-import com.wisegas.common.webserver.hal.api.HALLink;
-import com.wisegas.common.webserver.hal.api.HALRepresentation;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResource;
+import com.wisegas.common.webserver.hal.apiv2.HalLink;
+import com.wisegas.common.webserver.hal.apiv2.HalRepresentation;
+import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
 import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappItemService;
 import com.wisegas.grapp.service.dto.GrappItemDTO;
@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Path("/items/{id}/")
-public class GrappItemResource extends JerseyHalResource {
+public class GrappItemResource extends JerseyHalJsonResource {
 
    private final GrappItemService grappItemService;
 
@@ -40,15 +40,15 @@ public class GrappItemResource extends JerseyHalResource {
       return Response.ok().build();
    }
 
-   protected static HALRepresentation asRepresentationOf(GrappItemDTO grappItemDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappItemDTO grappItemDTO) {
       return halRepresentationFactory.createFor(grappItemDTO).withLinks(createLinks(grappItemDTO));
    }
 
-   protected static HALLink createRootLink(String rel) {
+   protected static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static List<HALLink> createLinks(GrappItemDTO grappItemDTO) {
+   private static List<HalLink> createLinks(GrappItemDTO grappItemDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappItemDTO.getId()).withSelfRel());
    }
 

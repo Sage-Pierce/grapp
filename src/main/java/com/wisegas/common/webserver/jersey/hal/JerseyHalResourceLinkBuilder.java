@@ -1,6 +1,6 @@
 package com.wisegas.common.webserver.jersey.hal;
 
-import com.wisegas.common.webserver.hal.api.HALLink;
+import com.wisegas.common.webserver.hal.apiv2.HalLink;
 
 import javax.ws.rs.core.UriBuilder;
 
@@ -33,15 +33,15 @@ public final class JerseyHalResourceLinkBuilder {
       return this;
    }
 
-   public HALLink withSelfRel() {
+   public HalLink withSelfRel() {
       return withRel(SELF_REL);
    }
 
-   public HALLink withRel(String rel) {
+   public HalLink withRel(String rel) {
       UriBuilder uriBuilder = UriBuilder.fromResource(controller);
       uriBuilder = methodName == null ? uriBuilder : uriBuilder.path(controller, methodName);
       String uriString = pathArgs == null ? uriBuilder.toTemplate() : uriBuilder.build(pathArgs).toString();
-      return new HALLink(rel, RELATIVE_REST_API_ROOT + uriString + buildQueryFragment());
+      return new HalLink(rel, RELATIVE_REST_API_ROOT + uriString + buildQueryFragment());
    }
 
    private String buildQueryFragment() {
