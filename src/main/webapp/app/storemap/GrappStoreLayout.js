@@ -77,7 +77,7 @@
          }
 
          function addNode(grappStoreNodeType, location) {
-            return grappStoreLayoutRsc.$post("addNode", {type: grappStoreNodeType.code, location: JSON.stringify(location)})
+            return grappStoreLayoutRsc.$post("addNode", {type: _.findKey(GrappStoreNodeType, grappStoreNodeType), location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
                   nodes[layoutNodeUpdateRsc.id] = createNodeModelFromNode(layoutNodeUpdateRsc);
                   return layoutNodeUpdateRsc.$get("affectedNodes")
@@ -124,7 +124,7 @@
             return {
                id: grappStoreNode.id,
                name: grappStoreNode.name,
-               type: GrappStoreNodeType.fromCode(grappStoreNode.type),
+               type: GrappStoreNodeType[grappStoreNode.type],
                location: grappStoreNode.location,
                commitName: function(name) { commitNodeModelParams(this, {name: name}); },
                commitLocation: function(position) { commitNodeModelPosition(this, position); }
@@ -133,7 +133,7 @@
 
          function updateNodeModelFromNode(node) {
             var nodeModel = getNodeById(node.id);
-            nodeModel.type = GrappStoreNodeType.fromCode(node.type);
+            nodeModel.type = GrappStoreNodeType[node.type];
             return nodeModel;
          }
 

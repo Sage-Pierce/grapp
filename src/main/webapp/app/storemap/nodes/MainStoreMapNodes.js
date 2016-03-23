@@ -7,7 +7,7 @@
    MainStoreMapNodes.$inject = ["grappStoreLayout", "mapControl", "NodeSelector", "GrappStoreNodeType", "NodeEventHandler"];
    function MainStoreMapNodes(grappStoreLayout, mapControl, NodeSelector, GrappStoreNodeType, NodeEventHandler) {
       var mainStoreMapNodesVM = this;
-      mainStoreMapNodesVM.nodeTypes = GrappStoreNodeType.values();
+      mainStoreMapNodesVM.nodeTypes = _.values(GrappStoreNodeType);
       mainStoreMapNodesVM.radioModel = GrappStoreNodeType.REGULAR;
       mainStoreMapNodesVM.selectedNodeName = null;
       mainStoreMapNodesVM.radioChanged = radioChanged;
