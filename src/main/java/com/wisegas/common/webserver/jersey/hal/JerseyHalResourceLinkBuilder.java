@@ -9,13 +9,13 @@ public final class JerseyHalResourceLinkBuilder {
    private static final String RELATIVE_REST_API_ROOT = "/rest";
    private static final String SELF_REL = "self";
 
-   private Class controller;
+   private Class resource;
    private String methodName;
    private Object[] pathArgs;
    private String[] queryParams;
 
-   public static JerseyHalResourceLinkBuilder linkTo(Class controller) {
-      return new JerseyHalResourceLinkBuilder(controller);
+   public static JerseyHalResourceLinkBuilder linkTo(Class resource) {
+      return new JerseyHalResourceLinkBuilder(resource);
    }
 
    public JerseyHalResourceLinkBuilder method(String methodName) {
@@ -38,8 +38,8 @@ public final class JerseyHalResourceLinkBuilder {
    }
 
    public HalLink withRel(String rel) {
-      UriBuilder uriBuilder = UriBuilder.fromResource(controller);
-      uriBuilder = methodName == null ? uriBuilder : uriBuilder.path(controller, methodName);
+      UriBuilder uriBuilder = UriBuilder.fromResource(resource);
+      uriBuilder = methodName == null ? uriBuilder : uriBuilder.path(resource, methodName);
       String uriString = pathArgs == null ? uriBuilder.toTemplate() : uriBuilder.build(pathArgs).toString();
       return new HalLink(rel, RELATIVE_REST_API_ROOT + uriString + buildQueryFragment());
    }
@@ -59,7 +59,7 @@ public final class JerseyHalResourceLinkBuilder {
       return builder.toString();
    }
 
-   private JerseyHalResourceLinkBuilder(Class controller) {
-      this.controller = controller;
+   private JerseyHalResourceLinkBuilder(Class resource) {
+      this.resource = resource;
    }
 }
