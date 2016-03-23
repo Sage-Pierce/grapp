@@ -77,3 +77,7 @@ h2 i {
 .tree-node-content {
     margin: 10px;
 }
+
+.tree-sub-node-alignment-offset {
+    margin-left: 5px;
+}

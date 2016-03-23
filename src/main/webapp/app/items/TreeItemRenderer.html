@@ -1,4 +1,4 @@
-<div class="tree-node tree-node-content">
+<div class="tree-node">
    <a class="btn btn-success btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
       <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
    </a>
@@ -14,5 +14,5 @@
    </a>
 </div>
 <ol ui-tree-nodes ng-model="item.subItems" ng-class="{hidden: collapsed}">
-   <li ng-repeat="item in item.subItems" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+   <li class="tree-sub-node-alignment-offset" ng-repeat="item in item.subItems" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
 </ol>
