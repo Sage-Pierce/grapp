@@ -2,8 +2,8 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreService;
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
 
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/stores/")
-public class GrappStoresResource extends JerseyHalJsonResource {
+public class GrappStoresResource extends JaxrsHalJsonResource {
 
    private final GrappStoreService grappStoreService;
 
@@ -50,7 +50,7 @@ public class GrappStoresResource extends JerseyHalJsonResource {
       return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
    }
 
-   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JerseyHalResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("name", "location");
+   private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappStoresResource.class).queryParams("name", "location");
    }
 }

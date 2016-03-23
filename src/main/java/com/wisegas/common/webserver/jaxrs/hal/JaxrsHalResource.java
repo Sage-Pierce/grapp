@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jersey.hal;
+package com.wisegas.common.webserver.jaxrs.hal;
 
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
 
@@ -6,7 +6,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-public abstract class JerseyHalResource {
+public abstract class JaxrsHalResource {
    @Context
    protected UriInfo uriInfo;
 

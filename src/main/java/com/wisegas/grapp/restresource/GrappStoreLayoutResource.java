@@ -4,8 +4,8 @@ import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
 import com.wisegas.grapp.service.dto.GrappStoreLayoutDTO;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/storeLayouts/{id}/")
-public class GrappStoreLayoutResource extends JerseyHalJsonResource {
+public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
 
    private final GrappStoreLayoutService grappStoreLayoutService;
 
@@ -116,18 +116,18 @@ public class GrappStoreLayoutResource extends JerseyHalJsonResource {
    private static List<HalLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateInnerOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("innerOutline"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("addFeature"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("reshapeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID", "polygon").withRel("reshapeFeature"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID").withRel("removeFeature"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("type","location").withRel("addNode"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("moveNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "location").withRel("moveNode"),
-         JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode")
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateInnerOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("innerOutline"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("addFeature"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("reshapeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID", "polygon").withRel("reshapeFeature"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID").withRel("removeFeature"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("type","location").withRel("addNode"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("moveNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "location").withRel("moveNode"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode")
       );
    }
 
-   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JerseyHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class);
+   private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class);
    }
 }

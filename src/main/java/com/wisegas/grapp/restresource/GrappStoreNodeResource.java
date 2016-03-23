@@ -2,8 +2,8 @@ package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappStoreNodeService;
 import com.wisegas.grapp.service.dto.GrappStoreNodeDTO;
 
@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Path("/nodes/{id}/")
-public class GrappStoreNodeResource extends JerseyHalJsonResource {
+public class GrappStoreNodeResource extends JaxrsHalJsonResource {
 
    private final GrappStoreNodeService grappStoreNodeService;
 
@@ -48,7 +48,7 @@ public class GrappStoreNodeResource extends JerseyHalJsonResource {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreNodeDTO.getId()).withSelfRel());
    }
 
-   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JerseyHalResourceLinkBuilder.linkTo(GrappStoreNodeResource.class).queryParams("name");
+   private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappStoreNodeResource.class).queryParams("name");
    }
 }

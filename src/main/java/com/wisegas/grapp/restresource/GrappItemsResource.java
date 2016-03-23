@@ -1,8 +1,8 @@
 package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappItemService;
 
 import javax.inject.Inject;
@@ -12,7 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 @Path("/items/")
-public class GrappItemsResource extends JerseyHalJsonResource {
+public class GrappItemsResource extends JaxrsHalJsonResource {
 
    private final GrappItemService grappItemService;
 
@@ -31,8 +31,8 @@ public class GrappItemsResource extends JerseyHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   private static JerseyHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JerseyHalResourceLinkBuilder.linkTo(GrappItemsResource.class).queryParams("superItemId", "name");
+   private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemsResource.class).queryParams("superItemId", "name");
    }
 
 }

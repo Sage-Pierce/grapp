@@ -1,8 +1,8 @@
 package com.wisegas.grapp.restresource;
 
 import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalJsonResource;
-import com.wisegas.common.webserver.jersey.hal.JerseyHalResourceLinkBuilder;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.service.api.GrappLoginService;
 import com.wisegas.grapp.service.dto.GrappUserDTO;
 
@@ -13,7 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 @Path("/login/")
-public class GrappLoginResource extends JerseyHalJsonResource {
+public class GrappLoginResource extends JaxrsHalJsonResource {
 
    private final GrappLoginService grappLoginService;
 
@@ -30,6 +30,6 @@ public class GrappLoginResource extends JerseyHalJsonResource {
    }
 
    protected static HalLink createRootLink(String rel) {
-      return JerseyHalResourceLinkBuilder.linkTo(GrappLoginResource.class).queryParams("email", "avatar").withRel(rel);
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappLoginResource.class).queryParams("email", "avatar").withRel(rel);
    }
 }

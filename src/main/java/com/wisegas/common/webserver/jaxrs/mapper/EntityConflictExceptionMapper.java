@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jersey.mapper;
+package com.wisegas.common.webserver.jaxrs.mapper;
 
 import com.wisegas.common.lang.exception.EntityConflictException;
 
