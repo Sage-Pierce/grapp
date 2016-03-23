@@ -22,7 +22,7 @@ public class GrappItemRepositoryImpl extends GenericRepositoryImpl<GrappItem> im
    }
 
    @Override
-   public Optional<GrappItem> findWithName(String name) {
+   public Optional<GrappItem> findByName(String name) {
       try {
          return Optional.of((GrappItem)entityManager.createQuery(" SELECT grappItem" +
                                                                  " FROM GrappItem grappItem" +

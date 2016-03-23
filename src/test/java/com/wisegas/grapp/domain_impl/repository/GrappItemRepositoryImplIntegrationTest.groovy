@@ -33,7 +33,7 @@ class GrappItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
       GrappItem grappItem = testEntityManager.save(Builders.grappItem())
 
       expect:
-      grappItemRepository.findWithName(grappItem.getName()).isPresent()
-      !grappItemRepository.findWithName("BOGUS NAME").isPresent()
+      grappItemRepository.findByName(grappItem.getName()).isPresent()
+      !grappItemRepository.findByName("BOGUS NAME").isPresent()
    }
 }

@@ -51,7 +51,7 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService, Grapp
    }
 
    private void assertItemNameUniqueness(String name) {
-      Optional<GrappItem> foundGrappItem = grappItemRepository.findWithName(name);
+      Optional<GrappItem> foundGrappItem = grappItemRepository.findByName(name);
       if (foundGrappItem.isPresent()) {
          throw new EntityConflictException("An Item with this name already exists: " + name + ", at " + stringifyItemHierarchy(foundGrappItem.get()));
       }

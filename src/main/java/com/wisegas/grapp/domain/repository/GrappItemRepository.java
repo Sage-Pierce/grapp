@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface GrappItemRepository extends GenericRepository<GrappItem> {
    List<GrappItem> getGeneralItems();
 
-   Optional<GrappItem> findWithName(String name);
+   Optional<GrappItem> findByName(String name);
 }
