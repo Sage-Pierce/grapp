@@ -2,6 +2,9 @@
    <a class="btn btn-success btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
       <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
    </a>
+   <a class="btn btn-default btn-xs default-cursor" ng-if="item.subItems.length == 0" disabled="true">
+      <span class="glyphicon glyphicon-record"></span>
+   </a>
    {{item.name}}
    <a class="clickable" ng-click="mainItemsVM.editItem(this)">
       <span class="glyphicon glyphicon-pencil"></span>

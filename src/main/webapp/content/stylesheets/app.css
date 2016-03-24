@@ -24,14 +24,13 @@ body {
     display: inline-flex !important;
 }
 
-.img-login {
-    width: 40px;
-    height: 40px;
-}
-
 .img-avatar {
     width: 18px;
     height: 18px;
+}
+
+.default-cursor {
+    cursor: default !important;
 }
 
 .clickable {
@@ -60,10 +59,6 @@ body {
     margin-top: 20px;
 }
 
-h2 i {
-    font-size: 10pt;
-}
-
 .full-width {
     width: 100%;
 }
@@ -72,10 +67,6 @@ h2 i {
     border: 1px solid #dae2ea;
     background: #f8faff;
     color: #7c9eb2;
-}
-
-.tree-node-content {
-    margin: 10px;
 }
 
 .tree-sub-node-alignment-offset {
