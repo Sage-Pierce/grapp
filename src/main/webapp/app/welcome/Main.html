@@ -8,16 +8,16 @@
       </div>
       <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav">
-            <li ng-show="mainVM.isUserLoggedIn()"><a class="clickable" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>
-            <li ng-show="mainVM.isUserLoggedIn()"><a class="clickable" ng-click="mainVM.showStores()">Stores</a></li>
-            <li ng-show="mainVM.isUserLoggedIn()"><a class="clickable" ng-click="mainVM.showItems()">Items</a></li>
+            <li ng-show="mainVM.isUserLoggedIn()"><a class="cursor-clickable" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>
+            <li ng-show="mainVM.isUserLoggedIn()"><a class="cursor-clickable" ng-click="mainVM.showStores()">Stores</a></li>
+            <li ng-show="mainVM.isUserLoggedIn()"><a class="cursor-clickable" ng-click="mainVM.showItems()">Items</a></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
             <button type="button" class="btn navbar-btn btn-info" ng-click="mainVM.logIn('google_plus')" ng-show="!mainVM.isUserLoggedIn()">Log in with Google+</button>
             <li class="dropdown" ng-show="mainVM.isUserLoggedIn()" uib-dropdown>
                <a class="dropdown-toggle" role="button" uib-dropdown-toggle>
                   {{mainVM.grappUserName}}
-                  <img class="clickable img-avatar" src="{{mainVM.grappUserAvatar}}"/>
+                  <img class="cursor-clickable img-avatar" src="{{mainVM.grappUserAvatar}}"/>
                   <span class="caret"></span>
                </a>
                <ul class="dropdown-menu" role="menu">

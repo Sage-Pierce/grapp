@@ -1,0 +1,40 @@
+.full-width {
+   width: 100%;
+}
+
+.lh-strut-5 {
+   margin-left: 5px;
+}
+
+.lh-strut-10 {
+   margin-left: 10px;
+}
+
+.lh-strut-20 {
+   margin-left: 20px;
+}
+
+.tv-strut-5 {
+   margin-top: 5px;
+}
+
+.tv-strut-10 {
+   margin-top: 10px;
+}
+
+.tv-strut-20 {
+   margin-top: 20px;
+}
+
+.l-padding-0 {
+   padding-left: 0;
+}
+
+.r-padding-0 {
+   padding-right: 0;
+}
+
+.lr-padding-0 {
+   padding-left: 0;
+   padding-right: 0;
+}

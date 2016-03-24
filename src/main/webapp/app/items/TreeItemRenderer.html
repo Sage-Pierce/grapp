@@ -2,14 +2,14 @@
    <a class="btn btn-success btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
       <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
    </a>
-   <a class="btn btn-default btn-xs default-cursor" ng-if="item.subItems.length == 0" disabled="true">
+   <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
       <span class="glyphicon glyphicon-record"></span>
    </a>
    {{item.name}}
-   <a class="clickable" ng-click="mainItemsVM.editItem(this)">
+   <a class="cursor-clickable" ng-click="mainItemsVM.editItem(this)">
       <span class="glyphicon glyphicon-pencil"></span>
    </a>
-   <a class="pull-right btn btn-danger btn-xs" ng-click="mainItemsVM.deleteItem(this)" data-nodrag>
+   <a class="pull-right btn btn-danger btn-xs" ng-click="mainItemsVM.deleteItem(this)">
       <span class="glyphicon glyphicon-remove"></span>
    </a>
    <a class="pull-right btn btn-primary btn-xs" ng-click="mainItemsVM.createItem(this)">
@@ -17,5 +17,5 @@
    </a>
 </div>
 <ol ui-tree-nodes ng-model="item.subItems" ng-class="{hidden: collapsed}">
-   <li class="tree-sub-node-alignment-offset" ng-repeat="item in item.subItems" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+   <li class="lh-strut-5" ng-repeat="item in item.subItems" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
 </ol>

@@ -1,0 +1,7 @@
+.cursor-default {
+   cursor: default !important;
+}
+
+.cursor-clickable {
+   cursor: pointer !important;
+}
