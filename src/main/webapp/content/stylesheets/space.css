@@ -1,7 +1,3 @@
-.full-width {
-   width: 100%;
-}
-
 .lh-strut-5 {
    margin-left: 5px;
 }
@@ -12,6 +8,21 @@
 
 .lh-strut-20 {
    margin-left: 20px;
+}
+
+.h-strut-5 {
+   margin-left: 5px;
+   margin-right: 5px;
+}
+
+.h-strut-10 {
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.h-strut-20 {
+   margin-left: 20px;
+   margin-right: 20px;
 }
 
 .tv-strut-5 {
@@ -26,15 +37,15 @@
    margin-top: 20px;
 }
 
-.l-padding-0 {
+.lh-padding-0 {
    padding-left: 0;
 }
 
-.r-padding-0 {
+.rh-padding-0 {
    padding-right: 0;
 }
 
-.lr-padding-0 {
+.h-padding-0 {
    padding-left: 0;
    padding-right: 0;
 }

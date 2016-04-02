@@ -59,7 +59,9 @@
       }
 
       function logIn(email, avatar) {
-         return GrappRoot.logIn({email: email, avatar: avatar}).then(cacheUser).then(GrappUser.load);
+         return GrappRoot.afterLoad().then(function(grappRoot) {
+            return grappRoot.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(GrappUser.load);
+         });
       }
 
       function cacheUser(grappUser) {

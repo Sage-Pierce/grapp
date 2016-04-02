@@ -8,7 +8,7 @@
    function GrappRoot($q) {
       var self = this;
       self.load = load;
-      self.logIn = logIn;
+      self.afterLoad = afterLoad;
       self.createResourceModel = createResourceModel;
       self.loadResourceModels = loadResourceModels;
       self.loadResourceModelByID = loadResourceModelByID;
@@ -22,12 +22,6 @@
 
       function load(grappRootRsc) {
          deferred.resolve(grappRootRsc);
-      }
-
-      function logIn(parameters) {
-         return afterLoad().then(function(grappRoot) {
-            return grappRoot.$put("logIn", parameters);
-         });
       }
 
       function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {

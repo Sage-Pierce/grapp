@@ -9,6 +9,7 @@
       var mainItemsVM = this;
       mainItemsVM.items = [];
       mainItemsVM.createGeneralItem = createGeneralItem;
+      mainItemsVM.importItems = importItems;
       mainItemsVM.createItem = createItem;
       mainItemsVM.editItem = editItem;
       mainItemsVM.deleteItem = deleteItem;
@@ -31,6 +32,14 @@
          });
       }
 
+      function importItems() {
+         openModalImportItems().then(function(result) {
+            GrappItem.importItems(result.data).then(function(itemModels) {
+               mainItemsVM.items = itemModels;
+            });
+         });
+      }
+
       function createItem(itemScope) {
          var itemModel = itemScope.$modelValue;
          openModalUpdateItem(null, false).then(function(result) {
@@ -47,6 +56,15 @@
          itemScope.$modelValue.delete().then(function() {
             itemScope.remove();
          });
+      }
+
+      function openModalImportItems() {
+         return $uibModal.open({
+            animation: true,
+            templateUrl: "app/items/ModalImportItems.html",
+            controller: "ModalImportItems",
+            controllerAs: "modalImportItemsVM"
+         }).result;
       }
 
       function openModalUpdateItem(itemModel, isGeneralItem) {

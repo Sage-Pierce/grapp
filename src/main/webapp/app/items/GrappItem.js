@@ -8,12 +8,19 @@
    function GrappItem(GrappRoot) {
       var self = this;
       self.createGeneralItem = createGeneralItem;
+      self.importItems = importItems;
       self.loadAllGeneral = loadAllGeneral;
 
       ////////////////////
 
       function createGeneralItem(name) {
          return GrappRoot.createResourceModel("generalItems", {name: name}, createModel);
+      }
+
+      function importItems(data) {
+         return GrappRoot.afterLoad().then(function(grappRoot) {
+            return grappRoot.$put("importItems", {type: "NACS"}, data, {headers: {"Content-Type": "text/plain"}}).then(loadAllGeneral);
+         });
       }
 
       function loadAllGeneral() {

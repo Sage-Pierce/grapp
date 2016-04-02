@@ -1,8 +1,13 @@
 <div class="col-sm-6 col-sm-offset-3" ui-tree>
-   <button type="button" class="btn btn-success full-width" ng-click="mainItemsVM.createGeneralItem()">New General Item</button>
-   <div ui-tree data-empty-placeholder-enabled="false">
-      <ol ui-tree-nodes ng-model="mainItemsVM.items">
-         <li ng-repeat="item in mainItemsVM.items" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
-      </ol>
+   <div class="border-1-solid-grey height-400 height-scrollable">
+      <div ui-tree data-empty-placeholder-enabled="false">
+         <ol ui-tree-nodes ng-model="mainItemsVM.items">
+            <li ng-repeat="item in mainItemsVM.items" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+         </ol>
+      </div>
+   </div>
+   <div>
+      <button class="btn btn-success pull-left" ng-click="mainItemsVM.createGeneralItem()"><span class="glyphicon glyphicon-plus-sign"></span> Add General Item</button>
+      <button class="btn btn-primary pull-right" ng-click="mainItemsVM.importItems()"><span class="glyphicon glyphicon-import"></span> Import NACS Items</button>
    </div>
 </div>
