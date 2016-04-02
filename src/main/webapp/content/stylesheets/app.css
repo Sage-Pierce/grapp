@@ -37,11 +37,6 @@ body {
    height: 300px;
 }
 
-.tab-content {
-   margin-left: 10px;
-   margin-right: 10px;
-}
-
 .tree-node {
    border: 1px solid #dae2ea;
    background: #f8faff;
