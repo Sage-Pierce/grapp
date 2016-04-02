@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "\"GrappItem\"")
 public class GrappItem extends NamedEntity<GrappItemID> {
    @EmbeddedId
    private GrappItemID id;

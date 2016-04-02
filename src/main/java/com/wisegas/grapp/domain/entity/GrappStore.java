@@ -1,14 +1,13 @@
 package com.wisegas.grapp.domain.entity;
 
+import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappStoreID;
-import com.wisegas.common.lang.value.GeoPoint;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "\"GrappStore\"")
 public class GrappStore extends NamedEntity<GrappStoreID> {
    @EmbeddedId
    private GrappStoreID id;

@@ -1,20 +1,19 @@
 package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.common.domain.model.DomainEventPublisher;
-import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
-import com.wisegas.grapp.domain.value.GrappStoreNodeType;
+import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
+import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.domain.value.GrappStoreNodeID;
 import com.wisegas.grapp.domain.value.GrappStoreNodeItem;
-import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "\"GrappStoreNode\"")
 public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
    @EmbeddedId
    private GrappStoreNodeID id;

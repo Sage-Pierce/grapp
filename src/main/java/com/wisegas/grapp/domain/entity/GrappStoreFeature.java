@@ -1,14 +1,13 @@
 package com.wisegas.grapp.domain.entity;
 
+import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
-import com.wisegas.common.lang.value.GeoPolygon;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "\"GrappStoreFeature\"")
 public class GrappStoreFeature extends SimpleEntity<GrappStoreFeatureID> {
    @EmbeddedId
    private GrappStoreFeatureID id;

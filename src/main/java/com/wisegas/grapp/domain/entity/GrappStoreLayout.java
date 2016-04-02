@@ -1,16 +1,20 @@
 package com.wisegas.grapp.domain.entity;
 
-import com.wisegas.grapp.domain.value.*;
 import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.common.lang.value.GeoPolygon;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
+import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
+import com.wisegas.grapp.domain.value.GrappStoreNodeID;
+import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
-@Table(name = "\"GrappStoreLayout\"")
 public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutID> {
    @EmbeddedId
    private GrappStoreLayoutID id;

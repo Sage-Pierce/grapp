@@ -1,14 +1,15 @@
 package com.wisegas.grapp.domain.value;
 
 import com.wisegas.grapp.domain.entity.GrappItem;
-import com.wisegas.grapp.domain.entity.GrappStore;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "\"GrappStoreNodeItem\"")
 public class GrappStoreNodeItem implements Serializable {
 
    @Id
