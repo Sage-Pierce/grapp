@@ -3,6 +3,7 @@ package com.wisegas.grapp.domain_impl.repository;
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImpl;
 import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.repository.GrappItemRepository;
+import com.wisegas.grapp.domain.value.GrappItemCode;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -28,6 +29,23 @@ public class GrappItemRepositoryImpl extends GenericRepositoryImpl<GrappItem> im
                                                                  " FROM GrappItem grappItem" +
                                                                  " WHERE grappItem.name = :name")
                                                     .setParameter("name", name)
+                                                    .getSingleResult());
+      }
+      catch (Exception e) {
+         return Optional.empty();
+      }
+   }
+
+   @Override
+   public Optional<GrappItem> findByCode(GrappItemCode code) {
+      try {
+         return Optional.of((GrappItem)entityManager.createQuery(" SELECT grappItem" +
+                                                                 " FROM GrappItem grappItem" +
+                                                                 "    JOIN grappItem.codes code" +
+                                                                 " WHERE code.type = :codeType" +
+                                                                 "    AND code.value = :codeValue")
+                                                    .setParameter("codeType", code.getType())
+                                                    .setParameter("codeValue", code.getValue())
                                                     .getSingleResult());
       }
       catch (Exception e) {

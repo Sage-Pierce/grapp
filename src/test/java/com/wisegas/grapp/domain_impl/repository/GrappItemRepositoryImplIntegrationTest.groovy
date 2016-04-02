@@ -4,6 +4,8 @@ import com.wisegas.common.lang.annotation.Transactional
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import com.wisegas.grapp.domain.entity.GrappItem
 import com.wisegas.grapp.domain.repository.GrappItemRepository
+import com.wisegas.grapp.domain.value.GrappItemCode
+import com.wisegas.grapp.domain.value.GrappItemCodeType
 import com.wisegas.grapp.test.Builders
 
 import javax.inject.Inject
@@ -35,5 +37,20 @@ class GrappItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
       expect:
       grappItemRepository.findByName(grappItem.getName()).isPresent()
       !grappItemRepository.findByName("BOGUS NAME").isPresent()
+   }
+
+   def "GrappItems can be found by code"() {
+      given:
+      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "12-34-56")
+      GrappItem grappItem = Builders.grappItem()
+      grappItem.addCode(code)
+      testEntityManager.save(grappItem)
+
+      when:
+      def result = grappItemRepository.findByCode(code)
+
+      then:
+      result.isPresent()
+      result.get().equals(grappItem)
    }
 }

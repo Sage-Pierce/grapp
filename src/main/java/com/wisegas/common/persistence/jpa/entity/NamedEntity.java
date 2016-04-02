@@ -15,6 +15,9 @@ public abstract class NamedEntity<T extends EntityID> extends SimpleEntity<T> {
    }
 
    public void setName(String name) {
+      if (name == null || (name = name.trim()).isEmpty()) {
+         throw new IllegalArgumentException("Entity name must not be null/empty: " + name);
+      }
       this.name = name;
    }
 }

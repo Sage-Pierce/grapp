@@ -1,12 +1,11 @@
 package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
+import com.wisegas.grapp.domain.value.GrappItemCode;
 import com.wisegas.grapp.domain.value.GrappItemID;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "\"GrappItem\"")
@@ -16,6 +15,9 @@ public class GrappItem extends NamedEntity<GrappItemID> {
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
    private GrappItem superItem;
+
+   @ElementCollection
+   private Set<GrappItemCode> codes = new HashSet<>();
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "superItem")
    private List<GrappItem> subItems = new ArrayList<>();
@@ -34,17 +36,6 @@ public class GrappItem extends NamedEntity<GrappItemID> {
       setSuperItem(superItem);
    }
 
-   public GrappItem addSubItem(String name) {
-      GrappItem subItem = new GrappItem(this, name);
-      subItems.add(subItem);
-      return subItem;
-   }
-
-   @Override
-   public GrappItemID getId() {
-      return id;
-   }
-
    public List<GrappItem> getHierarchy() {
       List<GrappItem> hierarchy = new ArrayList<>();
       hierarchy.add(this);
@@ -56,16 +47,35 @@ public class GrappItem extends NamedEntity<GrappItemID> {
       return hierarchy;
    }
 
+   @Override
+   public GrappItemID getId() {
+      return id;
+   }
+
+   public Set<GrappItemCode> getCodes() {
+      return codes;
+   }
+
+   public void addCode(GrappItemCode code) {
+      codes.add(code);
+   }
+
+   public List<GrappItem> getSubItems() {
+      return subItems;
+   }
+
+   public GrappItem addSubItem(String name) {
+      GrappItem subItem = new GrappItem(this, name);
+      subItems.add(subItem);
+      return subItem;
+   }
+
    public boolean isGeneralItem() {
       return superItem == null;
    }
 
    public GrappItem getSuperItem() {
       return superItem;
-   }
-
-   public List<GrappItem> getSubItems() {
-      return subItems;
    }
 
    private void setSuperItem(GrappItem superItem) {

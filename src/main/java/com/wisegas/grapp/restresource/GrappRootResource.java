@@ -29,6 +29,7 @@ public class GrappRootResource extends JaxrsHalJsonResource {
          GrappStoresResource.createRootLink("stores"),
          GrappGeneralItemsResource.createRootLink("generalItems"),
          GrappItemsResource.createRootLink("items"),
+         GrappItemImportResource.createRootLink("importItems"),
          GrappItemResource.createRootLink("itemById")
       );
    }
