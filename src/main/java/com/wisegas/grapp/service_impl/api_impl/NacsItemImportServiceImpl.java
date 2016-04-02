@@ -76,7 +76,7 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
    }
 
    private GrappItemCode nacsIdToGrappItemCode(NacsId nacsId) {
-      return new GrappItemCode(GrappItemCodeType.NACS, nacsId.toString());
+      return new GrappItemCode(GrappItemCodeType.NACS, nacsId.toString(GrappItemCodeType.NACS.getValueFormat()));
    }
 
    private Optional<GrappItem> tryToImportItemAsGeneralItem(GrappItemCode code, String name) {

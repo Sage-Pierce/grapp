@@ -1,7 +1,5 @@
 package com.wisegas.grapp.service_impl.value;
 
-import com.wisegas.grapp.domain.value.GrappItemCodeType;
-
 import java.util.Objects;
 
 public class NacsId {
@@ -58,8 +56,7 @@ public class NacsId {
       return Objects.hash(categoryId, subCategoryId, itemId);
    }
 
-   @Override
-   public String toString() {
-      return GrappItemCodeType.NACS.formatCodeValue(categoryId, subCategoryId, itemId);
+   public String toString(String format) {
+      return String.format(format, categoryId, subCategoryId, itemId);
    }
 }

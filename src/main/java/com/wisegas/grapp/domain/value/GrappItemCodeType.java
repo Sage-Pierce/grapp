@@ -5,8 +5,8 @@ public enum GrappItemCodeType {
 
    private final String valueFormat;
 
-   public String formatCodeValue(Object... args) {
-      return String.format(valueFormat, args);
+   public String getValueFormat() {
+      return valueFormat;
    }
 
    GrappItemCodeType(String valueFormat) {
