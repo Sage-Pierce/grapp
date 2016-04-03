@@ -6,23 +6,23 @@ import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class GrappUserIDFUCK extends EntityID {
+public class GrappItemId extends EntityID {
    @Basic
    private String id;
 
-   public static GrappUserIDFUCK generate() {
-      return new GrappUserIDFUCK(generateValue());
+   public static GrappItemId generate() {
+      return new GrappItemId(generateValue());
    }
 
-   public static GrappUserIDFUCK fromString(String string) {
-      return new GrappUserIDFUCK(string);
+   public static GrappItemId fromString(String string) {
+      return new GrappItemId(string);
    }
 
-   protected GrappUserIDFUCK() {
+   protected GrappItemId() {
 
    }
 
-   private GrappUserIDFUCK(String id) {
+   private GrappItemId(String id) {
       this.id = id;
    }
 

@@ -4,9 +4,9 @@ import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.domain.value.GrappStoreFeatureIDFUCK;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutIDFUCK;
-import com.wisegas.grapp.domain.value.GrappStoreNodeIDFUCK;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureId;
+import com.wisegas.grapp.domain.value.GrappStoreLayoutId;
+import com.wisegas.grapp.domain.value.GrappStoreNodeId;
 import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 
 import javax.persistence.*;
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutIDFUCK> {
+public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
    @EmbeddedId
-   private GrappStoreLayoutIDFUCK id;
+   private GrappStoreLayoutId id;
 
    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStore grappStore;
@@ -32,14 +32,14 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutIDFUCK> {
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreLayout", orphanRemoval = true)
    @MapKey(name = "id")
-   private Map<GrappStoreFeatureIDFUCK, GrappStoreFeature> features = new HashMap<>();
+   private Map<GrappStoreFeatureId, GrappStoreFeature> features = new HashMap<>();
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreLayout", orphanRemoval = true)
    @MapKey(name = "id")
-   private Map<GrappStoreNodeIDFUCK, GrappStoreNode> nodes = new HashMap<>();
+   private Map<GrappStoreNodeId, GrappStoreNode> nodes = new HashMap<>();
 
    public GrappStoreLayout(GrappStore grappStore) {
-      id = GrappStoreLayoutIDFUCK.generate();
+      id = GrappStoreLayoutId.generate();
       setGrappStore(grappStore);
    }
 
@@ -48,7 +48,7 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutIDFUCK> {
    }
 
    @Override
-   public GrappStoreLayoutIDFUCK getId() {
+   public GrappStoreLayoutId getId() {
       return id;
    }
 
@@ -76,14 +76,14 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutIDFUCK> {
       return features.values();
    }
 
-   public GrappStoreFeature reshapeFeature(GrappStoreFeatureIDFUCK grappStoreFeatureIDFUCK, GeoPolygon polygon) {
-      if (features.containsKey(grappStoreFeatureIDFUCK)) {
-         GrappStoreFeature grappStoreFeature = features.get(grappStoreFeatureIDFUCK);
+   public GrappStoreFeature reshapeFeature(GrappStoreFeatureId grappStoreFeatureId, GeoPolygon polygon) {
+      if (features.containsKey(grappStoreFeatureId)) {
+         GrappStoreFeature grappStoreFeature = features.get(grappStoreFeatureId);
          grappStoreFeature.setPolygon(polygon);
          return grappStoreFeature;
       }
       else {
-         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureIDFUCK, getId()));
+         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureId, getId()));
       }
    }
 
@@ -93,31 +93,31 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutIDFUCK> {
       return feature;
    }
 
-   public void removeFeature(GrappStoreFeatureIDFUCK grappStoreFeatureIDFUCK) {
-      if (features.containsKey(grappStoreFeatureIDFUCK)) {
-         features.remove(grappStoreFeatureIDFUCK);
+   public void removeFeature(GrappStoreFeatureId grappStoreFeatureId) {
+      if (features.containsKey(grappStoreFeatureId)) {
+         features.remove(grappStoreFeatureId);
       }
       else {
-         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureIDFUCK, getId()));
+         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureId, getId()));
       }
    }
 
-   public GrappStoreNode getNode(GrappStoreNodeIDFUCK grappStoreNodeIDFUCK) {
-      return nodes.get(grappStoreNodeIDFUCK);
+   public GrappStoreNode getNode(GrappStoreNodeId grappStoreNodeId) {
+      return nodes.get(grappStoreNodeId);
    }
 
    public Collection<GrappStoreNode> getNodes() {
       return nodes.values();
    }
 
-   public GrappStoreNode moveNode(GrappStoreNodeIDFUCK grappStoreNodeIDFUCK, GeoPoint location) {
-      if (nodes.containsKey(grappStoreNodeIDFUCK)) {
-         GrappStoreNode grappStoreNode = nodes.get(grappStoreNodeIDFUCK);
+   public GrappStoreNode moveNode(GrappStoreNodeId grappStoreNodeId, GeoPoint location) {
+      if (nodes.containsKey(grappStoreNodeId)) {
+         GrappStoreNode grappStoreNode = nodes.get(grappStoreNodeId);
          grappStoreNode.setLocation(location);
          return grappStoreNode;
       }
       else {
-         throw new RuntimeException(String.format("Node (%s) not found in Layout (%s).", grappStoreNodeIDFUCK, getId()));
+         throw new RuntimeException(String.format("Node (%s) not found in Layout (%s).", grappStoreNodeId, getId()));
       }
    }
 
@@ -130,12 +130,12 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutIDFUCK> {
       return node;
    }
 
-   public void removeNode(GrappStoreNodeIDFUCK grappStoreNodeIDFUCK) {
-      if (nodes.containsKey(grappStoreNodeIDFUCK)) {
-         nodes.remove(grappStoreNodeIDFUCK);
+   public void removeNode(GrappStoreNodeId grappStoreNodeId) {
+      if (nodes.containsKey(grappStoreNodeId)) {
+         nodes.remove(grappStoreNodeId);
       }
       else {
-         throw new RuntimeException(String.format("Node ($s) not found in Layout (%s).", grappStoreNodeIDFUCK, getId()));
+         throw new RuntimeException(String.format("Node ($s) not found in Layout (%s).", grappStoreNodeId, getId()));
       }
    }
 

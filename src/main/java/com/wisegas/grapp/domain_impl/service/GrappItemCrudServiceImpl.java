@@ -5,7 +5,7 @@ import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.domain.service.GrappItemCreationService;
 import com.wisegas.grapp.domain.service.GrappItemUpdateService;
-import com.wisegas.grapp.domain.value.GrappItemIDFUCK;
+import com.wisegas.grapp.domain.value.GrappItemId;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,14 +34,14 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService, Grapp
    }
 
    @Override
-   public GrappItem createSubItem(GrappItemIDFUCK superItemId, String name) {
+   public GrappItem createSubItem(GrappItemId superItemId, String name) {
       assertItemNameUniqueness(name);
       GrappItem superItem = grappItemRepository.get(superItemId);
       return superItem.addSubItem(name);
    }
 
    @Override
-   public GrappItem updateName(GrappItemIDFUCK id, String name) {
+   public GrappItem updateName(GrappItemId id, String name) {
       GrappItem grappItem = grappItemRepository.get(id);
       if (!grappItem.getName().equals(name)) {
          assertItemNameUniqueness(name);

@@ -3,14 +3,14 @@ package com.wisegas.grapp.domain.entity;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
-import com.wisegas.grapp.domain.value.GrappStoreIDFUCK;
+import com.wisegas.grapp.domain.value.GrappStoreId;
 
 import javax.persistence.*;
 
 @Entity
-public class GrappStore extends NamedEntity<GrappStoreIDFUCK> {
+public class GrappStore extends NamedEntity<GrappStoreId> {
    @EmbeddedId
-   private GrappStoreIDFUCK id;
+   private GrappStoreId id;
 
    @Column(length = 63)
    @Convert(converter = GeoPointConverter.class)
@@ -20,7 +20,7 @@ public class GrappStore extends NamedEntity<GrappStoreIDFUCK> {
    private GrappStoreLayout grappStoreLayout = new GrappStoreLayout(this);
 
    public GrappStore(String name, GeoPoint location) {
-      id = GrappStoreIDFUCK.generate();
+      id = GrappStoreId.generate();
       setName(name);
       setLocation(location);
    }
@@ -30,7 +30,7 @@ public class GrappStore extends NamedEntity<GrappStoreIDFUCK> {
    }
 
    @Override
-   public GrappStoreIDFUCK getId() {
+   public GrappStoreId getId() {
       return id;
    }
 

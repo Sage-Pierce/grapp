@@ -6,7 +6,7 @@ import com.wisegas.common.lang.value.IdName;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
-import com.wisegas.grapp.domain.value.GrappStoreNodeIDFUCK;
+import com.wisegas.grapp.domain.value.GrappStoreNodeId;
 import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 
 import javax.persistence.*;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class GrappStoreNode extends NamedEntity<GrappStoreNodeIDFUCK> {
+public class GrappStoreNode extends NamedEntity<GrappStoreNodeId> {
    @EmbeddedId
-   private GrappStoreNodeIDFUCK id;
+   private GrappStoreNodeId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreLayout grappStoreLayout;
@@ -32,7 +32,7 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeIDFUCK> {
    private List<GrappStoreNodeItem> grappStoreNodeItems = new ArrayList<>();
 
    public GrappStoreNode(GrappStoreLayout grappStoreLayout, String name, GrappStoreNodeType type, GeoPoint location) {
-      id = GrappStoreNodeIDFUCK.generate();
+      id = GrappStoreNodeId.generate();
       setGrappStoreLayout(grappStoreLayout);
       setName(name);
       setType(type);
@@ -44,7 +44,7 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeIDFUCK> {
    }
 
    @Override
-   public GrappStoreNodeIDFUCK getId() {
+   public GrappStoreNodeId getId() {
       return id;
    }
 

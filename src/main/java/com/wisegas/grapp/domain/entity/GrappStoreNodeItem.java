@@ -2,14 +2,14 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.common.lang.value.IdName;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.domain.value.GrappStoreNodeItemIDFUCK;
+import com.wisegas.grapp.domain.value.GrappStoreNodeItemId;
 
 import javax.persistence.*;
 
 @Entity
-public class GrappStoreNodeItem extends SimpleEntity<GrappStoreNodeItemIDFUCK> {
+public class GrappStoreNodeItem extends SimpleEntity<GrappStoreNodeItemId> {
    @EmbeddedId
-   private GrappStoreNodeItemIDFUCK id;
+   private GrappStoreNodeItemId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
    private GrappStoreNode grappStoreNode;
@@ -23,7 +23,7 @@ public class GrappStoreNodeItem extends SimpleEntity<GrappStoreNodeItemIDFUCK> {
    private IdName item;
 
    public GrappStoreNodeItem(GrappStoreNode grappStoreNode, IdName item) {
-      id = GrappStoreNodeItemIDFUCK.generate();
+      id = GrappStoreNodeItemId.generate();
       setGrappStoreNode(grappStoreNode);
       setItem(item);
    }
@@ -33,7 +33,7 @@ public class GrappStoreNodeItem extends SimpleEntity<GrappStoreNodeItemIDFUCK> {
    }
 
    @Override
-   public GrappStoreNodeItemIDFUCK getId() {
+   public GrappStoreNodeItemId getId() {
       return id;
    }
 
