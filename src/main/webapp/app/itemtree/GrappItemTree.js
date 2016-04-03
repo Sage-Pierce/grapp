@@ -10,7 +10,7 @@
          restrict: "E",
          controller: "GrappItemTree",
          controllerAs: "grappItemTreeVM",
-         templateUrl: "app/items/GrappItemTree.html",
+         templateUrl: "app/itemtree/GrappItemTree.html",
          scope: {},
          bindToController: {
             items: "=",
