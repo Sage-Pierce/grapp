@@ -23,18 +23,6 @@ public class NacsId {
       }
    }
 
-   public boolean isCategoryId() {
-      return !isSubCategoryId() && !isItemId();
-   }
-
-   public boolean isSubCategoryId() {
-      return !isItemId() && !Objects.equals(subCategoryId, 0);
-   }
-
-   public boolean isItemId() {
-      return !Objects.equals(itemId, 0);
-   }
-
    @Override
    public boolean equals(Object o) {
       if (this == o) {
@@ -58,5 +46,17 @@ public class NacsId {
 
    public String toString(String format) {
       return String.format(format, categoryId, subCategoryId, itemId);
+   }
+
+   public boolean isCategoryId() {
+      return !isSubCategoryId() && !isItemId();
+   }
+
+   public boolean isSubCategoryId() {
+      return !isItemId() && !Objects.equals(subCategoryId, 0);
+   }
+
+   public boolean isItemId() {
+      return !Objects.equals(itemId, 0);
    }
 }
