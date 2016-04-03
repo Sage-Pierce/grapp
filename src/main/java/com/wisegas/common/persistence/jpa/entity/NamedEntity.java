@@ -1,12 +1,12 @@
 package com.wisegas.common.persistence.jpa.entity;
 
-import com.wisegas.common.persistence.jpa.value.EntityID;
+import com.wisegas.common.persistence.jpa.value.EntityIdFuck;
 
 import javax.persistence.Basic;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class NamedEntity<T extends EntityID> extends SimpleEntity<T> {
+public abstract class NamedEntity<T extends EntityIdFuck> extends SimpleEntity<T> {
    @Basic(optional = false)
    private String name;
 

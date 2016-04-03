@@ -3,7 +3,7 @@ package com.wisegas.common.persistence.jpa.value;
 import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class EntityID implements Serializable {
+public abstract class EntityIdFuck implements Serializable {
 
    @Override
    public boolean equals(Object object) {

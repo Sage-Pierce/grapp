@@ -2,7 +2,7 @@ package com.wisegas.common.persistence.jpa.impl;
 
 import com.wisegas.common.persistence.jpa.api.GenericRepository;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.common.persistence.jpa.value.EntityID;
+import com.wisegas.common.persistence.jpa.value.EntityIdFuck;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,7 +33,7 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    }
 
    @Override
-   public T get(EntityID id) {
+   public T get(EntityIdFuck id) {
       return (T)entityManager.createQuery(" SELECT entity" +
                                           " FROM " + getEntityClassName() + " entity" +
                                           " WHERE entity.id = :id")
