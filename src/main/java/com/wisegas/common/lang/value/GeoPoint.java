@@ -2,7 +2,7 @@ package com.wisegas.common.lang.value;
 
 import java.util.Objects;
 
-public class GeoPoint extends JsonValue {
+public final class GeoPoint extends JsonValue {
 
    private double lat;
    private double lng;
@@ -21,17 +21,18 @@ public class GeoPoint extends JsonValue {
    }
 
    @Override
-   public boolean equals(Object object) {
-      if (this == object) {
+   public boolean equals(Object o) {
+      if (this == o) {
          return true;
       }
-      else if (object != null && getClass().equals(object.getClass())) {
-         GeoPoint otherGeoPoint = (GeoPoint)object;
-         return lat == otherGeoPoint.lat && lng == otherGeoPoint.lng;
-      }
-      else {
+
+      if (o == null || !getClass().equals(o.getClass())){
          return false;
       }
+
+      GeoPoint geoPoint = (GeoPoint)o;
+      return this.lat == geoPoint.lat &&
+             this.lng == geoPoint.lng;
    }
 
    @Override

@@ -1,16 +1,7 @@
 package com.wisegas.grapp.test
 
-import com.wisegas.grapp.domain.entity.GrappItem
-import com.wisegas.grapp.domain.entity.GrappStore
-import com.wisegas.grapp.domain.entity.GrappStoreLayout
-import com.wisegas.grapp.domain.entity.GrappStoreNode
-import com.wisegas.grapp.domain.entity.GrappUser
-import com.wisegas.grapp.domain.entity.GrappUserList
-import com.wisegas.grapp.test.builders.GrappItemBuilder
-import com.wisegas.grapp.test.builders.GrappStoreBuilder
-import com.wisegas.grapp.test.builders.GrappStoreNodeBuilder
-import com.wisegas.grapp.test.builders.GrappUserBuilder
-import com.wisegas.grapp.test.builders.GrappUserListBuilder
+import com.wisegas.grapp.domain.entity.*
+import com.wisegas.grapp.test.builders.*
 
 class Builders {
 
@@ -32,6 +23,10 @@ class Builders {
 
    static GrappStoreNode grappStoreNode() {
       GrappStoreNodeBuilder.grappStoreNode()
+   }
+
+   static GrappStoreNodeItem grappStoreNodeItem() {
+      GrappStoreNodeItemBuilder.grappStoreNodeItem()
    }
 
    static GrappItem grappItem() {

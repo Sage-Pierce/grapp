@@ -1,6 +1,5 @@
 package com.wisegas.common.persistence.jpa.converter
 
-import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter
 import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.lang.value.GeoPolygon
 import spock.lang.Specification

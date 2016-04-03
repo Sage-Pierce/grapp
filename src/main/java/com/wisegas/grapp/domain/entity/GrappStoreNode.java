@@ -2,11 +2,11 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.common.domain.model.DomainEventPublisher;
 import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.lang.value.IdName;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.domain.value.GrappStoreNodeID;
-import com.wisegas.grapp.domain.value.GrappStoreNodeItem;
 import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 
 import javax.persistence.*;
@@ -69,6 +69,12 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeID> {
 
    public List<GrappStoreNodeItem> getGrappStoreNodeItems() {
       return grappStoreNodeItems;
+   }
+
+   public GrappStoreNodeItem addItem(IdName item) {
+      GrappStoreNodeItem grappStoreNodeItem = new GrappStoreNodeItem(this, item);
+      grappStoreNodeItems.add(grappStoreNodeItem);
+      return grappStoreNodeItem;
    }
 
    private void setGrappStoreLayout(GrappStoreLayout grappStoreLayout) {
