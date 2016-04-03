@@ -1,7 +1,7 @@
 package com.wisegas.common.persistence.jpa.api;
 
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.common.persistence.jpa.value.EntityIdFuck;
+import com.wisegas.common.persistence.jpa.value.EntityId;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface GenericRepository<T extends SimpleEntity> {
 
    List<T> getAll();
 
-   T get(EntityIdFuck entityIdFuck);
+   T get(EntityId entityId);
 
    T remove(T t);
 }

@@ -1,13 +1,13 @@
 package com.wisegas.grapp.domain.value;
 
-import com.wisegas.common.persistence.jpa.value.EntityIdFuck;
+import com.wisegas.common.persistence.jpa.value.EntityId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class GrappStoreFeatureId extends EntityIdFuck implements Serializable {
+public class GrappStoreFeatureId extends EntityId implements Serializable {
    @Basic
    private String id;
 
