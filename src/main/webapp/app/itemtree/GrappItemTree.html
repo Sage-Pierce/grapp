@@ -5,7 +5,7 @@
 </div>
 <script type="text/ng-template" id="TreeItemRenderer.html">
    <div class="tree-node">
-      <a class="btn btn-success btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
+      <a class="btn btn-primary btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
          <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
       </a>
       <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
@@ -18,7 +18,7 @@
       <a class="pull-right btn btn-danger btn-xs" ng-click="grappItemTreeVM.remove(this)">
          <span class="glyphicon glyphicon-remove"></span>
       </a>
-      <a class="pull-right btn btn-primary btn-xs" ng-click="grappItemTreeVM.add(this)">
+      <a class="pull-right btn btn-success btn-xs" ng-click="grappItemTreeVM.add(this)">
          <span class="glyphicon glyphicon-plus"></span>
       </a>
    </div>
