@@ -1,0 +1,28 @@
+<div ui-tree data-empty-placeholder-enabled="false">
+   <ol ui-tree-nodes ng-model="grappItemTreeVM.items">
+      <li ng-repeat="item in grappItemTreeVM.items" ng-include="'TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+   </ol>
+</div>
+<script type="text/ng-template" id="TreeItemRenderer.html">
+   <div class="tree-node">
+      <a class="btn btn-success btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
+         <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+      </a>
+      <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
+         <span class="glyphicon glyphicon-record"></span>
+      </a>
+      {{item.name}}
+      <a class="cursor-clickable" ng-click="grappItemTreeVM.edit(this)">
+         <span class="glyphicon glyphicon-pencil"></span>
+      </a>
+      <a class="pull-right btn btn-danger btn-xs" ng-click="grappItemTreeVM.remove(this)">
+         <span class="glyphicon glyphicon-remove"></span>
+      </a>
+      <a class="pull-right btn btn-primary btn-xs" ng-click="grappItemTreeVM.add(this)">
+         <span class="glyphicon glyphicon-plus"></span>
+      </a>
+   </div>
+   <ol ui-tree-nodes ng-model="item.subItems" ng-class="{hidden: collapsed}">
+      <li class="lh-strut-5" ng-repeat="item in item.subItems" ng-include="'TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+   </ol>
+</script>

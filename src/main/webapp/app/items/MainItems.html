@@ -1,10 +1,10 @@
 <div class="col-sm-6 col-sm-offset-3" ui-tree>
    <div class="border-1-solid-grey height-400 height-scrollable">
-      <div ui-tree data-empty-placeholder-enabled="false">
-         <ol ui-tree-nodes ng-model="mainItemsVM.items">
-            <li ng-repeat="item in mainItemsVM.items" ng-include="'app/items/TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
-         </ol>
-      </div>
+      <grapp-item-tree items="mainItemsVM.items"
+                       add="mainItemsVM.createSubItem"
+                       edit="mainItemsVM.editItem"
+                       remove="mainItemsVM.deleteItem">
+      </grapp-item-tree>
    </div>
    <div>
       <button class="btn btn-success pull-left" ng-click="mainItemsVM.createGeneralItem()"><span class="glyphicon glyphicon-plus-sign"></span> Add General Item</button>

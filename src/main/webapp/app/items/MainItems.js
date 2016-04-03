@@ -10,7 +10,7 @@
       mainItemsVM.items = [];
       mainItemsVM.createGeneralItem = createGeneralItem;
       mainItemsVM.importItems = importItems;
-      mainItemsVM.createItem = createItem;
+      mainItemsVM.createSubItem = createSubItem;
       mainItemsVM.editItem = editItem;
       mainItemsVM.deleteItem = deleteItem;
 
@@ -40,7 +40,7 @@
          });
       }
 
-      function createItem(itemScope) {
+      function createSubItem(itemScope) {
          var itemModel = itemScope.$modelValue;
          openModalUpdateItem(null, false).then(function(result) {
             itemModel.addSubItem(result.name);
