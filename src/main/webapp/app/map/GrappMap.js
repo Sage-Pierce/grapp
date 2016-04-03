@@ -10,7 +10,7 @@
          restrict: "E",
          controller: "GrappMap",
          controllerAs: "grappMapVM",
-         templateUrl: "app/mapping/GrappMap.html",
+         templateUrl: "app/map/GrappMap.html",
          scope: {},
          bindToController: {
             grappMapControl: "=",

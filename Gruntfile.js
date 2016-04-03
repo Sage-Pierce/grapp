@@ -13,9 +13,9 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/items/*.js"],
             tasks: ["jshint", "concat:items"]
          },
-         mapping: {
-            files: [webappRoot + "app/mapping/*.js"],
-            tasks: ["jshint", "concat:mapping"]
+         map: {
+            files: [webappRoot + "app/map/*.js"],
+            tasks: ["jshint", "concat:map"]
          },
          model: {
             files: [webappRoot + "app/model/*.js"],
@@ -61,7 +61,7 @@ module.exports = function (grunt) {
          all: [
             webappRoot + "app/*.js",
             webappRoot + "app/items/*.js",
-            webappRoot + "app/mapping/*.js",
+            webappRoot + "app/map/*.js",
             webappRoot + "app/model/*.js",
             webappRoot + "app/shoppinglists/*.js",
             webappRoot + "app/storemap/*.js",
@@ -80,9 +80,9 @@ module.exports = function (grunt) {
             src: [webappRoot + "app/items/*.js"],
             dest: webappRoot + "concat/items-concat.js"
          },
-         mapping: {
-            src: [webappRoot + "app/mapping/*.js"],
-            dest: webappRoot + "concat/mapping-concat.js"
+         map: {
+            src: [webappRoot + "app/map/*.js"],
+            dest: webappRoot + "concat/map-concat.js"
          },
          model: {
             src: [webappRoot + "app/model/*.js"],
