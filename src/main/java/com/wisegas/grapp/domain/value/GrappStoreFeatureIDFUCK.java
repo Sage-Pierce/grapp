@@ -7,23 +7,23 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class GrappStoreFeatureID extends EntityID implements Serializable {
+public class GrappStoreFeatureIDFUCK extends EntityID implements Serializable {
    @Basic
    private String id;
 
    public static GrappStoreFeatureID generate() {
-      return new GrappStoreFeatureID(generateValue());
+      return new GrappStoreFeatureIDFUCK(generateValue());
    }
 
    public static GrappStoreFeatureID fromString(String string) {
-      return new GrappStoreFeatureID(string);
+      return new GrappStoreFeatureIDFUCK(string);
    }
 
-   protected GrappStoreFeatureID() {
+   protected GrappStoreFeatureIDFUCK() {
 
    }
 
-   private GrappStoreFeatureID(String id) {
+   private GrappStoreFeatureIDFUCK(String id) {
       this.id = id;
    }
 

@@ -1,16 +1,16 @@
 package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
-import com.wisegas.grapp.domain.value.GrappUserID;
+import com.wisegas.grapp.domain.value.GrappUserIDFUCK;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class GrappUser extends NamedEntity<GrappUserID> {
+public class GrappUser extends NamedEntity<GrappUserIDFUCK> {
    @EmbeddedId
-   private GrappUserID id;
+   private GrappUserIDFUCK id;
 
    private String email;
 
@@ -20,7 +20,7 @@ public class GrappUser extends NamedEntity<GrappUserID> {
    private List<GrappUserList> grappUserLists = new ArrayList<>();
 
    public GrappUser(String email, String name, String avatar) {
-      id = GrappUserID.generate();
+      id = GrappUserIDFUCK.generate();
       setEmail(email);
       setName(name);
       setAvatar(avatar);
@@ -31,7 +31,7 @@ public class GrappUser extends NamedEntity<GrappUserID> {
    }
 
    @Override
-   public GrappUserID getId() {
+   public GrappUserIDFUCK getId() {
       return id;
    }
 

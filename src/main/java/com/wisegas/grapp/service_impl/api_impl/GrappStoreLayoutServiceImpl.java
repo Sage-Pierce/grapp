@@ -11,9 +11,9 @@ import com.wisegas.grapp.domain.entity.GrappStoreLayout;
 import com.wisegas.grapp.domain.entity.GrappStoreNode;
 import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.domain.repository.GrappStoreLayoutRepository;
-import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
-import com.wisegas.grapp.domain.value.GrappStoreLayoutID;
-import com.wisegas.grapp.domain.value.GrappStoreNodeID;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureIDFUCK;
+import com.wisegas.grapp.domain.value.GrappStoreLayoutIDFUCK;
+import com.wisegas.grapp.domain.value.GrappStoreNodeIDFUCK;
 import com.wisegas.grapp.domain.value.GrappStoreNodeType;
 import com.wisegas.grapp.service.api.GrappStoreLayoutService;
 import com.wisegas.grapp.service.dto.GrappStoreFeatureDTO;
@@ -46,63 +46,63 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
 
    @Override
    public GrappStoreLayoutDTO get(String id) {
-      return GrappStoreLayoutDTOFactory.createDTO(grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id)));
+      return GrappStoreLayoutDTOFactory.createDTO(grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id)));
    }
 
    @Override
    public GrappStoreLayoutDTO updateOuterOutline(String id, GeoPolygon outerPolygon) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
       layout.setOuterOutline(outerPolygon);
       return GrappStoreLayoutDTOFactory.createDTO(layout);
    }
 
    @Override
    public GrappStoreLayoutDTO updateInnerOutline(String id, GeoPolygon innerPolygon) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
       layout.setInnerOutline(innerPolygon);
       return GrappStoreLayoutDTOFactory.createDTO(layout);
    }
 
    @Override
    public GrappStoreFeatureDTO addFeature(String id, GeoPolygon polygon) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
       GrappStoreFeature feature = layout.addFeature(polygon);
       return GrappStoreFeatureDTOFactory.createDTO(feature);
    }
 
    @Override
    public GrappStoreFeatureDTO reshapeFeature(String id, String featureID, GeoPolygon polygon) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
-      GrappStoreFeature feature = layout.reshapeFeature(GrappStoreFeatureID.fromString(featureID), polygon);
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
+      GrappStoreFeature feature = layout.reshapeFeature(GrappStoreFeatureIDFUCK.fromString(featureID), polygon);
       return GrappStoreFeatureDTOFactory.createDTO(feature);
    }
 
    @Override
    public void removeFeature(String id, String featureID) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
-      layout.removeFeature(GrappStoreFeatureID.fromString(featureID));
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
+      layout.removeFeature(GrappStoreFeatureIDFUCK.fromString(featureID));
    }
 
    @Override
    public GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTO> addNode(String id, String type, GeoPoint location) {
       GrappStoreNodeModificationEventSubscriber nodeModificationEventSubscriber = new GrappStoreNodeModificationEventSubscriber();
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
       GrappStoreNode node = layout.addNode(GrappStoreNodeType.fromName(type), location);
       return GrappStoreLayoutUpdateResultDTOFactory.createDTO(layout, GrappStoreNodeDTOFactory.createDTO(node), nodeModificationEventSubscriber.getNodeIDs());
    }
 
    @Override
    public GrappStoreNodeDTO moveNode(String id, String nodeID, GeoPoint location) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
-      GrappStoreNode grappStoreNode = layout.moveNode(GrappStoreNodeID.fromString(nodeID), location);
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
+      GrappStoreNode grappStoreNode = layout.moveNode(GrappStoreNodeIDFUCK.fromString(nodeID), location);
       return GrappStoreNodeDTOFactory.createDTO(grappStoreNode);
    }
 
    @Override
    public void removeNode(String id, String nodeID) {
-      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutID.fromString(id));
-      layout.removeNode(GrappStoreNodeID.fromString(nodeID));
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutIDFUCK.fromString(id));
+      layout.removeNode(GrappStoreNodeIDFUCK.fromString(nodeID));
    }
 
    private static class GrappStoreNodeModificationEventSubscriber implements DomainEventSubscriber<GrappStoreNodeModifiedEvent> {

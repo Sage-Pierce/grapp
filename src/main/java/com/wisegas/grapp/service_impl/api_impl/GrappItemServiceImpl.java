@@ -6,7 +6,7 @@ import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.domain.service.GrappItemCreationService;
 import com.wisegas.grapp.domain.service.GrappItemUpdateService;
-import com.wisegas.grapp.domain.value.GrappItemID;
+import com.wisegas.grapp.domain.value.GrappItemIDFUCK;
 import com.wisegas.grapp.service.api.GrappItemService;
 import com.wisegas.grapp.service.dto.GrappItemDTO;
 import com.wisegas.grapp.service_impl.factory.GrappItemDTOFactory;
@@ -41,7 +41,7 @@ public class GrappItemServiceImpl implements GrappItemService {
 
    @Override
    public GrappItemDTO createSubItem(String superItemId, String name) {
-      return GrappItemDTOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemID.fromString(superItemId), name));
+      return GrappItemDTOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemIDFUCK.fromString(superItemId), name));
    }
 
    @Override
@@ -52,16 +52,16 @@ public class GrappItemServiceImpl implements GrappItemService {
 
    @Override
    public GrappItemDTO get(String id) {
-      return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemID.fromString(id)));
+      return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemIDFUCK.fromString(id)));
    }
 
    @Override
    public GrappItemDTO update(String id, String name) {
-      return GrappItemDTOFactory.createDTO(grappItemUpdateService.updateName(GrappItemID.fromString(id), name));
+      return GrappItemDTOFactory.createDTO(grappItemUpdateService.updateName(GrappItemIDFUCK.fromString(id), name));
    }
 
    @Override
    public void delete(String id) {
-      grappItemRepository.remove(grappItemRepository.get(GrappItemID.fromString(id)));
+      grappItemRepository.remove(grappItemRepository.get(GrappItemIDFUCK.fromString(id)));
    }
 }

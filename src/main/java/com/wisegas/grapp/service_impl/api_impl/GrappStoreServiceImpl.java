@@ -5,7 +5,7 @@ import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.grapp.domain.entity.GrappStore;
 import com.wisegas.grapp.domain.repository.GrappStoreRepository;
-import com.wisegas.grapp.domain.value.GrappStoreID;
+import com.wisegas.grapp.domain.value.GrappStoreIDFUCK;
 import com.wisegas.grapp.service.api.GrappStoreService;
 import com.wisegas.grapp.service.dto.GrappStoreDTO;
 import com.wisegas.grapp.service_impl.factory.GrappStoreDTOFactory;
@@ -43,12 +43,12 @@ public class GrappStoreServiceImpl implements GrappStoreService {
 
    @Override
    public GrappStoreDTO get(String id) {
-      return GrappStoreDTOFactory.createDTO(grappStoreRepository.get(GrappStoreID.fromString(id)));
+      return GrappStoreDTOFactory.createDTO(grappStoreRepository.get(GrappStoreIDFUCK.fromString(id)));
    }
 
    @Override
    public GrappStoreDTO update(String id, String name, GeoPoint location) {
-      GrappStore grappStore = grappStoreRepository.get(GrappStoreID.fromString(id));
+      GrappStore grappStore = grappStoreRepository.get(GrappStoreIDFUCK.fromString(id));
       grappStore.setName(name);
       grappStore.setLocation(location);
       return GrappStoreDTOFactory.createDTO(grappStore);
@@ -56,6 +56,6 @@ public class GrappStoreServiceImpl implements GrappStoreService {
 
    @Override
    public void delete(String id) {
-      grappStoreRepository.remove(grappStoreRepository.get(GrappStoreID.fromString(id)));
+      grappStoreRepository.remove(grappStoreRepository.get(GrappStoreIDFUCK.fromString(id)));
    }
 }

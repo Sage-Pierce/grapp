@@ -3,14 +3,14 @@ package com.wisegas.grapp.domain.entity;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.domain.value.GrappStoreFeatureID;
+import com.wisegas.grapp.domain.value.GrappStoreFeatureIDFUCK;
 
 import javax.persistence.*;
 
 @Entity
-public class GrappStoreFeature extends SimpleEntity<GrappStoreFeatureID> {
+public class GrappStoreFeature extends SimpleEntity<GrappStoreFeatureIDFUCK> {
    @EmbeddedId
-   private GrappStoreFeatureID id;
+   private GrappStoreFeatureIDFUCK id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreLayout grappStoreLayout;
@@ -20,7 +20,7 @@ public class GrappStoreFeature extends SimpleEntity<GrappStoreFeatureID> {
    private GeoPolygon polygon;
 
    public GrappStoreFeature(GrappStoreLayout grappStoreLayout, GeoPolygon polygon) {
-      id = GrappStoreFeatureID.generate();
+      id = GrappStoreFeatureIDFUCK.generate();
       setGrappStoreLayout(grappStoreLayout);
       setPolygon(polygon);
    }
@@ -30,7 +30,7 @@ public class GrappStoreFeature extends SimpleEntity<GrappStoreFeatureID> {
    }
 
    @Override
-   public GrappStoreFeatureID getId() {
+   public GrappStoreFeatureIDFUCK getId() {
       return id;
    }
 

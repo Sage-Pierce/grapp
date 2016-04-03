@@ -2,15 +2,15 @@ package com.wisegas.grapp.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.domain.value.GrappItemCode;
-import com.wisegas.grapp.domain.value.GrappItemID;
+import com.wisegas.grapp.domain.value.GrappItemIDFUCK;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class GrappItem extends NamedEntity<GrappItemID> {
+public class GrappItem extends NamedEntity<GrappItemIDFUCK> {
    @EmbeddedId
-   private GrappItemID id;
+   private GrappItemIDFUCK id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
    private GrappItem superItem;
@@ -30,7 +30,7 @@ public class GrappItem extends NamedEntity<GrappItemID> {
    }
 
    private GrappItem(GrappItem superItem, String name) {
-      id = GrappItemID.generate();
+      id = GrappItemIDFUCK.generate();
       setName(name);
       setSuperItem(superItem);
    }
@@ -47,7 +47,7 @@ public class GrappItem extends NamedEntity<GrappItemID> {
    }
 
    @Override
-   public GrappItemID getId() {
+   public GrappItemIDFUCK getId() {
       return id;
    }
 
