@@ -10,7 +10,7 @@
    width: 400px;
 }
 
-.full-width {
+.width-full {
    width: 100%;
 }
 
@@ -26,7 +26,7 @@
    height: 400px;
 }
 
-.full-height {
+.height-full {
    height: 100%;
 }
 

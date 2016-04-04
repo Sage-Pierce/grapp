@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body">
    <h6>Enter NACS CSV Data Below:</h6>
-   <textarea class="full-width" rows="20" ng-model="modalImportItemsVM.data"></textarea>
+   <textarea title="CSV Data" class="width-full" rows="20" ng-model="modalImportItemsVM.data"></textarea>
 </div>
 <div class="modal-footer">
    <button class="btn btn-primary" ng-disabled="!modalImportItemsVM.data || modalImportItemsVM.data.length === 0" ng-click="modalImportItemsVM.finish()">Import</button>
