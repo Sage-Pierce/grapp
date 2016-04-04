@@ -3,7 +3,7 @@
       <li ng-repeat="item in grappItemTreeVM.items"
           ng-include="'TreeItemRenderer.html'"
           data-collapsed="true"
-          ng-show="grappItemTreeVM.isVisible(this)"
+          ng-show="grappItemTreeVM.isNodeVisible(this)"
           ui-tree-node>
       </li>
    </ol>
@@ -32,7 +32,7 @@
           ng-repeat="item in item.subItems"
           ng-include="'TreeItemRenderer.html'"
           data-collapsed="true"
-          ng-show="grappItemTreeVM.isVisible(this)"
+          ng-show="grappItemTreeVM.isNodeVisible(this)"
           ui-tree-node>
       </li>
    </ol>

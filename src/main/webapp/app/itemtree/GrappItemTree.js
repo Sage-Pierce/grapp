@@ -27,7 +27,7 @@
       var grappItemTreeVM = this;
       grappItemTreeVM.items = this.items;
       grappItemTreeVM.filter = this.filter;
-      grappItemTreeVM.isVisible = isVisible;
+      grappItemTreeVM.isNodeVisible = isNodeVisible;
 
       initialize();
 
@@ -37,10 +37,10 @@
          $scope.$watch("grappItemTreeVM.filter", filterChanged);
       }
 
-      function isVisible(nodeScope) {
-         var visible = isItemVisible(nodeScope.$modelValue);
+      function isNodeVisible(node) {
+         var visible = isItemVisible(node.$modelValue);
          if (visible && !isFilterEmpty()) {
-            nodeScope.expand();
+            node.expand();
          }
          return visible;
       }
