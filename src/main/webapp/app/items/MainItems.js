@@ -8,6 +8,7 @@
    function MainItems($uibModal, GrappItem) {
       var mainItemsVM = this;
       mainItemsVM.items = [];
+      mainItemsVM.filter = "";
       mainItemsVM.createGeneralItem = createGeneralItem;
       mainItemsVM.importItems = importItems;
       mainItemsVM.createSubItem = createSubItem;

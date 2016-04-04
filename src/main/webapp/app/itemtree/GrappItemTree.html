@@ -1,6 +1,11 @@
 <div ui-tree data-empty-placeholder-enabled="false">
    <ol ui-tree-nodes ng-model="grappItemTreeVM.items">
-      <li ng-repeat="item in grappItemTreeVM.items" ng-include="'TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+      <li ng-repeat="item in grappItemTreeVM.items"
+          ng-include="'TreeItemRenderer.html'"
+          data-collapsed="true"
+          ng-show="grappItemTreeVM.isVisible(this)"
+          ui-tree-node>
+      </li>
    </ol>
 </div>
 <script type="text/ng-template" id="TreeItemRenderer.html">
@@ -23,6 +28,12 @@
       </a>
    </div>
    <ol ui-tree-nodes ng-model="item.subItems" ng-class="{hidden: collapsed}">
-      <li class="lh-strut-5" ng-repeat="item in item.subItems" ng-include="'TreeItemRenderer.html'" data-collapsed="true" ui-tree-node></li>
+      <li class="lh-strut-5"
+          ng-repeat="item in item.subItems"
+          ng-include="'TreeItemRenderer.html'"
+          data-collapsed="true"
+          ng-show="grappItemTreeVM.isVisible(this)"
+          ui-tree-node>
+      </li>
    </ol>
 </script>
