@@ -2,7 +2,6 @@ package com.wisegas.grapp.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
-import com.wisegas.grapp.domain.entity.GrappItem;
 import com.wisegas.grapp.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.domain.service.GrappItemCreationService;
 import com.wisegas.grapp.domain.service.GrappItemUpdateService;
@@ -45,9 +44,13 @@ public class GrappItemServiceImpl implements GrappItemService {
    }
 
    @Override
+   public List<GrappItemDTO> getAll() {
+      return grappItemRepository.getAll().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
+   }
+
+   @Override
    public List<GrappItemDTO> getGeneralItems() {
-      List<GrappItem> generalItems = grappItemRepository.getGeneralItems();
-      return generalItems.stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
+      return grappItemRepository.getGeneralItems().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override

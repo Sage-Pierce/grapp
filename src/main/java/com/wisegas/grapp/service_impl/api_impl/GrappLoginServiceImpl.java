@@ -39,7 +39,6 @@ public class GrappLoginServiceImpl implements GrappLoginService {
    }
 
    private GrappUser persistGrappUserWithEmail(String email) {
-      GrappUser grappUser = new GrappUser(email, email, null);
-      return grappUserRepository.add(grappUser);
+      return grappUserRepository.add(new GrappUser(email, email, null));
    }
 }

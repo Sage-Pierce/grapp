@@ -31,14 +31,12 @@ public class GrappStoreServiceImpl implements GrappStoreService {
 
    @Override
    public GrappStoreDTO create(String name, GeoPoint location) {
-      GrappStore grappStore = new GrappStore(name, location);
-      return GrappStoreDTOFactory.createDTO(grappStoreRepository.add(grappStore));
+      return GrappStoreDTOFactory.createDTO(grappStoreRepository.add(new GrappStore(name, location)));
    }
 
    @Override
    public List<GrappStoreDTO> getAll() {
-      List<GrappStore> grappStores = grappStoreRepository.getAll();
-      return grappStores.stream().map(GrappStoreDTOFactory::createDTO).collect(Collectors.toList());
+      return grappStoreRepository.getAll().stream().map(GrappStoreDTOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override

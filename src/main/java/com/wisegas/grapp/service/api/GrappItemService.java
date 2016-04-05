@@ -9,6 +9,8 @@ public interface GrappItemService {
 
    GrappItemDTO createSubItem(String superItemId, String name);
 
+   List<GrappItemDTO> getAll();
+
    List<GrappItemDTO> getGeneralItems();
 
    GrappItemDTO get(String id);
