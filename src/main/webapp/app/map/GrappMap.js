@@ -62,7 +62,7 @@
                   zIndex: 3,
                   clickable: true,
                   editable: false,
-                  draggable: false
+                  draggable: true
                },
                markerOptions: {
                   zIndex: 4,
@@ -128,7 +128,7 @@
             fit: fit,
             clickable: polygonModel.isFeature,
             editable: false,
-            draggable: false
+            draggable: polygonModel.isFeature
          };
       }
 

@@ -2,39 +2,32 @@
    "use strict";
 
    angular.module("Grapp")
-      .factory("CopyMoveDeleteFeatureEventHandler", CopyMoveDeleteFeatureEventHandler);
+      .factory("CopyFeatureEventHandler", CopyFeatureEventHandler);
 
-   CopyMoveDeleteFeatureEventHandler.$inject = [];
-   function CopyMoveDeleteFeatureEventHandler() {
+   CopyFeatureEventHandler.$inject = ["BaseEventHandler"];
+   function CopyFeatureEventHandler(BaseEventHandler) {
       return function(mapControl, grappStoreLayout) {
-         var self = this;
-         self.start = start;
+         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
          self.finish = finish;
          self.mapClicked = mapClicked;
          self.polygonClicked = polygonClicked;
          self.polygonRightClicked = polygonRightClicked;
-         self.polygonDragEnd = polygonDragEnd;
 
          var gMapPolygonCopyModel;
 
          ////////////////////
 
-         function start() {
-            enableDragging(true);
-         }
-
          function finish() {
             if (gMapPolygonCopyModel) {
                gMapPolygonCopyModel.deselect();
             }
-            enableDragging(false);
          }
 
          function mapClicked(modelId, map, mouseEvent) {
             if (gMapPolygonCopyModel) {
                var gMapPolygon = gMapPolygonCopyModel.copyToLatLng(mouseEvent.latLng);
                grappStoreLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
-                  .then(function (model) {
+                  .then(function(model) {
                      gMapPolygon.setDraggable(true);
                      mapControl.addFeature(model.id, gMapPolygon);
                   });
@@ -58,16 +51,6 @@
             mapControl.removeFeatureById(modelId, gMapPolygon);
          }
 
-         function polygonDragEnd(modelId, gMapPolygon) {
-            grappStoreLayout.getFeatureById(modelId).commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
-         }
-
-         function enableDragging(enable) {
-            mapControl.applyToFeatures(function (gMapPolygon) {
-               gMapPolygon.setDraggable(enable);
-            });
-         }
-
          function GMapPolygonCopyModel(gMapPolygon, copyLatLng) {
             var self = this;
             self.select = select;
@@ -83,7 +66,7 @@
             ////////////////////
 
             function initialize() {
-               copyOffsets = _.extractPathFromGMapPolygon(gMapPolygon).map(function (latLng) {
+               copyOffsets = _.extractPathFromGMapPolygon(gMapPolygon).map(function(latLng) {
                   return {
                      latOffset: latLng.lat() - copyLatLng.lat(),
                      lngOffset: latLng.lng() - copyLatLng.lng()
@@ -102,7 +85,7 @@
 
             function copyToLatLng(latLng) {
                return new google.maps.Polygon({
-                  paths: copyOffsets.map(function (offset) {
+                  paths: copyOffsets.map(function(offset) {
                      return {
                         lat: latLng.lat() + offset.latOffset,
                         lng: latLng.lng() + offset.lngOffset

@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .factory("EditDeleteFeatureEventHandler", EditDeleteFeatureEventHandler);
+      .factory("EditFeatureEventHandler", EditFeatureEventHandler);
 
-   EditDeleteFeatureEventHandler.$inject = [];
-   function EditDeleteFeatureEventHandler() {
+   EditFeatureEventHandler.$inject = [];
+   function EditFeatureEventHandler() {
       return function(mapControl, grappStoreLayout) {
          var self = this;
          self.finish = finish;

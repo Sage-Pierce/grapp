@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .controller("MainStoreMapLayout", MainStoreMapLayout);
 
-   MainStoreMapLayout.$inject = ["grappStoreLayout", "mapControl", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditDeleteFeatureEventHandler", "CopyMoveDeleteFeatureEventHandler"];
-   function MainStoreMapLayout(grappStoreLayout, mapControl, EditOutlineEventHandler, DrawFeatureEventHandler, EditDeleteFeatureEventHandler, CopyMoveDeleteFeatureEventHandler) {
+   MainStoreMapLayout.$inject = ["grappStoreLayout", "mapControl", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditFeatureEventHandler", "CopyFeatureEventHandler"];
+   function MainStoreMapLayout(grappStoreLayout, mapControl, EditOutlineEventHandler, DrawFeatureEventHandler, EditFeatureEventHandler, CopyFeatureEventHandler) {
       var mainStoreMapLayoutVM = this;
       mainStoreMapLayoutVM.outlineRadioEventHandlerModels = null;
       mainStoreMapLayoutVM.featureRadioEventHandlerModels = null;
@@ -26,8 +26,8 @@
 
          mainStoreMapLayoutVM.featureRadioEventHandlerModels = [
             new RadioEventHandlerModel(new DrawFeatureEventHandler(mapControl, grappStoreLayout), "Draw"),
-            new RadioEventHandlerModel(new EditDeleteFeatureEventHandler(mapControl, grappStoreLayout), "Edit | Delete"),
-            new RadioEventHandlerModel(new CopyMoveDeleteFeatureEventHandler(mapControl, grappStoreLayout), "Copy/Move | Delete")
+            new RadioEventHandlerModel(new EditFeatureEventHandler(mapControl, grappStoreLayout), "Edit"),
+            new RadioEventHandlerModel(new CopyFeatureEventHandler(mapControl, grappStoreLayout), "Copy")
          ];
       }
 
