@@ -2,11 +2,11 @@
    "use strict";
 
    angular.module("Grapp")
-      .value("EditOutlineEventHandler", EditOutlineEventHandler);
+      .factory("EditOutlineEventHandler", EditOutlineEventHandler);
 
    EditOutlineEventHandler.$inject = [];
    function EditOutlineEventHandler() {
-      return function(mapControl, storeOutlinePartialModel) {
+      return function(mapControl, grappStoreLayout, storeOutlinePartialModel) {
          var self = this;
          self.start = start;
          self.finish = finish;

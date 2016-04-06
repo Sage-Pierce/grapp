@@ -16,7 +16,7 @@
 
       var selectedNode = null;
       var nodeSelector = new NodeSelector(mapControl);
-      var nodeEventHandler = new NodeEventHandler(mapControl, nodeSelector, grappStoreLayout, mainStoreMapNodesVM.radioModel);
+      var nodeEventHandler = new NodeEventHandler(mapControl, grappStoreLayout, nodeSelector, mainStoreMapNodesVM.radioModel);
 
       initialize();
 

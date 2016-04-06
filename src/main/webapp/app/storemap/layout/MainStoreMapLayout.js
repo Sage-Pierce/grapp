@@ -20,8 +20,8 @@
          mapControl.setEventHandler(null);
 
          mainStoreMapLayoutVM.outlineRadioEventHandlerModels = [
-            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, grappStoreLayout.getOuterOutline()), "Outer"),
-            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, grappStoreLayout.getInnerOutline()), "Inner")
+            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, grappStoreLayout, grappStoreLayout.getOuterOutline()), "Outer"),
+            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, grappStoreLayout, grappStoreLayout.getInnerOutline()), "Inner")
          ];
 
          mainStoreMapLayoutVM.featureRadioEventHandlerModels = [
