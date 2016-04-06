@@ -11,7 +11,6 @@
          self.finish = finish;
          self.mapClicked = mapClicked;
          self.markerClicked = markerClicked;
-         self.markerRightClicked = markerRightClicked;
          self.setNodeType = setNodeType;
 
          var nodeType = grappStoreNodeType;
@@ -38,11 +37,6 @@
 
          function markerClicked(modelId, gMapMarker, mouseEvent) {
             nodeSelector.select(grappStoreLayout.getNodeById(modelId));
-         }
-
-         function markerRightClicked(modelId, gMapMarker, mouseEvent) {
-            grappStoreLayout.removeNodeById(modelId);
-            mapControl.removeNodeById(modelId);
          }
 
          function setNodeType(grappStoreNodeType) {

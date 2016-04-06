@@ -4,10 +4,10 @@
    angular.module("Grapp")
       .factory("EditOutlineEventHandler", EditOutlineEventHandler);
 
-   EditOutlineEventHandler.$inject = [];
-   function EditOutlineEventHandler() {
+   EditOutlineEventHandler.$inject = ["BaseEventHandler"];
+   function EditOutlineEventHandler(BaseEventHandler) {
       return function(mapControl, grappStoreLayout, storeOutlinePartialModel) {
-         var self = this;
+         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
          self.start = start;
          self.finish = finish;
          self.polygonComplete = polygonComplete;

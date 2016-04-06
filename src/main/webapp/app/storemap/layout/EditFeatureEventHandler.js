@@ -4,10 +4,10 @@
    angular.module("Grapp")
       .factory("EditFeatureEventHandler", EditFeatureEventHandler);
 
-   EditFeatureEventHandler.$inject = [];
-   function EditFeatureEventHandler() {
+   EditFeatureEventHandler.$inject = ["BaseEventHandler"];
+   function EditFeatureEventHandler(BaseEventHandler) {
       return function(mapControl, grappStoreLayout) {
-         var self = this;
+         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
          self.finish = finish;
          self.polygonClicked = polygonClicked;
          self.polygonRightClicked = polygonRightClicked;
