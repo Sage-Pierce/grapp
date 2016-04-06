@@ -2,29 +2,32 @@
    "use strict";
 
    angular.module("Grapp")
-      .value("DrawFeatureEventHandler", DrawFeatureEventHandler);
+      .factory("DrawFeatureEventHandler", DrawFeatureEventHandler);
 
-   function DrawFeatureEventHandler(mapControl, grappStoreLayout) {
-      var self = this;
-      self.start = start;
-      self.finish = finish;
-      self.polygonComplete = polygonComplete;
+   DrawFeatureEventHandler.$inject = [];
+   function DrawFeatureEventHandler() {
+      return function(mapControl, grappStoreLayout) {
+         var self = this;
+         self.start = start;
+         self.finish = finish;
+         self.polygonComplete = polygonComplete;
 
-      ////////////////////
+         ////////////////////
 
-      function start() {
-         mapControl.setDrawingMode("POLYGON");
-      }
+         function start() {
+            mapControl.setDrawingMode("POLYGON");
+         }
 
-      function finish() {
-         mapControl.setDrawingMode(null);
-      }
+         function finish() {
+            mapControl.setDrawingMode(null);
+         }
 
-      function polygonComplete(gMapPolygon) {
-         grappStoreLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
-            .then(function(model) {
-               mapControl.addFeature(model.id, gMapPolygon);
-            });
-      }
+         function polygonComplete(gMapPolygon) {
+            grappStoreLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
+               .then(function (model) {
+                  mapControl.addFeature(model.id, gMapPolygon);
+               });
+         }
+      };
    }
 })();
