@@ -6,6 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <apache.commons.version>3.4</apache.commons.version>
         <gson.version>2.6.2</gson.version>
         <h2.version>1.4.191</h2.version>
         <halbuilder.version>4.0.3</halbuilder.version>
@@ -16,6 +17,7 @@
         <postgresql.version>9.4.1208.jre7</postgresql.version>
         <spock.version>1.0-groovy-2.4</spock.version>
         <spring.version>4.2.5.RELEASE</spring.version>
+        <spring.oauth.2.0.version>2.0.9.RELEASE</spring.oauth.2.0.version>
     </properties>
 
     <groupId>com.wisegas</groupId>
@@ -49,6 +51,23 @@
             <artifactId>jetty-webapp</artifactId>
             <version>${jetty.version}</version>
             <!--<scope>provided</scope>-->
+        </dependency>
+
+        <!-- Spring OAuth 2.0 Security -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>${spring.oauth.2.0.version}</version>
         </dependency>
 
         <!-- JSR-311 REST Specification and Jersey Implementation  -->
@@ -119,7 +138,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version>${apache.commons.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
