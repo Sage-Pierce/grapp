@@ -20,7 +20,8 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.grapp.domain_impl
+                            base-package="com.wisegas.grapp.config
+                                          com.wisegas.grapp.domain_impl
                                           com.wisegas.grapp.service_impl"/>
     <context:annotation-config/>
 
@@ -86,5 +87,4 @@
            <aop:after pointcut-ref="applicationService" method="exitPublishingContext"/>
         </aop:aspect>
     </aop:config>
-
 </beans>
