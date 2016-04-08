@@ -10,6 +10,11 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
+    <!-- Context Listeners -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <!-- Jersey Servlet -->
     <servlet>
         <servlet-name>jersey-serlvet</servlet-name>
@@ -26,11 +31,8 @@
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
-    <!-- Spring Context Configuration -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
 
+    <!-- Spring Config -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/classes/Beans.xml</param-value>
