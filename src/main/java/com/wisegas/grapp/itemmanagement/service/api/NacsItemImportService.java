@@ -1,4 +1,4 @@
-package com.wisegas.grapp.service.api;
+package com.wisegas.grapp.itemmanagement.service.api;
 
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
 

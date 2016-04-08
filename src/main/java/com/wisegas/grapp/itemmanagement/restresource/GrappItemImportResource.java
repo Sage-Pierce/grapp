@@ -3,8 +3,8 @@ package com.wisegas.grapp.itemmanagement.restresource;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
-import com.wisegas.grapp.service.api.NacsItemImportService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
