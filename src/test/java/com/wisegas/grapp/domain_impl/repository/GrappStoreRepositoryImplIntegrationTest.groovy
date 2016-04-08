@@ -1,7 +1,7 @@
 package com.wisegas.grapp.domain_impl.repository
 
-import com.wisegas.grapp.domain.entity.GrappStore
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStore
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional

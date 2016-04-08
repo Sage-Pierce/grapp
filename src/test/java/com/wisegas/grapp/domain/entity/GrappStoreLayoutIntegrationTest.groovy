@@ -1,9 +1,12 @@
 package com.wisegas.grapp.domain.entity
 
-import com.wisegas.grapp.test.Builders
-import com.wisegas.common.test.IntegrationTest
 import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.lang.value.GeoPolygon
+import com.wisegas.common.test.IntegrationTest
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStore
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreFeature
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreLayout
+import com.wisegas.grapp.test.Builders
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional

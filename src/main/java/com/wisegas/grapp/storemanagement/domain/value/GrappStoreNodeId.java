@@ -1,0 +1,33 @@
+package com.wisegas.grapp.storemanagement.domain.value;
+
+import com.wisegas.common.persistence.jpa.value.EntityId;
+
+import javax.persistence.Basic;
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class GrappStoreNodeId extends EntityId {
+   @Basic
+   private String id;
+
+   public static GrappStoreNodeId generate() {
+      return new GrappStoreNodeId(generateValue());
+   }
+
+   public static GrappStoreNodeId fromString(String string) {
+      return new GrappStoreNodeId(string);
+   }
+
+   protected GrappStoreNodeId() {
+
+   }
+
+   private GrappStoreNodeId(String id) {
+      this.id = id;
+   }
+
+   @Override
+   protected Object idHash() {
+      return id;
+   }
+}

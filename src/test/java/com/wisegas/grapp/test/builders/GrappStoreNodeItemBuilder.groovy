@@ -2,7 +2,7 @@ package com.wisegas.grapp.test.builders
 
 import com.wisegas.common.lang.value.IdName
 import com.wisegas.common.test.EntityBuilder
-import com.wisegas.grapp.domain.entity.GrappStoreNodeItem
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNodeItem
 
 class GrappStoreNodeItemBuilder {
 

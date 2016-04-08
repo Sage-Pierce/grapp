@@ -2,10 +2,11 @@ package com.wisegas.grapp.service_impl.api_impl
 
 import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.test.ApplicationServiceTest
-import com.wisegas.grapp.domain.entity.GrappStoreLayout
-import com.wisegas.grapp.domain.entity.GrappStoreNode
-import com.wisegas.grapp.domain.repository.GrappStoreLayoutRepository
-import com.wisegas.grapp.domain.value.GrappStoreNodeType
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreLayout
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNode
+import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreLayoutRepository
+import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType
+import com.wisegas.grapp.storemanagement.service_impl.api_impl.GrappStoreLayoutServiceImpl
 import com.wisegas.grapp.test.Builders
 
 class GrappStoreLayoutServiceImplTest extends ApplicationServiceTest {

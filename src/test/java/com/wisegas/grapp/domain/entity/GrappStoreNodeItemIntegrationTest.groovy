@@ -1,6 +1,7 @@
 package com.wisegas.grapp.domain.entity
 
 import com.wisegas.common.lang.value.IdName
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNodeItem
 import com.wisegas.grapp.test.Builders
 import org.springframework.transaction.annotation.Transactional
 

@@ -1,7 +1,9 @@
 package com.wisegas.grapp.domain.entity
 
 import com.wisegas.common.lang.value.GeoPoint
-import com.wisegas.grapp.domain.value.GrappStoreNodeType
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreLayout
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNode
+import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType
 import com.wisegas.grapp.test.Builders
 import spock.lang.Specification
 

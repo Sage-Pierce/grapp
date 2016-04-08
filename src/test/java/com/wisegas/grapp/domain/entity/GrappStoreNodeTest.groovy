@@ -3,8 +3,9 @@ package com.wisegas.grapp.domain.entity
 import com.wisegas.common.domain.model.DomainEventPublisher
 import com.wisegas.common.domain.model.DomainEventSubscriber
 import com.wisegas.common.test.DomainEventAwareTest
-import com.wisegas.grapp.domain.event.GrappStoreNodeModifiedEvent
-import com.wisegas.grapp.domain.value.GrappStoreNodeType
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNode
+import com.wisegas.grapp.storemanagement.domain.event.GrappStoreNodeModifiedEvent
+import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType
 import com.wisegas.grapp.test.Builders
 
 class GrappStoreNodeTest extends DomainEventAwareTest {

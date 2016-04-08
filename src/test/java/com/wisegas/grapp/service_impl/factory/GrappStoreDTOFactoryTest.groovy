@@ -1,5 +1,6 @@
 package com.wisegas.grapp.service_impl.factory
 
+import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreDTOFactory
 import com.wisegas.grapp.test.Builders
 import spock.lang.Specification
 
