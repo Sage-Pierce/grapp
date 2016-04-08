@@ -1,7 +1,7 @@
 package com.wisegas.grapp.test.builders
 
-import com.wisegas.grapp.domain.value.GrappUserListItem
 import com.wisegas.common.test.EntityBuilder
+import com.wisegas.grapp.domain.entity.GrappUserListItem
 
 class GrappUserListItemBuilder {
 

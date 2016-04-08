@@ -11,7 +11,7 @@ public class GrappStoreNodeItem extends SimpleEntity<GrappStoreNodeItemId> {
    @EmbeddedId
    private GrappStoreNodeItemId id;
 
-   @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+   @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreNode grappStoreNode;
 
    @SuppressWarnings({"JpaAttributeTypeInspection", "JpaModelReferenceInspection", "JpaDataSourceORMInspection"})
