@@ -17,7 +17,9 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.grapp.itemmanagement
+                            base-package="com.wisegas.grapp.config
+                                          com.wisegas.grapp.itemmanagement
+                                          com.wisegas.grapp.usermanagement
                                           com.wisegas.grapp.domain_impl
                                           com.wisegas.grapp.service_impl"/>
     <context:annotation-config/>
@@ -36,6 +38,7 @@
         <property name="packagesToScan">
             <array>
                 <value>com.wisegas.grapp.itemmanagement.domain</value>
+                <value>com.wisegas.grapp.usermanagement.domain</value>
                 <value>com.wisegas.grapp.domain</value>
             </array>
         </property>

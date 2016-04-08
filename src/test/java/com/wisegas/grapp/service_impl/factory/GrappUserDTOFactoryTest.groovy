@@ -1,6 +1,7 @@
 package com.wisegas.grapp.service_impl.factory
 
-import com.wisegas.grapp.domain.entity.GrappUser
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
+import com.wisegas.grapp.usermanagement.service_impl.factory.GrappUserDTOFactory
 import spock.lang.Specification
 
 class GrappUserDTOFactoryTest extends Specification {

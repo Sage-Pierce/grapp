@@ -10,8 +10,9 @@ public class JerseyApplication extends ResourceConfig {
 
    public JerseyApplication() {
       // Register REST Endpoints
-      packages("com.wisegas.grapp.itemmanagement.restresource",
-               "com.wisegas.grapp.restresource");
+      packages("com.wisegas.grapp.restresource",
+               "com.wisegas.grapp.itemmanagement.restresource",
+               "com.wisegas.grapp.usermanagement.restresource");
 
       // Register Features
       register(JacksonFeature.class);

@@ -7,6 +7,8 @@ import com.wisegas.grapp.itemmanagement.restresource.GrappGeneralItemsResource;
 import com.wisegas.grapp.itemmanagement.restresource.GrappItemImportResource;
 import com.wisegas.grapp.itemmanagement.restresource.GrappItemResource;
 import com.wisegas.grapp.itemmanagement.restresource.GrappItemsResource;
+import com.wisegas.grapp.usermanagement.restresource.GrappLoginResource;
+import com.wisegas.grapp.usermanagement.restresource.GrappUserResource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

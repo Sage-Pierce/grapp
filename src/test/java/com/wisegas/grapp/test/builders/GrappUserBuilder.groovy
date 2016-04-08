@@ -1,7 +1,7 @@
 package com.wisegas.grapp.test.builders
 
-import com.wisegas.grapp.domain.entity.GrappUser
 import com.wisegas.common.test.EntityBuilder
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
 
 class GrappUserBuilder {
 
@@ -13,6 +13,6 @@ class GrappUserBuilder {
          "Test User ${unique}",
          "test@email${unique}.com",
          "<avatar ${unique}>"
-      ))
+      )) as GrappUser
    }
 }

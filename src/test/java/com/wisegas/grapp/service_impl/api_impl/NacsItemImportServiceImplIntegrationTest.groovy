@@ -1,7 +1,7 @@
 package com.wisegas.grapp.service_impl.api_impl
 
 import com.wisegas.common.test.IntegrationTest
-import com.wisegas.grapp.service.api.NacsItemImportService
+import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

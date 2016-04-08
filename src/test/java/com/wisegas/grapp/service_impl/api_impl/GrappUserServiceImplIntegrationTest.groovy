@@ -1,9 +1,9 @@
 package com.wisegas.grapp.service_impl.api_impl
 
 import com.wisegas.common.test.IntegrationTest
-import com.wisegas.grapp.domain.entity.GrappUser
-import com.wisegas.grapp.service.api.GrappUserService
 import com.wisegas.grapp.test.Builders
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
+import com.wisegas.grapp.usermanagement.service.api.GrappUserService
 
 import javax.inject.Inject
 

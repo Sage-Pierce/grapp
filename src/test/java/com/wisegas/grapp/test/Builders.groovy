@@ -1,8 +1,13 @@
 package com.wisegas.grapp.test
 
-import com.wisegas.grapp.domain.entity.*
+import com.wisegas.grapp.domain.entity.GrappStore
+import com.wisegas.grapp.domain.entity.GrappStoreLayout
+import com.wisegas.grapp.domain.entity.GrappStoreNode
+import com.wisegas.grapp.domain.entity.GrappStoreNodeItem
 import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
 import com.wisegas.grapp.test.builders.*
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUserList
 
 class Builders {
 

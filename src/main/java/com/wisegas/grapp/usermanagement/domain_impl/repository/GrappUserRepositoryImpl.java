@@ -1,8 +1,8 @@
-package com.wisegas.grapp.domain_impl.repository;
+package com.wisegas.grapp.usermanagement.domain_impl.repository;
 
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImpl;
-import com.wisegas.grapp.domain.entity.GrappUser;
-import com.wisegas.grapp.domain.repository.GrappUserRepository;
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
+import com.wisegas.grapp.usermanagement.domain.repository.GrappUserRepository;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

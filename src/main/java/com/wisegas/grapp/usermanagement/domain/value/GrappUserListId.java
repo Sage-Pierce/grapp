@@ -1,4 +1,4 @@
-package com.wisegas.grapp.domain.value;
+package com.wisegas.grapp.usermanagement.domain.value;
 
 import com.wisegas.common.persistence.jpa.value.EntityId;
 

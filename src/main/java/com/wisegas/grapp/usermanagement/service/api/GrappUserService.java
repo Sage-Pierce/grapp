@@ -1,6 +1,6 @@
-package com.wisegas.grapp.service.api;
+package com.wisegas.grapp.usermanagement.service.api;
 
-import com.wisegas.grapp.service.dto.GrappUserDTO;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTO;
 
 public interface GrappUserService {
    GrappUserDTO get(String id);

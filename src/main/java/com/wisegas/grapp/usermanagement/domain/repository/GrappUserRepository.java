@@ -1,7 +1,7 @@
-package com.wisegas.grapp.domain.repository;
+package com.wisegas.grapp.usermanagement.domain.repository;
 
 import com.wisegas.common.persistence.jpa.api.GenericRepository;
-import com.wisegas.grapp.domain.entity.GrappUser;
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
 
 import java.util.Optional;
 

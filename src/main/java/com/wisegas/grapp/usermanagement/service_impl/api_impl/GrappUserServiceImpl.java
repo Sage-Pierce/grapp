@@ -1,13 +1,13 @@
-package com.wisegas.grapp.service_impl.api_impl;
+package com.wisegas.grapp.usermanagement.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
-import com.wisegas.grapp.domain.entity.GrappUser;
-import com.wisegas.grapp.domain.repository.GrappUserRepository;
-import com.wisegas.grapp.domain.value.GrappUserId;
-import com.wisegas.grapp.service.api.GrappUserService;
-import com.wisegas.grapp.service.dto.GrappUserDTO;
-import com.wisegas.grapp.service_impl.factory.GrappUserDTOFactory;
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
+import com.wisegas.grapp.usermanagement.domain.repository.GrappUserRepository;
+import com.wisegas.grapp.usermanagement.domain.value.GrappUserId;
+import com.wisegas.grapp.usermanagement.service.api.GrappUserService;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTO;
+import com.wisegas.grapp.usermanagement.service_impl.factory.GrappUserDTOFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;

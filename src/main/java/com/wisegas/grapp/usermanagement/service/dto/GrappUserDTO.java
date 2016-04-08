@@ -1,4 +1,4 @@
-package com.wisegas.grapp.service.dto;
+package com.wisegas.grapp.usermanagement.service.dto;
 
 import com.wisegas.common.lang.dto.NamedDTO;
 

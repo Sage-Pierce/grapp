@@ -1,7 +1,7 @@
-package com.wisegas.grapp.domain.entity;
+package com.wisegas.grapp.usermanagement.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
-import com.wisegas.grapp.domain.value.GrappUserId;
+import com.wisegas.grapp.usermanagement.domain.value.GrappUserId;
 
 import javax.persistence.*;
 import java.util.ArrayList;

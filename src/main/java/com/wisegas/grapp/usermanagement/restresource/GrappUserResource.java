@@ -1,11 +1,11 @@
-package com.wisegas.grapp.restresource;
+package com.wisegas.grapp.usermanagement.restresource;
 
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
-import com.wisegas.grapp.service.api.GrappUserService;
-import com.wisegas.grapp.service.dto.GrappUserDTO;
+import com.wisegas.grapp.usermanagement.service.api.GrappUserService;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTO;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

@@ -1,7 +1,8 @@
 package com.wisegas.grapp.test.builders
 
+import com.wisegas.common.lang.value.IdName
 import com.wisegas.common.test.EntityBuilder
-import com.wisegas.grapp.domain.entity.GrappUserListItem
+import com.wisegas.grapp.usermanagement.domain.entity.GrappUserListItem
 
 class GrappUserListItemBuilder {
 
@@ -10,8 +11,8 @@ class GrappUserListItemBuilder {
    static GrappUserListItem grappUserListItem() {
       unique++
       EntityBuilder.wrapBuilder(new GrappUserListItem(
-         GrappUserListBuilder.grappUserList(),
-         GrappItemBuilder.grappItem()
-      ))
+            GrappUserListBuilder.grappUserList(),
+            new IdName(unique.toString(), "Item #${unique}")
+      )) as GrappUserListItem
    }
 }
