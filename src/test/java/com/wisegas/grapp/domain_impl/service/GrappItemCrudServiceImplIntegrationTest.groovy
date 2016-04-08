@@ -2,7 +2,8 @@ package com.wisegas.grapp.domain_impl.service
 
 import com.wisegas.common.lang.annotation.Transactional
 import com.wisegas.common.test.IntegrationTest
-import com.wisegas.grapp.domain.entity.GrappItem
+import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
+import com.wisegas.grapp.itemmanagement.domain_impl.service.GrappItemCrudServiceImpl
 import com.wisegas.grapp.test.Builders
 
 import javax.inject.Inject

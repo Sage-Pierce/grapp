@@ -1,5 +1,6 @@
 package com.wisegas.grapp.domain.entity
 
+import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
 import spock.lang.Specification
 
 class GrappItemTest extends Specification {

@@ -2,10 +2,10 @@ package com.wisegas.grapp.domain_impl.repository
 
 import com.wisegas.common.lang.annotation.Transactional
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
-import com.wisegas.grapp.domain.entity.GrappItem
-import com.wisegas.grapp.domain.repository.GrappItemRepository
-import com.wisegas.grapp.domain.value.GrappItemCode
-import com.wisegas.grapp.domain.value.GrappItemCodeType
+import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
+import com.wisegas.grapp.itemmanagement.domain.repository.GrappItemRepository
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType
 import com.wisegas.grapp.test.Builders
 
 import javax.inject.Inject

@@ -1,10 +1,10 @@
 package com.wisegas.grapp.domain_impl.service
 
 import com.wisegas.common.test.IntegrationTest
-import com.wisegas.grapp.domain.entity.GrappItem
-import com.wisegas.grapp.domain.service.GrappItemImportService
-import com.wisegas.grapp.domain.value.GrappItemCode
-import com.wisegas.grapp.domain.value.GrappItemCodeType
+import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
+import com.wisegas.grapp.itemmanagement.domain.service.GrappItemImportService
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType
 import com.wisegas.grapp.test.Builders
 import org.springframework.transaction.annotation.Transactional
 

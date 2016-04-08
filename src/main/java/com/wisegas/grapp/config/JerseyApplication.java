@@ -9,8 +9,9 @@ import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 public class JerseyApplication extends ResourceConfig {
 
    public JerseyApplication() {
-      // Register REST Controllers
-      packages("com.wisegas.grapp.restresource");
+      // Register REST Endpoints
+      packages("com.wisegas.grapp.itemmanagement.restresource",
+               "com.wisegas.grapp.restresource");
 
       // Register Features
       register(JacksonFeature.class);

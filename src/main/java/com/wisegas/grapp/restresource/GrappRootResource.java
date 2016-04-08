@@ -3,6 +3,10 @@ package com.wisegas.grapp.restresource;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import com.wisegas.grapp.itemmanagement.restresource.GrappGeneralItemsResource;
+import com.wisegas.grapp.itemmanagement.restresource.GrappItemImportResource;
+import com.wisegas.grapp.itemmanagement.restresource.GrappItemResource;
+import com.wisegas.grapp.itemmanagement.restresource.GrappItemsResource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

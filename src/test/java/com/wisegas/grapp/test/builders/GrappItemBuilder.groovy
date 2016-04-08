@@ -1,7 +1,7 @@
 package com.wisegas.grapp.test.builders
 
-import com.wisegas.grapp.domain.entity.GrappItem
 import com.wisegas.common.test.EntityBuilder
+import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
 
 class GrappItemBuilder {
 
@@ -11,6 +11,6 @@ class GrappItemBuilder {
       unique++
       EntityBuilder.wrapBuilder(new GrappItem(
          "Test Item ${unique}"
-      ))
+      )) as GrappItem
    }
 }

@@ -1,6 +1,7 @@
 package com.wisegas.grapp.test
 
 import com.wisegas.grapp.domain.entity.*
+import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
 import com.wisegas.grapp.test.builders.*
 
 class Builders {

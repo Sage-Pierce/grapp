@@ -1,7 +1,8 @@
 package com.wisegas.grapp.service_impl.util
 
-import com.wisegas.grapp.service_impl.value.NacsId
-import com.wisegas.grapp.service_impl.value.NacsItem
+import com.wisegas.grapp.itemmanagement.service_impl.util.NacsItemCsvParser
+import com.wisegas.grapp.itemmanagement.service_impl.value.NacsId
+import com.wisegas.grapp.itemmanagement.service_impl.value.NacsItem
 import spock.lang.Specification
 
 class NacsItemCsvParserTest extends Specification {
