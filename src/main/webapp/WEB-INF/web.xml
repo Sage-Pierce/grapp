@@ -31,7 +31,6 @@
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
-
     <!-- Spring Config -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
