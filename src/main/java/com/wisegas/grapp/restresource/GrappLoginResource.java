@@ -29,7 +29,7 @@ public class GrappLoginResource extends JaxrsHalJsonResource {
       return buildHalResponse(GrappUserResource.asRepresentationOf(grappUserDTO));
    }
 
-   protected static HalLink createRootLink(String rel) {
+   public static HalLink createRootLink(String rel) {
       return JaxrsHalResourceLinkBuilder.linkTo(GrappLoginResource.class).queryParams("email", "avatar").withRel(rel);
    }
 }

@@ -43,12 +43,12 @@ public class GrappStoreResource extends JaxrsHalJsonResource {
       return Response.ok().build();
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreDTO grappStoreDTO) {
-      return halRepresentationFactory.createFor(grappStoreDTO).withLinks(createLinks(grappStoreDTO));
+   public static HalLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalLink createRootLink(String rel) {
-      return createSelfLinkBuilder().withRel(rel);
+   protected static HalRepresentation asRepresentationOf(GrappStoreDTO grappStoreDTO) {
+      return halRepresentationFactory.createFor(grappStoreDTO).withLinks(createLinks(grappStoreDTO));
    }
 
    private static List<HalLink> createLinks(GrappStoreDTO grappStoreDTO) {

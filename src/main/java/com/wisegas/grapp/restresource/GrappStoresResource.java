@@ -42,7 +42,7 @@ public class GrappStoresResource extends JaxrsHalJsonResource {
                                                                                              .collect(Collectors.toList())));
    }
 
-   protected static HalLink createRootLink(String rel) {
+   public static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
