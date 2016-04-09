@@ -7,7 +7,7 @@
        default-lazy-init="true">
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="test.properties"/>
+        <property name="location" value="classpath:properties/test.properties"/>
     </bean>
 
     <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>

@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 import javax.inject.Inject
 
-@ContextConfiguration(["classpath*:test-context.xml"])
+@ContextConfiguration(["classpath*:META-INF/spring/test-context.xml"])
 abstract class IntegrationTest extends Specification {
 
    @Inject
