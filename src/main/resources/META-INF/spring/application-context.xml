@@ -7,10 +7,10 @@
        default-lazy-init="true">
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:application.properties"/>
+        <property name="location" value="classpath:properties/application.properties"/>
     </bean>
 
-    <import resource="classpath:database-beans.xml"/>
-    <import resource="classpath:persistence-beans.xml"/>
-    <import resource="classpath:application-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/database-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
 </beans>
