@@ -11,7 +11,7 @@ public final class GrappItemDTOFactory {
       GrappItemDTO grappItemDTO = new GrappItemDTO();
       grappItemDTO.setId(grappItem.getId().toString());
       grappItemDTO.setName(grappItem.getName());
-      grappItemDTO.setSuperItemId(grappItem.isGeneralItem() ? null : grappItem.getSuperItem().getId().toString());
+      grappItemDTO.setSuperItemName(grappItem.isGeneralItem() ? null : grappItem.getSuperItem().getName());
       grappItemDTO.setSubItems(grappItem.getSubItems().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList()));
       return grappItemDTO;
    }

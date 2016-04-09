@@ -53,7 +53,7 @@
          }
 
          function isGeneralItem() {
-            return self.superItemId === null;
+            return self.superItemName === null;
          }
       }
    }
