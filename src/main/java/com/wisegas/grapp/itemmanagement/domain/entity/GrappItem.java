@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class GrappItem extends NamedEntity<GrappItemId> {
    @EmbeddedId
    private GrappItemId id;

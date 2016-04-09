@@ -1,31 +1,22 @@
 package com.wisegas.grapp.usermanagement.domain.entity;
 
-import com.wisegas.common.lang.value.IdName;
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.usermanagement.domain.value.GrappUserListItemId;
 
 import javax.persistence.*;
 
 @Entity
-public class GrappUserListItem extends SimpleEntity<GrappUserListItemId> {
+public class GrappUserListItem extends NamedEntity<GrappUserListItemId> {
    @EmbeddedId
    private GrappUserListItemId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappUserList grappUserList;
 
-   @SuppressWarnings({"JpaAttributeTypeInspection", "JpaModelReferenceInspection", "JpaDataSourceORMInspection"})
-   @Embedded
-   @AttributeOverrides({
-      @AttributeOverride(name = "id", column = @Column(name = "itemId")),
-      @AttributeOverride(name = "name", column = @Column(name = "itemName"))
-   })
-   private IdName item;
-
-   public GrappUserListItem(GrappUserList grappUserList, IdName item) {
+   public GrappUserListItem(GrappUserList grappUserList, String name) {
       id = GrappUserListItemId.generate();
       setGrappUserList(grappUserList);
-      setItem(item);
+      setName(name);
    }
 
    protected GrappUserListItem() {
@@ -37,15 +28,7 @@ public class GrappUserListItem extends SimpleEntity<GrappUserListItemId> {
       return id;
    }
 
-   public IdName getItem() {
-      return item;
-   }
-
    private void setGrappUserList(GrappUserList grappUserList) {
       this.grappUserList = grappUserList;
-   }
-
-   private void setItem(IdName item) {
-      this.item = item;
    }
 }

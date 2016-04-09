@@ -1,6 +1,5 @@
 package com.wisegas.grapp.usermanagement.domain.entity;
 
-import com.wisegas.common.lang.value.IdName;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.usermanagement.domain.value.GrappUserListId;
 
@@ -42,8 +41,8 @@ public class GrappUserList extends NamedEntity<GrappUserListId> {
       return grappUserListItems;
    }
 
-   public GrappUserListItem addItem(IdName item) {
-      GrappUserListItem grappUserListItem = new GrappUserListItem(this, item);
+   public GrappUserListItem addItem(String itemName) {
+      GrappUserListItem grappUserListItem = new GrappUserListItem(this, itemName);
       grappUserListItems.add(grappUserListItem);
       return grappUserListItem;
    }
