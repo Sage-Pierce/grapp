@@ -3,11 +3,9 @@ package com.wisegas.common.persistence.jpa.impl
 import com.wisegas.common.persistence.jpa.api.GenericRepository
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity
 import com.wisegas.common.test.IntegrationTest
-import com.wisegas.grapp.test.Builders
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
-import java.lang.reflect.ParameterizedType
 
 @Transactional
 abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> extends IntegrationTest {
@@ -76,9 +74,5 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       testEntityManager.contains(entity2)
    }
 
-   T createTestEntity() {
-      String entityName = ((Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]).getSimpleName()
-      String entityBuilderMethodName = "${Character.toLowerCase(entityName.charAt(0))}${entityName.substring(1)}"
-      Builders."$entityBuilderMethodName"()
-   }
+   abstract T createTestEntity()
 }
