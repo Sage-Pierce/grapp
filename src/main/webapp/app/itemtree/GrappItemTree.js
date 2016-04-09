@@ -14,10 +14,9 @@
          scope: {},
          bindToController: {
             items: "=",
-            filter: "=?",
             add: "=?",
-            edit: "=?",
-            remove: "=?"
+            remove: "=?",
+            options: "=?"
          }
       };
    }
@@ -26,15 +25,17 @@
    function GrappItemTree($scope) {
       var grappItemTreeVM = this;
       grappItemTreeVM.items = this.items;
-      grappItemTreeVM.filter = this.filter;
+      grappItemTreeVM.filter = "";
+      grappItemTreeVM.options = this.options || {};
+      grappItemTreeVM.filterChanged = filterChanged;
       grappItemTreeVM.isNodeVisible = isNodeVisible;
-
-      initialize();
 
       ////////////////////
 
-      function initialize() {
-         $scope.$watch("grappItemTreeVM.filter", filterChanged);
+      function filterChanged() {
+         if (isFilterEmpty()) {
+            collapseAll();
+         }
       }
 
       function isNodeVisible(node) {
@@ -49,12 +50,6 @@
          return isFilterEmpty() ||
                 itemModel.name.toLowerCase().indexOf(grappItemTreeVM.filter.toLowerCase()) >= 0 ||
                 _.reduce(itemModel.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
-      }
-
-      function filterChanged() {
-         if (isFilterEmpty()) {
-            collapseAll();
-         }
       }
 
       function collapseAll() {

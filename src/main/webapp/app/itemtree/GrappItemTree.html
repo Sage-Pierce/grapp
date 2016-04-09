@@ -1,4 +1,5 @@
-<div ui-tree data-empty-placeholder-enabled="false">
+<input type="text" class="width-full" ng-if="grappItemTreeVM.options.filterable" ng-model="grappItemTreeVM.filter" ng-change="grappItemTreeVM.filterChanged()" placeholder="Item Filter"/>
+<div class="border-1-solid-grey height-scrollable {{grappItemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
    <ol ui-tree-nodes ng-model="grappItemTreeVM.items">
       <li ng-repeat="item in grappItemTreeVM.items"
           ng-include="'TreeItemRenderer.html'"
