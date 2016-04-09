@@ -135,7 +135,7 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
          nodes.remove(grappStoreNodeId);
       }
       else {
-         throw new RuntimeException(String.format("Node ($s) not found in Layout (%s).", grappStoreNodeId, getId()));
+         throw new RuntimeException(String.format("Node (%s) not found in Layout (%s).", grappStoreNodeId, getId()));
       }
    }
 
