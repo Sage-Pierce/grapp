@@ -23,17 +23,12 @@ public class GrappItemId extends EntityId {
 
    }
 
-   @Override
-   public String toString() {
-      return Base64.getEncoder().encodeToString(name.getBytes());
-   }
-
    public String getName() {
       return name;
    }
 
    @Override
    protected Object idHash() {
-      return name;
+      return Base64.getEncoder().encodeToString(name.getBytes());
    }
 }
