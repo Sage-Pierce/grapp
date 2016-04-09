@@ -9,7 +9,7 @@ public final class JaxrsHalResourceLinkBuilder {
    private static final String RELATIVE_REST_API_ROOT = "/rest";
    private static final String SELF_REL = "self";
 
-   private Class resource;
+   private final Class resource;
    private String methodName;
    private Object[] pathArgs;
    private String[] queryParams;
@@ -45,14 +45,14 @@ public final class JaxrsHalResourceLinkBuilder {
    }
 
    private String buildQueryFragment() {
-      return queryParams == null || queryParams.length == 0 ? "" : "{?" + join(queryParams, ",") + "}";
+      return queryParams == null || queryParams.length == 0 ? "" : "{?" + join(queryParams) + "}";
    }
 
-   private static String join(String[] strings, String separator) {
+   private static String join(String[] strings) {
       StringBuilder builder = new StringBuilder();
       boolean first = true;
       for (String string : strings) {
-         builder.append(first ? "" : separator);
+         builder.append(first ? "" : ",");
          builder.append(string);
          first = false;
       }

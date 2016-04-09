@@ -65,8 +65,8 @@ public class HalRepresentationImpl implements HalRepresentation, Representation 
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, String href, String name, String title, String hreflang, String profile) {
-      delegate.withLink(rel, href, name, title, hreflang, profile);
+   public HalRepresentationImpl withLink(String rel, String href, String name, String title, String hrefLang, String profile) {
+      delegate.withLink(rel, href, name, title, hrefLang, profile);
       return this;
    }
 

@@ -56,7 +56,7 @@ public class NacsId {
       return !isItemId() && !Objects.equals(subCategoryId, 0);
    }
 
-   public boolean isItemId() {
+   private boolean isItemId() {
       return !Objects.equals(itemId, 0);
    }
 }

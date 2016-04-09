@@ -24,10 +24,10 @@ import java.util.Map;
 public class GoogleTokenServices extends RemoteTokenServices {
    private static final String CHECK_TOKEN_ENDPOINT_URL = "https://www.googleapis.com/oauth2/v1/tokeninfo";
 
-   private OAuth2ProtectedResourceDetails oAuth2ProtectedResourceDetails;
+   private final OAuth2ProtectedResourceDetails oAuth2ProtectedResourceDetails;
 
-   private AccessTokenConverter tokenConverter = new GoogleAccessTokenConverter();
-   private RestTemplate restTemplate = new IgnoreBadRequestRestTemplate();
+   private final AccessTokenConverter tokenConverter = new GoogleAccessTokenConverter();
+   private final RestTemplate restTemplate = new IgnoreBadRequestRestTemplate();
 
    public GoogleTokenServices(OAuth2ProtectedResourceDetails oAuth2ProtectedResourceDetails) {
       this.oAuth2ProtectedResourceDetails = oAuth2ProtectedResourceDetails;
