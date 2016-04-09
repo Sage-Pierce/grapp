@@ -10,8 +10,8 @@
         <property name="location" value="test.properties"/>
     </bean>
 
-    <import resource="classpath:persistence-beans.xml"/>
-    <import resource="classpath:application-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
 
     <!-- Specify H2 as our datasource (for tests ONLY) -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
