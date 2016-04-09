@@ -4,30 +4,31 @@ import com.wisegas.common.persistence.jpa.value.EntityId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
+import java.util.Base64;
 
 @Embeddable
 public class GrappUserId extends EntityId {
    @Basic
-   private String id;
-
-   public static GrappUserId generate() {
-      return new GrappUserId(generateValue());
-   }
+   private String email;
 
    public static GrappUserId fromString(String string) {
-      return new GrappUserId(string);
+      return new GrappUserId(new String(Base64.getDecoder().decode(string)));
+   }
+
+   public GrappUserId(String email) {
+      this.email = email;
    }
 
    protected GrappUserId() {
 
    }
 
-   private GrappUserId(String id) {
-      this.id = id;
+   public String getEmail() {
+      return email;
    }
 
    @Override
    protected Object idHash() {
-      return id;
+      return Base64.getEncoder().encodeToString(email.getBytes());
    }
 }

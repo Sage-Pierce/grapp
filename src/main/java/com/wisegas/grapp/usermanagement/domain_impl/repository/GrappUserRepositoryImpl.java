@@ -17,7 +17,7 @@ public class GrappUserRepositoryImpl extends GenericRepositoryImpl<GrappUser> im
       try {
          return Optional.of((GrappUser)entityManager.createQuery(" SELECT grappUser " +
                                                                  " FROM GrappUser grappUser " +
-                                                                 " WHERE grappUser.email = :email ")
+                                                                 " WHERE grappUser.id.email = :email ")
                                                     .setParameter("email", email)
                                                     .getSingleResult());
       }

@@ -16,18 +16,16 @@ class GrappUserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
 
    def "A GrappUser can be found by E-Mail"() {
       given:
-      testEntityManager.save(GrappUserBuilder.grappUser().having { it.email = "fun@home.com" })
+      GrappUser grappUser = testEntityManager.save(GrappUserBuilder.grappUser())
 
       when: "We try to find our Test Entity by E-Mail"
-      def result = grappUserRepository.findByEmail(emailToLookFor)
+      def result = grappUserRepository.findByEmail(shouldBeFound ? grappUser.getEmail() : "BOGUS EMAIL")
 
       then: "The Test Entity should found based on the E-Mail we looked for"
       shouldBeFound == result.isPresent()
 
       where:
-      emailToLookFor | shouldBeFound
-      "Not an Email" | false
-      "fun@home.com" | true
+      shouldBeFound << [true, false]
    }
 
    @Override

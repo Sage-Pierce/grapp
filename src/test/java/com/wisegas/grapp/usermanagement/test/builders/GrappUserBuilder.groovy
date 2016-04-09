@@ -10,8 +10,8 @@ class GrappUserBuilder {
    static GrappUser grappUser() {
       unique++
       EntityBuilder.wrapBuilder(new GrappUser(
+         "test${unique}@email.com",
          "Test User ${unique}",
-         "test@email${unique}.com",
          "<avatar ${unique}>"
       )) as GrappUser
    }

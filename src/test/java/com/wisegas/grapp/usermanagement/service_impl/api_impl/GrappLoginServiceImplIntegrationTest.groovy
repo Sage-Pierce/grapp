@@ -24,7 +24,7 @@ class GrappLoginServiceImplIntegrationTest extends IntegrationTest {
    }
 
    def "a GrappUser will be found if it is already in the DB"() {
-      GrappUser savedUser = testEntityManager.save(GrappUserBuilder.grappUser().having { it.email = "test@test.com" })
+      GrappUser savedUser = testEntityManager.save(GrappUserBuilder.grappUser())
 
       when:
       GrappUserDTO userResource = grappLoginService.logIn(savedUser.getEmail(), null)

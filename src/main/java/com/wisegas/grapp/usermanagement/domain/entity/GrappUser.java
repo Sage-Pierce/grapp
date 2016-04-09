@@ -12,16 +12,13 @@ public class GrappUser extends NamedEntity<GrappUserId> {
    @EmbeddedId
    private GrappUserId id;
 
-   private String email;
-
    private String avatar;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappUser", orphanRemoval = true)
    private List<GrappUserList> grappUserLists = new ArrayList<>();
 
    public GrappUser(String email, String name, String avatar) {
-      id = GrappUserId.generate();
-      setEmail(email);
+      id = new GrappUserId(email);
       setName(name);
       setAvatar(avatar);
    }
@@ -36,7 +33,7 @@ public class GrappUser extends NamedEntity<GrappUserId> {
    }
 
    public String getEmail() {
-      return email;
+      return id.getEmail();
    }
 
    public String getAvatar() {
@@ -55,9 +52,5 @@ public class GrappUser extends NamedEntity<GrappUserId> {
 
    public List<GrappUserList> getGrappUserLists() {
       return grappUserLists;
-   }
-
-   private void setEmail(String email) {
-      this.email = email;
    }
 }
