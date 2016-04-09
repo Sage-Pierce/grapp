@@ -6,7 +6,7 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <import resource="classpath:/test-database-beans.xml"/>
+    <import resource="classpath:/test-persistence-beans.xml"/>
     <import resource="classpath:/transaction-beans.xml"/>
     <import resource="classpath:/application-beans.xml"/>
 
