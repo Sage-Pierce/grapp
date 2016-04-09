@@ -27,7 +27,7 @@ public class GrappItemRepositoryImpl extends GenericRepositoryImpl<GrappItem> im
       try {
          return Optional.of((GrappItem)entityManager.createQuery(" SELECT grappItem" +
                                                                  " FROM GrappItem grappItem" +
-                                                                 " WHERE grappItem.name = :name")
+                                                                 " WHERE grappItem.id.name = :name")
                                                     .setParameter("name", name)
                                                     .getSingleResult());
       }

@@ -15,7 +15,5 @@ public interface GrappItemService {
 
    GrappItemDTO get(String id);
 
-   GrappItemDTO update(String id, String name);
-
    void delete(String id);
 }

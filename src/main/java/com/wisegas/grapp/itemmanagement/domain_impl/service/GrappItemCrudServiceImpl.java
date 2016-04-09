@@ -4,7 +4,6 @@ import com.wisegas.common.lang.exception.EntityConflictException;
 import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem;
 import com.wisegas.grapp.itemmanagement.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.itemmanagement.domain.service.GrappItemCreationService;
-import com.wisegas.grapp.itemmanagement.domain.service.GrappItemUpdateService;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
 
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Named
 @Singleton
-public class GrappItemCrudServiceImpl implements GrappItemCreationService, GrappItemUpdateService {
+public class GrappItemCrudServiceImpl implements GrappItemCreationService {
 
    private final GrappItemRepository grappItemRepository;
 
@@ -38,16 +37,6 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService, Grapp
       assertItemNameUniqueness(name);
       GrappItem superItem = grappItemRepository.get(superItemId);
       return superItem.addSubItem(name);
-   }
-
-   @Override
-   public GrappItem updateName(GrappItemId id, String name) {
-      GrappItem grappItem = grappItemRepository.get(id);
-      if (!grappItem.getName().equals(name)) {
-         assertItemNameUniqueness(name);
-         grappItem.setName(name);
-      }
-      return grappItem;
    }
 
    private void assertItemNameUniqueness(String name) {

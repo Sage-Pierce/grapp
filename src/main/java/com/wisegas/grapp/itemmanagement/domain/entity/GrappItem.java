@@ -1,6 +1,6 @@
 package com.wisegas.grapp.itemmanagement.domain.entity;
 
-import com.wisegas.common.persistence.jpa.entity.NamedEntity;
+import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
 
@@ -8,8 +8,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
-public class GrappItem extends NamedEntity<GrappItemId> {
+public class GrappItem extends SimpleEntity<GrappItemId> {
    @EmbeddedId
    private GrappItemId id;
 
@@ -31,8 +30,7 @@ public class GrappItem extends NamedEntity<GrappItemId> {
    }
 
    private GrappItem(GrappItem superItem, String name) {
-      id = GrappItemId.generate();
-      setName(name);
+      id = GrappItemId.fromName(name);
       setSuperItem(superItem);
    }
 
@@ -50,6 +48,10 @@ public class GrappItem extends NamedEntity<GrappItemId> {
    @Override
    public GrappItemId getId() {
       return id;
+   }
+
+   public String getName() {
+      return id.getName();
    }
 
    public Set<GrappItemCode> getCodes() {

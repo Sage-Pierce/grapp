@@ -27,7 +27,7 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
 
    def "A General Item can be imported"() {
       given:
-      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "00-00-00")
+      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "01-00-00")
 
       when:
       def result = grappItemImportService.importGeneralItem(code, NAME)
@@ -84,35 +84,17 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
       result.getCodes().contains(code)
    }
 
-   def "Importing an Item with a code applies the name to an Item that already has that Item's code"() {
-      given:
-      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "01-00-00")
-
-      and:
-      GrappItem grappItem = testEntityManager.save(createItemWithCode(code))
-
-      and:
-      String name = "NEW NAME"
-
-      when:
-      def result = grappItemImportService.importGeneralItem(code, name)
-
-      then:
-      result == grappItem
-      result.getName() == name
-   }
-
    def "Trying to import an item with the code of one existing Item and the name of another existing Item results in an Exception"() {
       given:
-      String name = "Grapp Item"
+      GrappItem grappItem = GrappItemBuilder.grappItem()
       GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "01-00-00")
 
       and:
-      testEntityManager.save(GrappItemBuilder.grappItem().having { it.name = name })
+      testEntityManager.save(grappItem)
       testEntityManager.save(createItemWithCode(code))
 
       when:
-      grappItemImportService.importGeneralItem(code, name)
+      grappItemImportService.importGeneralItem(code, grappItem.getName())
 
       then:
       thrown(IllegalStateException)

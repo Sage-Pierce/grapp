@@ -12,7 +12,6 @@
       mainItemsVM.createGeneralItem = createGeneralItem;
       mainItemsVM.importItems = importItems;
       mainItemsVM.createSubItem = createSubItem;
-      mainItemsVM.editItem = editItem;
       mainItemsVM.deleteItem = deleteItem;
 
       initialize();
@@ -26,7 +25,7 @@
       }
 
       function createGeneralItem() {
-         openModalUpdateItem(null, true).then(function(result) {
+         openModalCreateItem().then(function(result) {
             GrappItem.createGeneralItem(result.name).then(function(itemModel) {
                mainItemsVM.items.push(itemModel);
             });
@@ -43,14 +42,9 @@
 
       function createSubItem(itemScope) {
          var itemModel = itemScope.$modelValue;
-         openModalUpdateItem(null, false).then(function(result) {
+         openModalCreateItem(itemModel).then(function(result) {
             itemModel.addSubItem(result.name);
          });
-      }
-
-      function editItem(itemScope) {
-         var itemModel = itemScope.$modelValue;
-         openModalUpdateItem(itemModel, itemModel.isGeneralItem()).then(itemModel.commitAttributes);
       }
 
       function deleteItem(itemScope) {
@@ -68,15 +62,14 @@
          }).result;
       }
 
-      function openModalUpdateItem(itemModel, isGeneralItem) {
+      function openModalCreateItem(superItemModel) {
          return $uibModal.open({
             animation: true,
-            templateUrl: "app/items/ModalUpdateItem.html",
-            controller: "ModalUpdateItem",
-            controllerAs: "modalUpdateItemVM",
+            templateUrl: "app/items/ModalCreateItem.html",
+            controller: "ModalCreateItem",
+            controllerAs: "modalCreateItemVM",
             resolve: {
-               isGeneralItem: function() { return isGeneralItem; },
-               itemName: function() { return itemModel && itemModel.name; }
+               superItemModel: function() { return superItemModel; }
             }
          }).result;
       }

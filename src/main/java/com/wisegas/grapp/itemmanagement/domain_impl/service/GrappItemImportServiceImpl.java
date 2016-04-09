@@ -25,7 +25,7 @@ public class GrappItemImportServiceImpl implements GrappItemImportService {
    public GrappItem importGeneralItem(GrappItemCode code, String name) {
       Optional<GrappItem> reimportedGeneralItem = validateReimport(code, name);
       GrappItem generalItem = reimportedGeneralItem.isPresent() ? reimportedGeneralItem.get() : grappItemRepository.add(new GrappItem(name));
-      updateGrappItem(generalItem, name, code);
+      generalItem.addCode(code);
       return generalItem;
    }
 
@@ -33,7 +33,7 @@ public class GrappItemImportServiceImpl implements GrappItemImportService {
    public GrappItem importSubItem(GrappItemCode superCode, GrappItemCode code, String name) {
       Optional<GrappItem> reimportedSubItem = validateReimport(code, name);
       GrappItem subItem = reimportedSubItem.isPresent() ? reimportedSubItem.get() : importSubItemToSuperItem(superCode, name);
-      updateGrappItem(subItem, name, code);
+      subItem.addCode(code);
       return subItem;
    }
 
@@ -62,10 +62,5 @@ public class GrappItemImportServiceImpl implements GrappItemImportService {
       else {
          return foundItemByCode.isPresent() ? foundItemByCode : foundItemByName;
       }
-   }
-
-   private void updateGrappItem(GrappItem grappItem, String name, GrappItemCode code) {
-      grappItem.setName(name);
-      grappItem.addCode(code);
    }
 }

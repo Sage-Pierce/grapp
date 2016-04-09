@@ -4,7 +4,6 @@ import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.itemmanagement.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.itemmanagement.domain.service.GrappItemCreationService;
-import com.wisegas.grapp.itemmanagement.domain.service.GrappItemUpdateService;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
 import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
@@ -23,13 +22,11 @@ import java.util.stream.Collectors;
 public class GrappItemServiceImpl implements GrappItemService {
 
    private final GrappItemCreationService grappItemCreationService;
-   private final GrappItemUpdateService grappItemUpdateService;
    private final GrappItemRepository grappItemRepository;
 
    @Inject
-   public GrappItemServiceImpl(GrappItemCreationService grappItemCreationService, GrappItemUpdateService grappItemUpdateService, GrappItemRepository grappItemRepository) {
+   public GrappItemServiceImpl(GrappItemCreationService grappItemCreationService, GrappItemRepository grappItemRepository) {
       this.grappItemCreationService = grappItemCreationService;
-      this.grappItemUpdateService = grappItemUpdateService;
       this.grappItemRepository = grappItemRepository;
    }
 
@@ -56,11 +53,6 @@ public class GrappItemServiceImpl implements GrappItemService {
    @Override
    public GrappItemDTO get(String id) {
       return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemId.fromString(id)));
-   }
-
-   @Override
-   public GrappItemDTO update(String id, String name) {
-      return GrappItemDTOFactory.createDTO(grappItemUpdateService.updateName(GrappItemId.fromString(id), name));
    }
 
    @Override

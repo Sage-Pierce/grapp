@@ -8,7 +8,10 @@ import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
@@ -26,12 +29,6 @@ public class GrappItemResource extends JaxrsHalJsonResource {
    @GET
    public Response get(@PathParam("id") final String id) {
       return buildHalResponse(asRepresentationOf(grappItemService.get(id)));
-   }
-
-   @PUT
-   public Response update(@PathParam("id") final String id,
-                          @QueryParam("name") final String name) {
-      return buildHalResponse(asRepresentationOf(grappItemService.update(id, name)));
    }
 
    @DELETE
@@ -53,6 +50,6 @@ public class GrappItemResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemResource.class).queryParams("name");
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemResource.class);
    }
 }

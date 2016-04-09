@@ -33,19 +33,12 @@
 
       function GrappItemModel(grappItemRsc) {
          var self = this;
-         self.commitAttributes = commitAttributes;
          self.addSubItem = addSubItem;
          self.delete = del;
          self.isGeneralItem = isGeneralItem;
          self.subItems = grappItemRsc.subItems.map(function(subItemRsc) { return GrappRoot.mergeResourceIntoModel(subItemRsc, new GrappItemModel(subItemRsc)); });
 
          ////////////////////
-
-         function commitAttributes(attributes) {
-            return GrappRoot.updateResourceByID("item", self.id, attributes).then(function(itemRsc) {
-               self.name = itemRsc.name;
-            });
-         }
 
          function addSubItem(name) {
             return GrappRoot.createResourceModel("items", {superItemId: self.id, name: name}, createModel)
