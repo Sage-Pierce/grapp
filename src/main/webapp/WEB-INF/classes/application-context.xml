@@ -6,7 +6,11 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <import resource="classpath:/persistence-beans.xml"/>
-    <import resource="classpath:/transaction-beans.xml"/>
-    <import resource="classpath:/application-beans.xml"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
+
+    <import resource="classpath:database-beans.xml"/>
+    <import resource="classpath:persistence-beans.xml"/>
+    <import resource="classpath:application-beans.xml"/>
 </beans>
