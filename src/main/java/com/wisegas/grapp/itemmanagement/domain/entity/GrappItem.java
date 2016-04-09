@@ -30,7 +30,7 @@ public class GrappItem extends SimpleEntity<GrappItemId> {
    }
 
    private GrappItem(GrappItem superItem, String name) {
-      id = GrappItemId.fromName(name);
+      id = new GrappItemId(name);
       setSuperItem(superItem);
    }
 

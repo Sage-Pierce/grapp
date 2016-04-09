@@ -11,16 +11,12 @@ public class GrappItemId extends EntityId {
    @Basic
    private String name;
 
-   public static GrappItemId generate() {
-      return new GrappItemId(generateValue());
-   }
-
    public static GrappItemId fromString(String string) {
       return new GrappItemId(new String(Base64.getDecoder().decode(string)));
    }
 
-   public static GrappItemId fromName(String name) {
-      return new GrappItemId(name);
+   public GrappItemId(String name) {
+      this.name = name;
    }
 
    protected GrappItemId() {
@@ -34,10 +30,6 @@ public class GrappItemId extends EntityId {
 
    public String getName() {
       return name;
-   }
-
-   private GrappItemId(String name) {
-      this.name = name;
    }
 
    @Override
