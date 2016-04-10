@@ -10,12 +10,12 @@
       mainStoreMapNodesVM.nodeTypes = _.values(GrappStoreNodeType);
       mainStoreMapNodesVM.radioModel = GrappStoreNodeType.REGULAR;
       mainStoreMapNodesVM.selectedNodeName = null;
+      mainStoreMapNodesVM.selectedNodeItems = [];
       mainStoreMapNodesVM.radioChanged = radioChanged;
       mainStoreMapNodesVM.nodeNameChanged = nodeNameChanged;
-      mainStoreMapNodesVM.isANodeSelected = isANodeSelected;
+      mainStoreMapNodesVM.isANodeSelected = function() { return false; };
 
-      var selectedNode = null;
-      var nodeSelector = new NodeSelector(mapControl);
+      var nodeSelector = new NodeSelector(mapControl, {nodeSelected: nodeSelected});
       var nodeEventHandler = new NodeEventHandler(mapControl, grappStoreLayout, nodeSelector, mainStoreMapNodesVM.radioModel);
 
       initialize();
@@ -23,7 +23,7 @@
       ////////////////////
 
       function initialize() {
-         nodeSelector.setNodeSelectionHandler({nodeSelected: nodeSelected});
+         mainStoreMapNodesVM.isANodeSelected = nodeSelector.isANodeSelected;
          mapControl.setEventHandler(nodeEventHandler);
       }
 
@@ -32,17 +32,12 @@
       }
 
       function nodeNameChanged() {
-         if (isANodeSelected()) {
-            selectedNode.commitName(mainStoreMapNodesVM.selectedNodeName);
+         if (mainStoreMapNodesVM.isANodeSelected()) {
+            nodeSelector.getSelectedNode().commitName(mainStoreMapNodesVM.selectedNodeName);
          }
       }
 
-      function isANodeSelected() {
-         return selectedNode !== null;
-      }
-
       function nodeSelected(node) {
-         selectedNode = node;
          mainStoreMapNodesVM.selectedNodeName = node.name;
       }
    }

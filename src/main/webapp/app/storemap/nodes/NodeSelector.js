@@ -4,14 +4,14 @@
    angular.module("Grapp")
       .value("NodeSelector", NodeSelector);
 
-   function NodeSelector(mapControl) {
+   function NodeSelector(mapControl, nodeSelectionHandler) {
       var self = this;
       self.select = select;
       self.deselect = deselect;
-      self.setNodeSelectionHandler = setNodeSelectionHandler;
+      self.isANodeSelected = isANodeSelected;
+      self.getSelectedNode = getSelectedNode;
 
       var selectedNode = null;
-      var nodeSelectionHandler = null;
 
       ////////////////////
 
@@ -36,8 +36,12 @@
          }
       }
 
-      function setNodeSelectionHandler(nsh) {
-         nodeSelectionHandler = nsh;
+      function isANodeSelected() {
+         return selectedNode != null;
+      }
+
+      function getSelectedNode() {
+         return selectedNode;
       }
    }
 })();
