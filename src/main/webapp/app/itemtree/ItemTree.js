@@ -2,15 +2,15 @@
    "use strict";
 
    angular.module("Grapp")
-      .controller("GrappItemTree", GrappItemTree)
-      .directive("grappItemTree", GrappItemTreeDirective);
+      .controller("ItemTree", ItemTree)
+      .directive("itemTree", ItemTreeDirective);
 
-   function GrappItemTreeDirective() {
+   function ItemTreeDirective() {
       return {
          restrict: "E",
-         controller: "GrappItemTree",
-         controllerAs: "grappItemTreeVM",
-         templateUrl: "app/itemtree/GrappItemTree.html",
+         controller: "ItemTree",
+         controllerAs: "itemTreeVM",
+         templateUrl: "app/itemtree/ItemTree.html",
          scope: {},
          bindToController: {
             items: "=",
@@ -22,14 +22,14 @@
       };
    }
 
-   GrappItemTree.$inject = ["$scope"];
-   function GrappItemTree($scope) {
-      var grappItemTreeVM = this;
-      grappItemTreeVM.items = this.items;
-      grappItemTreeVM.filter = "";
-      grappItemTreeVM.options = this.options || {};
-      grappItemTreeVM.filterChanged = filterChanged;
-      grappItemTreeVM.isNodeVisible = isNodeVisible;
+   ItemTree.$inject = ["$scope"];
+   function ItemTree($scope) {
+      var itemTreeVM = this;
+      itemTreeVM.items = this.items;
+      itemTreeVM.filter = "";
+      itemTreeVM.options = this.options || {};
+      itemTreeVM.filterChanged = filterChanged;
+      itemTreeVM.isNodeVisible = isNodeVisible;
 
       ////////////////////
 
@@ -49,7 +49,7 @@
 
       function isItemVisible(itemModel) {
          return isFilterEmpty() ||
-                itemModel.name.toLowerCase().indexOf(grappItemTreeVM.filter.toLowerCase()) >= 0 ||
+                itemModel.name.toLowerCase().indexOf(itemTreeVM.filter.toLowerCase()) >= 0 ||
                 _.reduce(itemModel.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
       }
 
@@ -58,7 +58,7 @@
       }
 
       function isFilterEmpty() {
-         return !grappItemTreeVM.filter || grappItemTreeVM.filter.length === 0;
+         return !itemTreeVM.filter || itemTreeVM.filter.length === 0;
       }
    }
 })();

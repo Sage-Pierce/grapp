@@ -1,33 +1,33 @@
 <input type="text"
        class="width-full"
-       ng-if="grappItemTreeVM.options.filterable"
-       ng-model="grappItemTreeVM.filter"
-       ng-change="grappItemTreeVM.filterChanged()"
-       ng-disabled="grappItemTreeVM.disabled"
+       ng-if="itemTreeVM.options.filterable"
+       ng-model="itemTreeVM.filter"
+       ng-change="itemTreeVM.filterChanged()"
+       ng-disabled="itemTreeVM.disabled"
        placeholder="Item Filter"/>
-<div class="border-1-solid-grey border-rounded-4 height-scrollable black-rounded-scrollbar {{grappItemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
-   <ol ui-tree-nodes ng-model="grappItemTreeVM.items">
-      <li ng-repeat="item in grappItemTreeVM.items"
+<div class="border-1-solid-grey border-rounded-4 height-scrollable black-rounded-scrollbar {{itemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
+   <ol ui-tree-nodes ng-model="itemTreeVM.items">
+      <li ng-repeat="item in itemTreeVM.items"
           ng-include="'TreeItemRenderer.html'"
           data-collapsed="true"
-          ng-show="grappItemTreeVM.isNodeVisible(this)"
+          ng-show="itemTreeVM.isNodeVisible(this)"
           ui-tree-node>
       </li>
    </ol>
 </div>
 <script type="text/ng-template" id="TreeItemRenderer.html">
    <div class="item-node">
-      <a class="btn btn-primary btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)" ng-disabled="grappItemTreeVM.disabled">
+      <a class="btn btn-primary btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
       </a>
       <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
          <span class="glyphicon glyphicon-record"></span>
       </a>
       {{item.name}}
-      <a class="pull-right btn btn-danger btn-xs" ng-if="grappItemTreeVM.remove != null" ng-click="grappItemTreeVM.remove(this)" ng-disabled="grappItemTreeVM.disabled">
+      <a class="pull-right btn btn-danger btn-xs" ng-if="itemTreeVM.remove != null" ng-click="itemTreeVM.remove(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-remove"></span>
       </a>
-      <a class="pull-right btn btn-success btn-xs" ng-if="grappItemTreeVM.add != null" ng-click="grappItemTreeVM.add(this)" ng-disabled="grappItemTreeVM.disabled">
+      <a class="pull-right btn btn-success btn-xs" ng-if="itemTreeVM.add != null" ng-click="itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-plus"></span>
       </a>
    </div>
@@ -36,7 +36,7 @@
           ng-repeat="item in item.subItems"
           ng-include="'TreeItemRenderer.html'"
           data-collapsed="true"
-          ng-show="grappItemTreeVM.isNodeVisible(this)"
+          ng-show="itemTreeVM.isNodeVisible(this)"
           ui-tree-node>
       </li>
    </ol>
