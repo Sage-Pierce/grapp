@@ -41,8 +41,8 @@ public class GrappUserList extends NamedEntity<GrappUserListId> {
       return grappUserListItems;
    }
 
-   public GrappUserListItem addItem(String itemName) {
-      GrappUserListItem grappUserListItem = new GrappUserListItem(this, itemName);
+   public GrappUserListItem addItem(String itemCode, String itemName) {
+      GrappUserListItem grappUserListItem = new GrappUserListItem(this, itemCode, itemName);
       grappUserListItems.add(grappUserListItem);
       return grappUserListItem;
    }

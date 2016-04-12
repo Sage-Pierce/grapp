@@ -13,10 +13,13 @@ public class GrappUserListItem extends NamedEntity<GrappUserListItemId> {
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappUserList grappUserList;
 
-   public GrappUserListItem(GrappUserList grappUserList, String name) {
+   private String code;
+
+   public GrappUserListItem(GrappUserList grappUserList, String code, String name) {
       id = GrappUserListItemId.generate();
       setGrappUserList(grappUserList);
       setName(name);
+      setCode(code);
    }
 
    protected GrappUserListItem() {
@@ -30,5 +33,9 @@ public class GrappUserListItem extends NamedEntity<GrappUserListItemId> {
 
    private void setGrappUserList(GrappUserList grappUserList) {
       this.grappUserList = grappUserList;
+   }
+
+   private void setCode(String code) {
+      this.code = code;
    }
 }

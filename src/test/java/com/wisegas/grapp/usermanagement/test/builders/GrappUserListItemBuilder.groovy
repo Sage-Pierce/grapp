@@ -11,6 +11,7 @@ class GrappUserListItemBuilder {
       unique++
       EntityBuilder.wrapBuilder(new GrappUserListItem(
             GrappUserListBuilder.grappUserList(),
+            "#${unique}",
             "Item #${unique}"
       )) as GrappUserListItem
    }
