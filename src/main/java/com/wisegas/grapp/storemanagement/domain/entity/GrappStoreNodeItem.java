@@ -13,10 +13,13 @@ public class GrappStoreNodeItem extends NamedEntity<GrappStoreNodeItemId> {
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreNode grappStoreNode;
 
-   public GrappStoreNodeItem(GrappStoreNode grappStoreNode, String name) {
+   private String code;
+
+   public GrappStoreNodeItem(GrappStoreNode grappStoreNode, String code, String name) {
       id = GrappStoreNodeItemId.generate();
       setGrappStoreNode(grappStoreNode);
       setName(name);
+      setCode(code);
    }
 
    protected GrappStoreNodeItem() {
@@ -30,5 +33,9 @@ public class GrappStoreNodeItem extends NamedEntity<GrappStoreNodeItemId> {
 
    private void setGrappStoreNode(GrappStoreNode node) {
       this.grappStoreNode = node;
+   }
+
+   private void setCode(String code) {
+      this.code = code;
    }
 }

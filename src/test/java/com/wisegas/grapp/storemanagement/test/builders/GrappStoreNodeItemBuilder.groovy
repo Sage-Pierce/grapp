@@ -11,6 +11,7 @@ class GrappStoreNodeItemBuilder {
       unique++
       EntityBuilder.wrapBuilder(new GrappStoreNodeItem(
          GrappStoreNodeBuilder.grappStoreNode(),
+         "#${unique}",
          "Item #${unique}"
       )) as GrappStoreNodeItem
    }

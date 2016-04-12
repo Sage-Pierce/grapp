@@ -70,8 +70,8 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeId> {
       return grappStoreNodeItems;
    }
 
-   public GrappStoreNodeItem addItem(String itemName) {
-      GrappStoreNodeItem grappStoreNodeItem = new GrappStoreNodeItem(this, itemName);
+   public GrappStoreNodeItem addItem(String itemCode, String itemName) {
+      GrappStoreNodeItem grappStoreNodeItem = new GrappStoreNodeItem(this, itemCode, itemName);
       grappStoreNodeItems.add(grappStoreNodeItem);
       return grappStoreNodeItem;
    }
