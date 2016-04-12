@@ -24,29 +24,19 @@ public class GrappItemImportServiceImpl implements GrappItemImportService {
    @Override
    public GrappItem importGeneralItem(GrappItemCode code, String name) {
       Optional<GrappItem> reimportedGeneralItem = validateReimport(code, name);
-      GrappItem generalItem = reimportedGeneralItem.isPresent() ? reimportedGeneralItem.get() : grappItemRepository.add(new GrappItem(name));
-      generalItem.addCode(code);
-      return generalItem;
+      return reimportedGeneralItem.isPresent() ? reimportedGeneralItem.get() : grappItemRepository.add(new GrappItem(code, name));
    }
 
    @Override
    public GrappItem importSubItem(GrappItemCode superCode, GrappItemCode code, String name) {
       Optional<GrappItem> reimportedSubItem = validateReimport(code, name);
-      GrappItem subItem = reimportedSubItem.isPresent() ? reimportedSubItem.get() : importSubItemToSuperItem(superCode, name);
-      subItem.addCode(code);
-      return subItem;
+      return reimportedSubItem.isPresent() ? reimportedSubItem.get() : importSubItemToSuperItem(superCode, code, name);
    }
 
-   @Override
-   public GrappItem importSubItem(GrappItemCode superCode, String name) {
-      Optional<GrappItem> reimportedSubItem = grappItemRepository.findByName(name);
-      return reimportedSubItem.isPresent() ? reimportedSubItem.get() : importSubItemToSuperItem(superCode, name);
-   }
-
-   private GrappItem importSubItemToSuperItem(GrappItemCode superCode, String name) {
+   private GrappItem importSubItemToSuperItem(GrappItemCode superCode, GrappItemCode code, String name) {
       Optional<GrappItem> foundSuperItem = grappItemRepository.findByCode(superCode);
       if (foundSuperItem.isPresent()) {
-         return foundSuperItem.get().addSubItem(name);
+         return foundSuperItem.get().addSubItem(code, name);
       }
       else {
          throw new IllegalStateException("Cannot Import Sub-Item due to non-existent Super Item: " + superCode + ", " + name);
@@ -56,8 +46,8 @@ public class GrappItemImportServiceImpl implements GrappItemImportService {
    private Optional<GrappItem> validateReimport(GrappItemCode code, String name) {
       Optional<GrappItem> foundItemByCode = grappItemRepository.findByCode(code);
       Optional<GrappItem> foundItemByName = grappItemRepository.findByName(name);
-      if (foundItemByCode.isPresent() && foundItemByName.isPresent() && !foundItemByCode.equals(foundItemByName)) {
-         throw new IllegalStateException("Cannot Import conflicting Items: " + foundItemByCode.get().getId() + ", " + foundItemByName.get().getId() + ", " + code + ", " + name);
+      if (!foundItemByCode.equals(foundItemByName)) {
+         throw new IllegalStateException("Cannot Import conflicting Items: " + foundItemByCode + ", " + foundItemByName + ", " + code + ", " + name);
       }
       else {
          return foundItemByCode.isPresent() ? foundItemByCode : foundItemByName;

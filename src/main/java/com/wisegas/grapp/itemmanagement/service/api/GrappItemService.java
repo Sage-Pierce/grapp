@@ -5,9 +5,9 @@ import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
 import java.util.List;
 
 public interface GrappItemService {
-   GrappItemDTO createGeneralItem(String name);
+   GrappItemDTO createGeneralItem(String codeType, String code, String name);
 
-   GrappItemDTO createSubItem(String superItemId, String name);
+   GrappItemDTO createSubItem(String superItemId, String codeType, String code, String name);
 
    List<GrappItemDTO> getAll();
 

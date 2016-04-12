@@ -2,42 +2,44 @@ package com.wisegas.grapp.itemmanagement.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
-public class GrappItem extends SimpleEntity<GrappItemId> {
+public class GrappItem extends SimpleEntity<GrappItemCode> {
    @EmbeddedId
-   private GrappItemId id;
+   private GrappItemCode id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
    private GrappItem superItem;
 
-   @ElementCollection
-   private Set<GrappItemCode> codes = new HashSet<>();
+   @Column(unique = true)
+   private String name;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "superItem")
    private List<GrappItem> subItems = new ArrayList<>();
 
-   public GrappItem(String name) {
-      this(null, name);
+   public GrappItem(GrappItemCode code, String name) {
+      this(null, code, name);
    }
 
    protected GrappItem() {
 
    }
 
-   private GrappItem(GrappItem superItem, String name) {
-      id = new GrappItemId(name);
+   private GrappItem(GrappItem superItem, GrappItemCode code, String name) {
+      id = code;
       setSuperItem(superItem);
+      setName(name);
    }
 
    public List<GrappItem> getHierarchy() {
-      List<GrappItem> hierarchy = new ArrayList<>();
-      hierarchy.add(this);
       GrappItem hierarchicalItem = this;
+      List<GrappItem> hierarchy = new ArrayList<>();
+      hierarchy.add(hierarchicalItem);
       while (!hierarchicalItem.isGeneralItem()) {
          hierarchy.add(hierarchicalItem = hierarchicalItem.getSuperItem());
       }
@@ -46,28 +48,24 @@ public class GrappItem extends SimpleEntity<GrappItemId> {
    }
 
    @Override
-   public GrappItemId getId() {
+   public GrappItemCode getId() {
       return id;
    }
 
    public String getName() {
-      return id.getName();
+      return name;
    }
 
-   public Set<GrappItemCode> getCodes() {
-      return codes;
-   }
-
-   public void addCode(GrappItemCode code) {
-      codes.add(code);
+   public void setName(String name) {
+      this.name = name;
    }
 
    public List<GrappItem> getSubItems() {
       return subItems;
    }
 
-   public GrappItem addSubItem(String name) {
-      GrappItem subItem = new GrappItem(this, name);
+   public GrappItem addSubItem(GrappItemCode code, String name) {
+      GrappItem subItem = new GrappItem(this, code, name);
       subItems.add(subItem);
       return subItem;
    }

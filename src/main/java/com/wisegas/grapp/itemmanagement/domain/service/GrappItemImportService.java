@@ -7,6 +7,4 @@ public interface GrappItemImportService {
    GrappItem importGeneralItem(GrappItemCode code, String name);
 
    GrappItem importSubItem(GrappItemCode superCode, GrappItemCode code, String name);
-
-   GrappItem importSubItem(GrappItemCode superCode, String name);
 }

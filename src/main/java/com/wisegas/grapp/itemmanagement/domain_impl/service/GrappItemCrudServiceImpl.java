@@ -4,14 +4,11 @@ import com.wisegas.common.lang.exception.EntityConflictException;
 import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem;
 import com.wisegas.grapp.itemmanagement.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.itemmanagement.domain.service.GrappItemCreationService;
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -27,16 +24,16 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService {
    }
 
    @Override
-   public GrappItem createGeneralItem(String name) {
+   public GrappItem createGeneralItem(GrappItemCode code, String name) {
       assertItemNameUniqueness(name);
-      return grappItemRepository.add(new GrappItem(name));
+      return grappItemRepository.add(new GrappItem(code, name));
    }
 
    @Override
-   public GrappItem createSubItem(GrappItemId superItemId, String name) {
+   public GrappItem createSubItem(GrappItemCode superItemId, GrappItemCode code, String name) {
       assertItemNameUniqueness(name);
       GrappItem superItem = grappItemRepository.get(superItemId);
-      return superItem.addSubItem(name);
+      return superItem.addSubItem(code, name);
    }
 
    private void assertItemNameUniqueness(String name) {
@@ -47,12 +44,6 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService {
    }
 
    private String stringifyItemHierarchy(GrappItem grappItem) {
-      List<GrappItem> itemHierarchy = new ArrayList<>();
-      itemHierarchy.add(grappItem);
-      while (!grappItem.isGeneralItem()) {
-         itemHierarchy.add(grappItem = grappItem.getSuperItem());
-      }
-      Collections.reverse(itemHierarchy);
-      return itemHierarchy.stream().map(GrappItem::getName).collect(Collectors.joining(" -> "));
+      return grappItem.getHierarchy().stream().map(GrappItem::getName).collect(Collectors.joining(" -> "));
    }
 }

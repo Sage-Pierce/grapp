@@ -26,8 +26,10 @@ public class GrappGeneralItemsResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   public Response create(@QueryParam("name") final String name) {
-      return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createGeneralItem(name)));
+   public Response create(@QueryParam("codeType") final String codeType,
+                          @QueryParam("code") final String code,
+                          @QueryParam("name") final String name) {
+      return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createGeneralItem(codeType, code, name)));
    }
 
    @GET
@@ -47,6 +49,6 @@ public class GrappGeneralItemsResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappGeneralItemsResource.class).queryParams("name");
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappGeneralItemsResource.class).queryParams("codeType", "code", "name");
    }
 }

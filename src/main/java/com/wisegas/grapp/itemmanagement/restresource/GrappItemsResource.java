@@ -27,8 +27,10 @@ public class GrappItemsResource extends JaxrsHalJsonResource {
 
    @POST
    public Response create(@QueryParam("superItemId") final String superItemId,
+                          @QueryParam("codeType") final String codeType,
+                          @QueryParam("code") final String code,
                           @QueryParam("name") final String name) {
-      return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createSubItem(superItemId, name)));
+      return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createSubItem(superItemId, codeType, code, name)));
    }
 
    @GET

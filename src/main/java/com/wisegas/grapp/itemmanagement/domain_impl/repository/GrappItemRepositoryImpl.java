@@ -27,7 +27,7 @@ public class GrappItemRepositoryImpl extends GenericRepositoryImpl<GrappItem> im
       try {
          return Optional.of((GrappItem)entityManager.createQuery(" SELECT grappItem" +
                                                                  " FROM GrappItem grappItem" +
-                                                                 " WHERE grappItem.id.name = :name")
+                                                                 " WHERE grappItem.name = :name")
                                                     .setParameter("name", name)
                                                     .getSingleResult());
       }
@@ -41,11 +41,8 @@ public class GrappItemRepositoryImpl extends GenericRepositoryImpl<GrappItem> im
       try {
          return Optional.of((GrappItem)entityManager.createQuery(" SELECT grappItem" +
                                                                  " FROM GrappItem grappItem" +
-                                                                 "    JOIN grappItem.codes code" +
-                                                                 " WHERE code.type = :codeType" +
-                                                                 "    AND code.value = :codeValue")
-                                                    .setParameter("codeType", code.getType())
-                                                    .setParameter("codeValue", code.getValue())
+                                                                 " WHERE grappItem.id = :code")
+                                                    .setParameter("code", code)
                                                     .getSingleResult());
       }
       catch (Exception e) {

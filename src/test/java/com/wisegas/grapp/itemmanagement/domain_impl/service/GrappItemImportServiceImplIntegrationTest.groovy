@@ -22,7 +22,7 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
 
    def setup() {
       generalCode = new GrappItemCode(GrappItemCodeType.NACS, "00-00-00")
-      generalItem = testEntityManager.save(createItemWithCode(generalCode))
+      generalItem = testEntityManager.save(new GrappItem(generalCode, "GENERAL ITEM"))
    }
 
    def "A General Item can be imported"() {
@@ -33,9 +33,8 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
       def result = grappItemImportService.importGeneralItem(code, NAME)
 
       then:
+      result.getId() == code
       result.getName() == NAME
-      result.getCodes().size() == 1
-      result.getCodes().contains(code)
    }
 
    def "A Sub Item with code can be imported under a General Item"() {
@@ -50,38 +49,8 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
       generalItem.getSubItems().contains(result)
 
       and:
+      result.getId() == subCode
       result.getName() == NAME
-      result.getCodes().size() == 1
-      result.getCodes().contains(subCode)
-   }
-
-   def "A Sub Item can be imported under a General Item"() {
-      when:
-      def result = grappItemImportService.importSubItem(generalCode, NAME)
-
-      then:
-      generalItem.getSubItems().size() == 1
-      generalItem.getSubItems().contains(result)
-
-      and:
-      result.getName() == NAME
-      result.getCodes().isEmpty()
-   }
-
-   def "Importing an Item with a code applies the code to an Item that already has that Item's name"() {
-      given:
-      GrappItem grappItem = testEntityManager.save(GrappItemBuilder.grappItem())
-
-      and:
-      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "01-00-00")
-
-      when:
-      def result = grappItemImportService.importGeneralItem(code, grappItem.getName())
-
-      then:
-      result == grappItem
-      result.getCodes().size() == 1
-      result.getCodes().contains(code)
    }
 
    def "Trying to import an item with the code of one existing Item and the name of another existing Item results in an Exception"() {
@@ -91,26 +60,12 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
 
       and:
       testEntityManager.save(grappItem)
-      testEntityManager.save(createItemWithCode(code))
+      testEntityManager.save(new GrappItem(code, "AN ITEM"))
 
       when:
       grappItemImportService.importGeneralItem(code, grappItem.getName())
 
       then:
       thrown(IllegalStateException)
-   }
-
-   def "Trying to import a Sub-Item when the Super-Item cannot be found results in an Exception"() {
-      when:
-      grappItemImportService.importSubItem(new GrappItemCode(GrappItemCodeType.NACS, "01-00-00"), "NAME")
-
-      then:
-      thrown(IllegalStateException)
-   }
-
-   private static GrappItem createItemWithCode(GrappItemCode code) {
-      GrappItem item = GrappItemBuilder.grappItem()
-      item.addCode(code)
-      return item
    }
 }

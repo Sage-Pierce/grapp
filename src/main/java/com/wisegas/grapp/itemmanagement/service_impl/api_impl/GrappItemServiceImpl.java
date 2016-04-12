@@ -4,6 +4,8 @@ import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.itemmanagement.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.itemmanagement.domain.service.GrappItemCreationService;
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
+import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
 import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
@@ -31,13 +33,13 @@ public class GrappItemServiceImpl implements GrappItemService {
    }
 
    @Override
-   public GrappItemDTO createGeneralItem(String name) {
-      return GrappItemDTOFactory.createDTO(grappItemCreationService.createGeneralItem(name));
+   public GrappItemDTO createGeneralItem(String codeType, String code, String name) {
+      return GrappItemDTOFactory.createDTO(grappItemCreationService.createGeneralItem(createGrappItemCode(codeType, code), name));
    }
 
    @Override
-   public GrappItemDTO createSubItem(String superItemId, String name) {
-      return GrappItemDTOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemId.fromString(superItemId), name));
+   public GrappItemDTO createSubItem(String superItemId, String codeType, String code, String name) {
+      return GrappItemDTOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemCode.fromString(superItemId), createGrappItemCode(codeType, code), name));
    }
 
    @Override
@@ -58,5 +60,9 @@ public class GrappItemServiceImpl implements GrappItemService {
    @Override
    public void delete(String id) {
       grappItemRepository.remove(grappItemRepository.get(GrappItemId.fromString(id)));
+   }
+
+   private GrappItemCode createGrappItemCode(String codeType, String code) {
+      return new GrappItemCode(GrappItemCodeType.valueOf(codeType), code);
    }
 }

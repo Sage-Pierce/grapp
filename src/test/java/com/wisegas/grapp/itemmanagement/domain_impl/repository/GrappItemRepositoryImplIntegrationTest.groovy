@@ -19,7 +19,7 @@ class GrappItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
    def "All 'general' GrappItems can be found"() {
       given:
       GrappItem generalItem = GrappItemBuilder.grappItem()
-      GrappItem subItem = generalItem.addSubItem("SUB ITEM")
+      GrappItem subItem = generalItem.addSubItem(new GrappItemCode(GrappItemCodeType.MANUAL, "CODE"), "SUB ITEM")
       testEntityManager.save(generalItem)
 
       when:
@@ -41,13 +41,10 @@ class GrappItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
 
    def "GrappItems can be found by code"() {
       given:
-      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "12-34-56")
-      GrappItem grappItem = GrappItemBuilder.grappItem()
-      grappItem.addCode(code)
-      testEntityManager.save(grappItem)
+      GrappItem grappItem = testEntityManager.save(GrappItemBuilder.grappItem())
 
       when:
-      def result = grappItemRepository.findByCode(code)
+      def result = grappItemRepository.findByCode(grappItem.getId())
 
       then:
       result.isPresent()

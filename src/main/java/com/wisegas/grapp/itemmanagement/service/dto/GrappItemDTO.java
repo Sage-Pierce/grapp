@@ -6,15 +6,15 @@ import java.util.List;
 
 public class GrappItemDTO extends NamedDTO {
 
-   private String superItemName;
+   private String superItemId;
    private List<GrappItemDTO> subItems;
 
-   public String getSuperItemName() {
-      return superItemName;
+   public String getSuperItemId() {
+      return superItemId;
    }
 
-   public void setSuperItemName(String superItemName) {
-      this.superItemName = superItemName;
+   public void setSuperItemId(String superItemId) {
+      this.superItemId = superItemId;
    }
 
    public List<GrappItemDTO> getSubItems() {

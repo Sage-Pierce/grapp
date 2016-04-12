@@ -64,14 +64,14 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
    private Optional<GrappItem> importNacsItemAsGeneralItem(NacsItem nacsItem) {
       GrappItemCode code = nacsIdToGrappItemCode(nacsItem.getId());
       Optional<GrappItem> createdGeneralItem = tryToImportItemAsGeneralItem(code, nacsItem.getName());
-      createdGeneralItem.ifPresent(generalItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportSubItem(code, subItemName)));
+      createdGeneralItem.ifPresent(generalItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, generateRandomNacsChildCode(nacsItem.getId()), subItemName)));
       return createdGeneralItem;
    }
 
    private Optional<GrappItem> importNacsItemAsSubItem(NacsItem nacsItem) {
       GrappItemCode code = nacsIdToGrappItemCode(nacsItem.getId());
       Optional<GrappItem> createdSubItem = tryToImportItemAsSubItem(nacsIdToGrappItemCode(nacsItem.getParentId()), code, nacsItem.getName());
-      createdSubItem.ifPresent(subItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportSubItem(code, subItemName)));
+      createdSubItem.ifPresent(subItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, generateRandomNacsChildCode(nacsItem.getId()), subItemName)));
       return createdSubItem;
    }
 
@@ -97,12 +97,8 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
       }
    }
 
-   private Optional<GrappItem> tryToImportSubItem(GrappItemCode superCode, String itemName) {
-      try {
-         return Optional.of(grappItemImportService.importSubItem(superCode, itemName));
-      }
-      catch (Exception e) {
-         return Optional.empty();
-      }
+   private GrappItemCode generateRandomNacsChildCode(NacsId parentCode) {
+      String randomSuffix = String.format("%02d", (int)(Math.random() * 100));
+      return new GrappItemCode(GrappItemCodeType.RANDOM, parentCode.toString(GrappItemCodeType.NACS.getValueFormat()) + randomSuffix);
    }
 }

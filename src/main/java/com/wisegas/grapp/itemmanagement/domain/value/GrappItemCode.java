@@ -1,22 +1,24 @@
 package com.wisegas.grapp.itemmanagement.domain.value;
 
+import com.wisegas.common.persistence.jpa.value.EntityId;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.Objects;
 
 @Embeddable
-public class GrappItemCode {
+public class GrappItemCode extends EntityId {
    private static final String TYPE_VALUE_DELIMITER = ":";
 
    @Enumerated(EnumType.STRING)
-   private GrappItemCodeType type;
+   private GrappItemCodeType codeType;
 
-   private String value;
+   private String codeValue;
 
-   public GrappItemCode(GrappItemCodeType type, String value) {
-      this.type = type;
-      this.value = value;
+   public GrappItemCode(GrappItemCodeType codeType, String codeValue) {
+      this.codeType = codeType;
+      this.codeValue = codeValue;
    }
 
    protected GrappItemCode() {
@@ -29,25 +31,12 @@ public class GrappItemCode {
    }
 
    @Override
-   public boolean equals(Object o) {
-      return o != null && getClass().equals(o.getClass()) && hashCode() == o.hashCode();
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(value, type);
-   }
-
-   @Override
    public String toString() {
-      return type.name() + TYPE_VALUE_DELIMITER + value;
+      return codeType.name() + TYPE_VALUE_DELIMITER + codeValue;
    }
 
-   public GrappItemCodeType getType() {
-      return type;
-   }
-
-   public String getValue() {
-      return value;
+   @Override
+   protected Object idHash() {
+      return Objects.hash(codeValue, codeType);
    }
 }
