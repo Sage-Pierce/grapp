@@ -75,7 +75,8 @@
       function initializeEvents() {
          grappMapVM.events = {
             map: {
-               click: function (map, eventName, args) { grappMapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); }
+               click: function (map, eventName, args) { grappMapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); },
+               rightclick: function (map, eventName, args) { grappMapControl.handleGObjectMouseEvent("mapRightClicked", "map", map, args[0]); }
             },
             drawingManager: {
                polygoncomplete: function (drawingManager, eventName, model, args) { grappMapControl.polygonComplete(args[0]); }

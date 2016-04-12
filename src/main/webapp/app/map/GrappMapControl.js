@@ -74,8 +74,10 @@
          }
 
          function setNodeOptions(nodeId, gMapMarkerOptions) {
-            var gMapMarker = nodeControl.getPlurals().get(nodeId).gObject;
-            gMapMarker.setOptions(gMapMarkerOptions);
+            var nodePlural = nodeControl.getPlurals().get(nodeId);
+            if (nodePlural) {
+               nodePlural.gObject.setOptions(gMapMarkerOptions);
+            }
          }
 
          function removeNodeById(nodeId) {

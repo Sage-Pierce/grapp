@@ -16,23 +16,20 @@
       ////////////////////
 
       function select(node) {
-         if (selectedNode) {
-            deselect();
-         }
-         selectedNode = node;
-         mapControl.setNodeOptions(selectedNode.id, {icon: "content/img/marker_yellow.png"});
-         if (nodeSelectionHandler && nodeSelectionHandler.nodeSelected) {
-            nodeSelectionHandler.nodeSelected(selectedNode);
+         if (selectedNode !== node) {
+            quietlySelect(node);
+            if (nodeSelectionHandler && nodeSelectionHandler.nodeSelected) {
+               nodeSelectionHandler.nodeSelected(selectedNode);
+            }
          }
       }
 
       function deselect() {
-         if (selectedNode) {
-            mapControl.setNodeOptions(selectedNode.id, {icon: selectedNode.type.iconUrl});
+         if (isANodeSelected()) {
+            quietlyDeselect();
             if (nodeSelectionHandler && nodeSelectionHandler.nodeDeselected) {
-               nodeSelectionHandler.nodeDeselected(selectedNode);
+               nodeSelectionHandler.nodeDeselected();
             }
-            selectedNode = null;
          }
       }
 
@@ -42,6 +39,19 @@
 
       function getSelectedNode() {
          return selectedNode;
+      }
+
+      function quietlySelect(node) {
+         quietlyDeselect();
+         mapControl.setNodeOptions(node.id, {icon: "content/img/marker_yellow.png"});
+         selectedNode = node;
+      }
+
+      function quietlyDeselect() {
+         if (selectedNode) {
+            mapControl.setNodeOptions(selectedNode.id, {icon: selectedNode.type.iconUrl});
+            selectedNode = null;
+         }
       }
    }
 })();

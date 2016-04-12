@@ -7,10 +7,13 @@
    NodeEventHandler.$inject = ["BaseEventHandler"];
    function NodeEventHandler(BaseEventHandler) {
       return function(mapControl, grappStoreLayout, nodeSelector, grappStoreNodeType) {
-         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
+         var base = new BaseEventHandler(mapControl, grappStoreLayout);
+         var self = angular.extend(this, base);
          self.finish = finish;
          self.mapClicked = mapClicked;
+         self.mapRightClicked = mapRightClicked;
          self.markerClicked = markerClicked;
+         self.markerRightClicked = markerRightClicked;
          self.setNodeType = setNodeType;
 
          var nodeType = grappStoreNodeType;
@@ -35,8 +38,19 @@
                });
          }
 
+         function mapRightClicked(modelId, map, mouseEvent) {
+            nodeSelector.deselect();
+         }
+
          function markerClicked(modelId, gMapMarker, mouseEvent) {
             nodeSelector.select(grappStoreLayout.getNodeById(modelId));
+         }
+
+         function markerRightClicked(modelId, gMapMarker, mouseEvent) {
+            if (nodeSelector.getSelectedNode().id === modelId) {
+               nodeSelector.deselect();
+            }
+            base.markerRightClicked(modelId, gMapMarker, mouseEvent);
          }
 
          function setNodeType(grappStoreNodeType) {

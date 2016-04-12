@@ -16,7 +16,8 @@
             items: "=",
             add: "=?",
             remove: "=?",
-            options: "=?"
+            options: "=?",
+            disabled: "=?"
          }
       };
    }

@@ -5,3 +5,9 @@
 .border-1-solid-grey {
    border: 1px solid grey;
 }
+
+.border-rounded-4 {
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+}
