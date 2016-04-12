@@ -25,15 +25,24 @@ public class GrappItemCrudServiceImpl implements GrappItemCreationService {
 
    @Override
    public GrappItem createGeneralItem(GrappItemCode code, String name) {
+      assertItemCodeUniqueness(code);
       assertItemNameUniqueness(name);
       return grappItemRepository.add(new GrappItem(code, name));
    }
 
    @Override
    public GrappItem createSubItem(GrappItemCode superItemId, GrappItemCode code, String name) {
+      assertItemCodeUniqueness(code);
       assertItemNameUniqueness(name);
       GrappItem superItem = grappItemRepository.get(superItemId);
       return superItem.addSubItem(code, name);
+   }
+
+   private void assertItemCodeUniqueness(GrappItemCode code) {
+      Optional<GrappItem> foundGrappItem = grappItemRepository.findByCode(code);
+      if (foundGrappItem.isPresent()) {
+         throw new EntityConflictException("An Item with this code already exists: " + code + ", at " + stringifyItemHierarchy(foundGrappItem.get()));
+      }
    }
 
    private void assertItemNameUniqueness(String name) {
