@@ -20,7 +20,6 @@ class GrappLoginServiceImplIntegrationTest extends IntegrationTest {
       then:
       userResource != null
       userResource.getId() != null
-      userResource.getEmail() == "another@email.com"
    }
 
    def "a GrappUser will be found if it is already in the DB"() {

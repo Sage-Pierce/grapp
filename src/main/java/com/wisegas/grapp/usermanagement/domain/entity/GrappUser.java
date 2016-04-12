@@ -1,16 +1,16 @@
 package com.wisegas.grapp.usermanagement.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
-import com.wisegas.grapp.usermanagement.domain.value.GrappUserId;
+import com.wisegas.grapp.usermanagement.domain.value.GrappUserEmail;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class GrappUser extends NamedEntity<GrappUserId> {
+public class GrappUser extends NamedEntity<GrappUserEmail> {
    @EmbeddedId
-   private GrappUserId id;
+   private GrappUserEmail id;
 
    private String avatar;
 
@@ -18,7 +18,7 @@ public class GrappUser extends NamedEntity<GrappUserId> {
    private List<GrappUserList> grappUserLists = new ArrayList<>();
 
    public GrappUser(String email, String name, String avatar) {
-      id = new GrappUserId(email);
+      id = new GrappUserEmail(email);
       setName(name);
       setAvatar(avatar);
    }
@@ -28,7 +28,7 @@ public class GrappUser extends NamedEntity<GrappUserId> {
    }
 
    @Override
-   public GrappUserId getId() {
+   public GrappUserEmail getId() {
       return id;
    }
 

@@ -9,7 +9,6 @@ public final class GrappUserDTOFactory {
       GrappUserDTO grappUserDTO = new GrappUserDTO();
       grappUserDTO.setId(grappUser.getId().toString());
       grappUserDTO.setName(grappUser.getName());
-      grappUserDTO.setEmail(grappUser.getEmail());
       grappUserDTO.setAvatar(grappUser.getAvatar());
       return grappUserDTO;
    }

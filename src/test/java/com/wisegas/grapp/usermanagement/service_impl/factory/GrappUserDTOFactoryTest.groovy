@@ -16,7 +16,6 @@ class GrappUserDTOFactoryTest extends Specification {
       with(result) {
          id == grappUser.getId().toString()
          name == grappUser.getName()
-         email == grappUser.getEmail()
          avatar == grappUser.getAvatar()
       }
    }

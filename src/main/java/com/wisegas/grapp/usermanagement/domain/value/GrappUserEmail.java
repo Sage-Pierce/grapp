@@ -7,19 +7,19 @@ import javax.persistence.Embeddable;
 import java.util.Base64;
 
 @Embeddable
-public class GrappUserId extends EntityId {
+public class GrappUserEmail extends EntityId {
    @Basic
    private String email;
 
-   public static GrappUserId fromString(String string) {
-      return new GrappUserId(new String(Base64.getDecoder().decode(string)));
+   public static GrappUserEmail fromString(String string) {
+      return new GrappUserEmail(new String(Base64.getDecoder().decode(string)));
    }
 
-   public GrappUserId(String email) {
+   public GrappUserEmail(String email) {
       this.email = email;
    }
 
-   protected GrappUserId() {
+   protected GrappUserEmail() {
 
    }
 
