@@ -13,8 +13,8 @@
 
       ////////////////////
 
-      function createGeneralItem(name) {
-         return GrappRoot.createResourceModel("generalItems", {name: name}, createModel);
+      function createGeneralItem(params) {
+         return GrappRoot.createResourceModel("generalItems", params, createModel);
       }
 
       function importItems(data) {
@@ -40,8 +40,8 @@
 
          ////////////////////
 
-         function addSubItem(name) {
-            return GrappRoot.createResourceModel("items", {superItemId: self.id, name: name}, createModel)
+         function addSubItem(params) {
+            return GrappRoot.createResourceModel("items", _.merge({superItemId: self.id}, params), createModel)
                .then(function(itemModel) {
                   self.subItems.push(itemModel);
                   return itemModel;

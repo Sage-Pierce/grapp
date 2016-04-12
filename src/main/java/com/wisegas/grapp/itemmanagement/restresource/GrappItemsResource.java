@@ -50,6 +50,6 @@ public class GrappItemsResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemsResource.class).queryParams("superItemId", "name");
+      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemsResource.class).queryParams("superItemId", "codeType", "code", "name");
    }
 }

@@ -26,7 +26,7 @@
 
       function createGeneralItem() {
          openModalCreateItem().then(function(result) {
-            GrappItem.createGeneralItem(result.name).then(function(itemModel) {
+            GrappItem.createGeneralItem(result).then(function(itemModel) {
                mainItemsVM.items.push(itemModel);
             });
          });
@@ -43,7 +43,7 @@
       function createSubItem(itemScope) {
          var itemModel = itemScope.$modelValue;
          openModalCreateItem(itemModel).then(function(result) {
-            itemModel.addSubItem(result.name);
+            itemModel.addSubItem(result);
          });
       }
 

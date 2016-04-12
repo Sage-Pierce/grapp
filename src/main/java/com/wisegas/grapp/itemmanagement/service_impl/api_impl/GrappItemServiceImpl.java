@@ -6,7 +6,6 @@ import com.wisegas.grapp.itemmanagement.domain.repository.GrappItemRepository;
 import com.wisegas.grapp.itemmanagement.domain.service.GrappItemCreationService;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemId;
 import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
 import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDTOFactory;
@@ -54,12 +53,12 @@ public class GrappItemServiceImpl implements GrappItemService {
 
    @Override
    public GrappItemDTO get(String id) {
-      return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemId.fromString(id)));
+      return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemCode.fromString(id)));
    }
 
    @Override
    public void delete(String id) {
-      grappItemRepository.remove(grappItemRepository.get(GrappItemId.fromString(id)));
+      grappItemRepository.remove(grappItemRepository.get(GrappItemCode.fromString(id)));
    }
 
    private GrappItemCode createGrappItemCode(String codeType, String code) {
