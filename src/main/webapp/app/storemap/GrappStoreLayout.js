@@ -12,7 +12,7 @@
       ////////////////////
 
       function loadById(grappStoreLayoutId) {
-         return Root.loadResourceModelById("storeLayout", grappStoreLayoutId, createModel);
+         return Root.loadResourceModelById("layout", grappStoreLayoutId, createModel);
       }
 
       function createModel(grappStoreLayoutRsc) {

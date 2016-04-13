@@ -13,11 +13,11 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.grapp.application.config
-                                          com.wisegas.grapp.itemmanagement
-                                          com.wisegas.grapp.shoppinglist
-                                          com.wisegas.grapp.storemanagement
-                                          com.wisegas.grapp.user"/>
+                            base-package="com.wisegas.grapp.config
+                                          com.wisegas.itemmanagement
+                                          com.wisegas.shoppinglist
+                                          com.wisegas.storemanagement
+                                          com.wisegas.user"/>
     <context:annotation-config/>
 
     <!-- Bean used to reset DomainEventPublisher -->

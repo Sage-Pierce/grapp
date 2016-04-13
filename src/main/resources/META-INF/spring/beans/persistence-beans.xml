@@ -16,10 +16,10 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <array>
-                <value>com.wisegas.grapp.itemmanagement.domain</value>
-                <value>com.wisegas.grapp.shoppinglist.domain</value>
-                <value>com.wisegas.grapp.storemanagement.domain</value>
-                <value>com.wisegas.grapp.user.domain</value>
+                <value>com.wisegas.itemmanagement.domain</value>
+                <value>com.wisegas.shoppinglist.domain</value>
+                <value>com.wisegas.storemanagement.domain</value>
+                <value>com.wisegas.user.domain</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">
