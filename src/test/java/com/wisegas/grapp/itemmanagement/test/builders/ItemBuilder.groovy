@@ -9,7 +9,7 @@ class ItemBuilder {
 
    static unique = 0
 
-   static Item grappItem() {
+   static Item item() {
       unique++
       EntityBuilder.wrapBuilder(new Item(
             new Code(CodeType.MANUAL, "${unique}"),

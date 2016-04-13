@@ -17,6 +17,7 @@
         <property name="packagesToScan">
             <array>
                 <value>com.wisegas.grapp.itemmanagement.domain</value>
+                <value>com.wisegas.grapp.shoppinglist.domain</value>
                 <value>com.wisegas.grapp.storemanagement.domain</value>
                 <value>com.wisegas.grapp.usermanagement.domain</value>
             </array>

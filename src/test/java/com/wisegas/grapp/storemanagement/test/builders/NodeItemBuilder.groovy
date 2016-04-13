@@ -4,15 +4,15 @@ import com.wisegas.common.test.EntityBuilder
 import com.wisegas.grapp.storemanagement.domain.entity.NodeItem
 import com.wisegas.grapp.storemanagement.domain.value.Item
 
-class GrappStoreNodeItemBuilder {
+class NodeItemBuilder {
 
    static unique = 0
 
-   static NodeItem grappStoreNodeItem() {
+   static NodeItem nodeItem() {
       unique++
       EntityBuilder.wrapBuilder(new NodeItem(
-         GrappStoreNodeBuilder.grappStoreNode(),
-         new Item("#${unique}", "Item #${unique}")
+            NodeBuilder.node(),
+            new Item("#${unique}", "Item #${unique}")
       )) as NodeItem
    }
 }

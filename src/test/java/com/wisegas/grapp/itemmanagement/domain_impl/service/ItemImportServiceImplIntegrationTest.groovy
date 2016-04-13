@@ -55,7 +55,7 @@ class ItemImportServiceImplIntegrationTest extends IntegrationTest {
 
    def "Trying to import an item with the code of one existing Item and the name of another existing Item results in an Exception"() {
       given:
-      Item grappItem = ItemBuilder.grappItem()
+      Item grappItem = ItemBuilder.item()
       Code code = new Code(CodeType.NACS, "01-00-00")
 
       and:

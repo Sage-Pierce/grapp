@@ -5,14 +5,14 @@ import com.wisegas.common.test.EntityBuilder
 import com.wisegas.grapp.storemanagement.domain.entity.Node
 import com.wisegas.grapp.storemanagement.domain.value.NodeType
 
-class GrappStoreNodeBuilder {
+class NodeBuilder {
 
    static unique = 0
 
-   static Node grappStoreNode() {
+   static Node node() {
       unique++
       EntityBuilder.wrapBuilder(new Node(
-            GrappStoreLayoutBuilder.grappStoreLayout(),
+            LayoutBuilder.layout(),
             "Test Node ${unique}",
             NodeType.REGULAR,
             new GeoPoint(0, 0)

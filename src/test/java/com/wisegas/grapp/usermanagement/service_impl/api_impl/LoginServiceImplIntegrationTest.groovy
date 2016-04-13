@@ -4,7 +4,7 @@ import com.wisegas.common.test.IntegrationTest
 import com.wisegas.grapp.usermanagement.domain.entity.User
 import com.wisegas.grapp.usermanagement.service.api.LoginService
 import com.wisegas.grapp.usermanagement.service.dto.UserDto
-import com.wisegas.grapp.usermanagement.test.builders.GrappUserBuilder
+import com.wisegas.grapp.usermanagement.test.builders.UserBuilder
 
 import javax.inject.Inject
 
@@ -23,7 +23,7 @@ class LoginServiceImplIntegrationTest extends IntegrationTest {
    }
 
    def "a GrappUser will be found if it is already in the DB"() {
-      User savedUser = testEntityManager.save(GrappUserBuilder.grappUser())
+      User savedUser = testEntityManager.save(UserBuilder.user())
 
       when:
       UserDto userResource = grappLoginService.logIn(savedUser.getEmail(), null)

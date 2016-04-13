@@ -9,6 +9,6 @@ class ItemIntegrationTest extends EntityIntegrationTest<Item> {
 
    @Override
    Item createTestEntity() {
-      ItemBuilder.grappItem()
+      ItemBuilder.item()
    }
 }

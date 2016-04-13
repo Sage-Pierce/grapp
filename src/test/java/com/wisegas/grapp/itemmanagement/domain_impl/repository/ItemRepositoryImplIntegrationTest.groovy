@@ -18,7 +18,7 @@ class ItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegration
 
    def "All 'general' GrappItems can be found"() {
       given:
-      Item generalItem = ItemBuilder.grappItem()
+      Item generalItem = ItemBuilder.item()
       Item subItem = generalItem.addSubItem(new Code(CodeType.MANUAL, "CODE"), "SUB ITEM")
       testEntityManager.save(generalItem)
 
@@ -32,7 +32,7 @@ class ItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegration
 
    def "A GrappItem with a certain name can be found"() {
       given:
-      Item grappItem = testEntityManager.save(ItemBuilder.grappItem())
+      Item grappItem = testEntityManager.save(ItemBuilder.item())
 
       expect:
       grappItemRepository.findByName(grappItem.getName()).isPresent()
@@ -41,7 +41,7 @@ class ItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegration
 
    def "GrappItems can be found by code"() {
       given:
-      Item grappItem = testEntityManager.save(ItemBuilder.grappItem())
+      Item grappItem = testEntityManager.save(ItemBuilder.item())
 
       when:
       def result = grappItemRepository.findByCode(grappItem.getId())
@@ -53,6 +53,6 @@ class ItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegration
 
    @Override
    Item createTestEntity() {
-      return ItemBuilder.grappItem()
+      return ItemBuilder.item()
    }
 }

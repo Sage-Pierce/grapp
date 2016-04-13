@@ -4,11 +4,11 @@ import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.test.EntityBuilder
 import com.wisegas.grapp.storemanagement.domain.entity.Store
 
-class GrappStoreBuilder {
+class StoreBuilder {
 
    static unique = 0
 
-   static Store grappStore() {
+   static Store store() {
       unique++
       EntityBuilder.wrapBuilder(new Store(
          "Test Store ${unique}",

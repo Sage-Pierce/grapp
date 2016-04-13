@@ -17,8 +17,8 @@ class ItemCrudServiceImplIntegrationTest extends IntegrationTest {
 
    def "A GrappItem cannot be created or modified to a certain name if an Item of that name already exists"() {
       given:
-      Item existingItem1 = testEntityManager.save(ItemBuilder.grappItem())
-      Item existingItem2 = testEntityManager.save(ItemBuilder.grappItem())
+      Item existingItem1 = testEntityManager.save(ItemBuilder.item())
+      Item existingItem2 = testEntityManager.save(ItemBuilder.item())
 
       when:
       grappItemCrudService.createGeneralItem(new Code(CodeType.MANUAL, "CODE 1"), existingItem1.getName())

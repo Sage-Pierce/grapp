@@ -5,13 +5,13 @@ import com.wisegas.common.domain.model.DomainEventSubscriber
 import com.wisegas.common.test.DomainEventAwareTest
 import com.wisegas.grapp.storemanagement.domain.event.NodeModifiedEvent
 import com.wisegas.grapp.storemanagement.domain.value.NodeType
-import com.wisegas.grapp.storemanagement.test.builders.GrappStoreNodeBuilder
+import com.wisegas.grapp.storemanagement.test.builders.NodeBuilder
 
 class StoreNodeTest extends DomainEventAwareTest {
 
    def "Changing a GrappStoreNode's Type causes a Domain Event to be published"() {
       given:
-      Node node = GrappStoreNodeBuilder.grappStoreNode().having { it.type = NodeType.ENTRANCE }
+      Node node = NodeBuilder.node().having { it.type = NodeType.ENTRANCE }
 
       and:
       DomainEventSubscriber<NodeModifiedEvent> eventSubscriber = Mock(DomainEventSubscriber) {

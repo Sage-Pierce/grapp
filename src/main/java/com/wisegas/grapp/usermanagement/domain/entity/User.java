@@ -3,9 +3,8 @@ package com.wisegas.grapp.usermanagement.domain.entity;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.usermanagement.domain.value.Email;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 @Entity
 public class User extends NamedEntity<Email> {
@@ -13,9 +12,6 @@ public class User extends NamedEntity<Email> {
    private Email id;
 
    private String avatar;
-
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
-   private List<ShoppingList> shoppingLists = new ArrayList<>();
 
    public User(String email, String name, String avatar) {
       id = new Email(email);
@@ -42,15 +38,5 @@ public class User extends NamedEntity<Email> {
 
    public void setAvatar(String avatar) {
       this.avatar = avatar;
-   }
-
-   public ShoppingList addShoppingList(String name) {
-      ShoppingList shoppingList = new ShoppingList(this, name);
-      shoppingLists.add(shoppingList);
-      return shoppingList;
-   }
-
-   public List<ShoppingList> getShoppingLists() {
-      return shoppingLists;
    }
 }

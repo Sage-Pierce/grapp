@@ -1,4 +1,4 @@
-package com.wisegas.grapp.usermanagement.domain.value;
+package com.wisegas.grapp.shoppinglist.domain.value;
 
 import com.wisegas.common.lang.value.CodeName;
 

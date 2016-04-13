@@ -2,7 +2,7 @@ package com.wisegas.grapp.storemanagement.domain_impl.repository
 
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
 import com.wisegas.grapp.storemanagement.domain.entity.Store
-import com.wisegas.grapp.storemanagement.test.builders.GrappStoreBuilder
+import com.wisegas.grapp.storemanagement.test.builders.StoreBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
@@ -10,6 +10,6 @@ class StoreRepositoryImplIntegrationTest extends GenericRepositoryImplIntegratio
 
    @Override
    Store createTestEntity() {
-      GrappStoreBuilder.grappStore()
+      StoreBuilder.store()
    }
 }

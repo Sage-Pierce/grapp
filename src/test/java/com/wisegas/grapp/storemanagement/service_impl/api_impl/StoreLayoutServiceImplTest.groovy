@@ -8,7 +8,7 @@ import com.wisegas.grapp.storemanagement.domain.entity.Node
 import com.wisegas.grapp.storemanagement.domain.repository.LayoutRepository
 import com.wisegas.grapp.storemanagement.domain.value.Item
 import com.wisegas.grapp.storemanagement.domain.value.NodeType
-import com.wisegas.grapp.storemanagement.test.builders.GrappStoreLayoutBuilder
+import com.wisegas.grapp.storemanagement.test.builders.LayoutBuilder
 
 class StoreLayoutServiceImplTest extends ApplicationServiceTest {
 
@@ -22,7 +22,7 @@ class StoreLayoutServiceImplTest extends ApplicationServiceTest {
 
    def "The result of adding a Node through the Service updates the node and notifies of affected Nodes"() {
       given:
-      Layout layout = GrappStoreLayoutBuilder.grappStoreLayout()
+      Layout layout = LayoutBuilder.layout()
       Node oldEntrance = layout.addNode(NodeType.ENTRANCE, new GeoPoint(0, 0))
       Node regularNode = layout.addNode(NodeType.REGULAR, new GeoPoint(0, 1))
 
@@ -43,7 +43,7 @@ class StoreLayoutServiceImplTest extends ApplicationServiceTest {
    def "The result of adding an Item to a Node through the Service updates the Node and notifies of affected Nodes"() {
       given:
       CodeName item = new CodeName("CODE", "ITEM")
-      Layout layout = GrappStoreLayoutBuilder.grappStoreLayout()
+      Layout layout = LayoutBuilder.layout()
 
       and:
       grappStoreLayoutRepository.get(layout.getId()) >> layout

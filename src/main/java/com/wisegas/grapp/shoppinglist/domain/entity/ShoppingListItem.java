@@ -1,8 +1,8 @@
-package com.wisegas.grapp.usermanagement.domain.entity;
+package com.wisegas.grapp.shoppinglist.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.usermanagement.domain.value.Item;
-import com.wisegas.grapp.usermanagement.domain.value.ShoppingListItemId;
+import com.wisegas.grapp.shoppinglist.domain.value.Item;
+import com.wisegas.grapp.shoppinglist.domain.value.ShoppingListItemId;
 
 import javax.persistence.*;
 

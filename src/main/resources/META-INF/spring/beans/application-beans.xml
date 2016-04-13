@@ -15,6 +15,7 @@
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
                             base-package="com.wisegas.grapp.application.config
                                           com.wisegas.grapp.itemmanagement
+                                          com.wisegas.grapp.shoppinglist
                                           com.wisegas.grapp.storemanagement
                                           com.wisegas.grapp.usermanagement"/>
     <context:annotation-config/>
