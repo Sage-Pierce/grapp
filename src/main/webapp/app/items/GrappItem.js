@@ -49,7 +49,7 @@
          }
 
          function del() {
-            return Root.deleteResourceByID("item", self.id);
+            return Root.deleteResourceById("item", self.id);
          }
 
          function isGeneralItem() {

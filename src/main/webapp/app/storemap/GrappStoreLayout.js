@@ -7,12 +7,12 @@
    GrappStoreLayout.$inject = ["Root", "GrappStoreNodeType"];
    function GrappStoreLayout(Root, GrappStoreNodeType) {
       var self = this;
-      self.loadByID = loadByID;
+      self.loadById = loadById;
 
       ////////////////////
 
-      function loadByID(grappStoreLayoutID) {
-         return Root.loadResourceModelByID("storeLayout", grappStoreLayoutID, createModel);
+      function loadById(grappStoreLayoutId) {
+         return Root.loadResourceModelById("storeLayout", grappStoreLayoutId, createModel);
       }
 
       function createModel(grappStoreLayoutRsc) {
@@ -64,7 +64,7 @@
          }
 
          function removeFeatureById(id) {
-            grappStoreLayoutRsc.$del("removeFeature", {featureID: id})
+            grappStoreLayoutRsc.$del("removeFeature", {featureId: id})
                .then(function() { delete features[id]; });
          }
 
@@ -90,7 +90,7 @@
          }
 
          function removeNodeById(id) {
-            grappStoreLayoutRsc.$del("removeNode", {nodeID: id})
+            grappStoreLayoutRsc.$del("removeNode", {nodeId: id})
                .then(function() { delete nodes[id]; });
          }
 
@@ -109,7 +109,7 @@
 
          function commitPolygonModelVertices(updateRel, polygonModel, vertices) {
             var params = {
-               featureID: polygonModel.id,
+               featureId: polygonModel.id,
                polygon: stringifyVerticesIntoPolygon(vertices)
             };
             return grappStoreLayoutRsc.$put(updateRel, params)
@@ -138,13 +138,13 @@
          }
 
          function commitNodeModelParams(nodeModel, params) {
-            Root.updateResourceByID("node", nodeModel.id, params)
+            Root.updateResourceById("node", nodeModel.id, params)
                .then(function(nodeRsc) { nodeModel.name = nodeRsc.name; });
          }
 
          function commitNodeModelPosition(nodeModel, location) {
             var params = {
-               nodeID: nodeModel.id,
+               nodeId: nodeModel.id,
                location: JSON.stringify(location)
             };
             return grappStoreLayoutRsc.$put("moveNode", params)

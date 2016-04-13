@@ -69,7 +69,7 @@
       }
 
       function editSelectedStore() {
-         $state.go("main.storeMap.layout", {storeID: mainStoresVM.selectedStore.id});
+         $state.go("main.storeMap.layout", {storeId: mainStoresVM.selectedStore.id});
       }
 
       function deleteSelectedStore() {

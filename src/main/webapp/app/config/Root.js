@@ -11,10 +11,10 @@
       self.afterLoad = afterLoad;
       self.createResourceModel = createResourceModel;
       self.loadResourceModels = loadResourceModels;
-      self.loadResourceModelByID = loadResourceModelByID;
-      self.updateResourceByID = updateResourceByID;
+      self.loadResourceModelById = loadResourceModelById;
+      self.updateResourceById = updateResourceById;
       self.mergeResourceIntoModel = mergeResourceIntoModel;
-      self.deleteResourceByID = deleteResourceByID;
+      self.deleteResourceById = deleteResourceById;
 
       var deferred = $q.defer();
 
@@ -47,7 +47,7 @@
          });
       }
 
-      function loadResourceModelByID(resourceName, id, resourceModelCreatorCallback) {
+      function loadResourceModelById(resourceName, id, resourceModelCreatorCallback) {
          return afterLoad().then(function(grappRoot) {
             return grappRoot.$get(resourceName + "ById", {id: id})
                .then(function(resource) {
@@ -56,7 +56,7 @@
          });
       }
 
-      function updateResourceByID(resourceName, id, params) {
+      function updateResourceById(resourceName, id, params) {
          return afterLoad().then(function(grappRoot) {
             return grappRoot.$put(resourceName + "ById", _.merge(params, {id: id}));
          });
@@ -71,7 +71,7 @@
          return decorateResourceModel(resource, model);
       }
 
-      function deleteResourceByID(resourceName, id) {
+      function deleteResourceById(resourceName, id) {
          return afterLoad().then(function(grappRoot) {
             return grappRoot.$del(resourceName + "ById", {id: id});
          });

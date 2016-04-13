@@ -20,9 +20,9 @@
       ////////////////////
 
       function logInCachedUser() {
-         var grappUserID = $cookies.get("grapp-user-id");
-         if (grappUserID) {
-            GrappUser.loadByID(grappUserID).then(resolveUser, function() {
+         var grappUserId = $cookies.get("grapp-user-id");
+         if (grappUserId) {
+            GrappUser.loadById(grappUserId).then(resolveUser, function() {
                deferred.reject("Problem logging User in on Server.");
             });
          }

@@ -7,13 +7,13 @@
    GrappUser.$inject = ["Root"];
    function GrappUser(Root) {
       var self = this;
-      self.loadByID = loadByID;
+      self.loadById = loadById;
       self.load = load;
 
       ////////////////////
 
-      function loadByID(grappUserID) {
-         return Root.loadResourceModelByID("user", grappUserID, createModel);
+      function loadById(grappUserId) {
+         return Root.loadResourceModelById("user", grappUserId, createModel);
       }
 
       function load(grappUserRsc) {

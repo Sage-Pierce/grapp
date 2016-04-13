@@ -9,7 +9,7 @@
       var self = this;
       self.create = create;
       self.loadAll = loadAll;
-      self.loadByID = loadByID;
+      self.loadById = loadById;
       self.load = load;
 
       ////////////////////
@@ -22,8 +22,8 @@
          return Root.loadResourceModels("stores", createModel);
       }
 
-      function loadByID(grappStoreID) {
-         return Root.loadResourceModelByID("store", grappStoreID, createModel);
+      function loadById(grappStoreId) {
+         return Root.loadResourceModelById("store", grappStoreId, createModel);
       }
 
       function load(grappStoreRsc) {

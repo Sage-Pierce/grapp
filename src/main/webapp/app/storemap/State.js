@@ -8,14 +8,14 @@
    function GrappConfig($stateProvider) {
       $stateProvider
          .state("main.storeMap", {
-            url: "storeMap/:storeID",
+            url: "storeMap/:storeId",
             abstract: true,
             resolve: {
                grappStore: ["$stateParams", "GrappStore", function($stateParams, GrappStore) {
-                  return GrappStore.loadByID($stateParams.storeID);
+                  return GrappStore.loadById($stateParams.storeId);
                }],
                grappStoreLayout: ["$stateParams", "grappStore", "GrappStoreLayout", function($stateParams, grappStore, GrappStoreLayout) {
-                  return GrappStoreLayout.loadByID(grappStore.layoutID);
+                  return GrappStoreLayout.loadById(grappStore.layoutId);
                }],
                mapControl: ["GrappMapControl", function(GrappMapControl) {
                   return new GrappMapControl();
