@@ -1,25 +1,25 @@
 package com.wisegas.grapp.usermanagement.domain.entity;
 
-import com.wisegas.common.persistence.jpa.entity.NamedEntity;
+import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.usermanagement.domain.value.GrappUserListItemId;
+import com.wisegas.grapp.usermanagement.domain.value.Item;
 
 import javax.persistence.*;
 
 @Entity
-public class GrappUserListItem extends NamedEntity<GrappUserListItemId> {
+public class GrappUserListItem extends SimpleEntity<GrappUserListItemId> {
    @EmbeddedId
    private GrappUserListItemId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappUserList grappUserList;
 
-   private String code;
+   private Item item;
 
-   public GrappUserListItem(GrappUserList grappUserList, String code, String name) {
+   public GrappUserListItem(GrappUserList grappUserList, Item item) {
       id = GrappUserListItemId.generate();
       setGrappUserList(grappUserList);
-      setName(name);
-      setCode(code);
+      setItem(item);
    }
 
    protected GrappUserListItem() {
@@ -31,11 +31,15 @@ public class GrappUserListItem extends NamedEntity<GrappUserListItemId> {
       return id;
    }
 
+   public Item getItem() {
+      return item;
+   }
+
    private void setGrappUserList(GrappUserList grappUserList) {
       this.grappUserList = grappUserList;
    }
 
-   private void setCode(String code) {
-      this.code = code;
+   private void setItem(Item item) {
+      this.item = item;
    }
 }

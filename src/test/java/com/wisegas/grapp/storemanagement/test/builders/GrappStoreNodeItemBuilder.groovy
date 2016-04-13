@@ -2,6 +2,7 @@ package com.wisegas.grapp.storemanagement.test.builders
 
 import com.wisegas.common.test.EntityBuilder
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNodeItem
+import com.wisegas.grapp.storemanagement.domain.value.Item
 
 class GrappStoreNodeItemBuilder {
 
@@ -11,8 +12,7 @@ class GrappStoreNodeItemBuilder {
       unique++
       EntityBuilder.wrapBuilder(new GrappStoreNodeItem(
          GrappStoreNodeBuilder.grappStoreNode(),
-         "#${unique}",
-         "Item #${unique}"
+         new Item("#${unique}", "Item #${unique}")
       )) as GrappStoreNodeItem
    }
 }

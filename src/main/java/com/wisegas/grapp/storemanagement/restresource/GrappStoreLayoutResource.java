@@ -1,5 +1,6 @@
 package com.wisegas.grapp.storemanagement.restresource;
 
+import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.webserver.hal.api.HalLink;
@@ -7,10 +8,7 @@ import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreLayoutService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutUpdateResultDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTO;
+import com.wisegas.grapp.storemanagement.service.dto.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -31,8 +29,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get(@PathParam("id") final String id) {
-      GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.get(id);
-      return buildHalResponse(asRepresentationOf(grappStoreLayoutDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreLayoutService.get(id)));
    }
 
    @PUT
@@ -105,6 +102,18 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
       return Response.ok().build();
    }
 
+   @POST
+   @Path("nodes/items")
+   public Response addNodeItem(@PathParam("id") final String id,
+                               @QueryParam("nodeID") final String nodeID,
+                               @QueryParam("item") final CodeName item) {
+      GrappStoreLayoutUpdateResultDTO<GrappStoreNodeItemDTO> result = grappStoreLayoutService.addNodeItem(id, nodeID, item);
+      return buildHalResponse(GrappStoreNodeItemResource.asRepresentationOf(result.getTarget())
+                                                        .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
+                                                                                              .map(GrappStoreNodeResource::asRepresentationOf)
+                                                                                              .collect(Collectors.toList())));
+   }
+
    public static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
@@ -121,9 +130,10 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
          JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("addFeature"),
          JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("reshapeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID", "polygon").withRel("reshapeFeature"),
          JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeFeature").pathArgs(grappStoreLayoutDTO.getId()).queryParams("featureID").withRel("removeFeature"),
-         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("type","location").withRel("addNode"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("type", "location").withRel("addNode"),
          JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("moveNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "location").withRel("moveNode"),
-         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode")
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("removeNode").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID").withRel("removeNode"),
+         JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("addNodeItem").pathArgs(grappStoreLayoutDTO.getId()).queryParams("nodeID", "item").withRel("addNodeItem")
       );
    }
 

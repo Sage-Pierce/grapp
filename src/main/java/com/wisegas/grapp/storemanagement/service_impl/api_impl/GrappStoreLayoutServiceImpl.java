@@ -4,26 +4,19 @@ import com.wisegas.common.domain.model.DomainEventPublisher;
 import com.wisegas.common.domain.model.DomainEventSubscriber;
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
+import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreFeature;
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreLayout;
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNode;
+import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNodeItem;
 import com.wisegas.grapp.storemanagement.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreLayoutRepository;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreFeatureId;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreLayoutId;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeId;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType;
+import com.wisegas.grapp.storemanagement.domain.value.*;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreLayoutService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutUpdateResultDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTO;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreFeatureDTOFactory;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreLayoutDTOFactory;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreLayoutUpdateResultDTOFactory;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreNodeDTOFactory;
+import com.wisegas.grapp.storemanagement.service.dto.*;
+import com.wisegas.grapp.storemanagement.service_impl.factory.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -103,6 +96,15 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
    public void removeNode(String id, String nodeID) {
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       layout.removeNode(GrappStoreNodeId.fromString(nodeID));
+   }
+
+   @Override
+   public GrappStoreLayoutUpdateResultDTO<GrappStoreNodeItemDTO> addNodeItem(String id, String nodeID, CodeName item) {
+      GrappStoreNodeModificationEventSubscriber nodeModificationEventSubscriber = new GrappStoreNodeModificationEventSubscriber();
+      DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
+      GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
+      GrappStoreNodeItem grappStoreNodeItem = layout.addNodeItem(GrappStoreNodeId.fromString(nodeID), new Item(item));
+      return GrappStoreLayoutUpdateResultDTOFactory.createDTO(layout, GrappStoreNodeItemDTOFactory.createDTO(grappStoreNodeItem), nodeModificationEventSubscriber.getNodeIDs());
    }
 
    private static class GrappStoreNodeModificationEventSubscriber implements DomainEventSubscriber<GrappStoreNodeModifiedEvent> {

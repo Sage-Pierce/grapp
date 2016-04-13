@@ -1,11 +1,9 @@
 package com.wisegas.grapp.storemanagement.service.api;
 
+import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutUpdateResultDTO;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTO;
+import com.wisegas.grapp.storemanagement.service.dto.*;
 
 public interface GrappStoreLayoutService {
    GrappStoreLayoutDTO get(String id);
@@ -25,4 +23,6 @@ public interface GrappStoreLayoutService {
    GrappStoreNodeDTO moveNode(String id, String nodeID, GeoPoint location);
 
    void removeNode(String id, String nodeID);
+
+   GrappStoreLayoutUpdateResultDTO<GrappStoreNodeItemDTO> addNodeItem(String id, String nodeID, CodeName item);
 }

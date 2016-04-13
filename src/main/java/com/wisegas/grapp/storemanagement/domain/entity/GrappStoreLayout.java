@@ -4,15 +4,10 @@ import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreFeatureId;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreLayoutId;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeId;
-import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType;
+import com.wisegas.grapp.storemanagement.domain.value.*;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
@@ -77,14 +72,9 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
    }
 
    public GrappStoreFeature reshapeFeature(GrappStoreFeatureId grappStoreFeatureId, GeoPolygon polygon) {
-      if (features.containsKey(grappStoreFeatureId)) {
-         GrappStoreFeature grappStoreFeature = features.get(grappStoreFeatureId);
-         grappStoreFeature.setPolygon(polygon);
-         return grappStoreFeature;
-      }
-      else {
-         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureId, getId()));
-      }
+      GrappStoreFeature grappStoreFeature = requireFeatureExistence(grappStoreFeatureId);
+      grappStoreFeature.setPolygon(polygon);
+      return grappStoreFeature;
    }
 
    public GrappStoreFeature addFeature(GeoPolygon polygon) {
@@ -94,12 +84,8 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
    }
 
    public void removeFeature(GrappStoreFeatureId grappStoreFeatureId) {
-      if (features.containsKey(grappStoreFeatureId)) {
-         features.remove(grappStoreFeatureId);
-      }
-      else {
-         throw new RuntimeException(String.format("Feature (%s) not found in Layout (%s).", grappStoreFeatureId, getId()));
-      }
+      requireFeatureExistence(grappStoreFeatureId);
+      features.remove(grappStoreFeatureId);
    }
 
    public GrappStoreNode getNode(GrappStoreNodeId grappStoreNodeId) {
@@ -111,14 +97,9 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
    }
 
    public GrappStoreNode moveNode(GrappStoreNodeId grappStoreNodeId, GeoPoint location) {
-      if (nodes.containsKey(grappStoreNodeId)) {
-         GrappStoreNode grappStoreNode = nodes.get(grappStoreNodeId);
-         grappStoreNode.setLocation(location);
-         return grappStoreNode;
-      }
-      else {
-         throw new RuntimeException(String.format("Node (%s) not found in Layout (%s).", grappStoreNodeId, getId()));
-      }
+      GrappStoreNode grappStoreNode = requireNodeExistence(grappStoreNodeId);
+      grappStoreNode.setLocation(location);
+      return grappStoreNode;
    }
 
    public GrappStoreNode addNode(GrappStoreNodeType type, GeoPoint location) {
@@ -131,12 +112,22 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
    }
 
    public void removeNode(GrappStoreNodeId grappStoreNodeId) {
-      if (nodes.containsKey(grappStoreNodeId)) {
-         nodes.remove(grappStoreNodeId);
-      }
-      else {
-         throw new RuntimeException(String.format("Node (%s) not found in Layout (%s).", grappStoreNodeId, getId()));
-      }
+      requireNodeExistence(grappStoreNodeId);
+      nodes.remove(grappStoreNodeId);
+   }
+
+   public GrappStoreNodeItem addNodeItem(GrappStoreNodeId nodeId, Item item) {
+      GrappStoreNode node = requireNodeExistence(nodeId);
+      ensureNodeItemUniqueness(node, item);
+      return node.addItem(item);
+   }
+
+   private GrappStoreFeature requireFeatureExistence(GrappStoreFeatureId featureId) {
+      return Objects.requireNonNull(features.get(featureId), () -> String.format("Feature (%s) not found in Layout (%s).", featureId, getId()));
+   }
+
+   private GrappStoreNode requireNodeExistence(GrappStoreNodeId nodeId) {
+      return Objects.requireNonNull(nodes.get(nodeId), () -> String.format("Node (%s) not found in Layout (%s).", nodeId, getId()));
    }
 
    private void ensureNoNodesOfType(GrappStoreNodeType type) {
@@ -145,6 +136,17 @@ public class GrappStoreLayout extends SimpleEntity<GrappStoreLayoutId> {
             node.setType(GrappStoreNodeType.defaultNonSingleton());
          }
       }
+   }
+
+   private void ensureNodeItemUniqueness(GrappStoreNode node, Item item) {
+      Optional<GrappStoreNode> foundNode = findNodeByItem(item);
+      if (foundNode.isPresent() && !Objects.equals(node, foundNode.get())) {
+         foundNode.get().removeItem(item);
+      }
+   }
+
+   private Optional<GrappStoreNode> findNodeByItem(Item item) {
+      return nodes.values().stream().filter(node -> node.containsItem(item)).findAny();
    }
 
    private void setGrappStore(GrappStore grappStore) {

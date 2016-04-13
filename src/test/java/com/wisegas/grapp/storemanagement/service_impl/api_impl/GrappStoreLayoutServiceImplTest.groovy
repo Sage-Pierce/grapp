@@ -1,12 +1,14 @@
 package com.wisegas.grapp.storemanagement.service_impl.api_impl
 
+import com.wisegas.common.lang.value.CodeName
 import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.test.ApplicationServiceTest
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreLayout
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNode
 import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreLayoutRepository
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType
-import com.wisegas.grapp.storemanagement.test.builders.GrappStoreBuilder
+import com.wisegas.grapp.storemanagement.domain.value.Item
+import com.wisegas.grapp.storemanagement.test.builders.GrappStoreLayoutBuilder
 
 class GrappStoreLayoutServiceImplTest extends ApplicationServiceTest {
 
@@ -20,7 +22,7 @@ class GrappStoreLayoutServiceImplTest extends ApplicationServiceTest {
 
    def "The result of adding a Node through the Service updates the node and notifies of affected Nodes"() {
       given:
-      GrappStoreLayout layout = GrappStoreBuilder.grappStore().getGrappStoreLayout()
+      GrappStoreLayout layout = GrappStoreLayoutBuilder.grappStoreLayout()
       GrappStoreNode oldEntrance = layout.addNode(GrappStoreNodeType.ENTRANCE, new GeoPoint(0, 0))
       GrappStoreNode regularNode = layout.addNode(GrappStoreNodeType.REGULAR, new GeoPoint(0, 1))
 
@@ -36,5 +38,35 @@ class GrappStoreLayoutServiceImplTest extends ApplicationServiceTest {
       result.getAffectedNodes().size() == 2
       result.getAffectedNodes().collect { it.getId() }.contains(oldEntrance.getId().toString())
       !result.getAffectedNodes().collect { it.getId() }.contains(regularNode.getId().toString())
+   }
+
+   def "The result of adding an Item to a Node through the Service updates the Node and notifies of affected Nodes"() {
+      given:
+      CodeName item = new CodeName("CODE", "ITEM")
+      GrappStoreLayout layout = GrappStoreLayoutBuilder.grappStoreLayout()
+
+      and:
+      grappStoreLayoutRepository.get(layout.getId()) >> layout
+
+      and:
+      GrappStoreNode node1 = layout.addNode(GrappStoreNodeType.REGULAR, new GeoPoint(0, 0))
+      GrappStoreNode node2 = layout.addNode(GrappStoreNodeType.REGULAR, new GeoPoint(0, 0))
+
+      and:
+      node1.addItem(new Item(item))
+
+      when:
+      def result = grappStoreLayoutService.addNodeItem(layout.getId().toString(), node2.getId().toString(), item)
+
+      then:
+      result.getTarget().getItem() == item
+
+      and:
+      node1.getItems().isEmpty()
+      node2.getItems().size() == 1
+
+      and:
+      result.getAffectedNodes().size() == 1
+      result.getAffectedNodes()[0].getId() == node1.getId().toString()
    }
 }

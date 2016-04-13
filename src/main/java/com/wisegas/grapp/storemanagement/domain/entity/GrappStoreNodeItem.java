@@ -1,25 +1,25 @@
 package com.wisegas.grapp.storemanagement.domain.entity;
 
-import com.wisegas.common.persistence.jpa.entity.NamedEntity;
+import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeItemId;
+import com.wisegas.grapp.storemanagement.domain.value.Item;
 
 import javax.persistence.*;
 
 @Entity
-public class GrappStoreNodeItem extends NamedEntity<GrappStoreNodeItemId> {
+public class GrappStoreNodeItem extends SimpleEntity<GrappStoreNodeItemId> {
    @EmbeddedId
    private GrappStoreNodeItemId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private GrappStoreNode grappStoreNode;
 
-   private String code;
+   private Item item;
 
-   public GrappStoreNodeItem(GrappStoreNode grappStoreNode, String code, String name) {
+   public GrappStoreNodeItem(GrappStoreNode grappStoreNode, Item item) {
       id = GrappStoreNodeItemId.generate();
       setGrappStoreNode(grappStoreNode);
-      setName(name);
-      setCode(code);
+      setItem(item);
    }
 
    protected GrappStoreNodeItem() {
@@ -31,11 +31,15 @@ public class GrappStoreNodeItem extends NamedEntity<GrappStoreNodeItemId> {
       return id;
    }
 
+   public Item getItem() {
+      return item;
+   }
+
    private void setGrappStoreNode(GrappStoreNode node) {
       this.grappStoreNode = node;
    }
 
-   private void setCode(String code) {
-      this.code = code;
+   private void setItem(Item item) {
+      this.item = item;
    }
 }

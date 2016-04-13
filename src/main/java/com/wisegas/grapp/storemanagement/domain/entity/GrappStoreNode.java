@@ -7,10 +7,12 @@ import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.storemanagement.domain.event.GrappStoreNodeModifiedEvent;
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeId;
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeType;
+import com.wisegas.grapp.storemanagement.domain.value.Item;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class GrappStoreNode extends NamedEntity<GrappStoreNodeId> {
@@ -28,7 +30,8 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeId> {
    private GrappStoreNodeType type;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "grappStoreNode", orphanRemoval = true)
-   private List<GrappStoreNodeItem> grappStoreNodeItems = new ArrayList<>();
+   @MapKey(name = "item")
+   private Map<Item, GrappStoreNodeItem> items = new HashMap<>();
 
    public GrappStoreNode(GrappStoreLayout grappStoreLayout, String name, GrappStoreNodeType type, GeoPoint location) {
       id = GrappStoreNodeId.generate();
@@ -66,14 +69,23 @@ public class GrappStoreNode extends NamedEntity<GrappStoreNodeId> {
       this.location = location;
    }
 
-   public List<GrappStoreNodeItem> getGrappStoreNodeItems() {
-      return grappStoreNodeItems;
+   public boolean containsItem(Item item) {
+      return items.containsKey(item);
    }
 
-   public GrappStoreNodeItem addItem(String itemCode, String itemName) {
-      GrappStoreNodeItem grappStoreNodeItem = new GrappStoreNodeItem(this, itemCode, itemName);
-      grappStoreNodeItems.add(grappStoreNodeItem);
-      return grappStoreNodeItem;
+   public Collection<GrappStoreNodeItem> getItems() {
+      return items.values();
+   }
+
+   public GrappStoreNodeItem addItem(Item item) {
+      return items.computeIfAbsent(item, code -> new GrappStoreNodeItem(this, item));
+   }
+
+   public void removeItem(Item item) {
+      if (items.containsKey(item)) {
+         items.remove(item);
+         DomainEventPublisher.instance().publish(new GrappStoreNodeModifiedEvent(id.toString()));
+      }
    }
 
    private void setGrappStoreLayout(GrappStoreLayout grappStoreLayout) {

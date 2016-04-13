@@ -2,6 +2,7 @@ package com.wisegas.grapp.usermanagement.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.grapp.usermanagement.domain.value.GrappUserListId;
+import com.wisegas.grapp.usermanagement.domain.value.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -41,8 +42,8 @@ public class GrappUserList extends NamedEntity<GrappUserListId> {
       return grappUserListItems;
    }
 
-   public GrappUserListItem addItem(String itemCode, String itemName) {
-      GrappUserListItem grappUserListItem = new GrappUserListItem(this, itemCode, itemName);
+   public GrappUserListItem addItem(Item item) {
+      GrappUserListItem grappUserListItem = new GrappUserListItem(this, item);
       grappUserListItems.add(grappUserListItem);
       return grappUserListItem;
    }
