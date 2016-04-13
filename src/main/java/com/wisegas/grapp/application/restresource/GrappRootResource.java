@@ -7,10 +7,10 @@ import com.wisegas.grapp.itemmanagement.restresource.GeneralItemsResource;
 import com.wisegas.grapp.itemmanagement.restresource.ItemImportResource;
 import com.wisegas.grapp.itemmanagement.restresource.ItemResource;
 import com.wisegas.grapp.itemmanagement.restresource.ItemsResource;
-import com.wisegas.grapp.storemanagement.restresource.GrappStoreLayoutResource;
-import com.wisegas.grapp.storemanagement.restresource.GrappStoreNodeResource;
-import com.wisegas.grapp.storemanagement.restresource.GrappStoreResource;
-import com.wisegas.grapp.storemanagement.restresource.GrappStoresResource;
+import com.wisegas.grapp.storemanagement.restresource.LayoutResource;
+import com.wisegas.grapp.storemanagement.restresource.NodeResource;
+import com.wisegas.grapp.storemanagement.restresource.StoreResource;
+import com.wisegas.grapp.storemanagement.restresource.StoresResource;
 import com.wisegas.grapp.usermanagement.restresource.GrappLoginResource;
 import com.wisegas.grapp.usermanagement.restresource.GrappUserResource;
 
@@ -33,10 +33,10 @@ public class GrappRootResource extends JaxrsHalJsonResource {
          JaxrsHalResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
          GrappLoginResource.createRootLink("logIn"),
          GrappUserResource.createRootLink("userById"),
-         GrappStoreLayoutResource.createRootLink("storeLayoutById"),
-         GrappStoreNodeResource.createRootLink("nodeById"),
-         GrappStoreResource.createRootLink("storeById"),
-         GrappStoresResource.createRootLink("stores"),
+         LayoutResource.createRootLink("storeLayoutById"),
+         NodeResource.createRootLink("nodeById"),
+         StoreResource.createRootLink("storeById"),
+         StoresResource.createRootLink("stores"),
          GeneralItemsResource.createRootLink("generalItems"),
          ItemsResource.createRootLink("items"),
          ItemImportResource.createRootLink("importItems"),
