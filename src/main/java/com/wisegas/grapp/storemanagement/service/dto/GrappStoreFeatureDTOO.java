@@ -1,9 +1,9 @@
 package com.wisegas.grapp.storemanagement.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDTO;
+import com.wisegas.common.lang.dto.BaseDTOO;
 import com.wisegas.common.lang.value.GeoPolygon;
 
-public class GrappStoreFeatureDTO extends BaseDTO {
+public class GrappStoreFeatureDTOO extends BaseDTOO {
 
    private GeoPolygon polygon;
 

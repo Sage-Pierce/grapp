@@ -7,7 +7,7 @@ import com.wisegas.grapp.itemmanagement.domain.service.GrappItemCreationService;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
 import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
+import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTOO;
 import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDTOFactory;
 
 import javax.inject.Inject;
@@ -32,27 +32,27 @@ public class GrappItemServiceImpl implements GrappItemService {
    }
 
    @Override
-   public GrappItemDTO createGeneralItem(String codeType, String code, String name) {
+   public GrappItemDTOO createGeneralItem(String codeType, String code, String name) {
       return GrappItemDTOFactory.createDTO(grappItemCreationService.createGeneralItem(createGrappItemCode(codeType, code), name));
    }
 
    @Override
-   public GrappItemDTO createSubItem(String superItemId, String codeType, String code, String name) {
+   public GrappItemDTOO createSubItem(String superItemId, String codeType, String code, String name) {
       return GrappItemDTOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemCode.fromString(superItemId), createGrappItemCode(codeType, code), name));
    }
 
    @Override
-   public List<GrappItemDTO> getAll() {
+   public List<GrappItemDTOO> getAll() {
       return grappItemRepository.getAll().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override
-   public List<GrappItemDTO> getGeneralItems() {
+   public List<GrappItemDTOO> getGeneralItems() {
       return grappItemRepository.getGeneralItems().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override
-   public GrappItemDTO get(String id) {
+   public GrappItemDTOO get(String id) {
       return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemCode.fromString(id)));
    }
 

@@ -4,7 +4,7 @@ import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.usermanagement.service.api.GrappLoginService;
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTO;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
 
 import javax.inject.Inject;
 import javax.ws.rs.PUT;
@@ -25,7 +25,7 @@ public class GrappLoginResource extends JaxrsHalJsonResource {
    @PUT
    public Response logIn(@QueryParam(value = "email") final String email,
                          @QueryParam(value = "avatar") final String avatar) {
-      GrappUserDTO grappUserDTO = grappLoginService.logIn(email, avatar);
+      GrappUserDTOO grappUserDTO = grappLoginService.logIn(email, avatar);
       return buildHalResponse(GrappUserResource.asRepresentationOf(grappUserDTO));
    }
 

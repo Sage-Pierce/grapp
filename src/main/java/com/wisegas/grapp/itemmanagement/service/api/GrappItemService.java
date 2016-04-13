@@ -1,19 +1,19 @@
 package com.wisegas.grapp.itemmanagement.service.api;
 
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
+import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTOO;
 
 import java.util.List;
 
 public interface GrappItemService {
-   GrappItemDTO createGeneralItem(String codeType, String code, String name);
+   GrappItemDTOO createGeneralItem(String codeType, String code, String name);
 
-   GrappItemDTO createSubItem(String superItemId, String codeType, String code, String name);
+   GrappItemDTOO createSubItem(String superItemId, String codeType, String code, String name);
 
-   List<GrappItemDTO> getAll();
+   List<GrappItemDTOO> getAll();
 
-   List<GrappItemDTO> getGeneralItems();
+   List<GrappItemDTOO> getGeneralItems();
 
-   GrappItemDTO get(String id);
+   GrappItemDTOO get(String id);
 
    void delete(String id);
 }

@@ -5,7 +5,7 @@ import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDTO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDTOO;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -35,7 +35,7 @@ public class GrappStoresResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get() {
-      List<GrappStoreDTO> grappStoreDTOs = grappStoreService.getAll();
+      List<GrappStoreDTOO> grappStoreDTOs = grappStoreService.getAll();
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
                                                       .withEmbeddeds("stores", grappStoreDTOs.stream()
                                                                                              .map(GrappStoreResource::asRepresentationOf)

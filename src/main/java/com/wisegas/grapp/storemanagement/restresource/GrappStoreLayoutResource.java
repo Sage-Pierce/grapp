@@ -36,7 +36,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    @Path("outerOutline")
    public Response updateOuterOutline(@PathParam("id") final String id,
                                       @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.updateOuterOutline(id, polygon);
+      GrappStoreLayoutDTOO grappStoreLayoutDTO = grappStoreLayoutService.updateOuterOutline(id, polygon);
       return buildHalResponse(asRepresentationOf(grappStoreLayoutDTO));
    }
 
@@ -44,7 +44,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    @Path("innerOutline")
    public Response updateInnerOutline(@PathParam("id") final String id,
                                       @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreLayoutDTO grappStoreLayoutDTO = grappStoreLayoutService.updateInnerOutline(id, polygon);
+      GrappStoreLayoutDTOO grappStoreLayoutDTO = grappStoreLayoutService.updateInnerOutline(id, polygon);
       return buildHalResponse(asRepresentationOf(grappStoreLayoutDTO));
    }
 
@@ -52,7 +52,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    @Path("features")
    public Response addFeature(@PathParam("id") final String id,
                               @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.addFeature(id, polygon);
+      GrappStoreFeatureDTOO grappStoreFeatureDTO = grappStoreLayoutService.addFeature(id, polygon);
       return buildHalResponse(GrappStoreFeatureResource.asRepresentationOf(grappStoreFeatureDTO));
    }
 
@@ -61,7 +61,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    public Response reshapeFeature(@PathParam("id") final String id,
                                   @QueryParam("featureID") final String featureID,
                                   @QueryParam("polygon") final GeoPolygon polygon) {
-      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreLayoutService.reshapeFeature(id, featureID, polygon);
+      GrappStoreFeatureDTOO grappStoreFeatureDTO = grappStoreLayoutService.reshapeFeature(id, featureID, polygon);
       return buildHalResponse(GrappStoreFeatureResource.asRepresentationOf(grappStoreFeatureDTO));
    }
 
@@ -78,7 +78,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    public Response addNode(@PathParam("id") final String id,
                            @QueryParam("type") final String type,
                            @QueryParam("location") final GeoPoint location) {
-      GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTO> result = grappStoreLayoutService.addNode(id, type, location);
+      GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDTOO> result = grappStoreLayoutService.addNode(id, type, location);
       return buildHalResponse(GrappStoreNodeResource.asRepresentationOf(result.getTarget())
                                                     .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                           .map(GrappStoreNodeResource::asRepresentationOf)
@@ -90,7 +90,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    public Response moveNode(@PathParam("id") final String id,
                             @QueryParam("nodeID") final String nodeID,
                             @QueryParam("location") final GeoPoint location) {
-      GrappStoreNodeDTO grappStoreNodeDTO = grappStoreLayoutService.moveNode(id, nodeID, location);
+      GrappStoreNodeDTOO grappStoreNodeDTO = grappStoreLayoutService.moveNode(id, nodeID, location);
       return buildHalResponse(GrappStoreNodeResource.asRepresentationOf(grappStoreNodeDTO));
    }
 
@@ -107,7 +107,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    public Response addNodeItem(@PathParam("id") final String id,
                                @QueryParam("nodeID") final String nodeID,
                                @QueryParam("item") final CodeName item) {
-      GrappStoreLayoutUpdateResultDTO<GrappStoreNodeItemDTO> result = grappStoreLayoutService.addNodeItem(id, nodeID, item);
+      GrappStoreLayoutUpdateResultDTO<GrappStoreNodeItemDTOO> result = grappStoreLayoutService.addNodeItem(id, nodeID, item);
       return buildHalResponse(GrappStoreNodeItemResource.asRepresentationOf(result.getTarget())
                                                         .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                               .map(GrappStoreNodeResource::asRepresentationOf)
@@ -118,11 +118,11 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreLayoutDTOO grappStoreLayoutDTO) {
       return halRepresentationFactory.createFor(grappStoreLayoutDTO).withLinks(createLinks(grappStoreLayoutDTO));
    }
 
-   private static List<HalLink> createLinks(GrappStoreLayoutDTO grappStoreLayoutDTO) {
+   private static List<HalLink> createLinks(GrappStoreLayoutDTOO grappStoreLayoutDTO) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(grappStoreLayoutDTO.getId()).withSelfRel(),
          JaxrsHalResourceLinkBuilder.linkTo(GrappStoreLayoutResource.class).method("updateOuterOutline").pathArgs(grappStoreLayoutDTO.getId()).queryParams("polygon").withRel("outerOutline"),

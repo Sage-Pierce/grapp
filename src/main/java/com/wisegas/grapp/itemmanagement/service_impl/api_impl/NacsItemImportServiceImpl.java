@@ -7,7 +7,7 @@ import com.wisegas.grapp.itemmanagement.domain.service.GrappItemImportService;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
 import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService;
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTO;
+import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTOO;
 import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDTOFactory;
 import com.wisegas.grapp.itemmanagement.service_impl.util.NacsItemCsvParser;
 import com.wisegas.grapp.itemmanagement.service_impl.value.NacsId;
@@ -42,7 +42,7 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
    }
 
    @Override
-   public List<GrappItemDTO> importCsvItems(String nacsItemCsvData) {
+   public List<GrappItemDTOO> importCsvItems(String nacsItemCsvData) {
       Map<NacsItemType, List<NacsItem>> nacsItemsByType = NacsItemCsvParser.parse(nacsItemCsvData).stream().collect(groupingBy(NacsItem::getType));
       List<GrappItem> categoryGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.CATEGORY, emptyList()), this::importNacsItemAsGeneralItem);
       List<GrappItem> subCategoryGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.SUB_CATEGORY, emptyList()), this::importNacsItemAsSubItem);

@@ -1,9 +1,9 @@
 package com.wisegas.grapp.storemanagement.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDTO;
+import com.wisegas.common.lang.dto.BaseDTOO;
 import com.wisegas.common.lang.value.CodeName;
 
-public class GrappStoreNodeItemDTO extends BaseDTO {
+public class GrappStoreNodeItemDTOO extends BaseDTOO {
 
    private CodeName item;
 

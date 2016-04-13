@@ -1,13 +1,13 @@
 package com.wisegas.grapp.itemmanagement.service.dto;
 
-import com.wisegas.common.lang.dto.NamedDTO;
+import com.wisegas.common.lang.dto.NamedDTOO;
 
 import java.util.List;
 
-public class GrappItemDTO extends NamedDTO {
+public class GrappItemDTOO extends NamedDTOO {
 
    private String superItemId;
-   private List<GrappItemDTO> subItems;
+   private List<GrappItemDTOO> subItems;
 
    public String getSuperItemId() {
       return superItemId;
@@ -17,11 +17,11 @@ public class GrappItemDTO extends NamedDTO {
       this.superItemId = superItemId;
    }
 
-   public List<GrappItemDTO> getSubItems() {
+   public List<GrappItemDTOO> getSubItems() {
       return subItems;
    }
 
-   public void setSubItems(List<GrappItemDTO> subItems) {
+   public void setSubItems(List<GrappItemDTOO> subItems) {
       this.subItems = subItems;
    }
 }

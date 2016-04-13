@@ -1,8 +1,8 @@
 package com.wisegas.grapp.usermanagement.service.dto;
 
-import com.wisegas.common.lang.dto.NamedDTO;
+import com.wisegas.common.lang.dto.NamedDTOO;
 
-public class GrappUserDTO extends NamedDTO {
+public class GrappUserDTOO extends NamedDTOO {
 
    private String avatar;
 

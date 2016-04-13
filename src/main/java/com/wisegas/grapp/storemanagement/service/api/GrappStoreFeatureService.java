@@ -1,7 +1,7 @@
 package com.wisegas.grapp.storemanagement.service.api;
 
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTOO;
 
 public interface GrappStoreFeatureService {
-   GrappStoreFeatureDTO get(String id);
+   GrappStoreFeatureDTOO get(String id);
 }

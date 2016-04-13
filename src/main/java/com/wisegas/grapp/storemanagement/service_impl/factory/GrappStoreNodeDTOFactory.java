@@ -1,12 +1,12 @@
 package com.wisegas.grapp.storemanagement.service_impl.factory;
 
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNode;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTOO;
 
 public final class GrappStoreNodeDTOFactory {
 
-   public static GrappStoreNodeDTO createDTO(GrappStoreNode grappStoreNode) {
-      GrappStoreNodeDTO grappStoreNodeDTO = new GrappStoreNodeDTO();
+   public static GrappStoreNodeDTOO createDTO(GrappStoreNode grappStoreNode) {
+      GrappStoreNodeDTOO grappStoreNodeDTO = new GrappStoreNodeDTOO();
       grappStoreNodeDTO.setId(grappStoreNode.getId().toString());
       grappStoreNodeDTO.setName(grappStoreNode.getName());
       grappStoreNodeDTO.setType(grappStoreNode.getType().name());

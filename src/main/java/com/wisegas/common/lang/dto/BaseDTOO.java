@@ -1,6 +1,6 @@
 package com.wisegas.common.lang.dto;
 
-public class BaseDTO {
+public class BaseDTOO {
 
    private String id;
 
