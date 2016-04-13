@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .service("GrappStore", GrappStore);
 
-   GrappStore.$inject = ["GrappRoot"];
-   function GrappStore(GrappRoot) {
+   GrappStore.$inject = ["Root"];
+   function GrappStore(Root) {
       var self = this;
       self.create = create;
       self.loadAll = loadAll;
@@ -15,19 +15,19 @@
       ////////////////////
 
       function create(name, location) {
-         return GrappRoot.createResourceModel("stores", {name: name, location: JSON.stringify(location)}, createModel);
+         return Root.createResourceModel("stores", {name: name, location: JSON.stringify(location)}, createModel);
       }
 
       function loadAll() {
-         return GrappRoot.loadResourceModels("stores", createModel);
+         return Root.loadResourceModels("stores", createModel);
       }
 
       function loadByID(grappStoreID) {
-         return GrappRoot.loadResourceModelByID("store", grappStoreID, createModel);
+         return Root.loadResourceModelByID("store", grappStoreID, createModel);
       }
 
       function load(grappStoreRsc) {
-         return GrappRoot.mergeResourceIntoModel(grappStoreRsc, createModel(grappStoreRsc));
+         return Root.mergeResourceIntoModel(grappStoreRsc, createModel(grappStoreRsc));
       }
 
       function createModel(grappStoreRsc) {

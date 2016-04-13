@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .service("GrappRoot", GrappRoot);
+      .service("Root", Root);
 
-   GrappRoot.$inject = ["$q"];
-   function GrappRoot($q) {
+   Root.$inject = ["$q"];
+   function Root($q) {
       var self = this;
       self.load = load;
       self.afterLoad = afterLoad;

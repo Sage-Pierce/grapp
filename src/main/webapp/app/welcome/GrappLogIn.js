@@ -5,8 +5,8 @@
       .service("GrappLogIn", GrappLogIn)
       .run(logInCachedUser);
 
-   GrappLogIn.$inject = ["$cookies", "$q", "GrappRoot", "GrappUser"];
-   function GrappLogIn($cookies, $q, GrappRoot, GrappUser) {
+   GrappLogIn.$inject = ["$cookies", "$q", "Root", "GrappUser"];
+   function GrappLogIn($cookies, $q, Root, GrappUser) {
       var self = this;
       self.logInCachedUser = logInCachedUser;
       self.logInWithOAuth = logInWithOAuth;
@@ -59,7 +59,7 @@
       }
 
       function logIn(email, avatar) {
-         return GrappRoot.afterLoad().then(function(grappRoot) {
+         return Root.afterLoad().then(function(grappRoot) {
             return grappRoot.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(GrappUser.load);
          });
       }

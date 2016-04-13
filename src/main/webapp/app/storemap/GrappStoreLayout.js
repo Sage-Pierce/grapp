@@ -4,15 +4,15 @@
    angular.module("Grapp")
       .service("GrappStoreLayout", GrappStoreLayout);
 
-   GrappStoreLayout.$inject = ["GrappRoot", "GrappStoreNodeType"];
-   function GrappStoreLayout(GrappRoot, GrappStoreNodeType) {
+   GrappStoreLayout.$inject = ["Root", "GrappStoreNodeType"];
+   function GrappStoreLayout(Root, GrappStoreNodeType) {
       var self = this;
       self.loadByID = loadByID;
 
       ////////////////////
 
       function loadByID(grappStoreLayoutID) {
-         return GrappRoot.loadResourceModelByID("storeLayout", grappStoreLayoutID, createModel);
+         return Root.loadResourceModelByID("storeLayout", grappStoreLayoutID, createModel);
       }
 
       function createModel(grappStoreLayoutRsc) {
@@ -138,7 +138,7 @@
          }
 
          function commitNodeModelParams(nodeModel, params) {
-            GrappRoot.updateResourceByID("node", nodeModel.id, params)
+            Root.updateResourceByID("node", nodeModel.id, params)
                .then(function(nodeRsc) { nodeModel.name = nodeRsc.name; });
          }
 

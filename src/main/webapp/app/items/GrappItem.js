@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .service("GrappItem", GrappItem);
 
-   GrappItem.$inject = ["GrappRoot"];
-   function GrappItem(GrappRoot) {
+   GrappItem.$inject = ["Root"];
+   function GrappItem(Root) {
       var self = this;
       self.createGeneralItem = createGeneralItem;
       self.importItems = importItems;
@@ -14,17 +14,17 @@
       ////////////////////
 
       function createGeneralItem(params) {
-         return GrappRoot.createResourceModel("generalItems", params, createModel);
+         return Root.createResourceModel("generalItems", params, createModel);
       }
 
       function importItems(data) {
-         return GrappRoot.afterLoad().then(function(grappRoot) {
+         return Root.afterLoad().then(function(grappRoot) {
             return grappRoot.$put("importItems", {type: "NACS"}, data, {headers: {"Content-Type": "text/plain"}}).then(loadAllGeneral);
          });
       }
 
       function loadAllGeneral() {
-         return GrappRoot.loadResourceModels("generalItems", createModel);
+         return Root.loadResourceModels("generalItems", createModel);
       }
 
       function createModel(grappItemRsc) {
@@ -36,12 +36,12 @@
          self.addSubItem = addSubItem;
          self.delete = del;
          self.isGeneralItem = isGeneralItem;
-         self.subItems = grappItemRsc.subItems.map(function(subItemRsc) { return GrappRoot.mergeResourceIntoModel(subItemRsc, new GrappItemModel(subItemRsc)); });
+         self.subItems = grappItemRsc.subItems.map(function(subItemRsc) { return Root.mergeResourceIntoModel(subItemRsc, new GrappItemModel(subItemRsc)); });
 
          ////////////////////
 
          function addSubItem(params) {
-            return GrappRoot.createResourceModel("items", _.merge({superItemId: self.id}, params), createModel)
+            return Root.createResourceModel("items", _.merge({superItemId: self.id}, params), createModel)
                .then(function(itemModel) {
                   self.subItems.push(itemModel);
                   return itemModel;
@@ -49,7 +49,7 @@
          }
 
          function del() {
-            return GrappRoot.deleteResourceByID("item", self.id);
+            return Root.deleteResourceByID("item", self.id);
          }
 
          function isGeneralItem() {

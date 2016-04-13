@@ -6,20 +6,16 @@ module.exports = function (grunt) {
       pkg: grunt.file.readJSON("package.json"),
       watch: {
          config: {
-            files: [webappRoot + "app/GrappConfigInit.js"],
+            files: [webappRoot + "app/config/*.js"],
             tasks: ["jshint", "concat:config"]
-         },
-         general: {
-            files: [webappRoot + "app/general/*.js"],
-            tasks: ["jshint", "concat:general"]
-         },
-         items: {
-            files: [webappRoot + "app/items/*.js"],
-            tasks: ["jshint", "concat:items"]
          },
          itemlist: {
             files: [webappRoot + "app/itemlist/*.js"],
             tasks: ["jshint", "concat:itemlist"]
+         },
+         items: {
+            files: [webappRoot + "app/items/*.js"],
+            tasks: ["jshint", "concat:items"]
          },
          itemtree: {
             files: [webappRoot + "app/itemtree/*.js"],
@@ -59,10 +55,9 @@ module.exports = function (grunt) {
             jshintrc: ".jshintrc"
          },
          all: [
-            webappRoot + "app/*.js",
-            webappRoot + "app/general/*.js",
-            webappRoot + "app/items/*.js",
+            webappRoot + "app/config/*.js",
             webappRoot + "app/itemlist/*.js",
+            webappRoot + "app/items/*.js",
             webappRoot + "app/itemtree/*.js",
             webappRoot + "app/map/*.js",
             webappRoot + "app/shoppinglists/*.js",
@@ -73,20 +68,16 @@ module.exports = function (grunt) {
       },
       concat: {
          config: {
-            src: [webappRoot + "app/GrappConfigInit.js"],
-            dest: webappRoot + "concat/GrappConfigInit.js"
-         },
-         general: {
-            src: [webappRoot + "app/general/*.js"],
-            dest: webappRoot + "concat/general-concat.js"
-         },
-         items: {
-            src: [webappRoot + "app/items/*.js"],
-            dest: webappRoot + "concat/items-concat.js"
+            src: [webappRoot + "app/config/*.js"],
+            dest: webappRoot + "concat/config-concat.js"
          },
          itemlist: {
             src: [webappRoot + "app/itemlist/*.js"],
             dest: webappRoot + "concat/itemlist-concat.js"
+         },
+         items: {
+            src: [webappRoot + "app/items/*.js"],
+            dest: webappRoot + "concat/items-concat.js"
          },
          itemtree: {
             src: [webappRoot + "app/itemtree/*.js"],

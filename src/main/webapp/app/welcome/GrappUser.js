@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .service("GrappUser", GrappUser);
 
-   GrappUser.$inject = ["GrappRoot"];
-   function GrappUser(GrappRoot) {
+   GrappUser.$inject = ["Root"];
+   function GrappUser(Root) {
       var self = this;
       self.loadByID = loadByID;
       self.load = load;
@@ -13,11 +13,11 @@
       ////////////////////
 
       function loadByID(grappUserID) {
-         return GrappRoot.loadResourceModelByID("user", grappUserID, createModel);
+         return Root.loadResourceModelByID("user", grappUserID, createModel);
       }
 
       function load(grappUserRsc) {
-         return GrappRoot.mergeResourceIntoModel(grappUserRsc, createModel(grappUserRsc));
+         return Root.mergeResourceIntoModel(grappUserRsc, createModel(grappUserRsc));
       }
 
       function createModel(grappUserRsc) {

@@ -6,11 +6,11 @@
    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
 
    angular.module("Grapp", ["ngCookies", "ui.router", "angular-hal", "ui.bootstrap", "uiGmapgoogle-maps", "ui.tree"])
-      .config(grappConfig)
-      .run(grappInit);
+      .config(configure)
+      .run(initialize);
 
-   grappConfig.$inject = ["$urlRouterProvider", "uiGmapGoogleMapApiProvider"];
-   function grappConfig($urlRouterProvider, uiGmapGoogleMapApiProvider) {
+   configure.$inject = ["$urlRouterProvider", "uiGmapGoogleMapApiProvider"];
+   function configure($urlRouterProvider, uiGmapGoogleMapApiProvider) {
       $urlRouterProvider.otherwise("/welcome");
 
       uiGmapGoogleMapApiProvider.configure({
@@ -20,8 +20,8 @@
       });
    }
 
-   grappInit.$inject = ["$rootScope", "$state", "halClient", "GrappRoot", "uiGmapGoogleMapApi"];
-   function grappInit($rootScope, $state, halClient, GrappRoot, uiGmapGoogleMapApi) {
+   initialize.$inject = ["$rootScope", "$state", "halClient", "Root", "uiGmapGoogleMapApi"];
+   function initialize($rootScope, $state, halClient, Root, uiGmapGoogleMapApi) {
       $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
          console.log("Error on state transition:");
          console.log(error);
@@ -33,7 +33,7 @@
          "http://localhost:5000/rest/",               // When running Heroku locally
          "http://localhost:8008/rest/"                // When running the server manually (Need to set PORT Environment Var.)
       ];
-      halClient.$get(servers[0]).then(GrappRoot.load, console.log);
+      halClient.$get(servers[0]).then(Root.load, console.log);
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely
