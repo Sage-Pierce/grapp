@@ -18,11 +18,11 @@ public interface GrappStoreLayoutService {
 
    void removeFeature(String id, String featureID);
 
-   GrappStoreLayoutUpdateResultDTO<GrappStoreNodeDto> addNode(String id, String type, GeoPoint location);
+   GrappStoreLayoutUpdateResultDTOO<GrappStoreNodeDto> addNode(String id, String type, GeoPoint location);
 
    GrappStoreNodeDto moveNode(String id, String nodeID, GeoPoint location);
 
    void removeNode(String id, String nodeID);
 
-   GrappStoreLayoutUpdateResultDTO<GrappStoreNodeItemDto> addNodeItem(String id, String nodeID, CodeName item);
+   GrappStoreLayoutUpdateResultDTOO<GrappStoreNodeItemDto> addNodeItem(String id, String nodeID, CodeName item);
 }
