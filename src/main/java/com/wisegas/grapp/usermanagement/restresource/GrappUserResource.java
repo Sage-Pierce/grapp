@@ -25,27 +25,27 @@ public class GrappUserResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get(@PathParam(value = "id") final String id) {
-      GrappUserDto grappUserDTO = grappUserService.get(id);
-      return buildHalResponse(asRepresentationOf(grappUserDTO));
+      GrappUserDto grappUserDto = grappUserService.get(id);
+      return buildHalResponse(asRepresentationOf(grappUserDto));
    }
 
    @PUT
    public Response update(@PathParam(value = "id") final String id,
                           @QueryParam(value = "name") final String name) {
-      GrappUserDto grappUserDTO = grappUserService.update(id, name);
-      return buildHalResponse(asRepresentationOf(grappUserDTO));
+      GrappUserDto grappUserDto = grappUserService.update(id, name);
+      return buildHalResponse(asRepresentationOf(grappUserDto));
    }
 
    public static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappUserDto grappUserDTO) {
-      return halRepresentationFactory.createFor(grappUserDTO).withLinks(createLinks(grappUserDTO));
+   protected static HalRepresentation asRepresentationOf(GrappUserDto grappUserDto) {
+      return halRepresentationFactory.createFor(grappUserDto).withLinks(createLinks(grappUserDto));
    }
 
-   private static List<HalLink> createLinks(GrappUserDto grappUserDTO) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappUserDTO.getId()).withSelfRel());
+   private static List<HalLink> createLinks(GrappUserDto grappUserDto) {
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappUserDto.getId()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {

@@ -35,9 +35,9 @@ public class GrappStoresResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get() {
-      List<GrappStoreDto> grappStoreDTOs = grappStoreService.getAll();
+      List<GrappStoreDto> grappStoreDtos = grappStoreService.getAll();
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
-                                                      .withEmbeddeds("stores", grappStoreDTOs.stream()
+                                                      .withEmbeddeds("stores", grappStoreDtos.stream()
                                                                                              .map(GrappStoreResource::asRepresentationOf)
                                                                                              .collect(Collectors.toList())));
    }

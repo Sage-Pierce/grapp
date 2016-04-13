@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 
 public final class GrappStoreLayoutUpdateResultDtoFactory {
 
-   public static <T> GrappStoreLayoutUpdateResultDTO<T> createDto(GrappStoreLayout grappStoreLayout, T targetDTO, List<String> affectedNodeIDs) {
-      GrappStoreLayoutUpdateResultDTO<T> resultDTO = new GrappStoreLayoutUpdateResultDTO<>();
-      resultDTO.setTarget(targetDTO);
-      resultDTO.setAffectedNodes(affectedNodeIDs.stream().map(GrappStoreNodeId::fromString).map(grappStoreLayout::getNode).map(GrappStoreNodeDtoFactory::createDto).collect(Collectors.toList()));
-      return resultDTO;
+   public static <T> GrappStoreLayoutUpdateResultDTO<T> createDto(GrappStoreLayout grappStoreLayout, T targetDto, List<String> affectedNodeIDs) {
+      GrappStoreLayoutUpdateResultDTO<T> resultDto = new GrappStoreLayoutUpdateResultDTO<>();
+      resultDto.setTarget(targetDto);
+      resultDto.setAffectedNodes(affectedNodeIDs.stream().map(GrappStoreNodeId::fromString).map(grappStoreLayout::getNode).map(GrappStoreNodeDtoFactory::createDto).collect(Collectors.toList()));
+      return resultDto;
    }
 
    private GrappStoreLayoutUpdateResultDtoFactory() {

@@ -6,10 +6,10 @@ import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDto;
 public final class GrappStoreFeatureDtoFactory {
 
    public static GrappStoreFeatureDto createDto(GrappStoreFeature grappStoreFeature) {
-      GrappStoreFeatureDto grappStoreLayoutDTO = new GrappStoreFeatureDto();
-      grappStoreLayoutDTO.setId(grappStoreFeature.getId().toString());
-      grappStoreLayoutDTO.setPolygon(grappStoreFeature.getPolygon());
-      return grappStoreLayoutDTO;
+      GrappStoreFeatureDto grappStoreLayoutDto = new GrappStoreFeatureDto();
+      grappStoreLayoutDto.setId(grappStoreFeature.getId().toString());
+      grappStoreLayoutDto.setPolygon(grappStoreFeature.getPolygon());
+      return grappStoreLayoutDto;
    }
 
    private GrappStoreFeatureDtoFactory() {

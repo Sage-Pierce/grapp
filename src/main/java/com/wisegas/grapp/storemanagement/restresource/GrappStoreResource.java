@@ -33,8 +33,8 @@ public class GrappStoreResource extends JaxrsHalJsonResource {
    public Response update(@PathParam(value = "id") final String id,
                           @QueryParam(value = "name") final String name,
                           @QueryParam(value = "location") final GeoPoint location) {
-      GrappStoreDto grappStoreDTO = grappStoreService.update(id, name, location);
-      return buildHalResponse(asRepresentationOf(grappStoreDTO));
+      GrappStoreDto grappStoreDto = grappStoreService.update(id, name, location);
+      return buildHalResponse(asRepresentationOf(grappStoreDto));
    }
 
    @DELETE
@@ -47,12 +47,12 @@ public class GrappStoreResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreDto grappStoreDTO) {
-      return halRepresentationFactory.createFor(grappStoreDTO).withLinks(createLinks(grappStoreDTO));
+   protected static HalRepresentation asRepresentationOf(GrappStoreDto grappStoreDto) {
+      return halRepresentationFactory.createFor(grappStoreDto).withLinks(createLinks(grappStoreDto));
    }
 
-   private static List<HalLink> createLinks(GrappStoreDto grappStoreDTO) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreDTO.getId()).withSelfRel());
+   private static List<HalLink> createLinks(GrappStoreDto grappStoreDto) {
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreDto.getId()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {

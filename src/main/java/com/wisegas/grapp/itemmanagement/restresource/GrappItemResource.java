@@ -41,12 +41,12 @@ public class GrappItemResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappItemDto grappItemDTO) {
-      return halRepresentationFactory.createFor(grappItemDTO).withLinks(createLinks(grappItemDTO));
+   protected static HalRepresentation asRepresentationOf(GrappItemDto grappItemDto) {
+      return halRepresentationFactory.createFor(grappItemDto).withLinks(createLinks(grappItemDto));
    }
 
-   private static List<HalLink> createLinks(GrappItemDto grappItemDTO) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappItemDTO.getId()).withSelfRel());
+   private static List<HalLink> createLinks(GrappItemDto grappItemDto) {
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappItemDto.getId()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {

@@ -25,8 +25,8 @@ public class GrappLoginResource extends JaxrsHalJsonResource {
    @PUT
    public Response logIn(@QueryParam(value = "email") final String email,
                          @QueryParam(value = "avatar") final String avatar) {
-      GrappUserDto grappUserDTO = grappLoginService.logIn(email, avatar);
-      return buildHalResponse(GrappUserResource.asRepresentationOf(grappUserDTO));
+      GrappUserDto grappUserDto = grappLoginService.logIn(email, avatar);
+      return buildHalResponse(GrappUserResource.asRepresentationOf(grappUserDto));
    }
 
    public static HalLink createRootLink(String rel) {

@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 public final class GrappStoreLayoutDtoFactory {
 
    public static GrappStoreLayoutDto createDto(GrappStoreLayout grappStoreLayout) {
-      GrappStoreLayoutDto grappStoreLayoutDTO = new GrappStoreLayoutDto();
-      grappStoreLayoutDTO.setId(grappStoreLayout.getId().toString());
-      grappStoreLayoutDTO.setOuterOutline(grappStoreLayout.getOuterOutline());
-      grappStoreLayoutDTO.setInnerOutline(grappStoreLayout.getInnerOutline());
-      grappStoreLayoutDTO.setFeatures(grappStoreLayout.getFeatures().stream().map(GrappStoreFeatureDtoFactory::createDto).collect(Collectors.toList()));
-      grappStoreLayoutDTO.setNodes(grappStoreLayout.getNodes().stream().map(GrappStoreNodeDtoFactory::createDto).collect(Collectors.toList()));
-      return grappStoreLayoutDTO;
+      GrappStoreLayoutDto grappStoreLayoutDto = new GrappStoreLayoutDto();
+      grappStoreLayoutDto.setId(grappStoreLayout.getId().toString());
+      grappStoreLayoutDto.setOuterOutline(grappStoreLayout.getOuterOutline());
+      grappStoreLayoutDto.setInnerOutline(grappStoreLayout.getInnerOutline());
+      grappStoreLayoutDto.setFeatures(grappStoreLayout.getFeatures().stream().map(GrappStoreFeatureDtoFactory::createDto).collect(Collectors.toList()));
+      grappStoreLayoutDto.setNodes(grappStoreLayout.getNodes().stream().map(GrappStoreNodeDtoFactory::createDto).collect(Collectors.toList()));
+      return grappStoreLayoutDto;
    }
 
    private GrappStoreLayoutDtoFactory() {

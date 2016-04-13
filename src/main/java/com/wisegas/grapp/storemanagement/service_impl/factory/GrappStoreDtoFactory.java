@@ -6,12 +6,12 @@ import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDto;
 public final class GrappStoreDtoFactory {
 
    public static GrappStoreDto createDto(GrappStore grappStore) {
-      GrappStoreDto grappStoreDTO = new GrappStoreDto();
-      grappStoreDTO.setId(grappStore.getId().toString());
-      grappStoreDTO.setName(grappStore.getName());
-      grappStoreDTO.setLocation(grappStore.getLocation());
-      grappStoreDTO.setLayoutID(grappStore.getGrappStoreLayout().getId().toString());
-      return grappStoreDTO;
+      GrappStoreDto grappStoreDto = new GrappStoreDto();
+      grappStoreDto.setId(grappStore.getId().toString());
+      grappStoreDto.setName(grappStore.getName());
+      grappStoreDto.setLocation(grappStore.getLocation());
+      grappStoreDto.setLayoutID(grappStore.getGrappStoreLayout().getId().toString());
+      return grappStoreDto;
    }
 
    private GrappStoreDtoFactory() {

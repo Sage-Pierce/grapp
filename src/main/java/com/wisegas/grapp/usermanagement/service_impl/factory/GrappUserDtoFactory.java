@@ -6,11 +6,11 @@ import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
 public final class GrappUserDtoFactory {
 
    public static GrappUserDto createDto(GrappUser grappUser) {
-      GrappUserDto grappUserDTO = new GrappUserDto();
-      grappUserDTO.setId(grappUser.getId().toString());
-      grappUserDTO.setName(grappUser.getName());
-      grappUserDTO.setAvatar(grappUser.getAvatar());
-      return grappUserDTO;
+      GrappUserDto grappUserDto = new GrappUserDto();
+      grappUserDto.setId(grappUser.getId().toString());
+      grappUserDto.setName(grappUser.getName());
+      grappUserDto.setAvatar(grappUser.getAvatar());
+      return grappUserDto;
    }
 
    private GrappUserDtoFactory() {

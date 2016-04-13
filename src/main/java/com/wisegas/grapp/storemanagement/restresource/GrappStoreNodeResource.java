@@ -31,20 +31,20 @@ public class GrappStoreNodeResource extends JaxrsHalJsonResource {
    @PUT
    public Response update(@PathParam("id") final String id,
                           @QueryParam("name") final String name) {
-      GrappStoreNodeDto grappStoreNodeDTO = grappStoreNodeService.update(id, name);
-      return buildHalResponse(asRepresentationOf(grappStoreNodeDTO));
+      GrappStoreNodeDto grappStoreNodeDto = grappStoreNodeService.update(id, name);
+      return buildHalResponse(asRepresentationOf(grappStoreNodeDto));
    }
 
    public static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreNodeDto grappStoreNodeDTO) {
-      return halRepresentationFactory.createFor(grappStoreNodeDTO).withLinks(createLinks(grappStoreNodeDTO));
+   protected static HalRepresentation asRepresentationOf(GrappStoreNodeDto grappStoreNodeDto) {
+      return halRepresentationFactory.createFor(grappStoreNodeDto).withLinks(createLinks(grappStoreNodeDto));
    }
 
-   private static List<HalLink> createLinks(GrappStoreNodeDto grappStoreNodeDTO) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreNodeDTO.getId()).withSelfRel());
+   private static List<HalLink> createLinks(GrappStoreNodeDto grappStoreNodeDto) {
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreNodeDto.getId()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {

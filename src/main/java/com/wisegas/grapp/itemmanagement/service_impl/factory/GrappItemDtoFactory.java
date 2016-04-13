@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 public final class GrappItemDtoFactory {
 
    public static GrappItemDto createDto(GrappItem grappItem) {
-      GrappItemDto grappItemDTO = new GrappItemDto();
-      grappItemDTO.setId(grappItem.getId().toString());
-      grappItemDTO.setSuperItemId(grappItem.isGeneralItem() ? null : grappItem.getSuperItem().getName());
-      grappItemDTO.setName(grappItem.getName());
-      grappItemDTO.setSubItems(grappItem.getSubItems().stream().map(GrappItemDtoFactory::createDto).collect(Collectors.toList()));
-      return grappItemDTO;
+      GrappItemDto grappItemDto = new GrappItemDto();
+      grappItemDto.setId(grappItem.getId().toString());
+      grappItemDto.setSuperItemId(grappItem.isGeneralItem() ? null : grappItem.getSuperItem().getName());
+      grappItemDto.setName(grappItem.getName());
+      grappItemDto.setSubItems(grappItem.getSubItems().stream().map(GrappItemDtoFactory::createDto).collect(Collectors.toList()));
+      return grappItemDto;
    }
 
    private GrappItemDtoFactory() {
