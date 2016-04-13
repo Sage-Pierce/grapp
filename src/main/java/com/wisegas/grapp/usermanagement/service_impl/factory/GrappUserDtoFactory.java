@@ -3,7 +3,7 @@ package com.wisegas.grapp.usermanagement.service_impl.factory;
 import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
 import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
 
-public final class GrappUserDTOOFactory {
+public final class GrappUserDtoFactory {
 
    public static GrappUserDTOO createDTO(GrappUser grappUser) {
       GrappUserDTOO grappUserDTO = new GrappUserDTOO();
@@ -13,7 +13,7 @@ public final class GrappUserDTOOFactory {
       return grappUserDTO;
    }
 
-   private GrappUserDTOOFactory() {
+   private GrappUserDtoFactory() {
 
    }
 }

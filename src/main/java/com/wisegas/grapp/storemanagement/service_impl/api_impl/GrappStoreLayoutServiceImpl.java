@@ -39,35 +39,35 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
 
    @Override
    public GrappStoreLayoutDTOO get(String id) {
-      return GrappStoreLayoutDTOOFactory.createDTO(grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id)));
+      return GrappStoreLayoutDtoFactory.createDTO(grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id)));
    }
 
    @Override
    public GrappStoreLayoutDTOO updateOuterOutline(String id, GeoPolygon outerPolygon) {
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       layout.setOuterOutline(outerPolygon);
-      return GrappStoreLayoutDTOOFactory.createDTO(layout);
+      return GrappStoreLayoutDtoFactory.createDTO(layout);
    }
 
    @Override
    public GrappStoreLayoutDTOO updateInnerOutline(String id, GeoPolygon innerPolygon) {
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       layout.setInnerOutline(innerPolygon);
-      return GrappStoreLayoutDTOOFactory.createDTO(layout);
+      return GrappStoreLayoutDtoFactory.createDTO(layout);
    }
 
    @Override
    public GrappStoreFeatureDTOO addFeature(String id, GeoPolygon polygon) {
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       GrappStoreFeature feature = layout.addFeature(polygon);
-      return GrappStoreFeatureDTOOFactory.createDTO(feature);
+      return GrappStoreFeatureDtoFactory.createDTO(feature);
    }
 
    @Override
    public GrappStoreFeatureDTOO reshapeFeature(String id, String featureID, GeoPolygon polygon) {
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       GrappStoreFeature feature = layout.reshapeFeature(GrappStoreFeatureId.fromString(featureID), polygon);
-      return GrappStoreFeatureDTOOFactory.createDTO(feature);
+      return GrappStoreFeatureDtoFactory.createDTO(feature);
    }
 
    @Override
@@ -82,14 +82,14 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       GrappStoreNode node = layout.addNode(GrappStoreNodeType.fromName(type), location);
-      return GrappStoreLayoutUpdateResultDTOOFactory.createDTO(layout, GrappStoreNodeDTOOFactory.createDTO(node), nodeModificationEventSubscriber.getNodeIDs());
+      return GrappStoreLayoutUpdateResultDtoFactory.createDTO(layout, GrappStoreNodeDtoFactory.createDTO(node), nodeModificationEventSubscriber.getNodeIDs());
    }
 
    @Override
    public GrappStoreNodeDTOO moveNode(String id, String nodeID, GeoPoint location) {
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       GrappStoreNode grappStoreNode = layout.moveNode(GrappStoreNodeId.fromString(nodeID), location);
-      return GrappStoreNodeDTOOFactory.createDTO(grappStoreNode);
+      return GrappStoreNodeDtoFactory.createDTO(grappStoreNode);
    }
 
    @Override
@@ -104,7 +104,7 @@ public class GrappStoreLayoutServiceImpl implements GrappStoreLayoutService {
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
       GrappStoreLayout layout = grappStoreLayoutRepository.get(GrappStoreLayoutId.fromString(id));
       GrappStoreNodeItem grappStoreNodeItem = layout.addNodeItem(GrappStoreNodeId.fromString(nodeID), new Item(item));
-      return GrappStoreLayoutUpdateResultDTOOFactory.createDTO(layout, GrappStoreNodeItemDTOOFactory.createDTO(grappStoreNodeItem), nodeModificationEventSubscriber.getNodeIDs());
+      return GrappStoreLayoutUpdateResultDtoFactory.createDTO(layout, GrappStoreNodeItemDtoFactory.createDTO(grappStoreNodeItem), nodeModificationEventSubscriber.getNodeIDs());
    }
 
    private static class GrappStoreNodeModificationEventSubscriber implements DomainEventSubscriber<GrappStoreNodeModifiedEvent> {

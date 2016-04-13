@@ -7,7 +7,7 @@ import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreNodeReposit
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeId;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreNodeService;
 import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTOO;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreNodeDTOOFactory;
+import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreNodeDtoFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,13 +28,13 @@ public class GrappStoreNodeServiceImpl implements GrappStoreNodeService {
 
    @Override
    public GrappStoreNodeDTOO get(String id) {
-      return GrappStoreNodeDTOOFactory.createDTO(grappStoreNodeRepository.get(GrappStoreNodeId.fromString(id)));
+      return GrappStoreNodeDtoFactory.createDTO(grappStoreNodeRepository.get(GrappStoreNodeId.fromString(id)));
    }
 
    @Override
    public GrappStoreNodeDTOO update(String id, String name) {
       GrappStoreNode grappStoreNode = grappStoreNodeRepository.get(GrappStoreNodeId.fromString(id));
       grappStoreNode.setName(name);
-      return GrappStoreNodeDTOOFactory.createDTO(grappStoreNode);
+      return GrappStoreNodeDtoFactory.createDTO(grappStoreNode);
    }
 }

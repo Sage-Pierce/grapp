@@ -8,7 +8,7 @@ import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
 import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTOO;
-import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDTOOFactory;
+import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDtoFactory;
 import com.wisegas.grapp.itemmanagement.service_impl.util.NacsItemCsvParser;
 import com.wisegas.grapp.itemmanagement.service_impl.value.NacsId;
 import com.wisegas.grapp.itemmanagement.service_impl.value.NacsItem;
@@ -49,7 +49,7 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
       List<GrappItem> subItemGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.ITEM, emptyList()), this::importNacsItemAsSubItem);
       return Stream.of(categoryGrappItems, subCategoryGrappItems, subItemGrappItems)
                    .flatMap(Collection::stream)
-                   .map(GrappItemDTOOFactory::createDTO)
+                   .map(GrappItemDtoFactory::createDTO)
                    .collect(toList());
    }
 

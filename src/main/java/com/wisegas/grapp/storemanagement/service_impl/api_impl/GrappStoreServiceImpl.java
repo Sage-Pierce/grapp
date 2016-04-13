@@ -8,7 +8,7 @@ import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreRepository;
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreId;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreService;
 import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDTOO;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreDTOOFactory;
+import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreDtoFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,17 +31,17 @@ public class GrappStoreServiceImpl implements GrappStoreService {
 
    @Override
    public GrappStoreDTOO create(String name, GeoPoint location) {
-      return GrappStoreDTOOFactory.createDTO(grappStoreRepository.add(new GrappStore(name, location)));
+      return GrappStoreDtoFactory.createDTO(grappStoreRepository.add(new GrappStore(name, location)));
    }
 
    @Override
    public List<GrappStoreDTOO> getAll() {
-      return grappStoreRepository.getAll().stream().map(GrappStoreDTOOFactory::createDTO).collect(Collectors.toList());
+      return grappStoreRepository.getAll().stream().map(GrappStoreDtoFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override
    public GrappStoreDTOO get(String id) {
-      return GrappStoreDTOOFactory.createDTO(grappStoreRepository.get(GrappStoreId.fromString(id)));
+      return GrappStoreDtoFactory.createDTO(grappStoreRepository.get(GrappStoreId.fromString(id)));
    }
 
    @Override
@@ -49,7 +49,7 @@ public class GrappStoreServiceImpl implements GrappStoreService {
       GrappStore grappStore = grappStoreRepository.get(GrappStoreId.fromString(id));
       grappStore.setName(name);
       grappStore.setLocation(location);
-      return GrappStoreDTOOFactory.createDTO(grappStore);
+      return GrappStoreDtoFactory.createDTO(grappStore);
    }
 
    @Override

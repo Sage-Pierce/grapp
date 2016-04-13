@@ -7,16 +7,16 @@ import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutUpdateResul
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class GrappStoreLayoutUpdateResultDTOOFactory {
+public final class GrappStoreLayoutUpdateResultDtoFactory {
 
    public static <T> GrappStoreLayoutUpdateResultDTO<T> createDTO(GrappStoreLayout grappStoreLayout, T targetDTO, List<String> affectedNodeIDs) {
       GrappStoreLayoutUpdateResultDTO<T> resultDTO = new GrappStoreLayoutUpdateResultDTO<>();
       resultDTO.setTarget(targetDTO);
-      resultDTO.setAffectedNodes(affectedNodeIDs.stream().map(GrappStoreNodeId::fromString).map(grappStoreLayout::getNode).map(GrappStoreNodeDTOOFactory::createDTO).collect(Collectors.toList()));
+      resultDTO.setAffectedNodes(affectedNodeIDs.stream().map(GrappStoreNodeId::fromString).map(grappStoreLayout::getNode).map(GrappStoreNodeDtoFactory::createDTO).collect(Collectors.toList()));
       return resultDTO;
    }
 
-   private GrappStoreLayoutUpdateResultDTOOFactory() {
+   private GrappStoreLayoutUpdateResultDtoFactory() {
 
    }
 }

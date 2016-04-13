@@ -3,7 +3,7 @@ package com.wisegas.grapp.storemanagement.service_impl.factory;
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreNodeItem;
 import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeItemDTOO;
 
-public final class GrappStoreNodeItemDTOOFactory {
+public final class GrappStoreNodeItemDtoFactory {
 
    public static GrappStoreNodeItemDTOO createDTO(GrappStoreNodeItem grappStoreNodeItem) {
       GrappStoreNodeItemDTOO grappStoreNodeItemDTO = new GrappStoreNodeItemDTOO();
@@ -12,7 +12,7 @@ public final class GrappStoreNodeItemDTOOFactory {
       return grappStoreNodeItemDTO;
    }
 
-   private GrappStoreNodeItemDTOOFactory() {
+   private GrappStoreNodeItemDtoFactory() {
 
    }
 }

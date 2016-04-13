@@ -6,7 +6,7 @@ import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreFeatureRepo
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreFeatureId;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreFeatureService;
 import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTOO;
-import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreFeatureDTOOFactory;
+import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreFeatureDtoFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,6 +27,6 @@ public class GrappStoreFeatureServiceImpl implements GrappStoreFeatureService {
 
    @Override
    public GrappStoreFeatureDTOO get(String id) {
-      return GrappStoreFeatureDTOOFactory.createDTO(grappStoreFeatureRepository.get(GrappStoreFeatureId.fromString(id)));
+      return GrappStoreFeatureDtoFactory.createDTO(grappStoreFeatureRepository.get(GrappStoreFeatureId.fromString(id)));
    }
 }
