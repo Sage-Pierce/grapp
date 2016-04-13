@@ -11,8 +11,8 @@ import com.wisegas.grapp.storemanagement.restresource.LayoutResource;
 import com.wisegas.grapp.storemanagement.restresource.NodeResource;
 import com.wisegas.grapp.storemanagement.restresource.StoreResource;
 import com.wisegas.grapp.storemanagement.restresource.StoresResource;
-import com.wisegas.grapp.usermanagement.restresource.LoginResource;
-import com.wisegas.grapp.usermanagement.restresource.UserResource;
+import com.wisegas.grapp.user.restresource.LoginResource;
+import com.wisegas.grapp.user.restresource.UserResource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

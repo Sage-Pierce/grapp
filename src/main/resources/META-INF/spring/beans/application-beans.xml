@@ -17,7 +17,7 @@
                                           com.wisegas.grapp.itemmanagement
                                           com.wisegas.grapp.shoppinglist
                                           com.wisegas.grapp.storemanagement
-                                          com.wisegas.grapp.usermanagement"/>
+                                          com.wisegas.grapp.user"/>
     <context:annotation-config/>
 
     <!-- Bean used to reset DomainEventPublisher -->

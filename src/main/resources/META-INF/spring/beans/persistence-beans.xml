@@ -19,7 +19,7 @@
                 <value>com.wisegas.grapp.itemmanagement.domain</value>
                 <value>com.wisegas.grapp.shoppinglist.domain</value>
                 <value>com.wisegas.grapp.storemanagement.domain</value>
-                <value>com.wisegas.grapp.usermanagement.domain</value>
+                <value>com.wisegas.grapp.user.domain</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">
