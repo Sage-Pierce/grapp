@@ -1,6 +1,6 @@
 package com.wisegas.grapp.itemmanagement.domain.value;
 
-public enum GrappItemCodeType {
+public enum CodeType {
    GTIN("%013d"),
    UPC("%012d"),
    NACS("%02d%02d%02d"),
@@ -13,7 +13,7 @@ public enum GrappItemCodeType {
       return valueFormat;
    }
 
-   GrappItemCodeType(String valueFormat) {
+   CodeType(String valueFormat) {
       this.valueFormat = valueFormat;
    }
 }

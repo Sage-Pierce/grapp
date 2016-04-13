@@ -4,8 +4,8 @@ import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
-import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDto;
+import com.wisegas.grapp.itemmanagement.service.api.ItemService;
+import com.wisegas.grapp.itemmanagement.service.dto.ItemDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -17,23 +17,23 @@ import java.util.Collections;
 import java.util.List;
 
 @Path("/items/{id}/")
-public class GrappItemResource extends JaxrsHalJsonResource {
+public class ItemResource extends JaxrsHalJsonResource {
 
-   private final GrappItemService grappItemService;
+   private final ItemService itemService;
 
    @Inject
-   public GrappItemResource(GrappItemService grappItemService) {
-      this.grappItemService = grappItemService;
+   public ItemResource(ItemService itemService) {
+      this.itemService = itemService;
    }
 
    @GET
    public Response get(@PathParam("id") final String id) {
-      return buildHalResponse(asRepresentationOf(grappItemService.get(id)));
+      return buildHalResponse(asRepresentationOf(itemService.get(id)));
    }
 
    @DELETE
    public Response delete(@PathParam("id") final String id) {
-      grappItemService.delete(id);
+      itemService.delete(id);
       return Response.ok().build();
    }
 
@@ -41,15 +41,15 @@ public class GrappItemResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappItemDto grappItemDto) {
-      return halRepresentationFactory.createFor(grappItemDto).withLinks(createLinks(grappItemDto));
+   protected static HalRepresentation asRepresentationOf(ItemDto itemDto) {
+      return halRepresentationFactory.createFor(itemDto).withLinks(createLinks(itemDto));
    }
 
-   private static List<HalLink> createLinks(GrappItemDto grappItemDto) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappItemDto.getId()).withSelfRel());
+   private static List<HalLink> createLinks(ItemDto itemDto) {
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(itemDto.getId()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemResource.class);
+      return JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class);
    }
 }

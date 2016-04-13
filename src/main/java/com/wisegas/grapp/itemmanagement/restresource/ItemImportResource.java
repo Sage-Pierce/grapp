@@ -4,7 +4,7 @@ import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService;
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDto;
+import com.wisegas.grapp.itemmanagement.service.dto.ItemDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/items/import")
-public class GrappItemImportResource extends JaxrsHalJsonResource {
+public class ItemImportResource extends JaxrsHalJsonResource {
    private static final String NACS = "NACS";
 
    private final NacsItemImportService nacsItemImportService;
 
    @Inject
-   public GrappItemImportResource(NacsItemImportService nacsItemImportService) {
+   public ItemImportResource(NacsItemImportService nacsItemImportService) {
       this.nacsItemImportService = nacsItemImportService;
    }
 
@@ -32,18 +32,18 @@ public class GrappItemImportResource extends JaxrsHalJsonResource {
    @Consumes(MediaType.TEXT_PLAIN)
    public Response importItems(@QueryParam("type") final String type,
                                final String csvData) {
-      List<GrappItemDto> grappItems;
+      List<ItemDto> items;
       if (NACS.equals(type)) {
-         grappItems = nacsItemImportService.importCsvItems(csvData);
+         items = nacsItemImportService.importCsvItems(csvData);
       }
       else {
          throw new UnsupportedOperationException("This Import Type is not supported: " + type);
       }
 
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
-                                                      .withEmbeddeds("importedItems", grappItems.stream()
-                                                                                                .map(GrappItemResource::asRepresentationOf)
-                                                                                                .collect(Collectors.toList())));
+                                                      .withEmbeddeds("importedItems", items.stream()
+                                                                                           .map(ItemResource::asRepresentationOf)
+                                                                                           .collect(Collectors.toList())));
    }
 
    public static HalLink createRootLink(String rel) {
@@ -55,6 +55,6 @@ public class GrappItemImportResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemImportResource.class).queryParams("type");
+      return JaxrsHalResourceLinkBuilder.linkTo(ItemImportResource.class).queryParams("type");
    }
 }

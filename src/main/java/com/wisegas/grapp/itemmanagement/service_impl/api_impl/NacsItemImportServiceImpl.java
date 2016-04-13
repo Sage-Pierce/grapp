@@ -2,13 +2,13 @@ package com.wisegas.grapp.itemmanagement.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
-import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem;
-import com.wisegas.grapp.itemmanagement.domain.service.GrappItemImportService;
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
+import com.wisegas.grapp.itemmanagement.domain.entity.Item;
+import com.wisegas.grapp.itemmanagement.domain.service.ItemImportService;
+import com.wisegas.grapp.itemmanagement.domain.value.Code;
+import com.wisegas.grapp.itemmanagement.domain.value.CodeType;
 import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService;
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDto;
-import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDtoFactory;
+import com.wisegas.grapp.itemmanagement.service.dto.ItemDto;
+import com.wisegas.grapp.itemmanagement.service_impl.factory.ItemDtoFactory;
 import com.wisegas.grapp.itemmanagement.service_impl.util.NacsItemCsvParser;
 import com.wisegas.grapp.itemmanagement.service_impl.value.NacsId;
 import com.wisegas.grapp.itemmanagement.service_impl.value.NacsItem;
@@ -34,71 +34,71 @@ import static java.util.stream.Collectors.toList;
 @ApplicationService
 public class NacsItemImportServiceImpl implements NacsItemImportService {
 
-   private final GrappItemImportService grappItemImportService;
+   private final ItemImportService itemImportService;
 
    @Inject
-   public NacsItemImportServiceImpl(GrappItemImportService grappItemImportService) {
-      this.grappItemImportService = grappItemImportService;
+   public NacsItemImportServiceImpl(ItemImportService itemImportService) {
+      this.itemImportService = itemImportService;
    }
 
    @Override
-   public List<GrappItemDto> importCsvItems(String nacsItemCsvData) {
+   public List<ItemDto> importCsvItems(String nacsItemCsvData) {
       Map<NacsItemType, List<NacsItem>> nacsItemsByType = NacsItemCsvParser.parse(nacsItemCsvData).stream().collect(groupingBy(NacsItem::getType));
-      List<GrappItem> categoryGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.CATEGORY, emptyList()), this::importNacsItemAsGeneralItem);
-      List<GrappItem> subCategoryGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.SUB_CATEGORY, emptyList()), this::importNacsItemAsSubItem);
-      List<GrappItem> subItemGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.ITEM, emptyList()), this::importNacsItemAsSubItem);
-      return Stream.of(categoryGrappItems, subCategoryGrappItems, subItemGrappItems)
+      List<Item> categoryItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.CATEGORY, emptyList()), this::importNacsItemAsGeneralItem);
+      List<Item> subCategoryItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.SUB_CATEGORY, emptyList()), this::importNacsItemAsSubItem);
+      List<Item> subItemItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.ITEM, emptyList()), this::importNacsItemAsSubItem);
+      return Stream.of(categoryItems, subCategoryItems, subItemItems)
                    .flatMap(Collection::stream)
-                   .map(GrappItemDtoFactory::createDto)
+                   .map(ItemDtoFactory::createDto)
                    .collect(toList());
    }
 
-   private List<GrappItem> importNacsItems(List<NacsItem> nacsItems, Function<NacsItem, Optional<GrappItem>> nacsGrappItemConverter) {
+   private List<Item> importNacsItems(List<NacsItem> nacsItems, Function<NacsItem, Optional<Item>> nacsItemConverter) {
       return nacsItems.stream()
-                      .map(nacsGrappItemConverter)
+                      .map(nacsItemConverter)
                       .filter(Optional::isPresent)
                       .map(Optional::get)
                       .collect(toList());
    }
 
-   private Optional<GrappItem> importNacsItemAsGeneralItem(NacsItem nacsItem) {
-      GrappItemCode code = nacsIdToGrappItemCode(nacsItem.getId());
-      Optional<GrappItem> createdGeneralItem = tryToImportItemAsGeneralItem(code, nacsItem.getName());
+   private Optional<Item> importNacsItemAsGeneralItem(NacsItem nacsItem) {
+      Code code = nacsIdToItemCode(nacsItem.getId());
+      Optional<Item> createdGeneralItem = tryToImportItemAsGeneralItem(code, nacsItem.getName());
       createdGeneralItem.ifPresent(generalItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, generateRandomNacsChildCode(nacsItem.getId()), subItemName)));
       return createdGeneralItem;
    }
 
-   private Optional<GrappItem> importNacsItemAsSubItem(NacsItem nacsItem) {
-      GrappItemCode code = nacsIdToGrappItemCode(nacsItem.getId());
-      Optional<GrappItem> createdSubItem = tryToImportItemAsSubItem(nacsIdToGrappItemCode(nacsItem.getParentId()), code, nacsItem.getName());
+   private Optional<Item> importNacsItemAsSubItem(NacsItem nacsItem) {
+      Code code = nacsIdToItemCode(nacsItem.getId());
+      Optional<Item> createdSubItem = tryToImportItemAsSubItem(nacsIdToItemCode(nacsItem.getParentId()), code, nacsItem.getName());
       createdSubItem.ifPresent(subItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, generateRandomNacsChildCode(nacsItem.getId()), subItemName)));
       return createdSubItem;
    }
 
-   private GrappItemCode nacsIdToGrappItemCode(NacsId nacsId) {
-      return new GrappItemCode(GrappItemCodeType.NACS, nacsId.toString(GrappItemCodeType.NACS.getValueFormat()));
+   private Code nacsIdToItemCode(NacsId nacsId) {
+      return new Code(CodeType.NACS, nacsId.toString(CodeType.NACS.getValueFormat()));
    }
 
-   private Optional<GrappItem> tryToImportItemAsGeneralItem(GrappItemCode code, String name) {
+   private Optional<Item> tryToImportItemAsGeneralItem(Code code, String name) {
       try {
-         return Optional.of(grappItemImportService.importGeneralItem(code, name));
+         return Optional.of(itemImportService.importGeneralItem(code, name));
       }
       catch (Exception e) {
          return Optional.empty();
       }
    }
 
-   private Optional<GrappItem> tryToImportItemAsSubItem(GrappItemCode superCode, GrappItemCode code, String name) {
+   private Optional<Item> tryToImportItemAsSubItem(Code superCode, Code code, String name) {
       try {
-         return Optional.of(grappItemImportService.importSubItem(superCode, code, name));
+         return Optional.of(itemImportService.importSubItem(superCode, code, name));
       }
       catch (Exception e) {
          return Optional.empty();
       }
    }
 
-   private GrappItemCode generateRandomNacsChildCode(NacsId parentCode) {
+   private Code generateRandomNacsChildCode(NacsId parentCode) {
       String randomSuffix = String.format("%02d", (int)(Math.random() * 100));
-      return new GrappItemCode(GrappItemCodeType.RANDOM, parentCode.toString(GrappItemCodeType.NACS.getValueFormat()) + randomSuffix);
+      return new Code(CodeType.RANDOM, parentCode.toString(CodeType.NACS.getValueFormat()) + randomSuffix);
    }
 }

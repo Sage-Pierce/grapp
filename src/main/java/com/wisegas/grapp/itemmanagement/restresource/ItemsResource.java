@@ -3,7 +3,7 @@ package com.wisegas.grapp.itemmanagement.restresource;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
-import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
+import com.wisegas.grapp.itemmanagement.service.api.ItemService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/items/")
-public class GrappItemsResource extends JaxrsHalJsonResource {
+public class ItemsResource extends JaxrsHalJsonResource {
 
-   private final GrappItemService grappItemService;
+   private final ItemService itemService;
 
    @Inject
-   public GrappItemsResource(GrappItemService grappItemService) {
-      this.grappItemService = grappItemService;
+   public ItemsResource(ItemService itemService) {
+      this.itemService = itemService;
    }
 
    @POST
@@ -30,15 +30,15 @@ public class GrappItemsResource extends JaxrsHalJsonResource {
                           @QueryParam("codeType") final String codeType,
                           @QueryParam("code") final String code,
                           @QueryParam("name") final String name) {
-      return buildHalResponse(GrappItemResource.asRepresentationOf(grappItemService.createSubItem(superItemId, codeType, code, name)));
+      return buildHalResponse(ItemResource.asRepresentationOf(itemService.createSubItem(superItemId, codeType, code, name)));
    }
 
    @GET
    public Response get() {
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
-                                                      .withEmbeddeds("items", grappItemService.getAll().stream()
-                                                                                              .map(GrappItemResource::asRepresentationOf)
-                                                                                              .collect(Collectors.toList())));
+                                                      .withEmbeddeds("items", itemService.getAll().stream()
+                                                                                         .map(ItemResource::asRepresentationOf)
+                                                                                         .collect(Collectors.toList())));
    }
 
    public static HalLink createRootLink(String rel) {
@@ -50,6 +50,6 @@ public class GrappItemsResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappItemsResource.class).queryParams("superItemId", "codeType", "code", "name");
+      return JaxrsHalResourceLinkBuilder.linkTo(ItemsResource.class).queryParams("superItemId", "codeType", "code", "name");
    }
 }

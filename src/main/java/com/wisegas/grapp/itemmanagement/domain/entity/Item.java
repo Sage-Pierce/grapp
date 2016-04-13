@@ -1,7 +1,7 @@
 package com.wisegas.grapp.itemmanagement.domain.entity;
 
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
+import com.wisegas.grapp.itemmanagement.domain.value.Code;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,36 +9,36 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-public class GrappItem extends SimpleEntity<GrappItemCode> {
+public class Item extends SimpleEntity<Code> {
    @EmbeddedId
-   private GrappItemCode id;
+   private Code id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-   private GrappItem superItem;
+   private Item superItem;
 
    @Column(unique = true)
    private String name;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "superItem")
-   private List<GrappItem> subItems = new ArrayList<>();
+   private List<Item> subItems = new ArrayList<>();
 
-   public GrappItem(GrappItemCode code, String name) {
+   public Item(Code code, String name) {
       this(null, code, name);
    }
 
-   protected GrappItem() {
+   protected Item() {
 
    }
 
-   private GrappItem(GrappItem superItem, GrappItemCode code, String name) {
+   private Item(Item superItem, Code code, String name) {
       id = code;
       setSuperItem(superItem);
       setName(name);
    }
 
-   public List<GrappItem> getHierarchy() {
-      GrappItem hierarchicalItem = this;
-      List<GrappItem> hierarchy = new ArrayList<>();
+   public List<Item> getHierarchy() {
+      Item hierarchicalItem = this;
+      List<Item> hierarchy = new ArrayList<>();
       hierarchy.add(hierarchicalItem);
       while (!hierarchicalItem.isGeneralItem()) {
          hierarchy.add(hierarchicalItem = hierarchicalItem.getSuperItem());
@@ -48,7 +48,7 @@ public class GrappItem extends SimpleEntity<GrappItemCode> {
    }
 
    @Override
-   public GrappItemCode getId() {
+   public Code getId() {
       return id;
    }
 
@@ -60,12 +60,12 @@ public class GrappItem extends SimpleEntity<GrappItemCode> {
       this.name = name;
    }
 
-   public List<GrappItem> getSubItems() {
+   public List<Item> getSubItems() {
       return subItems;
    }
 
-   public GrappItem addSubItem(GrappItemCode code, String name) {
-      GrappItem subItem = new GrappItem(this, code, name);
+   public Item addSubItem(Code code, String name) {
+      Item subItem = new Item(this, code, name);
       subItems.add(subItem);
       return subItem;
    }
@@ -74,11 +74,11 @@ public class GrappItem extends SimpleEntity<GrappItemCode> {
       return superItem == null;
    }
 
-   public GrappItem getSuperItem() {
+   public Item getSuperItem() {
       return superItem;
    }
 
-   private void setSuperItem(GrappItem superItem) {
+   private void setSuperItem(Item superItem) {
       this.superItem = superItem;
    }
 }

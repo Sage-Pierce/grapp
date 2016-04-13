@@ -1,33 +1,33 @@
 package com.wisegas.grapp.itemmanagement.domain_impl.service
 
 import com.wisegas.common.test.IntegrationTest
-import com.wisegas.grapp.itemmanagement.domain.entity.GrappItem
-import com.wisegas.grapp.itemmanagement.domain.service.GrappItemImportService
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode
-import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType
-import com.wisegas.grapp.itemmanagement.test.builders.GrappItemBuilder
+import com.wisegas.grapp.itemmanagement.domain.entity.Item
+import com.wisegas.grapp.itemmanagement.domain.service.ItemImportService
+import com.wisegas.grapp.itemmanagement.domain.value.Code
+import com.wisegas.grapp.itemmanagement.domain.value.CodeType
+import com.wisegas.grapp.itemmanagement.test.builders.ItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
 
 @Transactional
-class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
+class ItemImportServiceImplIntegrationTest extends IntegrationTest {
    private static final String NAME = "Grapp Item"
 
    @Inject
-   private GrappItemImportService grappItemImportService
+   private ItemImportService grappItemImportService
 
-   private GrappItemCode generalCode
-   private GrappItem generalItem
+   private Code generalCode
+   private Item generalItem
 
    def setup() {
-      generalCode = new GrappItemCode(GrappItemCodeType.NACS, "00-00-00")
-      generalItem = testEntityManager.save(new GrappItem(generalCode, "GENERAL ITEM"))
+      generalCode = new Code(CodeType.NACS, "00-00-00")
+      generalItem = testEntityManager.save(new Item(generalCode, "GENERAL ITEM"))
    }
 
    def "A General Item can be imported"() {
       given:
-      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "01-00-00")
+      Code code = new Code(CodeType.NACS, "01-00-00")
 
       when:
       def result = grappItemImportService.importGeneralItem(code, NAME)
@@ -39,7 +39,7 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
 
    def "A Sub Item with code can be imported under a General Item"() {
       given:
-      GrappItemCode subCode = new GrappItemCode(GrappItemCodeType.NACS, "00-01-00")
+      Code subCode = new Code(CodeType.NACS, "00-01-00")
 
       when:
       def result = grappItemImportService.importSubItem(generalCode, subCode, NAME)
@@ -55,12 +55,12 @@ class GrappItemImportServiceImplIntegrationTest extends IntegrationTest {
 
    def "Trying to import an item with the code of one existing Item and the name of another existing Item results in an Exception"() {
       given:
-      GrappItem grappItem = GrappItemBuilder.grappItem()
-      GrappItemCode code = new GrappItemCode(GrappItemCodeType.NACS, "01-00-00")
+      Item grappItem = ItemBuilder.grappItem()
+      Code code = new Code(CodeType.NACS, "01-00-00")
 
       and:
       testEntityManager.save(grappItem)
-      testEntityManager.save(new GrappItem(code, "AN ITEM"))
+      testEntityManager.save(new Item(code, "AN ITEM"))
 
       when:
       grappItemImportService.importGeneralItem(code, grappItem.getName())

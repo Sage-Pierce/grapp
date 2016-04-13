@@ -3,10 +3,10 @@ package com.wisegas.grapp.application.restresource;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
-import com.wisegas.grapp.itemmanagement.restresource.GrappGeneralItemsResource;
-import com.wisegas.grapp.itemmanagement.restresource.GrappItemImportResource;
-import com.wisegas.grapp.itemmanagement.restresource.GrappItemResource;
-import com.wisegas.grapp.itemmanagement.restresource.GrappItemsResource;
+import com.wisegas.grapp.itemmanagement.restresource.GeneralItemsResource;
+import com.wisegas.grapp.itemmanagement.restresource.ItemImportResource;
+import com.wisegas.grapp.itemmanagement.restresource.ItemResource;
+import com.wisegas.grapp.itemmanagement.restresource.ItemsResource;
 import com.wisegas.grapp.storemanagement.restresource.GrappStoreLayoutResource;
 import com.wisegas.grapp.storemanagement.restresource.GrappStoreNodeResource;
 import com.wisegas.grapp.storemanagement.restresource.GrappStoreResource;
@@ -37,10 +37,10 @@ public class GrappRootResource extends JaxrsHalJsonResource {
          GrappStoreNodeResource.createRootLink("nodeById"),
          GrappStoreResource.createRootLink("storeById"),
          GrappStoresResource.createRootLink("stores"),
-         GrappGeneralItemsResource.createRootLink("generalItems"),
-         GrappItemsResource.createRootLink("items"),
-         GrappItemImportResource.createRootLink("importItems"),
-         GrappItemResource.createRootLink("itemById")
+         GeneralItemsResource.createRootLink("generalItems"),
+         ItemsResource.createRootLink("items"),
+         ItemImportResource.createRootLink("importItems"),
+         ItemResource.createRootLink("itemById")
       );
    }
 }

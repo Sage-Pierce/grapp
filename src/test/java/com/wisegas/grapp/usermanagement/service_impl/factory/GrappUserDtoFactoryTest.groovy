@@ -10,7 +10,7 @@ class GrappUserDtoFactoryTest extends Specification {
       GrappUser grappUser = new GrappUser("Test_Email", "Test", "Test_Avatar")
 
       when:
-      def result = GrappUserDtoFactory.createDTO(grappUser)
+      def result = GrappUserDtoFactory.createDto(grappUser)
 
       then:
       with(result) {

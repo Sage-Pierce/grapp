@@ -10,7 +10,7 @@ class GrappStoreDtoFactoryTest extends Specification {
       def grappStore = GrappStoreBuilder.grappStore()
 
       when:
-      def result = GrappStoreDtoFactory.createDTO(grappStore)
+      def result = GrappStoreDtoFactory.createDto(grappStore)
 
       then:
       with(result) {

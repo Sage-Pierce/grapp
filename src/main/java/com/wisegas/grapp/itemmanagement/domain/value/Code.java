@@ -8,35 +8,35 @@ import javax.persistence.Enumerated;
 import java.util.Objects;
 
 @Embeddable
-public class GrappItemCode extends EntityId {
+public class Code extends EntityId {
    private static final String TYPE_VALUE_DELIMITER = ":";
 
    @Enumerated(EnumType.STRING)
-   private GrappItemCodeType codeType;
+   private CodeType type;
 
-   private String codeValue;
+   private String value;
 
-   public GrappItemCode(GrappItemCodeType codeType, String codeValue) {
-      this.codeType = codeType;
-      this.codeValue = codeValue;
+   public Code(CodeType type, String value) {
+      this.type = type;
+      this.value = value;
    }
 
-   protected GrappItemCode() {
+   protected Code() {
 
    }
 
-   public static GrappItemCode fromString(String string) {
+   public static Code fromString(String string) {
       String[] split = string.split(TYPE_VALUE_DELIMITER);
-      return new GrappItemCode(GrappItemCodeType.valueOf(split[0]), split[1]);
+      return new Code(CodeType.valueOf(split[0]), split[1]);
    }
 
    @Override
    public String toString() {
-      return codeType.name() + TYPE_VALUE_DELIMITER + codeValue;
+      return type.name() + TYPE_VALUE_DELIMITER + value;
    }
 
    @Override
    protected Object idHash() {
-      return Objects.hash(codeValue, codeType);
+      return Objects.hash(value, type);
    }
 }
