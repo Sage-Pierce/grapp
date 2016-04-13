@@ -5,8 +5,10 @@ import com.wisegas.user.domain.value.Email;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "\"users\"")
 public class User extends NamedEntity<Email> {
    @EmbeddedId
    private Email id;
