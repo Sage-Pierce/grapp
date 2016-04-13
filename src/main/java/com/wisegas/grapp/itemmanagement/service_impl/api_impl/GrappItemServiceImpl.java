@@ -8,7 +8,7 @@ import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCode;
 import com.wisegas.grapp.itemmanagement.domain.value.GrappItemCodeType;
 import com.wisegas.grapp.itemmanagement.service.api.GrappItemService;
 import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTOO;
-import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDTOFactory;
+import com.wisegas.grapp.itemmanagement.service_impl.factory.GrappItemDTOOFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,27 +33,27 @@ public class GrappItemServiceImpl implements GrappItemService {
 
    @Override
    public GrappItemDTOO createGeneralItem(String codeType, String code, String name) {
-      return GrappItemDTOFactory.createDTO(grappItemCreationService.createGeneralItem(createGrappItemCode(codeType, code), name));
+      return GrappItemDTOOFactory.createDTO(grappItemCreationService.createGeneralItem(createGrappItemCode(codeType, code), name));
    }
 
    @Override
    public GrappItemDTOO createSubItem(String superItemId, String codeType, String code, String name) {
-      return GrappItemDTOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemCode.fromString(superItemId), createGrappItemCode(codeType, code), name));
+      return GrappItemDTOOFactory.createDTO(grappItemCreationService.createSubItem(GrappItemCode.fromString(superItemId), createGrappItemCode(codeType, code), name));
    }
 
    @Override
    public List<GrappItemDTOO> getAll() {
-      return grappItemRepository.getAll().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
+      return grappItemRepository.getAll().stream().map(GrappItemDTOOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override
    public List<GrappItemDTOO> getGeneralItems() {
-      return grappItemRepository.getGeneralItems().stream().map(GrappItemDTOFactory::createDTO).collect(Collectors.toList());
+      return grappItemRepository.getGeneralItems().stream().map(GrappItemDTOOFactory::createDTO).collect(Collectors.toList());
    }
 
    @Override
    public GrappItemDTOO get(String id) {
-      return GrappItemDTOFactory.createDTO(grappItemRepository.get(GrappItemCode.fromString(id)));
+      return GrappItemDTOOFactory.createDTO(grappItemRepository.get(GrappItemCode.fromString(id)));
    }
 
    @Override

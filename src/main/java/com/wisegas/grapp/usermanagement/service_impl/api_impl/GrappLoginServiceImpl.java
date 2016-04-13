@@ -6,7 +6,7 @@ import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
 import com.wisegas.grapp.usermanagement.domain.repository.GrappUserRepository;
 import com.wisegas.grapp.usermanagement.service.api.GrappLoginService;
 import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
-import com.wisegas.grapp.usermanagement.service_impl.factory.GrappUserDTOFactory;
+import com.wisegas.grapp.usermanagement.service_impl.factory.GrappUserDTOOFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,7 +30,7 @@ public class GrappLoginServiceImpl implements GrappLoginService {
    public GrappUserDTOO logIn(String email, String avatar) {
       GrappUser grappUser = getGrappUserForEmail(email);
       grappUser.setAvatar(avatar == null ? grappUser.getAvatar() : avatar);
-      return GrappUserDTOFactory.createDTO(grappUser);
+      return GrappUserDTOOFactory.createDTO(grappUser);
    }
 
    private GrappUser getGrappUserForEmail(String email) {
