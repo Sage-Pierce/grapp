@@ -12,7 +12,7 @@ class GrappStoreNodeBuilder {
    static GrappStoreNode grappStoreNode() {
       unique++
       EntityBuilder.wrapBuilder(new GrappStoreNode(
-            GrappStoreBuilder.grappStore().getGrappStoreLayout(),
+            GrappStoreLayoutBuilder.grappStoreLayout(),
             "Test Node ${unique}",
             GrappStoreNodeType.REGULAR,
             new GeoPoint(0, 0)
