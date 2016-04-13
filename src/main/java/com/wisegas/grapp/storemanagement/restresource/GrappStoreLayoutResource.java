@@ -78,7 +78,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    public Response addNode(@PathParam("id") final String id,
                            @QueryParam("type") final String type,
                            @QueryParam("location") final GeoPoint location) {
-      GrappStoreLayoutUpdateResultDTOO<GrappStoreNodeDto> result = grappStoreLayoutService.addNode(id, type, location);
+      GrappStoreLayoutUpdateResultDto<GrappStoreNodeDto> result = grappStoreLayoutService.addNode(id, type, location);
       return buildHalResponse(GrappStoreNodeResource.asRepresentationOf(result.getTarget())
                                                     .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                           .map(GrappStoreNodeResource::asRepresentationOf)
@@ -107,7 +107,7 @@ public class GrappStoreLayoutResource extends JaxrsHalJsonResource {
    public Response addNodeItem(@PathParam("id") final String id,
                                @QueryParam("nodeID") final String nodeID,
                                @QueryParam("item") final CodeName item) {
-      GrappStoreLayoutUpdateResultDTOO<GrappStoreNodeItemDto> result = grappStoreLayoutService.addNodeItem(id, nodeID, item);
+      GrappStoreLayoutUpdateResultDto<GrappStoreNodeItemDto> result = grappStoreLayoutService.addNodeItem(id, nodeID, item);
       return buildHalResponse(GrappStoreNodeItemResource.asRepresentationOf(result.getTarget())
                                                         .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                               .map(GrappStoreNodeResource::asRepresentationOf)

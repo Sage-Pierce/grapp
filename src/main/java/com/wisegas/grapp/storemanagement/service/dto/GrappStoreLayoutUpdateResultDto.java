@@ -2,7 +2,7 @@ package com.wisegas.grapp.storemanagement.service.dto;
 
 import java.util.List;
 
-public class GrappStoreLayoutUpdateResultDTOO<T> {
+public class GrappStoreLayoutUpdateResultDto<T> {
 
    private T target;
    private List<GrappStoreNodeDto> affectedNodes;
