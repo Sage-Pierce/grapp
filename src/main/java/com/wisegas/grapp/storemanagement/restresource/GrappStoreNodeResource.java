@@ -5,7 +5,7 @@ import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreNodeService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -31,7 +31,7 @@ public class GrappStoreNodeResource extends JaxrsHalJsonResource {
    @PUT
    public Response update(@PathParam("id") final String id,
                           @QueryParam("name") final String name) {
-      GrappStoreNodeDTOO grappStoreNodeDTO = grappStoreNodeService.update(id, name);
+      GrappStoreNodeDto grappStoreNodeDTO = grappStoreNodeService.update(id, name);
       return buildHalResponse(asRepresentationOf(grappStoreNodeDTO));
    }
 
@@ -39,11 +39,11 @@ public class GrappStoreNodeResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreNodeDTOO grappStoreNodeDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreNodeDto grappStoreNodeDTO) {
       return halRepresentationFactory.createFor(grappStoreNodeDTO).withLinks(createLinks(grappStoreNodeDTO));
    }
 
-   private static List<HalLink> createLinks(GrappStoreNodeDTOO grappStoreNodeDTO) {
+   private static List<HalLink> createLinks(GrappStoreNodeDto grappStoreNodeDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreNodeDTO.getId()).withSelfRel());
    }
 

@@ -6,7 +6,7 @@ import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
 import com.wisegas.grapp.usermanagement.domain.repository.GrappUserRepository;
 import com.wisegas.grapp.usermanagement.domain.value.GrappUserEmail;
 import com.wisegas.grapp.usermanagement.service.api.GrappUserService;
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
 import com.wisegas.grapp.usermanagement.service_impl.factory.GrappUserDtoFactory;
 
 import javax.inject.Inject;
@@ -27,12 +27,12 @@ public class GrappUserServiceImpl implements GrappUserService {
    }
 
    @Override
-   public GrappUserDTOO get(String id) {
+   public GrappUserDto get(String id) {
       return GrappUserDtoFactory.createDTO(grappUserRepository.get(GrappUserEmail.fromString(id)));
    }
 
    @Override
-   public GrappUserDTOO update(String id, String name) {
+   public GrappUserDto update(String id, String name) {
       GrappUser grappUser = grappUserRepository.get(GrappUserEmail.fromString(id));
       grappUser.setName(name);
       return GrappUserDtoFactory.createDTO(grappUser);

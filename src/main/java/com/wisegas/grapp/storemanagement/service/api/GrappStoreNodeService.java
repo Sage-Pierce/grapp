@@ -1,9 +1,9 @@
 package com.wisegas.grapp.storemanagement.service.api;
 
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeDto;
 
 public interface GrappStoreNodeService {
-   GrappStoreNodeDTOO get(String id);
+   GrappStoreNodeDto get(String id);
 
-   GrappStoreNodeDTOO update(String id, String name);
+   GrappStoreNodeDto update(String id, String name);
 }

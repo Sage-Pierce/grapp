@@ -1,7 +1,7 @@
 package com.wisegas.grapp.usermanagement.service.api;
 
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
 
 public interface GrappLoginService {
-   GrappUserDTOO logIn(String email, String avatar);
+   GrappUserDto logIn(String email, String avatar);
 }

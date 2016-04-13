@@ -1,16 +1,16 @@
 package com.wisegas.grapp.storemanagement.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDTOO;
+import com.wisegas.common.lang.dto.BaseDto;
 import com.wisegas.common.lang.value.GeoPolygon;
 
 import java.util.List;
 
-public class GrappStoreLayoutDTOO extends BaseDTOO {
+public class GrappStoreLayoutDto extends BaseDto {
 
    private GeoPolygon outerOutline;
    private GeoPolygon innerOutline;
-   private List<GrappStoreFeatureDTOO> features;
-   private List<GrappStoreNodeDTOO> nodes;
+   private List<GrappStoreFeatureDto> features;
+   private List<GrappStoreNodeDto> nodes;
 
    public GeoPolygon getOuterOutline() {
       return outerOutline;
@@ -29,19 +29,19 @@ public class GrappStoreLayoutDTOO extends BaseDTOO {
       this.innerOutline = innerOutline;
    }
 
-   public List<GrappStoreFeatureDTOO> getFeatures() {
+   public List<GrappStoreFeatureDto> getFeatures() {
       return features;
    }
 
-   public void setFeatures(List<GrappStoreFeatureDTOO> features) {
+   public void setFeatures(List<GrappStoreFeatureDto> features) {
       this.features = features;
    }
 
-   public List<GrappStoreNodeDTOO> getNodes() {
+   public List<GrappStoreNodeDto> getNodes() {
       return nodes;
    }
 
-   public void setNodes(List<GrappStoreNodeDTOO> nodes) {
+   public void setNodes(List<GrappStoreNodeDto> nodes) {
       this.nodes = nodes;
    }
 }

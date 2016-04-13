@@ -5,7 +5,7 @@ import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreNodeItemService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeItemDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeItemDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -30,11 +30,11 @@ public class GrappStoreNodeItemResource extends JaxrsHalJsonResource {
       return buildHalResponse(asRepresentationOf(grappStoreNodeItemService.get(id)));
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreNodeItemDTOO grappStoreNodeItemDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreNodeItemDto grappStoreNodeItemDTO) {
       return halRepresentationFactory.createFor(grappStoreNodeItemDTO).withLinks(createLinks(grappStoreNodeItemDTO));
    }
 
-   private static List<HalLink> createLinks(GrappStoreNodeItemDTOO grappStoreNodeItemDTO) {
+   private static List<HalLink> createLinks(GrappStoreNodeItemDto grappStoreNodeItemDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreNodeItemDTO.getId()).withSelfRel());
    }
 

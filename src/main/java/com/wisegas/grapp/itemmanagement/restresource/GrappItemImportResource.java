@@ -4,7 +4,7 @@ import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.itemmanagement.service.api.NacsItemImportService;
-import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDTOO;
+import com.wisegas.grapp.itemmanagement.service.dto.GrappItemDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -32,7 +32,7 @@ public class GrappItemImportResource extends JaxrsHalJsonResource {
    @Consumes(MediaType.TEXT_PLAIN)
    public Response importItems(@QueryParam("type") final String type,
                                final String csvData) {
-      List<GrappItemDTOO> grappItems;
+      List<GrappItemDto> grappItems;
       if (NACS.equals(type)) {
          grappItems = nacsItemImportService.importCsvItems(csvData);
       }

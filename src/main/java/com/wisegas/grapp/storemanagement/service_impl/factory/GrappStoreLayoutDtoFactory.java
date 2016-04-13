@@ -1,14 +1,14 @@
 package com.wisegas.grapp.storemanagement.service_impl.factory;
 
 import com.wisegas.grapp.storemanagement.domain.entity.GrappStoreLayout;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreLayoutDto;
 
 import java.util.stream.Collectors;
 
 public final class GrappStoreLayoutDtoFactory {
 
-   public static GrappStoreLayoutDTOO createDTO(GrappStoreLayout grappStoreLayout) {
-      GrappStoreLayoutDTOO grappStoreLayoutDTO = new GrappStoreLayoutDTOO();
+   public static GrappStoreLayoutDto createDTO(GrappStoreLayout grappStoreLayout) {
+      GrappStoreLayoutDto grappStoreLayoutDTO = new GrappStoreLayoutDto();
       grappStoreLayoutDTO.setId(grappStoreLayout.getId().toString());
       grappStoreLayoutDTO.setOuterOutline(grappStoreLayout.getOuterOutline());
       grappStoreLayoutDTO.setInnerOutline(grappStoreLayout.getInnerOutline());

@@ -1,6 +1,6 @@
 package com.wisegas.common.lang.dto;
 
-public class NamedDTOO extends BaseDTOO {
+public class NamedDto extends BaseDto {
 
    private String name;
 

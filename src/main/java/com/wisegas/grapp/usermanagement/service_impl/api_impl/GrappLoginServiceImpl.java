@@ -5,7 +5,7 @@ import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.usermanagement.domain.entity.GrappUser;
 import com.wisegas.grapp.usermanagement.domain.repository.GrappUserRepository;
 import com.wisegas.grapp.usermanagement.service.api.GrappLoginService;
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
 import com.wisegas.grapp.usermanagement.service_impl.factory.GrappUserDtoFactory;
 
 import javax.inject.Inject;
@@ -27,7 +27,7 @@ public class GrappLoginServiceImpl implements GrappLoginService {
    }
 
    @Override
-   public GrappUserDTOO logIn(String email, String avatar) {
+   public GrappUserDto logIn(String email, String avatar) {
       GrappUser grappUser = getGrappUserForEmail(email);
       grappUser.setAvatar(avatar == null ? grappUser.getAvatar() : avatar);
       return GrappUserDtoFactory.createDTO(grappUser);

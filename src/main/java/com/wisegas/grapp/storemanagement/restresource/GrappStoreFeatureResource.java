@@ -5,7 +5,7 @@ import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreFeatureService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -30,11 +30,11 @@ public class GrappStoreFeatureResource extends JaxrsHalJsonResource {
       return buildHalResponse(asRepresentationOf(grappStoreFeatureService.get(id)));
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappStoreFeatureDTOO grappStoreFeatureDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappStoreFeatureDto grappStoreFeatureDTO) {
       return halRepresentationFactory.createFor(grappStoreFeatureDTO).withLinks(createLinks(grappStoreFeatureDTO));
    }
 
-   private static List<HalLink> createLinks(GrappStoreFeatureDTOO grappStoreFeatureDTO) {
+   private static List<HalLink> createLinks(GrappStoreFeatureDto grappStoreFeatureDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappStoreFeatureDTO.getId()).withSelfRel());
    }
 

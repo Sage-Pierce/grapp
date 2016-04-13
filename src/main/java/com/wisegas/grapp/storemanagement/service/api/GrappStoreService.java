@@ -1,18 +1,18 @@
 package com.wisegas.grapp.storemanagement.service.api;
 
 import com.wisegas.common.lang.value.GeoPoint;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDto;
 
 import java.util.List;
 
 public interface GrappStoreService {
-   GrappStoreDTOO create(String name, GeoPoint location);
+   GrappStoreDto create(String name, GeoPoint location);
 
-   List<GrappStoreDTOO> getAll();
+   List<GrappStoreDto> getAll();
 
-   GrappStoreDTOO get(String id);
+   GrappStoreDto get(String id);
 
-   GrappStoreDTOO update(String id, String name, GeoPoint location);
+   GrappStoreDto update(String id, String name, GeoPoint location);
 
    void delete(String id);
 }

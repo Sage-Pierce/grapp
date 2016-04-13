@@ -5,7 +5,7 @@ import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.grapp.usermanagement.service.api.GrappUserService;
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO;
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -25,14 +25,14 @@ public class GrappUserResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get(@PathParam(value = "id") final String id) {
-      GrappUserDTOO grappUserDTO = grappUserService.get(id);
+      GrappUserDto grappUserDTO = grappUserService.get(id);
       return buildHalResponse(asRepresentationOf(grappUserDTO));
    }
 
    @PUT
    public Response update(@PathParam(value = "id") final String id,
                           @QueryParam(value = "name") final String name) {
-      GrappUserDTOO grappUserDTO = grappUserService.update(id, name);
+      GrappUserDto grappUserDTO = grappUserService.update(id, name);
       return buildHalResponse(asRepresentationOf(grappUserDTO));
    }
 
@@ -40,11 +40,11 @@ public class GrappUserResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(GrappUserDTOO grappUserDTO) {
+   protected static HalRepresentation asRepresentationOf(GrappUserDto grappUserDTO) {
       return halRepresentationFactory.createFor(grappUserDTO).withLinks(createLinks(grappUserDTO));
    }
 
-   private static List<HalLink> createLinks(GrappUserDTOO grappUserDTO) {
+   private static List<HalLink> createLinks(GrappUserDto grappUserDTO) {
       return Collections.singletonList(createSelfLinkBuilder().pathArgs(grappUserDTO.getId()).withSelfRel());
    }
 

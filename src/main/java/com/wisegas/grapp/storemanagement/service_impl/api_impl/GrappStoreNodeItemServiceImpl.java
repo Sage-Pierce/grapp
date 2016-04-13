@@ -5,7 +5,7 @@ import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.grapp.storemanagement.domain.repository.GrappStoreNodeItemRepository;
 import com.wisegas.grapp.storemanagement.domain.value.GrappStoreNodeItemId;
 import com.wisegas.grapp.storemanagement.service.api.GrappStoreNodeItemService;
-import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeItemDTOO;
+import com.wisegas.grapp.storemanagement.service.dto.GrappStoreNodeItemDto;
 import com.wisegas.grapp.storemanagement.service_impl.factory.GrappStoreNodeItemDtoFactory;
 
 import javax.inject.Inject;
@@ -26,7 +26,7 @@ public class GrappStoreNodeItemServiceImpl implements GrappStoreNodeItemService 
    }
 
    @Override
-   public GrappStoreNodeItemDTOO get(String id) {
+   public GrappStoreNodeItemDto get(String id) {
       return GrappStoreNodeItemDtoFactory.createDTO(grappStoreNodeItemRepository.get(GrappStoreNodeItemId.fromString(id)));
    }
 }

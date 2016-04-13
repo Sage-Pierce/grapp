@@ -1,9 +1,9 @@
 package com.wisegas.grapp.storemanagement.service.dto;
 
-import com.wisegas.common.lang.dto.NamedDTOO;
+import com.wisegas.common.lang.dto.NamedDto;
 import com.wisegas.common.lang.value.GeoPoint;
 
-public class GrappStoreNodeDTOO extends NamedDTOO {
+public class GrappStoreNodeDto extends NamedDto {
 
    private String type;
    private GeoPoint location;

@@ -3,7 +3,7 @@ package com.wisegas.grapp.usermanagement.service_impl.api_impl
 import com.wisegas.common.test.IntegrationTest
 import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
 import com.wisegas.grapp.usermanagement.service.api.GrappLoginService
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDTOO
+import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto
 import com.wisegas.grapp.usermanagement.test.builders.GrappUserBuilder
 
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class GrappLoginServiceImplIntegrationTest extends IntegrationTest {
 
    def "a GrappUser is created if not currently in the DB"() {
       when:
-      GrappUserDTOO userResource = grappLoginService.logIn("another@email.com", null)
+      GrappUserDto userResource = grappLoginService.logIn("another@email.com", null)
 
       then:
       userResource != null
@@ -26,7 +26,7 @@ class GrappLoginServiceImplIntegrationTest extends IntegrationTest {
       GrappUser savedUser = testEntityManager.save(GrappUserBuilder.grappUser())
 
       when:
-      GrappUserDTOO userResource = grappLoginService.logIn(savedUser.getEmail(), null)
+      GrappUserDto userResource = grappLoginService.logIn(savedUser.getEmail(), null)
 
       then:
       userResource.getId() == savedUser.getId().toString()
