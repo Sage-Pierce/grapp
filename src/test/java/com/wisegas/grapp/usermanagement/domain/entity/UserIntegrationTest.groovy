@@ -5,26 +5,26 @@ import com.wisegas.grapp.usermanagement.test.builders.GrappUserBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class GrappUserIntegrationTest extends EntityIntegrationTest<GrappUser> {
+class UserIntegrationTest extends EntityIntegrationTest<User> {
 
    def "A GrappUser's Lists are lazy-loaded correctly when within a Transactional context"() {
       when:
-      GrappUser grappUser = GrappUserBuilder.grappUser()
-      grappUser.addGrappUserList("Test User List")
+      User grappUser = GrappUserBuilder.grappUser()
+      grappUser.addShoppingList("Test User List")
       testEntityManager.save(grappUser)
       testEntityManager.flush()
       testEntityManager.clear()
 
-      and: "The saved GrappUser is loaded"
-      GrappUser savedGrappUser = testEntityManager.getManagedEntity(grappUser)
+      and: "The saved User is loaded"
+      User savedGrappUser = testEntityManager.getManagedEntity(grappUser)
 
-      then: "The GrappUser's lazily loaded Lists are correct"
-      savedGrappUser.getGrappUserLists().size() == 1
-      savedGrappUser.getGrappUserLists()[0].getName() == "Test User List"
+      then: "The User's lazily loaded Lists are correct"
+      savedGrappUser.getShoppingLists().size() == 1
+      savedGrappUser.getShoppingLists()[0].getName() == "Test User List"
    }
 
    @Override
-   GrappUser createTestEntity() {
+   User createTestEntity() {
       GrappUserBuilder.grappUser()
    }
 }

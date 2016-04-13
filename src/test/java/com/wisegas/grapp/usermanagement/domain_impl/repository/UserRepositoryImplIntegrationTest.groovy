@@ -1,22 +1,22 @@
 package com.wisegas.grapp.usermanagement.domain_impl.repository
 
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
-import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
-import com.wisegas.grapp.usermanagement.domain.repository.GrappUserRepository
+import com.wisegas.grapp.usermanagement.domain.entity.User
+import com.wisegas.grapp.usermanagement.domain.repository.UserRepository
 import com.wisegas.grapp.usermanagement.test.builders.GrappUserBuilder
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
 
 @Transactional
-class GrappUserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<GrappUser> {
+class UserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<User> {
 
    @Inject
-   private GrappUserRepository grappUserRepository
+   private UserRepository grappUserRepository
 
    def "A GrappUser can be found by E-Mail"() {
       given:
-      GrappUser grappUser = testEntityManager.save(GrappUserBuilder.grappUser())
+      User grappUser = testEntityManager.save(GrappUserBuilder.grappUser())
 
       when: "We try to find our Test Entity by E-Mail"
       def result = grappUserRepository.findByEmail(shouldBeFound ? grappUser.getEmail() : "BOGUS EMAIL")
@@ -29,7 +29,7 @@ class GrappUserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegr
    }
 
    @Override
-   GrappUser createTestEntity() {
+   User createTestEntity() {
       GrappUserBuilder.grappUser()
    }
 }

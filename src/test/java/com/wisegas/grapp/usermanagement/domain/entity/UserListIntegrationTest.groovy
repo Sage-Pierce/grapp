@@ -5,10 +5,10 @@ import com.wisegas.grapp.usermanagement.test.builders.GrappUserListBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class GrappUserListIntegrationTest extends EntityIntegrationTest<GrappUserList> {
+class UserListIntegrationTest extends EntityIntegrationTest<ShoppingList> {
 
    @Override
-   GrappUserList createTestEntity() {
+   ShoppingList createTestEntity() {
       GrappUserListBuilder.grappUserList()
    }
 }

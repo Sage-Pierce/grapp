@@ -11,8 +11,8 @@ import com.wisegas.grapp.storemanagement.restresource.LayoutResource;
 import com.wisegas.grapp.storemanagement.restresource.NodeResource;
 import com.wisegas.grapp.storemanagement.restresource.StoreResource;
 import com.wisegas.grapp.storemanagement.restresource.StoresResource;
-import com.wisegas.grapp.usermanagement.restresource.GrappLoginResource;
-import com.wisegas.grapp.usermanagement.restresource.GrappUserResource;
+import com.wisegas.grapp.usermanagement.restresource.LoginResource;
+import com.wisegas.grapp.usermanagement.restresource.UserResource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -31,8 +31,8 @@ public class GrappRootResource extends JaxrsHalJsonResource {
    private static List<HalLink> createLinks() {
       return Arrays.asList(
          JaxrsHalResourceLinkBuilder.linkTo(GrappRootResource.class).withSelfRel(),
-         GrappLoginResource.createRootLink("logIn"),
-         GrappUserResource.createRootLink("userById"),
+         LoginResource.createRootLink("logIn"),
+         UserResource.createRootLink("userById"),
          LayoutResource.createRootLink("storeLayoutById"),
          NodeResource.createRootLink("nodeById"),
          StoreResource.createRootLink("storeById"),

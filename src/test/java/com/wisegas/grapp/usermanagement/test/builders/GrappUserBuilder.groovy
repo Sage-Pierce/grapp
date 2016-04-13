@@ -1,18 +1,18 @@
 package com.wisegas.grapp.usermanagement.test.builders
 
 import com.wisegas.common.test.EntityBuilder
-import com.wisegas.grapp.usermanagement.domain.entity.GrappUser
+import com.wisegas.grapp.usermanagement.domain.entity.User
 
 class GrappUserBuilder {
 
    static unique = 0
 
-   static GrappUser grappUser() {
+   static User grappUser() {
       unique++
-      EntityBuilder.wrapBuilder(new GrappUser(
+      EntityBuilder.wrapBuilder(new User(
          "test${unique}@email.com",
          "Test User ${unique}",
          "<avatar ${unique}>"
-      )) as GrappUser
+      )) as User
    }
 }

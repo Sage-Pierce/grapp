@@ -3,8 +3,8 @@ package com.wisegas.grapp.usermanagement.restresource;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
-import com.wisegas.grapp.usermanagement.service.api.GrappLoginService;
-import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
+import com.wisegas.grapp.usermanagement.service.api.LoginService;
+import com.wisegas.grapp.usermanagement.service.dto.UserDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.PUT;
@@ -13,23 +13,23 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 @Path("/login/")
-public class GrappLoginResource extends JaxrsHalJsonResource {
+public class LoginResource extends JaxrsHalJsonResource {
 
-   private final GrappLoginService grappLoginService;
+   private final LoginService loginService;
 
    @Inject
-   public GrappLoginResource(GrappLoginService grappLoginService) {
-      this.grappLoginService = grappLoginService;
+   public LoginResource(LoginService loginService) {
+      this.loginService = loginService;
    }
 
    @PUT
    public Response logIn(@QueryParam(value = "email") final String email,
                          @QueryParam(value = "avatar") final String avatar) {
-      GrappUserDto grappUserDto = grappLoginService.logIn(email, avatar);
-      return buildHalResponse(GrappUserResource.asRepresentationOf(grappUserDto));
+      UserDto userDto = loginService.logIn(email, avatar);
+      return buildHalResponse(UserResource.asRepresentationOf(userDto));
    }
 
    public static HalLink createRootLink(String rel) {
-      return JaxrsHalResourceLinkBuilder.linkTo(GrappLoginResource.class).queryParams("email", "avatar").withRel(rel);
+      return JaxrsHalResourceLinkBuilder.linkTo(LoginResource.class).queryParams("email", "avatar").withRel(rel);
    }
 }
