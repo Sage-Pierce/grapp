@@ -5,7 +5,7 @@ import com.wisegas.grapp.storemanagement.service.dto.GrappStoreDto;
 
 public final class GrappStoreDtoFactory {
 
-   public static GrappStoreDto createDTO(GrappStore grappStore) {
+   public static GrappStoreDto createDto(GrappStore grappStore) {
       GrappStoreDto grappStoreDTO = new GrappStoreDto();
       grappStoreDTO.setId(grappStore.getId().toString());
       grappStoreDTO.setName(grappStore.getName());

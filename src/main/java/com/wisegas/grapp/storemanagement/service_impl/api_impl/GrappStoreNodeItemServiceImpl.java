@@ -27,6 +27,6 @@ public class GrappStoreNodeItemServiceImpl implements GrappStoreNodeItemService 
 
    @Override
    public GrappStoreNodeItemDto get(String id) {
-      return GrappStoreNodeItemDtoFactory.createDTO(grappStoreNodeItemRepository.get(GrappStoreNodeItemId.fromString(id)));
+      return GrappStoreNodeItemDtoFactory.createDto(grappStoreNodeItemRepository.get(GrappStoreNodeItemId.fromString(id)));
    }
 }

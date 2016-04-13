@@ -28,13 +28,13 @@ public class GrappStoreNodeServiceImpl implements GrappStoreNodeService {
 
    @Override
    public GrappStoreNodeDto get(String id) {
-      return GrappStoreNodeDtoFactory.createDTO(grappStoreNodeRepository.get(GrappStoreNodeId.fromString(id)));
+      return GrappStoreNodeDtoFactory.createDto(grappStoreNodeRepository.get(GrappStoreNodeId.fromString(id)));
    }
 
    @Override
    public GrappStoreNodeDto update(String id, String name) {
       GrappStoreNode grappStoreNode = grappStoreNodeRepository.get(GrappStoreNodeId.fromString(id));
       grappStoreNode.setName(name);
-      return GrappStoreNodeDtoFactory.createDTO(grappStoreNode);
+      return GrappStoreNodeDtoFactory.createDto(grappStoreNode);
    }
 }

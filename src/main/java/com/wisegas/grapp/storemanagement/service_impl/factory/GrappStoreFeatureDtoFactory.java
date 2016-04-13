@@ -5,7 +5,7 @@ import com.wisegas.grapp.storemanagement.service.dto.GrappStoreFeatureDto;
 
 public final class GrappStoreFeatureDtoFactory {
 
-   public static GrappStoreFeatureDto createDTO(GrappStoreFeature grappStoreFeature) {
+   public static GrappStoreFeatureDto createDto(GrappStoreFeature grappStoreFeature) {
       GrappStoreFeatureDto grappStoreLayoutDTO = new GrappStoreFeatureDto();
       grappStoreLayoutDTO.setId(grappStoreFeature.getId().toString());
       grappStoreLayoutDTO.setPolygon(grappStoreFeature.getPolygon());

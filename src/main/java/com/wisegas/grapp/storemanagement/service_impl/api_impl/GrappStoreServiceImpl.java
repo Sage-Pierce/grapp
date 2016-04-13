@@ -31,17 +31,17 @@ public class GrappStoreServiceImpl implements GrappStoreService {
 
    @Override
    public GrappStoreDto create(String name, GeoPoint location) {
-      return GrappStoreDtoFactory.createDTO(grappStoreRepository.add(new GrappStore(name, location)));
+      return GrappStoreDtoFactory.createDto(grappStoreRepository.add(new GrappStore(name, location)));
    }
 
    @Override
    public List<GrappStoreDto> getAll() {
-      return grappStoreRepository.getAll().stream().map(GrappStoreDtoFactory::createDTO).collect(Collectors.toList());
+      return grappStoreRepository.getAll().stream().map(GrappStoreDtoFactory::createDto).collect(Collectors.toList());
    }
 
    @Override
    public GrappStoreDto get(String id) {
-      return GrappStoreDtoFactory.createDTO(grappStoreRepository.get(GrappStoreId.fromString(id)));
+      return GrappStoreDtoFactory.createDto(grappStoreRepository.get(GrappStoreId.fromString(id)));
    }
 
    @Override
@@ -49,7 +49,7 @@ public class GrappStoreServiceImpl implements GrappStoreService {
       GrappStore grappStore = grappStoreRepository.get(GrappStoreId.fromString(id));
       grappStore.setName(name);
       grappStore.setLocation(location);
-      return GrappStoreDtoFactory.createDTO(grappStore);
+      return GrappStoreDtoFactory.createDto(grappStore);
    }
 
    @Override

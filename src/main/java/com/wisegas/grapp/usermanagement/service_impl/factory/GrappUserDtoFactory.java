@@ -5,7 +5,7 @@ import com.wisegas.grapp.usermanagement.service.dto.GrappUserDto;
 
 public final class GrappUserDtoFactory {
 
-   public static GrappUserDto createDTO(GrappUser grappUser) {
+   public static GrappUserDto createDto(GrappUser grappUser) {
       GrappUserDto grappUserDTO = new GrappUserDto();
       grappUserDTO.setId(grappUser.getId().toString());
       grappUserDTO.setName(grappUser.getName());

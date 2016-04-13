@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public final class GrappItemDtoFactory {
 
-   public static GrappItemDto createDTO(GrappItem grappItem) {
+   public static GrappItemDto createDto(GrappItem grappItem) {
       GrappItemDto grappItemDTO = new GrappItemDto();
       grappItemDTO.setId(grappItem.getId().toString());
       grappItemDTO.setSuperItemId(grappItem.isGeneralItem() ? null : grappItem.getSuperItem().getName());
       grappItemDTO.setName(grappItem.getName());
-      grappItemDTO.setSubItems(grappItem.getSubItems().stream().map(GrappItemDtoFactory::createDTO).collect(Collectors.toList()));
+      grappItemDTO.setSubItems(grappItem.getSubItems().stream().map(GrappItemDtoFactory::createDto).collect(Collectors.toList()));
       return grappItemDTO;
    }
 

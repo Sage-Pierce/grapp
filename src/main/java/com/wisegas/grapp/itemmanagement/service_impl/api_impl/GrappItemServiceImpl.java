@@ -33,27 +33,27 @@ public class GrappItemServiceImpl implements GrappItemService {
 
    @Override
    public GrappItemDto createGeneralItem(String codeType, String code, String name) {
-      return GrappItemDtoFactory.createDTO(grappItemCreationService.createGeneralItem(createGrappItemCode(codeType, code), name));
+      return GrappItemDtoFactory.createDto(grappItemCreationService.createGeneralItem(createGrappItemCode(codeType, code), name));
    }
 
    @Override
    public GrappItemDto createSubItem(String superItemId, String codeType, String code, String name) {
-      return GrappItemDtoFactory.createDTO(grappItemCreationService.createSubItem(GrappItemCode.fromString(superItemId), createGrappItemCode(codeType, code), name));
+      return GrappItemDtoFactory.createDto(grappItemCreationService.createSubItem(GrappItemCode.fromString(superItemId), createGrappItemCode(codeType, code), name));
    }
 
    @Override
    public List<GrappItemDto> getAll() {
-      return grappItemRepository.getAll().stream().map(GrappItemDtoFactory::createDTO).collect(Collectors.toList());
+      return grappItemRepository.getAll().stream().map(GrappItemDtoFactory::createDto).collect(Collectors.toList());
    }
 
    @Override
    public List<GrappItemDto> getGeneralItems() {
-      return grappItemRepository.getGeneralItems().stream().map(GrappItemDtoFactory::createDTO).collect(Collectors.toList());
+      return grappItemRepository.getGeneralItems().stream().map(GrappItemDtoFactory::createDto).collect(Collectors.toList());
    }
 
    @Override
    public GrappItemDto get(String id) {
-      return GrappItemDtoFactory.createDTO(grappItemRepository.get(GrappItemCode.fromString(id)));
+      return GrappItemDtoFactory.createDto(grappItemRepository.get(GrappItemCode.fromString(id)));
    }
 
    @Override

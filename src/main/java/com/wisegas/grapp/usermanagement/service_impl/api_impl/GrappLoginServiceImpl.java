@@ -30,7 +30,7 @@ public class GrappLoginServiceImpl implements GrappLoginService {
    public GrappUserDto logIn(String email, String avatar) {
       GrappUser grappUser = getGrappUserForEmail(email);
       grappUser.setAvatar(avatar == null ? grappUser.getAvatar() : avatar);
-      return GrappUserDtoFactory.createDTO(grappUser);
+      return GrappUserDtoFactory.createDto(grappUser);
    }
 
    private GrappUser getGrappUserForEmail(String email) {

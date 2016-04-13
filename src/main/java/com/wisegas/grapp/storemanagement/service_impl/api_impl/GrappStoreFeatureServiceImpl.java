@@ -27,6 +27,6 @@ public class GrappStoreFeatureServiceImpl implements GrappStoreFeatureService {
 
    @Override
    public GrappStoreFeatureDto get(String id) {
-      return GrappStoreFeatureDtoFactory.createDTO(grappStoreFeatureRepository.get(GrappStoreFeatureId.fromString(id)));
+      return GrappStoreFeatureDtoFactory.createDto(grappStoreFeatureRepository.get(GrappStoreFeatureId.fromString(id)));
    }
 }

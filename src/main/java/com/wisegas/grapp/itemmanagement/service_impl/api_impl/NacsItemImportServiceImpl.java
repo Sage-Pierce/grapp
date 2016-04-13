@@ -49,7 +49,7 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
       List<GrappItem> subItemGrappItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.ITEM, emptyList()), this::importNacsItemAsSubItem);
       return Stream.of(categoryGrappItems, subCategoryGrappItems, subItemGrappItems)
                    .flatMap(Collection::stream)
-                   .map(GrappItemDtoFactory::createDTO)
+                   .map(GrappItemDtoFactory::createDto)
                    .collect(toList());
    }
 

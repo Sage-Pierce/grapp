@@ -28,13 +28,13 @@ public class GrappUserServiceImpl implements GrappUserService {
 
    @Override
    public GrappUserDto get(String id) {
-      return GrappUserDtoFactory.createDTO(grappUserRepository.get(GrappUserEmail.fromString(id)));
+      return GrappUserDtoFactory.createDto(grappUserRepository.get(GrappUserEmail.fromString(id)));
    }
 
    @Override
    public GrappUserDto update(String id, String name) {
       GrappUser grappUser = grappUserRepository.get(GrappUserEmail.fromString(id));
       grappUser.setName(name);
-      return GrappUserDtoFactory.createDTO(grappUser);
+      return GrappUserDtoFactory.createDto(grappUser);
    }
 }
