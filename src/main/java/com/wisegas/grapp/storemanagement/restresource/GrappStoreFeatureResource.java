@@ -27,8 +27,7 @@ public class GrappStoreFeatureResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get(@PathParam("id") final String id) {
-      GrappStoreFeatureDTO grappStoreFeatureDTO = grappStoreFeatureService.get(id);
-      return buildHalResponse(asRepresentationOf(grappStoreFeatureDTO));
+      return buildHalResponse(asRepresentationOf(grappStoreFeatureService.get(id)));
    }
 
    protected static HalRepresentation asRepresentationOf(GrappStoreFeatureDTO grappStoreFeatureDTO) {
