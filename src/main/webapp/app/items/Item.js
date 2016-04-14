@@ -18,8 +18,8 @@
       }
 
       function importItems(data) {
-         return Root.afterLoad().then(function(grappRoot) {
-            return grappRoot.$put("importItems", {type: "NACS"}, data, {headers: {"Content-Type": "text/plain"}}).then(loadAllGeneral);
+         return Root.afterLoad().then(function(root) {
+            return root.$put("importItems", {type: "NACS"}, data, {headers: {"Content-Type": "text/plain"}}).then(loadAllGeneral);
          });
       }
 

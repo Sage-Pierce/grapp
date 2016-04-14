@@ -75,21 +75,21 @@
       function initializeEvents() {
          storeMapVM.events = {
             map: {
-               click: function (map, eventName, args) { mapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); },
-               rightclick: function (map, eventName, args) { mapControl.handleGObjectMouseEvent("mapRightClicked", "map", map, args[0]); }
+               click: function(map, eventName, args) { mapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); },
+               rightclick: function(map, eventName, args) { mapControl.handleGObjectMouseEvent("mapRightClicked", "map", map, args[0]); }
             },
             drawingManager: {
-               polygoncomplete: function (drawingManager, eventName, model, args) { mapControl.polygonComplete(args[0]); }
+               polygoncomplete: function(drawingManager, eventName, model, args) { mapControl.polygonComplete(args[0]); }
             },
             polygon: {
-               click: function (polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonClicked", model.id, polygon, args[0]); },
-               rightclick: function (polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonRightClicked", model.id, polygon, args[0]); },
-               dragend: function (polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonDragEnd", model.id, polygon, args[0]); }
+               click: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonClicked", model.id, polygon, args[0]); },
+               rightclick: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonRightClicked", model.id, polygon, args[0]); },
+               dragend: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonDragEnd", model.id, polygon, args[0]); }
             },
             marker: {
-               click: function (marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]); },
-               rightclick: function (marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerRightClicked", model.id, marker, args[0]); },
-               dragend: function (marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerDragEnd", model.id, marker, args[0]); }
+               click: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]); },
+               rightclick: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerRightClicked", model.id, marker, args[0]); },
+               dragend: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerDragEnd", model.id, marker, args[0]); }
             }
          };
       }
@@ -111,11 +111,11 @@
             createGMapPolygonFromModel(layout.getInnerOutline(), {color: "#b3e5e6", opacity: 1}, 1, false)
          ];
 
-         storeMapVM.storeFeatures = layout.getFeatures().map(function (grappPolygon) {
-            return createGMapPolygonFromModel(grappPolygon, {color: "#194d4d", opacity: 1}, 2);
+         storeMapVM.storeFeatures = layout.getFeatures().map(function(polygon) {
+            return createGMapPolygonFromModel(polygon, {color: "#194d4d", opacity: 1}, 2);
          });
 
-         storeMapVM.storeNodes = layout.getNodes().map(function (node) {
+         storeMapVM.storeNodes = layout.getNodes().map(function(node) {
             return createGMapMarkerFromNodeModel(node);
          });
       }

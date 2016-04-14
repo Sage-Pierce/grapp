@@ -98,10 +98,10 @@
             return createPolygonModelFromPolygon(featureRsc, "reshapeFeature", true);
          }
 
-         function createPolygonModelFromPolygon(grappPolygonRsc, updateRel, isFeature) {
+         function createPolygonModelFromPolygon(polygonRsc, updateRel, isFeature) {
             return {
-               id: grappPolygonRsc.id,
-               vertices: grappPolygonRsc.polygon ? grappPolygonRsc.polygon.vertices : [],
+               id: polygonRsc.id,
+               vertices: polygonRsc.polygon ? polygonRsc.polygon.vertices : [],
                isFeature: isFeature,
                commitVertices: function(vertices) { return commitPolygonModelVertices(updateRel, this, vertices); }
             };
@@ -116,8 +116,8 @@
                .then(function() { polygonModel.vertices = vertices; });
          }
 
-         function stringifyVerticesIntoPolygon(grappPolygonVertices) {
-            return JSON.stringify({vertices: grappPolygonVertices});
+         function stringifyVerticesIntoPolygon(polygonVertices) {
+            return JSON.stringify({vertices: polygonVertices});
          }
 
          function createNodeModelFromNode(storeNode) {

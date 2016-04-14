@@ -20,21 +20,21 @@
 
       ////////////////////
 
-      function load(grappRootRsc) {
-         deferred.resolve(grappRootRsc);
+      function load(rootRsc) {
+         deferred.resolve(rootRsc);
       }
 
       function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {
-         return afterLoad().then(function(grappRoot) {
-            return grappRoot.$post(pluralResourceName, params).then(function(resource) {
+         return afterLoad().then(function(rootRsc) {
+            return rootRsc.$post(pluralResourceName, params).then(function(resource) {
                return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
             });
          });
       }
 
       function loadResourceModels(pluralResourceName, resourceModelCreatorCallback) {
-         return afterLoad().then(function(grappRoot) {
-            return grappRoot.$get(pluralResourceName).then(function(pluralResource) {
+         return afterLoad().then(function(rootRsc) {
+            return rootRsc.$get(pluralResourceName).then(function(pluralResource) {
                return pluralResource.$get(pluralResourceName)
                   .then(function(resources) {
                      return _.arrayify(resources).map(function(resource) {
@@ -48,8 +48,8 @@
       }
 
       function loadResourceModelById(resourceName, id, resourceModelCreatorCallback) {
-         return afterLoad().then(function(grappRoot) {
-            return grappRoot.$get(resourceName + "ById", {id: id})
+         return afterLoad().then(function(rootRsc) {
+            return rootRsc.$get(resourceName + "ById", {id: id})
                .then(function(resource) {
                   return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                });
@@ -57,8 +57,8 @@
       }
 
       function updateResourceById(resourceName, id, params) {
-         return afterLoad().then(function(grappRoot) {
-            return grappRoot.$put(resourceName + "ById", _.merge(params, {id: id}));
+         return afterLoad().then(function(rootRsc) {
+            return rootRsc.$put(resourceName + "ById", _.merge(params, {id: id}));
          });
       }
 
@@ -72,8 +72,8 @@
       }
 
       function deleteResourceById(resourceName, id) {
-         return afterLoad().then(function(grappRoot) {
-            return grappRoot.$del(resourceName + "ById", {id: id});
+         return afterLoad().then(function(rootRsc) {
+            return rootRsc.$del(resourceName + "ById", {id: id});
          });
       }
 

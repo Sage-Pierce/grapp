@@ -20,7 +20,7 @@
       ////////////////////
 
       function logInCachedUser() {
-         var userId = $cookies.get("grapp-user-id");
+         var userId = $cookies.get("user-id");
          if (userId) {
             User.loadById(userId).then(resolveUser, function() {
                deferred.reject("Problem logging User in on Server.");
@@ -48,7 +48,7 @@
       }
 
       function logOut() {
-         $cookies.remove("grapp-user-id");
+         $cookies.remove("user-id");
          deferred = $q.defer();
          deferred.reject("NO USER LOGGED IN");
          userLoggedIn = false;
@@ -59,13 +59,13 @@
       }
 
       function logIn(email, avatar) {
-         return Root.afterLoad().then(function(grappRoot) {
-            return grappRoot.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(User.load);
+         return Root.afterLoad().then(function(root) {
+            return root.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(User.load);
          });
       }
 
       function cacheUser(user) {
-         $cookies.put("grapp-user-id", user.id);
+         $cookies.put("user-id", user.id);
          return user;
       }
 
