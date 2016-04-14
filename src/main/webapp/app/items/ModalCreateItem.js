@@ -4,12 +4,12 @@
    angular.module("Grapp")
       .controller("ModalCreateItem", ModalCreateItem);
 
-   ModalCreateItem.$inject = ["$uibModalInstance", "GrappItemCodeType", "superItemModel"];
-   function ModalCreateItem($uibModalInstance, GrappItemCodeType, superItemModel) {
+   ModalCreateItem.$inject = ["$uibModalInstance", "CodeType", "superItemModel"];
+   function ModalCreateItem($uibModalInstance, CodeType, superItemModel) {
       var modalCreateItemVM = this;
-      modalCreateItemVM.codeTypes = _.values(GrappItemCodeType);
+      modalCreateItemVM.codeTypes = _.values(CodeType);
       modalCreateItemVM.title = "Create " + (superItemModel ? "Sub-Item" : "General Item");
-      modalCreateItemVM.codeType = GrappItemCodeType.UPC;
+      modalCreateItemVM.codeType = CodeType.UPC;
       modalCreateItemVM.code = "";
       modalCreateItemVM.name = "";
       modalCreateItemVM.isDataValid = isDataValid;
@@ -23,7 +23,7 @@
       }
 
       function finish() {
-         $uibModalInstance.close({codeType: _.findKey(GrappItemCodeType, modalCreateItemVM.codeType), code: modalCreateItemVM.code, name: modalCreateItemVM.name});
+         $uibModalInstance.close({codeType: _.findKey(CodeType, modalCreateItemVM.codeType), code: modalCreateItemVM.code, name: modalCreateItemVM.name});
       }
 
       function cancel() {

@@ -4,8 +4,8 @@
    angular.module("Grapp")
       .controller("MainItems", MainItems);
 
-   MainItems.$inject = ["$uibModal", "GrappItem"];
-   function MainItems($uibModal, GrappItem) {
+   MainItems.$inject = ["$uibModal", "Item"];
+   function MainItems($uibModal, Item) {
       var mainItemsVM = this;
       mainItemsVM.items = [];
       mainItemsVM.filter = "";
@@ -19,14 +19,14 @@
       ////////////////////
 
       function initialize() {
-         GrappItem.loadAllGeneral().then(function(itemModels) {
+         Item.loadAllGeneral().then(function(itemModels) {
             mainItemsVM.items = itemModels;
          });
       }
 
       function createGeneralItem() {
          openModalCreateItem().then(function(result) {
-            GrappItem.createGeneralItem(result).then(function(itemModel) {
+            Item.createGeneralItem(result).then(function(itemModel) {
                mainItemsVM.items.push(itemModel);
             });
          });
@@ -34,7 +34,7 @@
 
       function importItems() {
          openModalImportItems().then(function(result) {
-            GrappItem.importItems(result.data).then(function(itemModels) {
+            Item.importItems(result.data).then(function(itemModels) {
                mainItemsVM.items = itemModels;
             });
          });

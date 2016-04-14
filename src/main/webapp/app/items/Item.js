@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .service("GrappItem", GrappItem);
+      .service("Item", Item);
 
-   GrappItem.$inject = ["Root"];
-   function GrappItem(Root) {
+   Item.$inject = ["Root"];
+   function Item(Root) {
       var self = this;
       self.createGeneralItem = createGeneralItem;
       self.importItems = importItems;
@@ -27,16 +27,16 @@
          return Root.loadResourceModels("generalItems", createModel);
       }
 
-      function createModel(grappItemRsc) {
-         return new GrappItemModel(grappItemRsc);
+      function createModel(itemRsc) {
+         return new ItemModel(itemRsc);
       }
 
-      function GrappItemModel(grappItemRsc) {
+      function ItemModel(itemRsc) {
          var self = this;
          self.addSubItem = addSubItem;
          self.delete = del;
          self.isGeneralItem = isGeneralItem;
-         self.subItems = grappItemRsc.subItems.map(function(subItemRsc) { return Root.mergeResourceIntoModel(subItemRsc, new GrappItemModel(subItemRsc)); });
+         self.subItems = itemRsc.subItems.map(function(subItemRsc) { return Root.mergeResourceIntoModel(subItemRsc, new ItemModel(subItemRsc)); });
 
          ////////////////////
 
