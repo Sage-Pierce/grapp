@@ -4,10 +4,10 @@
    angular.module("Grapp")
       .controller("MainStores", MainStores);
 
-   MainStores.$inject = ["$uibModal", "$state", "GrappStore"];
-   function MainStores($uibModal, $state, GrappStore) {
+   MainStores.$inject = ["$uibModal", "$state", "Store"];
+   function MainStores($uibModal, $state, Store) {
       var mainStoresVM = this;
-      mainStoresVM.grappStores = [];
+      mainStoresVM.stores = [];
       mainStoresVM.selectedStore = null;
       mainStoresVM.areAnyStoresExistent = areAnyStoresExistent;
       mainStoresVM.setSelectedStore = setSelectedStore;
@@ -22,13 +22,13 @@
       ////////////////////
 
       function initialize() {
-         GrappStore.loadAll().then(function(grappStores) {
-            mainStoresVM.grappStores = grappStores;
+         Store.loadAll().then(function(stores) {
+            mainStoresVM.stores = stores;
          });
       }
 
       function areAnyStoresExistent() {
-         return mainStoresVM.grappStores.length > 0;
+         return mainStoresVM.stores.length > 0;
       }
 
       function setSelectedStore(selectedStore) {
@@ -42,8 +42,8 @@
       function createStore() {
          openModalUpdateStore(null, null).then(function(result) {
             mainStoresVM.isLoading = true;
-            GrappStore.create(result.name, result.location).then(function(grappStore) {
-               mainStoresVM.grappStores.push(grappStore);
+            Store.create(result.name, result.location).then(function(store) {
+               mainStoresVM.stores.push(store);
             }).finally(function() {
                mainStoresVM.isLoading = false;
             });
@@ -74,7 +74,7 @@
 
       function deleteSelectedStore() {
          mainStoresVM.selectedStore.delete().then(function() {
-            mainStoresVM.grappStores = _.without(mainStoresVM.grappStores, mainStoresVM.selectedStore);
+            mainStoresVM.stores = _.without(mainStoresVM.stores, mainStoresVM.selectedStore);
          });
       }
    }

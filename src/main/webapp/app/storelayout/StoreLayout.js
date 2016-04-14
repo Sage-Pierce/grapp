@@ -120,12 +120,12 @@
             return JSON.stringify({vertices: grappPolygonVertices});
          }
 
-         function createNodeModelFromNode(grappStoreNode) {
+         function createNodeModelFromNode(storeNode) {
             return {
-               id: grappStoreNode.id,
-               name: grappStoreNode.name,
-               type: NodeType[grappStoreNode.type],
-               location: grappStoreNode.location,
+               id: storeNode.id,
+               name: storeNode.name,
+               type: NodeType[storeNode.type],
+               location: storeNode.location,
                commitName: function(name) { commitNodeModelParams(this, {name: name}); },
                commitLocation: function(position) { commitNodeModelPosition(this, position); }
             };

@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .service("GrappStore", GrappStore);
+      .service("Store", Store);
 
-   GrappStore.$inject = ["Root"];
-   function GrappStore(Root) {
+   Store.$inject = ["Root"];
+   function Store(Root) {
       var self = this;
       self.create = create;
       self.loadAll = loadAll;
@@ -22,19 +22,19 @@
          return Root.loadResourceModels("stores", createModel);
       }
 
-      function loadById(grappStoreId) {
-         return Root.loadResourceModelById("store", grappStoreId, createModel);
+      function loadById(storeId) {
+         return Root.loadResourceModelById("store", storeId, createModel);
       }
 
-      function load(grappStoreRsc) {
-         return Root.mergeResourceIntoModel(grappStoreRsc, createModel(grappStoreRsc));
+      function load(storeRsc) {
+         return Root.mergeResourceIntoModel(storeRsc, createModel(storeRsc));
       }
 
-      function createModel(grappStoreRsc) {
-         return new GrappStoreModel(grappStoreRsc);
+      function createModel(storeRsc) {
+         return new StoreModel(storeRsc);
       }
 
-      function GrappStoreModel(grappStoreRsc) {
+      function StoreModel(storeRsc) {
          var self = this;
          self.commitAttributes = commitAttributes;
 
@@ -42,7 +42,7 @@
 
          function commitAttributes(attributes) {
             attributes.location = JSON.stringify(attributes.location);
-            return grappStoreRsc.$put("self", attributes).then(function(resource) {
+            return storeRsc.$put("self", attributes).then(function(resource) {
                self.name = resource.name;
                self.location = resource.location;
             });

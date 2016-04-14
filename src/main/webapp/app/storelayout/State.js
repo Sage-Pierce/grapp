@@ -11,11 +11,11 @@
             url: "storeLayout/:storeId",
             abstract: true,
             resolve: {
-               grappStore: ["$stateParams", "GrappStore", function($stateParams, GrappStore) {
-                  return GrappStore.loadById($stateParams.storeId);
+               store: ["$stateParams", "Store", function($stateParams, Store) {
+                  return Store.loadById($stateParams.storeId);
                }],
-               storeLayout: ["$stateParams", "grappStore", "StoreLayout", function($stateParams, grappStore, StoreLayout) {
-                  return StoreLayout.loadById(grappStore.layoutId);
+               storeLayout: ["$stateParams", "store", "StoreLayout", function($stateParams, store, StoreLayout) {
+                  return StoreLayout.loadById(store.layoutId);
                }],
                mapControl: ["StoreMapControl", function(StoreMapControl) {
                   return new StoreMapControl();

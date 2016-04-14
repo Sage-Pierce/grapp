@@ -4,11 +4,11 @@
    angular.module("Grapp")
       .controller("MainStoreMap", MainStoreMap);
 
-   MainStoreMap.$inject = ["grappStore", "storeLayout", "mapControl" ];
-   function MainStoreMap(grappStore, storeLayout, mapControl) {
+   MainStoreMap.$inject = ["store", "storeLayout", "mapControl" ];
+   function MainStoreMap(store, storeLayout, mapControl) {
       var mainStoreMapVM = this;
-      mainStoreMapVM.grappStoreName = grappStore.name;
-      mainStoreMapVM.location = grappStore.location;
+      mainStoreMapVM.storeName = store.name;
+      mainStoreMapVM.location = store.location;
       mainStoreMapVM.storeLayout = storeLayout;
       mainStoreMapVM.mapControl = mapControl;
 

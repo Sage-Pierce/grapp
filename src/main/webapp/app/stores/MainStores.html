@@ -15,7 +15,7 @@
             </tr>
          </tbody>
          <tbody ng-if="mainStoresVM.areAnyStoresExistent()">
-            <tr ng-repeat="store in mainStoresVM.grappStores" class="cursor-clickable" ng-class="{info: mainStoresVM.selectedStore === store}" ng-click="mainStoresVM.setSelectedStore(store)">
+            <tr ng-repeat="store in mainStoresVM.stores" class="cursor-clickable" ng-class="{info: mainStoresVM.selectedStore === store}" ng-click="mainStoresVM.setSelectedStore(store)">
                <td>{{store.id}}</td>
                <td>{{store.name}}</td>
             </tr>
