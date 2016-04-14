@@ -6,8 +6,8 @@
 
    EditFeatureEventHandler.$inject = ["BaseEventHandler"];
    function EditFeatureEventHandler(BaseEventHandler) {
-      return function(mapControl, grappStoreLayout) {
-         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
+      return function(mapControl, storeLayout) {
+         var self = angular.extend(this, new BaseEventHandler(mapControl, storeLayout));
          self.finish = finish;
          self.polygonClicked = polygonClicked;
          self.polygonRightClicked = polygonRightClicked;
@@ -32,7 +32,7 @@
                if (selectedGMapPolygonId.polygon === gMapPolygon) {
                   selectedGMapPolygonId = null;
                }
-               grappStoreLayout.removeFeatureById(modelId);
+               storeLayout.removeFeatureById(modelId);
                mapControl.removeFeatureById(modelId);
             }
          }
@@ -40,7 +40,7 @@
          function setSelectedGMapPolygon(gMapPolygon) {
             if (selectedGMapPolygonId) {
                selectedGMapPolygonId.polygon.setEditable(false);
-               grappStoreLayout.getFeatureById(selectedGMapPolygonId.id).commitVertices(_.extractVerticesFromGMapPolygon(selectedGMapPolygonId.polygon));
+               storeLayout.getFeatureById(selectedGMapPolygonId.id).commitVertices(_.extractVerticesFromGMapPolygon(selectedGMapPolygonId.polygon));
             }
 
             selectedGMapPolygonId = gMapPolygon;

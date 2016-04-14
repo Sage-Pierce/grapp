@@ -4,11 +4,11 @@
    angular.module("Grapp")
       .controller("MainStoreMapNodes", MainStoreMapNodes);
 
-   MainStoreMapNodes.$inject = ["grappStoreLayout", "mapControl", "NodeSelector", "GrappStoreNodeType", "NodeEventHandler", "Item"];
-   function MainStoreMapNodes(grappStoreLayout, mapControl, NodeSelector, GrappStoreNodeType, NodeEventHandler, Item) {
+   MainStoreMapNodes.$inject = ["storeLayout", "mapControl", "NodeSelector", "NodeType", "NodeEventHandler", "Item"];
+   function MainStoreMapNodes(storeLayout, mapControl, NodeSelector, NodeType, NodeEventHandler, Item) {
       var mainStoreMapNodesVM = this;
-      mainStoreMapNodesVM.nodeTypes = _.values(GrappStoreNodeType);
-      mainStoreMapNodesVM.radioModel = GrappStoreNodeType.REGULAR;
+      mainStoreMapNodesVM.nodeTypes = _.values(NodeType);
+      mainStoreMapNodesVM.radioModel = NodeType.REGULAR;
       mainStoreMapNodesVM.selectedNodeName = null;
       mainStoreMapNodesVM.selectedNodeItems = [{name: "Test 1"}, {name: "Test 2"}];
       mainStoreMapNodesVM.generalItems = [];
@@ -19,7 +19,7 @@
       mainStoreMapNodesVM.isANodeSelected = function() { return false; };
 
       var nodeSelector = new NodeSelector(mapControl, {nodeSelected: nodeSelected, nodeDeselected: nodeDeselected});
-      var nodeEventHandler = new NodeEventHandler(mapControl, grappStoreLayout, nodeSelector, mainStoreMapNodesVM.radioModel);
+      var nodeEventHandler = new NodeEventHandler(mapControl, storeLayout, nodeSelector, mainStoreMapNodesVM.radioModel);
 
       initialize();
 

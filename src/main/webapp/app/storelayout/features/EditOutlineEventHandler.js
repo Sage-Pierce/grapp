@@ -6,8 +6,8 @@
 
    EditOutlineEventHandler.$inject = ["BaseEventHandler"];
    function EditOutlineEventHandler(BaseEventHandler) {
-      return function(mapControl, grappStoreLayout, storeOutlinePartialModel) {
-         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
+      return function(mapControl, storeLayout, storeOutlinePartialModel) {
+         var self = angular.extend(this, new BaseEventHandler(mapControl, storeLayout));
          self.start = start;
          self.finish = finish;
          self.polygonComplete = polygonComplete;

@@ -7,15 +7,15 @@
    GrappConfig.$inject = ["$stateProvider"];
    function GrappConfig($stateProvider) {
       $stateProvider
-         .state("main.storeMap", {
-            url: "storeMap/:storeId",
+         .state("main.storeLayout", {
+            url: "storeLayout/:storeId",
             abstract: true,
             resolve: {
                grappStore: ["$stateParams", "GrappStore", function($stateParams, GrappStore) {
                   return GrappStore.loadById($stateParams.storeId);
                }],
-               grappStoreLayout: ["$stateParams", "grappStore", "GrappStoreLayout", function($stateParams, grappStore, GrappStoreLayout) {
-                  return GrappStoreLayout.loadById(grappStore.layoutId);
+               storeLayout: ["$stateParams", "grappStore", "StoreLayout", function($stateParams, grappStore, StoreLayout) {
+                  return StoreLayout.loadById(grappStore.layoutId);
                }],
                mapControl: ["GrappMapControl", function(GrappMapControl) {
                   return new GrappMapControl();
@@ -23,13 +23,13 @@
             },
             views: {
                "content": {
-                  templateUrl: "app/storemap/MainStoreMap.html",
+                  templateUrl: "app/storelayout/MainStoreMap.html",
                   controller: "MainStoreMap",
                   controllerAs: "mainStoreMapVM"
                }
             }
          })
-         .state("main.storeMap.features", {
+         .state("main.storeLayout.features", {
             url: "/features",
             resolve: {
                mapControl: ["mapControl", function(mapControl) {
@@ -39,13 +39,13 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storemap/features/MainStoreMapFeatures.html",
+                  templateUrl: "app/storelayout/features/MainStoreMapFeatures.html",
                   controller: "MainStoreMapFeatures",
                   controllerAs: "mainStoreMapFeaturesVM"
                }
             }
          })
-         .state("main.storeMap.nodes", {
+         .state("main.storeLayout.nodes", {
             url: "/nodes",
             resolve: {
                mapControl: ["mapControl", function(mapControl) {
@@ -55,7 +55,7 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storemap/nodes/MainStoreMapNodes.html",
+                  templateUrl: "app/storelayout/nodes/MainStoreMapNodes.html",
                   controller: "MainStoreMapNodes",
                   controllerAs: "mainStoreMapNodesVM"
                }

@@ -6,8 +6,8 @@
 
    CopyFeatureEventHandler.$inject = ["BaseEventHandler"];
    function CopyFeatureEventHandler(BaseEventHandler) {
-      return function(mapControl, grappStoreLayout) {
-         var self = angular.extend(this, new BaseEventHandler(mapControl, grappStoreLayout));
+      return function(mapControl, storeLayout) {
+         var self = angular.extend(this, new BaseEventHandler(mapControl, storeLayout));
          self.finish = finish;
          self.mapClicked = mapClicked;
          self.polygonClicked = polygonClicked;
@@ -26,7 +26,7 @@
          function mapClicked(modelId, map, mouseEvent) {
             if (gMapPolygonCopyModel) {
                var gMapPolygon = gMapPolygonCopyModel.copyToLatLng(mouseEvent.latLng);
-               grappStoreLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
+               storeLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
                   .then(function(model) {
                      gMapPolygon.setDraggable(true);
                      mapControl.addFeature(model.id, gMapPolygon);
@@ -47,7 +47,7 @@
                gMapPolygonCopyModel.deselect();
                gMapPolygonCopyModel = null;
             }
-            grappStoreLayout.removeFeatureById(modelId);
+            storeLayout.removeFeatureById(modelId);
             mapControl.removeFeatureById(modelId, gMapPolygon);
          }
 

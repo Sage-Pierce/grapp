@@ -6,8 +6,8 @@
 
    NodeEventHandler.$inject = ["BaseEventHandler"];
    function NodeEventHandler(BaseEventHandler) {
-      return function(mapControl, grappStoreLayout, nodeSelector, grappStoreNodeType) {
-         var base = new BaseEventHandler(mapControl, grappStoreLayout);
+      return function(mapControl, storeLayout, nodeSelector, nodeType) {
+         var base = new BaseEventHandler(mapControl, storeLayout);
          var self = angular.extend(this, base);
          self.finish = finish;
          self.mapClicked = mapClicked;
@@ -16,8 +16,6 @@
          self.markerRightClicked = markerRightClicked;
          self.setNodeType = setNodeType;
 
-         var nodeType = grappStoreNodeType;
-
          ////////////////////
 
          function finish() {
@@ -25,7 +23,7 @@
          }
 
          function mapClicked(modelId, map, mouseEvent) {
-            grappStoreLayout.addNode(nodeType, _.convertPositionToLocation(mouseEvent.latLng))
+            storeLayout.addNode(nodeType, _.convertPositionToLocation(mouseEvent.latLng))
                .then(function(result) {
                   mapControl.addNode(result.node.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));
                   if (result.affectedNodes) {
@@ -43,7 +41,7 @@
          }
 
          function markerClicked(modelId, gMapMarker, mouseEvent) {
-            nodeSelector.select(grappStoreLayout.getNodeById(modelId));
+            nodeSelector.select(storeLayout.getNodeById(modelId));
          }
 
          function markerRightClicked(modelId, gMapMarker, mouseEvent) {
@@ -53,8 +51,8 @@
             base.markerRightClicked(modelId, gMapMarker, mouseEvent);
          }
 
-         function setNodeType(grappStoreNodeType) {
-            nodeType = grappStoreNodeType;
+         function setNodeType(nt) {
+            nodeType = nt;
          }
 
          function createGMapMarker(options, position) {

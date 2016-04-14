@@ -4,7 +4,7 @@
    angular.module("Grapp")
       .value("BaseEventHandler", BaseEventHandler);
 
-   function BaseEventHandler(mapControl, grappStoreLayout) {
+   function BaseEventHandler(mapControl, storeLayout) {
       var self = this;
       self.markerRightClicked = markerRightClicked;
       self.markerDragEnd = markerDragEnd;
@@ -14,21 +14,21 @@
       ////////////////////
 
       function markerRightClicked(modelId, gMapMarker, mouseEvent) {
-         grappStoreLayout.removeNodeById(modelId);
+         storeLayout.removeNodeById(modelId);
          mapControl.removeNodeById(modelId);
       }
 
       function markerDragEnd(modelId, gMapMarker, mouseEvent) {
-         grappStoreLayout.getNodeById(modelId).commitLocation(_.convertPositionToLocation(mouseEvent.latLng));
+         storeLayout.getNodeById(modelId).commitLocation(_.convertPositionToLocation(mouseEvent.latLng));
       }
 
       function polygonRightClicked(modelId, gMapPolygon, polyMouseEvent) {
-         grappStoreLayout.removeFeatureById(modelId);
+         storeLayout.removeFeatureById(modelId);
          mapControl.removeFeatureById(modelId);
       }
 
       function polygonDragEnd(modelId, gMapPolygon) {
-         grappStoreLayout.getFeatureById(modelId).commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
+         storeLayout.getFeatureById(modelId).commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
       }
    }
 })();

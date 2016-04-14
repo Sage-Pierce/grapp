@@ -2,24 +2,24 @@
    "use strict";
 
    angular.module("Grapp")
-      .service("GrappStoreLayout", GrappStoreLayout);
+      .service("StoreLayout", StoreLayout);
 
-   GrappStoreLayout.$inject = ["Root", "GrappStoreNodeType"];
-   function GrappStoreLayout(Root, GrappStoreNodeType) {
+   StoreLayout.$inject = ["Root", "NodeType"];
+   function StoreLayout(Root, NodeType) {
       var self = this;
       self.loadById = loadById;
 
       ////////////////////
 
-      function loadById(grappStoreLayoutId) {
-         return Root.loadResourceModelById("layout", grappStoreLayoutId, createModel);
+      function loadById(storeLayoutId) {
+         return Root.loadResourceModelById("layout", storeLayoutId, createModel);
       }
 
-      function createModel(grappStoreLayoutRsc) {
-         return new GrappStoreLayoutModel(grappStoreLayoutRsc);
+      function createModel(storeLayoutRsc) {
+         return new StoreLayoutModel(storeLayoutRsc);
       }
 
-      function GrappStoreLayoutModel(grappStoreLayoutRsc) {
+      function StoreLayoutModel(storeLayoutRsc) {
          var self = this;
          self.getOuterOutline = getOuterOutline;
          self.getInnerOutline = getInnerOutline;
@@ -32,10 +32,10 @@
          self.addNode = addNode;
          self.removeNodeById = removeNodeById;
 
-         var outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: grappStoreLayoutRsc.outerOutline}, "outerOutline", false);
-         var innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: grappStoreLayoutRsc.innerOutline}, "innerOutline", false);
-         var features = _.object(grappStoreLayoutRsc.features.map(function(feature) { return [feature.id, createPolygonModelFromFeature(feature)]; }));
-         var nodes = _.object(grappStoreLayoutRsc.nodes.map(function(node) { return [node.id, createNodeModelFromNode(node)]; }));
+         var outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: storeLayoutRsc.outerOutline}, "outerOutline", false);
+         var innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: storeLayoutRsc.innerOutline}, "innerOutline", false);
+         var features = _.object(storeLayoutRsc.features.map(function(feature) { return [feature.id, createPolygonModelFromFeature(feature)]; }));
+         var nodes = _.object(storeLayoutRsc.nodes.map(function(node) { return [node.id, createNodeModelFromNode(node)]; }));
 
          ////////////////////
 
@@ -56,7 +56,7 @@
          }
 
          function addFeature(vertices) {
-            return grappStoreLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoPolygon(vertices)})
+            return storeLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoPolygon(vertices)})
                .then(function(featureRsc) {
                   features[featureRsc.id] = createPolygonModelFromFeature(featureRsc);
                   return features[featureRsc.id];
@@ -64,7 +64,7 @@
          }
 
          function removeFeatureById(id) {
-            grappStoreLayoutRsc.$del("removeFeature", {featureId: id})
+            storeLayoutRsc.$del("removeFeature", {featureId: id})
                .then(function() { delete features[id]; });
          }
 
@@ -76,8 +76,8 @@
             return _.values(nodes);
          }
 
-         function addNode(grappStoreNodeType, location) {
-            return grappStoreLayoutRsc.$post("addNode", {type: _.findKey(GrappStoreNodeType, grappStoreNodeType), location: JSON.stringify(location)})
+         function addNode(nodeType, location) {
+            return storeLayoutRsc.$post("addNode", {type: _.findKey(NodeType, nodeType), location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
                   nodes[layoutNodeUpdateRsc.id] = createNodeModelFromNode(layoutNodeUpdateRsc);
                   return layoutNodeUpdateRsc.$get("affectedNodes")
@@ -90,7 +90,7 @@
          }
 
          function removeNodeById(id) {
-            grappStoreLayoutRsc.$del("removeNode", {nodeId: id})
+            storeLayoutRsc.$del("removeNode", {nodeId: id})
                .then(function() { delete nodes[id]; });
          }
 
@@ -112,7 +112,7 @@
                featureId: polygonModel.id,
                polygon: stringifyVerticesIntoPolygon(vertices)
             };
-            return grappStoreLayoutRsc.$put(updateRel, params)
+            return storeLayoutRsc.$put(updateRel, params)
                .then(function() { polygonModel.vertices = vertices; });
          }
 
@@ -124,7 +124,7 @@
             return {
                id: grappStoreNode.id,
                name: grappStoreNode.name,
-               type: GrappStoreNodeType[grappStoreNode.type],
+               type: NodeType[grappStoreNode.type],
                location: grappStoreNode.location,
                commitName: function(name) { commitNodeModelParams(this, {name: name}); },
                commitLocation: function(position) { commitNodeModelPosition(this, position); }
@@ -133,7 +133,7 @@
 
          function updateNodeModelFromNode(node) {
             var nodeModel = getNodeById(node.id);
-            nodeModel.type = GrappStoreNodeType[node.type];
+            nodeModel.type = NodeType[node.type];
             return nodeModel;
          }
 
@@ -147,7 +147,7 @@
                nodeId: nodeModel.id,
                location: JSON.stringify(location)
             };
-            return grappStoreLayoutRsc.$put("moveNode", params)
+            return storeLayoutRsc.$put("moveNode", params)
                .then(function() { nodeModel.location = location; });
          }
       }

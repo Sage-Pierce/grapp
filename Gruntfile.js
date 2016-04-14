@@ -29,17 +29,17 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/shoppinglists/*.js"],
             tasks: ["jshint", "concat:shoppinglists"]
          },
-         storemap: {
-            files: [webappRoot + "app/storemap/*.js"],
-            tasks: ["jshint", "concat:storemap"]
+         storelayout: {
+            files: [webappRoot + "app/storelayout/*.js"],
+            tasks: ["jshint", "concat:storelayout"]
          },
-         storemapfeatures: {
-            files: [webappRoot + "app/storemap/features/*.js"],
-            tasks: ["jshint", "concat:storemapfeatures"]
+         storelayoutfeatures: {
+            files: [webappRoot + "app/storelayout/features/*.js"],
+            tasks: ["jshint", "concat:storelayoutfeatures"]
          },
-         storemapnodes: {
-            files: [webappRoot + "app/storemap/nodes/*.js"],
-            tasks: ["jshint", "concat:storemapnodes"]
+         storelayoutnodes: {
+            files: [webappRoot + "app/storelayout/nodes/*.js"],
+            tasks: ["jshint", "concat:storelayoutnodes"]
          },
          stores: {
             files: [webappRoot + "app/stores/*.js"],
@@ -61,9 +61,9 @@ module.exports = function (grunt) {
             webappRoot + "app/itemtree/*.js",
             webappRoot + "app/map/*.js",
             webappRoot + "app/shoppinglists/*.js",
-            webappRoot + "app/storemap/*.js",
-            webappRoot + "app/storemapfeatures/*.js",
-            webappRoot + "app/storemaplayout/*.js",
+            webappRoot + "app/storelayout/*.js",
+            webappRoot + "app/storelayout/features/*.js",
+            webappRoot + "app/storelayout/layout/*.js",
             webappRoot + "app/stores/*.js",
             webappRoot + "app/welcome/*.js"
          ]
@@ -93,17 +93,17 @@ module.exports = function (grunt) {
             src: [webappRoot + "app/shoppinglists/*.js"],
             dest: webappRoot + "concat/shoppinglists-concat.js"
          },
-         storemap: {
-            src: [webappRoot + "app/storemap/*.js"],
-            dest: webappRoot + "concat/storemap-concat.js"
+         storelayout: {
+            src: [webappRoot + "app/storelayout/*.js"],
+            dest: webappRoot + "concat/storelayout-concat.js"
          },
-         storemapfeatures: {
-            src: [webappRoot + "app/storemap/features/*.js"],
-            dest: webappRoot + "concat/storemapfeatures-concat.js"
+         storelayoutfeatures: {
+            src: [webappRoot + "app/storelayout/features/*.js"],
+            dest: webappRoot + "concat/storelayoutfeatures-concat.js"
          },
-         storemapnodes: {
-            src: [webappRoot + "app/storemap/nodes/*.js"],
-            dest: webappRoot + "concat/storemapnodes-concat.js"
+         storelayoutnodes: {
+            src: [webappRoot + "app/storelayout/nodes/*.js"],
+            dest: webappRoot + "concat/storelayoutnodes-concat.js"
          },
          stores: {
             src: [webappRoot + "app/stores/*.js"],
