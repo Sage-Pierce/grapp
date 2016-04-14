@@ -5,7 +5,7 @@
 
    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
 
-   angular.module("Grapp", ["ngCookies", "ui.router", "angular-hal", "ui.bootstrap", "uiGmapgoogle-maps", "ui.tree"])
+   angular.module("App", ["ngCookies", "ui.router", "angular-hal", "ui.bootstrap", "uiGmapgoogle-maps", "ui.tree"])
       .config(configure)
       .run(initialize);
 
