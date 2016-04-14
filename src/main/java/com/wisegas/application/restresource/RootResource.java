@@ -1,4 +1,4 @@
-package com.wisegas.grapp.restresource;
+package com.wisegas.application.restresource;
 
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;

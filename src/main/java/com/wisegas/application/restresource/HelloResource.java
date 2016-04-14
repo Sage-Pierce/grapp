@@ -1,4 +1,4 @@
-package com.wisegas.grapp.restresource;
+package com.wisegas.application.restresource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

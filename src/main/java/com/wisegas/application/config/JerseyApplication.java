@@ -1,4 +1,4 @@
-package com.wisegas.grapp.config;
+package com.wisegas.application.config;
 
 import com.wisegas.common.webserver.jaxrs.filter.CORSResponseFilter;
 import com.wisegas.common.webserver.jaxrs.mapper.EntityConflictExceptionMapper;
@@ -10,7 +10,7 @@ public class JerseyApplication extends ResourceConfig {
 
    public JerseyApplication() {
       // Register REST Endpoints
-      packages("com.wisegas.grapp.restresource",
+      packages("com.wisegas.application.restresource",
                "com.wisegas.itemmanagement.restresource",
                "com.wisegas.storemanagement.restresource",
                "com.wisegas.user.restresource");
