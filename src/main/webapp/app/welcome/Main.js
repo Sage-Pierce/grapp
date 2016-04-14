@@ -4,13 +4,13 @@
    angular.module("Grapp")
       .controller("Main", Main);
 
-   Main.$inject = ["$state", "$uibModal", "GrappLogIn"];
-   function Main($state, $uibModal, GrappLogIn) {
+   Main.$inject = ["$state", "$uibModal", "Login"];
+   function Main($state, $uibModal, Login) {
       var mainVM = this;
       mainVM.isLoading = false;
-      mainVM.isUserLoggedIn = GrappLogIn.isUserLoggedIn;
-      mainVM.grappUserName = null;
-      mainVM.grappUserAvater = null;
+      mainVM.isUserLoggedIn = Login.isUserLoggedIn;
+      mainVM.userName = null;
+      mainVM.userAvater = null;
       mainVM.logIn = logIn;
       mainVM.logOut = logOut;
       mainVM.showWelcome = showWelcome;
@@ -25,8 +25,8 @@
 
       function initialize() {
          mainVM.isLoading = true;
-         GrappLogIn.afterLogIn().then(function(grappUser) {
-            initUserVariables(grappUser);
+         Login.afterLogIn().then(function(user) {
+            initUserVariables(user);
          }).finally(function() {
             mainVM.isLoading = false;
          });
@@ -34,8 +34,8 @@
 
       function logIn(oAuthProvider) {
          mainVM.isLoading = true;
-         GrappLogIn.logInWithOAuth(oAuthProvider).then(function(grappUser) {
-            initUserVariables(grappUser);
+         Login.logInWithOAuth(oAuthProvider).then(function(user) {
+            initUserVariables(user);
             mainVM.showShoppingLists();
          }).finally(function() {
             mainVM.isLoading = false;
@@ -43,7 +43,7 @@
       }
 
       function logOut() {
-         GrappLogIn.logOut();
+         Login.logOut();
          mainVM.showWelcome();
       }
 
@@ -71,7 +71,7 @@
             controllerAs: "modalUpdateDisplayNameVM",
             resolve: {
                displayName: function () {
-                  return mainVM.grappUserName;
+                  return mainVM.userName;
                }
             }
          }).result.then(updateDisplayName, function() {});
@@ -79,18 +79,18 @@
 
       function updateDisplayName(updatedDisplayName) {
          mainVM.loading = true;
-         GrappLogIn.afterLogIn().then(function(grappUser) {
-            return grappUser.updateDisplayName(updatedDisplayName);
+         Login.afterLogIn().then(function(user) {
+            return user.updateDisplayName(updatedDisplayName);
          }).then(function() {
-            mainVM.grappUserName = updatedDisplayName;
+            mainVM.userName = updatedDisplayName;
          }).finally(function() {
             mainVM.loading = false;
          });
       }
 
-      function initUserVariables(grappUser) {
-         mainVM.grappUserName = grappUser ? grappUser.name : null;
-         mainVM.grappUserAvatar = grappUser ? grappUser.avatar : null;
+      function initUserVariables(user) {
+         mainVM.userName = user ? user.name : null;
+         mainVM.userAvatar = user ? user.avatar : null;
       }
    }
 })();

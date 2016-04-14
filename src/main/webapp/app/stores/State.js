@@ -10,8 +10,8 @@
          .state("main.stores", {
             url: "stores",
             resolve: {
-               grappUser: ["GrappLogIn", function(GrappLogIn) {
-                  return GrappLogIn.afterLogIn();
+               user: ["Login", function(Login) {
+                  return Login.afterLogIn();
                }]
             },
             views: {

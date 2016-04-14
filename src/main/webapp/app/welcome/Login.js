@@ -2,11 +2,11 @@
    "use strict";
 
    angular.module("Grapp")
-      .service("GrappLogIn", GrappLogIn)
+      .service("Login", Login)
       .run(logInCachedUser);
 
-   GrappLogIn.$inject = ["$cookies", "$q", "Root", "GrappUser"];
-   function GrappLogIn($cookies, $q, Root, GrappUser) {
+   Login.$inject = ["$cookies", "$q", "Root", "User"];
+   function Login($cookies, $q, Root, User) {
       var self = this;
       self.logInCachedUser = logInCachedUser;
       self.logInWithOAuth = logInWithOAuth;
@@ -20,9 +20,9 @@
       ////////////////////
 
       function logInCachedUser() {
-         var grappUserId = $cookies.get("grapp-user-id");
-         if (grappUserId) {
-            GrappUser.loadById(grappUserId).then(resolveUser, function() {
+         var userId = $cookies.get("grapp-user-id");
+         if (userId) {
+            User.loadById(userId).then(resolveUser, function() {
                deferred.reject("Problem logging User in on Server.");
             });
          }
@@ -60,23 +60,23 @@
 
       function logIn(email, avatar) {
          return Root.afterLoad().then(function(grappRoot) {
-            return grappRoot.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(GrappUser.load);
+            return grappRoot.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(User.load);
          });
       }
 
-      function cacheUser(grappUser) {
-         $cookies.put("grapp-user-id", grappUser.id);
-         return grappUser;
+      function cacheUser(user) {
+         $cookies.put("grapp-user-id", user.id);
+         return user;
       }
 
-      function resolveUser(grappUser) {
-         deferred.resolve(grappUser);
+      function resolveUser(user) {
+         deferred.resolve(user);
          userLoggedIn = true;
       }
    }
 
-   logInCachedUser.$inject = ["GrappLogIn"];
-   function logInCachedUser(GrappLogIn) {
-      GrappLogIn.logInCachedUser();
+   logInCachedUser.$inject = ["Login"];
+   function logInCachedUser(Login) {
+      Login.logInCachedUser();
    }
 })();
