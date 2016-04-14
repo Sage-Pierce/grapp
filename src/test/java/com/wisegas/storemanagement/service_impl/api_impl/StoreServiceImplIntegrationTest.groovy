@@ -9,11 +9,11 @@ import javax.inject.Inject
 public class StoreServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
-   private StoreService grappStoreService
+   private StoreService storeService
 
    def "We can create a Store through the Service"() {
       when:
-      def result = grappStoreService.create("TEST STORE", new GeoPoint(1, 2))
+      def result = storeService.create("TEST STORE", new GeoPoint(1, 2))
 
       then:
       result.getId()

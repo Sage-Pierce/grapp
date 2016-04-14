@@ -12,14 +12,14 @@ import javax.inject.Inject
 class UserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<User> {
 
    @Inject
-   private UserRepository grappUserRepository
+   private UserRepository userRepository
 
-   def "A GrappUser can be found by E-Mail"() {
+   def "A User can be found by E-Mail"() {
       given:
-      User grappUser = testEntityManager.save(UserBuilder.user())
+      User user = testEntityManager.save(UserBuilder.user())
 
       when: "We try to find our Test Entity by E-Mail"
-      def result = grappUserRepository.findByEmail(shouldBeFound ? grappUser.getEmail() : "BOGUS EMAIL")
+      def result = userRepository.findByEmail(shouldBeFound ? user.getEmail() : "BOGUS EMAIL")
 
       then: "The Test Entity should found based on the E-Mail we looked for"
       shouldBeFound == result.isPresent()

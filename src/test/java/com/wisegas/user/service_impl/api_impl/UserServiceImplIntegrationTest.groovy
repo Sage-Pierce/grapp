@@ -10,14 +10,14 @@ import javax.inject.Inject
 public class UserServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
-   private UserService grappUserService
+   private UserService userService
 
-   def "We can change a GrappUser's name and get back an appropriate DTO"() {
+   def "We can change a User's name and get back an appropriate DTO"() {
       given:
-      User grappUser = testEntityManager.save(UserBuilder.user())
+      User user = testEntityManager.save(UserBuilder.user())
 
       when:
-      def result = grappUserService.update(grappUser.getId().toString(), "NEW NAME")
+      def result = userService.update(user.getId().toString(), "NEW NAME")
 
       then:
       result.getName() == "NEW NAME"

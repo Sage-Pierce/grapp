@@ -4,7 +4,7 @@ import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationT
 import com.wisegas.storemanagement.domain.entity.NodeItem
 import com.wisegas.storemanagement.test.builders.NodeItemBuilder
 
-class StoreNodeItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<NodeItem> {
+class NodeItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<NodeItem> {
 
    @Override
    NodeItem createTestEntity() {

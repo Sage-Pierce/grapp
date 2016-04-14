@@ -7,9 +7,9 @@ import com.wisegas.storemanagement.domain.event.NodeModifiedEvent
 import com.wisegas.storemanagement.domain.value.NodeType
 import com.wisegas.storemanagement.test.builders.NodeBuilder
 
-class StoreNodeTest extends DomainEventAwareTest {
+class NodeTest extends DomainEventAwareTest {
 
-   def "Changing a GrappStoreNode's Type causes a Domain Event to be published"() {
+   def "Changing a Node's Type causes a Domain Event to be published"() {
       given:
       Node node = NodeBuilder.node().having { it.type = NodeType.ENTRANCE }
 
@@ -25,7 +25,7 @@ class StoreNodeTest extends DomainEventAwareTest {
       then:
       1 * eventSubscriber.handleEvent(_ as NodeModifiedEvent) >> { args ->
          NodeModifiedEvent event = args[0]
-         event.getNodeID() == node.getId().toString()
+         event.getNodeId() == node.getId().toString()
       }
    }
 }

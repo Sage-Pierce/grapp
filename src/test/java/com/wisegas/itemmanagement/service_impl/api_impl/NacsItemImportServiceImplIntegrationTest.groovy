@@ -12,7 +12,7 @@ class NacsItemImportServiceImplIntegrationTest extends IntegrationTest {
    @Inject
    private NacsItemImportService nacsItemImportService
 
-   def "Importing a CATEGORY NacsItem should result in a 'general' GrappItem"() {
+   def "Importing a CATEGORY NacsItem should result in a 'general' Item"() {
       when:
       def result = nacsItemImportService.importCsvItems("01-00-00,General Item,")
 
@@ -22,7 +22,7 @@ class NacsItemImportServiceImplIntegrationTest extends IntegrationTest {
       result[0].getSuperItemId() == null
    }
 
-   def "Importing a CATEGORY NacsItem with sub-items should result in a 'general' GrappItem with sub-items"() {
+   def "Importing a CATEGORY NacsItem with sub-items should result in a 'general' Item with sub-items"() {
       when:
       def result = nacsItemImportService.importCsvItems("01-00-00,General Item,\"Sub-Item 1, Sub-Item 2\"")
 
@@ -32,7 +32,7 @@ class NacsItemImportServiceImplIntegrationTest extends IntegrationTest {
       result[0].getSubItems().collect { it.getName() }.containsAll(["Sub-Item 1", "Sub-Item 2"])
    }
 
-   def "Importing a CATEGORY NacsItem with Sub-Category NacsItems should result in a 'general' GrappItem with sub-items"() {
+   def "Importing a CATEGORY NacsItem with Sub-Category NacsItems should result in a 'general' Item with sub-items"() {
       when:
       def result = nacsItemImportService.importCsvItems("01-00-00,General Item,\n" +
                                                         "01-01-00,Sub-Item 1,")

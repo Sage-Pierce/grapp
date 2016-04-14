@@ -23,7 +23,7 @@ class ItemTest extends Specification {
       result.getSuperItem() == superItem
    }
 
-   def "A GrappItem is a 'general' Item if it has no super Item"() {
+   def "An Item is a 'general' Item if it has no super Item"() {
       given:
       Item superItem = new Item(SUPER_CODE, "Super Item")
       Item item = superItem.addSubItem(SUB_CODE, "Item")
@@ -33,7 +33,7 @@ class ItemTest extends Specification {
       !item.isGeneralItem()
    }
 
-   def "The Hierarchy of a GrappItem can be determined"() {
+   def "The Hierarchy of an Item can be determined"() {
       given:
       Item superSuperItem = new Item(SUPER_SUPER_CODE, "Super Super Item")
       Item superItem = superSuperItem.addSubItem(SUPER_CODE, "Super Item")

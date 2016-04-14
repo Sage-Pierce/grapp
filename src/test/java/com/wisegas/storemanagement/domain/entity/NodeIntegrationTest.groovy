@@ -7,38 +7,38 @@ import com.wisegas.storemanagement.test.builders.NodeBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class StoreNodeIntegrationTest extends EntityIntegrationTest<Node> {
+class NodeIntegrationTest extends EntityIntegrationTest<Node> {
 
-   def "A GrappStoreNode's location is persisted correctly"() {
+   def "A Node's location is persisted correctly"() {
       given:
-      Node grappStoreNode = NodeBuilder.node()
-      grappStoreNode.setLocation(new GeoPoint(1d, 1d))
-      testEntityManager.save(grappStoreNode)
+      Node node = NodeBuilder.node()
+      node.setLocation(new GeoPoint(1d, 1d))
+      testEntityManager.save(node)
       testEntityManager.flush()
       testEntityManager.clear()
 
       and:
-      def managedGrappStoreNode = testEntityManager.getManagedEntity(grappStoreNode)
+      def managedNode = testEntityManager.getManagedEntity(node)
 
       expect:
-      managedGrappStoreNode.getLocation() == new GeoPoint(1d, 1d)
+      managedNode.getLocation() == new GeoPoint(1d, 1d)
    }
 
-   def "GrappStoreNodes have their Items persisted correctly"() {
+   def "Nodes have their Items persisted correctly"() {
       given:
-      Node grappStoreNode = NodeBuilder.node()
+      Node node = NodeBuilder.node()
 
       and:
       Item item = new Item("CODE", "ITEM")
-      grappStoreNode.addItem(item)
+      node.addItem(item)
 
       and:
-      testEntityManager.save(grappStoreNode)
+      testEntityManager.save(node)
       testEntityManager.flush()
       testEntityManager.clear()
 
       when:
-      Node managedNode = testEntityManager.getManagedEntity(grappStoreNode)
+      Node managedNode = testEntityManager.getManagedEntity(node)
 
       then:
       managedNode.containsItem(item)

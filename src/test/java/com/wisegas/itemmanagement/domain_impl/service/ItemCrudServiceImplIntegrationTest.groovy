@@ -13,27 +13,21 @@ import javax.inject.Inject
 class ItemCrudServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
-   private ItemCrudServiceImpl grappItemCrudService
+   private ItemCrudServiceImpl itemCrudService
 
-   def "A GrappItem cannot be created or modified to a certain name if an Item of that name already exists"() {
+   def "An Item cannot be created or modified to a certain name if an Item of that name already exists"() {
       given:
       Item existingItem1 = testEntityManager.save(ItemBuilder.item())
       Item existingItem2 = testEntityManager.save(ItemBuilder.item())
 
       when:
-      grappItemCrudService.createGeneralItem(new Code(CodeType.MANUAL, "CODE 1"), existingItem1.getName())
+      itemCrudService.createGeneralItem(new Code(CodeType.MANUAL, "CODE 1"), existingItem1.getName())
 
       then:
       thrown(Exception)
 
       when:
-      grappItemCrudService.createSubItem(existingItem1.getId(), new Code(CodeType.MANUAL, "CODE 2"), existingItem2.getName())
-
-      then:
-      thrown(Exception)
-
-      when:
-      grappItemCrudService.updateName(existingItem2.getId(), existingItem1.getName())
+      itemCrudService.createSubItem(existingItem1.getId(), new Code(CodeType.MANUAL, "CODE 2"), existingItem2.getName())
 
       then:
       thrown(Exception)

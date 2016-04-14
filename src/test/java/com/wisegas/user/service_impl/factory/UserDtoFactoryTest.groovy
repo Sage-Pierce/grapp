@@ -5,18 +5,18 @@ import spock.lang.Specification
 
 class UserDtoFactoryTest extends Specification {
 
-   def "A GrappUserResource can be created from a GrappUser"() {
+   def "A UserResource can be created from a User"() {
       given:
-      User grappUser = new User("Test_Email", "Test", "Test_Avatar")
+      User user = new User("Test_Email", "Test", "Test_Avatar")
 
       when:
-      def result = UserDtoFactory.createDto(grappUser)
+      def result = UserDtoFactory.createDto(user)
 
       then:
       with(result) {
-         id == grappUser.getId().toString()
-         name == grappUser.getName()
-         avatar == grappUser.getAvatar()
+         id == user.getId().toString()
+         name == user.getName()
+         avatar == user.getAvatar()
       }
    }
 }

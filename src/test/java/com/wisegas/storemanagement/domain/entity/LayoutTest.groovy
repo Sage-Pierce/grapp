@@ -6,17 +6,17 @@ import com.wisegas.storemanagement.domain.value.NodeType
 import com.wisegas.storemanagement.test.builders.LayoutBuilder
 import spock.lang.Specification
 
-class StoreLayoutTest extends Specification {
+class LayoutTest extends Specification {
 
    def "Adding a singleton-Type Node to a Layout which already has one of that Type causes the original one to become whatever the default non-singleton type is"() {
       given:
-      Layout grappStoreLayout = LayoutBuilder.layout()
+      Layout layout = LayoutBuilder.layout()
 
       and:
-      Node oldEntrance = grappStoreLayout.addNode(singletonType, new GeoPoint(0, 0))
+      Node oldEntrance = layout.addNode(singletonType, new GeoPoint(0, 0))
 
       when:
-      Node newEntrance = grappStoreLayout.addNode(singletonType, new GeoPoint(1, 1))
+      Node newEntrance = layout.addNode(singletonType, new GeoPoint(1, 1))
 
       then:
       oldEntrance.getType() == NodeType.defaultNonSingleton()
@@ -28,18 +28,18 @@ class StoreLayoutTest extends Specification {
 
    def "Adding an Item to a Node in a Layout removes that Item from any other Nodes in the Layout"() {
       given:
-      Layout grappStoreLayout = LayoutBuilder.layout()
+      Layout layout = LayoutBuilder.layout()
       Item item = new Item("CODE", "ITEM")
 
       and:
-      Node node1 = grappStoreLayout.addNode(NodeType.REGULAR, new GeoPoint(0, 0))
-      Node node2 = grappStoreLayout.addNode(NodeType.REGULAR, new GeoPoint(1, 1))
+      Node node1 = layout.addNode(NodeType.REGULAR, new GeoPoint(0, 0))
+      Node node2 = layout.addNode(NodeType.REGULAR, new GeoPoint(1, 1))
 
       and:
-      grappStoreLayout.addNodeItem(node1.getId(), item)
+      layout.addNodeItem(node1.getId(), item)
 
       when:
-      grappStoreLayout.addNodeItem(node2.getId(), item)
+      layout.addNodeItem(node2.getId(), item)
 
       then:
       !node1.containsItem(item)

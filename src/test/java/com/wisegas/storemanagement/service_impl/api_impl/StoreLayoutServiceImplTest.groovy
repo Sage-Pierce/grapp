@@ -12,12 +12,12 @@ import com.wisegas.storemanagement.test.builders.LayoutBuilder
 
 class StoreLayoutServiceImplTest extends ApplicationServiceTest {
 
-   LayoutServiceImpl grappStoreLayoutService
-   LayoutRepository grappStoreLayoutRepository
+   LayoutServiceImpl layoutService
+   LayoutRepository layoutRepository
 
    def setup() {
-      grappStoreLayoutRepository = Mock(LayoutRepository)
-      grappStoreLayoutService = new LayoutServiceImpl(grappStoreLayoutRepository)
+      layoutRepository = Mock(LayoutRepository)
+      layoutService = new LayoutServiceImpl(layoutRepository)
    }
 
    def "The result of adding a Node through the Service updates the node and notifies of affected Nodes"() {
@@ -27,10 +27,10 @@ class StoreLayoutServiceImplTest extends ApplicationServiceTest {
       Node regularNode = layout.addNode(NodeType.REGULAR, new GeoPoint(0, 1))
 
       and:
-      grappStoreLayoutRepository.get(layout.getId()) >> layout
+      layoutRepository.get(layout.getId()) >> layout
 
       when:
-      def result = grappStoreLayoutService.addNode(layout.getId().toString(), NodeType.ENTRANCE.name(), new GeoPoint(1, 1))
+      def result = layoutService.addNode(layout.getId().toString(), NodeType.ENTRANCE.name(), new GeoPoint(1, 1))
 
       then:
       result.getTarget().getType() == NodeType.ENTRANCE.name()
@@ -46,7 +46,7 @@ class StoreLayoutServiceImplTest extends ApplicationServiceTest {
       Layout layout = LayoutBuilder.layout()
 
       and:
-      grappStoreLayoutRepository.get(layout.getId()) >> layout
+      layoutRepository.get(layout.getId()) >> layout
 
       and:
       Node node1 = layout.addNode(NodeType.REGULAR, new GeoPoint(0, 0))
@@ -56,7 +56,7 @@ class StoreLayoutServiceImplTest extends ApplicationServiceTest {
       node1.addItem(new Item(item))
 
       when:
-      def result = grappStoreLayoutService.addNodeItem(layout.getId().toString(), node2.getId().toString(), item)
+      def result = layoutService.addNodeItem(layout.getId().toString(), node2.getId().toString(), item)
 
       then:
       result.getTarget().getItem() == item

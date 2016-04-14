@@ -5,18 +5,18 @@ import spock.lang.Specification
 
 class StoreDtoFactoryTest extends Specification {
 
-   def "A GrappStoreDTO can be created from a GrappStore"() {
+   def "A StoreDTO can be created from a Store"() {
       given:
-      def grappStore = StoreBuilder.store()
+      def store = StoreBuilder.store()
 
       when:
-      def result = StoreDtoFactory.createDto(grappStore)
+      def result = StoreDtoFactory.createDto(store)
 
       then:
       with(result) {
-         id == grappStore.getId().toString()
-         name == grappStore.getName()
-         location == grappStore.getLocation()
+         id == store.getId().toString()
+         name == store.getName()
+         location == store.getLocation()
       }
    }
 }

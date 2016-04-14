@@ -12,10 +12,10 @@ import javax.inject.Inject
 
 @Transactional
 class ItemImportServiceImplIntegrationTest extends IntegrationTest {
-   private static final String NAME = "Grapp Item"
+   private static final String NAME = "Item"
 
    @Inject
-   private ItemImportService grappItemImportService
+   private ItemImportService itemImportService
 
    private Code generalCode
    private Item generalItem
@@ -30,7 +30,7 @@ class ItemImportServiceImplIntegrationTest extends IntegrationTest {
       Code code = new Code(CodeType.NACS, "01-00-00")
 
       when:
-      def result = grappItemImportService.importGeneralItem(code, NAME)
+      def result = itemImportService.importGeneralItem(code, NAME)
 
       then:
       result.getId() == code
@@ -42,7 +42,7 @@ class ItemImportServiceImplIntegrationTest extends IntegrationTest {
       Code subCode = new Code(CodeType.NACS, "00-01-00")
 
       when:
-      def result = grappItemImportService.importSubItem(generalCode, subCode, NAME)
+      def result = itemImportService.importSubItem(generalCode, subCode, NAME)
 
       then:
       generalItem.getSubItems().size() == 1
@@ -55,15 +55,15 @@ class ItemImportServiceImplIntegrationTest extends IntegrationTest {
 
    def "Trying to import an item with the code of one existing Item and the name of another existing Item results in an Exception"() {
       given:
-      Item grappItem = ItemBuilder.item()
+      Item item = ItemBuilder.item()
       Code code = new Code(CodeType.NACS, "01-00-00")
 
       and:
-      testEntityManager.save(grappItem)
+      testEntityManager.save(item)
       testEntityManager.save(new Item(code, "AN ITEM"))
 
       when:
-      grappItemImportService.importGeneralItem(code, grappItem.getName())
+      itemImportService.importGeneralItem(code, item.getName())
 
       then:
       thrown(IllegalStateException)

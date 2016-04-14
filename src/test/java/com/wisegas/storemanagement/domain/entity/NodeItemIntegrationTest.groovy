@@ -5,7 +5,7 @@ import com.wisegas.storemanagement.test.builders.NodeItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class StoreNodeItemIntegrationTest extends EntityIntegrationTest<NodeItem> {
+class NodeItemIntegrationTest extends EntityIntegrationTest<NodeItem> {
 
    @Override
    NodeItem createTestEntity() {
