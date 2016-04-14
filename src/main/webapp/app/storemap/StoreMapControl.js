@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .factory("GrappMapControl", GrappMapControl);
+      .factory("StoreMapControl", StoreMapControl);
 
-   GrappMapControl.$inject = ["uiGmapUtil"];
-   function GrappMapControl(uiGmapUtil) {
+   StoreMapControl.$inject = ["uiGmapUtil"];
+   function StoreMapControl(uiGmapUtil) {
       return function() {
          var self = this;
          self.getOutlineById = getOutlineById;
@@ -99,7 +99,7 @@
             // any Events attached to it and no associated ID
             // for those Events. If this GMapPolygon is a
             // Feature, then it needs to be added like other
-            // Features through GrappMapControl.addFeature() so
+            // Features through StoreMapControl.addFeature() so
             // that Event Handlers are attached with appropriate
             // ID and it is added to the Plurals
             gMapPolygon.setMap(null);

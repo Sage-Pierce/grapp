@@ -1,0 +1,40 @@
+<ui-gmap-google-map options="storeMapVM.mapSettings.options"
+                    center="storeMapVM.mapSettings.center"
+                    zoom="storeMapVM.mapSettings.zoom"
+                    events="storeMapVM.events.map"
+                    control="storeMapVM.controls.map">
+   <ui-gmap-drawing-manager options="storeMapVM.mapSettings.options"
+                            events="storeMapVM.events.drawingManager"
+                            control="storeMapVM.controls.drawingManager">
+   </ui-gmap-drawing-manager>
+   <ui-gmap-polygons models="storeMapVM.storeOutlines"
+                     path="'path'"
+                     stroke="{weight: 1}"
+                     fill="'fill'"
+                     zindex="'zIndex'"
+                     fit="'fit'"
+                     clickable="'clickable'"
+                     static="true"
+                     events="storeMapVM.events.polygon"
+                     control="storeMapVM.controls.outline">
+   </ui-gmap-polygons>
+   <ui-gmap-polygons models="storeMapVM.storeFeatures"
+                     path="'path'"
+                     stroke="{weight: 1}"
+                     fill="'fill'"
+                     zindex="'zIndex'"
+                     clickable="'clickable'"
+                     draggable="'draggable'"
+                     static="true"
+                     events="storeMapVM.events.polygon"
+                     control="storeMapVM.controls.feature">
+   </ui-gmap-polygons>
+   <ui-gmap-markers models="storeMapVM.storeNodes"
+                    coords="'position'"
+                    icon="'icon'"
+                    options="'options'"
+                    static="true"
+                    events="storeMapVM.events.marker"
+                    control="storeMapVM.controls.node">
+   </ui-gmap-markers>
+</ui-gmap-google-map>

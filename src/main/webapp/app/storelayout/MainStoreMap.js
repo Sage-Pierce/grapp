@@ -8,7 +8,7 @@
    function MainStoreMap(grappStore, storeLayout, mapControl) {
       var mainStoreMapVM = this;
       mainStoreMapVM.grappStoreName = grappStore.name;
-      mainStoreMapVM.grappStoreLocation = grappStore.location;
+      mainStoreMapVM.location = grappStore.location;
       mainStoreMapVM.storeLayout = storeLayout;
       mainStoreMapVM.mapControl = mapControl;
 

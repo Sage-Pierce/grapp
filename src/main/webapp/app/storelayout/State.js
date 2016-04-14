@@ -17,8 +17,8 @@
                storeLayout: ["$stateParams", "grappStore", "StoreLayout", function($stateParams, grappStore, StoreLayout) {
                   return StoreLayout.loadById(grappStore.layoutId);
                }],
-               mapControl: ["GrappMapControl", function(GrappMapControl) {
-                  return new GrappMapControl();
+               mapControl: ["StoreMapControl", function(StoreMapControl) {
+                  return new StoreMapControl();
                }]
             },
             views: {

@@ -1,10 +1,10 @@
 <h2 class="text-center">{{mainStoreMapVM.grappStoreName}}</h2>
 <div class="row">
-   <grapp-map class="col-md-9 h-padding-0"
-              grapp-map-control="mainStoreMapVM.mapControl"
-              grapp-store-location="mainStoreMapVM.grappStoreLocation"
-              grapp-layout="mainStoreMapVM.storeLayout">
-   </grapp-map>
+   <store-map class="col-md-9 h-padding-0"
+              map-control="mainStoreMapVM.mapControl"
+              location="mainStoreMapVM.location"
+              layout="mainStoreMapVM.storeLayout">
+   </store-map>
    <div class="col-md-3 h-padding-0">
       <ul class="nav nav-pills nav-justified">
          <li ui-sref-active="active"><a ui-sref="main.storeLayout.features">Features</a></li>
