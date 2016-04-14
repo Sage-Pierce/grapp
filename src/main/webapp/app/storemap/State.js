@@ -29,8 +29,8 @@
                }
             }
          })
-         .state("main.storeMap.layout", {
-            url: "/layout",
+         .state("main.storeMap.features", {
+            url: "/features",
             resolve: {
                mapControl: ["mapControl", function(mapControl) {
                   mapControl.setEventHandler(null);
@@ -39,9 +39,9 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storemap/layout/MainStoreMapLayout.html",
-                  controller: "MainStoreMapLayout",
-                  controllerAs: "mainStoreMapLayoutVM"
+                  templateUrl: "app/storemap/features/MainStoreMapFeatures.html",
+                  controller: "MainStoreMapFeatures",
+                  controllerAs: "mainStoreMapFeaturesVM"
                }
             }
          })

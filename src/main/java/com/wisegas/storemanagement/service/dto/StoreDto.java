@@ -6,7 +6,7 @@ import com.wisegas.common.lang.value.GeoPoint;
 public class StoreDto extends NamedDto {
 
    private GeoPoint location;
-   private String layoutID;
+   private String layoutId;
 
    public GeoPoint getLocation() {
       return location;
@@ -16,11 +16,11 @@ public class StoreDto extends NamedDto {
       this.location = location;
    }
 
-   public String getLayoutID() {
-      return layoutID;
+   public String getLayoutId() {
+      return layoutId;
    }
 
-   public void setLayoutID(String layoutID) {
-      this.layoutID = layoutID;
+   public void setLayoutId(String layoutId) {
+      this.layoutId = layoutId;
    }
 }

@@ -64,16 +64,16 @@ public class LayoutServiceImpl implements LayoutService {
    }
 
    @Override
-   public FeatureDto reshapeFeature(String id, String featureID, GeoPolygon polygon) {
+   public FeatureDto reshapeFeature(String id, String featureId, GeoPolygon polygon) {
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      Feature feature = layout.reshapeFeature(FeatureId.fromString(featureID), polygon);
+      Feature feature = layout.reshapeFeature(FeatureId.fromString(featureId), polygon);
       return FeatureDtoFactory.createDto(feature);
    }
 
    @Override
-   public void removeFeature(String id, String featureID) {
+   public void removeFeature(String id, String featureId) {
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      layout.removeFeature(FeatureId.fromString(featureID));
+      layout.removeFeature(FeatureId.fromString(featureId));
    }
 
    @Override
@@ -82,34 +82,34 @@ public class LayoutServiceImpl implements LayoutService {
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
       Node node = layout.addNode(NodeType.fromName(type), location);
-      return LayoutUpdateDtoFactory.createDto(layout, NodeDtoFactory.createDto(node), nodeModificationEventSubscriber.getNodeIDs());
+      return LayoutUpdateDtoFactory.createDto(layout, NodeDtoFactory.createDto(node), nodeModificationEventSubscriber.getNodeIds());
    }
 
    @Override
-   public NodeDto moveNode(String id, String nodeID, GeoPoint location) {
+   public NodeDto moveNode(String id, String nodeId, GeoPoint location) {
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      Node node = layout.moveNode(NodeId.fromString(nodeID), location);
+      Node node = layout.moveNode(NodeId.fromString(nodeId), location);
       return NodeDtoFactory.createDto(node);
    }
 
    @Override
-   public void removeNode(String id, String nodeID) {
+   public void removeNode(String id, String nodeId) {
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      layout.removeNode(NodeId.fromString(nodeID));
+      layout.removeNode(NodeId.fromString(nodeId));
    }
 
    @Override
-   public LayoutUpdateDto<NodeItemDto> addNodeItem(String id, String nodeID, CodeName item) {
+   public LayoutUpdateDto<NodeItemDto> addNodeItem(String id, String nodeId, CodeName item) {
       NodeModificationEventSubscriber nodeModificationEventSubscriber = new NodeModificationEventSubscriber();
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      NodeItem nodeItem = layout.addNodeItem(NodeId.fromString(nodeID), new Item(item));
-      return LayoutUpdateDtoFactory.createDto(layout, NodeItemDtoFactory.createDto(nodeItem), nodeModificationEventSubscriber.getNodeIDs());
+      NodeItem nodeItem = layout.addNodeItem(NodeId.fromString(nodeId), new Item(item));
+      return LayoutUpdateDtoFactory.createDto(layout, NodeItemDtoFactory.createDto(nodeItem), nodeModificationEventSubscriber.getNodeIds());
    }
 
    private static class NodeModificationEventSubscriber implements DomainEventSubscriber<NodeModifiedEvent> {
 
-      private final List<String> nodeIDs = new ArrayList<>();
+      private final List<String> nodeIds = new ArrayList<>();
 
       @Override
       public Class<NodeModifiedEvent> getSubscribedEventType() {
@@ -118,11 +118,11 @@ public class LayoutServiceImpl implements LayoutService {
 
       @Override
       public void handleEvent(NodeModifiedEvent domainEvent) {
-         nodeIDs.add(domainEvent.getNodeID());
+         nodeIds.add(domainEvent.getNodeId());
       }
 
-      public List<String> getNodeIDs() {
-         return nodeIDs;
+      public List<String> getNodeIds() {
+         return nodeIds;
       }
    }
 }

@@ -33,9 +33,9 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/storemap/*.js"],
             tasks: ["jshint", "concat:storemap"]
          },
-         storemaplayout: {
-            files: [webappRoot + "app/storemap/layout/*.js"],
-            tasks: ["jshint", "concat:storemaplayout"]
+         storemapfeatures: {
+            files: [webappRoot + "app/storemap/features/*.js"],
+            tasks: ["jshint", "concat:storemapfeatures"]
          },
          storemapnodes: {
             files: [webappRoot + "app/storemap/nodes/*.js"],
@@ -62,6 +62,8 @@ module.exports = function (grunt) {
             webappRoot + "app/map/*.js",
             webappRoot + "app/shoppinglists/*.js",
             webappRoot + "app/storemap/*.js",
+            webappRoot + "app/storemapfeatures/*.js",
+            webappRoot + "app/storemaplayout/*.js",
             webappRoot + "app/stores/*.js",
             webappRoot + "app/welcome/*.js"
          ]
@@ -95,9 +97,9 @@ module.exports = function (grunt) {
             src: [webappRoot + "app/storemap/*.js"],
             dest: webappRoot + "concat/storemap-concat.js"
          },
-         storemaplayout: {
-            src: [webappRoot + "app/storemap/layout/*.js"],
-            dest: webappRoot + "concat/storemaplayout-concat.js"
+         storemapfeatures: {
+            src: [webappRoot + "app/storemap/features/*.js"],
+            dest: webappRoot + "concat/storemapfeatures-concat.js"
          },
          storemapnodes: {
             src: [webappRoot + "app/storemap/nodes/*.js"],

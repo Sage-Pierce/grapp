@@ -14,15 +14,15 @@ public interface LayoutService {
 
    FeatureDto addFeature(String id, GeoPolygon polygon);
 
-   FeatureDto reshapeFeature(String id, String featureID, GeoPolygon polygon);
+   FeatureDto reshapeFeature(String id, String featureId, GeoPolygon polygon);
 
-   void removeFeature(String id, String featureID);
+   void removeFeature(String id, String featureId);
 
    LayoutUpdateDto<NodeDto> addNode(String id, String type, GeoPoint location);
 
-   NodeDto moveNode(String id, String nodeID, GeoPoint location);
+   NodeDto moveNode(String id, String nodeId, GeoPoint location);
 
-   void removeNode(String id, String nodeID);
+   void removeNode(String id, String nodeId);
 
-   LayoutUpdateDto<NodeItemDto> addNodeItem(String id, String nodeID, CodeName item);
+   LayoutUpdateDto<NodeItemDto> addNodeItem(String id, String nodeId, CodeName item);
 }

@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 
 public final class LayoutUpdateDtoFactory {
 
-   public static <T> LayoutUpdateDto<T> createDto(Layout layout, T targetDto, List<String> affectedNodeIDs) {
+   public static <T> LayoutUpdateDto<T> createDto(Layout layout, T targetDto, List<String> affectedNodeIds) {
       LayoutUpdateDto<T> resultDto = new LayoutUpdateDto<>();
       resultDto.setTarget(targetDto);
-      resultDto.setAffectedNodes(affectedNodeIDs.stream().map(NodeId::fromString).map(layout::getNode).map(NodeDtoFactory::createDto).collect(Collectors.toList()));
+      resultDto.setAffectedNodes(affectedNodeIds.stream().map(NodeId::fromString).map(layout::getNode).map(NodeDtoFactory::createDto).collect(Collectors.toList()));
       return resultDto;
    }
 
