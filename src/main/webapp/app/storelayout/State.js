@@ -2,10 +2,10 @@
    "use strict";
 
    angular.module("Grapp")
-      .config(GrappConfig);
+      .config(state);
 
-   GrappConfig.$inject = ["$stateProvider"];
-   function GrappConfig($stateProvider) {
+   state.$inject = ["$stateProvider"];
+   function state($stateProvider) {
       $stateProvider
          .state("main.storeLayout", {
             url: "storeLayout/:storeId",
