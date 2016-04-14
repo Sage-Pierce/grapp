@@ -1,11 +1,11 @@
 <div class="h-strut-10">
    <h4 class="text-center">Node Type</h4>
    <div class="btn-group btn-group-justified">
-      <label ng-repeat="nodeType in mainStoreMapNodesVM.nodeTypes"
+      <label ng-repeat="nodeType in mainStoreLayoutNodesVM.nodeTypes"
              class="btn btn-primary"
-             ng-model="mainStoreMapNodesVM.radioModel"
+             ng-model="mainStoreLayoutNodesVM.radioModel"
              uib-btn-radio="nodeType"
-             ng-change="mainStoreMapNodesVM.radioChanged()">
+             ng-change="mainStoreLayoutNodesVM.radioChanged()">
          {{nodeType.displayString}}
       </label>
    </div>
@@ -18,20 +18,20 @@
                    type="text"
                    class="form-control"
                    placeholder="Node Name"
-                   ng-model="mainStoreMapNodesVM.selectedNodeName"
-                   ng-blur="mainStoreMapNodesVM.nodeNameChanged()"
-                   ng-disabled="!mainStoreMapNodesVM.isANodeSelected()"/>
+                   ng-model="mainStoreLayoutNodesVM.selectedNodeName"
+                   ng-blur="mainStoreLayoutNodesVM.nodeNameChanged()"
+                   ng-disabled="!mainStoreLayoutNodesVM.isANodeSelected()"/>
          </div>
       </div>
    </form>
-   <item-list items="mainStoreMapNodesVM.selectedNodeItems"
-              remove="mainStoreMapNodesVM.removeNodeItem"
+   <item-list items="mainStoreLayoutNodesVM.selectedNodeItems"
+              remove="mainStoreLayoutNodesVM.removeNodeItem"
               options="{listClass: 'height-150'}">
    </item-list>
    <div class="tv-strut-10"></div>
-   <item-tree items="mainStoreMapNodesVM.generalItems"
-                    add="mainStoreMapNodesVM.addNodeItem"
+   <item-tree items="mainStoreLayoutNodesVM.generalItems"
+                    add="mainStoreLayoutNodesVM.addNodeItem"
                     options="{filterable: true, treeClass: 'height-200'}"
-                    disabled="!mainStoreMapNodesVM.isANodeSelected()">
+                    disabled="!mainStoreLayoutNodesVM.isANodeSelected()">
    </item-tree>
 </div>

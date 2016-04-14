@@ -2,15 +2,15 @@
    "use strict";
 
    angular.module("Grapp")
-      .controller("MainStoreMapFeatures", MainStoreMapFeatures);
+      .controller("MainStoreLayoutFeatures", MainStoreLayoutFeatures);
 
-   MainStoreMapFeatures.$inject = ["storeLayout", "mapControl", "BaseEventHandler", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditFeatureEventHandler", "CopyFeatureEventHandler"];
-   function MainStoreMapFeatures(storeLayout, mapControl, BaseEventHandler, EditOutlineEventHandler, DrawFeatureEventHandler, EditFeatureEventHandler, CopyFeatureEventHandler) {
-      var mainStoreMapFeaturesVM = this;
-      mainStoreMapFeaturesVM.outlineRadioEventHandlerModels = null;
-      mainStoreMapFeaturesVM.featureRadioEventHandlerModels = null;
-      mainStoreMapFeaturesVM.radioModel = null;
-      mainStoreMapFeaturesVM.radioChanged = radioChanged;
+   MainStoreLayoutFeatures.$inject = ["storeLayout", "mapControl", "BaseEventHandler", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditFeatureEventHandler", "CopyFeatureEventHandler"];
+   function MainStoreLayoutFeatures(storeLayout, mapControl, BaseEventHandler, EditOutlineEventHandler, DrawFeatureEventHandler, EditFeatureEventHandler, CopyFeatureEventHandler) {
+      var mainStoreLayoutFeaturesVM = this;
+      mainStoreLayoutFeaturesVM.outlineRadioEventHandlerModels = null;
+      mainStoreLayoutFeaturesVM.featureRadioEventHandlerModels = null;
+      mainStoreLayoutFeaturesVM.radioModel = null;
+      mainStoreLayoutFeaturesVM.radioChanged = radioChanged;
 
       var baseEventHandler = new BaseEventHandler(mapControl, storeLayout);
 
@@ -21,12 +21,12 @@
       function initialize() {
          mapControl.setEventHandler(baseEventHandler);
 
-         mainStoreMapFeaturesVM.outlineRadioEventHandlerModels = [
+         mainStoreLayoutFeaturesVM.outlineRadioEventHandlerModels = [
             new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, storeLayout, storeLayout.getOuterOutline()), "Outer"),
             new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, storeLayout, storeLayout.getInnerOutline()), "Inner")
          ];
 
-         mainStoreMapFeaturesVM.featureRadioEventHandlerModels = [
+         mainStoreLayoutFeaturesVM.featureRadioEventHandlerModels = [
             new RadioEventHandlerModel(new DrawFeatureEventHandler(mapControl, storeLayout), "Draw"),
             new RadioEventHandlerModel(new EditFeatureEventHandler(mapControl, storeLayout), "Edit"),
             new RadioEventHandlerModel(new CopyFeatureEventHandler(mapControl, storeLayout), "Copy")
@@ -34,7 +34,7 @@
       }
 
       function radioChanged() {
-         mapControl.setEventHandler(mainStoreMapFeaturesVM.radioModel && mainStoreMapFeaturesVM.radioModel.eventHandler || baseEventHandler);
+         mapControl.setEventHandler(mainStoreLayoutFeaturesVM.radioModel && mainStoreLayoutFeaturesVM.radioModel.eventHandler || baseEventHandler);
       }
 
       function RadioEventHandlerModel(eventHandler, displayString) {

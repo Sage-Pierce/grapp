@@ -23,9 +23,9 @@
             },
             views: {
                "content": {
-                  templateUrl: "app/storelayout/MainStoreMap.html",
-                  controller: "MainStoreMap",
-                  controllerAs: "mainStoreMapVM"
+                  templateUrl: "app/storelayout/MainStoreLayout.html",
+                  controller: "MainStoreLayout",
+                  controllerAs: "mainStoreLayoutVM"
                }
             }
          })
@@ -39,9 +39,9 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storelayout/features/MainStoreMapFeatures.html",
-                  controller: "MainStoreMapFeatures",
-                  controllerAs: "mainStoreMapFeaturesVM"
+                  templateUrl: "app/storelayout/features/MainStoreLayoutFeatures.html",
+                  controller: "MainStoreLayoutFeatures",
+                  controllerAs: "mainStoreLayoutFeaturesVM"
                }
             }
          })
@@ -55,9 +55,9 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storelayout/nodes/MainStoreMapNodes.html",
-                  controller: "MainStoreMapNodes",
-                  controllerAs: "mainStoreMapNodesVM"
+                  templateUrl: "app/storelayout/nodes/MainStoreLayoutNodes.html",
+                  controller: "MainStoreLayoutNodes",
+                  controllerAs: "mainStoreLayoutNodesVM"
                }
             }
          });
