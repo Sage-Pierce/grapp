@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .controller("ModalUpdateStore", ModalUpdateStore);
 
    ModalUpdateStore.$inject = ["$uibModalInstance", "uiGmapUtil", "storeName", "storeLocation"];

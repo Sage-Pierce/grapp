@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .controller("MainStoreLayout", MainStoreLayout);
 
    MainStoreLayout.$inject = ["store", "storeLayout", "mapControl" ];

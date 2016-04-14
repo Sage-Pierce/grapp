@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .value("BaseEventHandler", BaseEventHandler);
 
    function BaseEventHandler(mapControl, storeLayout) {

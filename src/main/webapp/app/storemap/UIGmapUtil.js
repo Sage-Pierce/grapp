@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .service("uiGmapUtil", UIGMapUtil);
 
    UIGMapUtil.$inject = ["$q", "uiGmapIsReady"];

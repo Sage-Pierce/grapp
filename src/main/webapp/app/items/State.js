@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .config(state);
 
    state.$inject = ["$stateProvider"];

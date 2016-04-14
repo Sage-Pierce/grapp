@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .controller("ItemList", ItemList)
       .directive("itemList", ItemListDirective);
 

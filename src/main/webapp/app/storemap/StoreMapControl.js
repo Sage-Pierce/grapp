@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .factory("StoreMapControl", StoreMapControl);
 
    StoreMapControl.$inject = ["uiGmapUtil"];

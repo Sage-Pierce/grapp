@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .controller("MainStores", MainStores);
 
    MainStores.$inject = ["$uibModal", "$state", "Store"];

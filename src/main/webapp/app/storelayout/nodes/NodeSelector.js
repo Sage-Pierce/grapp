@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .value("NodeSelector", NodeSelector);
 
    function NodeSelector(mapControl, nodeSelectionHandler) {

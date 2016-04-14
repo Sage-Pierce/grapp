@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .controller("ItemTree", ItemTree)
       .directive("itemTree", ItemTreeDirective);
 

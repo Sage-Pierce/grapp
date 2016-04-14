@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .factory("NodeEventHandler", NodeEventHandler);
 
    NodeEventHandler.$inject = ["BaseEventHandler"];

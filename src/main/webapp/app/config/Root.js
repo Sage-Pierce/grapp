@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .service("Root", Root);
 
    Root.$inject = ["$q"];

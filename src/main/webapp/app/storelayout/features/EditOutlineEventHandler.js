@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("Grapp")
+   angular.module("App")
       .factory("EditOutlineEventHandler", EditOutlineEventHandler);
 
    EditOutlineEventHandler.$inject = ["BaseEventHandler"];
