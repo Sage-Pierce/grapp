@@ -10,7 +10,7 @@
       mainStoreLayoutNodesVM.nodeTypes = _.values(NodeType);
       mainStoreLayoutNodesVM.radioModel = NodeType.REGULAR;
       mainStoreLayoutNodesVM.selectedNodeName = null;
-      mainStoreLayoutNodesVM.selectedNodeItems = [{name: "Test 1"}, {name: "Test 2"}];
+      mainStoreLayoutNodesVM.selectedNodeItems = [];
       mainStoreLayoutNodesVM.generalItems = [];
       mainStoreLayoutNodesVM.radioChanged = radioChanged;
       mainStoreLayoutNodesVM.nodeNameChanged = nodeNameChanged;
@@ -44,8 +44,11 @@
       }
 
       function addNodeItem(itemNode) {
-         console.log("ADD MEEEE: ");
-         console.log(itemNode.$modelValue);
+         var itemModel = itemNode.$modelValue;
+         nodeSelector.getSelectedNode().addItem(itemModel.id, itemModel.name)
+            .then(function(result) {
+               mainStoreLayoutNodesVM.selectedNodeItems.push(result.item);
+            });
       }
 
       function removeNodeItem(item) {
@@ -55,10 +58,12 @@
 
       function nodeSelected(node) {
          mainStoreLayoutNodesVM.selectedNodeName = node.name;
+         mainStoreLayoutNodesVM.selectedNodeItems = node.getItems();
       }
 
       function nodeDeselected() {
          mainStoreLayoutNodesVM.selectedNodeName = null;
+         mainStoreLayoutNodesVM.selectedNodeName = [];
       }
    }
 })();

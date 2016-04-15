@@ -126,15 +126,25 @@
                name: storeNode.name,
                type: NodeType[storeNode.type],
                location: storeNode.location,
+               items: _.object(storeNode.items.map(function(nodeItem) { return [nodeItem.id, createNodeItemModelFromNodeItem(nodeItem)]; })),
                commitName: function(name) { commitNodeModelParams(this, {name: name}); },
-               commitLocation: function(position) { commitNodeModelPosition(this, position); }
+               commitLocation: function(position) { commitNodeModelPosition(this, position); },
+               addItem: function(code, name) { return addNodeItem(this, {code: code, name: name}); },
+               getItems: function() { return _.values(this.items); }
             };
          }
 
-         function updateNodeModelFromNode(node) {
-            var nodeModel = getNodeById(node.id);
-            nodeModel.type = NodeType[node.type];
-            return nodeModel;
+         function addNodeItem(nodeModel, item) {
+            return storeLayoutRsc.$post("addNodeItem", {nodeId: nodeModel.id, item: JSON.stringify(item)})
+               .then(function(layoutNodeItemUpdateRsc) {
+                  nodeModel.items[layoutNodeItemUpdateRsc.id] = createNodeItemModelFromNodeItem(layoutNodeItemUpdateRsc);
+                  return layoutNodeItemUpdateRsc.$get("affectedNodes")
+                     .then(function(affectedNodesRsc) {
+                        return {item: nodeModel.items[layoutNodeItemUpdateRsc.id], affectedNodes: _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode)};
+                     }, function() {
+                        return {item: nodeModel.items[layoutNodeItemUpdateRsc.id]};
+                     });
+               });
          }
 
          function commitNodeModelParams(nodeModel, params) {
@@ -149,6 +159,21 @@
             };
             return storeLayoutRsc.$put("moveNode", params)
                .then(function() { nodeModel.location = location; });
+         }
+
+         function updateNodeModelFromNode(node) {
+            var nodeModel = getNodeById(node.id);
+            nodeModel.type = NodeType[node.type];
+            nodeModel.items = _.object(node.items.map(function(nodeItem) { return [nodeItem.id, createNodeItemModelFromNodeItem(nodeItem)]; }));
+            return nodeModel;
+         }
+
+         function createNodeItemModelFromNodeItem(nodeItem) {
+            return {
+               id: nodeItem.id,
+               code: nodeItem.item.code,
+               name: nodeItem.item.name
+            };
          }
       }
    }
