@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.wisegas.application.config"/>
+
+    <bean id="securityContext" class="org.springframework.security.core.context.SecurityContextHolder" factory-method="getContext" scope="request"/>
+
+    <bean id="principal" factory-bean="securityContext" factory-method="getAuthentication" scope="request"/>
+
+    <!--Stateless RESTful services use BASIC authentication-->
+    <security:http create-session="stateless" pattern="/rest/hello/**">
+        <security:intercept-url pattern="/**" access="ROLE_REST"/>
+        <security:http-basic/>
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="rest" password="rest" authorities="ROLE_REST"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>
