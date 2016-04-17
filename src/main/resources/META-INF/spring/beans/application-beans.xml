@@ -12,7 +12,7 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
-    <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
+    <context:component-scan scope-resolver="com.wisegas.common.beans.spring.CustomScopeMetaDataResolver"
                             base-package="com.wisegas.itemmanagement
                                           com.wisegas.shoppinglist
                                           com.wisegas.storemanagement
