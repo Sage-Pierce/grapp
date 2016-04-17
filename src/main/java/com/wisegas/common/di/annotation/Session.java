@@ -1,4 +1,4 @@
-package com.wisegas.common.beans.annotation;
+package com.wisegas.common.di.annotation;
 
 import javax.inject.Scope;
 import java.lang.annotation.Documented;

@@ -1,6 +1,6 @@
-package com.wisegas.common.beans.spring;
+package com.wisegas.common.di.spring;
 
-import com.wisegas.common.beans.annotation.Session;
+import com.wisegas.common.di.annotation.Session;
 import org.springframework.context.annotation.Jsr330ScopeMetadataResolver;
 import org.springframework.web.context.WebApplicationContext;
 
