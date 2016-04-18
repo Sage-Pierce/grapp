@@ -29,4 +29,9 @@ public class NodeItemServiceImpl implements NodeItemService {
    public NodeItemDto get(String id) {
       return NodeItemDtoFactory.createDto(nodeItemRepository.get(NodeItemId.fromString(id)));
    }
+
+   @Override
+   public void delete(String id) {
+      nodeItemRepository.remove(nodeItemRepository.get(NodeItemId.fromString(id)));
+   }
 }

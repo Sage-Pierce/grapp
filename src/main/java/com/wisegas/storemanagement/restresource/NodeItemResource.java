@@ -8,6 +8,7 @@ import com.wisegas.storemanagement.service.api.NodeItemService;
 import com.wisegas.storemanagement.service.dto.NodeItemDto;
 
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -28,6 +29,16 @@ public class NodeItemResource extends JaxrsHalJsonResource {
    @GET
    public Response get(@PathParam("id") final String id) {
       return buildHalResponse(asRepresentationOf(nodeItemService.get(id)));
+   }
+
+   @DELETE
+   public Response delete(@PathParam("id") final String id) {
+      nodeItemService.delete(id);
+      return Response.ok().build();
+   }
+
+   public static HalLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
    }
 
    protected static HalRepresentation asRepresentationOf(NodeItemDto nodeItemDto) {

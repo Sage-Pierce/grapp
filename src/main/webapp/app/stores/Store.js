@@ -27,6 +27,7 @@
       function StoreModel(storeRsc) {
          var self = this;
          self.commitAttributes = commitAttributes;
+         self.delete = del;
 
          ////////////////////
 
@@ -36,6 +37,10 @@
                self.name = resource.name;
                self.location = resource.location;
             });
+         }
+
+         function del() {
+            return Root.deleteResourceById("store", storeRsc.id);
          }
       }
    }

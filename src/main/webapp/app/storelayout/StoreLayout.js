@@ -129,8 +129,9 @@
                items: _.object(storeNode.items.map(function(nodeItem) { return [nodeItem.id, createNodeItemModelFromNodeItem(nodeItem)]; })),
                commitName: function(name) { commitNodeModelParams(this, {name: name}); },
                commitLocation: function(position) { commitNodeModelPosition(this, position); },
+               getItems: function() { return _.values(this.items); },
                addItem: function(code, name) { return addNodeItem(this, {code: code, name: name}); },
-               getItems: function() { return _.values(this.items); }
+               removeItemById: function(itemId) { return removeNodeItemFromNodeById(this, itemId); }
             };
          }
 
@@ -174,6 +175,13 @@
                code: nodeItem.item.code,
                name: nodeItem.item.name
             };
+         }
+
+         function removeNodeItemFromNodeById(node, itemId) {
+            return Root.deleteResourceById("nodeItem", itemId)
+               .then(function() {
+                  delete node.items[itemId];
+               });
          }
       }
    }

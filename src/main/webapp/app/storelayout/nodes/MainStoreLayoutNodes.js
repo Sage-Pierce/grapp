@@ -52,8 +52,10 @@
       }
 
       function removeNodeItem(item) {
-         console.log("REMOVE MEEEE: ");
-         console.log(item);
+         nodeSelector.getSelectedNode().removeItemById(item.id)
+            .then(function() {
+               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, function(otherItem) { return item === otherItem; })
+            });
       }
 
       function nodeSelected(node) {
