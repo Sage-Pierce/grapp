@@ -35,7 +35,7 @@ public class StoreManagerServiceImpl implements StoreManagerService {
    }
 
    @Override
-   public StoreDto createStore(String id, String name, GeoPoint location) {
+   public StoreDto addStore(String id, String name, GeoPoint location) {
       return StoreDtoFactory.createDto(storeManagerRepository.get(Email.fromString(id)).addStore(name, location));
    }
 

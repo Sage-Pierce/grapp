@@ -4,10 +4,10 @@
    angular.module("App")
       .controller("MainStores", MainStores);
 
-   MainStores.$inject = ["$uibModal", "$state", "Store"];
-   function MainStores($uibModal, $state, Store) {
+   MainStores.$inject = ["$uibModal", "$state", "storeManager"];
+   function MainStores($uibModal, $state, storeManager) {
       var mainStoresVM = this;
-      mainStoresVM.stores = [];
+      mainStoresVM.stores = storeManager.stores;
       mainStoresVM.selectedStore = null;
       mainStoresVM.areAnyStoresExistent = areAnyStoresExistent;
       mainStoresVM.setSelectedStore = setSelectedStore;
@@ -17,15 +17,8 @@
       mainStoresVM.editSelectedStore = editSelectedStore;
       mainStoresVM.deleteSelectedStore = deleteSelectedStore;
 
-      initialize();
 
       ////////////////////
-
-      function initialize() {
-         Store.loadAll().then(function(stores) {
-            mainStoresVM.stores = stores;
-         });
-      }
 
       function areAnyStoresExistent() {
          return mainStoresVM.stores.length > 0;
@@ -42,9 +35,7 @@
       function createStore() {
          openModalUpdateStore(null, null).then(function(result) {
             mainStoresVM.isLoading = true;
-            Store.create(result.name, result.location).then(function(store) {
-               mainStoresVM.stores.push(store);
-            }).finally(function() {
+            storeManager.addStore(result.name, result.location).finally(function() {
                mainStoresVM.isLoading = false;
             });
          });

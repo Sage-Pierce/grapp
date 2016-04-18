@@ -7,20 +7,10 @@
    Store.$inject = ["Root"];
    function Store(Root) {
       var self = this;
-      self.create = create;
-      self.loadAll = loadAll;
       self.loadById = loadById;
       self.load = load;
 
       ////////////////////
-
-      function create(name, location) {
-         return Root.createResourceModel("stores", {name: name, location: JSON.stringify(location)}, createModel);
-      }
-
-      function loadAll() {
-         return Root.loadResourceModels("stores", createModel);
-      }
 
       function loadById(storeId) {
          return Root.loadResourceModelById("store", storeId, createModel);
@@ -42,7 +32,7 @@
 
          function commitAttributes(attributes) {
             attributes.location = JSON.stringify(attributes.location);
-            return storeRsc.$put("self", attributes).then(function(resource) {
+            return Root.updateResourceById("store", storeRsc.id, attributes).then(function(resource) {
                self.name = resource.name;
                self.location = resource.location;
             });

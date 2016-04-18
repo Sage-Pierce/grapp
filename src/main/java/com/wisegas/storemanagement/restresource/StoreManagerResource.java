@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 import java.util.Arrays;
 import java.util.List;
 
-@Path("/storeManagers/{id}")
+@Path("/storeManagers/{id}/")
 public class StoreManagerResource extends JaxrsHalJsonResource {
 
    private final StoreManagerService storeManagerService;
@@ -28,10 +28,11 @@ public class StoreManagerResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   public Response createStore(@PathParam("id") final String id,
-                               @QueryParam("name") final String name,
-                               @QueryParam("location") final GeoPoint location) {
-      return buildHalResponse(StoreResource.asRepresentationOf(storeManagerService.createStore(id, name, location)));
+   @Path("addStore")
+   public Response addStore(@PathParam("id") final String id,
+                            @QueryParam("name") final String name,
+                            @QueryParam("location") final GeoPoint location) {
+      return buildHalResponse(StoreResource.asRepresentationOf(storeManagerService.addStore(id, name, location)));
    }
 
    public static HalLink createRootLink(String rel) {
@@ -45,11 +46,11 @@ public class StoreManagerResource extends JaxrsHalJsonResource {
    private static List<HalLink> createLinks(StoreManagerDto storeManagerDto) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(storeManagerDto.getId()).withSelfRel(),
-         JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class).method("createStore").pathArgs(storeManagerDto.getId()).withRel("createStore")
+         JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class).method("addStore").pathArgs(storeManagerDto.getId()).queryParams("name", "location").withRel("addStore")
       );
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class).queryParams("name", "location");
+      return JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class);
    }
 }

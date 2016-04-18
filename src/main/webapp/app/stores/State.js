@@ -10,8 +10,10 @@
          .state("main.stores", {
             url: "stores",
             resolve: {
-               user: ["Login", function(Login) {
-                  return Login.afterLogIn();
+               storeManager: ["Login", "StoreManager", function(Login, StoreManager) {
+                  return Login.afterLogIn().then(function(user) {
+                     return StoreManager.loadByEmail(user.id);
+                  });
                }]
             },
             views: {
