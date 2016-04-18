@@ -7,10 +7,7 @@ import com.wisegas.itemmanagement.restresource.GeneralItemsResource;
 import com.wisegas.itemmanagement.restresource.ItemImportResource;
 import com.wisegas.itemmanagement.restresource.ItemResource;
 import com.wisegas.itemmanagement.restresource.ItemsResource;
-import com.wisegas.storemanagement.restresource.LayoutResource;
-import com.wisegas.storemanagement.restresource.NodeResource;
-import com.wisegas.storemanagement.restresource.StoreResource;
-import com.wisegas.storemanagement.restresource.StoresResource;
+import com.wisegas.storemanagement.restresource.*;
 import com.wisegas.user.restresource.LoginResource;
 import com.wisegas.user.restresource.UserResource;
 
@@ -33,10 +30,11 @@ public class RootResource extends JaxrsHalJsonResource {
          JaxrsHalResourceLinkBuilder.linkTo(RootResource.class).withSelfRel(),
          LoginResource.createRootLink("logIn"),
          UserResource.createRootLink("userById"),
+         StoreManagersResource.createRootLink("storeManagers"),
+         StoreManagerResource.createRootLink("storeManagerById"),
+         StoreResource.createRootLink("storeById"),
          LayoutResource.createRootLink("layoutById"),
          NodeResource.createRootLink("nodeById"),
-         StoreResource.createRootLink("storeById"),
-         StoresResource.createRootLink("stores"),
          GeneralItemsResource.createRootLink("generalItems"),
          ItemsResource.createRootLink("items"),
          ItemImportResource.createRootLink("importItems"),

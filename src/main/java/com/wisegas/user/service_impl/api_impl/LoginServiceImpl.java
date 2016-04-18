@@ -11,7 +11,6 @@ import com.wisegas.user.service_impl.factory.UserDtoFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-import java.util.Optional;
 
 @Named
 @Singleton
@@ -34,8 +33,7 @@ public class LoginServiceImpl implements LoginService {
    }
 
    private User getUserByEmail(String email) {
-      Optional<User> foundUser = userRepository.findByEmail(email);
-      return foundUser.isPresent() ? foundUser.get() : persistUserWithEmail(email);
+      return userRepository.findByEmail(email).orElseGet(() -> persistUserWithEmail(email));
    }
 
    private User persistUserWithEmail(String email) {

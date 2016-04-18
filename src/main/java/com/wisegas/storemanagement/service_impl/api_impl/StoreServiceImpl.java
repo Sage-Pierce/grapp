@@ -30,11 +30,6 @@ public class StoreServiceImpl implements StoreService {
    }
 
    @Override
-   public StoreDto create(String name, GeoPoint location) {
-      return StoreDtoFactory.createDto(storeRepository.add(new Store(name, location)));
-   }
-
-   @Override
    public List<StoreDto> getAll() {
       return storeRepository.getAll().stream().map(StoreDtoFactory::createDto).collect(Collectors.toList());
    }

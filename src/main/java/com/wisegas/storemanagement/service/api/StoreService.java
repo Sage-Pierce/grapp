@@ -6,8 +6,6 @@ import com.wisegas.storemanagement.service.dto.StoreDto;
 import java.util.List;
 
 public interface StoreService {
-   StoreDto create(String name, GeoPoint location);
-
    List<StoreDto> getAll();
 
    StoreDto get(String id);

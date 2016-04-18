@@ -12,6 +12,9 @@ public class Store extends NamedEntity<StoreId> {
    @EmbeddedId
    private StoreId id;
 
+   @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
+   private StoreManager manager;
+
    @Column(length = 63)
    @Convert(converter = GeoPointConverter.class)
    private GeoPoint location;
@@ -19,8 +22,9 @@ public class Store extends NamedEntity<StoreId> {
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "store", orphanRemoval = true)
    private Layout layout = new Layout(this);
 
-   public Store(String name, GeoPoint location) {
+   public Store(StoreManager manager, String name, GeoPoint location) {
       id = StoreId.generate();
+      setManager(manager);
       setName(name);
       setLocation(location);
    }
@@ -44,5 +48,9 @@ public class Store extends NamedEntity<StoreId> {
 
    public Layout getLayout() {
       return layout;
+   }
+
+   private void setManager(StoreManager manager) {
+      this.manager = manager;
    }
 }
