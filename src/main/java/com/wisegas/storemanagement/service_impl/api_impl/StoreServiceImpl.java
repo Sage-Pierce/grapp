@@ -49,6 +49,6 @@ public class StoreServiceImpl implements StoreService {
 
    @Override
    public void delete(String id) {
-      storeRepository.remove(storeRepository.get(StoreId.fromString(id)));
+      storeRepository.remove(StoreId.fromString(id));
    }
 }

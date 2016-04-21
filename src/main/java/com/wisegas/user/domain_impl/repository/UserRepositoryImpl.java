@@ -15,11 +15,12 @@ public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements U
    @Override
    public Optional<User> findByEmail(String email) {
       try {
-         return Optional.of((User)entityManager.createQuery(" SELECT user " +
-                                                            " FROM User user " +
-                                                            " WHERE user.id.email = :email ")
-                                               .setParameter("email", email)
-                                               .getSingleResult());
+         return Optional.of(entityManager.createQuery(" SELECT user " +
+                                                      " FROM User user " +
+                                                      " WHERE user.id.email = :email",
+                                                      User.class)
+                                         .setParameter("email", email)
+                                         .getSingleResult());
       }
       catch (Exception e) {
          return Optional.empty();

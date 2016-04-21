@@ -15,11 +15,12 @@ public class StoreManagerRepositoryImpl extends GenericRepositoryImpl<StoreManag
    @Override
    public Optional<StoreManager> findByEmail(String email) {
       try {
-         return Optional.of((StoreManager)entityManager.createQuery(" SELECT storeManager " +
-                                                                    " FROM StoreManager storeManager " +
-                                                                    " WHERE storeManager.id.email = :email ")
-                                                       .setParameter("email", email)
-                                                       .getSingleResult());
+         return Optional.of(entityManager.createQuery(" SELECT storeManager " +
+                                                      " FROM StoreManager storeManager " +
+                                                      " WHERE storeManager.id.email = :email",
+                                                      StoreManager.class)
+                                         .setParameter("email", email)
+                                         .getSingleResult());
       }
       catch (Exception e) {
          return Optional.empty();

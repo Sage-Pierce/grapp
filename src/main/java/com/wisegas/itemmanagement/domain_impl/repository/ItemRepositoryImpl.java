@@ -18,18 +18,20 @@ public class ItemRepositoryImpl extends GenericRepositoryImpl<Item> implements I
    public List<Item> getGeneralItems() {
       return entityManager.createQuery(" SELECT item" +
                                        " FROM Item item" +
-                                       " WHERE item.superItem IS NULL")
+                                       " WHERE item.superItem IS NULL",
+                                       Item.class)
                           .getResultList();
    }
 
    @Override
    public Optional<Item> findByName(String name) {
       try {
-         return Optional.of((Item)entityManager.createQuery(" SELECT item" +
-                                                            " FROM Item item" +
-                                                            " WHERE item.name = :name")
-                                               .setParameter("name", name)
-                                               .getSingleResult());
+         return Optional.of(entityManager.createQuery(" SELECT item" +
+                                                      " FROM Item item" +
+                                                      " WHERE item.name = :name",
+                                                      Item.class)
+                                         .setParameter("name", name)
+                                         .getSingleResult());
       }
       catch (Exception e) {
          return Optional.empty();
@@ -39,11 +41,12 @@ public class ItemRepositoryImpl extends GenericRepositoryImpl<Item> implements I
    @Override
    public Optional<Item> findByCode(Code code) {
       try {
-         return Optional.of((Item)entityManager.createQuery(" SELECT item" +
-                                                            " FROM Item item" +
-                                                            " WHERE item.id = :code")
-                                               .setParameter("code", code)
-                                               .getSingleResult());
+         return Optional.of(entityManager.createQuery(" SELECT item" +
+                                                      " FROM Item item" +
+                                                      " WHERE item.id = :code",
+                                                      Item.class)
+                                         .setParameter("code", code)
+                                         .getSingleResult());
       }
       catch (Exception e) {
          return Optional.empty();

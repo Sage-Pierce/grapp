@@ -12,5 +12,5 @@ public interface GenericRepository<T extends SimpleEntity> {
 
    T get(EntityId entityId);
 
-   T remove(T t);
+   void remove(EntityId entityId);
 }

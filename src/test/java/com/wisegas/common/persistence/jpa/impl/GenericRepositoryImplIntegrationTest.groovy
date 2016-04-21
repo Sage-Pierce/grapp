@@ -54,7 +54,7 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       repository.get(testEntity.getId())
    }
 
-   def "The Entity-under-test can be deleted when within a Transaction"() {
+   def "The Entity-under-test can be deleted by ID when within a Transaction"() {
       given: "Two Entities"
       def entity1 = createTestEntity()
       def entity2 = createTestEntity()
@@ -67,7 +67,7 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       testEntityManager.flush()
 
       when: "We remove the first Entity"
-      repository.remove(entity1)
+      repository.remove(entity1.getId())
 
       then: "The first Entity will be gone but the second will remain"
       !testEntityManager.contains(entity1)

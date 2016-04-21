@@ -13,7 +13,7 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    @PersistenceContext
    protected EntityManager entityManager;
 
-   private final Class<T> entityClass;
+   protected final Class<T> entityClass;
 
    public GenericRepositoryImpl() {
       entityClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -27,27 +27,19 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
 
    @Override
    public List<T> getAll() {
-      return (List<T>)entityManager.createQuery(" SELECT entity" +
-                                                " FROM " + getEntityClassName() + " entity")
-                                   .getResultList();
+      return entityManager.createQuery(" SELECT entity" +
+                                       " FROM " + entityClass.getSimpleName() + " entity",
+                                       entityClass)
+                          .getResultList();
    }
 
    @Override
    public T get(EntityId id) {
-      return (T)entityManager.createQuery(" SELECT entity" +
-                                          " FROM " + getEntityClassName() + " entity" +
-                                          " WHERE entity.id = :id")
-                             .setParameter("id", id)
-                             .getSingleResult();
+      return entityManager.find(entityClass, id);
    }
 
    @Override
-   public T remove(T t) {
-      entityManager.remove(t);
-      return t;
-   }
-
-   protected String getEntityClassName() {
-      return entityClass.getSimpleName();
+   public void remove(EntityId id) {
+      entityManager.remove(get(id));
    }
 }

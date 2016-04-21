@@ -58,7 +58,7 @@ public class ItemServiceImpl implements ItemService {
 
    @Override
    public void delete(String id) {
-      itemRepository.remove(itemRepository.get(Code.fromString(id)));
+      itemRepository.remove(Code.fromString(id));
    }
 
    private Code createItemCode(String codeType, String code) {

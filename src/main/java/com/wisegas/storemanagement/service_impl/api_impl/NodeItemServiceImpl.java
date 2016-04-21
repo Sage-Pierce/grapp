@@ -32,6 +32,6 @@ public class NodeItemServiceImpl implements NodeItemService {
 
    @Override
    public void delete(String id) {
-      nodeItemRepository.remove(nodeItemRepository.get(NodeItemId.fromString(id)));
+      nodeItemRepository.remove(NodeItemId.fromString(id));
    }
 }
