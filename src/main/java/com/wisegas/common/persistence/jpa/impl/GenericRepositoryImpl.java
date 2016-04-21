@@ -40,7 +40,7 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    @Override
    public List<T> getAll() {
       return entityManager.createQuery(" SELECT entity" +
-                                          " FROM " + entityClass.getSimpleName() + " entity",
+                                       " FROM " + entityClass.getSimpleName() + " entity",
                                        entityClass)
                           .getResultList();
    }
