@@ -38,22 +38,6 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       testEntityManager.contains(entity)
    }
 
-   def "All instances of the Entity-under-test can be retrieved"() {
-      when:
-      def result = repository.getAll()
-
-      then:
-      result.size() >= 1
-
-      and:
-      result.contains(testEntity)
-   }
-
-   def "The Entity-under-test can be found by ID"() {
-      expect:
-      repository.get(testEntity.getId())
-   }
-
    def "The Entity-under-test can be deleted by ID when within a Transaction"() {
       given: "Two Entities"
       def entity1 = createTestEntity()
@@ -72,6 +56,22 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       then: "The first Entity will be gone but the second will remain"
       !testEntityManager.contains(entity1)
       testEntityManager.contains(entity2)
+   }
+
+   def "The Entity-under-test can be found by ID"() {
+      expect:
+      repository.get(testEntity.getId()) == testEntity
+   }
+
+   def "All instances of the Entity-under-test can be retrieved"() {
+      when:
+      def result = repository.getAll()
+
+      then:
+      result.size() >= 1
+
+      and:
+      result.contains(testEntity)
    }
 
    abstract T createTestEntity()
