@@ -65,14 +65,6 @@ public class LayoutResource extends JaxrsHalJsonResource {
       return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
    }
 
-   @DELETE
-   @Path("features/remove")
-   public Response removeFeature(@PathParam("id") final String id,
-                                 @QueryParam("featureId") final String featureId) {
-      layoutService.removeFeature(id, featureId);
-      return Response.ok().build();
-   }
-
    @POST
    @Path("nodes")
    public Response addNode(@PathParam("id") final String id,
@@ -92,14 +84,6 @@ public class LayoutResource extends JaxrsHalJsonResource {
                             @QueryParam("location") final GeoPoint location) {
       NodeDto nodeDto = layoutService.moveNode(id, nodeId, location);
       return buildHalResponse(NodeResource.asRepresentationOf(nodeDto));
-   }
-
-   @DELETE
-   @Path("nodes/remove")
-   public Response removeNode(@PathParam("id") final String id,
-                              @QueryParam("nodeId") final String nodeId) {
-      layoutService.removeNode(id, nodeId);
-      return Response.ok().build();
    }
 
    @POST
@@ -129,10 +113,8 @@ public class LayoutResource extends JaxrsHalJsonResource {
          JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("updateInnerOutline").pathArgs(layoutDto.getId()).queryParams("polygon").withRel("innerOutline"),
          JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("addFeature").pathArgs(layoutDto.getId()).queryParams("polygon").withRel("addFeature"),
          JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("reshapeFeature").pathArgs(layoutDto.getId()).queryParams("featureId", "polygon").withRel("reshapeFeature"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("removeFeature").pathArgs(layoutDto.getId()).queryParams("featureId").withRel("removeFeature"),
          JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("addNode").pathArgs(layoutDto.getId()).queryParams("type", "location").withRel("addNode"),
          JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("moveNode").pathArgs(layoutDto.getId()).queryParams("nodeId", "location").withRel("moveNode"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("removeNode").pathArgs(layoutDto.getId()).queryParams("nodeId").withRel("removeNode"),
          JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("addNodeItem").pathArgs(layoutDto.getId()).queryParams("nodeId", "item").withRel("addNodeItem")
       );
    }

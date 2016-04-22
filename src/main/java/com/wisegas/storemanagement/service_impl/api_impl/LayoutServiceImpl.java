@@ -71,12 +71,6 @@ public class LayoutServiceImpl implements LayoutService {
    }
 
    @Override
-   public void removeFeature(String id, String featureId) {
-      Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      layout.removeFeature(FeatureId.fromString(featureId));
-   }
-
-   @Override
    public LayoutUpdateDto<NodeDto> addNode(String id, String type, GeoPoint location) {
       NodeModificationEventSubscriber nodeModificationEventSubscriber = new NodeModificationEventSubscriber();
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
@@ -90,12 +84,6 @@ public class LayoutServiceImpl implements LayoutService {
       Layout layout = layoutRepository.get(LayoutId.fromString(id));
       Node node = layout.moveNode(NodeId.fromString(nodeId), location);
       return NodeDtoFactory.createDto(node);
-   }
-
-   @Override
-   public void removeNode(String id, String nodeId) {
-      Layout layout = layoutRepository.get(LayoutId.fromString(id));
-      layout.removeNode(NodeId.fromString(nodeId));
    }
 
    @Override

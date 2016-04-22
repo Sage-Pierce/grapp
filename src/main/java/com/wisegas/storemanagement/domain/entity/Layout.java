@@ -83,11 +83,6 @@ public class Layout extends SimpleEntity<LayoutId> {
       return feature;
    }
 
-   public void removeFeature(FeatureId featureId) {
-      requireFeatureExistence(featureId);
-      features.remove(featureId);
-   }
-
    public Node getNode(NodeId nodeId) {
       return nodes.get(nodeId);
    }
@@ -109,11 +104,6 @@ public class Layout extends SimpleEntity<LayoutId> {
       Node node = new Node(this, "Node #" + nodes.size(), type, location);
       nodes.put(node.getId(), node);
       return node;
-   }
-
-   public void removeNode(NodeId nodeId) {
-      requireNodeExistence(nodeId);
-      nodes.remove(nodeId);
    }
 
    public NodeItem addNodeItem(NodeId nodeId, Item item) {
