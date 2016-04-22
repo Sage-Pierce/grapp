@@ -53,12 +53,11 @@
          function addNode(nodeType, location) {
             return storeLayoutRsc.$post("addNode", {type: _.findKey(NodeType, nodeType), location: JSON.stringify(location)})
                .then(function(result) {
-                  self.nodes[result.id] = Node.load(storeLayoutRsc, result);
                   return result.$get("affectedNodes")
                      .then(function(affectedNodeRscs) {
-                        return {node: self.nodes[result.id], affectedNodes: _.arrayify(affectedNodeRscs).map(updateNodeFromResource)};
+                        return {node: replaceNodeFromResource(result), affectedNodes: _.arrayify(affectedNodeRscs).map(replaceNodeFromResource)};
                      }, function() {
-                        return {node: self.nodes[result.id], affectedNodes: []};
+                        return {node: replaceNodeFromResource(result), affectedNodes: []};
                      });
                });
          }
@@ -71,11 +70,11 @@
          function addNodeItem(nodeId, item) {
             return self.nodes[nodeId].addItem(item)
                .then(function(result) {
-                  return {item: result.item, affectedNodes: result.affectedNodeRscs.map(updateNodeFromResource)};
+                  return {item: result.item, affectedNodes: result.affectedNodeRscs.map(replaceNodeFromResource)};
                });
          }
 
-         function updateNodeFromResource(nodeRsc) {
+         function replaceNodeFromResource(nodeRsc) {
             self.nodes[nodeRsc.id] = Node.load(storeLayoutRsc, nodeRsc);
             return self.nodes[nodeRsc.id];
          }
