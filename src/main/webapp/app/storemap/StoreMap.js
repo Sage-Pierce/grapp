@@ -107,12 +107,12 @@
 
       function initializeLayoutObjects(layout) {
          storeMapVM.storeOutlines = [
-            createGMapPolygonFromModel(layout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
-            createGMapPolygonFromModel(layout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
+            createGMapPolygonFromModel(layout.outerOutline, {color: "#194d4d", opacity: 1}, 0, false, true),
+            createGMapPolygonFromModel(layout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false, false)
          ];
 
          storeMapVM.storeFeatures = layout.getFeatures().map(function(polygon) {
-            return createGMapPolygonFromModel(polygon, {color: "#194d4d", opacity: 1}, 2);
+            return createGMapPolygonFromModel(polygon, {color: "#194d4d", opacity: 1}, 2, true, false);
          });
 
          storeMapVM.storeNodes = layout.getNodes().map(function(node) {
@@ -120,16 +120,16 @@
          });
       }
 
-      function createGMapPolygonFromModel(polygonModel, fill, zIndex, fit) {
+      function createGMapPolygonFromModel(polygonModel, fill, zIndex, isFeature, fit) {
          return {
             id: polygonModel.id,
             path: polygonModel.vertices.map(_.convertLocationToPosition),
             fill: fill,
             zIndex: zIndex,
             fit: fit,
-            clickable: polygonModel.isFeature,
+            clickable: isFeature,
             editable: false,
-            draggable: polygonModel.isFeature
+            draggable: isFeature
          };
       }
 

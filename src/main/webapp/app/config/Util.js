@@ -28,6 +28,9 @@
       },
       convertPositionToLocation: function(position) {
          return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
+      },
+      stringifyVerticesIntoPolygon: function(vertices) {
+         return JSON.stringify({vertices: vertices});
       }
    });
 })();

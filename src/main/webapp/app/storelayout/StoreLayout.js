@@ -4,8 +4,8 @@
    angular.module("App")
       .service("StoreLayout", StoreLayout);
 
-   StoreLayout.$inject = ["Root", "NodeType"];
-   function StoreLayout(Root, NodeType) {
+   StoreLayout.$inject = ["Root", "Outline", "Feature", "NodeType"];
+   function StoreLayout(Root, Outline, Feature, NodeType) {
       var self = this;
       self.loadById = loadById;
 
@@ -21,9 +21,9 @@
 
       function StoreLayoutModel(storeLayoutRsc) {
          var self = this;
-         self.outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: storeLayoutRsc.outerOutline}, "outerOutline", false);
-         self.innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: storeLayoutRsc.innerOutline}, "innerOutline", false);
-         self.features = _.object(storeLayoutRsc.features.map(function(feature) { return [feature.id, createPolygonModelFromFeature(feature)]; }));
+         self.outerOutline = Outline.load(storeLayoutRsc, "outerOutline");
+         self.innerOutline = Outline.load(storeLayoutRsc, "innerOutline");
+         self.features = _.object(storeLayoutRsc.features.map(function(feature) { return [feature.id, Feature.load(storeLayoutRsc, feature)]; }));
          self.nodes = _.object(storeLayoutRsc.nodes.map(function(node) { return [node.id, createNodeModelFromNode(node)]; }));
          self.getFeatureById = getFeatureById;
          self.getFeatures = getFeatures;
@@ -45,9 +45,9 @@
          }
 
          function addFeature(vertices) {
-            return storeLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoPolygon(vertices)})
+            return storeLayoutRsc.$post("addFeature", {polygon: _.stringifyVerticesIntoPolygon(vertices)})
                .then(function(featureRsc) {
-                  self.features[featureRsc.id] = createPolygonModelFromFeature(featureRsc);
+                  self.features[featureRsc.id] = Feature.load(storeLayoutRsc, featureRsc);
                   return self.features[featureRsc.id];
                });
          }
@@ -81,32 +81,6 @@
          function removeNodeById(id) {
             storeLayoutRsc.$del("removeNode", {nodeId: id})
                .then(function() { delete self.nodes[id]; });
-         }
-
-         function createPolygonModelFromFeature(featureRsc) {
-            return createPolygonModelFromPolygon(featureRsc, "reshapeFeature", true);
-         }
-
-         function createPolygonModelFromPolygon(polygonRsc, updateRel, isFeature) {
-            return {
-               id: polygonRsc.id,
-               vertices: polygonRsc.polygon ? polygonRsc.polygon.vertices : [],
-               isFeature: isFeature,
-               setVertices: function(vertices) { return commitPolygonModelVertices(updateRel, this, vertices); }
-            };
-         }
-
-         function commitPolygonModelVertices(updateRel, polygonModel, vertices) {
-            var params = {
-               featureId: polygonModel.id,
-               polygon: stringifyVerticesIntoPolygon(vertices)
-            };
-            return storeLayoutRsc.$put(updateRel, params)
-               .then(function() { polygonModel.vertices = vertices; });
-         }
-
-         function stringifyVerticesIntoPolygon(polygonVertices) {
-            return JSON.stringify({vertices: polygonVertices});
          }
 
          function createNodeModelFromNode(storeNode) {
