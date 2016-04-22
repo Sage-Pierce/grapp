@@ -32,8 +32,8 @@
          ////////////////////
 
          function setAttributes(attributes) {
-            attributes.location = attributes.location && JSON.stringify(attributes.location);
-            return Root.updateResourceById("store", store.id, attributes).then(function(storeRsc) {
+            attributes.location = JSON.stringify(attributes.location || self.location);
+            return Root.updateResourceById("store", store.id, _.merge(attributes, self)).then(function(storeRsc) {
                self.name = storeRsc.name;
                self.location = storeRsc.location;
             });
