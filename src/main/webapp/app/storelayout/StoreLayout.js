@@ -55,9 +55,9 @@
                .then(function(result) {
                   return result.$get("affectedNodes")
                      .then(function(affectedNodeRscs) {
-                        return {node: replaceNodeFromResource(result), affectedNodes: _.arrayify(affectedNodeRscs).map(replaceNodeFromResource)};
+                        return {node: replaceNodeForResource(result), affectedNodes: _.arrayify(affectedNodeRscs).map(replaceNodeForResource)};
                      }, function() {
-                        return {node: replaceNodeFromResource(result), affectedNodes: []};
+                        return {node: replaceNodeForResource(result), affectedNodes: []};
                      });
                });
          }
@@ -70,11 +70,11 @@
          function addNodeItem(nodeId, item) {
             return self.nodes[nodeId].addItem(item)
                .then(function(result) {
-                  return {item: result.item, affectedNodes: result.affectedNodeRscs.map(replaceNodeFromResource)};
+                  return {item: result.item, affectedNodes: result.affectedNodeRscs.map(replaceNodeForResource)};
                });
          }
 
-         function replaceNodeFromResource(nodeRsc) {
+         function replaceNodeForResource(nodeRsc) {
             self.nodes[nodeRsc.id] = Node.load(storeLayoutRsc, nodeRsc);
             return self.nodes[nodeRsc.id];
          }
