@@ -26,12 +26,12 @@
 
       function StoreModel(storeRsc) {
          var self = this;
-         self.commitAttributes = commitAttributes;
+         self.setAttributes = setAttributes;
          self.delete = del;
 
          ////////////////////
 
-         function commitAttributes(attributes) {
+         function setAttributes(attributes) {
             attributes.location = JSON.stringify(attributes.location);
             return Root.updateResourceById("store", storeRsc.id, attributes).then(function(resource) {
                self.name = resource.name;

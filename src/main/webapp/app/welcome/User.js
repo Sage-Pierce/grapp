@@ -26,11 +26,11 @@
 
       function UserModel(userRsc) {
          var self = this;
-         self.updateDisplayName = updateDisplayName;
+         self.setDisplayName = setDisplayName;
 
          ////////////////////
 
-         function updateDisplayName(displayName) {
+         function setDisplayName(displayName) {
             return userRsc.$put("self", {name: displayName})
                .then(function() { self.name = displayName; });
          }

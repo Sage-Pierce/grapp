@@ -80,7 +80,7 @@
       function updateDisplayName(updatedDisplayName) {
          mainVM.loading = true;
          Login.afterLogIn().then(function(user) {
-            return user.updateDisplayName(updatedDisplayName);
+            return user.setDisplayName(updatedDisplayName);
          }).then(function() {
             mainVM.userName = updatedDisplayName;
          }).finally(function() {

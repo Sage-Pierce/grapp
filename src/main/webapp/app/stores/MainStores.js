@@ -43,7 +43,7 @@
 
       function updateSelectedStoreName() {
          var selectedStore = mainStoresVM.selectedStore;
-         openModalUpdateStore(selectedStore.name, selectedStore.location).then(selectedStore.commitAttributes);
+         openModalUpdateStore(selectedStore.name, selectedStore.location).then(selectedStore.setAttributes);
       }
 
       function openModalUpdateStore(storeName, storeLocation) {
