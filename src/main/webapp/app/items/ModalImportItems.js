@@ -7,9 +7,9 @@
    ModalImportItems.$inject = ["$uibModalInstance"];
    function ModalImportItems($uibModalInstance) {
       var modalImportItemsVM = this;
-      modalImportItemsVM.cancel = cancel;
-      modalImportItemsVM.finish = finish;
       modalImportItemsVM.data = "";
+      modalImportItemsVM.finish = finish;
+      modalImportItemsVM.cancel = cancel;
 
       ////////////////////
 
