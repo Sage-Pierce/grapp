@@ -29,7 +29,7 @@
             var gMapPolygon = mapControl.getOutlineById(storeOutlinePartialModel.id);
             if (gMapPolygon) {
                gMapPolygon.setEditable(false);
-               storeOutlinePartialModel.commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
+               storeOutlinePartialModel.setVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
             }
          }
 

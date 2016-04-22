@@ -103,7 +103,7 @@
                id: polygonRsc.id,
                vertices: polygonRsc.polygon ? polygonRsc.polygon.vertices : [],
                isFeature: isFeature,
-               commitVertices: function(vertices) { return commitPolygonModelVertices(updateRel, this, vertices); }
+               setVertices: function(vertices) { return commitPolygonModelVertices(updateRel, this, vertices); }
             };
          }
 
@@ -127,8 +127,8 @@
                type: NodeType[storeNode.type],
                location: storeNode.location,
                items: _.object(storeNode.items.map(function(nodeItem) { return [nodeItem.id, createNodeItemModelFromNodeItem(nodeItem)]; })),
-               commitName: function(name) { commitNodeModelParams(this, {name: name}); },
-               commitLocation: function(position) { commitNodeModelPosition(this, position); },
+               setName: function(name) { commitNodeModelParams(this, {name: name}); },
+               setLocation: function(position) { commitNodeModelPosition(this, position); },
                getItems: function() { return _.values(this.items); },
                addItem: function(code, name) { return addNodeItem(this, {code: code, name: name}); },
                removeItemById: function(itemId) { return removeNodeItemFromNodeById(this, itemId); }

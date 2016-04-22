@@ -40,7 +40,7 @@
          function setSelectedGMapPolygon(gMapPolygon) {
             if (selectedGMapPolygonId) {
                selectedGMapPolygonId.polygon.setEditable(false);
-               storeLayout.getFeatureById(selectedGMapPolygonId.id).commitVertices(_.extractVerticesFromGMapPolygon(selectedGMapPolygonId.polygon));
+               storeLayout.getFeatureById(selectedGMapPolygonId.id).setVertices(_.extractVerticesFromGMapPolygon(selectedGMapPolygonId.polygon));
             }
 
             selectedGMapPolygonId = gMapPolygon;

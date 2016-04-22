@@ -27,9 +27,9 @@
             if (gMapPolygonCopyModel) {
                var gMapPolygon = gMapPolygonCopyModel.copyToLatLng(mouseEvent.latLng);
                storeLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
-                  .then(function(model) {
+                  .then(function(feature) {
                      gMapPolygon.setDraggable(true);
-                     mapControl.addFeature(model.id, gMapPolygon);
+                     mapControl.addFeature(feature.id, gMapPolygon);
                   });
             }
          }

@@ -39,22 +39,22 @@
 
       function nodeNameChanged() {
          if (mainStoreLayoutNodesVM.isANodeSelected()) {
-            nodeSelector.getSelectedNode().commitName(mainStoreLayoutNodesVM.selectedNodeName);
+            nodeSelector.getSelectedNode().setName(mainStoreLayoutNodesVM.selectedNodeName);
          }
       }
 
       function addNodeItem(itemNode) {
-         var itemModel = itemNode.$modelValue;
-         nodeSelector.getSelectedNode().addItem(itemModel.id, itemModel.name)
-            .then(function(result) {
-               mainStoreLayoutNodesVM.selectedNodeItems.push(result.item);
+         var item = itemNode.$modelValue;
+         nodeSelector.getSelectedNode().addItem(item.id, item.name)
+            .then(function(nodeItem) {
+               mainStoreLayoutNodesVM.selectedNodeItems.push(nodeItem.item);
             });
       }
 
       function removeNodeItem(item) {
          nodeSelector.getSelectedNode().removeItemById(item.id)
             .then(function() {
-               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, function(otherItem) { return item === otherItem; })
+               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, item)
             });
       }
 

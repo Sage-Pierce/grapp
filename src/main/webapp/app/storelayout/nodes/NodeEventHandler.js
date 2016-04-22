@@ -27,11 +27,7 @@
                .then(function(result) {
                   mapControl.addNode(result.node.id, createGMapMarker(map.markerOptions, mouseEvent.latLng));
                   if (result.affectedNodes) {
-                     result.affectedNodes.forEach(function(affectedNode) {
-                        mapControl.setNodeOptions(affectedNode.id, {
-                           icon: affectedNode.type.iconUrl
-                        });
-                     });
+                     result.affectedNodes.forEach(updateNode);
                   }
                });
          }
@@ -57,6 +53,12 @@
 
          function createGMapMarker(options, position) {
             return new google.maps.Marker(_.merge({position: position, icon: nodeType.iconUrl}, options));
+         }
+
+         function updateNode(node) {
+            mapControl.setNodeOptions(node.id, {
+               icon: node.type.iconUrl
+            });
          }
       };
    }

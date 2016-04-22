@@ -24,8 +24,8 @@
 
          function polygonComplete(gMapPolygon) {
             storeLayout.addFeature(_.extractVerticesFromGMapPolygon(gMapPolygon))
-               .then(function (model) {
-                  mapControl.addFeature(model.id, gMapPolygon);
+               .then(function(feature) {
+                  mapControl.addFeature(feature.id, gMapPolygon);
                });
          }
       };

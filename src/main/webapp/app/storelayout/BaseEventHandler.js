@@ -19,7 +19,7 @@
       }
 
       function markerDragEnd(modelId, gMapMarker, mouseEvent) {
-         storeLayout.getNodeById(modelId).commitLocation(_.convertPositionToLocation(mouseEvent.latLng));
+         storeLayout.getNodeById(modelId).setLocation(_.convertPositionToLocation(mouseEvent.latLng));
       }
 
       function polygonRightClicked(modelId, gMapPolygon, polyMouseEvent) {
@@ -28,7 +28,7 @@
       }
 
       function polygonDragEnd(modelId, gMapPolygon) {
-         storeLayout.getFeatureById(modelId).commitVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
+         storeLayout.getFeatureById(modelId).setVertices(_.extractVerticesFromGMapPolygon(gMapPolygon));
       }
    }
 })();
