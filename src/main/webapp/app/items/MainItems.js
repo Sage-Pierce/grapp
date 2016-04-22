@@ -19,31 +19,31 @@
       ////////////////////
 
       function initialize() {
-         Item.loadAllGeneral().then(function(itemModels) {
-            mainItemsVM.items = itemModels;
+         Item.loadAllGeneral().then(function(items) {
+            mainItemsVM.items = items;
          });
       }
 
       function createGeneralItem() {
          openModalCreateItem().then(function(result) {
-            Item.createGeneralItem(result).then(function(itemModel) {
-               mainItemsVM.items.push(itemModel);
+            Item.createGeneralItem(result).then(function(item) {
+               mainItemsVM.items.push(item);
             });
          });
       }
 
       function importItems() {
          openModalImportItems().then(function(result) {
-            Item.importItems(result.data).then(function(itemModels) {
-               mainItemsVM.items = itemModels;
+            Item.importItems(result.data).then(function(items) {
+               mainItemsVM.items = items;
             });
          });
       }
 
       function createSubItem(itemScope) {
-         var itemModel = itemScope.$modelValue;
-         openModalCreateItem(itemModel).then(function(result) {
-            itemModel.addSubItem(result);
+         var item = itemScope.$modelValue;
+         openModalCreateItem(item).then(function(result) {
+            item.addSubItem(result);
          });
       }
 
@@ -62,14 +62,14 @@
          }).result;
       }
 
-      function openModalCreateItem(superItemModel) {
+      function openModalCreateItem(superItem) {
          return $uibModal.open({
             animation: true,
             templateUrl: "app/items/ModalCreateItem.html",
             controller: "ModalCreateItem",
             controllerAs: "modalCreateItemVM",
             resolve: {
-               superItemModel: function() { return superItemModel; }
+               superItem: function() { return superItem; }
             }
          }).result;
       }

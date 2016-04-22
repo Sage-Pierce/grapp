@@ -4,11 +4,11 @@
    angular.module("App")
       .controller("ModalCreateItem", ModalCreateItem);
 
-   ModalCreateItem.$inject = ["$uibModalInstance", "CodeType", "superItemModel"];
-   function ModalCreateItem($uibModalInstance, CodeType, superItemModel) {
+   ModalCreateItem.$inject = ["$uibModalInstance", "CodeType", "superItem"];
+   function ModalCreateItem($uibModalInstance, CodeType, superItem) {
       var modalCreateItemVM = this;
       modalCreateItemVM.codeTypes = _.values(CodeType);
-      modalCreateItemVM.title = "Create " + (superItemModel ? "Sub-Item" : "General Item");
+      modalCreateItemVM.title = "Create " + (superItem ? "Sub-Item" : "General Item");
       modalCreateItemVM.codeType = CodeType.UPC;
       modalCreateItemVM.code = "";
       modalCreateItemVM.name = "";

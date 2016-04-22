@@ -16,15 +16,15 @@
          return Root.loadResourceModelById("store", storeId, createModel);
       }
 
-      function load(storeRsc) {
-         return Root.mergeResourceIntoModel(storeRsc, createModel(storeRsc));
+      function load(store) {
+         return Root.mergeResourceIntoModel(store, createModel(store));
       }
 
-      function createModel(storeRsc) {
-         return new StoreModel(storeRsc);
+      function createModel(store) {
+         return new StoreModel(store);
       }
 
-      function StoreModel(storeRsc) {
+      function StoreModel(store) {
          var self = this;
          self.setAttributes = setAttributes;
          self.delete = del;
@@ -33,14 +33,14 @@
 
          function setAttributes(attributes) {
             attributes.location = attributes.location && JSON.stringify(attributes.location);
-            return Root.updateResourceById("store", storeRsc.id, attributes).then(function(resource) {
-               self.name = resource.name;
-               self.location = resource.location;
+            return Root.updateResourceById("store", store.id, attributes).then(function(storeRsc) {
+               self.name = storeRsc.name;
+               self.location = storeRsc.location;
             });
          }
 
          function del() {
-            return Root.deleteResourceById("store", storeRsc.id);
+            return Root.deleteResourceById("store", store.id);
          }
       }
    }

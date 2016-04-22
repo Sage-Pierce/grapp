@@ -13,7 +13,7 @@
       mainStoresVM.setSelectedStore = setSelectedStore;
       mainStoresVM.isAStoreSelected = isAStoreSelected;
       mainStoresVM.createStore = createStore;
-      mainStoresVM.updateSelectedStoreName = updateSelectedStoreName;
+      mainStoresVM.updateSelectedStore = updateSelectedStore;
       mainStoresVM.editSelectedStore = editSelectedStore;
       mainStoresVM.deleteSelectedStore = deleteSelectedStore;
 
@@ -24,8 +24,8 @@
          return mainStoresVM.stores.length > 0;
       }
 
-      function setSelectedStore(selectedStore) {
-         mainStoresVM.selectedStore = selectedStore;
+      function setSelectedStore(store) {
+         mainStoresVM.selectedStore = store;
       }
 
       function isAStoreSelected() {
@@ -41,7 +41,7 @@
          });
       }
 
-      function updateSelectedStoreName() {
+      function updateSelectedStore() {
          var selectedStore = mainStoresVM.selectedStore;
          openModalUpdateStore(selectedStore.name, selectedStore.location).then(selectedStore.setAttributes);
       }
@@ -65,7 +65,7 @@
 
       function deleteSelectedStore() {
          mainStoresVM.selectedStore.delete().then(function() {
-            mainStoresVM.stores = _.without(mainStoresVM.stores, mainStoresVM.selectedStore);
+            _.remove(mainStoresVM.stores, mainStoresVM.selectedStore);
          });
       }
    }

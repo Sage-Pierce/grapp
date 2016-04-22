@@ -27,13 +27,13 @@
          return Root.loadResourceModels("generalItems", createModel);
       }
 
-      function createModel(itemRsc) {
-         return new ItemModel(itemRsc);
+      function createModel(item) {
+         return new ItemModel(item);
       }
 
-      function ItemModel(itemRsc) {
+      function ItemModel(item) {
          var self = this;
-         self.subItems = itemRsc.subItems.map(function(subItemRsc) { return Root.mergeResourceIntoModel(subItemRsc, new ItemModel(subItemRsc)); });
+         self.subItems = item.subItems.map(function(subItem) { return Root.mergeResourceIntoModel(subItem, new ItemModel(subItem)); });
          self.addSubItem = addSubItem;
          self.delete = del;
          self.isGeneralItem = isGeneralItem;

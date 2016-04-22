@@ -64,13 +64,13 @@
          });
       }
 
-      function cacheUser(user) {
-         $cookies.put("user-id", user.id);
-         return user;
+      function cacheUser(userRsc) {
+         $cookies.put("user-id", userRsc.id);
+         return userRsc;
       }
 
-      function resolveUser(user) {
-         deferred.resolve(user);
+      function resolveUser(userRsc) {
+         deferred.resolve(userRsc);
          userLoggedIn = true;
       }
    }
