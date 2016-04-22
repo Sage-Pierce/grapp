@@ -8,6 +8,7 @@ import com.wisegas.storemanagement.service.api.FeatureService;
 import com.wisegas.storemanagement.service.dto.FeatureDto;
 
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -28,6 +29,12 @@ public class FeatureResource extends JaxrsHalJsonResource {
    @GET
    public Response get(@PathParam("id") final String id) {
       return buildHalResponse(asRepresentationOf(featureService.get(id)));
+   }
+
+   @DELETE
+   public Response delete(@PathParam("id") final String id) {
+      featureService.delete(id);
+      return Response.ok().build();
    }
 
    protected static HalRepresentation asRepresentationOf(FeatureDto featureDto) {

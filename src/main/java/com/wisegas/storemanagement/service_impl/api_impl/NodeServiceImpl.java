@@ -37,4 +37,9 @@ public class NodeServiceImpl implements NodeService {
       node.setName(name);
       return NodeDtoFactory.createDto(node);
    }
+
+   @Override
+   public void delete(String id) {
+      nodeRepository.remove(NodeId.fromString(id));
+   }
 }

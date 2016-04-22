@@ -29,4 +29,9 @@ public class FeatureServiceImpl implements FeatureService {
    public FeatureDto get(String id) {
       return FeatureDtoFactory.createDto(featureRepository.get(FeatureId.fromString(id)));
    }
+
+   @Override
+   public void delete(String id) {
+      featureRepository.remove(FeatureId.fromString(id));
+   }
 }

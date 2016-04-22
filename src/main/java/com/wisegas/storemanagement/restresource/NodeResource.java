@@ -35,6 +35,12 @@ public class NodeResource extends JaxrsHalJsonResource {
       return buildHalResponse(asRepresentationOf(nodeDto));
    }
 
+   @DELETE
+   public Response delete(@PathParam("id") final String id) {
+      nodeService.delete(id);
+      return Response.ok().build();
+   }
+
    public static HalLink createRootLink(String rel) {
       return createSelfLinkBuilder().withRel(rel);
    }
