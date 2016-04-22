@@ -15,12 +15,13 @@
          return Root.mergeResourceIntoModel(feature, createModel(storeLayoutRsc, feature));
       }
 
-      function createModel(feature) {
-         return new FeatureModel(feature);
+      function createModel(storeLayoutRsc, feature) {
+         return new FeatureModel(storeLayoutRsc, feature);
       }
 
       function FeatureModel(storeLayoutRsc, feature) {
          var self = this;
+         self.vertices = feature.polygon.vertices;
          self.setVertices = setVertices;
          self.delete = del;
 

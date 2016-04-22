@@ -37,6 +37,10 @@ public class FeatureResource extends JaxrsHalJsonResource {
       return Response.ok().build();
    }
 
+   public static HalLink createRootLink(String rel) {
+      return createSelfLinkBuilder().withRel(rel);
+   }
+
    protected static HalRepresentation asRepresentationOf(FeatureDto featureDto) {
       return halRepresentationFactory.createFor(featureDto).withLinks(createLinks(featureDto));
    }
