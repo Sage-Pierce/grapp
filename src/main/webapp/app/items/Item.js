@@ -33,10 +33,10 @@
 
       function ItemModel(itemRsc) {
          var self = this;
+         self.subItems = itemRsc.subItems.map(function(subItemRsc) { return Root.mergeResourceIntoModel(subItemRsc, new ItemModel(subItemRsc)); });
          self.addSubItem = addSubItem;
          self.delete = del;
          self.isGeneralItem = isGeneralItem;
-         self.subItems = itemRsc.subItems.map(function(subItemRsc) { return Root.mergeResourceIntoModel(subItemRsc, new ItemModel(subItemRsc)); });
 
          ////////////////////
 
