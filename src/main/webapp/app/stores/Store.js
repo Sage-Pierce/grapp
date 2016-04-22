@@ -32,7 +32,7 @@
          ////////////////////
 
          function setAttributes(attributes) {
-            attributes.location = JSON.stringify(attributes.location);
+            attributes.location = attributes.location && JSON.stringify(attributes.location);
             return Root.updateResourceById("store", storeRsc.id, attributes).then(function(resource) {
                self.name = resource.name;
                self.location = resource.location;
