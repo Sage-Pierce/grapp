@@ -53,8 +53,7 @@
          }
 
          function removeFeatureById(id) {
-            storeLayoutRsc.$del("removeFeature", {featureId: id})
-               .then(function() { delete self.features[id]; });
+            return self.features[id].delete().then(function() { delete self.features[id]; });
          }
 
          function getNodeById(id) {

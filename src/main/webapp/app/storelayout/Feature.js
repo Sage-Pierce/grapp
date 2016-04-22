@@ -22,6 +22,7 @@
       function FeatureModel(storeLayoutRsc, feature) {
          var self = this;
          self.setVertices = setVertices;
+         self.delete = del;
 
          ////////////////////
 
@@ -30,6 +31,10 @@
                .then(function() {
                   self.vertices = vertices;
                });
+         }
+
+         function del() {
+            return Root.deleteResourceById("feature", feature.id);
          }
       }
    }
