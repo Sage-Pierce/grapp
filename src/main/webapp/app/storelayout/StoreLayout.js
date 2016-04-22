@@ -21,8 +21,10 @@
 
       function StoreLayoutModel(storeLayoutRsc) {
          var self = this;
-         self.getOuterOutline = getOuterOutline;
-         self.getInnerOutline = getInnerOutline;
+         self.outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: storeLayoutRsc.outerOutline}, "outerOutline", false);
+         self.innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: storeLayoutRsc.innerOutline}, "innerOutline", false);
+         self.features = _.object(storeLayoutRsc.features.map(function(feature) { return [feature.id, createPolygonModelFromFeature(feature)]; }));
+         self.nodes = _.object(storeLayoutRsc.nodes.map(function(node) { return [node.id, createNodeModelFromNode(node)]; }));
          self.getFeatureById = getFeatureById;
          self.getFeatures = getFeatures;
          self.addFeature = addFeature;
@@ -32,66 +34,53 @@
          self.addNode = addNode;
          self.removeNodeById = removeNodeById;
 
-         var outerOutline = createPolygonModelFromPolygon({id: "outerOutline", polygon: storeLayoutRsc.outerOutline}, "outerOutline", false);
-         var innerOutline = createPolygonModelFromPolygon({id: "innerOutline", polygon: storeLayoutRsc.innerOutline}, "innerOutline", false);
-         var features = _.object(storeLayoutRsc.features.map(function(feature) { return [feature.id, createPolygonModelFromFeature(feature)]; }));
-         var nodes = _.object(storeLayoutRsc.nodes.map(function(node) { return [node.id, createNodeModelFromNode(node)]; }));
-
          ////////////////////
 
-         function getOuterOutline() {
-            return outerOutline;
-         }
-
-         function getInnerOutline() {
-            return innerOutline;
-         }
-
          function getFeatureById(id) {
-            return features[id];
+            return self.features[id];
          }
 
          function getFeatures() {
-            return _.values(features);
+            return _.values(self.features);
          }
 
          function addFeature(vertices) {
             return storeLayoutRsc.$post("addFeature", {polygon: stringifyVerticesIntoPolygon(vertices)})
                .then(function(featureRsc) {
-                  features[featureRsc.id] = createPolygonModelFromFeature(featureRsc);
-                  return features[featureRsc.id];
+                  self.features[featureRsc.id] = createPolygonModelFromFeature(featureRsc);
+                  return self.features[featureRsc.id];
                });
          }
 
          function removeFeatureById(id) {
             storeLayoutRsc.$del("removeFeature", {featureId: id})
-               .then(function() { delete features[id]; });
+               .then(function() { delete self.features[id]; });
          }
 
          function getNodeById(id) {
-            return nodes[id];
+            return self.nodes[id];
          }
 
          function getNodes() {
-            return _.values(nodes);
+            return _.values(self.nodes);
          }
 
          function addNode(nodeType, location) {
             return storeLayoutRsc.$post("addNode", {type: _.findKey(NodeType, nodeType), location: JSON.stringify(location)})
                .then(function(layoutNodeUpdateRsc) {
-                  nodes[layoutNodeUpdateRsc.id] = createNodeModelFromNode(layoutNodeUpdateRsc);
+                  self.nodes[layoutNodeUpdateRsc.id] = createNodeModelFromNode(layoutNodeUpdateRsc);
                   return layoutNodeUpdateRsc.$get("affectedNodes")
                      .then(function(affectedNodesRsc) {
-                        return {node: nodes[layoutNodeUpdateRsc.id], affectedNodes: _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode)};
+                        return {node: self.nodes[layoutNodeUpdateRsc.id], affectedNodes: _.arrayify(affectedNodesRsc).map(updateNodeModelFromNode)};
                      }, function() {
-                        return {node: nodes[layoutNodeUpdateRsc.id]};
+                        return {node: self.nodes[layoutNodeUpdateRsc.id]};
                      });
                });
          }
 
          function removeNodeById(id) {
             storeLayoutRsc.$del("removeNode", {nodeId: id})
-               .then(function() { delete nodes[id]; });
+               .then(function() { delete self.nodes[id]; });
          }
 
          function createPolygonModelFromFeature(featureRsc) {

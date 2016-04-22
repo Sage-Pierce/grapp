@@ -22,8 +22,8 @@
          mapControl.setEventHandler(baseEventHandler);
 
          mainStoreLayoutFeaturesVM.outlineRadioEventHandlerModels = [
-            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, storeLayout, storeLayout.getOuterOutline()), "Outer"),
-            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, storeLayout, storeLayout.getInnerOutline()), "Inner")
+            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, storeLayout, storeLayout.outerOutline), "Outer"),
+            new RadioEventHandlerModel(new EditOutlineEventHandler(mapControl, storeLayout, storeLayout.innerOutline), "Inner")
          ];
 
          mainStoreLayoutFeaturesVM.featureRadioEventHandlerModels = [

@@ -107,8 +107,8 @@
 
       function initializeLayoutObjects(layout) {
          storeMapVM.storeOutlines = [
-            createGMapPolygonFromModel(layout.getOuterOutline(), {color: "#194d4d", opacity: 1}, 0, true),
-            createGMapPolygonFromModel(layout.getInnerOutline(), {color: "#b3e5e6", opacity: 1}, 1, false)
+            createGMapPolygonFromModel(layout.outerOutline, {color: "#194d4d", opacity: 1}, 0, true),
+            createGMapPolygonFromModel(layout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false)
          ];
 
          storeMapVM.storeFeatures = layout.getFeatures().map(function(polygon) {
