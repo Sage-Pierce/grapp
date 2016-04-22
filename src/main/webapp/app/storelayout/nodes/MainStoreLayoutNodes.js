@@ -39,13 +39,13 @@
 
       function nodeNameChanged() {
          if (mainStoreLayoutNodesVM.isANodeSelected()) {
-            nodeSelector.getSelectedNode().setName(mainStoreLayoutNodesVM.selectedNodeName);
+            nodeSelector.getSelectedNode().setAttributes({name: mainStoreLayoutNodesVM.selectedNodeName});
          }
       }
 
       function addNodeItem(itemNode) {
          var item = itemNode.$modelValue;
-         nodeSelector.getSelectedNode().addItem(item.id, item.name)
+         storeLayout.addNodeItem(nodeSelector.getSelectedNode().id, {code: item.id, name: item.name})
             .then(function(nodeItem) {
                mainStoreLayoutNodesVM.selectedNodeItems.push(nodeItem.item);
             });
