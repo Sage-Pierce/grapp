@@ -13,8 +13,8 @@
          self.applyToFeatures = applyToFeatures;
          self.addFeature = addFeature;
          self.removeFeatureById = removeFeatureById;
-         self.addNode = addNode;
          self.setNodeOptions = setNodeOptions;
+         self.addNode = addNode;
          self.removeNodeById = removeNodeById;
          self.polygonComplete = polygonComplete;
          self.handleGObjectMouseEvent = handleGObjectMouseEvent;
@@ -68,16 +68,16 @@
             gMapPolygon.setMap(null);
          }
 
-         function addNode(nodeId, gMapMarker) {
-            nodeControl.getPlurals().put(nodeId, {gObject: gMapMarker});
-            postProcessAddedGMapMarker(nodeId, gMapMarker);
-         }
-
          function setNodeOptions(nodeId, gMapMarkerOptions) {
             var nodePlural = nodeControl.getPlurals().get(nodeId);
             if (nodePlural) {
                nodePlural.gObject.setOptions(gMapMarkerOptions);
             }
+         }
+
+         function addNode(nodeId, gMapMarker) {
+            nodeControl.getPlurals().put(nodeId, {gObject: gMapMarker});
+            postProcessAddedGMapMarker(nodeId, gMapMarker);
          }
 
          function removeNodeById(nodeId) {
