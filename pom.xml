@@ -7,6 +7,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <maven.depenency.plugin.version>2.10</maven.depenency.plugin.version>
         <apache.commons.version>3.4</apache.commons.version>
         <apache.commons.csv.version>1.2</apache.commons.csv.version>
         <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
@@ -224,7 +225,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.4</version>
+                <version>${maven.depenency.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
