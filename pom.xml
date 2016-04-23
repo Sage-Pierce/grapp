@@ -196,6 +196,7 @@
     </dependencies>
 
     <build>
+        <!-- "ROOT" means Tomcat will map the result WAR at "/" -->
         <finalName>ROOT</finalName>
         <plugins>
             <plugin>
