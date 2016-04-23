@@ -196,7 +196,7 @@
     </dependencies>
 
     <build>
-        <finalName>grapp_heroku</finalName>
+        <finalName>ROOT</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
