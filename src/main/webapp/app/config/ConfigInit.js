@@ -29,11 +29,12 @@
       });
 
       var servers = [
-         "https://grapplication.herokuapp.com/rest/", // When running on Heroku
-         "http://localhost:5000/rest/",               // When running Heroku locally
-         "http://localhost:8008/rest/"                // When running the server manually (Need to set PORT Environment Var.)
+         "https://grapplication.herokuapp.com/rest", // When running on Heroku
+         "http://localhost:8008/rest",               // When running Heroku locally (Need to set PORT Environment Var.)
+         "http://localhost:8080/rest"                // When running the server manually
       ];
-      halClient.$get(servers[0]).then(Root.load, console.log);
+      var options = { transformUrl: function(href) { return servers[0] + href; } };
+      halClient.$get("/", options).then(Root.load, console.log);
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely

@@ -5,8 +5,6 @@ import com.wisegas.common.webserver.hal.api.HalLink;
 import javax.ws.rs.core.UriBuilder;
 
 public final class JaxrsHalResourceLinkBuilder {
-
-   private static final String RELATIVE_REST_API_ROOT = "/rest";
    private static final String SELF_REL = "self";
 
    private final Class resource;
@@ -41,7 +39,7 @@ public final class JaxrsHalResourceLinkBuilder {
       UriBuilder uriBuilder = UriBuilder.fromResource(resource);
       uriBuilder = methodName == null ? uriBuilder : uriBuilder.path(resource, methodName);
       String uriString = pathArgs == null ? uriBuilder.toTemplate() : uriBuilder.build(pathArgs).toString();
-      return new HalLink(rel, RELATIVE_REST_API_ROOT + uriString + buildQueryFragment());
+      return new HalLink(rel, uriString + buildQueryFragment());
    }
 
    private String buildQueryFragment() {
