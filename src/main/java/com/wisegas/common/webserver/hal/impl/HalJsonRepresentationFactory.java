@@ -16,8 +16,8 @@ public final class HalJsonRepresentationFactory extends JsonRepresentationFactor
    }
 
    public HalRepresentation createFor(Object resource) {
-      return new HalRepresentationImpl(newRepresentation()).withBean(resource);
+      return new HalJsonRepresentationImpl(newRepresentation()).withBean(resource);
    }
 
-   public HalRepresentation createForLinks(Iterable<HalLink> links) { return new HalRepresentationImpl(newRepresentation()).withLinks(links); }
+   public HalRepresentation createForLinks(Iterable<HalLink> links) { return new HalJsonRepresentationImpl(newRepresentation()).withLinks(links); }
 }

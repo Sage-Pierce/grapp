@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class HalRepresentationImpl implements HalRepresentation, Representation {
+public class HalJsonRepresentationImpl implements HalRepresentation, Representation {
 
    private final Representation delegate;
 
-   public HalRepresentationImpl(Representation delegate) {
+   public HalJsonRepresentationImpl(Representation delegate) {
       this.delegate = delegate;
    }
 
@@ -53,67 +53,67 @@ public class HalRepresentationImpl implements HalRepresentation, Representation 
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, String href) {
+   public HalJsonRepresentationImpl withLink(String rel, String href) {
       delegate.withLink(rel, href);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, URI uri) {
+   public HalJsonRepresentationImpl withLink(String rel, URI uri) {
       delegate.withLink(rel, uri);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withLink(String rel, String href, String name, String title, String hrefLang, String profile) {
+   public HalJsonRepresentationImpl withLink(String rel, String href, String name, String title, String hrefLang, String profile) {
       delegate.withLink(rel, href, name, title, hrefLang, profile);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withProperty(String name, Object value) {
+   public HalJsonRepresentationImpl withProperty(String name, Object value) {
       delegate.withProperty(name, value);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withBean(Object value) {
+   public HalJsonRepresentationImpl withBean(Object value) {
       delegate.withBean(value);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withFields(Object value) {
+   public HalJsonRepresentationImpl withFields(Object value) {
       delegate.withFields(value);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withRepresentable(Representable representable) {
+   public HalJsonRepresentationImpl withRepresentable(Representable representable) {
       delegate.withRepresentable(representable);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withFieldBasedRepresentation(String rel, String href, Object o) {
+   public HalJsonRepresentationImpl withFieldBasedRepresentation(String rel, String href, Object o) {
       delegate.withFieldBasedRepresentation(rel, href, o);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withBeanBasedRepresentation(String rel, String href, Object o) {
+   public HalJsonRepresentationImpl withBeanBasedRepresentation(String rel, String href, Object o) {
       delegate.withBeanBasedRepresentation(rel, href, o);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withNamespace(String namespace, String href) {
+   public HalJsonRepresentationImpl withNamespace(String namespace, String href) {
       delegate.withNamespace(namespace, href);
       return this;
    }
 
    @Override
-   public HalRepresentationImpl withRepresentation(String rel, ReadableRepresentation resource) {
+   public HalJsonRepresentationImpl withRepresentation(String rel, ReadableRepresentation resource) {
       delegate.withRepresentation(rel, resource);
       return this;
    }
