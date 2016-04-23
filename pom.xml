@@ -6,18 +6,24 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <apache.commons.version>3.4</apache.commons.version>
+        <apache.commons.csv.version>1.2</apache.commons.csv.version>
+        <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
+        <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
         <gson.version>2.6.2</gson.version>
         <h2.version>1.4.191</h2.version>
         <halbuilder.version>4.0.3</halbuilder.version>
+        <heroku.jdbc.version>0.1.1</heroku.jdbc.version>
         <hibernate.version>5.1.0.Final</hibernate.version>
+        <javax.inject.version>1</javax.inject.version>
         <jersey.version>2.22.2</jersey.version>
         <jetty.version>9.3.7.v20160115</jetty.version>
         <log4j.version>2.5</log4j.version>
         <postgresql.version>9.4.1208.jre7</postgresql.version>
         <spock.version>1.0-groovy-2.4</spock.version>
-        <spring.version>4.2.5.RELEASE</spring.version>
         <spring.oauth.2.0.version>2.0.9.RELEASE</spring.oauth.2.0.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
     </properties>
 
     <groupId>com.wisegas</groupId>
@@ -26,31 +32,17 @@
     <version>1.0-SNAPSHOT</version>
     <name>grapp_heroku</name>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${jersey.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <!-- Jetty -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>
-            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
             <version>${jetty.version}</version>
-            <!--<scope>provided</scope>-->
         </dependency>
 
         <!-- Spring OAuth 2.0 Security -->
@@ -111,7 +103,7 @@
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
-            <version>1</version>
+            <version>${javax.inject.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -143,7 +135,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
-            <version>1.2</version>
+            <version>${apache.commons.csv.version}</version>
         </dependency>
 
         <!-- JPA 2.1 with Hibernate implementation-->
@@ -164,7 +156,7 @@
         <dependency>
             <groupId>com.heroku.sdk</groupId>
             <artifactId>heroku-jdbc</artifactId>
-            <version>0.1.1</version>
+            <version>${heroku.jdbc.version}</version>
         </dependency>
 
         <!-- GSON -->
@@ -208,8 +200,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <inherited>true</inherited>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -221,42 +212,26 @@
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
                         <artifactId>groovy-eclipse-compiler</artifactId>
-                        <version>2.9.2-01</version>
+                        <version>${groovy.eclipse.compiler.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
                         <artifactId>groovy-eclipse-batch</artifactId>
-                        <version>2.4.3-01</version>
+                        <version>${groovy.eclipse.batch.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
                         <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <includeScope>compile</includeScope>
-                        </configuration>
+                        <goals><goal>copy-dependencies</goal></goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.version}</version>
-                <configuration>
-                    <webApp>
-                        <contextPath>/</contextPath>
-                        <webInfIncludeJarPattern>.*/.*jersey-[^/]\.jar$</webInfIncludeJarPattern>
-                    </webApp>
-                    <war>${project.build.directory}/${project.build.finalName}.war</war>
-                </configuration>
             </plugin>
         </plugins>
     </build>
