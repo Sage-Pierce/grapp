@@ -10,14 +10,14 @@ import java.util.List;
 
 @Entity
 public class StoreManager extends SimpleEntity<Email> {
-   @EmbeddedId
-   private Email id;
+   @Id
+   private String id;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "manager", orphanRemoval = true)
    private List<Store> stores = new ArrayList<>();
 
    public StoreManager(Email email) {
-      id = email;
+      id = email.toString();
    }
 
    protected StoreManager() {
@@ -26,7 +26,7 @@ public class StoreManager extends SimpleEntity<Email> {
 
    @Override
    public Email getId() {
-      return id;
+      return Email.fromString(id);
    }
 
    public List<Store> getStores() {
