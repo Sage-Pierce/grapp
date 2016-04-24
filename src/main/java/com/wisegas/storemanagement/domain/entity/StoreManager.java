@@ -1,8 +1,8 @@
 package com.wisegas.storemanagement.domain.entity;
 
 import com.wisegas.common.lang.entity.SimpleEntity;
+import com.wisegas.common.lang.value.Email;
 import com.wisegas.common.lang.value.GeoPoint;
-import com.wisegas.common.persistence.jpa.value.Email;
 
 import javax.persistence.*;
 import java.util.ArrayList;

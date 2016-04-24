@@ -1,12 +1,14 @@
 package com.wisegas.common.test;
 
 import com.wisegas.common.lang.entity.SimpleEntity;
+import com.wisegas.common.lang.value.Id;
 import groovy.lang.Closure;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -61,7 +63,7 @@ public class IntegrationTestEntityManager {
       List<T> results = entityManager.createQuery(" SELECT entity" +
                                                   " FROM " + detachedEntity.getClass().getSimpleName() + " entity" +
                                                   " WHERE entity.id = :id")
-                                     .setParameter("id", detachedEntity.getId())
+                                     .setParameter("id", convertIdToQueryObject(detachedEntity))
                                      .getResultList();
       if (results.size() > 1) {
          throw new RuntimeException("There was more than one result when trying to fetch a Managed Entity for this Detached Entity: " + detachedEntity);
@@ -78,6 +80,12 @@ public class IntegrationTestEntityManager {
             return closure.call();
          }
       });
+   }
+
+   private <T extends SimpleEntity> Object convertIdToQueryObject(T detachedEntity) {
+      Id id = detachedEntity.getId();
+      Class idClass = id.getClass();
+      return idClass.isPrimitive() || idClass.isAnnotationPresent(Embeddable.class) ? id : id.toString();
    }
 
    private <T> T runInTransaction(final Callable<T> callable) {

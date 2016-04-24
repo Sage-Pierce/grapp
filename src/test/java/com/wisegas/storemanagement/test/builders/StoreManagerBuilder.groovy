@@ -1,6 +1,6 @@
 package com.wisegas.storemanagement.test.builders
 
-import com.wisegas.common.persistence.jpa.value.Email
+import com.wisegas.common.lang.value.Email
 import com.wisegas.common.test.EntityBuilder
 import com.wisegas.storemanagement.domain.entity.StoreManager;
 
