@@ -1,5 +1,6 @@
 package com.wisegas.storemanagement.domain_impl.repository;
 
+import com.wisegas.common.lang.value.Email;
 import com.wisegas.common.lang.value.Id;
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImpl;
 import com.wisegas.storemanagement.domain.entity.StoreManager;
@@ -14,13 +15,13 @@ import java.util.Optional;
 public class StoreManagerRepositoryImpl extends GenericRepositoryImpl<StoreManager> implements StoreManagerRepository {
 
    @Override
-   public Optional<StoreManager> findByEmail(String email) {
+   public Optional<StoreManager> findByEmail(Email email) {
       try {
          return Optional.of(entityManager.createQuery(" SELECT storeManager " +
                                                       " FROM StoreManager storeManager " +
                                                       " WHERE storeManager.id = :email",
                                                       StoreManager.class)
-                                         .setParameter("email", email)
+                                         .setParameter("email", email.toString())
                                          .getSingleResult());
       }
       catch (Exception e) {

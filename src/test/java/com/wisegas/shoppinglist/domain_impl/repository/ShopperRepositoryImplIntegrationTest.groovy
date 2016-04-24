@@ -19,7 +19,7 @@ class ShopperRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrat
       Shopper shopper = testEntityManager.save(ShopperBuilder.shopper())
 
       when:
-      def result = shopperRepository.findByEmail(shopper.getId().toString())
+      def result = shopperRepository.findByEmail(shopper.getId())
 
       then:
       result.isPresent()

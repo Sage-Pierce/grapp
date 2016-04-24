@@ -27,17 +27,17 @@ public class LoginServiceImpl implements LoginService {
    }
 
    @Override
-   public UserDto logIn(String email, String avatar) {
-      User user = getUserByEmail(email);
+   public UserDto logIn(String emailString, String avatar) {
+      User user = getUserByEmail(Email.fromString(emailString));
       user.setAvatar(avatar == null ? user.getAvatar() : avatar);
       return UserDtoFactory.createDto(user);
    }
 
-   private User getUserByEmail(String email) {
+   private User getUserByEmail(Email email) {
       return userRepository.findByEmail(email).orElseGet(() -> persistUserWithEmail(email));
    }
 
-   private User persistUserWithEmail(String email) {
-      return userRepository.add(new User(Email.fromString(email), email, null));
+   private User persistUserWithEmail(Email email) {
+      return userRepository.add(new User(email, email.toString(), null));
    }
 }

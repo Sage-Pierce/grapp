@@ -29,7 +29,8 @@ public class ShopperServiceImpl implements ShopperService {
    }
 
    @Override
-   public ShopperDto loadByEmail(String email) {
+   public ShopperDto loadByEmail(String emailString) {
+      Email email = Email.fromString(emailString);
       return ShopperDtoFactory.createDto(shopperRepository.findByEmail(email).orElseGet(() -> persistShopperWithEmail(email)));
    }
 
@@ -38,7 +39,7 @@ public class ShopperServiceImpl implements ShopperService {
       return ShoppingListDtoFactory.createDto(shopperRepository.get(Email.fromString(id)).addList(name));
    }
 
-   private Shopper persistShopperWithEmail(String email) {
-      return shopperRepository.add(new Shopper(Email.fromString(email)));
+   private Shopper persistShopperWithEmail(Email email) {
+      return shopperRepository.add(new Shopper(email));
    }
 }

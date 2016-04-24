@@ -4,7 +4,7 @@ import com.wisegas.shoppinglist.service.dto.ShopperDto;
 import com.wisegas.shoppinglist.service.dto.ShoppingListDto;
 
 public interface ShopperService {
-   ShopperDto loadByEmail(String email);
+   ShopperDto loadByEmail(String emailString);
 
    ShoppingListDto addList(String id, String name);
 }

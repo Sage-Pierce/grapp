@@ -30,7 +30,8 @@ public class StoreManagerServiceImpl implements StoreManagerService {
    }
 
    @Override
-   public StoreManagerDto loadByEmail(String email) {
+   public StoreManagerDto loadByEmail(String emailString) {
+      Email email = Email.fromString(emailString);
       return StoreManagerDtoFactory.createDto(storeManagerRepository.findByEmail(email).orElseGet(() -> persistStoreManagerWithEmail(email)));
    }
 
@@ -39,7 +40,7 @@ public class StoreManagerServiceImpl implements StoreManagerService {
       return StoreDtoFactory.createDto(storeManagerRepository.get(Email.fromString(id)).addStore(name, location));
    }
 
-   private StoreManager persistStoreManagerWithEmail(String email) {
-      return storeManagerRepository.add(new StoreManager(Email.fromString(email)));
+   private StoreManager persistStoreManagerWithEmail(Email email) {
+      return storeManagerRepository.add(new StoreManager(email));
    }
 }
