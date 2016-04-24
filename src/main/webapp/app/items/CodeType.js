@@ -8,6 +8,7 @@
       return {
          GTIN: new CodeType("GTIN"),
          UPC: new CodeType("UPC"),
+         PLU: new CodeType("PLU"),
          NACS: new CodeType("NACS"),
          MANUAL: new CodeType("Manual"),
          RANDOM: new CodeType("Random")
