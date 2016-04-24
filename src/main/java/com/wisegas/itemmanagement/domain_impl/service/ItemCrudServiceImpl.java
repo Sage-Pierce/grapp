@@ -53,6 +53,6 @@ public class ItemCrudServiceImpl implements ItemCreationService {
    }
 
    private String stringifyItemHierarchy(Item item) {
-      return item.getHierarchy().stream().map(Item::getName).collect(Collectors.joining(" -> "));
+      return item.getHierarchy().stream().map(Item::getName).collect(Collectors.joining(" <- "));
    }
 }

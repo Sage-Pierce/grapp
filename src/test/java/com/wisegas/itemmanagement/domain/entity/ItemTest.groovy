@@ -44,8 +44,8 @@ class ItemTest extends Specification {
 
       then:
       result.size() == 3
-      result[0] == superSuperItem
+      result[0] == item
       result[1] == superItem
-      result[2] == item
+      result[2] == superSuperItem
    }
 }

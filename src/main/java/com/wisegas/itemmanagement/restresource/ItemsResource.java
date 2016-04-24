@@ -13,7 +13,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("/items/")
 public class ItemsResource extends JaxrsHalJsonResource {
@@ -35,10 +34,7 @@ public class ItemsResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get() {
-      return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
-                                                      .withEmbeddeds("items", itemService.getAll().stream()
-                                                                                         .map(ItemResource::asRepresentationOf)
-                                                                                         .collect(Collectors.toList())));
+      return buildHalResponse(halRepresentationFactory.createFor(itemService.getAll()).withLinks(createLinks()));
    }
 
    public static HalLink createRootLink(String rel) {

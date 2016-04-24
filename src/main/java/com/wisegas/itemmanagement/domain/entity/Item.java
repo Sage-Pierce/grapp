@@ -5,7 +5,6 @@ import com.wisegas.itemmanagement.domain.value.Code;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -43,7 +42,6 @@ public class Item extends SimpleEntity<Code> {
       while (!hierarchicalItem.isGeneralItem()) {
          hierarchy.add(hierarchicalItem = hierarchicalItem.getSuperItem());
       }
-      Collections.reverse(hierarchy);
       return hierarchy;
    }
 
