@@ -1,12 +1,12 @@
 package com.wisegas.storemanagement.domain.value;
 
-import com.wisegas.common.persistence.jpa.value.EntityId;
+import com.wisegas.common.lang.entity.AbstractEntityId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class LayoutId extends EntityId {
+public class LayoutId extends AbstractEntityId {
    @Basic
    private String id;
 
@@ -27,7 +27,7 @@ public class LayoutId extends EntityId {
    }
 
    @Override
-   protected Object idHash() {
+   public Object idHash() {
       return id;
    }
 }

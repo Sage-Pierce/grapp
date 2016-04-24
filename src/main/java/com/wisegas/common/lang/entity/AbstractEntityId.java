@@ -1,9 +1,8 @@
-package com.wisegas.common.persistence.jpa.value;
+package com.wisegas.common.lang.entity;
 
-import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class EntityId implements Serializable {
+public abstract class AbstractEntityId implements EntityId {
 
    @Override
    public boolean equals(Object object) {
@@ -23,6 +22,4 @@ public abstract class EntityId implements Serializable {
    protected static String generateValue() {
       return UUID.randomUUID().toString();
    }
-
-   protected abstract Object idHash();
 }

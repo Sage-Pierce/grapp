@@ -1,6 +1,7 @@
 package com.wisegas.common.persistence.jpa.entity;
 
-import com.wisegas.common.persistence.jpa.value.EntityId;
+import com.wisegas.common.lang.entity.EntityId;
+import com.wisegas.common.lang.entity.SimpleEntity;
 
 import javax.persistence.Basic;
 import javax.persistence.MappedSuperclass;

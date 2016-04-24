@@ -1,6 +1,6 @@
 package com.wisegas.common.test;
 
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.common.lang.entity.SimpleEntity;
 import groovy.lang.Closure;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;

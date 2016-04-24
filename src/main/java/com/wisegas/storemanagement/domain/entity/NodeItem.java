@@ -1,6 +1,6 @@
 package com.wisegas.storemanagement.domain.entity;
 
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.common.lang.entity.SimpleEntity;
 import com.wisegas.storemanagement.domain.value.Item;
 import com.wisegas.storemanagement.domain.value.NodeItemId;
 

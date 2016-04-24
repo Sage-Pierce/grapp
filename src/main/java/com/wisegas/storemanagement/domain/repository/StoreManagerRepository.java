@@ -1,6 +1,6 @@
 package com.wisegas.storemanagement.domain.repository;
 
-import com.wisegas.common.persistence.jpa.api.GenericRepository;
+import com.wisegas.common.lang.entity.GenericRepository;
 import com.wisegas.storemanagement.domain.entity.StoreManager;
 
 import java.util.Optional;

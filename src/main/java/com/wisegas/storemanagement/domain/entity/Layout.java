@@ -1,9 +1,9 @@
 package com.wisegas.storemanagement.domain.entity;
 
+import com.wisegas.common.lang.entity.SimpleEntity;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.lang.value.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
 import com.wisegas.storemanagement.domain.value.*;
 
 import javax.persistence.*;

@@ -1,7 +1,4 @@
-package com.wisegas.common.persistence.jpa.api;
-
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
-import com.wisegas.common.persistence.jpa.value.EntityId;
+package com.wisegas.common.lang.entity;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.wisegas.shoppinglist.domain.entity;
 
-import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.common.lang.entity.SimpleEntity;
 import com.wisegas.shoppinglist.domain.value.Item;
 import com.wisegas.shoppinglist.domain.value.ShoppingListItemId;
 

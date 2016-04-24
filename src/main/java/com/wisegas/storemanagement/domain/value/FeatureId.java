@@ -1,13 +1,13 @@
 package com.wisegas.storemanagement.domain.value;
 
-import com.wisegas.common.persistence.jpa.value.EntityId;
+import com.wisegas.common.lang.entity.AbstractEntityId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class FeatureId extends EntityId implements Serializable {
+public class FeatureId extends AbstractEntityId implements Serializable {
    @Basic
    private String id;
 
@@ -28,7 +28,7 @@ public class FeatureId extends EntityId implements Serializable {
    }
 
    @Override
-   protected Object idHash() {
+   public Object idHash() {
       return id;
    }
 }

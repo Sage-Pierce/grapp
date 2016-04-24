@@ -1,10 +1,12 @@
 package com.wisegas.common.persistence.jpa.value;
 
+import com.wisegas.common.lang.entity.AbstractEntityId;
+
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Email extends EntityId {
+public class Email extends AbstractEntityId {
    @Basic
    private String email;
 
@@ -25,7 +27,7 @@ public class Email extends EntityId {
    }
 
    @Override
-   protected Object idHash() {
+   public Object idHash() {
       return email;
    }
 }

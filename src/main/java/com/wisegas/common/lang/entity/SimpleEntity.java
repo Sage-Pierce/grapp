@@ -1,10 +1,5 @@
-package com.wisegas.common.persistence.jpa.entity;
+package com.wisegas.common.lang.entity;
 
-import com.wisegas.common.persistence.jpa.value.EntityId;
-
-import javax.persistence.MappedSuperclass;
-
-@MappedSuperclass
 public abstract class SimpleEntity<T extends EntityId> {
 
    @Override
