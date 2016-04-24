@@ -4,10 +4,9 @@ import com.wisegas.common.lang.entity.AbstractEntityId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
-import java.io.Serializable;
 
 @Embeddable
-public class FeatureId extends AbstractEntityId implements Serializable {
+public class FeatureId extends AbstractEntityId {
    @Basic
    private String id;
 
