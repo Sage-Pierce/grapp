@@ -1,7 +1,7 @@
 package com.wisegas.user.domain.entity;
 
+import com.wisegas.common.lang.jpa.Email;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
-import com.wisegas.user.domain.value.Email;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

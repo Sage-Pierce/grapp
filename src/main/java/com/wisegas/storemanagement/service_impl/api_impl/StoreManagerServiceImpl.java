@@ -2,10 +2,10 @@ package com.wisegas.storemanagement.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
+import com.wisegas.common.lang.jpa.Email;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.storemanagement.domain.entity.StoreManager;
 import com.wisegas.storemanagement.domain.repository.StoreManagerRepository;
-import com.wisegas.storemanagement.domain.value.Email;
 import com.wisegas.storemanagement.service.api.StoreManagerService;
 import com.wisegas.storemanagement.service.dto.StoreDto;
 import com.wisegas.storemanagement.service.dto.StoreManagerDto;

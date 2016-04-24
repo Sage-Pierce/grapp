@@ -1,10 +1,9 @@
-package com.wisegas.storemanagement.domain.value;
+package com.wisegas.common.lang.jpa;
 
 import com.wisegas.common.persistence.jpa.value.EntityId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
-import java.util.Base64;
 
 @Embeddable
 public class Email extends EntityId {
@@ -12,7 +11,7 @@ public class Email extends EntityId {
    private String email;
 
    public static Email fromString(String string) {
-      return new Email(new String(Base64.getDecoder().decode(string)));
+      return new Email(string);
    }
 
    public Email(String email) {
@@ -29,6 +28,6 @@ public class Email extends EntityId {
 
    @Override
    protected Object idHash() {
-      return Base64.getEncoder().encodeToString(email.getBytes());
+      return email;
    }
 }
