@@ -27,14 +27,14 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
 
    @Override
    public T remove(Id id) {
-      T entity = get(id);
+      T entity = entityManager.find(entityClass, convertIdToQueryObject(id));
       entityManager.remove(entity);
       return entity;
    }
 
    @Override
    public T get(Id id) {
-      return entityManager.find(entityClass, id);
+      return entityManager.find(entityClass, convertIdToQueryObject(id));
    }
 
    @Override
@@ -43,5 +43,9 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
                                        " FROM " + entityClass.getSimpleName() + " entity",
                                        entityClass)
                           .getResultList();
+   }
+
+   protected Object convertIdToQueryObject(Id id) {
+      return id;
    }
 }

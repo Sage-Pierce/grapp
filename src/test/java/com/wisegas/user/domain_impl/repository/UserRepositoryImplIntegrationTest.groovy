@@ -19,7 +19,7 @@ class UserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegration
       User user = testEntityManager.save(UserBuilder.user())
 
       when: "We try to find our Test Entity by E-Mail"
-      def result = userRepository.findByEmail(shouldBeFound ? user.getEmail() : "BOGUS EMAIL")
+      def result = userRepository.findByEmail(shouldBeFound ? user.getId().getEmail() : "BOGUS EMAIL")
 
       then: "The Test Entity should found based on the E-Mail we looked for"
       shouldBeFound == result.isPresent()

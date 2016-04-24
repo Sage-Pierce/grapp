@@ -3,20 +3,20 @@ package com.wisegas.user.domain.entity;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;
 import com.wisegas.common.persistence.jpa.value.Email;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "\"users\"")
 public class User extends NamedEntity<Email> {
-   @EmbeddedId
-   private Email id;
+   @Id
+   private String id;
 
    private String avatar;
 
    public User(Email email, String name, String avatar) {
-      id = email;
+      id = email.toString();
       setName(name);
       setAvatar(avatar);
    }
@@ -27,11 +27,7 @@ public class User extends NamedEntity<Email> {
 
    @Override
    public Email getId() {
-      return id;
-   }
-
-   public String getEmail() {
-      return id.getEmail();
+      return Email.fromString(id);
    }
 
    public String getAvatar() {

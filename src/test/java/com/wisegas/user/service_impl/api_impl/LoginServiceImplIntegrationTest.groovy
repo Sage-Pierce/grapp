@@ -26,7 +26,7 @@ class LoginServiceImplIntegrationTest extends IntegrationTest {
       User savedUser = testEntityManager.save(UserBuilder.user())
 
       when:
-      UserDto userResource = loginService.logIn(savedUser.getEmail(), null)
+      UserDto userResource = loginService.logIn(savedUser.getId().toString(), null)
 
       then:
       userResource.getId() == savedUser.getId().toString()
