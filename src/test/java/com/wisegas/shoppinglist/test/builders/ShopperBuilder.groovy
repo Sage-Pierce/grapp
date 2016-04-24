@@ -1,6 +1,6 @@
 package com.wisegas.shoppinglist.test.builders
 
-import com.wisegas.common.lang.jpa.Email
+import com.wisegas.common.persistence.jpa.value.Email
 import com.wisegas.common.test.EntityBuilder
 import com.wisegas.shoppinglist.domain.entity.Shopper;
 

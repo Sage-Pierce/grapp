@@ -1,7 +1,7 @@
 package com.wisegas.shoppinglist.domain.entity;
 
-import com.wisegas.common.lang.jpa.Email;
 import com.wisegas.common.persistence.jpa.entity.SimpleEntity;
+import com.wisegas.common.persistence.jpa.value.Email;
 
 import javax.persistence.*;
 import java.util.ArrayList;

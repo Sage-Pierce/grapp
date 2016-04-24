@@ -2,7 +2,7 @@ package com.wisegas.shoppinglist.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
-import com.wisegas.common.lang.jpa.Email;
+import com.wisegas.common.persistence.jpa.value.Email;
 import com.wisegas.shoppinglist.domain.entity.Shopper;
 import com.wisegas.shoppinglist.domain.repository.ShopperRepository;
 import com.wisegas.shoppinglist.service.api.ShopperService;

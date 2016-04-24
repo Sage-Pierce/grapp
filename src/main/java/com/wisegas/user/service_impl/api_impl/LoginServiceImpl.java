@@ -2,7 +2,7 @@ package com.wisegas.user.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
-import com.wisegas.common.lang.jpa.Email;
+import com.wisegas.common.persistence.jpa.value.Email;
 import com.wisegas.user.domain.entity.User;
 import com.wisegas.user.domain.repository.UserRepository;
 import com.wisegas.user.service.api.LoginService;

@@ -1,6 +1,4 @@
-package com.wisegas.common.lang.jpa;
-
-import com.wisegas.common.persistence.jpa.value.EntityId;
+package com.wisegas.common.persistence.jpa.value;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
