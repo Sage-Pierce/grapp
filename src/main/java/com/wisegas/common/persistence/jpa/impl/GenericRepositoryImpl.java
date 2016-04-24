@@ -1,8 +1,8 @@
 package com.wisegas.common.persistence.jpa.impl;
 
 import com.wisegas.common.lang.entity.GenericRepository;
-import com.wisegas.common.lang.entity.Id;
 import com.wisegas.common.lang.entity.SimpleEntity;
+import com.wisegas.common.lang.value.Id;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

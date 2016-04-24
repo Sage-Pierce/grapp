@@ -1,5 +1,7 @@
 package com.wisegas.common.lang.entity;
 
+import com.wisegas.common.lang.value.Id;
+
 public abstract class SimpleEntity<T extends Id> {
 
    @Override

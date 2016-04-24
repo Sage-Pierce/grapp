@@ -1,4 +1,4 @@
-package com.wisegas.common.lang.entity;
+package com.wisegas.common.lang.value;
 
 import java.io.Serializable;
 

@@ -1,5 +1,7 @@
 package com.wisegas.common.lang.entity;
 
+import com.wisegas.common.lang.value.Id;
+
 import java.util.UUID;
 
 public abstract class AbstractId implements Id {
