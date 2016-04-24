@@ -13,12 +13,16 @@ public class ShoppingList extends NamedEntity<ShoppingListId> {
    @EmbeddedId
    private ShoppingListId id;
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "shoppingList", orphanRemoval = true)
-   private List<ShoppingListItem> shoppingListItems = new ArrayList<>();
+   @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
+   private Shopper shopper;
 
-   public ShoppingList(String name) {
+   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "shoppingList", orphanRemoval = true)
+   private List<ShoppingListItem> items = new ArrayList<>();
+
+   public ShoppingList(Shopper shopper, String name) {
       id = ShoppingListId.generate();
       setName(name);
+      setShopper(shopper);
    }
 
    protected ShoppingList() {
@@ -30,13 +34,17 @@ public class ShoppingList extends NamedEntity<ShoppingListId> {
       return id;
    }
 
-   public List<ShoppingListItem> getShoppingListItems() {
-      return shoppingListItems;
+   public List<ShoppingListItem> getItems() {
+      return items;
    }
 
    public ShoppingListItem addItem(Item item) {
       ShoppingListItem shoppingListItem = new ShoppingListItem(this, item);
-      shoppingListItems.add(shoppingListItem);
+      items.add(shoppingListItem);
       return shoppingListItem;
+   }
+
+   private void setShopper(Shopper shopper) {
+      this.shopper = shopper;
    }
 }
