@@ -1,6 +1,6 @@
 package com.wisegas.common.lang.entity;
 
-public abstract class SimpleEntity<T extends EntityId> {
+public abstract class SimpleEntity<T extends Id> {
 
    @Override
    public boolean equals(Object object) {

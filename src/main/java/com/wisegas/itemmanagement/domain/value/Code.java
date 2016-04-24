@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.domain.value;
 
-import com.wisegas.common.lang.entity.AbstractEntityId;
+import com.wisegas.common.lang.entity.AbstractId;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
@@ -8,7 +8,7 @@ import javax.persistence.Enumerated;
 import java.util.Objects;
 
 @Embeddable
-public class Code extends AbstractEntityId {
+public class Code extends AbstractId {
    private static final String TYPE_VALUE_DELIMITER = ":";
 
    @Enumerated(EnumType.STRING)

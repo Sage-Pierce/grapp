@@ -1,12 +1,12 @@
 package com.wisegas.storemanagement.domain.value;
 
-import com.wisegas.common.lang.entity.AbstractEntityId;
+import com.wisegas.common.lang.entity.AbstractId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class FeatureId extends AbstractEntityId {
+public class FeatureId extends AbstractId {
    @Basic
    private String id;
 

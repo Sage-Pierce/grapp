@@ -1,7 +1,7 @@
 package com.wisegas.common.persistence.jpa.impl;
 
-import com.wisegas.common.lang.entity.EntityId;
 import com.wisegas.common.lang.entity.GenericRepository;
+import com.wisegas.common.lang.entity.Id;
 import com.wisegas.common.lang.entity.SimpleEntity;
 
 import javax.persistence.EntityManager;
@@ -26,14 +26,14 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    }
 
    @Override
-   public T remove(EntityId id) {
+   public T remove(Id id) {
       T entity = get(id);
       entityManager.remove(entity);
       return entity;
    }
 
    @Override
-   public T get(EntityId id) {
+   public T get(Id id) {
       return entityManager.find(entityClass, id);
    }
 

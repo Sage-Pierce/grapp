@@ -2,7 +2,7 @@ package com.wisegas.common.lang.entity;
 
 import java.util.UUID;
 
-public abstract class AbstractEntityId implements EntityId {
+public abstract class AbstractId implements Id {
 
    @Override
    public boolean equals(Object object) {

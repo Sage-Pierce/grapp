@@ -1,12 +1,12 @@
 package com.wisegas.shoppinglist.domain.value;
 
-import com.wisegas.common.lang.entity.AbstractEntityId;
+import com.wisegas.common.lang.entity.AbstractId;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ShoppingListId extends AbstractEntityId {
+public class ShoppingListId extends AbstractId {
    @Basic
    private String id;
 

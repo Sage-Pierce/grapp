@@ -5,9 +5,9 @@ import java.util.List;
 public interface GenericRepository<T extends SimpleEntity> {
    T add(T t);
 
-   T remove(EntityId entityId);
+   T remove(Id id);
 
-   T get(EntityId entityId);
+   T get(Id id);
 
    List<T> getAll();
 }
