@@ -1,6 +1,4 @@
-package com.wisegas.common.lang.entity;
-
-import com.wisegas.common.lang.value.Id;
+package com.wisegas.common.lang.value;
 
 import java.util.UUID;
 

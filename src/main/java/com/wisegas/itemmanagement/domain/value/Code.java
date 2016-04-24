@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.domain.value;
 
-import com.wisegas.common.lang.entity.AbstractId;
+import com.wisegas.common.lang.value.AbstractId;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
