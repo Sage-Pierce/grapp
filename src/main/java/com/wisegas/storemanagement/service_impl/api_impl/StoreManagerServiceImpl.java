@@ -40,6 +40,6 @@ public class StoreManagerServiceImpl implements StoreManagerService {
    }
 
    private StoreManager persistStoreManagerWithEmail(String email) {
-      return storeManagerRepository.add(new StoreManager(email));
+      return storeManagerRepository.add(new StoreManager(Email.fromString(email)));
    }
 }

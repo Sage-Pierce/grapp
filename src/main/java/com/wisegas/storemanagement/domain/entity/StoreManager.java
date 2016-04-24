@@ -16,8 +16,8 @@ public class StoreManager extends SimpleEntity<Email> {
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "manager", orphanRemoval = true)
    private List<Store> stores = new ArrayList<>();
 
-   public StoreManager(String email) {
-      id = new Email(email);
+   public StoreManager(Email email) {
+      id = email;
    }
 
    protected StoreManager() {

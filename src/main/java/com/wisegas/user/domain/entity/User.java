@@ -15,8 +15,8 @@ public class User extends NamedEntity<Email> {
 
    private String avatar;
 
-   public User(String email, String name, String avatar) {
-      id = new Email(email);
+   public User(Email email, String name, String avatar) {
+      id = email;
       setName(name);
       setAvatar(avatar);
    }

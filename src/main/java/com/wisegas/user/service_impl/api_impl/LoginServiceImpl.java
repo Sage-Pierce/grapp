@@ -2,6 +2,7 @@ package com.wisegas.user.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
+import com.wisegas.common.lang.jpa.Email;
 import com.wisegas.user.domain.entity.User;
 import com.wisegas.user.domain.repository.UserRepository;
 import com.wisegas.user.service.api.LoginService;
@@ -37,6 +38,6 @@ public class LoginServiceImpl implements LoginService {
    }
 
    private User persistUserWithEmail(String email) {
-      return userRepository.add(new User(email, email, null));
+      return userRepository.add(new User(Email.fromString(email), email, null));
    }
 }

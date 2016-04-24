@@ -14,7 +14,7 @@ public class Email extends EntityId {
       return new Email(string);
    }
 
-   public Email(String email) {
+   protected Email(String email) {
       this.email = email;
    }
 

@@ -39,6 +39,6 @@ public class ShopperServiceImpl implements ShopperService {
    }
 
    private Shopper persistShopperWithEmail(String email) {
-      return shopperRepository.add(new Shopper(email));
+      return shopperRepository.add(new Shopper(Email.fromString(email)));
    }
 }

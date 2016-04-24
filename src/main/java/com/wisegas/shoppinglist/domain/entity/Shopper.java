@@ -15,8 +15,8 @@ public class Shopper extends SimpleEntity<Email> {
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "shopper", orphanRemoval = true)
    private List<ShoppingList> lists = new ArrayList<>();
 
-   public Shopper(String email) {
-      id = new Email(email);
+   public Shopper(Email email) {
+      id = email;
    }
 
    protected Shopper() {

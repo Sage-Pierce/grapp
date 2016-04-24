@@ -1,5 +1,6 @@
 package com.wisegas.user.test.builders
 
+import com.wisegas.common.lang.jpa.Email
 import com.wisegas.common.test.EntityBuilder
 import com.wisegas.user.domain.entity.User
 
@@ -10,7 +11,7 @@ class UserBuilder {
    static User user() {
       unique++
       EntityBuilder.wrapBuilder(new User(
-         "test${unique}@email.com",
+         Email.fromString("test${unique}@email.com"),
          "Test User ${unique}",
          "<avatar ${unique}>"
       )) as User
