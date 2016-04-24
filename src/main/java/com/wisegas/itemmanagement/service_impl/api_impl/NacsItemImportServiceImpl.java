@@ -64,14 +64,14 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
    private Optional<Item> importNacsItemAsGeneralItem(NacsItem nacsItem) {
       Code code = nacsIdToItemCode(nacsItem.getId());
       Optional<Item> createdGeneralItem = tryToImportItemAsGeneralItem(code, nacsItem.getName());
-      createdGeneralItem.ifPresent(generalItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, generateRandomNacsChildCode(nacsItem.getId()), subItemName)));
+      createdGeneralItem.ifPresent(generalItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, Code.random(), subItemName)));
       return createdGeneralItem;
    }
 
    private Optional<Item> importNacsItemAsSubItem(NacsItem nacsItem) {
       Code code = nacsIdToItemCode(nacsItem.getId());
       Optional<Item> createdSubItem = tryToImportItemAsSubItem(nacsIdToItemCode(nacsItem.getParentId()), code, nacsItem.getName());
-      createdSubItem.ifPresent(subItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, generateRandomNacsChildCode(nacsItem.getId()), subItemName)));
+      createdSubItem.ifPresent(subItem -> nacsItem.getSubItems().forEach(subItemName -> tryToImportItemAsSubItem(code, Code.random(), subItemName)));
       return createdSubItem;
    }
 
@@ -95,10 +95,5 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
       catch (Exception e) {
          return Optional.empty();
       }
-   }
-
-   private Code generateRandomNacsChildCode(NacsId parentCode) {
-      String randomSuffix = String.format("%02d", (int)(Math.random() * 100));
-      return new Code(CodeType.RANDOM, parentCode.toString(CodeType.NACS.getValueFormat()) + randomSuffix);
    }
 }

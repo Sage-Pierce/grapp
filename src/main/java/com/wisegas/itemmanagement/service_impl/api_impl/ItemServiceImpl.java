@@ -64,6 +64,7 @@ public class ItemServiceImpl implements ItemService {
    }
 
    private Code createItemCode(String codeType, String code) {
-      return new Code(CodeType.valueOf(codeType), code);
+      CodeType type = CodeType.valueOf(codeType);
+      return new Code(type, code);
    }
 }

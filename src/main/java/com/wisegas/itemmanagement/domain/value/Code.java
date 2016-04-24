@@ -25,6 +25,10 @@ public class Code extends EntityId {
 
    }
 
+   public static Code random() {
+      return new Code(CodeType.RANDOM, generateValue());
+   }
+
    public static Code fromString(String string) {
       String[] split = string.split(TYPE_VALUE_DELIMITER);
       return new Code(CodeType.valueOf(split[0]), split[1]);
