@@ -65,6 +65,6 @@ public class ItemServiceImpl implements ItemService {
 
    private Code createItemCode(String codeType, String code) {
       CodeType type = CodeType.valueOf(codeType);
-      return new Code(type, code);
+      return type == CodeType.RANDOM ? Code.random() : new Code(type, code);
    }
 }

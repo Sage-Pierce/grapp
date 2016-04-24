@@ -13,13 +13,20 @@
       modalCreateItemVM.code = "";
       modalCreateItemVM.name = "";
       modalCreateItemVM.isDataValid = isDataValid;
+      modalCreateItemVM.isRandomCode = isRandomCode;
       modalCreateItemVM.finish = finish;
       modalCreateItemVM.cancel = cancel;
 
       ////////////////////
 
       function isDataValid() {
-         return modalCreateItemVM.codeType !== null && _.trim(modalCreateItemVM.code).length > 0 && _.trim(modalCreateItemVM.name).length > 0;
+         return modalCreateItemVM.codeType !== null &&
+                (isRandomCode() || _.trim(modalCreateItemVM.code).length > 0) &&
+                _.trim(modalCreateItemVM.name).length > 0;
+      }
+
+      function isRandomCode() {
+         return modalCreateItemVM.codeType === CodeType.RANDOM;
       }
 
       function finish() {

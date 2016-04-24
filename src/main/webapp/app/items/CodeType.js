@@ -9,7 +9,8 @@
          GTIN: new CodeType("GTIN"),
          UPC: new CodeType("UPC"),
          NACS: new CodeType("NACS"),
-         MANUAL: new CodeType("MANUAL")
+         MANUAL: new CodeType("Manual"),
+         RANDOM: new CodeType("Random")
       };
    }
 
