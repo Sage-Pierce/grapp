@@ -27,8 +27,8 @@ public class LoginServiceImpl implements LoginService {
    }
 
    @Override
-   public UserDto logIn(String emailString, String avatar) {
-      User user = getUserByEmail(Email.fromString(emailString));
+   public UserDto logIn(Email email, String avatar) {
+      User user = getUserByEmail(email);
       user.setAvatar(avatar == null ? user.getAvatar() : avatar);
       return UserDtoFactory.createDto(user);
    }

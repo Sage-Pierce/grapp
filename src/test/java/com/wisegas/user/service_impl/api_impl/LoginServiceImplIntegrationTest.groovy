@@ -1,5 +1,6 @@
 package com.wisegas.user.service_impl.api_impl
 
+import com.wisegas.common.lang.value.Email
 import com.wisegas.common.test.IntegrationTest
 import com.wisegas.user.domain.entity.User
 import com.wisegas.user.service.api.LoginService
@@ -15,7 +16,7 @@ class LoginServiceImplIntegrationTest extends IntegrationTest {
 
    def "a User is created if not currently in the DB"() {
       when:
-      UserDto userResource = loginService.logIn("another@email.com", null)
+      UserDto userResource = loginService.logIn(Email.fromString("another@email.com"), null)
 
       then:
       userResource != null
@@ -26,7 +27,7 @@ class LoginServiceImplIntegrationTest extends IntegrationTest {
       User savedUser = testEntityManager.save(UserBuilder.user())
 
       when:
-      UserDto userResource = loginService.logIn(savedUser.getId().toString(), null)
+      UserDto userResource = loginService.logIn(savedUser.getId(), null)
 
       then:
       userResource.getId() == savedUser.getId().toString()

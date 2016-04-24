@@ -1,5 +1,6 @@
 package com.wisegas.user.restresource;
 
+import com.wisegas.common.lang.value.Email;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
@@ -23,7 +24,7 @@ public class LoginResource extends JaxrsHalJsonResource {
    }
 
    @PUT
-   public Response logIn(@QueryParam(value = "email") final String email,
+   public Response logIn(@QueryParam(value = "email") final Email email,
                          @QueryParam(value = "avatar") final String avatar) {
       UserDto userDto = loginService.logIn(email, avatar);
       return buildHalResponse(UserResource.asRepresentationOf(userDto));

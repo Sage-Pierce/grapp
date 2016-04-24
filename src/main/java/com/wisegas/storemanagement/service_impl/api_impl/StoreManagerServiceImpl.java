@@ -30,8 +30,7 @@ public class StoreManagerServiceImpl implements StoreManagerService {
    }
 
    @Override
-   public StoreManagerDto loadByEmail(String emailString) {
-      Email email = Email.fromString(emailString);
+   public StoreManagerDto loadByEmail(Email email) {
       return StoreManagerDtoFactory.createDto(storeManagerRepository.findByEmail(email).orElseGet(() -> persistStoreManagerWithEmail(email)));
    }
 
