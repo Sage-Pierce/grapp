@@ -1,5 +1,6 @@
 package com.wisegas.storemanagement.restresource;
 
+import com.wisegas.common.lang.value.Email;
 import com.wisegas.common.lang.value.GeoPoint;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
@@ -29,10 +30,10 @@ public class StoreManagerResource extends JaxrsHalJsonResource {
 
    @POST
    @Path("addStore")
-   public Response addStore(@PathParam("id") final String id,
+   public Response addStore(@PathParam("id") final Email email,
                             @QueryParam("name") final String name,
                             @QueryParam("location") final GeoPoint location) {
-      return buildHalResponse(StoreResource.asRepresentationOf(storeManagerService.addStore(id, name, location)));
+      return buildHalResponse(StoreResource.asRepresentationOf(storeManagerService.addStore(email, name, location)));
    }
 
    public static HalLink createRootLink(String rel) {
@@ -45,8 +46,8 @@ public class StoreManagerResource extends JaxrsHalJsonResource {
 
    private static List<HalLink> createLinks(StoreManagerDto storeManagerDto) {
       return Arrays.asList(
-         createSelfLinkBuilder().pathArgs(storeManagerDto.getId()).withSelfRel(),
-         JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class).method("addStore").pathArgs(storeManagerDto.getId()).queryParams("name", "location").withRel("addStore")
+         createSelfLinkBuilder().pathArgs(storeManagerDto.getEmail()).withSelfRel(),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class).method("addStore").pathArgs(storeManagerDto.getEmail()).queryParams("name", "location").withRel("addStore")
       );
    }
 

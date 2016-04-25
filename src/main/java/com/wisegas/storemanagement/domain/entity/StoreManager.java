@@ -26,6 +26,10 @@ public class StoreManager extends SimpleEntity<Email> {
 
    @Override
    public Email getId() {
+      return getEmail();
+   }
+
+   public Email getEmail() {
       return Email.fromString(email);
    }
 

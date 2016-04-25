@@ -8,5 +8,5 @@ import com.wisegas.storemanagement.service.dto.StoreManagerDto;
 public interface StoreManagerService {
    StoreManagerDto loadByEmail(Email email);
 
-   StoreDto addStore(String id, String name, GeoPoint location);
+   StoreDto addStore(Email email, String name, GeoPoint location);
 }

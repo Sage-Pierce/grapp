@@ -9,7 +9,7 @@ public final class StoreManagerDtoFactory {
 
    public static StoreManagerDto createDto(StoreManager storeManager) {
       StoreManagerDto storeManagerDto = new StoreManagerDto();
-      storeManagerDto.setId(storeManager.getId().toString());
+      storeManagerDto.setEmail(storeManager.getEmail());
       storeManagerDto.setStores(storeManager.getStores().stream().map(StoreDtoFactory::createDto).collect(Collectors.toList()));
       return storeManagerDto;
    }

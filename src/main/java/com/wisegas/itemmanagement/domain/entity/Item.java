@@ -47,7 +47,7 @@ public class Item extends SimpleEntity<Code> {
 
    @Override
    public Code getId() {
-      return primaryCode;
+      return getPrimaryCode();
    }
 
    public Code getPrimaryCode() {
