@@ -1,9 +1,9 @@
 package com.wisegas.application.config;
 
 import com.wisegas.common.webserver.jaxrs.exceptionmapper.EntityConflictExceptionMapper;
+import com.wisegas.common.webserver.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper;
 import com.wisegas.common.webserver.jaxrs.filter.CORSResponseFilter;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
 public class JerseyApplication extends ResourceConfig {
 
@@ -15,10 +15,10 @@ public class JerseyApplication extends ResourceConfig {
                "com.wisegas.user.restresource");
 
       // Register Filters
-      register(RequestContextFilter.class);
       register(CORSResponseFilter.class);
 
       // Register Mappers
       register(EntityConflictExceptionMapper.class);
+      register(IllegalArgumentExceptionMapper.class);
    }
 }
