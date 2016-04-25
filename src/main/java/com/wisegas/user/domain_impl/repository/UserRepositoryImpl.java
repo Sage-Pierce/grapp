@@ -1,7 +1,6 @@
 package com.wisegas.user.domain_impl.repository;
 
 import com.wisegas.common.lang.value.Email;
-import com.wisegas.common.lang.value.Id;
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImpl;
 import com.wisegas.user.domain.entity.User;
 import com.wisegas.user.domain.repository.UserRepository;
@@ -27,10 +26,5 @@ public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements U
       catch (Exception e) {
          return Optional.empty();
       }
-   }
-
-   @Override
-   protected Object convertIdToQueryObject(Id id) {
-      return id.toString();
    }
 }

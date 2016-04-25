@@ -63,7 +63,7 @@ public class IntegrationTestEntityManager {
       List<T> results = entityManager.createQuery(" SELECT entity" +
                                                   " FROM " + detachedEntity.getClass().getSimpleName() + " entity" +
                                                   " WHERE entity.id = :id")
-                                     .setParameter("id", convertIdToQueryObject(detachedEntity))
+                                     .setParameter("id", convertIdToQueryObject(detachedEntity.getId()))
                                      .getResultList();
       if (results.size() > 1) {
          throw new RuntimeException("There was more than one result when trying to fetch a Managed Entity for this Detached Entity: " + detachedEntity);
@@ -82,8 +82,7 @@ public class IntegrationTestEntityManager {
       });
    }
 
-   private <T extends SimpleEntity> Object convertIdToQueryObject(T detachedEntity) {
-      Id id = detachedEntity.getId();
+   private Object convertIdToQueryObject(Id id) {
       Class idClass = id.getClass();
       return idClass.isPrimitive() || idClass.isAnnotationPresent(Embeddable.class) ? id : id.toString();
    }

@@ -4,6 +4,7 @@ import com.wisegas.common.lang.entity.GenericRepository;
 import com.wisegas.common.lang.entity.SimpleEntity;
 import com.wisegas.common.lang.value.Id;
 
+import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
@@ -46,6 +47,7 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    }
 
    protected Object convertIdToQueryObject(Id id) {
-      return id;
+      Class idClass = id.getClass();
+      return idClass.isPrimitive() || idClass.isAnnotationPresent(Embeddable.class) ? id : id.toString();
    }
 }
