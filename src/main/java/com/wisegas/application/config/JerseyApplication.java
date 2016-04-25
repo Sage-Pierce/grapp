@@ -2,7 +2,6 @@ package com.wisegas.application.config;
 
 import com.wisegas.common.webserver.jaxrs.exceptionmapper.EntityConflictExceptionMapper;
 import com.wisegas.common.webserver.jaxrs.filter.CORSResponseFilter;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
@@ -14,9 +13,6 @@ public class JerseyApplication extends ResourceConfig {
                "com.wisegas.itemmanagement.restresource",
                "com.wisegas.storemanagement.restresource",
                "com.wisegas.user.restresource");
-
-      // Register Features
-      register(JacksonFeature.class);
 
       // Register Filters
       register(RequestContextFilter.class);

@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
 
-@Path("/users/{id}/")
+@Path("/users/{email}/")
 public class UserResource extends JaxrsHalJsonResource {
 
    private final UserService userService;
@@ -25,13 +25,13 @@ public class UserResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam(value = "id") final Email email) {
+   public Response get(@PathParam(value = "email") final Email email) {
       UserDto userDto = userService.get(email);
       return buildHalResponse(asRepresentationOf(userDto));
    }
 
    @PUT
-   public Response update(@PathParam(value = "id") final Email email,
+   public Response update(@PathParam(value = "email") final Email email,
                           @QueryParam(value = "name") final String name) {
       UserDto userDto = userService.update(email, name);
       return buildHalResponse(asRepresentationOf(userDto));

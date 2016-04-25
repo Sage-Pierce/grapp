@@ -13,8 +13,8 @@
       self.loadResourceModels = loadResourceModels;
       self.loadResourceModelById = loadResourceModelById;
       self.updateResourceById = updateResourceById;
-      self.mergeResourceIntoModel = mergeResourceIntoModel;
       self.deleteResourceById = deleteResourceById;
+      self.mergeResourceIntoModel = mergeResourceIntoModel;
 
       var deferred = $q.defer();
 
@@ -47,19 +47,29 @@
          });
       }
 
-      function loadResourceModelById(resourceName, id, resourceModelCreatorCallback) {
+      function loadResourceModelById(resourceName, idParam, resourceModelCreatorCallback) {
          return afterLoad().then(function(rootRsc) {
-            return rootRsc.$get(resourceName + "ById", {id: id})
+            return rootRsc.$get(resourceName + "ById", _.isObject(idParam) ? idParam : {id: idParam})
                .then(function(resource) {
                   return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                });
          });
       }
 
-      function updateResourceById(resourceName, id, params) {
+      function updateResourceById(resourceName, idParam, attributes) {
          return afterLoad().then(function(rootRsc) {
-            return rootRsc.$put(resourceName + "ById", _.merge(params, {id: id}));
+            return rootRsc.$put(resourceName + "ById", _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
          });
+      }
+
+      function deleteResourceById(resourceName, idParam) {
+         return afterLoad().then(function(rootRsc) {
+            return rootRsc.$del(resourceName + "ById", _.isObject(idParam) ? idParam : {id: idParam});
+         });
+      }
+
+      function afterLoad() {
+         return deferred.promise;
       }
 
       function mergeResourceIntoModel(resource, model) {
@@ -69,16 +79,6 @@
             }
          }
          return decorateResourceModel(resource, model);
-      }
-
-      function deleteResourceById(resourceName, id) {
-         return afterLoad().then(function(rootRsc) {
-            return rootRsc.$del(resourceName + "ById", {id: id});
-         });
-      }
-
-      function afterLoad() {
-         return deferred.promise;
       }
 
       function decorateResourceModel(resource, model) {

@@ -10,7 +10,7 @@ public final class ShopperDtoFactory {
 
    public static ShopperDto createDto(Shopper shopper) {
       ShopperDto shopperDto = new ShopperDto();
-      shopperDto.setEmail(shopper.getEmail());
+      shopperDto.setEmail(shopper.getEmail().toString());
       shopperDto.setLists(shopper.getLists().stream().map(list -> new IdName(list.getId().toString(), list.getName())).collect(Collectors.toList()));
       return shopperDto;
    }

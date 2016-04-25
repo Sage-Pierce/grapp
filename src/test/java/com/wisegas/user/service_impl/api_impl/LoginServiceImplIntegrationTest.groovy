@@ -30,6 +30,6 @@ class LoginServiceImplIntegrationTest extends IntegrationTest {
       UserDto userDto = loginService.logIn(savedUser.getId(), null)
 
       then:
-      userDto.getEmail() == savedUser.getEmail()
+      userDto.getEmail() == savedUser.getEmail().toString()
    }
 }

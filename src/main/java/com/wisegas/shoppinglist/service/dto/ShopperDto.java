@@ -1,20 +1,19 @@
 package com.wisegas.shoppinglist.service.dto;
 
-import com.wisegas.common.lang.value.Email;
 import com.wisegas.common.lang.value.IdName;
 
 import java.util.List;
 
 public class ShopperDto {
 
-   private Email email;
+   private String email;
    private List<IdName> lists;
 
-   public Email getEmail() {
+   public String getEmail() {
       return email;
    }
 
-   public void setEmail(Email email) {
+   public void setEmail(String email) {
       this.email = email;
    }
 

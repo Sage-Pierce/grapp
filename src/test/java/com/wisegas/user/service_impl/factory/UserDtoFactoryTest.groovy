@@ -15,7 +15,7 @@ class UserDtoFactoryTest extends Specification {
 
       then:
       with(result) {
-         email == user.getEmail()
+         email == user.getEmail().toString()
          name == user.getName()
          avatar == user.getAvatar()
       }
