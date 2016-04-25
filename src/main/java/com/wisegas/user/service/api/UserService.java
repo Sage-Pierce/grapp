@@ -1,9 +1,10 @@
 package com.wisegas.user.service.api;
 
+import com.wisegas.common.lang.value.Email;
 import com.wisegas.user.service.dto.UserDto;
 
 public interface UserService {
-   UserDto get(String id);
+   UserDto get(Email email);
 
-   UserDto update(String id, String name);
+   UserDto update(Email email, String name);
 }

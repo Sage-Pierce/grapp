@@ -17,7 +17,7 @@ public class UserServiceImplIntegrationTest extends IntegrationTest {
       User user = testEntityManager.save(UserBuilder.user())
 
       when:
-      def result = userService.update(user.getId().toString(), "NEW NAME")
+      def result = userService.update(user.getEmail(), "NEW NAME")
 
       then:
       result.getName() == "NEW NAME"

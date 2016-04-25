@@ -1,5 +1,6 @@
 package com.wisegas.user.restresource;
 
+import com.wisegas.common.lang.value.Email;
 import com.wisegas.common.webserver.hal.api.HalLink;
 import com.wisegas.common.webserver.hal.api.HalRepresentation;
 import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
@@ -24,15 +25,15 @@ public class UserResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam(value = "id") final String id) {
-      UserDto userDto = userService.get(id);
+   public Response get(@PathParam(value = "id") final Email email) {
+      UserDto userDto = userService.get(email);
       return buildHalResponse(asRepresentationOf(userDto));
    }
 
    @PUT
-   public Response update(@PathParam(value = "id") final String id,
+   public Response update(@PathParam(value = "id") final Email email,
                           @QueryParam(value = "name") final String name) {
-      UserDto userDto = userService.update(id, name);
+      UserDto userDto = userService.update(email, name);
       return buildHalResponse(asRepresentationOf(userDto));
    }
 

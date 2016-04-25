@@ -27,13 +27,13 @@ public class UserServiceImpl implements UserService {
    }
 
    @Override
-   public UserDto get(String id) {
-      return UserDtoFactory.createDto(userRepository.get(Email.fromString(id)));
+   public UserDto get(Email email) {
+      return UserDtoFactory.createDto(userRepository.get(email));
    }
 
    @Override
-   public UserDto update(String id, String name) {
-      User user = userRepository.get(Email.fromString(id));
+   public UserDto update(Email email, String name) {
+      User user = userRepository.get(email);
       user.setName(name);
       return UserDtoFactory.createDto(user);
    }

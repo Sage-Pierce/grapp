@@ -29,14 +29,13 @@ public class ShopperServiceImpl implements ShopperService {
    }
 
    @Override
-   public ShopperDto loadByEmail(String emailString) {
-      Email email = Email.fromString(emailString);
+   public ShopperDto loadByEmail(Email email) {
       return ShopperDtoFactory.createDto(shopperRepository.findByEmail(email).orElseGet(() -> persistShopperWithEmail(email)));
    }
 
    @Override
-   public ShoppingListDto addList(String id, String name) {
-      return ShoppingListDtoFactory.createDto(shopperRepository.get(Email.fromString(id)).addList(name));
+   public ShoppingListDto addList(Email email, String name) {
+      return ShoppingListDtoFactory.createDto(shopperRepository.get(email).addList(name));
    }
 
    private Shopper persistShopperWithEmail(Email email) {
