@@ -7,7 +7,7 @@ public final class UserDtoFactory {
 
    public static UserDto createDto(User user) {
       UserDto userDto = new UserDto();
-      userDto.setId(user.getId().toString());
+      userDto.setEmail(user.getEmail());
       userDto.setName(user.getName());
       userDto.setAvatar(user.getAvatar());
       return userDto;

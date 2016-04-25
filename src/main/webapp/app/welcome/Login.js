@@ -20,9 +20,9 @@
       ////////////////////
 
       function logInCachedUser() {
-         var userId = $cookies.get("user-id");
-         if (userId) {
-            User.loadById(userId).then(resolveUser, function() {
+         var userEmail = $cookies.get("user-email");
+         if (userEmail) {
+            User.loadById(userEmail).then(resolveUser, function() {
                deferred.reject("Problem logging User in on Server.");
             });
          }
@@ -48,7 +48,7 @@
       }
 
       function logOut() {
-         $cookies.remove("user-id");
+         $cookies.remove("user-email");
          deferred = $q.defer();
          deferred.reject("NO USER LOGGED IN");
          userLoggedIn = false;
@@ -65,7 +65,7 @@
       }
 
       function cacheUser(userRsc) {
-         $cookies.put("user-id", userRsc.id);
+         $cookies.put("user-email", userRsc.email);
          return userRsc;
       }
 

@@ -12,7 +12,7 @@
             resolve: {
                storeManager: ["Login", "StoreManager", function(Login, StoreManager) {
                   return Login.afterLogIn().then(function(user) {
-                     return StoreManager.loadByEmail(user.id);
+                     return StoreManager.loadByEmail(user.email);
                   });
                }]
             },

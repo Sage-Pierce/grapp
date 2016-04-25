@@ -7,13 +7,13 @@
    User.$inject = ["Root"];
    function User(Root) {
       var self = this;
-      self.loadById = loadById;
+      self.loadByEmail = loadByEmail;
       self.load = load;
 
       ////////////////////
 
-      function loadById(userId) {
-         return Root.loadResourceModelById("user", userId, createModel);
+      function loadByEmail(email) {
+         return Root.loadResourceModelById("user", email, createModel);
       }
 
       function load(userRsc) {

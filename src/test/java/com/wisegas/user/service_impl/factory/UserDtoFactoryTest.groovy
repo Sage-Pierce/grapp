@@ -6,7 +6,7 @@ import spock.lang.Specification
 
 class UserDtoFactoryTest extends Specification {
 
-   def "A UserResource can be created from a User"() {
+   def "A UserDto can be created from a User"() {
       given:
       User user = UserBuilder.user()
 
@@ -15,7 +15,7 @@ class UserDtoFactoryTest extends Specification {
 
       then:
       with(result) {
-         id == user.getId().toString()
+         email == user.getEmail()
          name == user.getName()
          avatar == user.getAvatar()
       }

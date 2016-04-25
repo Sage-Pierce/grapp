@@ -16,20 +16,20 @@ class LoginServiceImplIntegrationTest extends IntegrationTest {
 
    def "a User is created if not currently in the DB"() {
       when:
-      UserDto userResource = loginService.logIn(Email.fromString("another@email.com"), null)
+      UserDto userDto = loginService.logIn(Email.fromString("another@email.com"), null)
 
       then:
-      userResource != null
-      userResource.getId() != null
+      userDto != null
+      userDto.getEmail() != null
    }
 
    def "a User will be found if it is already in the DB"() {
       User savedUser = testEntityManager.save(UserBuilder.user())
 
       when:
-      UserDto userResource = loginService.logIn(savedUser.getId(), null)
+      UserDto userDto = loginService.logIn(savedUser.getId(), null)
 
       then:
-      userResource.getId() == savedUser.getId().toString()
+      userDto.getEmail() == savedUser.getEmail()
    }
 }

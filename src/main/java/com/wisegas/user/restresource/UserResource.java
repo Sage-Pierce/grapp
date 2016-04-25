@@ -46,7 +46,7 @@ public class UserResource extends JaxrsHalJsonResource {
    }
 
    private static List<HalLink> createLinks(UserDto userDto) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(userDto.getId()).withSelfRel());
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(userDto.getEmail()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
