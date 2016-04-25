@@ -8,8 +8,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.depenency.plugin.version>2.10</maven.depenency.plugin.version>
-        <apache.commons.version>3.4</apache.commons.version>
         <apache.commons.csv.version>1.2</apache.commons.csv.version>
+        <apache.commons.version>3.4</apache.commons.version>
+        <apache.commons.validator.version>1.5.0</apache.commons.validator.version>
         <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
         <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
         <gson.version>2.6.2</gson.version>
@@ -137,6 +138,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>${apache.commons.csv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>${apache.commons.validator.version}</version>
         </dependency>
 
         <!-- JPA 2.1 with Hibernate implementation-->

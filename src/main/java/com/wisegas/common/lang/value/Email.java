@@ -1,6 +1,9 @@
 package com.wisegas.common.lang.value;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 public final class Email extends AbstractId {
+   private static final EmailValidator EMAIL_VALIDATOR = EmailValidator.getInstance(true, true);
 
    private String value;
 
@@ -9,7 +12,7 @@ public final class Email extends AbstractId {
    }
 
    public Email(String value) {
-      this.value = value;
+      this.value = validateEmail(value);
    }
 
    protected Email() {
@@ -23,5 +26,14 @@ public final class Email extends AbstractId {
 
    public String getValue() {
       return value;
+   }
+
+   private static String validateEmail(String value) {
+      if (EMAIL_VALIDATOR.isValid(value)) {
+         return value;
+      }
+      else {
+         throw new IllegalArgumentException("This is not a valid E-Mail Address: " + value);
+      }
    }
 }
