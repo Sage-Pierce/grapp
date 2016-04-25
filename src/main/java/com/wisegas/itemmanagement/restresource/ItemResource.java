@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
 
-@Path("/items/{id}/")
+@Path("/items/{primaryCode}/")
 public class ItemResource extends JaxrsHalJsonResource {
 
    private final ItemService itemService;
@@ -27,12 +27,12 @@ public class ItemResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String primaryCode) {
+   public Response get(@PathParam("primaryCode") final String primaryCode) {
       return buildHalResponse(asRepresentationOf(itemService.get(primaryCode)));
    }
 
    @DELETE
-   public Response delete(@PathParam("id") final String primaryCode) {
+   public Response delete(@PathParam("primaryCode") final String primaryCode) {
       itemService.delete(primaryCode);
       return Response.ok().build();
    }
