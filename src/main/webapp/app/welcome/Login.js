@@ -22,7 +22,7 @@
       function logInCachedUser() {
          var userEmail = $cookies.get("user-email");
          if (userEmail) {
-            User.loadById(userEmail).then(resolveUser, function() {
+            User.loadByEmail(userEmail).then(resolveUser, function() {
                deferred.reject("Problem logging User in on Server.");
             });
          }

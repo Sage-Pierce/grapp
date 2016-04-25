@@ -20,4 +20,8 @@ public final class Email extends AbstractId {
    public Object idHash() {
       return value;
    }
+
+   public String getValue() {
+      return value;
+   }
 }
