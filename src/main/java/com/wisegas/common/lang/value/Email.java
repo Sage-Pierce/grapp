@@ -16,10 +16,6 @@ public final class Email extends AbstractId {
 
    }
 
-   public String getValue() {
-      return value;
-   }
-
    @Override
    public Object idHash() {
       return value;
