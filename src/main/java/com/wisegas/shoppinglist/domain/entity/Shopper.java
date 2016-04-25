@@ -10,13 +10,13 @@ import java.util.List;
 @Entity
 public class Shopper extends SimpleEntity<Email> {
    @Id
-   private String id;
+   private String email;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "shopper", orphanRemoval = true)
    private List<ShoppingList> lists = new ArrayList<>();
 
    public Shopper(Email email) {
-      id = email.toString();
+      this.email = email.toString();
    }
 
    protected Shopper() {
@@ -25,7 +25,7 @@ public class Shopper extends SimpleEntity<Email> {
 
    @Override
    public Email getId() {
-      return Email.fromString(id);
+      return Email.fromString(email);
    }
 
    public List<ShoppingList> getLists() {

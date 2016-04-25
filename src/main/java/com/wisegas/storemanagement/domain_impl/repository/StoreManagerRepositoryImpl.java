@@ -18,7 +18,7 @@ public class StoreManagerRepositoryImpl extends GenericRepositoryImpl<StoreManag
       try {
          return Optional.of(entityManager.createQuery(" SELECT storeManager " +
                                                       " FROM StoreManager storeManager " +
-                                                      " WHERE storeManager.id = :email",
+                                                      " WHERE storeManager.email = :email",
                                                       StoreManager.class)
                                          .setParameter("email", email.toString())
                                          .getSingleResult());

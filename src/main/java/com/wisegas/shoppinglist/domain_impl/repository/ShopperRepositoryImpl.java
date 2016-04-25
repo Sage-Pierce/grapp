@@ -18,7 +18,7 @@ public class ShopperRepositoryImpl extends GenericRepositoryImpl<Shopper> implem
       try {
          return Optional.of(entityManager.createQuery(" SELECT shopper " +
                                                       " FROM Shopper shopper " +
-                                                      " WHERE shopper.id = :email",
+                                                      " WHERE shopper.email = :email",
                                                       Shopper.class)
                                          .setParameter("email", email.toString())
                                          .getSingleResult());

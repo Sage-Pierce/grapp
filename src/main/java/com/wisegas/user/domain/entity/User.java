@@ -11,12 +11,12 @@ import javax.persistence.Table;
 @Table(name = "\"users\"")
 public class User extends NamedEntity<Email> {
    @Id
-   private String id;
+   private String email;
 
    private String avatar;
 
    public User(Email email, String name, String avatar) {
-      id = email.toString();
+      this.email = email.toString();
       setName(name);
       setAvatar(avatar);
    }
@@ -27,7 +27,7 @@ public class User extends NamedEntity<Email> {
 
    @Override
    public Email getId() {
-      return Email.fromString(id);
+      return Email.fromString(email);
    }
 
    public String getAvatar() {

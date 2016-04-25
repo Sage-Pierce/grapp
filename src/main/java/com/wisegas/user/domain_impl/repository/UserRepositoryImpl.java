@@ -18,7 +18,7 @@ public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements U
       try {
          return Optional.of(entityManager.createQuery(" SELECT user " +
                                                       " FROM User user " +
-                                                      " WHERE user.id = :email",
+                                                      " WHERE user.email = :email",
                                                       User.class)
                                          .setParameter("email", email.toString())
                                          .getSingleResult());
