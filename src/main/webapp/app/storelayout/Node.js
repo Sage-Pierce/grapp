@@ -33,7 +33,7 @@
          ////////////////////
 
          function setAttributes(attributes) {
-            return Root.updateResourceById("node", node.id, _.merge(attributes, self))
+            return Root.updateResource("node", node.id, _.merge(attributes, self))
                .then(function() { self.name = name; });
          }
 
@@ -56,12 +56,12 @@
          }
 
          function removeItemById(itemId) {
-            return Root.deleteResourceById("nodeItem", itemId)
+            return Root.deleteResource("nodeItem", itemId)
                .then(function() { delete self.items[itemId]; });
          }
 
          function del() {
-            return Root.deleteResourceById("node", node.id);
+            return Root.deleteResource("node", node.id);
          }
 
          function createModelForNodeItem(nodeItem) {

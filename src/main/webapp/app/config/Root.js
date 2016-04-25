@@ -11,9 +11,9 @@
       self.afterLoad = afterLoad;
       self.createResourceModel = createResourceModel;
       self.loadResourceModels = loadResourceModels;
-      self.loadResourceModelById = loadResourceModelById;
-      self.updateResourceById = updateResourceById;
-      self.deleteResourceById = deleteResourceById;
+      self.loadResourceModel = loadResourceModel;
+      self.updateResource = updateResource;
+      self.deleteResource = deleteResource;
       self.mergeResourceIntoModel = mergeResourceIntoModel;
 
       var deferred = $q.defer();
@@ -47,24 +47,24 @@
          });
       }
 
-      function loadResourceModelById(resourceName, idParam, resourceModelCreatorCallback) {
+      function loadResourceModel(resourceName, idParam, resourceModelCreatorCallback) {
          return afterLoad().then(function(rootRsc) {
-            return rootRsc.$get(resourceName + "ById", _.isObject(idParam) ? idParam : {id: idParam})
+            return rootRsc.$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam})
                .then(function(resource) {
                   return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                });
          });
       }
 
-      function updateResourceById(resourceName, idParam, attributes) {
+      function updateResource(resourceName, idParam, attributes) {
          return afterLoad().then(function(rootRsc) {
-            return rootRsc.$put(resourceName + "ById", _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
+            return rootRsc.$put(resourceName, _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
          });
       }
 
-      function deleteResourceById(resourceName, idParam) {
+      function deleteResource(resourceName, idParam) {
          return afterLoad().then(function(rootRsc) {
-            return rootRsc.$del(resourceName + "ById", _.isObject(idParam) ? idParam : {id: idParam});
+            return rootRsc.$del(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
          });
       }
 

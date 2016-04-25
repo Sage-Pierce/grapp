@@ -13,7 +13,7 @@
       ////////////////////
 
       function loadById(storeId) {
-         return Root.loadResourceModelById("store", storeId, createModel);
+         return Root.loadResourceModel("store", storeId, createModel);
       }
 
       function load(store) {
@@ -33,14 +33,14 @@
 
          function setAttributes(attributes) {
             attributes.location = JSON.stringify(attributes.location || self.location);
-            return Root.updateResourceById("store", store.id, _.merge(attributes, self)).then(function(storeRsc) {
+            return Root.updateResource("store", store.id, _.merge(attributes, self)).then(function(storeRsc) {
                self.name = storeRsc.name;
                self.location = storeRsc.location;
             });
          }
 
          function del() {
-            return Root.deleteResourceById("store", store.id);
+            return Root.deleteResource("store", store.id);
          }
       }
    }

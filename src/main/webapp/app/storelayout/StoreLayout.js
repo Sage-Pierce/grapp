@@ -12,7 +12,7 @@
       ////////////////////
 
       function loadById(storeLayoutId) {
-         return Root.loadResourceModelById("layout", storeLayoutId, createModel);
+         return Root.loadResourceModel("layout", storeLayoutId, createModel);
       }
 
       function createModel(storeLayoutRsc) {

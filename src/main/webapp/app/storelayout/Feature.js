@@ -35,7 +35,7 @@
          }
 
          function del() {
-            return Root.deleteResourceById("feature", feature.id);
+            return Root.deleteResource("feature", feature.id);
          }
       }
    }

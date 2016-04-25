@@ -29,18 +29,18 @@ public class RootResource extends JaxrsHalJsonResource {
       return Arrays.asList(
          JaxrsHalResourceLinkBuilder.linkTo(RootResource.class).withSelfRel(),
          LoginResource.createRootLink("logIn"),
-         UserResource.createRootLink("userById"),
+         UserResource.createRootLink("user"),
          StoreManagersResource.createRootLink("storeManagers"),
-         StoreManagerResource.createRootLink("storeManagerById"),
-         StoreResource.createRootLink("storeById"),
-         LayoutResource.createRootLink("layoutById"),
-         FeatureResource.createRootLink("featureById"),
-         NodeResource.createRootLink("nodeById"),
-         NodeItemResource.createRootLink("nodeItemById"),
+         StoreManagerResource.createRootLink("storeManager"),
+         StoreResource.createRootLink("store"),
+         LayoutResource.createRootLink("layout"),
+         FeatureResource.createRootLink("feature"),
+         NodeResource.createRootLink("node"),
+         NodeItemResource.createRootLink("nodeItem"),
          GeneralItemsResource.createRootLink("generalItems"),
          ItemsResource.createRootLink("items"),
          ItemImportResource.createRootLink("importItems"),
-         ItemResource.createRootLink("itemById")
+         ItemResource.createRootLink("item")
       );
    }
 }

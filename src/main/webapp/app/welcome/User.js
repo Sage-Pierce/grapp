@@ -13,7 +13,7 @@
       ////////////////////
 
       function loadByEmail(email) {
-         return Root.loadResourceModelById("user", {email: email}, createModel);
+         return Root.loadResourceModel("user", {email: email}, createModel);
       }
 
       function load(userRsc) {
