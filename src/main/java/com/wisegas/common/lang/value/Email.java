@@ -1,6 +1,7 @@
 package com.wisegas.common.lang.value;
 
 public final class Email extends AbstractId {
+
    private String value;
 
    public static Email fromString(String string) {
