@@ -39,8 +39,8 @@ public class ItemServiceImpl implements ItemService {
    }
 
    @Override
-   public ItemDto createSubItem(String superItemId, String codeType, String code, String name) {
-      return ItemDtoFactory.createDto(itemCreationService.createSubItem(Code.fromString(superItemId), createItemCode(codeType, code), name));
+   public ItemDto createSubItem(String superItemCode, String codeType, String code, String name) {
+      return ItemDtoFactory.createDto(itemCreationService.createSubItem(Code.fromString(superItemCode), createItemCode(codeType, code), name));
    }
 
    @Override
@@ -54,13 +54,13 @@ public class ItemServiceImpl implements ItemService {
    }
 
    @Override
-   public ItemDto get(String id) {
-      return ItemDtoFactory.createDto(itemRepository.get(Code.fromString(id)));
+   public ItemDto get(String primaryCode) {
+      return ItemDtoFactory.createDto(itemRepository.get(Code.fromString(primaryCode)));
    }
 
    @Override
-   public void delete(String id) {
-      itemRepository.remove(Code.fromString(id));
+   public void delete(String primaryCode) {
+      itemRepository.remove(Code.fromString(primaryCode));
    }
 
    private Code createItemCode(String codeType, String code) {

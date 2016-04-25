@@ -8,13 +8,13 @@ import java.util.List;
 public interface ItemService {
    ItemDto createGeneralItem(String codeType, String code, String name);
 
-   ItemDto createSubItem(String superItemId, String codeType, String code, String name);
+   ItemDto createSubItem(String superItemCode, String codeType, String code, String name);
 
    List<ItemHierarchyDto> getAll();
 
    List<ItemDto> getGeneralItems();
 
-   ItemDto get(String id);
+   ItemDto get(String primaryCode);
 
-   void delete(String id);
+   void delete(String primaryCode);
 }

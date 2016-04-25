@@ -31,10 +31,10 @@ public class ItemCrudServiceImpl implements ItemCreationService {
    }
 
    @Override
-   public Item createSubItem(Code superItemId, Code code, String name) {
+   public Item createSubItem(Code superItemCode, Code code, String name) {
       assertItemCodeUniqueness(code);
       assertItemNameUniqueness(name);
-      Item superItem = itemRepository.get(superItemId);
+      Item superItem = itemRepository.get(superItemCode);
       return superItem.addSubItem(code, name);
    }
 

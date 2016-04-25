@@ -27,13 +27,13 @@ public class ItemResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String id) {
-      return buildHalResponse(asRepresentationOf(itemService.get(id)));
+   public Response get(@PathParam("id") final String primaryCode) {
+      return buildHalResponse(asRepresentationOf(itemService.get(primaryCode)));
    }
 
    @DELETE
-   public Response delete(@PathParam("id") final String id) {
-      itemService.delete(id);
+   public Response delete(@PathParam("id") final String primaryCode) {
+      itemService.delete(primaryCode);
       return Response.ok().build();
    }
 
@@ -46,7 +46,7 @@ public class ItemResource extends JaxrsHalJsonResource {
    }
 
    private static List<HalLink> createLinks(ItemDto itemDto) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(itemDto.getId()).withSelfRel());
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(itemDto.getPrimaryCode()).withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {

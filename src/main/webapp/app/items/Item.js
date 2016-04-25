@@ -41,7 +41,7 @@
          ////////////////////
 
          function addSubItem(params) {
-            return Root.createResourceModel("items", _.merge({superItemId: self.id}, params), createModel)
+            return Root.createResourceModel("items", _.merge({superItemCode: self.primaryCode}, params), createModel)
                .then(function(itemModel) {
                   self.subItems.push(itemModel);
                   return itemModel;
@@ -49,11 +49,11 @@
          }
 
          function del() {
-            return Root.deleteResourceById("item", self.id);
+            return Root.deleteResourceById("item", self.primaryCode);
          }
 
          function isGeneralItem() {
-            return self.superItemName === null;
+            return self.superItemCode === null;
          }
       }
    }

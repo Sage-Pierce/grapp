@@ -50,6 +50,10 @@ public class Item extends SimpleEntity<Code> {
       return primaryCode;
    }
 
+   public Code getPrimaryCode() {
+      return primaryCode;
+   }
+
    public String getName() {
       return name;
    }

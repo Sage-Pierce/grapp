@@ -25,11 +25,11 @@ public class ItemsResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   public Response create(@QueryParam("superItemId") final String superItemId,
+   public Response create(@QueryParam("superItemCode") final String superItemCode,
                           @QueryParam("codeType") final String codeType,
                           @QueryParam("code") final String code,
                           @QueryParam("name") final String name) {
-      return buildHalResponse(ItemResource.asRepresentationOf(itemService.createSubItem(superItemId, codeType, code, name)));
+      return buildHalResponse(ItemResource.asRepresentationOf(itemService.createSubItem(superItemCode, codeType, code, name)));
    }
 
    @GET
@@ -46,6 +46,6 @@ public class ItemsResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(ItemsResource.class).queryParams("superItemId", "codeType", "code", "name");
+      return JaxrsHalResourceLinkBuilder.linkTo(ItemsResource.class).queryParams("superItemCode", "codeType", "code", "name");
    }
 }

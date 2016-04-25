@@ -1,20 +1,36 @@
 package com.wisegas.itemmanagement.service.dto;
 
-import com.wisegas.common.lang.dto.NamedDto;
-
 import java.util.List;
 
-public class ItemDto extends NamedDto {
+public class ItemDto {
 
-   private String superItemId;
+   private String primaryCode;
+   private String name;
+   private String superItemCode;
    private List<ItemDto> subItems;
 
-   public String getSuperItemId() {
-      return superItemId;
+   public String getPrimaryCode() {
+      return primaryCode;
    }
 
-   public void setSuperItemId(String superItemId) {
-      this.superItemId = superItemId;
+   public void setPrimaryCode(String primaryCode) {
+      this.primaryCode = primaryCode;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getSuperItemCode() {
+      return superItemCode;
+   }
+
+   public void setSuperItemCode(String superItemCode) {
+      this.superItemCode = superItemCode;
    }
 
    public List<ItemDto> getSubItems() {

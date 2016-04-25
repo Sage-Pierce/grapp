@@ -45,16 +45,16 @@
 
       function addNodeItem(itemNode) {
          var item = itemNode.$modelValue;
-         storeLayout.addNodeItem(nodeSelector.getSelectedNode().id, {code: item.id, name: item.name})
+         storeLayout.addNodeItem(nodeSelector.getSelectedNode().id, {code: item.primaryCode, name: item.name})
             .then(function(nodeItem) {
                mainStoreLayoutNodesVM.selectedNodeItems.push(nodeItem.item);
             });
       }
 
-      function removeNodeItem(item) {
-         nodeSelector.getSelectedNode().removeItemById(item.id)
+      function removeNodeItem(nodeItem) {
+         nodeSelector.getSelectedNode().removeItemById(nodeItem.id)
             .then(function() {
-               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, item)
+               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, nodeItem)
             });
       }
 
