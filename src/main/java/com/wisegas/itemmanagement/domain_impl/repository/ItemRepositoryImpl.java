@@ -43,7 +43,7 @@ public class ItemRepositoryImpl extends GenericRepositoryImpl<Item> implements I
       try {
          return Optional.of(entityManager.createQuery(" SELECT item" +
                                                       " FROM Item item" +
-                                                      " WHERE item.id = :code",
+                                                      " WHERE item.primaryCode = :code",
                                                       Item.class)
                                          .setParameter("code", code)
                                          .getSingleResult());

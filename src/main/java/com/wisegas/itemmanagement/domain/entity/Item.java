@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Item extends SimpleEntity<Code> {
    @EmbeddedId
-   private Code id;
+   private Code primaryCode;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
    private Item superItem;
@@ -29,8 +29,8 @@ public class Item extends SimpleEntity<Code> {
 
    }
 
-   private Item(Item superItem, Code code, String name) {
-      id = code;
+   private Item(Item superItem, Code primaryCode, String name) {
+      this.primaryCode = primaryCode;
       setSuperItem(superItem);
       setName(name);
    }
@@ -47,7 +47,7 @@ public class Item extends SimpleEntity<Code> {
 
    @Override
    public Code getId() {
-      return id;
+      return primaryCode;
    }
 
    public String getName() {
