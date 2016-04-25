@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jaxrs.mapper;
+package com.wisegas.common.persistence.jpa.jaxrs.exceptionmapper;
 
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.MediaType;

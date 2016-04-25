@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jaxrs.mapper;
+package com.wisegas.common.webserver.jaxrs.exceptionmapper;
 
 import com.wisegas.common.lang.exception.EntityConflictException;
 

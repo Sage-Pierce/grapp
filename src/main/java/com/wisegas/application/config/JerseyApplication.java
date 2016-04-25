@@ -1,7 +1,7 @@
 package com.wisegas.application.config;
 
+import com.wisegas.common.webserver.jaxrs.exceptionmapper.EntityConflictExceptionMapper;
 import com.wisegas.common.webserver.jaxrs.filter.CORSResponseFilter;
-import com.wisegas.common.webserver.jaxrs.mapper.EntityConflictExceptionMapper;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
