@@ -10,9 +10,10 @@ public class JerseyApplication extends ResourceConfig {
    public JerseyApplication() {
       // Register REST Endpoints
       packages("com.wisegas.application.restresource",
-               "com.wisegas.itemmanagement.restresource",
+               "com.wisegas.user.restresource",
                "com.wisegas.storemanagement.restresource",
-               "com.wisegas.user.restresource");
+               "com.wisegas.itemmanagement.restresource",
+               "com.wisegas.shoppinglist.restresource");
 
       // Register Filters
       register(CORSResponseFilter.class);
