@@ -1,7 +1,7 @@
 package com.wisegas.storemanagement.service.dto;
 
 import com.wisegas.common.lang.dto.BaseDto;
-import com.wisegas.common.lang.value.GeoPolygon;
+import com.wisegas.common.lang.spacial.GeoPolygon;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.wisegas.storemanagement.service.api;
 
-import com.wisegas.common.lang.value.GeoPoint;
+import com.wisegas.common.lang.spacial.GeoPoint;
 import com.wisegas.storemanagement.service.dto.StoreDto;
 
 import java.util.List;

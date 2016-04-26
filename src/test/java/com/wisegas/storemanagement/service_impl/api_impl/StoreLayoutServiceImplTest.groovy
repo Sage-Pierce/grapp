@@ -1,7 +1,7 @@
 package com.wisegas.storemanagement.service_impl.api_impl
 
+import com.wisegas.common.lang.spacial.GeoPoint
 import com.wisegas.common.lang.value.CodeName
-import com.wisegas.common.lang.value.GeoPoint
 import com.wisegas.common.test.ApplicationServiceTest
 import com.wisegas.storemanagement.domain.entity.Layout
 import com.wisegas.storemanagement.domain.entity.Node

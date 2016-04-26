@@ -1,7 +1,7 @@
 package com.wisegas.common.persistence.jpa.converter
 
-import com.wisegas.common.lang.value.GeoPoint
-import com.wisegas.common.lang.value.GeoPolygon
+import com.wisegas.common.lang.spacial.GeoPoint
+import com.wisegas.common.lang.spacial.GeoPolygon
 import spock.lang.Specification
 
 class GeoPolygonConverterTest extends Specification {

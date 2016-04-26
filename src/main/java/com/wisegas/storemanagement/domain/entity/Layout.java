@@ -1,8 +1,8 @@
 package com.wisegas.storemanagement.domain.entity;
 
 import com.wisegas.common.lang.entity.SimpleEntity;
-import com.wisegas.common.lang.value.GeoPoint;
-import com.wisegas.common.lang.value.GeoPolygon;
+import com.wisegas.common.lang.spacial.GeoPoint;
+import com.wisegas.common.lang.spacial.GeoPolygon;
 import com.wisegas.common.persistence.jpa.converter.GeoPolygonConverter;
 import com.wisegas.storemanagement.domain.value.*;
 

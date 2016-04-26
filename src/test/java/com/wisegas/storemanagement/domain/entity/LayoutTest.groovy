@@ -1,6 +1,6 @@
 package com.wisegas.storemanagement.domain.entity
 
-import com.wisegas.common.lang.value.GeoPoint
+import com.wisegas.common.lang.spacial.GeoPoint
 import com.wisegas.storemanagement.domain.value.Item
 import com.wisegas.storemanagement.domain.value.NodeType
 import com.wisegas.storemanagement.test.builders.LayoutBuilder

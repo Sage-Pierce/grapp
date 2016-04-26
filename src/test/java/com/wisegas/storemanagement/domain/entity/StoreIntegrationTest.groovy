@@ -1,7 +1,7 @@
 package com.wisegas.storemanagement.domain.entity
 
-import com.wisegas.common.lang.value.GeoPoint
-import com.wisegas.common.lang.value.GeoPolygon
+import com.wisegas.common.lang.spacial.GeoPoint
+import com.wisegas.common.lang.spacial.GeoPolygon
 import com.wisegas.common.persistence.jpa.entity.EntityIntegrationTest
 import com.wisegas.storemanagement.test.builders.StoreBuilder
 import org.springframework.transaction.annotation.Transactional

@@ -1,4 +1,6 @@
-package com.wisegas.common.lang.value;
+package com.wisegas.common.lang.spacial;
+
+import com.wisegas.common.lang.value.JsonValue;
 
 import java.util.Objects;
 

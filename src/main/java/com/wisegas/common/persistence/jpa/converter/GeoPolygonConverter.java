@@ -1,6 +1,6 @@
 package com.wisegas.common.persistence.jpa.converter;
 
-import com.wisegas.common.lang.value.GeoPolygon;
+import com.wisegas.common.lang.spacial.GeoPolygon;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
