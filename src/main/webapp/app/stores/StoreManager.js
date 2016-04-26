@@ -23,8 +23,8 @@
 
       function StoreManagerModel(storeManagerRsc) {
          var self = this;
-         self.addStore = addStore;
          self.stores = storeManagerRsc.stores.map(Store.load);
+         self.addStore = addStore;
 
          ////////////////////
 
