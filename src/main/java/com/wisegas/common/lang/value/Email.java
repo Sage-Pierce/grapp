@@ -8,7 +8,7 @@ public final class Email extends AbstractId {
    private String value;
 
    public static Email fromString(String string) {
-      return new Email(string);
+      return string == null ? null : new Email(string);
    }
 
    public Email(String value) {
