@@ -17,7 +17,7 @@
       mainVM.showShoppingLists = showShoppingLists;
       mainVM.showStores = showStores;
       mainVM.showItems = showItems;
-      mainVM.openModalUpdateDisplayName = openModalUpdateDisplayName;
+      mainVM.openModalDisplayName = openModalDisplayName;
 
       initialize();
 
@@ -63,26 +63,26 @@
          $state.go("main.items");
       }
 
-      function openModalUpdateDisplayName() {
+      function openModalDisplayName() {
          $uibModal.open({
             animation: true,
-            templateUrl: "app/welcome/ModalUpdateDisplayName.html",
-            controller: "ModalUpdateDisplayName",
-            controllerAs: "modalUpdateDisplayNameVM",
+            templateUrl: "app/welcome/ModalDisplayName.html",
+            controller: "ModalDisplayName",
+            controllerAs: "modalDisplayNameVM",
             resolve: {
-               displayName: function () {
+               name: function () {
                   return mainVM.userName;
                }
             }
          }).result.then(updateDisplayName, function() {});
       }
 
-      function updateDisplayName(updatedDisplayName) {
+      function updateDisplayName(name) {
          mainVM.loading = true;
          Login.afterLogIn().then(function(user) {
-            return user.setDisplayName(updatedDisplayName);
+            return user.setDisplayName(name);
          }).then(function() {
-            mainVM.userName = updatedDisplayName;
+            mainVM.userName = name;
          }).finally(function() {
             mainVM.loading = false;
          });

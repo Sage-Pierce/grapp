@@ -4,17 +4,17 @@
    angular.module("App")
       .controller("ModalUpdateDisplayName", ModalUpdateDisplayName);
 
-   ModalUpdateDisplayName.$inject = ["$uibModalInstance", "displayName"];
-   function ModalUpdateDisplayName($uibModalInstance, displayName) {
+   ModalUpdateDisplayName.$inject = ["$uibModalInstance", "name"];
+   function ModalUpdateDisplayName($uibModalInstance, name) {
       var modalUpdateDisplayNameVM = this;
-      modalUpdateDisplayNameVM.displayName = displayName;
+      modalUpdateDisplayNameVM.name = name;
       modalUpdateDisplayNameVM.update = update;
       modalUpdateDisplayNameVM.cancel = cancel;
 
       ////////////////////
 
       function update() {
-         $uibModalInstance.close(modalUpdateDisplayNameVM.displayName);
+         $uibModalInstance.close(modalUpdateDisplayNameVM.name);
       }
 
       function cancel() {
