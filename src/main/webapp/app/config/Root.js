@@ -27,7 +27,7 @@
       function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {
          return afterLoad().then(function(rootRsc) {
             return rootRsc.$post(pluralResourceName, params).then(function(resource) {
-               return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
+               return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
             });
          });
       }
@@ -38,7 +38,7 @@
                return pluralResource.$get(pluralResourceName)
                   .then(function(resources) {
                      return _.arrayify(resources).map(function(resource) {
-                        return mergeResourceIntoModel(resource, resourceModelCreatorCallback(resource));
+                        return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                      });
                   }, function() {
                      return [];
