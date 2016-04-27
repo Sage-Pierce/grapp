@@ -50,6 +50,6 @@ public class ShoppingListItemResource extends JaxrsHalJsonResource {
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(ShopperResource.class);
+      return JaxrsHalResourceLinkBuilder.linkTo(ShoppingListItemResource.class);
    }
 }

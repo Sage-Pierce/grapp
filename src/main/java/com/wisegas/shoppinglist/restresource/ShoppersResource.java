@@ -24,7 +24,7 @@ public class ShoppersResource extends JaxrsHalJsonResource {
 
    @PUT
    public Response loadByEmail(@QueryParam("email") final Email email) {
-      return buildHalResponse(halRepresentationFactory.createFor(shopperService.loadByEmail(email)));
+      return buildHalResponse(ShopperResource.asRepresentationOf(shopperService.loadByEmail(email)));
    }
 
    public static HalLink createRootLink(String rel) {

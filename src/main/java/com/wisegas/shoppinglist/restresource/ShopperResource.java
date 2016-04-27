@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 import java.util.Arrays;
 import java.util.List;
 
-@Path("/shoppers/{email}")
+@Path("/shoppers/{email}/")
 public class ShopperResource extends JaxrsHalJsonResource {
 
    private final ShopperService shopperService;
@@ -45,7 +45,7 @@ public class ShopperResource extends JaxrsHalJsonResource {
    private static List<HalLink> createLinks(ShopperDto shopperDto) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(shopperDto.getEmail()).withSelfRel(),
-         JaxrsHalResourceLinkBuilder.linkTo(ShopperResource.class).method("addList").queryParams("name").withRel("addList")
+         createSelfLinkBuilder().pathArgs(shopperDto.getEmail()).method("addList").queryParams("name").withRel("addList")
       );
    }
 

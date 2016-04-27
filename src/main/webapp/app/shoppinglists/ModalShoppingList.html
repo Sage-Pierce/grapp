@@ -1,0 +1,12 @@
+<div class="modal-header">
+   <h3 class="modal-title">Create Shopping List</h3>
+</div>
+<div class="modal-body">
+   <ul>
+      <input type="text" class="form-control" ng-model="modalShoppingListVM.name" placeholder="Shopping List Name">
+   </ul>
+</div>
+<div class="modal-footer">
+   <button class="btn btn-primary" ng-click="modalShoppingListVM.finish()">Finish</button>
+   <button class="btn btn-warning" ng-click="modalShoppingListVM.cancel()">Cancel</button>
+</div>

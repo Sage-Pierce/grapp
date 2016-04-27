@@ -1,1 +1,17 @@
 <h3 class="text-center">Your Shopping Lists</h3>
+<div class="col-sm-4 col-sm-offset-4">
+   <div class="row border-1-solid-grey border-rounded-4 height-scrollable black-rounded-scrollbar height-200">
+      <div ng-repeat="list in mainShoppingListsVM.lists" class="item-node">
+         {{list.name}}
+         <a class="btn btn-xs btn-primary pull-right" ng-click="mainShoppingListsVM.openList(list)">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+         </a>
+         <a class="btn btn-danger btn-xs pull-right" ng-click="mainShoppingListsVM.deleteList(list)">
+            <span class="glyphicon glyphicon-remove"></span>
+         </a>
+      </div>
+   </div>
+   <div class="row">
+      <button class="btn btn-success pull-left" ng-click="mainShoppingListsVM.createList()"><span class="glyphicon glyphicon-plus-sign"></span> Create Shopping List</button>
+   </div>
+</div>
