@@ -42,11 +42,3 @@ body {
    background: #f8faff;
    color: #7c9eb2;
 }
-
-.select2 > .select2-choice.ui-select-match {
-   height: 29px;
-}
-
-.selectize-control > .selectize-dropdown {
-   top: 36px;
-}
