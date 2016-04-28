@@ -21,6 +21,10 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/itemtree/*.js"],
             tasks: ["jshint", "concat:itemtree"]
          },
+         shoppinglist: {
+            files: [webappRoot + "app/shoppinglist/*.js"],
+            tasks: ["jshint", "concat:shoppinglist"]
+         },
          shoppinglists: {
             files: [webappRoot + "app/shoppinglists/*.js"],
             tasks: ["jshint", "concat:shoppinglists"]
@@ -59,6 +63,7 @@ module.exports = function (grunt) {
             webappRoot + "app/itemlist/*.js",
             webappRoot + "app/items/*.js",
             webappRoot + "app/itemtree/*.js",
+            webappRoot + "app/shoppinglist/*.js",
             webappRoot + "app/shoppinglists/*.js",
             webappRoot + "app/storelayout/*.js",
             webappRoot + "app/storelayout/features/*.js",
@@ -84,6 +89,10 @@ module.exports = function (grunt) {
          itemtree: {
             src: [webappRoot + "app/itemtree/*.js"],
             dest: webappRoot + "concat/itemtree-concat.js"
+         },
+         shoppinglist: {
+            src: [webappRoot + "app/shoppinglist/*.js"],
+            dest: webappRoot + "concat/shoppinglist-concat.js"
          },
          shoppinglists: {
             src: [webappRoot + "app/shoppinglists/*.js"],
