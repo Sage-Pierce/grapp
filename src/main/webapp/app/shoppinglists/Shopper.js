@@ -23,6 +23,7 @@
 
       function ShopperModel(shopperRsc) {
          var self = this;
+         self.lists = shopperRsc.lists;
          self.addList = addList;
          self.removeList = removeList;
 

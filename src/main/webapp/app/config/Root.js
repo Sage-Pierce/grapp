@@ -77,7 +77,7 @@
       }
 
       function mergeResourceIntoModel(resource, model) {
-         return decorateResourceModel(_.mergeLeft(model, resource));
+         return decorateResourceModel(resource, _.mergeLeft(model, resource));
       }
 
       function decorateResourceModel(resource, model) {
