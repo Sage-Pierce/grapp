@@ -35,14 +35,8 @@
       function loadResourceModels(pluralResourceName, resourceModelCreatorCallback) {
          return afterLoad().then(function(rootRsc) {
             return rootRsc.$get(pluralResourceName).then(function(pluralResource) {
-               return pluralResource.$get(pluralResourceName)
-                  .then(function(resources) {
-                     return _.arrayify(resources).map(function(resource) {
-                        return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
-                     });
-                  }, function() {
-                     return [];
-                  });
+               return pluralResource.$has(pluralResourceName) ? createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback)
+                                                              : convertResourcesToModels(pluralResource.values || [], resourceModelCreatorCallback);
             });
          });
       }
@@ -81,10 +75,19 @@
          return decorateResourceModel(resource, model);
       }
 
+      function createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback) {
+         return pluralResource.$get(pluralResourceName)
+            .then(function(resources) { return convertResourcesToModels(resources, resourceModelCreatorCallback); });
+      }
+
+      function convertResourcesToModels(resources, resourceModelCreatorCallback) {
+         return _.arrayify(resources).map(function(resource) {
+            return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
+         });
+      }
+
       function decorateResourceModel(resource, model) {
-         model.delete = model.delete || resource.$del && function() {
-            return resource.$del("self");
-         };
+         model.delete = model.delete || resource.$del && function() { return resource.$del("self"); };
          return model;
       }
    }
