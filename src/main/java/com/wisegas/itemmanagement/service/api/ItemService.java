@@ -1,7 +1,7 @@
 package com.wisegas.itemmanagement.service.api;
 
 import com.wisegas.itemmanagement.service.dto.ItemDto;
-import com.wisegas.itemmanagement.service.dto.ItemHierarchyDto;
+import com.wisegas.itemmanagement.service.dto.ItemLineageDto;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface ItemService {
 
    ItemDto createSubItem(String superItemCode, String codeType, String code, String name);
 
-   List<ItemHierarchyDto> getAll();
+   List<ItemLineageDto> getAll();
 
    List<ItemDto> getGeneralItems();
 

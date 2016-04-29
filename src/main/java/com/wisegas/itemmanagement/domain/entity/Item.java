@@ -35,14 +35,14 @@ public class Item extends SimpleEntity<Code> {
       setName(name);
    }
 
-   public List<Item> getHierarchy() {
-      Item hierarchicalItem = this;
-      List<Item> hierarchy = new ArrayList<>();
-      hierarchy.add(hierarchicalItem);
-      while (!hierarchicalItem.isGeneralItem()) {
-         hierarchy.add(hierarchicalItem = hierarchicalItem.getSuperItem());
+   public List<Item> getLineage() {
+      List<Item> lineage = new ArrayList<>();
+      Item ancestor = this;
+      lineage.add(ancestor);
+      while (!ancestor.isGeneralItem()) {
+         lineage.add(ancestor = ancestor.getSuperItem());
       }
-      return hierarchy;
+      return lineage;
    }
 
    @Override

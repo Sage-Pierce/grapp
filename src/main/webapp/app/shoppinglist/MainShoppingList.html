@@ -11,7 +11,7 @@
          </ui-select-match>
          <ui-select-choices repeat="item in mainShoppingListVM.items | filter: $select.search">
             <div ng-bind-html="item.name | highlight: $select.search"></div>
-            <small>{{item.lineage}}</small>
+            <small>{{item.hierarchy}}</small>
          </ui-select-choices>
       </ui-select>
    </div>

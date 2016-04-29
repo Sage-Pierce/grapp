@@ -8,9 +8,9 @@ import com.wisegas.itemmanagement.domain.value.Code;
 import com.wisegas.itemmanagement.domain.value.CodeType;
 import com.wisegas.itemmanagement.service.api.ItemService;
 import com.wisegas.itemmanagement.service.dto.ItemDto;
-import com.wisegas.itemmanagement.service.dto.ItemHierarchyDto;
+import com.wisegas.itemmanagement.service.dto.ItemLineageDto;
 import com.wisegas.itemmanagement.service_impl.factory.ItemDtoFactory;
-import com.wisegas.itemmanagement.service_impl.factory.ItemHierarchyDtoFactory;
+import com.wisegas.itemmanagement.service_impl.factory.ItemLineageDtoFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -44,8 +44,8 @@ public class ItemServiceImpl implements ItemService {
    }
 
    @Override
-   public List<ItemHierarchyDto> getAll() {
-      return itemRepository.getAll().stream().map(ItemHierarchyDtoFactory::createDto).collect(Collectors.toList());
+   public List<ItemLineageDto> getAll() {
+      return itemRepository.getAll().stream().map(ItemLineageDtoFactory::createDto).collect(Collectors.toList());
    }
 
    @Override

@@ -33,14 +33,14 @@ class ItemTest extends Specification {
       !item.isGeneralItem()
    }
 
-   def "The Hierarchy of an Item can be determined"() {
+   def "The Lineage of an Item can be determined"() {
       given:
       Item superSuperItem = new Item(SUPER_SUPER_CODE, "Super Super Item")
       Item superItem = superSuperItem.addSubItem(SUPER_CODE, "Super Item")
       Item item = superItem.addSubItem(SUB_CODE, "Item")
 
       when:
-      def result = item.getHierarchy()
+      def result = item.getLineage()
 
       then:
       result.size() == 3

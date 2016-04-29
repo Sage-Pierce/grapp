@@ -4,11 +4,11 @@ import com.wisegas.common.lang.value.IdName;
 
 import java.util.List;
 
-public class ItemHierarchyDto {
+public class ItemLineageDto {
 
    private String primaryCode;
    private String name;
-   private List<IdName> hierarchy;
+   private List<IdName> lineage;
 
    public String getPrimaryCode() {
       return primaryCode;
@@ -26,11 +26,11 @@ public class ItemHierarchyDto {
       this.name = name;
    }
 
-   public List<IdName> getHierarchy() {
-      return hierarchy;
+   public List<IdName> getLineage() {
+      return lineage;
    }
 
-   public void setHierarchy(List<IdName> hierarchy) {
-      this.hierarchy = hierarchy;
+   public void setLineage(List<IdName> lineage) {
+      this.lineage = lineage;
    }
 }

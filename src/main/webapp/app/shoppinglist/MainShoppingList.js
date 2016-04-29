@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainShoppingList", MainShoppingList);
 
-   MainShoppingList.$inject = ["shoppingList", "ItemHierarchy"];
-   function MainShoppingList(shoppingList, ItemHierarchy) {
+   MainShoppingList.$inject = ["shoppingList", "ItemLineage"];
+   function MainShoppingList(shoppingList, ItemLineage) {
       var mainShoppingListVM = this;
       mainShoppingListVM.shoppingList = shoppingList;
       mainShoppingListVM.items = [];
@@ -19,7 +19,7 @@
       ////////////////////
 
       function initialize() {
-         ItemHierarchy.loadAll().then(function(items) {
+         ItemLineage.loadAll().then(function(items) {
             mainShoppingListVM.items = items;
          });
       }

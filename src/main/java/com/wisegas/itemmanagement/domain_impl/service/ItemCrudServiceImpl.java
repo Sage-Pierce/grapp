@@ -41,18 +41,18 @@ public class ItemCrudServiceImpl implements ItemCreationService {
    private void assertItemCodeUniqueness(Code code) {
       Optional<Item> foundItem = itemRepository.findByCode(code);
       if (foundItem.isPresent()) {
-         throw new EntityConflictException("An Item with this code already exists: " + code + ", at " + stringifyItemHierarchy(foundItem.get()));
+         throw new EntityConflictException("An Item with this code already exists: " + code + ", at " + stringifyItemLineage(foundItem.get()));
       }
    }
 
    private void assertItemNameUniqueness(String name) {
       Optional<Item> foundItem = itemRepository.findByName(name);
       if (foundItem.isPresent()) {
-         throw new EntityConflictException("An Item with this name already exists: " + name + ", at " + stringifyItemHierarchy(foundItem.get()));
+         throw new EntityConflictException("An Item with this name already exists: " + name + ", at " + stringifyItemLineage(foundItem.get()));
       }
    }
 
-   private String stringifyItemHierarchy(Item item) {
-      return item.getHierarchy().stream().map(Item::getName).collect(Collectors.joining(" <- "));
+   private String stringifyItemLineage(Item item) {
+      return item.getLineage().stream().map(Item::getName).collect(Collectors.joining(" <- "));
    }
 }
