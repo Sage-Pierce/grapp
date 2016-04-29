@@ -8,14 +8,9 @@
          addObjectMappingsToResult(object1, result);
          addObjectMappingsToResult(object2, result);
          return result;
-
-         function addObjectMappingsToResult(object, result) {
-            for (var key in object) {
-               if (object.hasOwnProperty(key) && !result.hasOwnProperty(key)) {
-                  result[key] = object[key];
-               }
-            }
-         }
+      },
+      mergeLeft: function(dest, src) {
+         return addObjectMappingsToResult(src, dest);
       },
       extractVerticesFromGMapPolygon: function(gMapPolygon) {
          return this.extractPathFromGMapPolygon(gMapPolygon).map(this.convertPositionToLocation);
@@ -33,4 +28,13 @@
          return JSON.stringify({vertices: vertices});
       }
    });
+
+   function addObjectMappingsToResult(object, result) {
+      for (var key in object) {
+         if (object.hasOwnProperty(key) && !result.hasOwnProperty(key)) {
+            result[key] = object[key];
+         }
+      }
+      return result;
+   }
 })();
