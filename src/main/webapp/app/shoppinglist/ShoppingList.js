@@ -22,15 +22,22 @@
       function ShoppingListModel(shoppingListRsc) {
          var self = this;
          self.items = shoppingListRsc.items.map(ShoppingListItem.load);
+         self.addItem = addItem;
          self.removeItem = removeItem;
 
          ////////////////////
 
-         function removeItem(item) {
-            return item.delete()
-               .then(function() {
-                  _.remove(self.items, item);
+         function addItem(item) {
+            return shoppingListRsc.$post("addItem", {item: JSON.stringify(item)})
+               .then(function(shoppingListItemRsc) {
+                  self.items.push(ShoppingListItem.load(shoppingListItemRsc));
                });
+         }
+
+         function removeItem(item) {
+            return item.delete().then(function() {
+               _.remove(self.items, item);
+            });
          }
       }
    }

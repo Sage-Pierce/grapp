@@ -21,6 +21,8 @@
 
       function ShoppingListItemModel(shoppingListItem) {
          var self = this;
+         self.code = shoppingListItem.item.code;
+         self.name = shoppingListItem.item.name;
          self.delete = del;
 
          ////////////////////

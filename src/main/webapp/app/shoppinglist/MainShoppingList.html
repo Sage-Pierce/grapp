@@ -1,7 +1,19 @@
 <h3 class="text-center">Your Shopping List: {{mainShoppingListVM.shoppingList.name}}</h3>
 <div class="col-sm-4 col-sm-offset-4">
    <div class="row">
-      <input id="itemSearch" type="text" class="width-full" placeholder="Add Item"/>
+      <ui-select class="width-full"
+                 theme="bootstrap"
+                 ng-model="mainShoppingListVM.itemToAdd"
+                 on-select="mainShoppingListVM.itemToAddSelected($item)"
+                 title="Select Item">
+         <ui-select-match placeholder="Choose an Item to add">
+            {{null}}
+         </ui-select-match>
+         <ui-select-choices repeat="item in mainShoppingListVM.items | filter: $select.search">
+            <div ng-bind-html="item.name | highlight: $select.search"></div>
+            <small>{{item.lineage}}</small>
+         </ui-select-choices>
+      </ui-select>
    </div>
    <div class="row">
       <item-list items="mainShoppingListVM.shoppingList.items"

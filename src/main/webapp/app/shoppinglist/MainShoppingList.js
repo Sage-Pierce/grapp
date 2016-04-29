@@ -4,18 +4,33 @@
    angular.module("App")
       .controller("MainShoppingList", MainShoppingList);
 
-   MainShoppingList.$inject = ["shoppingList"];
-   function MainShoppingList(shoppingList) {
+   MainShoppingList.$inject = ["shoppingList", "ItemHierarchy"];
+   function MainShoppingList(shoppingList, ItemHierarchy) {
       var mainShoppingListVM = this;
       mainShoppingListVM.shoppingList = shoppingList;
-      mainShoppingListVM.items = [{primaryCode: "ABC", name: "Apples"}];
+      mainShoppingListVM.items = [];
+      mainShoppingListVM.itemToAdd = null;
+      mainShoppingListVM.itemToAddSelected = itemToAddSelected;
       mainShoppingListVM.removeItem = removeItem;
       mainShoppingListVM.selectStore = selectStore;
 
+      initialize();
+
       ////////////////////
 
-      function removeItem(item) {
+      function initialize() {
+         ItemHierarchy.loadAll().then(function(items) {
+            mainShoppingListVM.items = items;
+         });
+      }
 
+      function itemToAddSelected(item) {
+         mainShoppingListVM.shoppingList.addItem({code: item.primaryCode, name: item.name});
+         mainShoppingListVM.itemToAdd = null;
+      }
+
+      function removeItem(item) {
+         mainShoppingListVM.shoppingList.removeItem(item);
       }
 
       function selectStore() {
