@@ -59,8 +59,8 @@
       }
 
       function logIn(email, avatar) {
-         return Root.afterLoad().then(function(root) {
-            return root.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(User.load);
+         return Root.afterLoad().then(function(rootRsc) {
+            return rootRsc.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(User.load);
          });
       }
 
