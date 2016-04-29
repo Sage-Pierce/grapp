@@ -33,7 +33,7 @@
 
       function ItemModel(item) {
          var self = this;
-         self.subItems = item.subItems.map(function(subItem) { return Root.mergeResourceIntoModel(subItem, new ItemModel(subItem)); });
+         self.subItems = item.subItems.map(function(subItem) { return _.mergeLeft(new ItemModel(subItem), subItem); });
          self.addSubItem = addSubItem;
          self.delete = del;
          self.isGeneralItem = isGeneralItem;

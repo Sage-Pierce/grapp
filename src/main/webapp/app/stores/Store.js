@@ -17,7 +17,7 @@
       }
 
       function load(store) {
-         return Root.mergeResourceIntoModel(store, createModel(store));
+         return _.mergeLeft(createModel(store), store);
       }
 
       function createModel(store) {

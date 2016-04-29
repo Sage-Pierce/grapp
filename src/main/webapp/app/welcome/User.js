@@ -17,7 +17,7 @@
       }
 
       function load(userRsc) {
-         return Root.mergeResourceIntoModel(userRsc, createModel(userRsc));
+         return _.merge(createModel(userRsc), userRsc);
       }
 
       function createModel(userRsc) {

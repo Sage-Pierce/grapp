@@ -12,7 +12,7 @@
       ////////////////////
 
       function load(shoppingListItem) {
-         return Root.mergeResourceIntoModel(shoppingListItem, createModel(shoppingListItem));
+         return _.mergeLeft(createModel(shoppingListItem), shoppingListItem);
       }
 
       function createModel(shoppingListItem) {

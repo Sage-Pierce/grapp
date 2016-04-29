@@ -15,7 +15,7 @@
          return Root.afterLoad().then(function(rootRsc) {
             return rootRsc.$put("shoppers", {email: email}).then(
                function(shopperRsc) {
-                  return Root.mergeResourceIntoModel(shopperRsc, createModel(shopperRsc));
+                  return _.mergeLeft(createModel(shopperRsc), shopperRsc);
                });
          });
       }

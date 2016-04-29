@@ -14,7 +14,6 @@
       self.loadResourceModel = loadResourceModel;
       self.updateResource = updateResource;
       self.deleteResource = deleteResource;
-      self.mergeResourceIntoModel = mergeResourceIntoModel;
 
       var deferred = $q.defer();
 
@@ -66,15 +65,6 @@
          return deferred.promise;
       }
 
-      function mergeResourceIntoModel(resource, model) {
-         for (var prop in resource) {
-            if (resource.hasOwnProperty(prop) && !model.hasOwnProperty(prop)) {
-               model[prop] = resource[prop];
-            }
-         }
-         return decorateResourceModel(resource, model);
-      }
-
       function createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback) {
          return pluralResource.$get(pluralResourceName)
             .then(function(resources) { return convertResourcesToModels(resources, resourceModelCreatorCallback); });
@@ -84,6 +74,10 @@
          return _.arrayify(resources).map(function(resource) {
             return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
          });
+      }
+
+      function mergeResourceIntoModel(resource, model) {
+         return decorateResourceModel(_.mergeLeft(model, resource));
       }
 
       function decorateResourceModel(resource, model) {

@@ -12,7 +12,7 @@
       ////////////////////
 
       function load(storeLayoutRsc, feature) {
-         return Root.mergeResourceIntoModel(feature, createModel(storeLayoutRsc, feature));
+         return _.merge(createModel(storeLayoutRsc, feature), feature);
       }
 
       function createModel(storeLayoutRsc, feature) {

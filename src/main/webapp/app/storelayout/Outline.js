@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Outline", Outline);
 
-   Outline.$inject = ["Root"];
-   function Outline(Root) {
+   Outline.$inject = [];
+   function Outline() {
       var self = this;
       self.load = load;
 
@@ -13,7 +13,7 @@
 
       function load(storeLayoutRsc, outlineProp) {
          var outline = storeLayoutRsc[outlineProp] || {};
-         return Root.mergeResourceIntoModel(outline, createModel(storeLayoutRsc, outlineProp, outline));
+         return _.mergeLeft(createModel(storeLayoutRsc, outlineProp, outline), outline);
       }
 
       function createModel(storeLayoutRsc, outlineProp, outline) {
