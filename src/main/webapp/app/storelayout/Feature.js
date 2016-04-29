@@ -12,7 +12,7 @@
       ////////////////////
 
       function load(storeLayoutRsc, feature) {
-         return _.merge(new FeatureModel(storeLayoutRsc, feature), feature);
+         return _.mergeLeft(new FeatureModel(storeLayoutRsc, feature), feature);
       }
 
       function FeatureModel(storeLayoutRsc, feature) {

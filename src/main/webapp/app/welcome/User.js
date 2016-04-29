@@ -17,7 +17,7 @@
       }
 
       function load(userRsc) {
-         return _.merge(createModel(userRsc), userRsc);
+         return _.mergeLeft(createModel(userRsc), userRsc);
       }
 
       function createModel(userRsc) {
