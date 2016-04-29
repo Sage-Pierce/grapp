@@ -10,7 +10,7 @@ public final class ItemHierarchyDtoFactory {
 
    public static ItemHierarchyDto createDto(Item item) {
       ItemHierarchyDto itemHierarchyDto = new ItemHierarchyDto();
-      itemHierarchyDto.setId(item.getId().toString());
+      itemHierarchyDto.setPrimaryCode(item.getPrimaryCode().toString());
       itemHierarchyDto.setName(item.getName());
       itemHierarchyDto.setHierarchy(item.getHierarchy().stream().map(ItemHierarchyDtoFactory::createIdName).collect(Collectors.toList()));
       return itemHierarchyDto;

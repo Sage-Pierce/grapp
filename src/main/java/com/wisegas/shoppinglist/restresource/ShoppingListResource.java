@@ -11,7 +11,7 @@ import com.wisegas.shoppinglist.service.dto.ShoppingListDto;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 @Path("/shoppingLists/{id}/")
@@ -30,7 +30,7 @@ public class ShoppingListResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   @Path("addPath")
+   @Path("addItem")
    public Response addItem(@PathParam("id") final String id,
                            @QueryParam("item") final CodeName item) {
       return buildHalResponse(ShoppingListItemResource.asRepresentationOf(shoppingListService.addItem(id, item)));
@@ -51,7 +51,10 @@ public class ShoppingListResource extends JaxrsHalJsonResource {
    }
 
    private static List<HalLink> createLinks(ShoppingListDto shoppingListDto) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(shoppingListDto.getId()).withSelfRel());
+      return Arrays.asList(
+         createSelfLinkBuilder().pathArgs(shoppingListDto.getId()).withSelfRel(),
+         createSelfLinkBuilder().pathArgs(shoppingListDto.getId()).method("addItem").queryParams("item").withRel("addItem")
+      );
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
