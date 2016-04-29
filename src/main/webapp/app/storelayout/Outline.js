@@ -13,11 +13,7 @@
 
       function load(storeLayoutRsc, outlineProp) {
          var outline = storeLayoutRsc[outlineProp] || {};
-         return _.mergeLeft(createModel(storeLayoutRsc, outlineProp, outline), outline);
-      }
-
-      function createModel(storeLayoutRsc, outlineProp, outline) {
-         return new OutlineModel(storeLayoutRsc, outlineProp, outline);
+         return _.mergeLeft(new OutlineModel(storeLayoutRsc, outlineProp, outline), outline);
       }
 
       function OutlineModel(storeLayoutRsc, outlineProp, outline) {

@@ -13,10 +13,7 @@
 
       function loadByEmail(email) {
          return Root.afterLoad().then(function(rootRsc) {
-            return rootRsc.$put("shoppers", {email: email}).then(
-               function(shopperRsc) {
-                  return _.mergeLeft(createModel(shopperRsc), shopperRsc);
-               });
+            return rootRsc.$put("shoppers", {email: email}).then(createModel);
          });
       }
 

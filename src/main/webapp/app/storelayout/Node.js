@@ -12,11 +12,7 @@
       ////////////////////
 
       function load(storeLayoutRsc, node) {
-         return _.mergeLeft(createModel(storeLayoutRsc, node), node);
-      }
-
-      function createModel(storeLayoutRsc, node) {
-         return new NodeModel(storeLayoutRsc, node);
+         return _.mergeLeft(new NodeModel(storeLayoutRsc, node), node);
       }
 
       function NodeModel(storeLayoutRsc, node) {

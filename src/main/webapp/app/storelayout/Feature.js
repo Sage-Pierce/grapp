@@ -12,11 +12,7 @@
       ////////////////////
 
       function load(storeLayoutRsc, feature) {
-         return _.merge(createModel(storeLayoutRsc, feature), feature);
-      }
-
-      function createModel(storeLayoutRsc, feature) {
-         return new FeatureModel(storeLayoutRsc, feature);
+         return _.merge(new FeatureModel(storeLayoutRsc, feature), feature);
       }
 
       function FeatureModel(storeLayoutRsc, feature) {

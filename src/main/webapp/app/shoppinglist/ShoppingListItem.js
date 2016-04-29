@@ -12,11 +12,7 @@
       ////////////////////
 
       function load(shoppingListItem) {
-         return _.mergeLeft(createModel(shoppingListItem), shoppingListItem);
-      }
-
-      function createModel(shoppingListItem) {
-         return new ShoppingListItemModel(shoppingListItem);
+         return _.mergeLeft(new ShoppingListItemModel(shoppingListItem), shoppingListItem);
       }
 
       function ShoppingListItemModel(shoppingListItem) {
