@@ -36,6 +36,7 @@ public class RootResource extends JaxrsHalJsonResource {
          UserResource.createRootLink("user"),
          StoreManagersResource.createRootLink("storeManagers"),
          StoreManagerResource.createRootLink("storeManager"),
+         StoresResource.createRootLink("stores"),
          StoreResource.createRootLink("store"),
          LayoutResource.createRootLink("layout"),
          FeatureResource.createRootLink("feature"),

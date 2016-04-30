@@ -7,10 +7,15 @@
    Store.$inject = ["Root"];
    function Store(Root) {
       var self = this;
+      self.loadAll = loadAll;
       self.loadById = loadById;
       self.load = load;
 
       ////////////////////
+
+      function loadAll() {
+         return Root.loadResourceModels("stores", createModel);
+      }
 
       function loadById(storeId) {
          return Root.loadResourceModel("store", storeId, createModel);
