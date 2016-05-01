@@ -22,12 +22,12 @@
          self.setDrawingMode = setDrawingMode;
          self.setControls = setControls;
 
+         var eventHandler = null;
          var mapControl = null;
          var drawingManagerControl = null;
          var outlineControl = null;
          var featureControl = null;
          var nodeControl = null;
-         var eventHandler = null;
 
          ////////////////////
 
