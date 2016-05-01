@@ -12,6 +12,20 @@
       mergeLeft: function(dest, src) {
          return addObjectMappingsToResult(src, dest);
       },
+      forceMergeLeft: function(dest, src) {
+         return addObjectMappingsToResult(src, dest, true);
+      },
+      calculateBounds: function(locations) {
+         var position = locations.length > 0 ? locations[0] : {lat: 0, lng: 0};
+         var result = {north: position.lat, east: position.lng, south: position.lat, west: position.lng};
+         for (var i = 1; i < locations.length; i++) {
+            result.north = Math.max(result.north, locations[i].lat);
+            result.east = Math.max(result.east, locations[i].lng);
+            result.south = Math.min(result.south, locations[i].lat);
+            result.west = Math.min(result.west, locations[i].lng);
+         }
+         return result;
+      },
       extractVerticesFromGMapPolygon: function(gMapPolygon) {
          return this.extractPathFromGMapPolygon(gMapPolygon).map(this.convertPositionToLocation);
       },
@@ -29,9 +43,9 @@
       }
    });
 
-   function addObjectMappingsToResult(object, result) {
+   function addObjectMappingsToResult(object, result, force) {
       for (var key in object) {
-         if (object.hasOwnProperty(key) && !result.hasOwnProperty(key)) {
+         if (object.hasOwnProperty(key) && (force || !result.hasOwnProperty(key))) {
             result[key] = object[key];
          }
       }
