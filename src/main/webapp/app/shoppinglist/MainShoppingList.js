@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainShoppingList", MainShoppingList);
 
-   MainShoppingList.$inject = ["shoppingList", "ItemLineage"];
-   function MainShoppingList(shoppingList, ItemLineage) {
+   MainShoppingList.$inject = ["$state", "$stateParams", "shoppingList", "ItemLineage"];
+   function MainShoppingList($state, $stateParams, shoppingList, ItemLineage) {
       var mainShoppingListVM = this;
       mainShoppingListVM.shoppingList = shoppingList;
       mainShoppingListVM.items = [];
@@ -34,7 +34,7 @@
       }
 
       function selectStore() {
-         console.log("Proceed to Store Selection!");
+         $state.go("main.shoppingListStores", {listId: $stateParams.listId});
       }
    }
 })();
