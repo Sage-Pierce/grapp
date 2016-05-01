@@ -1,0 +1,10 @@
+<h3 class="text-center">Select a Store</h3>
+<div class="row">
+   <stores-map class="col-md-12 h-padding-0"
+               map-control="mainShoppingListStoresVM.mapControl"
+               stores="mainShoppingListStoresVM.stores">
+   </stores-map>
+</div>
+<div class="row">
+   <button class="btn btn-success width-full" ng-click="mainShoppingListStoresVM.showShoppingPlan()" ng-disabled="!mainShoppingListStoresVM.isAStoreSelected()">Go Shopping!</button>
+</div>

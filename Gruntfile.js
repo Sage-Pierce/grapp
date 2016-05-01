@@ -29,6 +29,14 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/shoppinglists/*.js"],
             tasks: ["jshint", "concat:shoppinglists"]
          },
+         shoppingliststores: {
+            files: [webappRoot + "app/shoppingliststores/*.js"],
+            tasks: ["jshint", "concat:shoppingliststores"]
+         },
+         shoppingplan: {
+            files: [webappRoot + "app/shoppingplan/*.js"],
+            tasks: ["jshint", "concat:shoppingplan"]
+         },
          storelayout: {
             files: [webappRoot + "app/storelayout/*.js"],
             tasks: ["jshint", "concat:storelayout"]
@@ -49,6 +57,10 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/stores/*.js"],
             tasks: ["jshint", "concat:stores"]
          },
+         storesmap: {
+            files: [webappRoot + "app/storesmap/*.js"],
+            tasks: ["jshint", "concat:storesmap"]
+         },
          welcome: {
             files: [webappRoot + "app/welcome/*.js"],
             tasks: ["jshint", "concat:welcome"]
@@ -65,11 +77,14 @@ module.exports = function (grunt) {
             webappRoot + "app/itemtree/*.js",
             webappRoot + "app/shoppinglist/*.js",
             webappRoot + "app/shoppinglists/*.js",
+            webappRoot + "app/shoppingliststores/*.js",
+            webappRoot + "app/shoppingplan/*.js",
             webappRoot + "app/storelayout/*.js",
             webappRoot + "app/storelayout/features/*.js",
             webappRoot + "app/storelayout/layout/*.js",
             webappRoot + "app/storemap/*.js",
             webappRoot + "app/stores/*.js",
+            webappRoot + "app/storesmap/*.js",
             webappRoot + "app/welcome/*.js"
          ]
       },
@@ -98,6 +113,14 @@ module.exports = function (grunt) {
             src: [webappRoot + "app/shoppinglists/*.js"],
             dest: webappRoot + "concat/shoppinglists-concat.js"
          },
+         shoppingliststores: {
+            src: [webappRoot + "app/shoppingliststores/*.js"],
+            dest: webappRoot + "concat/shoppingliststores-concat.js"
+         },
+         shoppingplan: {
+            src: [webappRoot + "app/shoppingplan/*.js"],
+            dest: webappRoot + "concat/shoppingplan-concat.js"
+         },
          storelayout: {
             src: [webappRoot + "app/storelayout/*.js"],
             dest: webappRoot + "concat/storelayout-concat.js"
@@ -117,6 +140,10 @@ module.exports = function (grunt) {
          stores: {
             src: [webappRoot + "app/stores/*.js"],
             dest: webappRoot + "concat/stores-concat.js"
+         },
+         storesmap: {
+            src: [webappRoot + "app/storesmap/*.js"],
+            dest: webappRoot + "concat/storesmap-concat.js"
          },
          welcome: {
             src: [webappRoot + "app/welcome/*.js"],

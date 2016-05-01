@@ -1,0 +1,19 @@
+<ui-gmap-google-map options="storesMapVM.mapSettings.options"
+                    center="storesMapVM.mapSettings.center"
+                    zoom="storesMapVM.mapSettings.zoom"
+                    events="storesMapVM.events.map"
+                    control="storesMapVM.controls.map">
+   <ui-gmap-window show="storesMapVM.window.show"
+                   coords="storesMapVM.window.coords"
+                   templateUrl="storesMapVM.window.templateUrl"
+                   templateParameter="storesMapVM.window.templateParameter"
+                   options="storesMapVM.window.options">
+   </ui-gmap-window>
+   <ui-gmap-markers models="storesMapVM.stores"
+                    coords="'position'"
+                    options="'options'"
+                    static="true"
+                    events="storesMapVM.events.marker"
+                    control="storesMapVM.controls.store">
+   </ui-gmap-markers>
+</ui-gmap-google-map>
