@@ -40,9 +40,9 @@
 
       function initialize() {
          initializeMapSettings(location);
-         initializeEvents();
          initializeControls();
          initializeLayoutObjects(layout);
+         initializeEvents();
       }
 
       function initializeMapSettings(location) {
@@ -68,28 +68,6 @@
                   zIndex: 4,
                   draggable: true
                }
-            }
-         };
-      }
-
-      function initializeEvents() {
-         storeMapVM.events = {
-            map: {
-               click: function(map, eventName, args) { mapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); },
-               rightclick: function(map, eventName, args) { mapControl.handleGObjectMouseEvent("mapRightClicked", "map", map, args[0]); }
-            },
-            drawingManager: {
-               polygoncomplete: function(drawingManager, eventName, model, args) { mapControl.polygonComplete(args[0]); }
-            },
-            polygon: {
-               click: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonClicked", model.id, polygon, args[0]); },
-               rightclick: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonRightClicked", model.id, polygon, args[0]); },
-               dragend: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonDragEnd", model.id, polygon, args[0]); }
-            },
-            marker: {
-               click: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]); },
-               rightclick: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerRightClicked", model.id, marker, args[0]); },
-               dragend: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerDragEnd", model.id, marker, args[0]); }
             }
          };
       }
@@ -139,6 +117,28 @@
             position: _.convertLocationToPosition(nodeModel.location),
             icon: nodeModel.type.iconUrl,
             options: storeMapVM.mapSettings.options.markerOptions
+         };
+      }
+
+      function initializeEvents() {
+         storeMapVM.events = {
+            map: {
+               click: function(map, eventName, args) { mapControl.handleGObjectMouseEvent("mapClicked", "map", map, args[0]); },
+               rightclick: function(map, eventName, args) { mapControl.handleGObjectMouseEvent("mapRightClicked", "map", map, args[0]); }
+            },
+            drawingManager: {
+               polygoncomplete: function(drawingManager, eventName, model, args) { mapControl.polygonComplete(args[0]); }
+            },
+            polygon: {
+               click: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonClicked", model.id, polygon, args[0]); },
+               rightclick: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonRightClicked", model.id, polygon, args[0]); },
+               dragend: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonDragEnd", model.id, polygon, args[0]); }
+            },
+            marker: {
+               click: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]); },
+               rightclick: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerRightClicked", model.id, marker, args[0]); },
+               dragend: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerDragEnd", model.id, marker, args[0]); }
+            }
          };
       }
    }
