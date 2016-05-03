@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.service.dto;
 
-import com.wisegas.common.lang.value.IdName;
+import com.wisegas.common.lang.value.CodeName;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class ItemLineageDto {
 
    private String primaryCode;
    private String name;
-   private List<IdName> lineage;
+   private List<CodeName> lineage;
 
    public String getPrimaryCode() {
       return primaryCode;
@@ -26,11 +26,11 @@ public class ItemLineageDto {
       this.name = name;
    }
 
-   public List<IdName> getLineage() {
+   public List<CodeName> getLineage() {
       return lineage;
    }
 
-   public void setLineage(List<IdName> lineage) {
+   public void setLineage(List<CodeName> lineage) {
       this.lineage = lineage;
    }
 }

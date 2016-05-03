@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.service_impl.factory;
 
-import com.wisegas.common.lang.value.IdName;
+import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.itemmanagement.domain.entity.Item;
 import com.wisegas.itemmanagement.service.dto.ItemLineageDto;
 
@@ -12,12 +12,12 @@ public final class ItemLineageDtoFactory {
       ItemLineageDto itemLineageDto = new ItemLineageDto();
       itemLineageDto.setPrimaryCode(item.getPrimaryCode().toString());
       itemLineageDto.setName(item.getName());
-      itemLineageDto.setLineage(item.getLineage().stream().map(ItemLineageDtoFactory::createIdName).collect(Collectors.toList()));
+      itemLineageDto.setLineage(item.getLineage().stream().map(ItemLineageDtoFactory::createCodeName).collect(Collectors.toList()));
       return itemLineageDto;
    }
 
-   private static IdName createIdName(Item item) {
-      return new IdName(item.getId().toString(), item.getName());
+   private static CodeName createCodeName(Item item) {
+      return new CodeName(item.getPrimaryCode().toString(), item.getName());
    }
 
    private ItemLineageDtoFactory() {
