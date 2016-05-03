@@ -1,9 +1,9 @@
 package com.wisegas.shoppinglist.restresource;
 
 import com.wisegas.common.lang.value.Email;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import com.wisegas.common.webservices.hal.api.HalLink;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.shoppinglist.service.api.ShopperService;
 
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
-package com.wisegas.common.webserver.jaxrs.hal;
+package com.wisegas.common.webservices.jaxrs.hal;
 
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webservices.hal.api.HalRepresentation;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;

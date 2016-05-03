@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.servlet.filter;
+package com.wisegas.common.webservices.servlet.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

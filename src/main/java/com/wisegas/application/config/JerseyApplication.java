@@ -1,8 +1,8 @@
 package com.wisegas.application.config;
 
-import com.wisegas.common.webserver.jaxrs.exceptionmapper.EntityConflictExceptionMapper;
-import com.wisegas.common.webserver.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper;
-import com.wisegas.common.webserver.jaxrs.filter.CORSResponseFilter;
+import com.wisegas.common.webservices.jaxrs.exceptionmapper.EntityConflictExceptionMapper;
+import com.wisegas.common.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper;
+import com.wisegas.common.webservices.jaxrs.filter.CORSResponseFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 
 public class JerseyApplication extends ResourceConfig {

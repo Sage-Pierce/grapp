@@ -1,6 +1,6 @@
-package com.wisegas.common.webserver.jaxrs.hal;
+package com.wisegas.common.webservices.jaxrs.hal;
 
-import com.wisegas.common.webserver.hal.api.HalLink;
+import com.wisegas.common.webservices.hal.api.HalLink;
 
 import javax.ws.rs.core.UriBuilder;
 

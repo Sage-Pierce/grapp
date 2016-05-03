@@ -1,10 +1,10 @@
 package com.wisegas.storemanagement.restresource;
 
 import com.wisegas.common.lang.spacial.GeoPoint;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import com.wisegas.common.webservices.hal.api.HalLink;
+import com.wisegas.common.webservices.hal.api.HalRepresentation;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.storemanagement.service.api.StoreService;
 import com.wisegas.storemanagement.service.dto.StoreDto;
 

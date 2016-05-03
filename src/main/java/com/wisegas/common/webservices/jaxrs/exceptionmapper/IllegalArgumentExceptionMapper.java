@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jaxrs.exceptionmapper;
+package com.wisegas.common.webservices.jaxrs.exceptionmapper;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

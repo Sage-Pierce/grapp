@@ -1,10 +1,10 @@
 package com.wisegas.shoppinglist.restresource;
 
 import com.wisegas.common.lang.value.CodeName;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import com.wisegas.common.webservices.hal.api.HalLink;
+import com.wisegas.common.webservices.hal.api.HalRepresentation;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.shoppinglist.service.api.ShoppingListService;
 import com.wisegas.shoppinglist.service.dto.ShoppingListDto;
 

@@ -1,8 +1,8 @@
-package com.wisegas.common.webserver.hal.impl;
+package com.wisegas.common.webservices.hal.impl;
 
 import com.theoryinpractise.halbuilder.api.*;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
+import com.wisegas.common.webservices.hal.api.HalLink;
+import com.wisegas.common.webservices.hal.api.HalRepresentation;
 
 import java.io.Writer;
 import java.net.URI;

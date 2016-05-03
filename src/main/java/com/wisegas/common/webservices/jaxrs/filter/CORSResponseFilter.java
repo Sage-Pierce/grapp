@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jaxrs.filter;
+package com.wisegas.common.webservices.jaxrs.filter;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

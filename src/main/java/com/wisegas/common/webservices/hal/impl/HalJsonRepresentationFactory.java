@@ -1,9 +1,9 @@
-package com.wisegas.common.webserver.hal.impl;
+package com.wisegas.common.webservices.hal.impl;
 
 import com.theoryinpractise.halbuilder.json.JsonRepresentationFactory;
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.hal.api.HalRepresentation;
-import com.wisegas.common.webserver.hal.api.HalRepresentationFactory;
+import com.wisegas.common.webservices.hal.api.HalLink;
+import com.wisegas.common.webservices.hal.api.HalRepresentation;
+import com.wisegas.common.webservices.hal.api.HalRepresentationFactory;
 
 import java.io.Serializable;
 import java.util.Collection;

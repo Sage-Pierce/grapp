@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.hal.api;
+package com.wisegas.common.webservices.hal.api;
 
 public interface HalRepresentation {
    HalRepresentation withLinks(Iterable<HalLink> halLinks);

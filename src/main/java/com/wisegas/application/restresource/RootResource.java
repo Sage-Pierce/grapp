@@ -1,8 +1,8 @@
 package com.wisegas.application.restresource;
 
-import com.wisegas.common.webserver.hal.api.HalLink;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalJsonResource;
-import com.wisegas.common.webserver.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import com.wisegas.common.webservices.hal.api.HalLink;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
+import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.itemmanagement.restresource.GeneralItemsResource;
 import com.wisegas.itemmanagement.restresource.ItemImportResource;
 import com.wisegas.itemmanagement.restresource.ItemResource;

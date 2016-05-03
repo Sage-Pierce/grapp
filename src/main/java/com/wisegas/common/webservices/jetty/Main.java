@@ -1,4 +1,4 @@
-package com.wisegas.common.webserver.jetty;
+package com.wisegas.common.webservices.jetty;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
