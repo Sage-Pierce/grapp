@@ -1,17 +1,16 @@
 package com.wisegas.common.lang.spacial;
 
-import com.wisegas.common.lang.value.JsonValue;
+import com.wisegas.common.lang.translation.json.JsonTranslator;
 
+import javax.json.Json;
+import javax.json.JsonValue;
 import java.util.Objects;
 
-public final class Point extends JsonValue {
+public final class Point {
+   private static final Translator translator = new Translator();
 
    private double x;
    private double y;
-
-   public static Point fromString(String json) {
-      return GSON.fromJson(json, Point.class);
-   }
 
    public Point(double x, double y) {
       this.x = x;
@@ -20,6 +19,14 @@ public final class Point extends JsonValue {
 
    protected Point() {
 
+   }
+
+   public static Point fromString(String json) {
+      return translator().translate(json);
+   }
+
+   public static JsonTranslator<Point> translator() {
+      return translator;
    }
 
    @Override
@@ -42,11 +49,38 @@ public final class Point extends JsonValue {
       return Objects.hash(x, y);
    }
 
+   @Override
+   public String toString() {
+      return createValue().toString();
+   }
+
+   public JsonValue createValue() {
+      return translator.toValue(this);
+   }
+
    public double getX() {
       return x;
    }
 
    public double getY() {
       return y;
+   }
+
+   private static final class Translator implements JsonTranslator<Point> {
+
+      @Override
+      public Point translate(JsonValue jsonValue) {
+         return JsonTranslator.asObject()
+                              .andThen(pointObject -> new Point(pointObject.getJsonNumber("x").doubleValue(),
+                                                                pointObject.getJsonNumber("y").doubleValue()))
+                              .apply(jsonValue);
+      }
+
+      protected JsonValue toValue(Point point) {
+         return Json.createObjectBuilder()
+                    .add("x", point.getX())
+                    .add("y", point.getY())
+                    .build();
+      }
    }
 }

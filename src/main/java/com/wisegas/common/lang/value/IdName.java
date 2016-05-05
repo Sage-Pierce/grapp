@@ -1,15 +1,16 @@
 package com.wisegas.common.lang.value;
 
+import com.wisegas.common.lang.translation.json.JsonTranslator;
+
+import javax.json.Json;
+import javax.json.JsonValue;
 import java.util.Objects;
 
-public final class IdName extends JsonValue {
+public final class IdName {
+   private static final Translator translator = new Translator();
 
    private String id;
    private String name;
-
-   public static IdName fromString(String json) {
-      return GSON.fromJson(json, IdName.class);
-   }
 
    public IdName(String id, String name) {
       this.id = id;
@@ -18,6 +19,14 @@ public final class IdName extends JsonValue {
 
    protected IdName() {
 
+   }
+
+   public static IdName fromString(String json) {
+      return translator().translate(json);
+   }
+
+   public static JsonTranslator<IdName> translator() {
+      return translator;
    }
 
    @Override
@@ -40,11 +49,37 @@ public final class IdName extends JsonValue {
       return Objects.hash(id, name);
    }
 
+   @Override
+   public String toString() {
+      return createValue().toString();
+   }
+
+   public JsonValue createValue() {
+      return translator.toValue(this);
+   }
+
    public String getId() {
       return id;
    }
 
    public String getName() {
       return name;
+   }
+
+   private static final class Translator implements JsonTranslator<IdName> {
+
+      @Override
+      public IdName translate(JsonValue jsonValue) {
+         return JsonTranslator.asObject()
+                              .andThen(idNameObject -> new IdName(idNameObject.getString("id"), idNameObject.getString("name")))
+                              .apply(jsonValue);
+      }
+
+      protected JsonValue toValue(IdName idName) {
+         return Json.createObjectBuilder()
+                    .add("id", idName.getId())
+                    .add("name", idName.getName())
+                    .build();
+      }
    }
 }

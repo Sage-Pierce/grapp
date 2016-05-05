@@ -6,11 +6,11 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
-public class GeoPointConverter extends JsonAttributeConverter<GeoPoint> implements AttributeConverter<GeoPoint, String> {
+public class GeoPointConverter implements AttributeConverter<GeoPoint, String> {
 
    @Override
    public String convertToDatabaseColumn(GeoPoint attributeObject) {
-      return super.convertToDatabaseColumn(attributeObject);
+      return attributeObject == null ? null : attributeObject.toString();
    }
 
    @Override

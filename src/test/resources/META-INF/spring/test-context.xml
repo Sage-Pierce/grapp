@@ -11,6 +11,7 @@
     </bean>
 
     <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/client-beans.xml"/>
     <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
 
     <!-- Specify H2 as our datasource (for tests ONLY) -->

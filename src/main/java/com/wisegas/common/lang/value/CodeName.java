@@ -1,15 +1,16 @@
 package com.wisegas.common.lang.value;
 
+import com.wisegas.common.lang.translation.json.JsonTranslator;
+
+import javax.json.Json;
+import javax.json.JsonValue;
 import java.util.Objects;
 
-public final class CodeName extends JsonValue {
+public final class CodeName {
+   private static final Translator translator = new Translator();
 
    private String code;
    private String name;
-
-   public static CodeName fromString(String json) {
-      return GSON.fromJson(json, CodeName.class);
-   }
 
    public CodeName(String code, String name) {
       this.code = code;
@@ -18,6 +19,14 @@ public final class CodeName extends JsonValue {
 
    protected CodeName() {
 
+   }
+
+   public static CodeName fromString(String json) {
+      return translator().translate(json);
+   }
+
+   public static JsonTranslator<CodeName> translator() {
+      return translator;
    }
 
    @Override
@@ -40,11 +49,38 @@ public final class CodeName extends JsonValue {
       return Objects.hash(code, name);
    }
 
+   @Override
+   public String toString() {
+      return createValue().toString();
+   }
+
+   public JsonValue createValue() {
+      return translator.toValue(this);
+   }
+
    public String getCode() {
       return code;
    }
 
    public String getName() {
       return name;
+   }
+
+   private static final class Translator implements JsonTranslator<CodeName> {
+
+      @Override
+      public CodeName translate(JsonValue jsonValue) {
+         return JsonTranslator.asObject()
+                              .andThen(codeNameObject -> new CodeName(codeNameObject.getString("code"),
+                                                                      codeNameObject.getString("name")))
+                              .apply(jsonValue);
+      }
+
+      protected JsonValue toValue(CodeName codeName) {
+         return Json.createObjectBuilder()
+                    .add("code", codeName.getCode())
+                    .add("name", codeName.getName())
+                    .build();
+      }
    }
 }

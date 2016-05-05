@@ -30,6 +30,6 @@ public interface JsonTranslator<T> extends Translator<JsonValue, T> {
    }
 
    default T translate(String json) {
-      return translate(Json.createReader(new StringReader(json)).read());
+      return json == null ? null : translate(Json.createReader(new StringReader(json)).read());
    }
 }

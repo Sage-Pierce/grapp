@@ -6,11 +6,11 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
-public class GeoPolygonConverter extends JsonAttributeConverter<GeoPolygon> implements AttributeConverter<GeoPolygon, String> {
+public class GeoPolygonConverter implements AttributeConverter<GeoPolygon, String> {
 
    @Override
    public String convertToDatabaseColumn(GeoPolygon attributeObject) {
-      return super.convertToDatabaseColumn(attributeObject);
+      return attributeObject == null ? null : attributeObject.toString();
    }
 
    @Override

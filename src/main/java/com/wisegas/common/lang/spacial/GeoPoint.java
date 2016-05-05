@@ -1,17 +1,16 @@
 package com.wisegas.common.lang.spacial;
 
-import com.wisegas.common.lang.value.JsonValue;
+import com.wisegas.common.lang.translation.json.JsonTranslator;
 
+import javax.json.Json;
+import javax.json.JsonValue;
 import java.util.Objects;
 
-public final class GeoPoint extends JsonValue {
+public final class GeoPoint {
+   private static final Translator translator = new Translator();
 
    private double lat;
    private double lng;
-
-   public static GeoPoint fromString(String json) {
-      return GSON.fromJson(json, GeoPoint.class);
-   }
 
    public GeoPoint(double lat, double lng) {
       this.lat = lat;
@@ -20,6 +19,14 @@ public final class GeoPoint extends JsonValue {
 
    protected GeoPoint() {
 
+   }
+
+   public static GeoPoint fromString(String json) {
+      return translator().translate(json);
+   }
+
+   public static JsonTranslator<GeoPoint> translator() {
+      return translator;
    }
 
    @Override
@@ -42,11 +49,38 @@ public final class GeoPoint extends JsonValue {
       return Objects.hash(lat, lng);
    }
 
+   @Override
+   public String toString() {
+      return createValue().toString();
+   }
+
+   public JsonValue createValue() {
+      return translator.toValue(this);
+   }
+
    public double getLat() {
       return lat;
    }
 
    public double getLng() {
       return lng;
+   }
+
+   private static final class Translator implements JsonTranslator<GeoPoint> {
+
+      @Override
+      public GeoPoint translate(JsonValue jsonValue) {
+         return JsonTranslator.asObject()
+                              .andThen(geoPointObject -> new GeoPoint(geoPointObject.getJsonNumber("lat").doubleValue(),
+                                                                      geoPointObject.getJsonNumber("lng").doubleValue()))
+                              .applyNullSafe(jsonValue);
+      }
+
+      protected JsonValue toValue(GeoPoint geoPoint) {
+         return Json.createObjectBuilder()
+                    .add("lat", geoPoint.getLat())
+                    .add("lng", geoPoint.getLng())
+                    .build();
+      }
    }
 }

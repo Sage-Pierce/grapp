@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Allows placement of Environment Variables in this XML -->
+    <context:property-placeholder/>
+
+    <bean id="client" class="javax.ws.rs.client.ClientBuilder" factory-method="newClient"/>
+
+    <bean id="itemManagementTarget" factory-bean="client" factory-method="target">
+        <constructor-arg value="${root.itemmanagement}"/>
+    </bean>
+</beans>
