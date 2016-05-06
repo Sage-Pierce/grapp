@@ -13,15 +13,15 @@ public class Feature extends SimpleEntity<FeatureId> {
    private FeatureId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
-   private Layout layout;
+   private StoreLayout storeLayout;
 
    @Column(length = 2047)
    @Convert(converter = GeoPolygonConverter.class)
    private GeoPolygon polygon;
 
-   public Feature(Layout layout, GeoPolygon polygon) {
+   public Feature(StoreLayout storeLayout, GeoPolygon polygon) {
       id = FeatureId.generate();
-      setLayout(layout);
+      setStoreLayout(storeLayout);
       setPolygon(polygon);
    }
 
@@ -38,12 +38,12 @@ public class Feature extends SimpleEntity<FeatureId> {
       return polygon;
    }
 
-   // Only should be called by containing Layout since it maintains spacial invariants
+   // Only should be called by containing StoreLayout since it maintains spacial invariants
    protected void setPolygon(GeoPolygon polygon) {
       this.polygon = polygon;
    }
 
-   private void setLayout(Layout layout) {
-      this.layout = layout;
+   private void setStoreLayout(StoreLayout storeLayout) {
+      this.storeLayout = storeLayout;
    }
 }

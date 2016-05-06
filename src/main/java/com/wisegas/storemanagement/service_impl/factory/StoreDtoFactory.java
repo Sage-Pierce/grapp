@@ -10,7 +10,7 @@ public final class StoreDtoFactory {
       storeDto.setId(store.getId().toString());
       storeDto.setName(store.getName());
       storeDto.setLocation(store.getLocation());
-      storeDto.setLayoutId(store.getLayout().getId().toString());
+      storeDto.setLayoutId(store.getStoreLayout().getId().toString());
       return storeDto;
    }
 

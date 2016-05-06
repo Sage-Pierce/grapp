@@ -3,14 +3,14 @@ package com.wisegas.storemanagement.domain.entity
 import com.wisegas.common.lang.spacial.GeoPoint
 import com.wisegas.storemanagement.domain.value.Item
 import com.wisegas.storemanagement.domain.value.NodeType
-import com.wisegas.storemanagement.test.builders.LayoutBuilder
+import com.wisegas.storemanagement.test.builders.StoreLayoutBuilder
 import spock.lang.Specification
 
-class LayoutTest extends Specification {
+class StoreLayoutTest extends Specification {
 
    def "Adding a singleton-Type Node to a Layout which already has one of that Type causes the original one to become whatever the default non-singleton type is"() {
       given:
-      Layout layout = LayoutBuilder.layout()
+      StoreLayout layout = StoreLayoutBuilder.storeLayout()
 
       and:
       Node oldEntrance = layout.addNode(singletonType, new GeoPoint(0, 0))
@@ -28,7 +28,7 @@ class LayoutTest extends Specification {
 
    def "Adding an Item to a Node in a Layout removes that Item from any other Nodes in the Layout"() {
       given:
-      Layout layout = LayoutBuilder.layout()
+      StoreLayout layout = StoreLayoutBuilder.storeLayout()
       Item item = new Item("CODE", "ITEM")
 
       and:

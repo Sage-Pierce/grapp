@@ -12,7 +12,7 @@ class StoreLayoutIntegrationTest extends IntegrationTest {
    def "Features in a Layout can be reshaped by ID"() {
       given:
       Store store = StoreBuilder.store()
-      Layout layout = store.getLayout()
+      StoreLayout layout = store.getStoreLayout()
       Feature feature = layout.addFeature(new GeoPolygon([]))
       testEntityManager.save(store)
       testEntityManager.flush()

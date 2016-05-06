@@ -2,7 +2,7 @@ package com.wisegas.storemanagement.service.dto;
 
 import java.util.List;
 
-public class LayoutUpdateDto<T> {
+public class StoreLayoutUpdateDto<T> {
 
    private T target;
    private List<NodeDto> affectedNodes;

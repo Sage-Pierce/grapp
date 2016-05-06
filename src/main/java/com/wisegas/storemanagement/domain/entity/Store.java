@@ -20,7 +20,7 @@ public class Store extends NamedEntity<StoreId> {
    private GeoPoint location;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "store", orphanRemoval = true)
-   private Layout layout = new Layout(this);
+   private StoreLayout storeLayout = new StoreLayout(this);
 
    public Store(StoreManager manager, String name, GeoPoint location) {
       id = StoreId.generate();
@@ -46,8 +46,8 @@ public class Store extends NamedEntity<StoreId> {
       this.location = location;
    }
 
-   public Layout getLayout() {
-      return layout;
+   public StoreLayout getStoreLayout() {
+      return storeLayout;
    }
 
    private void setManager(StoreManager manager) {

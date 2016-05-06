@@ -10,9 +10,9 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Layout extends SimpleEntity<LayoutId> {
+public class StoreLayout extends SimpleEntity<StoreLayoutId> {
    @EmbeddedId
-   private LayoutId id;
+   private StoreLayoutId id;
 
    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
    private Store store;
@@ -25,25 +25,25 @@ public class Layout extends SimpleEntity<LayoutId> {
    @Convert(converter = GeoPolygonConverter.class)
    private GeoPolygon innerOutline;
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "layout", orphanRemoval = true)
+   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "storeLayout", orphanRemoval = true)
    @MapKey(name = "id")
    private Map<FeatureId, Feature> features = new HashMap<>();
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "layout", orphanRemoval = true)
+   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "storeLayout", orphanRemoval = true)
    @MapKey(name = "id")
    private Map<NodeId, Node> nodes = new HashMap<>();
 
-   public Layout(Store store) {
-      id = LayoutId.generate();
+   public StoreLayout(Store store) {
+      id = StoreLayoutId.generate();
       setStore(store);
    }
 
-   protected Layout() {
+   protected StoreLayout() {
 
    }
 
    @Override
-   public LayoutId getId() {
+   public StoreLayoutId getId() {
       return id;
    }
 
@@ -87,6 +87,13 @@ public class Layout extends SimpleEntity<LayoutId> {
       return nodes.get(nodeId);
    }
 
+   public Node getNodeOfType(NodeType type) {
+      return nodes.values().stream()
+                  .filter(node -> node.getType() == type)
+                  .findAny()
+                  .orElseThrow(() -> new IllegalStateException(String.format("Could not find node of Type %s in StoreLayout (%s)", type.name(), getId())));
+   }
+
    public Collection<Node> getNodes() {
       return nodes.values();
    }
@@ -113,11 +120,11 @@ public class Layout extends SimpleEntity<LayoutId> {
    }
 
    private Feature requireFeatureExistence(FeatureId featureId) {
-      return Objects.requireNonNull(features.get(featureId), () -> String.format("Feature (%s) not found in Layout (%s).", featureId, getId()));
+      return Objects.requireNonNull(features.get(featureId), () -> String.format("Feature (%s) not found in StoreLayout (%s).", featureId, getId()));
    }
 
    private Node requireNodeExistence(NodeId nodeId) {
-      return Objects.requireNonNull(nodes.get(nodeId), () -> String.format("Node (%s) not found in Layout (%s).", nodeId, getId()));
+      return Objects.requireNonNull(nodes.get(nodeId), () -> String.format("Node (%s) not found in StoreLayout (%s).", nodeId, getId()));
    }
 
    private void ensureNoNodesOfType(NodeType type) {

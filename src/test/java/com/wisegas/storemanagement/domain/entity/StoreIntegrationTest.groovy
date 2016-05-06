@@ -12,7 +12,7 @@ class StoreIntegrationTest extends EntityIntegrationTest<Store> {
    def "A Store's outer outline can be retrieved after saving"() {
       given:
       Store store = StoreBuilder.store()
-      store.getLayout().setOuterOutline(new GeoPolygon([new GeoPoint(0, 0), new GeoPoint(0, 1), new GeoPoint(1, 0)]));
+      store.getStoreLayout().setOuterOutline(new GeoPolygon([new GeoPoint(0, 0), new GeoPoint(0, 1), new GeoPoint(1, 0)]));
       testEntityManager.save(store);
       testEntityManager.flush()
       testEntityManager.clear()
@@ -21,7 +21,7 @@ class StoreIntegrationTest extends EntityIntegrationTest<Store> {
       Store savedStore = testEntityManager.getManagedEntity(store)
 
       when:
-      def outerOutline = savedStore.getLayout().getOuterOutline()
+      def outerOutline = savedStore.getStoreLayout().getOuterOutline()
 
       then:
       outerOutline

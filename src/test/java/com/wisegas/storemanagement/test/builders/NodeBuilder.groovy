@@ -12,7 +12,7 @@ class NodeBuilder {
    static Node node() {
       unique++
       EntityBuilder.wrapBuilder(new Node(
-            LayoutBuilder.layout(),
+            StoreLayoutBuilder.storeLayout(),
             "Test Node ${unique}",
             NodeType.REGULAR,
             new GeoPoint(0, 0)

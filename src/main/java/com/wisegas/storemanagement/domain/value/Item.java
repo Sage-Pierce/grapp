@@ -33,6 +33,10 @@ public class Item {
       return new CodeName(code, name);
    }
 
+   public String getCode() {
+      return code;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) {

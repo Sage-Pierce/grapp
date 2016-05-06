@@ -3,26 +3,26 @@ package com.wisegas.storemanagement.service_impl.api_impl
 import com.wisegas.common.lang.spacial.GeoPoint
 import com.wisegas.common.lang.value.CodeName
 import com.wisegas.common.test.ApplicationServiceTest
-import com.wisegas.storemanagement.domain.entity.Layout
 import com.wisegas.storemanagement.domain.entity.Node
-import com.wisegas.storemanagement.domain.repository.LayoutRepository
+import com.wisegas.storemanagement.domain.entity.StoreLayout
+import com.wisegas.storemanagement.domain.repository.StoreLayoutRepository
 import com.wisegas.storemanagement.domain.value.Item
 import com.wisegas.storemanagement.domain.value.NodeType
-import com.wisegas.storemanagement.test.builders.LayoutBuilder
+import com.wisegas.storemanagement.test.builders.StoreLayoutBuilder
 
-class StoreLayoutServiceImplTest extends ApplicationServiceTest {
+class StoreStoreLayoutServiceImplTest extends ApplicationServiceTest {
 
-   LayoutServiceImpl layoutService
-   LayoutRepository layoutRepository
+   StoreLayoutServiceImpl layoutService
+   StoreLayoutRepository layoutRepository
 
    def setup() {
-      layoutRepository = Mock(LayoutRepository)
-      layoutService = new LayoutServiceImpl(layoutRepository)
+      layoutRepository = Mock(StoreLayoutRepository)
+      layoutService = new StoreLayoutServiceImpl(layoutRepository)
    }
 
    def "The result of adding a Node through the Service updates the node and notifies of affected Nodes"() {
       given:
-      Layout layout = LayoutBuilder.layout()
+      StoreLayout layout = StoreLayoutBuilder.storeLayout()
       Node oldEntrance = layout.addNode(NodeType.ENTRANCE, new GeoPoint(0, 0))
       Node regularNode = layout.addNode(NodeType.REGULAR, new GeoPoint(0, 1))
 
@@ -43,7 +43,7 @@ class StoreLayoutServiceImplTest extends ApplicationServiceTest {
    def "The result of adding an Item to a Node through the Service updates the Node and notifies of affected Nodes"() {
       given:
       CodeName item = new CodeName("CODE", "ITEM")
-      Layout layout = LayoutBuilder.layout()
+      StoreLayout layout = StoreLayoutBuilder.storeLayout()
 
       and:
       layoutRepository.get(layout.getId()) >> layout

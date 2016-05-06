@@ -7,7 +7,7 @@ import com.wisegas.common.webservices.hal.api.HalLink;
 import com.wisegas.common.webservices.hal.api.HalRepresentation;
 import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
-import com.wisegas.storemanagement.service.api.LayoutService;
+import com.wisegas.storemanagement.service.api.StoreLayoutService;
 import com.wisegas.storemanagement.service.dto.*;
 
 import javax.inject.Inject;
@@ -17,42 +17,42 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Path("/layouts/{id}/")
-public class LayoutResource extends JaxrsHalJsonResource {
+@Path("/storeLayouts/{id}/")
+public class StoreLayoutResource extends JaxrsHalJsonResource {
 
-   private final LayoutService layoutService;
+   private final StoreLayoutService storeLayoutService;
 
    @Inject
-   public LayoutResource(LayoutService layoutService) {
-      this.layoutService = layoutService;
+   public StoreLayoutResource(StoreLayoutService storeLayoutService) {
+      this.storeLayoutService = storeLayoutService;
    }
 
    @GET
    public Response get(@PathParam("id") final String id) {
-      return buildHalResponse(asRepresentationOf(layoutService.get(id)));
+      return buildHalResponse(asRepresentationOf(storeLayoutService.get(id)));
    }
 
    @PUT
    @Path("outerOutline")
    public Response updateOuterOutline(@PathParam("id") final String id,
                                       @QueryParam("polygon") final GeoPolygon polygon) {
-      LayoutDto layoutDto = layoutService.updateOuterOutline(id, polygon);
-      return buildHalResponse(asRepresentationOf(layoutDto));
+      StoreLayoutDto storeLayoutDto = storeLayoutService.updateOuterOutline(id, polygon);
+      return buildHalResponse(asRepresentationOf(storeLayoutDto));
    }
 
    @PUT
    @Path("innerOutline")
    public Response updateInnerOutline(@PathParam("id") final String id,
                                       @QueryParam("polygon") final GeoPolygon polygon) {
-      LayoutDto layoutDto = layoutService.updateInnerOutline(id, polygon);
-      return buildHalResponse(asRepresentationOf(layoutDto));
+      StoreLayoutDto storeLayoutDto = storeLayoutService.updateInnerOutline(id, polygon);
+      return buildHalResponse(asRepresentationOf(storeLayoutDto));
    }
 
    @POST
    @Path("features")
    public Response addFeature(@PathParam("id") final String id,
                               @QueryParam("polygon") final GeoPolygon polygon) {
-      FeatureDto featureDto = layoutService.addFeature(id, polygon);
+      FeatureDto featureDto = storeLayoutService.addFeature(id, polygon);
       return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
    }
 
@@ -61,7 +61,7 @@ public class LayoutResource extends JaxrsHalJsonResource {
    public Response reshapeFeature(@PathParam("id") final String id,
                                   @QueryParam("featureId") final String featureId,
                                   @QueryParam("polygon") final GeoPolygon polygon) {
-      FeatureDto featureDto = layoutService.reshapeFeature(id, featureId, polygon);
+      FeatureDto featureDto = storeLayoutService.reshapeFeature(id, featureId, polygon);
       return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
    }
 
@@ -70,7 +70,7 @@ public class LayoutResource extends JaxrsHalJsonResource {
    public Response addNode(@PathParam("id") final String id,
                            @QueryParam("type") final String type,
                            @QueryParam("location") final GeoPoint location) {
-      LayoutUpdateDto<NodeDto> result = layoutService.addNode(id, type, location);
+      StoreLayoutUpdateDto<NodeDto> result = storeLayoutService.addNode(id, type, location);
       return buildHalResponse(NodeResource.asRepresentationOf(result.getTarget())
                                           .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                           .map(NodeResource::asRepresentationOf)
@@ -82,7 +82,7 @@ public class LayoutResource extends JaxrsHalJsonResource {
    public Response moveNode(@PathParam("id") final String id,
                             @QueryParam("nodeId") final String nodeId,
                             @QueryParam("location") final GeoPoint location) {
-      NodeDto nodeDto = layoutService.moveNode(id, nodeId, location);
+      NodeDto nodeDto = storeLayoutService.moveNode(id, nodeId, location);
       return buildHalResponse(NodeResource.asRepresentationOf(nodeDto));
    }
 
@@ -91,7 +91,7 @@ public class LayoutResource extends JaxrsHalJsonResource {
    public Response addNodeItem(@PathParam("id") final String id,
                                @QueryParam("nodeId") final String nodeId,
                                @QueryParam("item") final CodeName item) {
-      LayoutUpdateDto<NodeItemDto> result = layoutService.addNodeItem(id, nodeId, item);
+      StoreLayoutUpdateDto<NodeItemDto> result = storeLayoutService.addNodeItem(id, nodeId, item);
       return buildHalResponse(NodeItemResource.asRepresentationOf(result.getTarget())
                                               .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
                                                                                               .map(NodeResource::asRepresentationOf)
@@ -102,24 +102,24 @@ public class LayoutResource extends JaxrsHalJsonResource {
       return createSelfLinkBuilder().withRel(rel);
    }
 
-   protected static HalRepresentation asRepresentationOf(LayoutDto layoutDto) {
-      return halRepresentationFactory.createFor(layoutDto).withLinks(createLinks(layoutDto));
+   protected static HalRepresentation asRepresentationOf(StoreLayoutDto storeLayoutDto) {
+      return halRepresentationFactory.createFor(storeLayoutDto).withLinks(createLinks(storeLayoutDto));
    }
 
-   private static List<HalLink> createLinks(LayoutDto layoutDto) {
+   private static List<HalLink> createLinks(StoreLayoutDto storeLayoutDto) {
       return Arrays.asList(
-         createSelfLinkBuilder().pathArgs(layoutDto.getId()).withSelfRel(),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("updateOuterOutline").pathArgs(layoutDto.getId()).queryParams("polygon").withRel("outerOutline"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("updateInnerOutline").pathArgs(layoutDto.getId()).queryParams("polygon").withRel("innerOutline"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("addFeature").pathArgs(layoutDto.getId()).queryParams("polygon").withRel("addFeature"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("reshapeFeature").pathArgs(layoutDto.getId()).queryParams("featureId", "polygon").withRel("reshapeFeature"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("addNode").pathArgs(layoutDto.getId()).queryParams("type", "location").withRel("addNode"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("moveNode").pathArgs(layoutDto.getId()).queryParams("nodeId", "location").withRel("moveNode"),
-         JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class).method("addNodeItem").pathArgs(layoutDto.getId()).queryParams("nodeId", "item").withRel("addNodeItem")
+         createSelfLinkBuilder().pathArgs(storeLayoutDto.getId()).withSelfRel(),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("updateOuterOutline").pathArgs(storeLayoutDto.getId()).queryParams("polygon").withRel("outerOutline"),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("updateInnerOutline").pathArgs(storeLayoutDto.getId()).queryParams("polygon").withRel("innerOutline"),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addFeature").pathArgs(storeLayoutDto.getId()).queryParams("polygon").withRel("addFeature"),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("reshapeFeature").pathArgs(storeLayoutDto.getId()).queryParams("featureId", "polygon").withRel("reshapeFeature"),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addNode").pathArgs(storeLayoutDto.getId()).queryParams("type", "location").withRel("addNode"),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("moveNode").pathArgs(storeLayoutDto.getId()).queryParams("nodeId", "location").withRel("moveNode"),
+         JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addNodeItem").pathArgs(storeLayoutDto.getId()).queryParams("nodeId", "item").withRel("addNodeItem")
       );
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(LayoutResource.class);
+      return JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class);
    }
 }

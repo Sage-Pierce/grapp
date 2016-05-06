@@ -6,23 +6,23 @@ import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class LayoutId extends AbstractId {
+public class StoreLayoutId extends AbstractId {
    @Basic
    private String id;
 
-   public static LayoutId generate() {
-      return new LayoutId(generateValue());
+   public static StoreLayoutId generate() {
+      return new StoreLayoutId(generateValue());
    }
 
-   public static LayoutId fromString(String string) {
-      return new LayoutId(string);
+   public static StoreLayoutId fromString(String string) {
+      return new StoreLayoutId(string);
    }
 
-   protected LayoutId() {
+   protected StoreLayoutId() {
 
    }
 
-   private LayoutId(String id) {
+   private StoreLayoutId(String id) {
       this.id = id;
    }
 

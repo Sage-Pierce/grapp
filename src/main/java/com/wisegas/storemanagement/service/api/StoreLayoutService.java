@@ -5,20 +5,20 @@ import com.wisegas.common.lang.spacial.GeoPolygon;
 import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.storemanagement.service.dto.*;
 
-public interface LayoutService {
-   LayoutDto get(String id);
+public interface StoreLayoutService {
+   StoreLayoutDto get(String id);
 
-   LayoutDto updateOuterOutline(String id, GeoPolygon outerPolygon);
+   StoreLayoutDto updateOuterOutline(String id, GeoPolygon outerPolygon);
 
-   LayoutDto updateInnerOutline(String id, GeoPolygon innerPolygon);
+   StoreLayoutDto updateInnerOutline(String id, GeoPolygon innerPolygon);
 
    FeatureDto addFeature(String id, GeoPolygon polygon);
 
    FeatureDto reshapeFeature(String id, String featureId, GeoPolygon polygon);
 
-   LayoutUpdateDto<NodeDto> addNode(String id, String type, GeoPoint location);
+   StoreLayoutUpdateDto<NodeDto> addNode(String id, String type, GeoPoint location);
 
    NodeDto moveNode(String id, String nodeId, GeoPoint location);
 
-   LayoutUpdateDto<NodeItemDto> addNodeItem(String id, String nodeId, CodeName item);
+   StoreLayoutUpdateDto<NodeItemDto> addNodeItem(String id, String nodeId, CodeName item);
 }

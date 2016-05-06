@@ -20,7 +20,7 @@ public class Node extends NamedEntity<NodeId> {
    private NodeId id;
 
    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
-   private Layout layout;
+   private StoreLayout storeLayout;
 
    @Column(length = 63)
    @Convert(converter = GeoPointConverter.class)
@@ -33,9 +33,9 @@ public class Node extends NamedEntity<NodeId> {
    @MapKey(name = "item")
    private Map<Item, NodeItem> items = new HashMap<>();
 
-   public Node(Layout layout, String name, NodeType type, GeoPoint location) {
+   public Node(StoreLayout storeLayout, String name, NodeType type, GeoPoint location) {
       id = NodeId.generate();
-      setLayout(layout);
+      setStoreLayout(storeLayout);
       setName(name);
       setType(type);
       setLocation(location);
@@ -88,7 +88,7 @@ public class Node extends NamedEntity<NodeId> {
       }
    }
 
-   private void setLayout(Layout layout) {
-      this.layout = layout;
+   private void setStoreLayout(StoreLayout storeLayout) {
+      this.storeLayout = storeLayout;
    }
 }

@@ -31,6 +31,10 @@ public class NodeItem extends SimpleEntity<NodeItemId> {
       return id;
    }
 
+   public Node getNode() {
+      return node;
+   }
+
    public Item getItem() {
       return item;
    }
