@@ -16,15 +16,15 @@ import java.util.List;
 public class HttpItemManagementAdapter implements ItemLineageAdapter {
    private static final ResponseTranslator<List<ItemLineageDto>> translator = new ItemLineagesResponseTranslator();
 
-   private final WebTarget itemLineageTarget;
+   private final WebTarget itemManagementTarget;
 
    @Inject
    public HttpItemManagementAdapter(WebTarget itemManagementTarget) {
-      itemLineageTarget = itemManagementTarget.path("items");
+      this.itemManagementTarget = itemManagementTarget;
    }
 
    @Override
    public List<ItemLineageDto> getItemLineages() {
-      return translator.translate(itemLineageTarget.request().get());
+      return translator.translate(itemManagementTarget.path("items").request().get());
    }
 }
