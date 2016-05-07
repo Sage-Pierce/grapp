@@ -49,7 +49,8 @@ public class RootResource extends JaxrsHalJsonResource {
          ShoppersResource.createRootLink("shoppers"),
          ShopperResource.createRootLink("shopper"),
          ShoppingListResource.createRootLink("shoppingList"),
-         ShoppingListItemResource.createRootLink("shoppingListItem")
+         ShoppingListItemResource.createRootLink("shoppingListItem"),
+         ShoppingLayoutResource.createRootLink("shoppingLayout")
       );
    }
 }

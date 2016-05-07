@@ -4,6 +4,6 @@ import com.wisegas.storemanagement.service.dto.ItemLineageDto;
 
 import java.util.List;
 
-public interface ItemLineageAdapter {
+public interface ItemLineagesAdapter {
    List<ItemLineageDto> getItemLineages();
 }

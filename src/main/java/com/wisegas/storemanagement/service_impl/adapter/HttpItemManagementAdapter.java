@@ -1,7 +1,7 @@
 package com.wisegas.storemanagement.service_impl.adapter;
 
 import com.wisegas.common.webservices.jaxrs.translation.ResponseTranslator;
-import com.wisegas.storemanagement.service.adapter.ItemLineageAdapter;
+import com.wisegas.storemanagement.service.adapter.ItemLineagesAdapter;
 import com.wisegas.storemanagement.service.dto.ItemLineageDto;
 import com.wisegas.storemanagement.service_impl.translator.ItemLineagesResponseTranslator;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Named
 @Singleton
-public class HttpItemManagementAdapter implements ItemLineageAdapter {
+public class HttpItemManagementAdapter implements ItemLineagesAdapter {
    private static final ResponseTranslator<List<ItemLineageDto>> translator = new ItemLineagesResponseTranslator();
 
    private final WebTarget itemManagementTarget;
