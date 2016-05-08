@@ -14,8 +14,9 @@
          scope: {},
          bindToController: {
             mapControl: "=",
-            location: "=",
-            layout: "="
+            location: "=?",
+            layout: "=",
+            editable: "=?"
          }
       };
    }
@@ -29,10 +30,12 @@
       storeMapVM.storeOutlines = null;
       storeMapVM.storeFeatures = null;
       storeMapVM.storeNodes = null;
+      storeMapVM.window = null;
 
       var mapControl = this.mapControl;
-      var location = this.location;
+      var location = this.location || {lat: 0, lng: 0};
       var layout = this.layout;
+      var editable = this.editable ? this.editable : false;
 
       initialize();
 
@@ -42,6 +45,7 @@
          initializeMapSettings(location);
          initializeControls();
          initializeLayoutObjects(layout);
+         initializeNodeWindow();
          initializeEvents();
       }
 
@@ -49,6 +53,7 @@
          storeMapVM.mapSettings = {
             center: _.convertLocationToPosition(location),
             zoom: 18,
+            enableWindow: !editable,
             options: {
                draggableCursor: "pointer",
                draggingCursor: "pointer",
@@ -62,11 +67,11 @@
                   zIndex: 3,
                   clickable: true,
                   editable: false,
-                  draggable: true
+                  draggable: editable
                },
                markerOptions: {
                   zIndex: 4,
-                  draggable: true
+                  draggable: editable
                }
             }
          };
@@ -107,7 +112,7 @@
             fit: fit,
             clickable: isFeature,
             editable: false,
-            draggable: isFeature
+            draggable: editable && isFeature
          };
       }
 
@@ -116,7 +121,21 @@
             id: nodeModel.id,
             position: _.convertLocationToPosition(nodeModel.location),
             icon: nodeModel.type.iconUrl,
+            node: nodeModel,
             options: storeMapVM.mapSettings.options.markerOptions
+         };
+      }
+
+      function initializeNodeWindow() {
+         storeMapVM.window = {
+            show: false,
+            coords: null,
+            templateUrl: "app/storemap/NodeWindow.html",
+            templateParameter: null,
+            options: {
+               disableAutoPan: true,
+               pixelOffset: new google.maps.Size(0, -20)
+            }
          };
       }
 
@@ -135,11 +154,20 @@
                dragend: function(polygon, eventName, model, args) { mapControl.handleGObjectMouseEvent("polygonDragEnd", model.id, polygon, args[0]); }
             },
             marker: {
-               click: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]); },
+               click: function(marker, eventName, model, args) {
+                  updateWindowForNode(model);
+                  mapControl.handleGObjectMouseEvent("markerClicked", model.id, marker, args[0]);
+               },
                rightclick: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerRightClicked", model.id, marker, args[0]); },
                dragend: function(marker, eventName, model, args) { mapControl.handleGObjectMouseEvent("markerDragEnd", model.id, marker, args[0]); }
             }
          };
+      }
+
+      function updateWindowForNode(model) {
+         storeMapVM.window.coords = model.position;
+         storeMapVM.window.templateParameter = model.node;
+         storeMapVM.window.show = true;
       }
    }
 })();

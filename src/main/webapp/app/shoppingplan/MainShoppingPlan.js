@@ -4,11 +4,12 @@
    angular.module("App")
       .controller("MainShoppingPlan", MainShoppingPlan);
 
-   MainShoppingPlan.$inject = ["shoppingList", "storeLayout"];
-   function MainShoppingPlan(shoppingList, storeLayout) {
+   MainShoppingPlan.$inject = ["StoreMapControl", "store", "shoppingLayout"];
+   function MainShoppingPlan(StoreMapControl, store, shoppingLayout) {
       var mainShoppingPlanVM = this;
-      mainShoppingPlanVM.shoppingList = shoppingList;
-      mainShoppingPlanVM.storeLayout = storeLayout;
+      mainShoppingPlanVM.mapControl = new StoreMapControl();
+      mainShoppingPlanVM.location = store.location;
+      mainShoppingPlanVM.shoppingLayout = shoppingLayout;
 
       ////////////////////
 

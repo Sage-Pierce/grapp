@@ -16,8 +16,8 @@
                store: ["$stateParams", "Store", function($stateParams, Store) {
                   return Store.loadById($stateParams.storeId);
                }],
-               storeLayout: ["store", function(store) {
-                  return store.layoutId;
+               shoppingLayout: ["store", "shoppingList", "ShoppingLayout", function(store, shoppingList, ShoppingLayout) {
+                  return ShoppingLayout.loadByIdForItems(store.layoutId, shoppingList.items.map(function(shoppingListItem) { return shoppingListItem.item; }));
                }]
             },
             views: {

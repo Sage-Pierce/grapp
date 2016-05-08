@@ -7,6 +7,13 @@
                             events="storeMapVM.events.drawingManager"
                             control="storeMapVM.controls.drawingManager">
    </ui-gmap-drawing-manager>
+   <ui-gmap-window ng-if="storeMapVM.mapSettings.enableWindow"
+                   show="storeMapVM.window.show"
+                   coords="storeMapVM.window.coords"
+                   templateUrl="storeMapVM.window.templateUrl"
+                   templateParameter="storeMapVM.window.templateParameter"
+                   options="storeMapVM.window.options">
+   </ui-gmap-window>
    <ui-gmap-polygons models="storeMapVM.storeOutlines"
                      path="'path'"
                      stroke="{weight: 1}"

@@ -1,3 +1,8 @@
 <h3 class="text-center">Shopping Plan</h3>
-<p>Shopping List: {{mainShoppingPlanVM.shoppingList.id}}</p>
-<p>Store Layout: {{mainShoppingPlanVM.storeLayout}}</p>
+<div class="row">
+   <store-map class="col-md-12 h-padding-0"
+              map-control="mainShoppingPlanVM.mapControl"
+              layout="mainShoppingPlanVM.shoppingLayout"
+              editable="false">
+   </store-map>
+</div>
