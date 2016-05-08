@@ -13,6 +13,7 @@ public final class ShoppingNodeDtoFactory {
       shoppingNodeDto.setId(node.getId().toString());
       shoppingNodeDto.setName(node.getName());
       shoppingNodeDto.setType(node.getType().name());
+      shoppingNodeDto.setLocation(node.getLocation());
       shoppingNodeDto.setItems(items);
       return shoppingNodeDto;
    }
