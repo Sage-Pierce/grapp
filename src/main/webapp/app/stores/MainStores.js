@@ -17,7 +17,6 @@
       mainStoresVM.editSelectedStore = editSelectedStore;
       mainStoresVM.deleteSelectedStore = deleteSelectedStore;
 
-
       ////////////////////
 
       function areAnyStoresExistent() {
