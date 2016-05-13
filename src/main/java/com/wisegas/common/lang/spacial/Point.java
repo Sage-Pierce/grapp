@@ -7,6 +7,8 @@ import javax.json.JsonValue;
 import java.util.Objects;
 
 public final class Point {
+   private static final int HASH_PRECISION = 1000000;
+   private static final double DOUBLE_EQUALITY_THRESHOLD = .000000001d;
    private static final Translator translator = new Translator();
 
    private double x;
@@ -29,6 +31,10 @@ public final class Point {
       return translator;
    }
 
+   public double distanceTo(Point point) {
+      return Math.sqrt(Math.pow(point.x - x, 2d) + Math.pow(point.y - y, 2d));
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) {
@@ -40,13 +46,13 @@ public final class Point {
       }
 
       Point point = (Point)o;
-      return this.x == point.x &&
-             this.y == point.y;
+      return Math.abs(this.x - point.x) <= DOUBLE_EQUALITY_THRESHOLD &&
+             Math.abs(this.y - point.y) <= DOUBLE_EQUALITY_THRESHOLD;
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(x, y);
+      return Objects.hash((int)(x * HASH_PRECISION), (int)(y * HASH_PRECISION));
    }
 
    @Override

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class Polygon {
    private static final Translator translator = new Translator();
@@ -18,7 +20,7 @@ public final class Polygon {
    private List<Point> vertices;
 
    public Polygon(List<Point> vertices) {
-      this.vertices = vertices;
+      this.vertices = validateVertices(vertices);
    }
 
    protected Polygon() {
@@ -31,6 +33,27 @@ public final class Polygon {
 
    public static JsonTranslator<Polygon> translator() {
       return translator;
+   }
+
+   public boolean areVerticesAdjacent(Point vertex1, Point vertex2) {
+      int vertex1Index = vertices.indexOf(vertex1);
+      int previousVertexIndex = vertex1Index > 0 ? vertex1Index - 1 : vertices.size() - 1;
+      int nextVertexIndex = vertex1Index < (vertices.size() - 1) ? vertex1Index + 1 : 0;
+      return vertex1Index >= 0 && (vertices.get(previousVertexIndex).equals(vertex2) || vertices.get(nextVertexIndex).equals(vertex2));
+   }
+
+   // "Does this Line Segment affect the shape of this polygon from both the inside and out?"
+   public boolean isIntersectedBy(LineSegment lineSegment) {
+      return contains(lineSegment.getPoint1()) != contains(lineSegment.getPoint2()) ||
+             getSegments().stream().anyMatch(lineSegment::intersectsExclusive);
+   }
+
+   // "Can this Point only be reached by going 'through' this Polygon?"
+   public boolean contains(Point point) {
+      LineSegment outerSegment = generateNonVertexContainingSegmentWithPoint(point);
+      List<LineSegment> segments = getSegments();
+      return segments.stream().noneMatch(segment -> segment.containsInclusive(point)) &&
+             segments.stream().filter(outerSegment::intersectsExclusive).count() % 2 == 1;
    }
 
    @Override
@@ -66,8 +89,43 @@ public final class Polygon {
       return translator.toValue(this);
    }
 
+   public List<LineSegment> getSegments() {
+      return IntStream.range(0, vertices.size())
+                      .mapToObj(i -> new LineSegment(vertices.get(i), vertices.get((i + 1) % vertices.size())))
+                      .collect(Collectors.toList());
+   }
+
    public List<Point> getVertices() {
       return vertices;
+   }
+
+   private List<Point> validateVertices(List<Point> vertices) {
+      if (vertices == null) {
+         throw new IllegalArgumentException("Vertices for Polygon must not be null.");
+      }
+      else if (vertices.size() < 3) {
+         throw new IllegalArgumentException("Number of vertices for Polygon must be at least 3.");
+      }
+      else {
+         return vertices;
+      }
+   }
+
+   private LineSegment generateNonVertexContainingSegmentWithPoint(Point point) {
+      Point nonInnerPoint = vertices.stream().reduce(vertices.get(0), maxPoint());
+      LineSegment lineSegment;
+      do {
+         lineSegment = new LineSegment(point, new Point(nonInnerPoint.getX() + random(), nonInnerPoint.getY() + random()));
+      } while (vertices.stream().anyMatch(lineSegment::containsExclusive));
+      return lineSegment;
+   }
+
+   private BinaryOperator<Point> maxPoint() {
+      return (point1, point2) -> new Point(Math.max(point1.getX(), point2.getX()), Math.max(point1.getY(), point2.getY()));
+   }
+
+   private double random() {
+      return (8 * Math.random()) + 1;
    }
 
    private List<Point> doubleVertices() {
