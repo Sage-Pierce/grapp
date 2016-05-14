@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public final class Polygon {
+   private static final int RANDOM_COORD_GENERATION_RANGE = 16;
    private static final Translator translator = new Translator();
 
    private List<Point> vertices;
@@ -115,7 +116,9 @@ public final class Polygon {
       Point nonInnerPoint = vertices.stream().reduce(vertices.get(0), maxPoint());
       LineSegment lineSegment;
       do {
-         lineSegment = new LineSegment(point, new Point(nonInnerPoint.getX() + random(), nonInnerPoint.getY() + random()));
+         double xCoordOffset = randomCoordOffset();
+         double yCoordOffset = randomCoordOffset(xCoordOffset <= 0d);
+         lineSegment = new LineSegment(point, new Point(nonInnerPoint.getX() + xCoordOffset, nonInnerPoint.getY() + yCoordOffset));
       } while (vertices.stream().anyMatch(lineSegment::containsExclusive));
       return lineSegment;
    }
@@ -124,8 +127,13 @@ public final class Polygon {
       return (point1, point2) -> new Point(Math.max(point1.getX(), point2.getX()), Math.max(point1.getY(), point2.getY()));
    }
 
-   private double random() {
-      return (8 * Math.random()) + 1;
+   private double randomCoordOffset(boolean forcePositive) {
+      return forcePositive ? ((Math.random() * RANDOM_COORD_GENERATION_RANGE) / 2) + 1 : randomCoordOffset();
+   }
+
+   private double randomCoordOffset() {
+      double random = (Math.random() - 0.5d) * RANDOM_COORD_GENERATION_RANGE;
+      return random >= 0d ? random + 1 : random;
    }
 
    private List<Point> doubleVertices() {

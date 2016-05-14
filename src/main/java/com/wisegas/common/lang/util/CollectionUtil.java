@@ -7,7 +7,7 @@ import java.util.List;
 
 public final class CollectionUtil {
 
-   public static <T> List<T> concat(Collection<T> collection1, Collection<T> collection2) {
+   public static <T> List<T> concat(Collection<? extends T> collection1, Collection<? extends T> collection2) {
       List<T> concat = new ArrayList<>(collection1.size() + collection2.size());
       concat.addAll(collection1);
       concat.addAll(collection2);
