@@ -87,8 +87,7 @@ public final class LineSegment {
    }
 
    private static Orientation calculateOrientation(Point p, Point q, Point r) {
-      double determinant = (q.getY() - p.getY()) * (r.getX() - q.getX()) -
-                           (q.getX() - p.getX()) * (r.getY() - q.getY());
+      double determinant = Point.determinant(p, q, r);
       if (Math.abs(determinant) <= DOUBLE_EQUALITY_THRESHOLD) {
          return Orientation.COLINEAR;
       }

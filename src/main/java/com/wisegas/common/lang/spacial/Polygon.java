@@ -45,7 +45,7 @@ public final class Polygon {
 
    // "Does this Line Segment affect the shape of this polygon from both the inside and out?"
    public boolean isIntersectedBy(LineSegment lineSegment) {
-      return contains(lineSegment.getPoint1()) != contains(lineSegment.getPoint2()) ||
+      return (!isVertex(lineSegment.getPoint1()) && !isVertex(lineSegment.getPoint2()) && contains(lineSegment.getPoint1()) != contains(lineSegment.getPoint2())) ||
              getSegments().stream().anyMatch(lineSegment::intersectsExclusive);
    }
 
@@ -110,6 +110,10 @@ public final class Polygon {
       else {
          return vertices;
       }
+   }
+
+   private boolean isVertex(Point point) {
+      return vertices.stream().anyMatch(point::equals);
    }
 
    private LineSegment generateNonVertexContainingSegmentWithPoint(Point point) {

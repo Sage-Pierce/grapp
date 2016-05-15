@@ -48,6 +48,7 @@ class PolygonTest extends Specification {
       false          | new LineSegment(new Point(1d, 1.5d), new Point(2d, 1.5d))
       false          | new LineSegment(new Point(1d, 1d), new Point(2d, 2d))
       false          | new LineSegment(new Point(1d, 2d), new Point(2d, 1d))
+      false          | new LineSegment(new Point(1d, 1d), new Point(1.5d, 1.5d))
    }
 
    def "It can be determined if a Polygon contains a Point"() {

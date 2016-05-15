@@ -31,6 +31,10 @@ public final class Point {
       return translator;
    }
 
+   public static double determinant(Point p, Point q, Point r) {
+      return (q.getY() - p.getY()) * (r.getX() - q.getX()) - (q.getX() - p.getX()) * (r.getY() - q.getY());
+   }
+
    public double distanceTo(Point point) {
       return Math.sqrt(Math.pow(point.x - x, 2d) + Math.pow(point.y - y, 2d));
    }
