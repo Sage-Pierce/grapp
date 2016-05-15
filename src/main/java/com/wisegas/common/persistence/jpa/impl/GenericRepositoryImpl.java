@@ -28,9 +28,13 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
 
    @Override
    public T remove(Id id) {
-      T entity = entityManager.find(entityClass, convertIdToQueryObject(id));
-      entityManager.remove(entity);
-      return entity;
+      return remove(get(id));
+   }
+
+   @Override
+   public T remove(T t) {
+      entityManager.remove(t);
+      return t;
    }
 
    @Override

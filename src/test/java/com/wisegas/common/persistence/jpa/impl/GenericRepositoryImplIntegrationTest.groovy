@@ -46,6 +46,14 @@ abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> exte
       !testEntityManager.contains(testEntity)
    }
 
+   def "The Entity-under-test can be deleted directly"() {
+      when: "We remove our Test Entity"
+      repository.remove(testEntityManager.getManagedEntity(testEntity))
+
+      then: "The Test Entity will be gone"
+      !testEntityManager.contains(testEntity)
+   }
+
    def "The Entity-under-test can be found by ID"() {
       expect:
       repository.get(testEntity.getId()) == testEntity

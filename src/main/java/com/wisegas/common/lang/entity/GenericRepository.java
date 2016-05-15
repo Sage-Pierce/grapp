@@ -9,6 +9,8 @@ public interface GenericRepository<T extends SimpleEntity> {
 
    T remove(Id id);
 
+   T remove(T t);
+
    T get(Id id);
 
    List<T> getAll();
