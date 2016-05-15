@@ -1,9 +1,6 @@
 package com.wisegas.common.lang.util;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public final class CollectionUtil {
 
@@ -12,6 +9,16 @@ public final class CollectionUtil {
       concat.addAll(collection1);
       concat.addAll(collection2);
       return concat;
+   }
+
+   public static <T extends Comparable<T>> List<T> sort(Collection<T> collection) {
+      return sort(collection, Comparable::compareTo);
+   }
+
+   public static <T> List<T> sort(Collection<T> collection, Comparator<? super T> comparator) {
+      List<T> sorted = new ArrayList<>(collection);
+      Collections.sort(sorted, comparator);
+      return sorted;
    }
 
    public static <T> List<List<T>> permute(Collection<T> list) {

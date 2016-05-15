@@ -16,6 +16,20 @@ class CollectionUtilTest extends Specification {
       [1,2]          | [1]         | [2]
    }
 
+   def "A Collection can be sorted in to a new List"() {
+      given:
+      def original = [1, 6, 2, 5, 4, 3]
+
+      when:
+      def result = CollectionUtil.sort(original)
+
+      then:
+      result != original
+
+      and:
+      result == [1, 2, 3, 4, 5, 6]
+   }
+
    def "Collections can be permuted"() {
       expect:
       expectedResult == CollectionUtil.permute(collection)
