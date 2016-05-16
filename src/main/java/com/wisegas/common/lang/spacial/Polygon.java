@@ -153,8 +153,8 @@ public final class Polygon {
       public Polygon translate(JsonValue jsonValue) {
          return JsonTranslator.extractValue("vertices")
                               .andThen(JsonTranslator.toValueStream())
-                              .andThen(stream -> stream.map(pointValue -> Point.translator().translate(pointValue)))
-                              .andThen(stream -> new Polygon(stream.map(Point.class::cast).collect(Collectors.toList())))
+                              .andThen(stream -> stream.map(pointValue -> Point.translator().translate(pointValue)).collect(Collectors.toList()))
+                              .andThen(Polygon::new)
                               .apply(jsonValue);
       }
 
