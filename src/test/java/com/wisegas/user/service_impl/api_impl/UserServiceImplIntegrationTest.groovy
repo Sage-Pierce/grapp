@@ -1,6 +1,6 @@
 package com.wisegas.user.service_impl.api_impl
 
-import com.wisegas.common.test.IntegrationTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.user.domain.entity.User
 import com.wisegas.user.service.api.UserService
 import com.wisegas.user.test.builders.UserBuilder

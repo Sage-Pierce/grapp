@@ -2,7 +2,7 @@ package com.wisegas.storemanagement.domain.entity
 
 import com.wisegas.common.domain.model.DomainEventPublisher
 import com.wisegas.common.domain.model.DomainEventSubscriber
-import com.wisegas.common.test.DomainEventAwareTest
+import com.wisegas.common.test.base.DomainEventAwareTest
 import com.wisegas.storemanagement.domain.event.NodeModifiedEvent
 import com.wisegas.storemanagement.domain.value.NodeType
 import com.wisegas.storemanagement.test.builders.NodeBuilder

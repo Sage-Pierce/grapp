@@ -23,7 +23,7 @@
     </bean>
 
     <!-- An IntegrationTestEntityManager to use with Integration Tests -->
-    <bean id="testEntityManager" class="com.wisegas.common.test.IntegrationTestEntityManager">
+    <bean id="testEntityManager" class="com.wisegas.common.test.entity.IntegrationTestEntityManager">
         <constructor-arg>
             <bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
                 <property name="entityManagerFactory" ref="entityManagerFactory"/>

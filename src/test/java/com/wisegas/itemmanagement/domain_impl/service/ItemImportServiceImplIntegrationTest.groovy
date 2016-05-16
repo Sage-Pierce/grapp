@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.domain_impl.service
 
-import com.wisegas.common.test.IntegrationTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.service.ItemImportService
 import com.wisegas.itemmanagement.domain.value.Code

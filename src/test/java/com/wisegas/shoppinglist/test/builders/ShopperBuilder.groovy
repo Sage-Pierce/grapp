@@ -1,7 +1,7 @@
 package com.wisegas.shoppinglist.test.builders
 
 import com.wisegas.common.lang.value.Email
-import com.wisegas.common.test.EntityBuilder
+import com.wisegas.common.test.entity.EntityBuilder
 import com.wisegas.shoppinglist.domain.entity.Shopper;
 
 class ShopperBuilder {

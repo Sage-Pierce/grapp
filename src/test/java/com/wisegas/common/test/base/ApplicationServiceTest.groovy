@@ -1,4 +1,4 @@
-package com.wisegas.common.test
+package com.wisegas.common.test.base
 
 abstract class ApplicationServiceTest extends DomainEventAwareTest {
 

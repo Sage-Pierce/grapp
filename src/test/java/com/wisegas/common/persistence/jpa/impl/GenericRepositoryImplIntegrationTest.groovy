@@ -2,7 +2,7 @@ package com.wisegas.common.persistence.jpa.impl
 
 import com.wisegas.common.lang.entity.GenericRepository
 import com.wisegas.common.lang.entity.SimpleEntity
-import com.wisegas.common.test.IntegrationTest
+import com.wisegas.common.test.base.IntegrationTest
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.test.builders
 
-import com.wisegas.common.test.EntityBuilder
+import com.wisegas.common.test.entity.EntityBuilder
 import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.value.Code
 import com.wisegas.itemmanagement.domain.value.CodeType

@@ -1,4 +1,4 @@
-package com.wisegas.common.test
+package com.wisegas.common.test.base
 
 import com.wisegas.common.domain.model.DomainEventPublisher
 import spock.lang.Specification

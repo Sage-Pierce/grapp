@@ -1,4 +1,4 @@
-package com.wisegas.common.test;
+package com.wisegas.common.test.entity;
 
 import com.wisegas.common.lang.entity.SimpleEntity;
 import com.wisegas.common.lang.value.Id;

@@ -1,7 +1,7 @@
 package com.wisegas.user.service_impl.api_impl
 
 import com.wisegas.common.lang.value.Email
-import com.wisegas.common.test.IntegrationTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.user.domain.entity.User
 import com.wisegas.user.service.api.LoginService
 import com.wisegas.user.service.dto.UserDto

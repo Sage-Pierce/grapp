@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.service_impl.api_impl
 
-import com.wisegas.common.test.IntegrationTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.itemmanagement.service.api.NacsItemImportService
 import org.springframework.transaction.annotation.Transactional
 
