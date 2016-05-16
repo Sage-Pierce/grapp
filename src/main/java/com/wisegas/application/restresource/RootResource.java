@@ -7,6 +7,7 @@ import com.wisegas.itemmanagement.restresource.GeneralItemsResource;
 import com.wisegas.itemmanagement.restresource.ItemImportResource;
 import com.wisegas.itemmanagement.restresource.ItemResource;
 import com.wisegas.itemmanagement.restresource.ItemsResource;
+import com.wisegas.pathgeneration.restresource.PathGenerationResource;
 import com.wisegas.shoppinglist.restresource.ShopperResource;
 import com.wisegas.shoppinglist.restresource.ShoppersResource;
 import com.wisegas.shoppinglist.restresource.ShoppingListItemResource;
@@ -50,7 +51,8 @@ public class RootResource extends JaxrsHalJsonResource {
          ShopperResource.createRootLink("shopper"),
          ShoppingListResource.createRootLink("shoppingList"),
          ShoppingListItemResource.createRootLink("shoppingListItem"),
-         ShoppingLayoutResource.createRootLink("shoppingLayout")
+         ShoppingLayoutResource.createRootLink("shoppingLayout"),
+         PathGenerationResource.createRootLink("pathGeneration")
       );
    }
 }

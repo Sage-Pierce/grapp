@@ -19,6 +19,7 @@ import java.util.Collection;
 @Named
 @Singleton
 public class PathGeneratorImpl implements PathGenerator {
+
    private final WaypointSorter waypointSorter;
 
    @Inject

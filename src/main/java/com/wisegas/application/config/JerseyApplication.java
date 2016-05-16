@@ -13,7 +13,8 @@ public class JerseyApplication extends ResourceConfig {
                "com.wisegas.user.restresource",
                "com.wisegas.storemanagement.restresource",
                "com.wisegas.itemmanagement.restresource",
-               "com.wisegas.shoppinglist.restresource");
+               "com.wisegas.shoppinglist.restresource",
+               "com.wisegas.pathgeneration.restresource");
 
       // Register Filters
       register(CORSResponseFilter.class);
