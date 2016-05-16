@@ -50,7 +50,7 @@ public class PathPolygonsDto {
       private List<Polygon> translatePolygonsValue(JsonValue polygonsValue) {
          return JsonTranslator.toValueStream()
                               .andThen(stream -> stream.map(polygonValue -> Polygon.translator().translate(polygonValue)))
-                              .andThen(stream -> stream.collect(Collectors.toList()))
+                              .andThen(stream -> stream.map(Polygon.class::cast).collect(Collectors.toList()))
                               .apply(polygonsValue);
       }
 
