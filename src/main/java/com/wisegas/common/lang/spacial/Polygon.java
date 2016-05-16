@@ -154,7 +154,7 @@ public final class Polygon {
          return JsonTranslator.extractValue("vertices")
                               .andThen(JsonTranslator.toValueStream())
                               .andThen(stream -> stream.map(pointValue -> Point.translator().translate(pointValue)))
-                              .andThen(stream -> new Polygon(stream.collect(Collectors.toList())))
+                              .andThen(stream -> new Polygon((List<Point>)stream.collect(Collectors.toList())))
                               .apply(jsonValue);
       }
 
