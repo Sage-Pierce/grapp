@@ -16,7 +16,8 @@
                             base-package="com.wisegas.itemmanagement
                                           com.wisegas.shoppinglist
                                           com.wisegas.storemanagement
-                                          com.wisegas.user"/>
+                                          com.wisegas.user
+                                          com.wisegas.pathgeneration"/>
     <context:annotation-config/>
 
     <!-- Bean used to reset DomainEventPublisher -->
