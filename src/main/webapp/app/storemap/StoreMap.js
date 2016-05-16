@@ -106,7 +106,7 @@
       function createGMapPolygonFromModel(polygonModel, fill, zIndex, isFeature, fit) {
          return {
             id: polygonModel.id,
-            path: polygonModel.vertices.map(_.convertLocationToPosition),
+            path: (polygonModel.polygon || polygonModel).vertices.map(_.convertLocationToPosition),
             fill: fill,
             zIndex: zIndex,
             fit: fit,
