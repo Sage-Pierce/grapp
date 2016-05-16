@@ -82,8 +82,8 @@ public final class GeoPolygon {
       public GeoPolygon translate(JsonValue jsonValue) {
          return JsonTranslator.extractValue("vertices")
                               .andThen(JsonTranslator.toValueStream())
-                              .andThen(stream -> stream.map(geoPointValue -> GeoPoint.translator().translate(geoPointValue)))
-                              .andThen(stream -> new GeoPolygon(stream.map(GeoPoint.class::cast).collect(Collectors.toList())))
+                              .andThen(stream -> stream.map(geoPointValue -> GeoPoint.translator().translate(geoPointValue)).collect(Collectors.toList()))
+                              .andThen(GeoPolygon::new)
                               .apply(jsonValue);
       }
 
