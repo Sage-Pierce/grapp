@@ -16,6 +16,7 @@
          self.setNodeOptions = setNodeOptions;
          self.addNode = addNode;
          self.removeNodeById = removeNodeById;
+         self.addPath = addPath;
          self.polygonComplete = polygonComplete;
          self.handleGObjectMouseEvent = handleGObjectMouseEvent;
          self.setEventHandler = setEventHandler;
@@ -87,6 +88,11 @@
             nodePlurals.remove(nodeId);
             google.maps.event.clearInstanceListeners(gMapMarker);
             gMapMarker.setMap(null);
+         }
+
+         function addPath(gMapPolyline) {
+            gMapPolyline.setOptions({strokeWeight: 3.0, zIndex: 5});
+            gMapPolyline.setMap(mapControl.getGMap());
          }
 
          function polygonComplete(gMapPolygon) {

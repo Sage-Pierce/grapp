@@ -38,6 +38,18 @@
       convertPositionToLocation: function(position) {
          return {lat: position.latitude || position.lat(), lng: position.longitude || position.lng()};
       },
+      convertGeoPolygonToPolygon: function(geoPolygon) {
+         return {vertices: geoPolygon.vertices.map(this.convertLocationToPoint)};
+      },
+      convertPointsToPath: function(points) {
+         return {locations: points.map(this.convertPointToLocation)};
+      },
+      convertLocationToPoint: function(location) {
+         return {x: location.lng, y: location.lat};
+      },
+      convertPointToLocation: function(point) {
+         return {lat: point.y, lng: point.x};
+      },
       stringifyVerticesIntoPolygon: function(vertices) {
          return JSON.stringify({vertices: vertices});
       }
