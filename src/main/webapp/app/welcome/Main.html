@@ -4,7 +4,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
    <div class="container" ng-show="!mainVM.isLoading">
       <a class="navbar-brand" ui-sref="main.welcome">Grapp</a>
-      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <button type="button"
+              class="btn navbar-btn btn-info pull-right"
+              ng-click="mainVM.logIn('google_plus')"
+              ng-show="!mainVM.isUserLoggedIn()">
+         Log in with Google+
+      </button>
+      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="mainVM.isUserLoggedIn()">
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
@@ -14,14 +20,10 @@
             <li><a class="cursor-clickable" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>
             <li><a class="cursor-clickable" ng-click="mainVM.showStores()">Stores</a></li>
             <li><a class="cursor-clickable" ng-click="mainVM.showItems()">Items</a></li>
-            <li class="divider hidden-md"></li>
             <li class="hidden-sm hidden-md hidden-lg"><a class="cursor-clickable" ng-click="mainVM.logOut()">Log Out</a></li>
          </ul>
-         <ul class="nav navbar-nav navbar-right">
-            <li ng-show="!mainVM.isUserLoggedIn()">
-               <button type="button" class="btn navbar-btn btn-info" ng-click="mainVM.logIn('google_plus')">Log in with Google+</button>
-            </li>
-            <li class="dropdown hidden-xs visible-sm visible-md visible-lg" ng-show="mainVM.isUserLoggedIn()" uib-dropdown>
+         <ul class="nav navbar-nav navbar-right" ng-show="mainVM.isUserLoggedIn()">
+            <li class="dropdown hidden-xs visible-sm visible-md visible-lg" uib-dropdown>
                <a class="dropdown-toggle" role="button" uib-dropdown-toggle>
                   {{mainVM.userName}}
                   <img class="cursor-clickable img-avatar" src="{{mainVM.userAvatar}}"/>
