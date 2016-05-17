@@ -31,10 +31,12 @@ body {
 
 .angular-google-map-container {
    height: 72vh;
+   max-height: 800px;
 }
 
 .half-map .angular-google-map-container {
    height: 36vh;
+   max-height: 400px;
 }
 
 .item-node {

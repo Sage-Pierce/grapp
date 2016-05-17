@@ -2,19 +2,19 @@
    "use strict";
 
    angular.module("App")
-      .controller("ModalUpdateDisplayName", ModalUpdateDisplayName);
+      .controller("ModalDisplayName", ModalDisplayName);
 
-   ModalUpdateDisplayName.$inject = ["$uibModalInstance", "name"];
-   function ModalUpdateDisplayName($uibModalInstance, name) {
-      var modalUpdateDisplayNameVM = this;
-      modalUpdateDisplayNameVM.name = name;
-      modalUpdateDisplayNameVM.update = update;
-      modalUpdateDisplayNameVM.cancel = cancel;
+   ModalDisplayName.$inject = ["$uibModalInstance", "name"];
+   function ModalDisplayName($uibModalInstance, name) {
+      var modalDisplayNameVM = this;
+      modalDisplayNameVM.name = name;
+      modalDisplayNameVM.update = update;
+      modalDisplayNameVM.cancel = cancel;
 
       ////////////////////
 
       function update() {
-         $uibModalInstance.close(modalUpdateDisplayNameVM.name);
+         $uibModalInstance.close(modalDisplayNameVM.name);
       }
 
       function cancel() {
