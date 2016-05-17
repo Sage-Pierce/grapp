@@ -30,11 +30,11 @@ body {
 }
 
 .angular-google-map-container {
-   height: 600px;
+   height: 72vh;
 }
 
 .half-map .angular-google-map-container {
-   height: 300px;
+   height: 36vh;
 }
 
 .item-node {
