@@ -18,7 +18,7 @@
       function ShoppingNodeModel(shoppingNode) {
          var self = this;
          self.type = NodeType[shoppingNode.type];
-         self.items = _.object(shoppingNode.items.map(function(shoppingItem) { return [shoppingItem.id, createModelForShoppingItem(shoppingItem)]; }));
+         self.items = _.fromPairs(shoppingNode.items.map(function(shoppingItem) { return [shoppingItem.id, createModelForShoppingItem(shoppingItem)]; }));
 
          ////////////////////
 

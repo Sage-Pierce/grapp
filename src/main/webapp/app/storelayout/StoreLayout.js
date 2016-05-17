@@ -23,8 +23,8 @@
          var self = this;
          self.outerOutline = Outline.load(storeLayoutRsc, "outerOutline");
          self.innerOutline = Outline.load(storeLayoutRsc, "innerOutline");
-         self.features = _.object(storeLayoutRsc.features.map(function(feature) { return [feature.id, Feature.load(storeLayoutRsc, feature)]; }));
-         self.nodes = _.object(storeLayoutRsc.nodes.map(function(node) { return [node.id, Node.load(storeLayoutRsc, node)]; }));
+         self.features = _.fromPairs(storeLayoutRsc.features.map(function(feature) { return [feature.id, Feature.load(storeLayoutRsc, feature)]; }));
+         self.nodes = _.fromPairs(storeLayoutRsc.nodes.map(function(node) { return [node.id, Node.load(storeLayoutRsc, node)]; }));
          self.getFeatureById = function(id) { return self.features[id]; };
          self.getFeatures = function() { return _.values(self.features); };
          self.addFeature = addFeature;

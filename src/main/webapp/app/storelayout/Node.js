@@ -18,7 +18,7 @@
       function NodeModel(storeLayoutRsc, node) {
          var self = this;
          self.type = NodeType[node.type];
-         self.items = _.object(node.items.map(function(nodeItem) { return [nodeItem.id, createModelForNodeItem(nodeItem)]; }));
+         self.items = _.fromPairs(node.items.map(function(nodeItem) { return [nodeItem.id, createModelForNodeItem(nodeItem)]; }));
          self.setAttributes = setAttributes;
          self.setLocation = setLocation;
          self.getItems = function() { return _.values(self.items); };

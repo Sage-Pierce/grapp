@@ -23,8 +23,8 @@
          var self = this;
          self.outerOutline = _.mergeLeft(shoppingLayoutRsc.outerOutline, {id: "outerOutline"});
          self.innerOutline = _.mergeLeft(shoppingLayoutRsc.innerOutline, {id: "innerOutline"});
-         self.features = _.object(shoppingLayoutRsc.features.map(function(feature) { return [feature.id, feature]; }));
-         self.nodes = _.object(shoppingLayoutRsc.nodes.map(function(shoppingNode) { return [shoppingNode.id, ShoppingNode.load(shoppingNode)]; }));
+         self.features = _.fromPairs(shoppingLayoutRsc.features.map(function(feature) { return [feature.id, feature]; }));
+         self.nodes = _.fromPairs(shoppingLayoutRsc.nodes.map(function(shoppingNode) { return [shoppingNode.id, ShoppingNode.load(shoppingNode)]; }));
          self.generateShoppingPath = generateShoppingPath;
          self.getFeatures = function() { return _.values(self.features); };
          self.getNodes = function() { return _.values(self.nodes); };
