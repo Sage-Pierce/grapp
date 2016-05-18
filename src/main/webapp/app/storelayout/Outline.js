@@ -19,7 +19,7 @@
       function OutlineModel(storeLayoutRsc, outlineProp, outline) {
          var self = this;
          self.id = outlineProp;
-         self.vertices = outline.vertices ? outline.vertices : [];
+         self.vertices = outline.vertices || [];
          self.setVertices = setVertices;
 
          ////////////////////

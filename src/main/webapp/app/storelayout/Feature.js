@@ -17,7 +17,6 @@
 
       function FeatureModel(storeLayoutRsc, feature) {
          var self = this;
-         self.vertices = feature.polygon.vertices;
          self.setVertices = setVertices;
          self.delete = del;
 
@@ -26,7 +25,7 @@
          function setVertices(vertices) {
             return storeLayoutRsc.$put("reshapeFeature", {featureId: feature.id, polygon: _.stringifyVerticesIntoPolygon(vertices)})
                .then(function() {
-                  self.vertices = vertices;
+                  self.polygon.vertices = vertices;
                });
          }
 
