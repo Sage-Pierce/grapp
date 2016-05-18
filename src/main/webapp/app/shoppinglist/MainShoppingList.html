@@ -9,7 +9,7 @@
          <ui-select-match placeholder="Choose an Item to add">
             {{null}}
          </ui-select-match>
-         <ui-select-choices repeat="item in mainShoppingListVM.items | filter: $select.search">
+         <ui-select-choices position="down" repeat="item in mainShoppingListVM.items | filter: $select.search">
             <div ng-bind-html="item.name | highlight: $select.search"></div>
             <small>{{item.hierarchy}}</small>
          </ui-select-choices>
