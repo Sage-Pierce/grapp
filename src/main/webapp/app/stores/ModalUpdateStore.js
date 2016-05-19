@@ -39,7 +39,7 @@
             },
             events: {
                click: function (source, eventName, args) {
-                  uiGmapUtil.onNextAngularTurn().then(function () {
+                  uiGmapUtil.onNextAngularTurn().then(function() {
                      modalUpdateStoreVM.storePosition = _.convertLocationToPosition(args[0].latLng);
                   });
                }
@@ -52,10 +52,11 @@
             template: "app/stores/SearchBox.html",
             options: {},
             events: {
-               places_changed: function (searchBox) {
+               places_changed: function(searchBox) {
                   var places = searchBox.getPlaces();
                   if (places && places != 'undefined' || places.length > 0) {
                      repositionMapByLocation(places[0].geometry.location);
+                     modalUpdateStoreVM.storePosition = _.convertLocationToPosition(location);
                   }
                }
             }
