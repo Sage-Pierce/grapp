@@ -62,7 +62,7 @@
                drawingControl: false,
                polygonOptions: {
                   strokeWeight: 1,
-                  fillColor: "#194d4d",
+                  fillColor: "#00332e",
                   fillOpacity: 1,
                   zIndex: 3,
                   clickable: true,
@@ -90,12 +90,12 @@
 
       function initializeLayoutObjects(layout) {
          storeMapVM.storeOutlines = [
-            createGMapPolygonFromModel(layout.outerOutline, {color: "#194d4d", opacity: 1}, 0, false, true),
-            createGMapPolygonFromModel(layout.innerOutline, {color: "#b3e5e6", opacity: 1}, 1, false, false)
+            createGMapPolygonFromModel(layout.outerOutline, {color: "#00332e", opacity: 1}, 0, false, true),
+            createGMapPolygonFromModel(layout.innerOutline, {color: "#00ffe6", opacity: 1}, 1, false, false)
          ];
 
          storeMapVM.storeFeatures = layout.getFeatures().map(function(polygon) {
-            return createGMapPolygonFromModel(polygon, {color: "#194d4d", opacity: 1}, 2, true, false);
+            return createGMapPolygonFromModel(polygon, {color: "#00332e", opacity: 1}, 2, true, false);
          });
 
          storeMapVM.storeNodes = layout.getNodes().map(function(node) {

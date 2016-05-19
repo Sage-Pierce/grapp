@@ -1,6 +1,8 @@
 <div class="height-scrollable {{itemListVM.options.listClass}}">
-   <div ng-repeat="item in itemListVM.items" class="item-node">
-      <span class="glyphicon glyphicon-record"></span>
+   <div ng-repeat="item in itemListVM.items">
+      <a class="btn btn-default btn-xs cursor-default" disabled="true">
+         <span class="glyphicon glyphicon-record"></span>
+      </a>
       {{item.name}}
       <a class="btn btn-xs btn-danger pull-right" ng-click="itemListVM.remove(item)">
          <span class="glyphicon glyphicon-remove"></span>

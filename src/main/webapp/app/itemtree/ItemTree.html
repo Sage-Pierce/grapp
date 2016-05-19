@@ -16,7 +16,7 @@
    </ol>
 </div>
 <script type="text/ng-template" id="TreeItemRenderer.html">
-   <div class="item-node">
+   <div>
       <a class="btn btn-primary btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
       </a>

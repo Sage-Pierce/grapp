@@ -29,6 +29,7 @@
     "angular-ui-select": "^0.17.1",
     "angular-ui-tree": "^2.15.0",
     "bootstrap": "^3.3.6",
+    "bootstrap-material-design": "^0.5.9",
     "font-awesome": "^4.5.0",
     "lodash": "^4.12.0",
     "oauth-js": "^0.5.2"
