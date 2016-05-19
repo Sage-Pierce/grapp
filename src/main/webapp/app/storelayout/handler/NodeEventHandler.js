@@ -19,7 +19,7 @@
          ////////////////////
 
          function finish() {
-            nodeSelectionHandler.deselect()
+            nodeSelectionHandler.deselect();
          }
 
          function mapClicked(modelId, map, mouseEvent) {

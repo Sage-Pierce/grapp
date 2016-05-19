@@ -34,7 +34,7 @@
       }
 
       function isANodeSelected() {
-         return selectedNode != null;
+         return selectedNode !== null;
       }
 
       function getSelectedNode() {
