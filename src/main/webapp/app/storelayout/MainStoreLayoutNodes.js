@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainStoreLayoutNodes", MainStoreLayoutNodes);
 
-   MainStoreLayoutNodes.$inject = ["storeLayout", "mapControl", "NodeSelector", "NodeType", "NodeEventHandler", "Item"];
-   function MainStoreLayoutNodes(storeLayout, mapControl, NodeSelector, NodeType, NodeEventHandler, Item) {
+   MainStoreLayoutNodes.$inject = ["storeLayout", "mapControl", "NodeSelectionHandler", "NodeType", "NodeEventHandler", "Item"];
+   function MainStoreLayoutNodes(storeLayout, mapControl, NodeSelectionHandler, NodeType, NodeEventHandler, Item) {
       var mainStoreLayoutNodesVM = this;
       mainStoreLayoutNodesVM.nodeTypes = _.values(NodeType);
       mainStoreLayoutNodesVM.radioModel = NodeType.REGULAR;
@@ -18,15 +18,15 @@
       mainStoreLayoutNodesVM.removeNodeItem = removeNodeItem;
       mainStoreLayoutNodesVM.isANodeSelected = function() { return false; };
 
-      var nodeSelector = new NodeSelector(mapControl, {nodeSelected: nodeSelected, nodeDeselected: nodeDeselected});
-      var nodeEventHandler = new NodeEventHandler(mapControl, storeLayout, nodeSelector, mainStoreLayoutNodesVM.radioModel);
+      var nodeSelectionHandler = new NodeSelectionHandler(mapControl, {nodeSelected: nodeSelected, nodeDeselected: nodeDeselected});
+      var nodeEventHandler = new NodeEventHandler(mapControl, storeLayout, nodeSelectionHandler, mainStoreLayoutNodesVM.radioModel);
 
       initialize();
 
       ////////////////////
 
       function initialize() {
-         mainStoreLayoutNodesVM.isANodeSelected = nodeSelector.isANodeSelected;
+         mainStoreLayoutNodesVM.isANodeSelected = nodeSelectionHandler.isANodeSelected;
          mapControl.setEventHandler(nodeEventHandler);
          Item.loadAllGeneral().then(function(generalItems) {
             mainStoreLayoutNodesVM.generalItems = generalItems;
@@ -39,22 +39,22 @@
 
       function nodeNameChanged() {
          if (mainStoreLayoutNodesVM.isANodeSelected()) {
-            nodeSelector.getSelectedNode().setAttributes({name: mainStoreLayoutNodesVM.selectedNodeName});
+            nodeSelectionHandler.getSelectedNode().setAttributes({name: mainStoreLayoutNodesVM.selectedNodeName});
          }
       }
 
       function addNodeItem(itemNode) {
          var item = itemNode.$modelValue;
-         storeLayout.addNodeItem(nodeSelector.getSelectedNode().id, {code: item.primaryCode, name: item.name})
+         storeLayout.addNodeItem(nodeSelectionHandler.getSelectedNode().id, {code: item.primaryCode, name: item.name})
             .then(function(nodeItem) {
                mainStoreLayoutNodesVM.selectedNodeItems.push(nodeItem.item);
             });
       }
 
       function removeNodeItem(nodeItem) {
-         nodeSelector.getSelectedNode().removeItemById(nodeItem.id)
+         nodeSelectionHandler.getSelectedNode().removeItemById(nodeItem.id)
             .then(function() {
-               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, nodeItem)
+               _.remove(mainStoreLayoutNodesVM.selectedNodeItems, nodeItem);
             });
       }
 

@@ -2,9 +2,9 @@
    "use strict";
 
    angular.module("App")
-      .value("NodeSelector", NodeSelector);
+      .value("NodeSelectionHandler", NodeSelectionHandler);
 
-   function NodeSelector(mapControl, nodeSelectionHandler) {
+   function NodeSelectionHandler(mapControl, nodeSelectionHandler) {
       var self = this;
       self.select = select;
       self.deselect = deselect;

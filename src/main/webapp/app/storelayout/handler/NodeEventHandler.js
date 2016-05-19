@@ -6,7 +6,7 @@
 
    NodeEventHandler.$inject = ["BaseEventHandler"];
    function NodeEventHandler(BaseEventHandler) {
-      return function(mapControl, storeLayout, nodeSelector, nodeType) {
+      return function(mapControl, storeLayout, nodeSelectionHandler, nodeType) {
          var base = new BaseEventHandler(mapControl, storeLayout);
          var self = angular.extend(this, base);
          self.finish = finish;
@@ -19,7 +19,7 @@
          ////////////////////
 
          function finish() {
-            nodeSelector.deselect()
+            nodeSelectionHandler.deselect()
          }
 
          function mapClicked(modelId, map, mouseEvent) {
@@ -33,16 +33,16 @@
          }
 
          function mapRightClicked(modelId, map, mouseEvent) {
-            nodeSelector.deselect();
+            nodeSelectionHandler.deselect();
          }
 
          function markerClicked(modelId, gMapMarker, mouseEvent) {
-            nodeSelector.select(storeLayout.getNodeById(modelId));
+            nodeSelectionHandler.select(storeLayout.getNodeById(modelId));
          }
 
          function markerRightClicked(modelId, gMapMarker, mouseEvent) {
-            if (nodeSelector.getSelectedNode().id === modelId) {
-               nodeSelector.deselect();
+            if (nodeSelectionHandler.getSelectedNode().id === modelId) {
+               nodeSelectionHandler.deselect();
             }
             base.markerRightClicked(modelId, gMapMarker, mouseEvent);
          }

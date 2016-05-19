@@ -41,13 +41,13 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/storelayout/*.js"],
             tasks: ["jshint", "concat:storelayout"]
          },
-         storelayoutfeatures: {
-            files: [webappRoot + "app/storelayout/features/*.js"],
-            tasks: ["jshint", "concat:storelayoutfeatures"]
+         storelayouthandler: {
+            files: [webappRoot + "app/storelayout/handler/*.js"],
+            tasks: ["jshint", "concat:storelayouthandler"]
          },
-         storelayoutnodes: {
-            files: [webappRoot + "app/storelayout/nodes/*.js"],
-            tasks: ["jshint", "concat:storelayoutnodes"]
+         storelayoutmodel: {
+            files: [webappRoot + "app/storelayout/model/*.js"],
+            tasks: ["jshint", "concat:storelayoutmodel"]
          },
          storemap: {
             files: [webappRoot + "app/storemap/*.js"],
@@ -80,8 +80,8 @@ module.exports = function (grunt) {
             webappRoot + "app/shoppingliststores/*.js",
             webappRoot + "app/shoppingplan/*.js",
             webappRoot + "app/storelayout/*.js",
-            webappRoot + "app/storelayout/features/*.js",
-            webappRoot + "app/storelayout/layout/*.js",
+            webappRoot + "app/storelayout/handler/*.js",
+            webappRoot + "app/storelayout/model/*.js",
             webappRoot + "app/storemap/*.js",
             webappRoot + "app/stores/*.js",
             webappRoot + "app/storesmap/*.js",
@@ -125,13 +125,13 @@ module.exports = function (grunt) {
             src: [webappRoot + "app/storelayout/*.js"],
             dest: webappRoot + "concat/storelayout-concat.js"
          },
-         storelayoutfeatures: {
-            src: [webappRoot + "app/storelayout/features/*.js"],
-            dest: webappRoot + "concat/storelayoutfeatures-concat.js"
+         storelayouthandler: {
+            src: [webappRoot + "app/storelayout/handler/*.js"],
+            dest: webappRoot + "concat/storelayouthandler-concat.js"
          },
-         storelayoutnodes: {
-            src: [webappRoot + "app/storelayout/nodes/*.js"],
-            dest: webappRoot + "concat/storelayoutnodes-concat.js"
+         storelayoutmodel: {
+            src: [webappRoot + "app/storelayout/model/*.js"],
+            dest: webappRoot + "concat/storelayoutmodel-concat.js"
          },
          storemap: {
             src: [webappRoot + "app/storemap/*.js"],

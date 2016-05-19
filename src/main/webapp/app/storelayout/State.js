@@ -39,7 +39,7 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storelayout/features/MainStoreLayoutFeatures.html",
+                  templateUrl: "app/storelayout/MainStoreLayoutFeatures.html",
                   controller: "MainStoreLayoutFeatures",
                   controllerAs: "mainStoreLayoutFeaturesVM"
                }
@@ -55,7 +55,7 @@
             },
             views: {
                "tabContent": {
-                  templateUrl: "app/storelayout/nodes/MainStoreLayoutNodes.html",
+                  templateUrl: "app/storelayout/MainStoreLayoutNodes.html",
                   controller: "MainStoreLayoutNodes",
                   controllerAs: "mainStoreLayoutNodesVM"
                }
