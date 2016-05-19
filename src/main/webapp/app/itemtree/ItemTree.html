@@ -5,7 +5,7 @@
        ng-change="itemTreeVM.filterChanged()"
        ng-disabled="itemTreeVM.disabled"
        placeholder="Item Filter"/>
-<div class="border-1-solid-grey border-rounded-4 height-scrollable black-rounded-scrollbar {{itemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
+<div class="height-scrollable {{itemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
    <ol ui-tree-nodes ng-model="itemTreeVM.items">
       <li ng-repeat="item in itemTreeVM.items"
           ng-include="'TreeItemRenderer.html'"
