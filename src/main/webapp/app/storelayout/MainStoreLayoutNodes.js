@@ -7,19 +7,16 @@
    MainStoreLayoutNodes.$inject = ["storeLayout", "mapControl", "NodeSelectionHandler", "NodeType", "NodeEventHandler", "Item"];
    function MainStoreLayoutNodes(storeLayout, mapControl, NodeSelectionHandler, NodeType, NodeEventHandler, Item) {
       var mainStoreLayoutNodesVM = this;
-      mainStoreLayoutNodesVM.nodeTypes = _.values(NodeType);
-      mainStoreLayoutNodesVM.radioModel = NodeType.REGULAR;
       mainStoreLayoutNodesVM.selectedNodeName = null;
       mainStoreLayoutNodesVM.selectedNodeItems = [];
       mainStoreLayoutNodesVM.generalItems = [];
-      mainStoreLayoutNodesVM.radioChanged = radioChanged;
       mainStoreLayoutNodesVM.nodeNameChanged = nodeNameChanged;
       mainStoreLayoutNodesVM.addNodeItem = addNodeItem;
       mainStoreLayoutNodesVM.removeNodeItem = removeNodeItem;
       mainStoreLayoutNodesVM.isANodeSelected = function() { return false; };
 
       var nodeSelectionHandler = new NodeSelectionHandler(mapControl, {nodeSelected: nodeSelected, nodeDeselected: nodeDeselected});
-      var nodeEventHandler = new NodeEventHandler(mapControl, storeLayout, nodeSelectionHandler, mainStoreLayoutNodesVM.radioModel);
+      var nodeEventHandler = new NodeEventHandler(mapControl, storeLayout, NodeType.REGULAR, nodeSelectionHandler);
 
       initialize();
 
@@ -31,10 +28,6 @@
          Item.loadAllGeneral().then(function(generalItems) {
             mainStoreLayoutNodesVM.generalItems = generalItems;
          });
-      }
-
-      function radioChanged() {
-         nodeEventHandler.setNodeType(mainStoreLayoutNodesVM.radioModel);
       }
 
       function nodeNameChanged() {

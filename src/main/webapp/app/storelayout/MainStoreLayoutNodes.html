@@ -1,15 +1,5 @@
 <div class="h-strut-10">
-   <h4 class="text-center">Node Type</h4>
-   <div class="btn-group btn-group-justified">
-      <label ng-repeat="nodeType in mainStoreLayoutNodesVM.nodeTypes"
-             class="btn btn-primary"
-             ng-model="mainStoreLayoutNodesVM.radioModel"
-             uib-btn-radio="nodeType"
-             ng-change="mainStoreLayoutNodesVM.radioChanged()">
-         {{nodeType.displayString}}
-      </label>
-   </div>
-   <h4 class="tv-strut-20 text-center">Selected Node</h4>
+   <h4 class="text-center">Selected Node</h4>
    <form>
       <div class="form-group row">
          <label for="nodeNameInput" class="col-sm-2 form-control-label">Name:</label>

@@ -4,7 +4,7 @@
    angular.module("App")
       .value("NodeSelectionHandler", NodeSelectionHandler);
 
-   function NodeSelectionHandler(mapControl, nodeSelectionHandler) {
+   function NodeSelectionHandler(mapControl, nodeSelectionSubscriber) {
       var self = this;
       self.select = select;
       self.deselect = deselect;
@@ -18,8 +18,8 @@
       function select(node) {
          if (selectedNode !== node) {
             quietlySelect(node);
-            if (nodeSelectionHandler && nodeSelectionHandler.nodeSelected) {
-               nodeSelectionHandler.nodeSelected(selectedNode);
+            if (nodeSelectionSubscriber && nodeSelectionSubscriber.nodeSelected) {
+               nodeSelectionSubscriber.nodeSelected(selectedNode);
             }
          }
       }
@@ -27,8 +27,8 @@
       function deselect() {
          if (isANodeSelected()) {
             quietlyDeselect();
-            if (nodeSelectionHandler && nodeSelectionHandler.nodeDeselected) {
-               nodeSelectionHandler.nodeDeselected();
+            if (nodeSelectionSubscriber && nodeSelectionSubscriber.nodeDeselected) {
+               nodeSelectionSubscriber.nodeDeselected();
             }
          }
       }

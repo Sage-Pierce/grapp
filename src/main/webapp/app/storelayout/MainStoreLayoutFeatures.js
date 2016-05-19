@@ -4,11 +4,12 @@
    angular.module("App")
       .controller("MainStoreLayoutFeatures", MainStoreLayoutFeatures);
 
-   MainStoreLayoutFeatures.$inject = ["storeLayout", "mapControl", "BaseEventHandler", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditFeatureEventHandler", "CopyFeatureEventHandler"];
-   function MainStoreLayoutFeatures(storeLayout, mapControl, BaseEventHandler, EditOutlineEventHandler, DrawFeatureEventHandler, EditFeatureEventHandler, CopyFeatureEventHandler) {
+   MainStoreLayoutFeatures.$inject = ["storeLayout", "mapControl", "NodeType", "BaseEventHandler", "EditOutlineEventHandler", "DrawFeatureEventHandler", "EditFeatureEventHandler", "CopyFeatureEventHandler", "NodeEventHandler"];
+   function MainStoreLayoutFeatures(storeLayout, mapControl, NodeType, BaseEventHandler, EditOutlineEventHandler, DrawFeatureEventHandler, EditFeatureEventHandler, CopyFeatureEventHandler, NodeEventHandler) {
       var mainStoreLayoutFeaturesVM = this;
       mainStoreLayoutFeaturesVM.outlineRadioEventHandlerModels = null;
       mainStoreLayoutFeaturesVM.featureRadioEventHandlerModels = null;
+      mainStoreLayoutFeaturesVM.nodeRadioEventHandlerModels = null;
       mainStoreLayoutFeaturesVM.radioModel = null;
       mainStoreLayoutFeaturesVM.radioChanged = radioChanged;
 
@@ -30,6 +31,11 @@
             new RadioEventHandlerModel(new DrawFeatureEventHandler(mapControl, storeLayout), "Draw"),
             new RadioEventHandlerModel(new EditFeatureEventHandler(mapControl, storeLayout), "Edit"),
             new RadioEventHandlerModel(new CopyFeatureEventHandler(mapControl, storeLayout), "Copy")
+         ];
+
+         mainStoreLayoutFeaturesVM.nodeRadioEventHandlerModels = [
+            new RadioEventHandlerModel(new NodeEventHandler(mapControl, storeLayout, NodeType.ENTRANCE), NodeType.ENTRANCE.displayString),
+            new RadioEventHandlerModel(new NodeEventHandler(mapControl, storeLayout, NodeType.CHECKOUT), NodeType.CHECKOUT.displayString)
          ];
       }
 

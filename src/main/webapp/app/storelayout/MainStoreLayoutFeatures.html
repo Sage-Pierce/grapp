@@ -21,4 +21,15 @@
          {{featureRadioEventHandlerModel.displayString}}
       </label>
    </div>
+   <h4 class="tv-strut-20 text-center">Entrance & Checkout</h4>
+   <div class="btn-group btn-group-justified">
+      <label ng-repeat="nodeRadioEventHandlerModel in mainStoreLayoutFeaturesVM.nodeRadioEventHandlerModels"
+             class="btn btn-primary"
+             ng-model="mainStoreLayoutFeaturesVM.radioModel"
+             uib-btn-radio="nodeRadioEventHandlerModel"
+             ng-change="mainStoreLayoutFeaturesVM.radioChanged()"
+             uncheckable>
+         {{nodeRadioEventHandlerModel.displayString}}
+      </label>
+   </div>
 </div>
