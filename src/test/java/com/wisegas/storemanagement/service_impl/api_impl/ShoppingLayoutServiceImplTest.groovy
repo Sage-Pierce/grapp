@@ -24,7 +24,7 @@ class ShoppingLayoutServiceImplTest extends Specification {
 
    private StoreLayout storeLayout
    private Node entrance
-   private Node exit
+   private Node checkout
    private Node shoppingNode
 
    private ShoppingLayoutService shoppingLayoutService
@@ -41,7 +41,7 @@ class ShoppingLayoutServiceImplTest extends Specification {
       storeLayout.setInnerOutline(new GeoPolygon([new GeoPoint(3d, 3d), new GeoPoint(-3d, 3d), new GeoPoint(-3d, -3d), new GeoPoint(3d, -3d)]))
       storeLayout.addFeature(new GeoPolygon([new GeoPoint(1d, 1d), new GeoPoint(-1d, 1d), new GeoPoint(-1d, -1d), new GeoPoint(1d, -1d)]))
       entrance = storeLayout.addNode(NodeType.ENTRANCE, new GeoPoint(-2d, -2d))
-      exit = storeLayout.addNode(NodeType.EXIT, new GeoPoint(2d, 2d))
+      checkout = storeLayout.addNode(NodeType.CHECKOUT, new GeoPoint(2d, 2d))
       shoppingNode = storeLayout.addNode(NodeType.REGULAR, new GeoPoint(-2d, 2d))
       shoppingNode.addItem(new Item(fruits.getCode(), fruits.getName()))
 
@@ -51,7 +51,7 @@ class ShoppingLayoutServiceImplTest extends Specification {
       )
    }
 
-   def "The Shopping Layout for an empty Shopping List is the Store Layout and its entrance and exit"() {
+   def "The Shopping Layout for an empty Shopping List is the Store Layout and its entrance and checkout"() {
       given: "An empty Shopping List"
       ShoppingListDto shoppingListDto = new ShoppingListDto(items: [])
 
@@ -64,10 +64,10 @@ class ShoppingLayoutServiceImplTest extends Specification {
       result.getInnerOutline() == storeLayout.getInnerOutline()
       result.getFeatures().collect { it.getPolygon() } == storeLayout.getFeatures().collect { it.getPolygon() }
       result.getNodes().size() == 2
-      result.getNodes().collect { it.getId() }.containsAll([entrance.getId().toString(), exit.getId().toString()])
+      result.getNodes().collect { it.getId() }.containsAll([entrance.getId().toString(), checkout.getId().toString()])
    }
 
-   def "The Shopping Layout for Items explicitly mapped contains the entrance, exit, and Node where Items are located"() {
+   def "The Shopping Layout for Items explicitly mapped contains the entrance, checkout, and Node where Items are located"() {
       given: "A Shopping List with an Item explicitly mapped in the Layout"
       ShoppingListDto shoppingListDto = new ShoppingListDto(items: [fruits])
 
@@ -86,7 +86,7 @@ class ShoppingLayoutServiceImplTest extends Specification {
       shoppingNodeDto.getItems()[0].getType() == ShoppingItemType.EXPLICIT.name()
    }
 
-   def "The Shopping Layout for Items implicitly mapped contains the entrance, exit, and Node where Items are located"() {
+   def "The Shopping Layout for Items implicitly mapped contains the entrance, checkout, and Node where Items are located"() {
       given: "A Shopping List with an Item implicitly mapped in the Layout"
       ShoppingListDto shoppingListDto = new ShoppingListDto(items: [apples])
 
@@ -105,7 +105,7 @@ class ShoppingLayoutServiceImplTest extends Specification {
       shoppingNodeDto.getItems()[0].getType() == ShoppingItemType.IMPLICIT.name()
    }
 
-   def "The Shopping Layout for Items not mapped contains only the entrance and exit"() {
+   def "The Shopping Layout for Items not mapped contains only the entrance and checkout"() {
       given: "A Shopping List with an Item not mapped in the Layout"
       ShoppingListDto shoppingListDto = new ShoppingListDto(items: [edibleGrocery])
 
@@ -114,6 +114,6 @@ class ShoppingLayoutServiceImplTest extends Specification {
 
       then:
       result.getNodes().size() == 2
-      result.getNodes().collect { it.getId() }.containsAll([entrance.getId().toString(), exit.getId().toString()])
+      result.getNodes().collect { it.getId() }.containsAll([entrance.getId().toString(), checkout.getId().toString()])
    }
 }

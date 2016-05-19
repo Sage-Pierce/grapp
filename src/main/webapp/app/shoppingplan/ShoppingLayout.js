@@ -34,7 +34,7 @@
          function generateShoppingPath() {
             var nodesByType = _.groupBy(_.values(self.nodes), function(node) { return node.type.code; });
             var start = _.convertLocationToPoint(nodesByType[NodeType.ENTRANCE.code][0].location);
-            var finish = _.convertLocationToPoint(nodesByType[NodeType.EXIT.code][0].location);
+            var finish = _.convertLocationToPoint(nodesByType[NodeType.CHECKOUT.code][0].location);
             var waypoints = nodesByType[NodeType.REGULAR.code].map(function(node) { return _.convertLocationToPoint(node.location); });
             var enclosure = _.convertGeoPolygonToPolygon(self.innerOutline);
             var polygons = _.values(self.features).map(function(feature) { return _.convertGeoPolygonToPolygon(feature.polygon); });

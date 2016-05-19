@@ -55,7 +55,7 @@ public class ShoppingLayoutServiceImpl implements ShoppingLayoutService {
                                                                    .map(Optional::get)
                                                                    .collect(groupingBy(ShoppingNodeItem::getNode, mapping(ShoppingNodeItem::getItem, toList())));
       shoppingItemsByNode.computeIfAbsent(storeLayout.getNodeOfType(NodeType.ENTRANCE), (key) -> Collections.emptyList());
-      shoppingItemsByNode.computeIfAbsent(storeLayout.getNodeOfType(NodeType.EXIT), (key) -> Collections.emptyList());
+      shoppingItemsByNode.computeIfAbsent(storeLayout.getNodeOfType(NodeType.CHECKOUT), (key) -> Collections.emptyList());
       return shoppingItemsByNode.entrySet().stream()
                                 .map(entry -> ShoppingNodeDtoFactory.createDto(entry.getKey(), entry.getValue()))
                                 .collect(toList());
