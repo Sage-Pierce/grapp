@@ -16,19 +16,19 @@
    </ol>
 </div>
 <script type="text/ng-template" id="TreeItemRenderer.html">
-   <div>
+   <div class="text-nowrap">
       <a class="btn btn-primary btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
       </a>
       <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
          <span class="glyphicon glyphicon-record"></span>
       </a>
+      <a class=" btn btn-success btn-xs" ng-if="itemTreeVM.add != null" ng-click="itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
+         <span class="glyphicon glyphicon-plus"></span>
+      </a>
       {{item.name}}
       <a class="pull-right btn btn-danger btn-xs" ng-if="itemTreeVM.remove != null" ng-click="itemTreeVM.remove(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-remove"></span>
-      </a>
-      <a class="pull-right btn btn-success btn-xs" ng-if="itemTreeVM.add != null" ng-click="itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
-         <span class="glyphicon glyphicon-plus"></span>
       </a>
    </div>
    <ol ui-tree-nodes ng-model="item.subItems" ng-class="{hidden: collapsed}">
