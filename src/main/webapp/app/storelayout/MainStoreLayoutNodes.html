@@ -1,29 +1,26 @@
-<div class="h-strut-10">
-   <h4 class="text-center">Selected Node</h4>
-   <form>
-      <fieldset>
-         <div class="form-group">
-            <label for="nodeNameInput" class="col-xs-2 control-label">Name:</label>
-            <div class="col-xs-10">
-               <input id="nodeNameInput"
-                      type="text"
-                      class="form-control"
-                      placeholder="Node Name"
-                      ng-model="mainStoreLayoutNodesVM.selectedNodeName"
-                      ng-blur="mainStoreLayoutNodesVM.nodeNameChanged()"
-                      ng-disabled="!mainStoreLayoutNodesVM.isANodeSelected()"/>
-            </div>
+<h4 class="text-center">Selected Node</h4>
+<form>
+   <fieldset>
+      <div>
+         <label for="nodeNameInput" class="col-xs-2 control-label">Name:</label>
+         <div class="col-xs-10">
+            <input id="nodeNameInput"
+                   type="text"
+                   class="col-xs-10 form-control"
+                   placeholder="Node Name"
+                   ng-model="mainStoreLayoutNodesVM.selectedNodeName"
+                   ng-blur="mainStoreLayoutNodesVM.nodeNameChanged()"
+                   ng-disabled="!mainStoreLayoutNodesVM.isANodeSelected()"/>
          </div>
-      </fieldset>
-   </form>
-   <item-list items="mainStoreLayoutNodesVM.selectedNodeItems"
-              remove="mainStoreLayoutNodesVM.removeNodeItem"
-              options="{listClass: 'height-150'}">
-   </item-list>
-   <div class="tv-strut-10"></div>
-   <item-tree items="mainStoreLayoutNodesVM.generalItems"
-                    add="mainStoreLayoutNodesVM.addNodeItem"
-                    options="{filterable: true, treeClass: 'height-200', compact: true}"
-                    disabled="!mainStoreLayoutNodesVM.isANodeSelected()">
-   </item-tree>
-</div>
+      </div>
+   </fieldset>
+</form>
+<item-list items="mainStoreLayoutNodesVM.selectedNodeItems"
+           remove="mainStoreLayoutNodesVM.removeNodeItem"
+           options="{listClass: 'height-150'}">
+</item-list>
+<item-tree items="mainStoreLayoutNodesVM.generalItems"
+           add="mainStoreLayoutNodesVM.addNodeItem"
+           options="{filterable: true, treeClass: 'height-200', compact: true}"
+           disabled="!mainStoreLayoutNodesVM.isANodeSelected()">
+</item-tree>
