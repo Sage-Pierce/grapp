@@ -1,10 +1,18 @@
-<input type="text"
-       class="width-full"
-       ng-if="itemTreeVM.options.filterable"
-       ng-model="itemTreeVM.filter"
-       ng-change="itemTreeVM.filterChanged()"
-       ng-disabled="itemTreeVM.disabled"
-       placeholder="Item Filter"/>
+<form>
+   <fieldset>
+      <label for="itemFilter" class="col-xs-2 control-label text-right">Filter:</label>
+      <div class="col-xs-10">
+         <input id="itemFilter"
+                type="text"
+                class="col-xs-10 form-control"
+                ng-if="itemTreeVM.options.filterable"
+                ng-model="itemTreeVM.filter"
+                ng-change="itemTreeVM.filterChanged()"
+                ng-disabled="itemTreeVM.disabled"
+                placeholder="Item Filter"/>
+      </div>
+   </fieldset>
+</form>
 <div class="scrollable {{itemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
    <ol ui-tree-nodes ng-model="itemTreeVM.items">
       <li ng-repeat="item in itemTreeVM.items"
