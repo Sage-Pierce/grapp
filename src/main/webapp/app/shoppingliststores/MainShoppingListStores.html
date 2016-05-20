@@ -1,8 +1,6 @@
 <h4 class="text-center">Select a Store</h4>
-<div class="row">
-   <stores-map class="h-padding-0"
-               map-control="mainShoppingListStoresVM.mapControl"
-               stores="mainShoppingListStoresVM.stores">
-   </stores-map>
-   <button class="btn btn-success width-full" ng-click="mainShoppingListStoresVM.showShoppingPlan()" ng-disabled="!mainShoppingListStoresVM.isAStoreSelected()">Go Shopping!</button>
-</div>
+<stores-map class="h-padding-0"
+            map-control="mainShoppingListStoresVM.mapControl"
+            stores="mainShoppingListStoresVM.stores">
+</stores-map>
+<button class="btn btn-success width-full" ng-click="mainShoppingListStoresVM.showShoppingPlan()" ng-disabled="!mainShoppingListStoresVM.isAStoreSelected()">Go Shopping!</button>

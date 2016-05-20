@@ -1,40 +1,33 @@
 <h4 class="text-center">Your Stores</h4>
-<div class="col-md-12">
-   <div class="row">
-      <table class="table table-bordered" ng-class="{'table-hover': mainStoresVM.areAnyStoresExistent()}">
-         <thead>
-            <tr>
-               <th class="col-md-4">Store Name</th>
-               <th class="col-md-6">Approx. Address</th>
-            </tr>
-         </thead>
-         <tbody ng-if="!mainStoresVM.areAnyStoresExistent()">
-            <tr>
-               <td>You have no stores</td>
-            </tr>
-         </tbody>
-         <tbody ng-if="mainStoresVM.areAnyStoresExistent()">
-            <tr ng-repeat="store in mainStoresVM.stores" class="cursor-clickable" ng-class="{info: mainStoresVM.selectedStore === store}" ng-click="mainStoresVM.setSelectedStore(store)">
-               <td>{{store.name}}</td>
-               <td>{{store.approximateAddress}}</td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
-   <div class="row">
-      <div class="span12">
-         <div>
-            <div class="btn-group">
-               <button class="btn btn-success" ng-click="mainStoresVM.createStore()">Create Store</button>
-               <button class="btn btn-danger" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.deleteSelectedStore()">Delete Store</button>
-            </div>
-            <div class="btn-group pull-right">
-               <button class="btn btn-info" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.updateSelectedStore()">Edit Store Attributes</button>
-               <button class="btn btn-info" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.editSelectedStore()">Edit Store Layout</button>
-            </div>
-         </div>
+<table class="table table-bordered" ng-class="{'table-hover': mainStoresVM.areAnyStoresExistent()}">
+   <thead>
+      <tr>
+         <th class="col-md-4">Store Name</th>
+         <th class="col-md-6">Approx. Address</th>
+      </tr>
+   </thead>
+   <tbody ng-if="!mainStoresVM.areAnyStoresExistent()">
+      <tr>
+         <td>You have no stores</td>
+      </tr>
+   </tbody>
+   <tbody ng-if="mainStoresVM.areAnyStoresExistent()">
+      <tr ng-repeat="store in mainStoresVM.stores" class="cursor-clickable" ng-class="{info: mainStoresVM.selectedStore === store}" ng-click="mainStoresVM.setSelectedStore(store)">
+         <td>{{store.name}}</td>
+         <td>{{store.approximateAddress}}</td>
+      </tr>
+   </tbody>
+</table>
+<div>
+   <div>
+      <div class="btn-group">
+         <button class="btn btn-success" ng-click="mainStoresVM.createStore()">Create Store</button>
+         <button class="btn btn-danger" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.deleteSelectedStore()">Delete Store</button>
+      </div>
+      <div class="btn-group pull-right">
+         <button class="btn btn-info" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.updateSelectedStore()">Edit Store Attributes</button>
+         <button class="btn btn-info" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.editSelectedStore()">Edit Store Layout</button>
       </div>
    </div>
 </div>
-
 
