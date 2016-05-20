@@ -4,20 +4,19 @@
       <table class="table table-bordered" ng-class="{'table-hover': mainStoresVM.areAnyStoresExistent()}">
          <thead>
             <tr>
-               <th class="col-md-4">Store ID</th>
-               <th class="col-md-8">Store Name</th>
+               <th class="col-md-4">Store Name</th>
+               <th class="col-md-6">Approx. Address</th>
             </tr>
          </thead>
          <tbody ng-if="!mainStoresVM.areAnyStoresExistent()">
             <tr>
-               <td></td>
                <td>You have no stores</td>
             </tr>
          </tbody>
          <tbody ng-if="mainStoresVM.areAnyStoresExistent()">
             <tr ng-repeat="store in mainStoresVM.stores" class="cursor-clickable" ng-class="{info: mainStoresVM.selectedStore === store}" ng-click="mainStoresVM.setSelectedStore(store)">
-               <td>{{store.id}}</td>
                <td>{{store.name}}</td>
+               <td>{{store.approximateAddress}}</td>
             </tr>
          </tbody>
       </table>

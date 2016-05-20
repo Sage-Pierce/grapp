@@ -1,0 +1,35 @@
+<div class="modal-header">
+   <h3 class="modal-title">{{modalStoreVM.title}}</h3>
+</div>
+<form class="modal-body">
+   <fieldset class="form-group">
+      <label for="storeName">Step 1) Store Name</label>
+      <input id="storeName" type="text" placeholder="Store Name" ng-model="modalStoreVM.store.name" class="form-control">
+   </fieldset>
+   <fieldset class="form-group">
+      <label>Step 2) Place Marker at Location of Store</label>
+      <ui-gmap-google-map id="storeLocationMap"
+                          class="half-map"
+                          center="modalStoreVM.mapSettings.center"
+                          zoom="modalStoreVM.mapSettings.zoom"
+                          options="modalStoreVM.mapSettings.options"
+                          events="modalStoreVM.mapSettings.events"
+                          control="modalStoreVM.mapControl">
+         <ui-gmap-search-box template="modalStoreVM.searchBox.template"
+                             options="modalStoreVM.searchBox.options"
+                             events="modalStoreVM.searchBox.events"
+                             position="'TOP_RIGHT'">
+         </ui-gmap-search-box>
+         <ui-gmap-marker idKey="'storeLocationMarker'"
+                         coords="modalStoreVM.store.position"
+                         options="{draggable: true}"
+                         events="modalStoreVM.markerEvents">
+         </ui-gmap-marker>
+      </ui-gmap-google-map>
+   </fieldset>
+   <p>Approx. Address: {{modalStoreVM.store.approximateAddress}}</p>
+</form>
+<div class="modal-footer">
+   <button class="btn btn-warning" ng-click="modalStoreVM.cancel()">Cancel</button>
+   <button class="btn btn-primary" ng-disabled="!modalStoreVM.isDataValid()" ng-click="modalStoreVM.finish()">Finish</button>
+</div>

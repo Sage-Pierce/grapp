@@ -32,7 +32,7 @@
       }
 
       function createStore() {
-         openModalUpdateStore(null, null).then(function(result) {
+         openModalStore().then(function(result) {
             mainStoresVM.isLoading = true;
             storeManager.addStore(result.name, result.location).finally(function() {
                mainStoresVM.isLoading = false;
@@ -42,18 +42,17 @@
 
       function updateSelectedStore() {
          var selectedStore = mainStoresVM.selectedStore;
-         openModalUpdateStore(selectedStore.name, selectedStore.location).then(selectedStore.setAttributes);
+         openModalStore(selectedStore).then(selectedStore.setAttributes);
       }
 
-      function openModalUpdateStore(storeName, storeLocation) {
+      function openModalStore(store) {
          return $uibModal.open({
             animation: true,
-            templateUrl: "app/stores/ModalUpdateStore.html",
-            controller: "ModalUpdateStore",
-            controllerAs: "modalUpdateStoreVM",
+            templateUrl: "app/stores/ModalStore.html",
+            controller: "ModalStore",
+            controllerAs: "modalStoreVM",
             resolve: {
-               storeName: function() { return storeName; },
-               storeLocation: function() { return storeLocation; }
+               store: function() { return store; }
             }
          }).result;
       }
