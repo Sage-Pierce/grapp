@@ -1,0 +1,11 @@
+<div class="modal-header">
+   <h3 class="modal-title">Import NACS Items</h3>
+</div>
+<div class="modal-body">
+   <h6>Enter NACS CSV Data Below:</h6>
+   <textarea title="CSV Data" class="width-full" rows="20" ng-model="modalImportVM.data"></textarea>
+</div>
+<div class="modal-footer">
+   <button class="btn btn-primary" ng-disabled="!modalImportVM.data || modalImportVM.data.length === 0" ng-click="modalImportVM.finish()">Import</button>
+   <button class="btn btn-warning" ng-click="modalImportVM.cancel()">Cancel</button>
+</div>

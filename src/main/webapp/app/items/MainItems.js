@@ -25,7 +25,7 @@
       }
 
       function createGeneralItem() {
-         openModalCreateItem().then(function(result) {
+         openModalItem().then(function(result) {
             Item.createGeneralItem(result).then(function(item) {
                mainItemsVM.items.push(item);
             });
@@ -33,7 +33,7 @@
       }
 
       function importItems() {
-         openModalImportItems().then(function(result) {
+         openModalImport().then(function(result) {
             Item.importItems(result.data).then(function(items) {
                mainItemsVM.items = items;
             });
@@ -42,7 +42,7 @@
 
       function createSubItem(itemScope) {
          var item = itemScope.$modelValue;
-         openModalCreateItem(item).then(function(result) {
+         openModalItem(item).then(function(result) {
             item.addSubItem(result);
          });
       }
@@ -53,21 +53,21 @@
          });
       }
 
-      function openModalImportItems() {
+      function openModalImport() {
          return $uibModal.open({
             animation: true,
-            templateUrl: "app/items/ModalImportItems.html",
-            controller: "ModalImportItems",
-            controllerAs: "modalImportItemsVM"
+            templateUrl: "app/items/ModalImport.html",
+            controller: "ModalImport",
+            controllerAs: "modalImportVM"
          }).result;
       }
 
-      function openModalCreateItem(superItem) {
+      function openModalItem(superItem) {
          return $uibModal.open({
             animation: true,
-            templateUrl: "app/items/ModalCreateItem.html",
-            controller: "ModalCreateItem",
-            controllerAs: "modalCreateItemVM",
+            templateUrl: "app/items/ModalItem.html",
+            controller: "ModalItem",
+            controllerAs: "modalItemVM",
             resolve: {
                superItem: function() { return superItem; }
             }
