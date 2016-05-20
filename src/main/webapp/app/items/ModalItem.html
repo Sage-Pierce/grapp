@@ -5,14 +5,14 @@
    <form>
       <div class="form-group row">
          <label class="col-xs-2 form-control-label">Code</label>
-         <div class="col-xs-3">
+         <div class="col-xs-4">
             <select title="Code Type"
                     class="form-control"
                     ng-options="codeType.displayString for codeType in modalItemVM.codeTypes"
                     ng-model="modalItemVM.codeType">
             </select>
          </div>
-         <div class="col-xs-7">
+         <div class="col-xs-6">
             <input type="text" class="form-control" ng-model="modalItemVM.code" ng-disabled="modalItemVM.isRandomCode()" placeholder="Item Code">
          </div>
       </div>
