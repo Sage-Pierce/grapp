@@ -10,6 +10,7 @@
       mainStoreLayoutNodesVM.selectedNodeName = null;
       mainStoreLayoutNodesVM.selectedNodeItems = [];
       mainStoreLayoutNodesVM.generalItems = [];
+      mainStoreLayoutNodesVM.itemTreeOptions = null;
       mainStoreLayoutNodesVM.nodeNameChanged = nodeNameChanged;
       mainStoreLayoutNodesVM.addNodeItem = addNodeItem;
       mainStoreLayoutNodesVM.removeNodeItem = removeNodeItem;
@@ -17,12 +18,14 @@
 
       var nodeSelectionHandler = new NodeSelectionHandler(mapControl, {nodeSelected: nodeSelected, nodeDeselected: nodeDeselected});
       var nodeEventHandler = new NodeEventHandler(mapControl, storeLayout, NodeType.REGULAR, nodeSelectionHandler);
+      var nodeItemMap = createNodeItemMap(storeLayout.getNodes());
 
       initialize();
 
       ////////////////////
 
       function initialize() {
+         initializeItemTreeOptions();
          mainStoreLayoutNodesVM.isANodeSelected = nodeSelectionHandler.isANodeSelected;
          mapControl.setEventHandler(nodeEventHandler);
          Item.loadAllGeneral().then(function(generalItems) {
@@ -38,9 +41,11 @@
 
       function addNodeItem(itemNode) {
          var item = itemNode.$modelValue;
-         storeLayout.addNodeItem(nodeSelectionHandler.getSelectedNode().id, {code: item.primaryCode, name: item.name})
+         var selectedNode = nodeSelectionHandler.getSelectedNode();
+         storeLayout.addNodeItem(selectedNode.id, {code: item.primaryCode, name: item.name})
             .then(function(nodeItem) {
                mainStoreLayoutNodesVM.selectedNodeItems.push(nodeItem.item);
+               nodeItemMap[nodeItem.item.code] = selectedNode;
             });
       }
 
@@ -48,6 +53,7 @@
          nodeSelectionHandler.getSelectedNode().removeItemById(nodeItem.id)
             .then(function() {
                _.remove(mainStoreLayoutNodesVM.selectedNodeItems, nodeItem);
+               delete nodeItemMap[nodeItem.code];
             });
       }
 
@@ -59,6 +65,37 @@
       function nodeDeselected() {
          mainStoreLayoutNodesVM.selectedNodeName = null;
          mainStoreLayoutNodesVM.selectedNodeItems = [];
+      }
+
+      function createNodeItemMap(nodes) {
+         var nodeItemMap = {};
+         nodes.forEach(function(node) {
+            node.getItems().forEach(function(item) {
+               nodeItemMap[item.code] = node;
+            });
+         });
+         return nodeItemMap;
+      }
+
+      function initializeItemTreeOptions() {
+         mainStoreLayoutNodesVM.itemTreeOptions = {
+            itemTemplateUrl: 'app/storelayout/NodeItemTemplate.html',
+            scope: {
+               isItemMapped: isItemMapped,
+               getNodeNameMappingForItem: getNodeNameMappingForItem
+            },
+            treeClass: 'height-200',
+            filterable: true,
+            compact: true
+         };
+      }
+
+      function isItemMapped(item) {
+         return item.primaryCode in nodeItemMap;
+      }
+
+      function getNodeNameMappingForItem(item) {
+         return nodeItemMap[item.primaryCode] ? "Located at " + nodeItemMap[item.primaryCode].name : "Not Mapped";
       }
    }
 })();
