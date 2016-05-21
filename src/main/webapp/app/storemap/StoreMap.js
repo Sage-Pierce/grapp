@@ -122,7 +122,7 @@
             position: _.convertLocationToPosition(nodeModel.location),
             icon: nodeModel.type.iconUrl,
             node: nodeModel,
-            options: storeMapVM.mapSettings.options.markerOptions
+            options: _.mergeLeft(editable ? {} : {title: nodeModel.name}, storeMapVM.mapSettings.options.markerOptions)
          };
       }
 
