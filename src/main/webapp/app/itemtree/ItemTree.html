@@ -8,7 +8,6 @@
                 ng-if="itemTreeVM.options.filterable"
                 ng-model="itemTreeVM.filter"
                 ng-change="itemTreeVM.filterChanged()"
-                ng-disabled="itemTreeVM.disabled"
                 placeholder="Item Filter"/>
       </div>
    </fieldset>
@@ -31,7 +30,7 @@
       <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
          <span class="glyphicon glyphicon-record"></span>
       </a>
-      <span>{{item.name}}</span>
+      <span ng-include="itemTreeVM.options.itemTemplateUrl || 'ItemNameRenderer.html'"></span>
       <a class="btn btn-success btn-xs" ng-class="{'pull-right':!itemTreeVM.options.compact}" ng-if="itemTreeVM.add != null" ng-click="itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-plus"></span>
       </a>
@@ -47,4 +46,7 @@
           ui-tree-node>
       </li>
    </ol>
+</script>
+<script type="text/ng-template" id="ItemNameRenderer.html">
+   <span>{{item.name}}</span>
 </script>
