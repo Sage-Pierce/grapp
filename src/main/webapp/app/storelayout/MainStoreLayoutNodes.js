@@ -58,7 +58,7 @@
 
       function nodeDeselected() {
          mainStoreLayoutNodesVM.selectedNodeName = null;
-         mainStoreLayoutNodesVM.selectedNodeName = [];
+         mainStoreLayoutNodesVM.selectedNodeItems = [];
       }
    }
 })();
