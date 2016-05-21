@@ -30,12 +30,12 @@
 
          function setAttributes(attributes) {
             return Root.updateResource("node", node.id, _.merge(attributes, self))
-               .then(function() { self.name = name; });
+               .then(function(nodeRsc) { self.name = nodeRsc.name; });
          }
 
          function setLocation(location) {
             return storeLayoutRsc.$put("moveNode", {nodeId: node.id, location: JSON.stringify(location)})
-               .then(function() { self.location = location; });
+               .then(function(nodeRsc) { self.location = nodeRsc.location; });
          }
 
          function addItem(item) {
