@@ -1,59 +1,3 @@
-.width-100 {
-   width: 100px;
-}
-
-.width-200 {
-   width: 200px;
-}
-
-.width-400 {
-   width: 400px;
-}
-
-.width-full {
-   width: 100%;
-}
-
-.height-5 {
-   height: 5px;
-}
-
-.height-10 {
-   height: 10px;
-}
-
-.height-25 {
-   height: 25px;
-}
-
-.height-50 {
-   height: 50px;
-}
-
-.height-100 {
-   height: 100px;
-}
-
-.height-150 {
-   height: 150px;
-}
-
-.height-200 {
-   height: 200px;
-}
-
-.height-300 {
-   height: 300px;
-}
-
-.height-400 {
-   height: 400px;
-}
-
-.height-full {
-   height: 100%;
-}
-
 .width-scrollable {
    overflow-x: scroll;
 }
@@ -66,13 +10,16 @@
    overflow: scroll;
 }
 
-.card-clickable {
-   cursor: pointer;
+.card-entry {
    border: 1px solid rgba(0, 0, 0, .1);
    background-color: transparent;
    box-shadow: 0 0 0 rgba(0,0,0,0);
    -moz-box-shadow: 0 0 0 rgba(0,0,0,0);
    -webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.card-clickable {
+   cursor: pointer;
 }
 
 .card-clickable:hover {
@@ -86,4 +33,12 @@
    box-shadow: 0 0 0 rgba(0,0,0,0);
    -moz-box-shadow: 0 0 0 rgba(0,0,0,0);
    -webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.btn-ghost {
+   cursor: default;
+}
+
+.btn-ghost:hover {
+   background-color: transparent !important;
 }
