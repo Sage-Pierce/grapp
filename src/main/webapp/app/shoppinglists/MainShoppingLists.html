@@ -3,8 +3,8 @@
    <div class="height-scrollable height-200">
       <div ng-repeat="list in mainShoppingListsVM.lists">
          <div class="shopping-list-entry btn-group btn-group-raised">
-            <a class="col-xs-10 btn btn-default" ng-click="mainShoppingListsVM.openList(list)"><span class="pull-left">{{list.name}}</span></a>
-            <a class="col-xs-2 btn btn-danger" ng-click="mainShoppingListsVM.deleteList(list)"><span class="glyphicon glyphicon-trash"></span></a>
+            <a class="col-xs-9 col-sm-10 btn btn-default" ng-click="mainShoppingListsVM.openList(list)"><span class="pull-left">{{list.name}}</span></a>
+            <a class="col-xs-3 col-sm-2 btn btn-danger" ng-click="mainShoppingListsVM.deleteList(list)"><span class="glyphicon glyphicon-trash"></span></a>
          </div>
       </div>
    </div>
