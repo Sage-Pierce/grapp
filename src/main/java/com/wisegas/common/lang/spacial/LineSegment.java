@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public final class LineSegment {
    private enum Orientation { CLOCKWISE, COUNTERCLOCKWISE, COLINEAR }
-   private static final double DOUBLE_EQUALITY_THRESHOLD = .000000001d;
+   private static final double DOUBLE_EQUALITY_THRESHOLD = .000000000001d;
    private static final Translator translator = new Translator();
 
    private Point point1;

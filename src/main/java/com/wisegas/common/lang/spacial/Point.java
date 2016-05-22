@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public final class Point {
    private static final int HASH_PRECISION = 1000000;
-   private static final double DOUBLE_EQUALITY_THRESHOLD = .000000001d;
+   private static final double DOUBLE_EQUALITY_THRESHOLD = .000000000001d;
    private static final Translator translator = new Translator();
 
    private double x;
