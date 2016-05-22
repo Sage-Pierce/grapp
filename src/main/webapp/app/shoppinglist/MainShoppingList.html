@@ -5,7 +5,7 @@
               ng-model="mainShoppingListVM.itemToAdd"
               on-select="mainShoppingListVM.itemToAddSelected($item)"
               title="Select Item">
-      <ui-select-match placeholder="Choose an Item to add">
+      <ui-select-match placeholder="Add an Item...">
          {{null}}
       </ui-select-match>
       <ui-select-choices position="down" repeat="item in mainShoppingListVM.items | filter: $select.search">
