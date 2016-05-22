@@ -27,7 +27,7 @@
       <a class="btn btn-primary btn-xs" ng-if="item.subItems.length > 0" ng-click="toggle(this)">
          <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
       </a>
-      <a class="btn btn-default btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
+      <a class="btn btn-ghost btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
          <span class="glyphicon glyphicon-record"></span>
       </a>
       <span ng-include="itemTreeVM.options.itemTemplateUrl || 'ItemNameRenderer.html'"></span>
