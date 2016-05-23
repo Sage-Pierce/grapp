@@ -122,7 +122,7 @@
             position: _.convertLocationToPosition(nodeModel.location),
             icon: nodeModel.type.iconUrl,
             node: nodeModel,
-            options: _.mergeLeft({title: nodeModel.name}, storeMapVM.mapSettings.options.markerOptions)
+            options: _.mergeLeft({title: nodeModel.type.isSingleton ? nodeModel.type.displayString : nodeModel.name}, storeMapVM.mapSettings.options.markerOptions)
          };
       }
 
