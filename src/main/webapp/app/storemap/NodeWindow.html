@@ -1,8 +1,7 @@
 <div>
-   <p><b>Needed Items at {{parameter.name}}</b></p>
-   <ul>
-      <li ng-repeat="shoppingItem in parameter.items">
-         {{shoppingItem.item.name}}
-      </li>
-   </ul>
+   <p><b>{{(parameter.hasItems() ? 'Items Needed at ' : '') + (parameter.type.isSingleton ? parameter.type.displayString : parameter.name)}}</b></p>
+   <div ng-repeat="shoppingItem in parameter.items">
+      <span class="glyphicon glyphicon-ok"></span>
+      {{shoppingItem.item.name}}
+   </div>
 </div>
