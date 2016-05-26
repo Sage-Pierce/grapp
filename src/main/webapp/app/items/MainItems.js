@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainItems", MainItems);
 
-   MainItems.$inject = ["$uibModal", "Item", "Confirmation"];
-   function MainItems($uibModal, Item, Confirmation) {
+   MainItems.$inject = ["$uibModal", "Item", "Messaging"];
+   function MainItems($uibModal, Item, Messaging) {
       var mainItemsVM = this;
       mainItemsVM.items = [];
       mainItemsVM.filter = "";
@@ -49,14 +49,9 @@
 
       function deleteItem(itemScope) {
          var item = itemScope.$modelValue;
-         Confirmation.showModalDialog("Delete Item", "Are you sure you want to delete the Item " + item.name + "?")
-            .then(function(result) {
-               if (result) {
-                  item.delete().then(function() {
-                     itemScope.remove();
-                  });
-               }
-            });
+         Messaging.requestConfirmation("Delete Item", "Are you sure you want to delete the Item " + item.name + "?")
+            .then(item.delete)
+            .then(itemScope.remove);
       }
 
       function openModalImport() {

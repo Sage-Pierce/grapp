@@ -9,10 +9,6 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/config/*.js"],
             tasks: ["jshint", "concat:config"]
          },
-         confirm: {
-            files: [webappRoot + "app/confirm/*.js"],
-            tasks: ["jshint", "concat:confirm"]
-         },
          itemlist: {
             files: [webappRoot + "app/itemlist/*.js"],
             tasks: ["jshint", "concat:itemlist"]
@@ -24,6 +20,10 @@ module.exports = function (grunt) {
          itemtree: {
             files: [webappRoot + "app/itemtree/*.js"],
             tasks: ["jshint", "concat:itemtree"]
+         },
+         messaging: {
+            files: [webappRoot + "app/messaging/*.js"],
+            tasks: ["jshint", "concat:messaging"]
          },
          shoppinglist: {
             files: [webappRoot + "app/shoppinglist/*.js"],
@@ -76,10 +76,10 @@ module.exports = function (grunt) {
          },
          all: [
             webappRoot + "app/config/*.js",
-            webappRoot + "app/confirm/*.js",
             webappRoot + "app/itemlist/*.js",
             webappRoot + "app/items/*.js",
             webappRoot + "app/itemtree/*.js",
+            webappRoot + "app/messaging/*.js",
             webappRoot + "app/shoppinglist/*.js",
             webappRoot + "app/shoppinglists/*.js",
             webappRoot + "app/shoppingliststores/*.js",
@@ -98,10 +98,6 @@ module.exports = function (grunt) {
             src: [webappRoot + "app/config/*.js"],
             dest: webappRoot + "concat/config-concat.js"
          },
-         confirm: {
-            src: [webappRoot + "app/confirm/*.js"],
-            dest: webappRoot + "concat/confirm-concat.js"
-         },
          itemlist: {
             src: [webappRoot + "app/itemlist/*.js"],
             dest: webappRoot + "concat/itemlist-concat.js"
@@ -113,6 +109,10 @@ module.exports = function (grunt) {
          itemtree: {
             src: [webappRoot + "app/itemtree/*.js"],
             dest: webappRoot + "concat/itemtree-concat.js"
+         },
+         messaging: {
+            src: [webappRoot + "app/messaging/*.js"],
+            dest: webappRoot + "concat/messaging-concat.js"
          },
          shoppinglist: {
             src: [webappRoot + "app/shoppinglist/*.js"],
