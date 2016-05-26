@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainItems", MainItems);
 
-   MainItems.$inject = ["$uibModal", "Item"];
-   function MainItems($uibModal, Item) {
+   MainItems.$inject = ["$uibModal", "Item", "Confirmation"];
+   function MainItems($uibModal, Item, Confirmation) {
       var mainItemsVM = this;
       mainItemsVM.items = [];
       mainItemsVM.filter = "";
@@ -48,9 +48,15 @@
       }
 
       function deleteItem(itemScope) {
-         itemScope.$modelValue.delete().then(function() {
-            itemScope.remove();
-         });
+         var item = itemScope.$modelValue;
+         Confirmation.showModalDialog("Delete Item", "Are you sure you want to delete the Item " + item.name + "?")
+            .then(function(result) {
+               if (result) {
+                  item.delete().then(function() {
+                     itemScope.remove();
+                  });
+               }
+            });
       }
 
       function openModalImport() {

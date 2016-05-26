@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainStores", MainStores);
 
-   MainStores.$inject = ["$uibModal", "$state", "storeManager"];
-   function MainStores($uibModal, $state, storeManager) {
+   MainStores.$inject = ["$uibModal", "$state", "storeManager", "Confirmation"];
+   function MainStores($uibModal, $state, storeManager, Confirmation) {
       var mainStoresVM = this;
       mainStoresVM.stores = storeManager.stores;
       mainStoresVM.selectedStore = null;
@@ -62,9 +62,15 @@
       }
 
       function deleteSelectedStore() {
-         mainStoresVM.selectedStore.delete().then(function() {
-            _.remove(mainStoresVM.stores, mainStoresVM.selectedStore);
-         });
+         var selectedStore = mainStoresVM.selectedStore;
+         Confirmation.showModalDialog("Delete Store", "Are you sure you want to delete the Store " + selectedStore.name + "?")
+            .then(function(result) {
+               if (result) {
+                  selectedStore.delete().then(function() {
+                     _.remove(mainStoresVM.stores, mainStoresVM.selectedStore);
+                  });
+               }
+            });
       }
    }
 })();

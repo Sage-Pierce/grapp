@@ -9,6 +9,10 @@ module.exports = function (grunt) {
             files: [webappRoot + "app/config/*.js"],
             tasks: ["jshint", "concat:config"]
          },
+         confirm: {
+            files: [webappRoot + "app/confirm/*.js"],
+            tasks: ["jshint", "concat:confirm"]
+         },
          itemlist: {
             files: [webappRoot + "app/itemlist/*.js"],
             tasks: ["jshint", "concat:itemlist"]
@@ -72,6 +76,7 @@ module.exports = function (grunt) {
          },
          all: [
             webappRoot + "app/config/*.js",
+            webappRoot + "app/confirm/*.js",
             webappRoot + "app/itemlist/*.js",
             webappRoot + "app/items/*.js",
             webappRoot + "app/itemtree/*.js",
@@ -92,6 +97,10 @@ module.exports = function (grunt) {
          config: {
             src: [webappRoot + "app/config/*.js"],
             dest: webappRoot + "concat/config-concat.js"
+         },
+         confirm: {
+            src: [webappRoot + "app/confirm/*.js"],
+            dest: webappRoot + "concat/confirm-concat.js"
          },
          itemlist: {
             src: [webappRoot + "app/itemlist/*.js"],
