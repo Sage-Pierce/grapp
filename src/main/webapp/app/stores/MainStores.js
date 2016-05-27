@@ -33,10 +33,7 @@
 
       function createStore() {
          openModalStore().then(function(result) {
-            mainStoresVM.isLoading = true;
-            storeManager.addStore(result.name, result.location).finally(function() {
-               mainStoresVM.isLoading = false;
-            });
+            storeManager.addStore(result.name, result.location);
          });
       }
 
@@ -64,7 +61,7 @@
       function deleteSelectedStore() {
          var selectedStore = mainStoresVM.selectedStore;
          Messaging.requestConfirmation("Delete Store", "Are you sure you want to delete the Store " + selectedStore.name + "?")
-            .then(selectedStore.delete())
+            .then(selectedStore.delete)
             .then(function() { _.remove(mainStoresVM.stores, mainStoresVM.selectedStore); });
       }
    }

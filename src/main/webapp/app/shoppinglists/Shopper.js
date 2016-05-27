@@ -31,16 +31,12 @@
 
          function addList(name) {
             return shopperRsc.$post("addList", {name: name})
-               .then(function(shoppingListRsc) {
-                  self.lists.push(shoppingListRsc);
-               });
+               .then(self.lists.push);
          }
 
          function removeList(list) {
             return Root.deleteResource("shoppingList", list.id)
-               .then(function() {
-                  _.remove(self.lists, list);
-               });
+               .then(function() { _.remove(self.lists, list); });
          }
       }
    }

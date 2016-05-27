@@ -1,0 +1,13 @@
+<div class="modal-header">
+   <h3 class="modal-title">Unmapped Items</h3>
+</div>
+<div class="modal-body">
+   <p>The following Items are not currently mapped at this Store:</p>
+   <div ng-repeat="shoppingItem in modalUnmappedItemsVM.items">
+      <span class="glyphicon glyphicon-remove"></span>
+      {{shoppingItem.item.name}}
+   </div>
+</div>
+<div class="modal-footer">
+   <button class="btn btn-primary" ng-click="modalUnmappedItemsVM.dismiss()">OK</button>
+</div>

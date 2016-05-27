@@ -46,16 +46,15 @@
          }
 
          function setEventHandler(eh) {
-            uiGmapUtil.afterGmapsAreReady().then(function() {
+            if (eventHandler !== eh) {
                if (eventHandler && eventHandler.finish) {
                   eventHandler.finish();
                }
-
                eventHandler = eh;
                if (eventHandler && eventHandler.start) {
-                  eventHandler.start();
+                  uiGmapUtil.afterGmapsAreReady().then(eventHandler.start);
                }
-            });
+            }
          }
 
          function setControls(controls) {

@@ -22,6 +22,7 @@
       function ShoppingListModel(shoppingListRsc) {
          var self = this;
          self.items = shoppingListRsc.items.map(ShoppingListItem.load);
+         self.getItems = function() { return self.items; };
          self.addItem = addItem;
          self.removeItem = removeItem;
 
