@@ -9,6 +9,7 @@
       return function(mapControl, storeLayout, nodeType, nodeSelectionHandler) {
          var base = new BaseEventHandler(mapControl, storeLayout);
          var self = angular.extend(this, base);
+         self.start = start;
          self.finish = finish;
          self.mapClicked = mapClicked;
          self.mapRightClicked = mapRightClicked;
@@ -18,10 +19,15 @@
 
          ////////////////////
 
+         function start() {
+            mapControl.applyToFeatures(function(feature) { feature.setDraggable(false); });
+         }
+
          function finish() {
             if (nodeSelectionHandler) {
                nodeSelectionHandler.deselect();
             }
+            mapControl.applyToFeatures(function(feature) { feature.setDraggable(true); });
          }
 
          function mapClicked(modelId, map, mouseEvent) {
