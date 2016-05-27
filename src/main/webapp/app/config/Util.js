@@ -1,5 +1,8 @@
 (function() {
    _.mixin({
+      anyMatch: function(array, predicate) {
+         return !!_.find(array, predicate);
+      },
       arrayify: function(object) {
          return _.isArray(object) ? object : [object];
       },

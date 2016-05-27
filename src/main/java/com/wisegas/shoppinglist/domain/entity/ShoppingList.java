@@ -5,8 +5,9 @@ import com.wisegas.shoppinglist.domain.value.Item;
 import com.wisegas.shoppinglist.domain.value.ShoppingListId;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class ShoppingList extends NamedEntity<ShoppingListId> {
@@ -17,7 +18,8 @@ public class ShoppingList extends NamedEntity<ShoppingListId> {
    private Shopper shopper;
 
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "shoppingList", orphanRemoval = true)
-   private List<ShoppingListItem> items = new ArrayList<>();
+   @MapKey(name = "item")
+   private Map<Item, ShoppingListItem> items = new HashMap<>();
 
    public ShoppingList(Shopper shopper, String name) {
       id = ShoppingListId.generate();
@@ -34,14 +36,12 @@ public class ShoppingList extends NamedEntity<ShoppingListId> {
       return id;
    }
 
-   public List<ShoppingListItem> getItems() {
-      return items;
+   public Collection<ShoppingListItem> getItems() {
+      return items.values();
    }
 
    public ShoppingListItem addItem(Item item) {
-      ShoppingListItem shoppingListItem = new ShoppingListItem(this, item);
-      items.add(shoppingListItem);
-      return shoppingListItem;
+      return items.computeIfAbsent(item, (key) -> new ShoppingListItem(this, item));
    }
 
    private void setShopper(Shopper shopper) {

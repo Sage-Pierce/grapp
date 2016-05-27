@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Node", Node);
 
-   Node.$inject = ["Root", "NodeType"];
-   function Node(Root, NodeType) {
+   Node.$inject = ["$q", "Root", "NodeType"];
+   function Node($q, Root, NodeType) {
       var self = this;
       self.load = load;
 
@@ -42,6 +42,9 @@
          }
 
          function addItem(item) {
+            if (_.anyMatch(self.getItems(), function(nodeItem) { return nodeItem.code === item.code; })) {
+               return $q.reject("Item already in Node.");
+            }
             return storeLayoutRsc.$post("addNodeItem", {nodeId: node.id, item: JSON.stringify(item)})
                .then(function(result) {
                   self.items[result.id] = createModelForNodeItem(result);

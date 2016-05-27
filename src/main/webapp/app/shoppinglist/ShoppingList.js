@@ -29,10 +29,12 @@
          ////////////////////
 
          function addItem(item) {
-            return shoppingListRsc.$post("addItem", {item: JSON.stringify(item)})
-               .then(function(shoppingListItemRsc) {
-                  self.items.push(ShoppingListItem.load(shoppingListItemRsc));
-               });
+            if (!_.anyMatch(self.items, function(shoppingListItem) { return shoppingListItem.code === item.code; })) {
+               return shoppingListRsc.$post("addItem", {item: JSON.stringify(item)})
+                  .then(function(shoppingListItemRsc) {
+                     self.items.push(ShoppingListItem.load(shoppingListItemRsc));
+                  });
+            }
          }
 
          function removeItem(item) {
