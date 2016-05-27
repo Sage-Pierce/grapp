@@ -26,13 +26,16 @@
 
       function UserModel(userRsc) {
          var self = this;
-         self.setDisplayName = setDisplayName;
+         self.setAttributes = setAttributes;
 
          ////////////////////
 
-         function setDisplayName(displayName) {
-            return userRsc.$put("self", {name: displayName})
-               .then(function() { self.name = displayName; });
+         function setAttributes(attributes) {
+            return userRsc.$put("self", attributes)
+               .then(function(userRsc) {
+                  self.name = userRsc.name;
+                  return self;
+               });
          }
       }
    }

@@ -74,17 +74,14 @@
                   return mainVM.userName;
                }
             }
-         }).result.then(updateDisplayName, function() {});
+         }).result.then(updateUserAttributes);
       }
 
-      function updateDisplayName(name) {
-         mainVM.loading = true;
+      function updateUserAttributes(attributes) {
          Login.afterLogIn().then(function(user) {
-            return user.setDisplayName(name);
-         }).then(function() {
-            mainVM.userName = name;
-         }).finally(function() {
-            mainVM.loading = false;
+            return user.setAttributes(attributes);
+         }).then(function(user) {
+            mainVM.userName = user.name;
          });
       }
 

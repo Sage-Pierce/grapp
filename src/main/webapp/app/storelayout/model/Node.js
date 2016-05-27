@@ -30,7 +30,10 @@
 
          function setAttributes(attributes) {
             return Root.updateResource("node", node.id, _.merge(attributes, self))
-               .then(function(nodeRsc) { self.name = nodeRsc.name; });
+               .then(function(nodeRsc) {
+                  self.name = nodeRsc.name;
+                  return self;
+               });
          }
 
          function setLocation(location) {

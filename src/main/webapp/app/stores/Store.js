@@ -49,6 +49,7 @@
                self.name = storeRsc.name;
                self.location = storeRsc.location;
                self.approximateAddress = attributes.approximateAddress || performAddressLookup(self.location);
+               return self;
             });
          }
 

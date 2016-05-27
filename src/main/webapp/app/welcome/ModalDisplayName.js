@@ -14,7 +14,7 @@
       ////////////////////
 
       function update() {
-         $uibModalInstance.close(modalDisplayNameVM.name);
+         $uibModalInstance.close({name: modalDisplayNameVM.name});
       }
 
       function cancel() {
