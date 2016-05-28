@@ -31,7 +31,7 @@
 
          function addList(name) {
             return shopperRsc.$post("addList", {name: name})
-               .then(self.lists.push);
+               .then(function(shoppingListRsc) { self.lists.push(shoppingListRsc); });
          }
 
          function removeList(list) {
