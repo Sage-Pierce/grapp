@@ -30,19 +30,19 @@
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
-                com.wisegas.application.restresource,
-                com.wisegas.itemmanagement.restresource,
-                com.wisegas.pathgeneration.restresource,
-                com.wisegas.shoppinglists.restresource,
-                com.wisegas.stores.restresource,
+                com.wisegas.application.restresource
+                com.wisegas.itemmanagement.restresource
+                com.wisegas.pathgeneration.restresource
+                com.wisegas.shoppinglists.restresource
+                com.wisegas.stores.restresource
                 com.wisegas.users.restresource
             </param-value>
         </init-param>
         <init-param>
             <param-name>jersey.config.server.provider.classnames</param-name>
             <param-value>
-                com.wisegas.common.webservices.jaxrs.exceptionmapper.EntityConflictExceptionMapper,
-                com.wisegas.common.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper,
+                com.wisegas.common.webservices.jaxrs.exceptionmapper.EntityConflictExceptionMapper
+                com.wisegas.common.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
                 com.wisegas.common.webservices.jaxrs.filter.CORSResponseFilter
             </param-value>
         </init-param>
