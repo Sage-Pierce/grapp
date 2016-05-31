@@ -48,12 +48,12 @@ public class ShoppingLayoutServiceImpl implements ShoppingLayoutService {
 
    private List<ShoppingNodeDto> generateShoppingNodes(StoreLayout storeLayout, List<CodeName> items, List<ItemLineageDto> itemLineages) {
       Map<String, List<String>> lineagesByCode = createItemCodeLineageMap(itemLineages);
-      Map<Node, List<ShoppingItemDto>> shoppingItemsByNode =  items.stream()
-                                                                   .filter(item -> lineagesByCode.containsKey(item.getCode()))
-                                                                   .map(item -> findShoppingItemNode(storeLayout.getNodes(), item, lineagesByCode.get(item.getCode())))
-                                                                   .filter(Optional::isPresent)
-                                                                   .map(Optional::get)
-                                                                   .collect(groupingBy(ShoppingNodeItem::getNode, mapping(ShoppingNodeItem::getItem, toList())));
+      Map<Node, List<ShoppingItemDto>> shoppingItemsByNode = items.stream()
+                                                                  .filter(item -> lineagesByCode.containsKey(item.getCode()))
+                                                                  .map(item -> findShoppingItemNode(storeLayout.getNodes(), item, lineagesByCode.get(item.getCode())))
+                                                                  .filter(Optional::isPresent)
+                                                                  .map(Optional::get)
+                                                                  .collect(groupingBy(ShoppingNodeItem::getNode, mapping(ShoppingNodeItem::getItem, toList())));
       shoppingItemsByNode.computeIfAbsent(storeLayout.getNodeOfType(NodeType.ENTRANCE), (key) -> Collections.emptyList());
       shoppingItemsByNode.computeIfAbsent(storeLayout.getNodeOfType(NodeType.CHECKOUT), (key) -> Collections.emptyList());
       return shoppingItemsByNode.entrySet().stream()
