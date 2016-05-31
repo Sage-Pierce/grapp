@@ -28,8 +28,23 @@
         <servlet-name>jersey</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.wisegas.application.config.JerseyApplication</param-value>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>
+                com.wisegas.application.restresource,
+                com.wisegas.user.restresource,
+                com.wisegas.storemanagement.restresource,
+                com.wisegas.itemmanagement.restresource,
+                com.wisegas.shoppinglist.restresource,
+                com.wisegas.pathgeneration.restresource
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>
+                com.wisegas.common.webservices.jaxrs.filter.CORSResponseFilter,
+                com.wisegas.common.webservices.jaxrs.exceptionmapper.EntityConflictExceptionMapper,
+                com.wisegas.common.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
+            </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

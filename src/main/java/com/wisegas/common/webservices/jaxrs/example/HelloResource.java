@@ -1,4 +1,4 @@
-package com.wisegas.application.restresource;
+package com.wisegas.common.webservices.jaxrs.example;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
