@@ -14,10 +14,10 @@
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
                             base-package="com.wisegas.itemmanagement
-                                          com.wisegas.shoppinglist
-                                          com.wisegas.storemanagement
-                                          com.wisegas.user
-                                          com.wisegas.pathgeneration"/>
+                                          com.wisegas.pathgeneration
+                                          com.wisegas.shoppinglists
+                                          com.wisegas.stores
+                                          com.wisegas.users"/>
     <context:annotation-config/>
 
     <!-- Bean used to reset DomainEventPublisher -->

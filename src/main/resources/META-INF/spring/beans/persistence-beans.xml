@@ -17,9 +17,9 @@
         <property name="packagesToScan">
             <array>
                 <value>com.wisegas.itemmanagement.domain</value>
-                <value>com.wisegas.shoppinglist.domain</value>
-                <value>com.wisegas.storemanagement.domain</value>
-                <value>com.wisegas.user.domain</value>
+                <value>com.wisegas.shoppinglists.domain</value>
+                <value>com.wisegas.stores.domain</value>
+                <value>com.wisegas.users.domain</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">

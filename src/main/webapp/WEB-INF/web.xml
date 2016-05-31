@@ -31,11 +31,11 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
                 com.wisegas.application.restresource,
-                com.wisegas.user.restresource,
-                com.wisegas.storemanagement.restresource,
                 com.wisegas.itemmanagement.restresource,
-                com.wisegas.shoppinglist.restresource,
-                com.wisegas.pathgeneration.restresource
+                com.wisegas.pathgeneration.restresource,
+                com.wisegas.shoppinglists.restresource,
+                com.wisegas.stores.restresource,
+                com.wisegas.users.restresource
             </param-value>
         </init-param>
         <init-param>
