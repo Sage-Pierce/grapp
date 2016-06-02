@@ -30,7 +30,6 @@
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
-                com.wisegas.application.restresource
                 com.wisegas.itemmanagement.restresource
                 com.wisegas.pathgeneration.restresource
                 com.wisegas.shoppinglists.restresource
