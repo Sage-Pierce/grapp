@@ -12,9 +12,7 @@
       ////////////////////
 
       function loadByEmail(email) {
-         return ShoppingListsRoot.afterLoad().then(function(rootRsc) {
-            return rootRsc.$put("shoppers", {email: email}).then(createModel);
-         });
+         return ShoppingListsRoot.loadShopperByEmail(email).then(createModel);
       }
 
       function createModel(shopperRsc) {

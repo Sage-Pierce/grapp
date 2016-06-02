@@ -8,19 +8,12 @@
    function Item(ItemManagementRoot) {
       var self = this;
       self.createGeneralItem = createGeneralItem;
-      self.importItems = importItems;
       self.loadAllGeneral = loadAllGeneral;
 
       ////////////////////
 
       function createGeneralItem(params) {
          return ItemManagementRoot.createResourceModel("generalItems", params, createModel);
-      }
-
-      function importItems(data) {
-         return ItemManagementRoot.afterLoad().then(function(rootRsc) {
-            return rootRsc.$put("importItems", {type: "NACS"}, data, {headers: {"Content-Type": "text/plain"}}).then(loadAllGeneral);
-         });
       }
 
       function loadAllGeneral() {

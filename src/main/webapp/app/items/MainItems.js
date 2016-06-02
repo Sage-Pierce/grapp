@@ -4,13 +4,13 @@
    angular.module("App")
       .controller("MainItems", MainItems);
 
-   MainItems.$inject = ["$uibModal", "Item", "Messaging"];
-   function MainItems($uibModal, Item, Messaging) {
+   MainItems.$inject = ["$uibModal", "ItemManagementRoot", "Item", "Messaging"];
+   function MainItems($uibModal, ItemManagementRoot, Item, Messaging) {
       var mainItemsVM = this;
       mainItemsVM.items = [];
       mainItemsVM.filter = "";
       mainItemsVM.createGeneralItem = createGeneralItem;
-      mainItemsVM.importItems = importItems;
+      mainItemsVM.importNacsItems = importNacsItems;
       mainItemsVM.createSubItem = createSubItem;
       mainItemsVM.deleteItem = deleteItem;
 
@@ -19,9 +19,7 @@
       ////////////////////
 
       function initialize() {
-         Item.loadAllGeneral().then(function(items) {
-            mainItemsVM.items = items;
-         });
+         reloadItems();
       }
 
       function createGeneralItem() {
@@ -32,11 +30,9 @@
          });
       }
 
-      function importItems() {
+      function importNacsItems() {
          openModalImport().then(function(result) {
-            Item.importItems(result.data).then(function(items) {
-               mainItemsVM.items = items;
-            });
+            ItemManagementRoot.importItems("NACS", result.data).then(reloadItems);
          });
       }
 
@@ -52,6 +48,12 @@
          Messaging.requestConfirmation("Delete Item", "Are you sure you want to delete the Item " + item.name + "?")
             .then(item.delete)
             .then(itemScope.remove);
+      }
+
+      function reloadItems() {
+         Item.loadAllGeneral().then(function(items) {
+            mainItemsVM.items = items;
+         });
       }
 
       function openModalImport() {

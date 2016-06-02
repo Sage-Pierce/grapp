@@ -38,18 +38,11 @@
             var waypoints = (nodesByType[NodeType.REGULAR.code] || []).map(function(node) { return _.convertLocationToPoint(node.location); });
             var enclosure = _.convertGeoPolygonToPolygon(self.innerOutline);
             var polygons = _.values(self.features).map(function(feature) { return _.convertGeoPolygonToPolygon(feature.polygon); });
-            return generatePath(start, finish, waypoints, enclosure, polygons);
+            return PathGenerationRoot.generatePath(start, finish, waypoints, enclosure, polygons).then(convertPathResourceToPath);
          }
 
-         function generatePath(start, finish, waypoints, enclosure, polygons) {
-            return PathGenerationRoot.afterLoad().then(function(rootRsc) {
-               return rootRsc.$put("self",
-                                   {start: JSON.stringify(start), finish: JSON.stringify(finish), waypoints: JSON.stringify({points: waypoints})},
-                                   JSON.stringify({enclosure: enclosure, polygons: polygons}))
-                  .then(function(pathRsc) {
-                     return _.convertPointsToPath(pathRsc.points);
-                  });
-            });
+         function convertPathResourceToPath(pathRsc) {
+            return _.convertPointsToPath(pathRsc.points);
          }
       }
    }

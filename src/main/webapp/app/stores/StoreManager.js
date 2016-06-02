@@ -12,9 +12,7 @@
       ////////////////////
 
       function loadByEmail(email) {
-         return StoresRoot.afterLoad().then(function(rootRsc) {
-            return rootRsc.$put("storeManagers", {email: email}).then(createModel);
-         });
+         return StoresRoot.loadManagerByEmail(email).then(createModel);
       }
 
       function createModel(storeManagerRsc) {
