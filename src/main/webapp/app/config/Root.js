@@ -36,7 +36,7 @@
             return afterLoad().then(function(rootRsc) {
                return rootRsc.$get(pluralResourceName).then(function(pluralResource) {
                   return pluralResource.$has(pluralResourceName) ? createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback)
-                     : convertResourcesToModels(pluralResource.values || [], resourceModelCreatorCallback);
+                                                                 : convertResourcesToModels(pluralResource.values || [], resourceModelCreatorCallback);
                });
             });
          }
