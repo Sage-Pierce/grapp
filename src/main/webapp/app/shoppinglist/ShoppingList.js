@@ -4,15 +4,15 @@
    angular.module("App")
       .service("ShoppingList", ShoppingList);
 
-   ShoppingList.$inject = ["Root", "ShoppingListItem"];
-   function ShoppingList(Root, ShoppingListItem) {
+   ShoppingList.$inject = ["ShoppingListsRoot", "ShoppingListItem"];
+   function ShoppingList(ShoppingListsRoot, ShoppingListItem) {
       var self = this;
       self.loadById = loadById;
 
       ////////////////////
 
       function loadById(id) {
-         return Root.loadResourceModel("shoppingList", id, createModel);
+         return ShoppingListsRoot.loadResourceModel("shoppingList", id, createModel);
       }
 
       function createModel(shoppingListRsc) {

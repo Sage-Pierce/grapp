@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Item", Item);
 
-   Item.$inject = ["Root"];
-   function Item(Root) {
+   Item.$inject = ["ItemManagementRoot"];
+   function Item(ItemManagementRoot) {
       var self = this;
       self.createGeneralItem = createGeneralItem;
       self.importItems = importItems;
@@ -14,17 +14,17 @@
       ////////////////////
 
       function createGeneralItem(params) {
-         return Root.createResourceModel("generalItems", params, createModel);
+         return ItemManagementRoot.createResourceModel("generalItems", params, createModel);
       }
 
       function importItems(data) {
-         return Root.afterLoad().then(function(rootRsc) {
+         return ItemManagementRoot.afterLoad().then(function(rootRsc) {
             return rootRsc.$put("importItems", {type: "NACS"}, data, {headers: {"Content-Type": "text/plain"}}).then(loadAllGeneral);
          });
       }
 
       function loadAllGeneral() {
-         return Root.loadResourceModels("generalItems", createModel);
+         return ItemManagementRoot.loadResourceModels("generalItems", createModel);
       }
 
       function createModel(item) {
@@ -41,7 +41,7 @@
          ////////////////////
 
          function addSubItem(params) {
-            return Root.createResourceModel("items", _.merge({superItemCode: self.primaryCode}, params), createModel)
+            return ItemManagementRoot.createResourceModel("items", _.merge({superItemCode: self.primaryCode}, params), createModel)
                .then(function(itemModel) {
                   self.subItems.push(itemModel);
                   return itemModel;
@@ -49,7 +49,7 @@
          }
 
          function del() {
-            return Root.deleteResource("item", {primaryCode: self.primaryCode});
+            return ItemManagementRoot.deleteResource("item", {primaryCode: self.primaryCode});
          }
 
          function isGeneralItem() {

@@ -4,15 +4,15 @@
    angular.module("App")
       .service("ItemLineage", ItemLineage);
 
-   ItemLineage.$inject = ["Root"];
-   function ItemLineage(Root) {
+   ItemLineage.$inject = ["StoresRoot"];
+   function ItemLineage(StoresRoot) {
       var self = this;
       self.loadAll = loadAll;
 
       ////////////////////
 
       function loadAll() {
-         return Root.loadResourceModels("items", createModel);
+         return StoresRoot.loadResourceModels("items", createModel);
       }
 
       function createModel(itemLineage) {

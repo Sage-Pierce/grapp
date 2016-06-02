@@ -4,15 +4,15 @@
    angular.module("App")
       .service("StoreManager", StoreManager);
 
-   StoreManager.$inject = ["Root", "Store"];
-   function StoreManager(Root, Store) {
+   StoreManager.$inject = ["StoresRoot", "Store"];
+   function StoreManager(StoresRoot, Store) {
       var self = this;
       self.loadByEmail = loadByEmail;
 
       ////////////////////
 
       function loadByEmail(email) {
-         return Root.afterLoad().then(function(rootRsc) {
+         return StoresRoot.afterLoad().then(function(rootRsc) {
             return rootRsc.$put("storeManagers", {email: email}).then(createModel);
          });
       }

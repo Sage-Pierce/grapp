@@ -4,15 +4,15 @@
    angular.module("App")
       .service("ShoppingLayout", ShoppingLayout);
 
-   ShoppingLayout.$inject = ["Root", "ShoppingNode", "NodeType"];
-   function ShoppingLayout(Root, ShoppingNode, NodeType) {
+   ShoppingLayout.$inject = ["StoresRoot", "PathGenerationRoot", "ShoppingNode", "NodeType"];
+   function ShoppingLayout(StoresRoot, PathGenerationRoot, ShoppingNode, NodeType) {
       var self = this;
       self.loadByIdForItems = loadByIdForItems;
 
       ////////////////////
 
       function loadByIdForItems(id, items) {
-         return Root.loadResourceModel("shoppingLayout", {id: id, shoppingList: JSON.stringify({items: items})}, createModel);
+         return StoresRoot.loadResourceModel("shoppingLayout", {id: id, shoppingList: JSON.stringify({items: items})}, createModel);
       }
 
       function createModel(shoppingLayoutRsc) {
@@ -42,7 +42,7 @@
          }
 
          function generatePath(start, finish, waypoints, enclosure, polygons) {
-            return Root.afterLoad().then(function(rootRsc) {
+            return PathGenerationRoot.afterLoad().then(function(rootRsc) {
                return rootRsc.$put("pathGeneration",
                                    {start: JSON.stringify(start), finish: JSON.stringify(finish), waypoints: JSON.stringify({points: waypoints})},
                                    JSON.stringify({enclosure: enclosure, polygons: polygons}))

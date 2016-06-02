@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Store", Store);
 
-   Store.$inject = ["Root", "AddressLookup"];
-   function Store(Root, AddressLookup) {
+   Store.$inject = ["StoresRoot", "AddressLookup"];
+   function Store(StoresRoot, AddressLookup) {
       var self = this;
       self.loadAll = loadAll;
       self.loadById = loadById;
@@ -14,11 +14,11 @@
       ////////////////////
 
       function loadAll() {
-         return Root.loadResourceModels("stores", createModel);
+         return StoresRoot.loadResourceModels("stores", createModel);
       }
 
       function loadById(storeId) {
-         return Root.loadResourceModel("store", storeId, createModel);
+         return StoresRoot.loadResourceModel("store", storeId, createModel);
       }
 
       function load(store) {
@@ -45,7 +45,7 @@
 
          function setAttributes(attributes) {
             attributes.location = JSON.stringify(attributes.location || self.location);
-            return Root.updateResource("store", store.id, _.merge(attributes, self)).then(function(storeRsc) {
+            return StoresRoot.updateResource("store", store.id, _.merge(attributes, self)).then(function(storeRsc) {
                self.name = storeRsc.name;
                self.location = storeRsc.location;
                self.approximateAddress = attributes.approximateAddress || performAddressLookup(self.location);
@@ -54,7 +54,7 @@
          }
 
          function del() {
-            return Root.deleteResource("store", store.id);
+            return StoresRoot.deleteResource("store", store.id);
          }
 
          function performAddressLookup(location) {

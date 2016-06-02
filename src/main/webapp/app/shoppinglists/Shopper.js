@@ -4,15 +4,15 @@
    angular.module("App")
       .service("Shopper", Shopper);
 
-   Shopper.$inject = ["Root"];
-   function Shopper(Root) {
+   Shopper.$inject = ["ShoppingListsRoot"];
+   function Shopper(ShoppingListsRoot) {
       var self = this;
       self.loadByEmail = loadByEmail;
 
       ////////////////////
 
       function loadByEmail(email) {
-         return Root.afterLoad().then(function(rootRsc) {
+         return ShoppingListsRoot.afterLoad().then(function(rootRsc) {
             return rootRsc.$put("shoppers", {email: email}).then(createModel);
          });
       }
@@ -35,7 +35,7 @@
          }
 
          function removeList(list) {
-            return Root.deleteResource("shoppingList", list.id)
+            return ShoppingListsRoot.deleteResource("shoppingList", list.id)
                .then(function() { _.remove(self.lists, list); });
          }
       }

@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Feature", Feature);
 
-   Feature.$inject = ["Root"];
-   function Feature(Root) {
+   Feature.$inject = ["StoresRoot"];
+   function Feature(StoresRoot) {
       var self = this;
       self.load = load;
 
@@ -30,7 +30,7 @@
          }
 
          function del() {
-            return Root.deleteResource("feature", feature.id);
+            return StoresRoot.deleteResource("feature", feature.id);
          }
       }
    }

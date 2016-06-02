@@ -4,8 +4,8 @@
    angular.module("App")
       .service("ShoppingListItem", ShoppingListItem);
 
-   ShoppingListItem.$inject = ["Root"];
-   function ShoppingListItem(Root) {
+   ShoppingListItem.$inject = ["ShoppingListsRoot"];
+   function ShoppingListItem(ShoppingListsRoot) {
       var self = this;
       self.load = load;
 
@@ -24,7 +24,7 @@
          ////////////////////
 
          function del() {
-            return Root.deleteResource("shoppingListItem", shoppingListItem.id);
+            return ShoppingListsRoot.deleteResource("shoppingListItem", shoppingListItem.id);
          }
       }
    }

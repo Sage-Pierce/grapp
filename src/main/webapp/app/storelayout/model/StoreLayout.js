@@ -4,15 +4,15 @@
    angular.module("App")
       .service("StoreLayout", StoreLayout);
 
-   StoreLayout.$inject = ["Root", "Outline", "Feature", "Node", "NodeType"];
-   function StoreLayout(Root, Outline, Feature, Node, NodeType) {
+   StoreLayout.$inject = ["StoresRoot", "Outline", "Feature", "Node", "NodeType"];
+   function StoreLayout(StoresRoot, Outline, Feature, Node, NodeType) {
       var self = this;
       self.loadById = loadById;
 
       ////////////////////
 
       function loadById(storeLayoutId) {
-         return Root.loadResourceModel("storeLayout", storeLayoutId, createModel);
+         return StoresRoot.loadResourceModel("storeLayout", storeLayoutId, createModel);
       }
 
       function createModel(storeLayoutRsc) {

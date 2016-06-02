@@ -4,8 +4,8 @@
    angular.module("App")
       .service("User", User);
 
-   User.$inject = ["Root"];
-   function User(Root) {
+   User.$inject = ["UsersRoot"];
+   function User(UsersRoot) {
       var self = this;
       self.loadByEmail = loadByEmail;
       self.load = load;
@@ -13,7 +13,7 @@
       ////////////////////
 
       function loadByEmail(email) {
-         return Root.loadResourceModel("user", {email: email}, createModel);
+         return UsersRoot.loadResourceModel("user", {email: email}, createModel);
       }
 
       function load(userRsc) {

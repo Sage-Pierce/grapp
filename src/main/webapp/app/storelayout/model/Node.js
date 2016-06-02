@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Node", Node);
 
-   Node.$inject = ["$q", "Root", "NodeType"];
-   function Node($q, Root, NodeType) {
+   Node.$inject = ["$q", "StoresRoot", "NodeType"];
+   function Node($q, StoresRoot, NodeType) {
       var self = this;
       self.load = load;
 
@@ -29,7 +29,7 @@
          ////////////////////
 
          function setAttributes(attributes) {
-            return Root.updateResource("node", node.id, _.merge(attributes, self))
+            return StoresRoot.updateResource("node", node.id, _.merge(attributes, self))
                .then(function(nodeRsc) {
                   self.name = nodeRsc.name;
                   return self;
@@ -58,12 +58,12 @@
          }
 
          function removeItemById(itemId) {
-            return Root.deleteResource("nodeItem", itemId)
+            return StoresRoot.deleteResource("nodeItem", itemId)
                .then(function() { delete self.items[itemId]; });
          }
 
          function del() {
-            return Root.deleteResource("node", node.id);
+            return StoresRoot.deleteResource("node", node.id);
          }
 
          function createModelForNodeItem(nodeItem) {

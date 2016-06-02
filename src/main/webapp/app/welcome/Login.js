@@ -5,8 +5,8 @@
       .service("Login", Login)
       .run(logInCachedUser);
 
-   Login.$inject = ["$cookies", "$q", "Root", "User"];
-   function Login($cookies, $q, Root, User) {
+   Login.$inject = ["$cookies", "$q", "UsersRoot", "User"];
+   function Login($cookies, $q, UsersRoot, User) {
       var self = this;
       self.logInCachedUser = logInCachedUser;
       self.logInWithOAuth = logInWithOAuth;
@@ -59,7 +59,7 @@
       }
 
       function logIn(email, avatar) {
-         return Root.afterLoad().then(function(rootRsc) {
+         return UsersRoot.afterLoad().then(function(rootRsc) {
             return rootRsc.$put("logIn", {email: email, avatar: avatar}).then(cacheUser).then(User.load);
          });
       }
