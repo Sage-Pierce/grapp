@@ -84,9 +84,7 @@
          }
 
          function decorateResourceModel(resource, model) {
-            model.delete = model.delete || resource.$del && function() {
-                  return resource.$del("self");
-               };
+            model.delete = model.delete || resource.$del && function() { return resource.$del("self"); };
             return model;
          }
       };
