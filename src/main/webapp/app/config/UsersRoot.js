@@ -6,7 +6,7 @@
 
    UsersRoot.$inject = ["Root"];
    function UsersRoot(Root) {
-      var self = angular.extend(this, new Root("/"));
+      var self = angular.extend(this, new Root("/users/root/"));
 
       ////////////////////
    }

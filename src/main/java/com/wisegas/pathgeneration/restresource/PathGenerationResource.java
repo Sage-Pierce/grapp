@@ -11,10 +11,7 @@ import com.wisegas.pathgeneration.service.dto.PathPolygonsDto;
 import com.wisegas.pathgeneration.service.dto.WaypointsDto;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
@@ -28,6 +25,11 @@ public class PathGenerationResource extends JaxrsHalJsonResource {
    @Inject
    public PathGenerationResource(PathService pathService) {
       this.pathService = pathService;
+   }
+
+   @GET
+   public Response getRoot() {
+      return buildHalResponse(halRepresentationFactory.createForLinks(createLinks()));
    }
 
    @PUT

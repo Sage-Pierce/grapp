@@ -6,7 +6,7 @@
 
    PathGenerationRoot.$inject = ["Root"];
    function PathGenerationRoot(Root) {
-      var self = angular.extend(this, new Root("/"));
+      var self = angular.extend(this, new Root("/pathGeneration/"));
 
       ////////////////////
    }

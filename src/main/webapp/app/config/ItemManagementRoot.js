@@ -6,7 +6,7 @@
 
    ItemManagementRoot.$inject = ["Root"];
    function ItemManagementRoot(Root) {
-      var self = angular.extend(this, new Root("/"));
+      var self = angular.extend(this, new Root("/itemManagement/root/"));
 
       ////////////////////
    }

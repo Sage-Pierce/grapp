@@ -6,7 +6,7 @@
 
    ShoppingListsRoot.$inject = ["Root"];
    function ShoppingListsRoot(Root) {
-      var self = angular.extend(this, new Root("/"));
+      var self = angular.extend(this, new Root("/shoppingLists/root/"));
 
       ////////////////////
    }

@@ -43,7 +43,7 @@
 
          function generatePath(start, finish, waypoints, enclosure, polygons) {
             return PathGenerationRoot.afterLoad().then(function(rootRsc) {
-               return rootRsc.$put("pathGeneration",
+               return rootRsc.$put("self",
                                    {start: JSON.stringify(start), finish: JSON.stringify(finish), waypoints: JSON.stringify({points: waypoints})},
                                    JSON.stringify({enclosure: enclosure, polygons: polygons}))
                   .then(function(pathRsc) {
