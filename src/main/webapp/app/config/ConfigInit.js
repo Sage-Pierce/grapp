@@ -34,11 +34,11 @@
          "http://localhost:8080/rest"                // When running the server manually
       ];
       var server = servers[0];
-      UsersRoot.loadApi(server);
-      StoresRoot.loadApi(server);
-      ItemManagementRoot.loadApi(server);
-      ShoppingListsRoot.loadApi(server);
-      PathGenerationRoot.loadApi(server);
+      UsersRoot.loadFromServer(server);
+      StoresRoot.loadFromServer(server);
+      ItemManagementRoot.loadFromServer(server);
+      ShoppingListsRoot.loadFromServer(server);
+      PathGenerationRoot.loadFromServer(server);
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely

@@ -8,7 +8,7 @@
    function Root($q, halClient) {
       return function(apiRootRef) {
          var self = this;
-         self.loadApi = loadApi;
+         self.loadFromServer = loadFromServer;
          self.afterLoad = afterLoad;
          self.createResourceModel = createResourceModel;
          self.loadResourceModels = loadResourceModels;
@@ -20,7 +20,7 @@
 
          ////////////////////
 
-         function loadApi(serverHref) {
+         function loadFromServer(serverHref) {
             halClient.$get(apiRootRef || "/", { transformUrl: function(href) { return serverHref + href; } }).then(deferred.resolve, console.log);
          }
 
