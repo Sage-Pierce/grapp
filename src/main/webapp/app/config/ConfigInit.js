@@ -20,8 +20,8 @@
       });
    }
 
-   initialize.$inject = ["$rootScope", "$state", "halClient", "Root", "uiGmapGoogleMapApi"];
-   function initialize($rootScope, $state, halClient, Root, uiGmapGoogleMapApi) {
+   initialize.$inject = ["$rootScope", "$state", "uiGmapGoogleMapApi", "UsersRoot", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot", "PathGenerationRoot"];
+   function initialize($rootScope, $state, uiGmapGoogleMapApi, UsersRoot, StoresRoot, ItemManagementRoot, ShoppingListsRoot, PathGenerationRoot) {
       $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
          console.log("Error on state transition:");
          console.log(error);
@@ -33,8 +33,12 @@
          "http://localhost:8008/rest",               // When running Heroku locally (Need to set PORT Environment Var.)
          "http://localhost:8080/rest"                // When running the server manually
       ];
-      var options = { transformUrl: function(href) { return servers[0] + href; } };
-      halClient.$get("/", options).then(Root.load, console.log);
+      var server = servers[0];
+      UsersRoot.loadApi(server);
+      StoresRoot.loadApi(server);
+      ItemManagementRoot.loadApi(server);
+      ShoppingListsRoot.loadApi(server);
+      PathGenerationRoot.loadApi(server);
 
       uiGmapGoogleMapApi.then(function() {
          // Leaving this in as a hint to future-me if GMap behaves strangely
