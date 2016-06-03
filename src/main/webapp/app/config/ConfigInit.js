@@ -40,9 +40,7 @@
       ShoppingListsRoot.loadFromServer(server);
       PathGenerationRoot.loadFromServer(server);
 
-      uiGmapGoogleMapApi.then(function() {
-         // Leaving this in as a hint to future-me if GMap behaves strangely
-         // due to not being fully loaded before having attributes set
-      });
+      // Leaving this in as a hint to future-me if GMap behaves strangely due to not being fully loaded before having attributes set
+      uiGmapGoogleMapApi.then(function() {});
    }
 })();
