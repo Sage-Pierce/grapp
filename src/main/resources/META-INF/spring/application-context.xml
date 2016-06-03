@@ -18,7 +18,7 @@
     </beans>
 
     <beans>
-        <context:property-placeholder location="classpath:properties/application.properties"/>
+        <context:property-placeholder location="classpath:properties/application.properties" system-properties-mode="FALLBACK"/>
 
         <import resource="classpath:META-INF/spring/beans/database-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
