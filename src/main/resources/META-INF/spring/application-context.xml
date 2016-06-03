@@ -10,14 +10,16 @@
        default-lazy-init="true">
 
     <beans profile="development">
-        <context:property-placeholder location="classpath:properties/application-development.properties"/>
+        <context:property-placeholder location="classpath:properties/application-development.properties" ignore-unresolvable="true"/>
     </beans>
 
     <beans profile="production">
-        <context:property-placeholder location="classpath:properties/application-production.properties"/>
+        <context:property-placeholder location="classpath:properties/application-production.properties" ignore-unresolvable="true"/>
     </beans>
 
     <beans>
+        <context:property-placeholder location="classpath:properties/application.properties"/>
+
         <import resource="classpath:META-INF/spring/beans/database-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/client-beans.xml"/>
