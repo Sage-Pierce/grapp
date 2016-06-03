@@ -1,17 +1,18 @@
 (function() {
    "use strict";
 
-   OAuth.initialize("lqAgua7gEL9Rf-DF-Qm1jxBst6g");
-
-   angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
-
    angular.module("App", ["ngCookies", "ngSanitize", "ui.router", "angular-hal", "ui.bootstrap", "uiGmapgoogle-maps", "ui.tree", "ui.select"])
       .config(configure)
       .run(initialize);
 
    configure.$inject = ["$urlRouterProvider", "uiGmapGoogleMapApiProvider"];
    function configure($urlRouterProvider, uiGmapGoogleMapApiProvider) {
+      // Necessary to make UI Router work in certain environments
+      angular.element(document.getElementsByTagName("head")).append(angular.element("<base href='" + window.location.pathname + "'/>"));
+
       $urlRouterProvider.otherwise("/welcome");
+
+      OAuth.initialize("lqAgua7gEL9Rf-DF-Qm1jxBst6g");
 
       uiGmapGoogleMapApiProvider.configure({
          key: "AIzaSyBXdSdaWFJdrh1JBLK5lGXgQHB64Ip9esM",
