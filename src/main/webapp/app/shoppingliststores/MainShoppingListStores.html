@@ -1,5 +1,11 @@
 <h4 class="text-center">Select a Store</h4>
-<stores-map map-control="mainShoppingListStoresVM.mapControl"
-            stores="mainShoppingListStoresVM.stores">
-</stores-map>
-<button class="btn btn-success width-full" ng-click="mainShoppingListStoresVM.showShoppingPlan()" ng-disabled="!mainShoppingListStoresVM.isAStoreSelected()">Go Shopping!</button>
+<div cg-busy="{promise: mainShoppingListStoresVM.transitionPromise, delay: 20}">
+   <stores-map map-control="mainShoppingListStoresVM.mapControl"
+               stores="mainShoppingListStoresVM.stores">
+   </stores-map>
+   <button class="btn btn-success width-full"
+           ng-click="mainShoppingListStoresVM.showShoppingPlan()"
+           ng-disabled="!mainShoppingListStoresVM.isAStoreSelected()">
+      Go Shopping!
+   </button>
+</div>

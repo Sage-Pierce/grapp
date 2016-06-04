@@ -7,6 +7,7 @@
    MainItems.$inject = ["$uibModal", "ItemManagementRoot", "Item", "Messaging"];
    function MainItems($uibModal, ItemManagementRoot, Item, Messaging) {
       var mainItemsVM = this;
+      mainItemsVM.loadingPromise = null;
       mainItemsVM.items = [];
       mainItemsVM.filter = "";
       mainItemsVM.createGeneralItem = createGeneralItem;
@@ -51,7 +52,7 @@
       }
 
       function reloadItems() {
-         Item.loadAllGeneral().then(function(items) {
+         mainItemsVM.loadingPromise = Item.loadAllGeneral().then(function(items) {
             mainItemsVM.items = items;
          });
       }

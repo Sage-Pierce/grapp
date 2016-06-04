@@ -7,6 +7,7 @@
    MainShoppingListStores.$inject = ["$state", "$stateParams", "StoresMapControl", "stores"];
    function MainShoppingListStores($state, $stateParams, StoresMapControl, stores) {
       var mainShoppingListStoresVM = this;
+      mainShoppingListStoresVM.transitionPromise = null;
       mainShoppingListStoresVM.mapControl = new StoresMapControl();
       mainShoppingListStoresVM.stores = stores;
       mainShoppingListStoresVM.markerClicked = markerClicked;
@@ -37,7 +38,7 @@
       }
 
       function showShoppingPlan() {
-         $state.go("main.shoppingPlan", {listId: $stateParams.listId, storeId: selectedStore.id});
+         mainShoppingListStoresVM.transitionPromise = $state.go("main.shoppingPlan", {listId: $stateParams.listId, storeId: selectedStore.id});
       }
    }
 })();

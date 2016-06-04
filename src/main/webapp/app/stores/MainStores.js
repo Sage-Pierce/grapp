@@ -7,6 +7,7 @@
    MainStores.$inject = ["$uibModal", "$state", "storeManager", "Messaging"];
    function MainStores($uibModal, $state, storeManager, Messaging) {
       var mainStoresVM = this;
+      mainStoresVM.transitionPromise = null;
       mainStoresVM.stores = storeManager.stores;
       mainStoresVM.selectedStore = null;
       mainStoresVM.areAnyStoresExistent = areAnyStoresExistent;
@@ -55,7 +56,7 @@
       }
 
       function editSelectedStore() {
-         $state.go("main.storeLayout.features", {storeId: mainStoresVM.selectedStore.id});
+         mainStoresVM.transitionPromise = $state.go("main.storeLayout.features", {storeId: mainStoresVM.selectedStore.id});
       }
 
       function deleteSelectedStore() {

@@ -7,6 +7,7 @@
    MainShoppingLists.$inject = ["$state", "$uibModal", "shopper"];
    function MainShoppingLists($state, $uibModal, shopper) {
       var mainShoppingListsVM = this;
+      mainShoppingListsVM.transitionPromise = null;
       mainShoppingListsVM.lists = shopper.lists;
       mainShoppingListsVM.createList = createList;
       mainShoppingListsVM.deleteList = deleteList;
@@ -28,7 +29,7 @@
       }
 
       function openList(list) {
-         $state.go("main.shoppingList", {listId: list.id});
+         mainShoppingListsVM.transitionPromise = $state.go("main.shoppingList", {listId: list.id});
       }
    }
 })();

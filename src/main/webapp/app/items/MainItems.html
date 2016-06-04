@@ -1,9 +1,10 @@
 <h4 class="text-center">Items</h4>
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-6 col-sm-offset-3"
+     cg-busy="{promise: mainItemsVM.loadingPromise, delay: 20}">
    <item-tree items="mainItemsVM.items"
-                    add="mainItemsVM.createSubItem"
-                    remove="mainItemsVM.deleteItem"
-                    options="{filterable: true, treeClass: 'height-400'}">
+              add="mainItemsVM.createSubItem"
+              remove="mainItemsVM.deleteItem"
+              options="{filterable: true, treeClass: 'height-400'}">
    </item-tree>
    <button class="btn btn-success pull-left" ng-click="mainItemsVM.createGeneralItem()"><span class="glyphicon glyphicon-plus-sign"></span> Add General Item</button>
    <button class="btn btn-primary pull-right visible-md visible-lg" ng-click="mainItemsVM.importNacsItems()"><span class="glyphicon glyphicon-import"></span> Import NACS Items</button>

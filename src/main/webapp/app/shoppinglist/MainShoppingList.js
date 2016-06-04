@@ -7,6 +7,7 @@
    MainShoppingList.$inject = ["$state", "$stateParams", "shoppingList", "ItemLineage"];
    function MainShoppingList($state, $stateParams, shoppingList, ItemLineage) {
       var mainShoppingListVM = this;
+      mainShoppingListVM.transitionPromise = null;
       mainShoppingListVM.shoppingList = shoppingList;
       mainShoppingListVM.items = [];
       mainShoppingListVM.itemToAdd = null;
@@ -34,7 +35,7 @@
       }
 
       function selectStore() {
-         $state.go("main.shoppingListStores", {listId: $stateParams.listId});
+         mainShoppingListVM.transitionPromise = $state.go("main.shoppingListStores", {listId: $stateParams.listId});
       }
    }
 })();
