@@ -1,42 +1,41 @@
-<div class="modal-wait-spinner-container" ng-show="mainVM.isLoading">
-   <i class="fa fa-cog fa-spin fa-5x wait-spinner"></i>
-</div>
-<nav class="navbar navbar-default navbar-static-top">
-   <div class="container" ng-show="!mainVM.isLoading">
-      <a class="navbar-brand" ui-sref="main.welcome">Grapp</a>
-      <button type="button"
-              class="btn btn-info btn-raised navbar-btn pull-right"
-              ng-click="mainVM.logIn('google_plus')"
-              ng-show="!mainVM.isUserLoggedIn()">
-         Log in with Google+
-      </button>
-      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="mainVM.isUserLoggedIn()">
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-collapse collapse">
-         <ul class="nav navbar-nav" ng-show="mainVM.isUserLoggedIn()">
-            <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>
-            <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showStores()">Stores</a></li>
-            <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showItems()">Items</a></li>
-            <li class="hidden-sm hidden-md hidden-lg"><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.logOut()">Log Out</a></li>
-         </ul>
-         <ul class="nav navbar-nav navbar-right" ng-show="mainVM.isUserLoggedIn()">
-            <li class="dropdown hidden-xs visible-sm visible-md visible-lg" uib-dropdown>
-               <a class="dropdown-toggle" role="button" uib-dropdown-toggle>
-                  {{mainVM.userName}}
-                  <img class="cursor-clickable img-avatar" src="{{mainVM.userAvatar}}"/>
-                  <span class="caret"></span>
-               </a>
-               <ul class="dropdown-menu" role="menu">
-                  <li><a class="cursor-clickable" ng-click="mainVM.openModalDisplayName()">Update Display Name</a></li>
-                  <li class="divider"></li>
-                  <li><a class="cursor-clickable" ng-click="mainVM.logOut()">Log Out</a></li>
-               </ul>
-            </li>
-         </ul>
+<div cg-busy="{promise: mainVM.loginPromise, delay: 200}">
+   <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+         <a class="navbar-brand" ui-sref="main.welcome">Grapp</a>
+         <button type="button"
+                 class="btn btn-info btn-raised navbar-btn pull-right"
+                 ng-click="mainVM.logIn('google_plus')"
+                 ng-show="!mainVM.isUserLoggedIn()">
+            Log in with Google+
+         </button>
+         <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="mainVM.isUserLoggedIn()">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+         </button>
+         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" ng-show="mainVM.isUserLoggedIn()">
+               <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>
+               <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showStores()">Stores</a></li>
+               <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showItems()">Items</a></li>
+               <li class="hidden-sm hidden-md hidden-lg"><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.logOut()">Log Out</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-show="mainVM.isUserLoggedIn()">
+               <li class="dropdown hidden-xs visible-sm visible-md visible-lg" uib-dropdown>
+                  <a class="dropdown-toggle" role="button" uib-dropdown-toggle>
+                     {{mainVM.userName}}
+                     <img class="cursor-clickable img-avatar" src="{{mainVM.userAvatar}}"/>
+                     <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                     <li><a class="cursor-clickable" ng-click="mainVM.openModalDisplayName()">Update Display Name</a></li>
+                     <li class="divider"></li>
+                     <li><a class="cursor-clickable" ng-click="mainVM.logOut()">Log Out</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
       </div>
-   </div>
-</nav>
-<div class="container" ui-view="content"></div>
+   </nav>
+   <div class="container" ui-view="content" cg-busy="{promise: mainVM.navigationPromise, delay: 200}"></div>
+</div>

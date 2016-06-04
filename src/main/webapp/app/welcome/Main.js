@@ -7,7 +7,8 @@
    Main.$inject = ["$state", "$uibModal", "Login"];
    function Main($state, $uibModal, Login) {
       var mainVM = this;
-      mainVM.isLoading = false;
+      mainVM.loginPromise = null;
+      mainVM.navigationPromise = null;
       mainVM.isUserLoggedIn = Login.isUserLoggedIn;
       mainVM.userName = null;
       mainVM.userAvater = null;
@@ -24,22 +25,11 @@
       ////////////////////
 
       function initialize() {
-         mainVM.isLoading = true;
-         Login.afterLogIn().then(function(user) {
-            initUserVariables(user);
-         }).finally(function() {
-            mainVM.isLoading = false;
-         });
+         mainVM.loginPromise = Login.afterLogIn().then(initUserVariables);
       }
 
       function logIn(oAuthProvider) {
-         mainVM.isLoading = true;
-         Login.logInWithOAuth(oAuthProvider).then(function(user) {
-            initUserVariables(user);
-            mainVM.showShoppingLists();
-         }).finally(function() {
-            mainVM.isLoading = false;
-         });
+         mainVM.loginPromise = Login.logInWithOAuth(oAuthProvider).then(initUserVariables).then(showShoppingLists);
       }
 
       function logOut() {
@@ -52,15 +42,15 @@
       }
 
       function showShoppingLists() {
-         $state.go("main.shoppingLists");
+         mainVM.navigationPromise = $state.go("main.shoppingLists");
       }
 
       function showStores() {
-         $state.go("main.stores");
+         mainVM.navigationPromise = $state.go("main.stores");
       }
 
       function showItems() {
-         $state.go("main.items");
+         mainVM.navigationPromise = $state.go("main.items");
       }
 
       function openModalDisplayName() {
