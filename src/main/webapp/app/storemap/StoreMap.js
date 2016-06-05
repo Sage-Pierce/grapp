@@ -15,7 +15,7 @@
          bindToController: {
             mapControl: "=",
             location: "=?",
-            layout: "=",
+            storeLayout: "=",
             editable: "=?"
          }
       };
@@ -34,7 +34,7 @@
 
       var mapControl = this.mapControl;
       var location = this.location || {lat: 0, lng: 0};
-      var layout = this.layout;
+      var storeLayout = this.storeLayout;
       var editable = this.editable ? this.editable : false;
 
       initialize();
@@ -44,7 +44,7 @@
       function initialize() {
          initializeMapSettings(location);
          initializeControls();
-         initializeLayoutObjects(layout);
+         initializeLayoutObjects(storeLayout);
          initializeNodeWindow();
          initializeEvents();
       }
