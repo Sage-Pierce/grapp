@@ -1,4 +1,4 @@
-<div cg-busy="{promise: mainVM.loginPromise, delay: 20}">
+<div cg-busy="{promise: mainVM.loginPromise, delay: 100}">
    <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
          <a class="navbar-brand" ui-sref="main.welcome">Grapp</a>
@@ -37,5 +37,5 @@
          </div>
       </div>
    </nav>
-   <div class="container" ui-view="content" cg-busy="{promise: mainVM.navigationPromise, delay: 20}"></div>
+   <div class="container" ui-view="content" cg-busy="{promise: mainVM.navigationPromise, delay: 100}"></div>
 </div>
