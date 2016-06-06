@@ -1,7 +1,7 @@
 package com.wisegas.pathgeneration.domain_impl.graph.api;
 
+import com.wisegas.common.lang.collection.CollectionUtil;
 import com.wisegas.common.lang.spacial.Point;
-import com.wisegas.common.lang.util.CollectionUtil;
 import com.wisegas.pathgeneration.domain.value.Path;
 
 import java.util.ArrayList;
@@ -23,6 +23,11 @@ public class GraphPath implements Path, Comparable<GraphPath> {
       this.graphPoints = graphPoints;
    }
 
+   private GraphPath(List<GraphPoint> graphPoints, double length) {
+      this.graphPoints = graphPoints;
+      this.length = length;
+   }
+
    @Override
    public int compareTo(GraphPath o) {
       return Double.compare(getLength(), o.getLength());
@@ -41,7 +46,7 @@ public class GraphPath implements Path, Comparable<GraphPath> {
 
    public GraphPath link(GraphPath graphPath) {
       if (graphPoints.isEmpty() || graphPath.graphPoints.isEmpty()) {
-         return new GraphPath(CollectionUtil.concat(graphPoints, graphPath.graphPoints));
+         return new GraphPath(CollectionUtil.concat(graphPoints, graphPath.graphPoints), getLength() + graphPath.getLength());
       }
       else {
          GraphPoint middleEndPoint = graphPoints.get(graphPoints.size() - 1);
@@ -50,7 +55,8 @@ public class GraphPath implements Path, Comparable<GraphPath> {
             throw new IllegalArgumentException(String.format("Cannot link a GraphPath ending with Point %s with another starting with Point %s.", middleEndPoint.toString(), middleStartPoint.toString()));
          }
       }
-      return new GraphPath(CollectionUtil.concat(graphPoints.subList(0, graphPoints.size() - 1), graphPath.graphPoints));
+      List<GraphPoint> points = CollectionUtil.concat(graphPoints.subList(0, graphPoints.size() - 1), graphPath.graphPoints);
+      return new GraphPath(points, getLength() + graphPath.getLength());
    }
 
    public GraphPath add(GraphPoint graphPoint) {
