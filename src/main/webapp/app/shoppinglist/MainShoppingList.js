@@ -10,7 +10,8 @@
       mainShoppingListVM.transitionPromise = null;
       mainShoppingListVM.shoppingList = shoppingList;
       mainShoppingListVM.items = [];
-      mainShoppingListVM.itemToAdd = null;
+      mainShoppingListVM.searchText = null;
+      mainShoppingListVM.getFilteredItems = getFilteredItems;
       mainShoppingListVM.itemToAddSelected = itemToAddSelected;
       mainShoppingListVM.removeItem = removeItem;
       mainShoppingListVM.selectStore = selectStore;
@@ -25,9 +26,14 @@
          });
       }
 
+      function getFilteredItems() {
+         return mainShoppingListVM.searchText ? mainShoppingListVM.items.filter(createItemFilter(mainShoppingListVM.searchText))
+                                              : mainShoppingListVM.items;
+      }
+
       function itemToAddSelected(item) {
          mainShoppingListVM.shoppingList.addItem({code: item.primaryCode, name: item.name});
-         mainShoppingListVM.itemToAdd = null;
+         mainShoppingListVM.searchText = null;
       }
 
       function removeItem(item) {
@@ -36,6 +42,13 @@
 
       function selectStore() {
          mainShoppingListVM.transitionPromise = $state.go("main.shoppingListStores", {listId: $stateParams.listId});
+      }
+
+      function createItemFilter(searchText) {
+         var lowercaseSearchText = _.lowerCase(searchText);
+         return function(item) {
+            return _.lowerCase(item.name).indexOf(lowercaseSearchText) >= 0;
+         };
       }
    }
 })();
