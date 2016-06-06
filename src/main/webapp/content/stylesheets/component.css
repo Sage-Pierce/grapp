@@ -24,15 +24,6 @@
 
 .card-clickable:hover {
    background-color: rgba(0, 0, 0, 0.05);
-   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.card-clickable:active {
-   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-   -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-   -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .btn-ghost {
@@ -40,5 +31,9 @@
 }
 
 .btn-ghost:hover {
+   background-color: transparent !important;
+}
+
+.transparent {
    background-color: transparent !important;
 }
