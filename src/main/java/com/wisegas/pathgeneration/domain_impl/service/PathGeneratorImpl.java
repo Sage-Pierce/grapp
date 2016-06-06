@@ -1,8 +1,8 @@
 package com.wisegas.pathgeneration.domain_impl.service;
 
+import com.wisegas.common.lang.collection.CollectionUtil;
 import com.wisegas.common.lang.spacial.Point;
 import com.wisegas.common.lang.spacial.Polygon;
-import com.wisegas.common.lang.util.CollectionUtil;
 import com.wisegas.pathgeneration.domain.service.PathGenerator;
 import com.wisegas.pathgeneration.domain.value.Path;
 import com.wisegas.pathgeneration.domain.waypoint.WaypointSorter;

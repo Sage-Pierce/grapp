@@ -11,7 +11,7 @@ public final class Dijkstra {
       Set<GraphPoint> visitedPoints = new HashSet<>();
       Map<GraphPoint, GraphPointPath> pointPaths = new HashMap<>();
       Queue<GraphPointPath> pointPathQueue = new PriorityQueue<>();
-      GraphPointPath currentPointPath = new GraphPointPath(start, new GraphPath(Collections.singletonList(start)));
+      GraphPointPath currentPointPath = new GraphPointPath(start, new GraphPath(start));
       pointPaths.put(start, currentPointPath);
       pointPathQueue.add(currentPointPath);
       while (!pointPathQueue.isEmpty() && !Objects.equals(finish, (currentPointPath = pointPathQueue.poll()).getPoint())) {

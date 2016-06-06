@@ -1,4 +1,4 @@
-package com.wisegas.common.lang.util
+package com.wisegas.common.lang.collection
 
 import spock.lang.Specification
 

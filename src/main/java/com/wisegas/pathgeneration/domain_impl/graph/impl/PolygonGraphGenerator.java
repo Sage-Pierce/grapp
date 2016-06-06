@@ -1,9 +1,9 @@
 package com.wisegas.pathgeneration.domain_impl.graph.impl;
 
+import com.wisegas.common.lang.collection.CollectionUtil;
 import com.wisegas.common.lang.spacial.LineSegment;
 import com.wisegas.common.lang.spacial.Point;
 import com.wisegas.common.lang.spacial.Polygon;
-import com.wisegas.common.lang.util.CollectionUtil;
 import com.wisegas.pathgeneration.domain_impl.graph.api.Graph;
 import com.wisegas.pathgeneration.domain_impl.graph.api.GraphPoint;
 
