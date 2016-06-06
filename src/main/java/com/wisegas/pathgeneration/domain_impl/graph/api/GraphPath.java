@@ -55,8 +55,7 @@ public class GraphPath implements Path, Comparable<GraphPath> {
             throw new IllegalArgumentException(String.format("Cannot link a GraphPath ending with Point %s with another starting with Point %s.", middleEndPoint.toString(), middleStartPoint.toString()));
          }
       }
-      List<GraphPoint> points = CollectionUtil.concat(graphPoints.subList(0, graphPoints.size() - 1), graphPath.graphPoints);
-      return new GraphPath(points, getLength() + graphPath.getLength());
+      return new GraphPath(CollectionUtil.concat(graphPoints.subList(0, graphPoints.size() - 1), graphPath.graphPoints), getLength() + graphPath.getLength());
    }
 
    public GraphPath add(GraphPoint graphPoint) {

@@ -4,7 +4,19 @@ import spock.lang.Specification
 
 class CollectionUtilTest extends Specification {
 
-   def "Two Collections can be concatenated"() {
+   def "A Collection can be reversed in to a new List"() {
+      given:
+      def original = [2, 3, 5, 7]
+
+      when:
+      def result = CollectionUtil.reverse(original)
+
+      then:
+      original != result
+      result == [7, 5, 3, 2]
+   }
+
+   def "Two Collections can be concatenated in to a new List"() {
       expect:
       expectedResult == CollectionUtil.concat(collection1, collection2)
 
