@@ -1,6 +1,6 @@
 <h4 class="text-center">Items</h4>
 <div class="col-sm-6 col-sm-offset-3"
-     cg-busy="{promise: mainItemsVM.loadingPromise, delay: 200, minDuration: 800}">
+     cg-busy="{promise: mainItemsVM.loadingPromise, delay: 200, minDuration: 200}">
    <item-tree items="mainItemsVM.items"
               add="mainItemsVM.createSubItem"
               remove="mainItemsVM.deleteItem"

@@ -8,7 +8,6 @@
    function Main($state, $uibModal, Login) {
       var mainVM = this;
       mainVM.loginPromise = null;
-      mainVM.navigationPromise = null;
       mainVM.isUserLoggedIn = Login.isUserLoggedIn;
       mainVM.userName = null;
       mainVM.userAvater = null;
@@ -42,15 +41,15 @@
       }
 
       function showShoppingLists() {
-         mainVM.navigationPromise = $state.go("main.shoppingLists");
+         $state.go("main.shoppingLists");
       }
 
       function showStores() {
-         mainVM.navigationPromise = $state.go("main.stores");
+         $state.go("main.stores");
       }
 
       function showItems() {
-         mainVM.navigationPromise = $state.go("main.items");
+         $state.go("main.items");
       }
 
       function openModalDisplayName() {

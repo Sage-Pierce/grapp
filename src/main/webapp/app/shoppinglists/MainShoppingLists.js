@@ -4,16 +4,24 @@
    angular.module("App")
       .controller("MainShoppingLists", MainShoppingLists);
 
-   MainShoppingLists.$inject = ["$state", "$uibModal", "shopper"];
-   function MainShoppingLists($state, $uibModal, shopper) {
+   MainShoppingLists.$inject = ["$state", "$uibModal", "Shopper"];
+   function MainShoppingLists($state, $uibModal, Shopper) {
       var mainShoppingListsVM = this;
-      mainShoppingListsVM.transitionPromise = null;
-      mainShoppingListsVM.lists = shopper.lists;
+      mainShoppingListsVM.loadingPromise = null;
+      mainShoppingListsVM.lists = [];
       mainShoppingListsVM.createList = createList;
       mainShoppingListsVM.deleteList = deleteList;
       mainShoppingListsVM.openList = openList;
 
+      var shopper = null;
+
+      initialize();
+
       ////////////////////
+
+      function initialize() {
+         mainShoppingListsVM.loadingPromise = Shopper.load().then(handleShopperModel);
+      }
 
       function createList() {
          $uibModal.open({
@@ -29,7 +37,12 @@
       }
 
       function openList(list) {
-         mainShoppingListsVM.transitionPromise = $state.go("main.shoppingList", {listId: list.id});
+         $state.go("main.shoppingList", {listId: list.id});
+      }
+
+      function handleShopperModel(shopperModel) {
+         shopper = shopperModel;
+         mainShoppingListsVM.lists = shopper.lists;
       }
    }
 })();

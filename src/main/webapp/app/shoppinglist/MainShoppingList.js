@@ -4,11 +4,11 @@
    angular.module("App")
       .controller("MainShoppingList", MainShoppingList);
 
-   MainShoppingList.$inject = ["$state", "$stateParams", "shoppingList", "ItemLineage"];
-   function MainShoppingList($state, $stateParams, shoppingList, ItemLineage) {
+   MainShoppingList.$inject = ["$q", "$state", "$stateParams", "ShoppingList", "ItemLineage"];
+   function MainShoppingList($q, $state, $stateParams, ShoppingList, ItemLineage) {
       var mainShoppingListVM = this;
       mainShoppingListVM.transitionPromise = null;
-      mainShoppingListVM.shoppingList = shoppingList;
+      mainShoppingListVM.shoppingList = null;
       mainShoppingListVM.items = [];
       mainShoppingListVM.searchText = null;
       mainShoppingListVM.getFilteredItems = getFilteredItems;
@@ -21,9 +21,9 @@
       ////////////////////
 
       function initialize() {
-         ItemLineage.loadAll().then(function(items) {
-            mainShoppingListVM.items = items;
-         });
+         var listPromise = ShoppingList.loadById($stateParams.listId).then(function(shoppingListModel) { mainShoppingListVM.shoppingList = shoppingListModel; });
+         var itemPromise = ItemLineage.loadAll().then(function(items) { mainShoppingListVM.items = items; });
+         mainShoppingListVM.transitionPromise = $q.all([listPromise, itemPromise]);
       }
 
       function getFilteredItems() {

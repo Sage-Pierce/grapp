@@ -4,11 +4,11 @@
    angular.module("App")
       .controller("MainStores", MainStores);
 
-   MainStores.$inject = ["$uibModal", "$state", "storeManager", "Messaging"];
-   function MainStores($uibModal, $state, storeManager, Messaging) {
+   MainStores.$inject = ["$uibModal", "$state", "StoreManager", "Messaging"];
+   function MainStores($uibModal, $state, StoreManager, Messaging) {
       var mainStoresVM = this;
       mainStoresVM.transitionPromise = null;
-      mainStoresVM.stores = storeManager.stores;
+      mainStoresVM.stores = [];
       mainStoresVM.selectedStore = null;
       mainStoresVM.areAnyStoresExistent = areAnyStoresExistent;
       mainStoresVM.setSelectedStore = setSelectedStore;
@@ -18,7 +18,15 @@
       mainStoresVM.editSelectedStore = editSelectedStore;
       mainStoresVM.deleteSelectedStore = deleteSelectedStore;
 
+      var storeManager = null;
+
+      initialize();
+
       ////////////////////
+
+      function initialize() {
+         mainStoresVM.transitionPromise = StoreManager.load().then(handleStoreManagerModel);
+      }
 
       function areAnyStoresExistent() {
          return mainStoresVM.stores.length > 0;
@@ -64,6 +72,11 @@
          Messaging.requestConfirmation("Delete Store", "Are you sure you want to delete the Store " + selectedStore.name + "?")
             .then(selectedStore.delete)
             .then(function() { _.remove(mainStoresVM.stores, mainStoresVM.selectedStore); });
+      }
+
+      function handleStoreManagerModel(storeManagerModel) {
+         storeManager = storeManagerModel;
+         mainStoresVM.stores = storeManager.stores;
       }
    }
 })();

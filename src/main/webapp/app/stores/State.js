@@ -9,13 +9,6 @@
       $stateProvider
          .state("main.stores", {
             url: "stores",
-            resolve: {
-               storeManager: ["Login", "StoreManager", function(Login, StoreManager) {
-                  return Login.afterLogIn().then(function(user) {
-                     return StoreManager.loadByEmail(user.email);
-                  });
-               }]
-            },
             views: {
                "content": {
                   templateUrl: "app/stores/MainStores.html",
