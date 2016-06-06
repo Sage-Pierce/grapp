@@ -1,6 +1,7 @@
 package com.wisegas.pathgeneration.domain_impl.graph.api;
 
 import com.wisegas.common.lang.collection.CollectionUtil;
+import com.wisegas.common.lang.function.Invertible;
 import com.wisegas.common.lang.spacial.Point;
 import com.wisegas.pathgeneration.domain.value.Path;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class GraphPath implements Path, Comparable<GraphPath> {
+public class GraphPath implements Path, Invertible<GraphPath>, Comparable<GraphPath> {
 
    private final List<GraphPoint> graphPoints;
    private Double length;
@@ -26,6 +27,11 @@ public class GraphPath implements Path, Comparable<GraphPath> {
    private GraphPath(List<GraphPoint> graphPoints, double length) {
       this.graphPoints = graphPoints;
       this.length = length;
+   }
+
+   @Override
+   public GraphPath invert() {
+      return new GraphPath(CollectionUtil.reverse(graphPoints), getLength());
    }
 
    @Override

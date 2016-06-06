@@ -50,6 +50,23 @@ class GraphPathTest extends Specification {
       Comparison.areValuesClose(new GraphPath([new GraphPoint(new Point(1d, 1d)), new GraphPoint(new Point(2d, 1d))]).getLength(), 1d, 0.001d)
    }
 
+   def "A GraphPath can be inverted"() {
+      given:
+      GraphPoint graphPoint1 = new GraphPoint(new Point(1d, 1d))
+      GraphPoint graphPoint2 = new GraphPoint(new Point(2d, 2d))
+      GraphPoint graphPoint3 = new GraphPoint(new Point(3d, 3d))
+
+      and:
+      GraphPath graphPath = new GraphPath([graphPoint1, graphPoint2, graphPoint3])
+
+      when:
+      def result = graphPath.invert()
+
+      then:
+      result.getPoints() == [graphPoint3.getPoint(), graphPoint2.getPoint(), graphPoint1.getPoint()]
+      result.getLength() == graphPath.getLength()
+   }
+
    def "GraphPaths can be compared by length"() {
       given:
       GraphPath graphPath1 = new GraphPath([new GraphPoint(new Point(1d, 1d)), new GraphPoint(new Point(2d, 2d))])
