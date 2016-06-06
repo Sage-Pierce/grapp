@@ -1,7 +1,7 @@
 (function() {
    "use strict";
 
-   angular.module("App", ["angular-hal", "ngCookies", "ngSanitize", "ngAnimate", "cgBusy", "ui.router", "ui.bootstrap", "ui.tree", "ui.select", "uiGmapgoogle-maps"])
+   angular.module("App", ["angular-hal", "ngCookies", "ngSanitize", "ngMaterial", "ngAnimate", "cgBusy", "ui.router", "ui.bootstrap", "ui.tree", "ui.select", "uiGmapgoogle-maps"])
       .config(configure)
       .run(initialize);
 
