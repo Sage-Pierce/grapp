@@ -7,6 +7,7 @@
    MainStoreLayoutNodes.$inject = ["storeLayout", "mapControl", "NodeSelectionHandler", "NodeType", "NodeEventHandler", "Item"];
    function MainStoreLayoutNodes(storeLayout, mapControl, NodeSelectionHandler, NodeType, NodeEventHandler, Item) {
       var mainStoreLayoutNodesVM = this;
+      mainStoreLayoutNodesVM.loadingPromise = null;
       mainStoreLayoutNodesVM.selectedNodeName = null;
       mainStoreLayoutNodesVM.selectedNodeItems = [];
       mainStoreLayoutNodesVM.generalItems = [];
@@ -28,9 +29,7 @@
          initializeItemTreeOptions();
          mainStoreLayoutNodesVM.isANodeSelected = nodeSelectionHandler.isANodeSelected;
          mapControl.setEventHandler(nodeEventHandler);
-         Item.loadAllGeneral().then(function(generalItems) {
-            mainStoreLayoutNodesVM.generalItems = generalItems;
-         });
+         mainStoreLayoutNodesVM.loadingPromise = Item.loadAllGeneral().then(function(generalItems) { mainStoreLayoutNodesVM.generalItems = generalItems; });
       }
 
       function nodeNameChanged() {

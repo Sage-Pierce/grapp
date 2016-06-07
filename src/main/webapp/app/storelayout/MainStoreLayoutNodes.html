@@ -19,8 +19,10 @@
            remove="mainStoreLayoutNodesVM.removeNodeItem"
            options="{listClass: 'height-150'}">
 </item-list>
-<item-tree items="mainStoreLayoutNodesVM.generalItems"
-           add="mainStoreLayoutNodesVM.addNodeItem"
-           options="mainStoreLayoutNodesVM.itemTreeOptions"
-           disabled="!mainStoreLayoutNodesVM.isANodeSelected()">
-</item-tree>
+<div cg-busy="{promise: mainStoreLayoutNodesVM.loadingPromise, delay: 400, minDuration: 200}">
+   <item-tree items="mainStoreLayoutNodesVM.generalItems"
+              add="mainStoreLayoutNodesVM.addNodeItem"
+              options="mainStoreLayoutNodesVM.itemTreeOptions"
+              disabled="!mainStoreLayoutNodesVM.isANodeSelected()">
+   </item-tree>
+</div>
