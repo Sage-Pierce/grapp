@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainShoppingList", MainShoppingList);
 
-   MainShoppingList.$inject = ["$q", "$state", "$stateParams", "ShoppingList", "ItemLineage"];
-   function MainShoppingList($q, $state, $stateParams, ShoppingList, ItemLineage) {
+   MainShoppingList.$inject = ["$document", "$q", "$state", "$stateParams", "ShoppingList", "ItemLineage"];
+   function MainShoppingList($document, $q, $state, $stateParams, ShoppingList, ItemLineage) {
       var mainShoppingListVM = this;
       mainShoppingListVM.transitionPromise = null;
       mainShoppingListVM.shoppingList = null;
@@ -34,6 +34,7 @@
       function itemToAddSelected(item) {
          mainShoppingListVM.shoppingList.addItem({code: item.primaryCode, name: item.name});
          mainShoppingListVM.searchText = null;
+         $document[0].activeElement.blur();
       }
 
       function removeItem(item) {
