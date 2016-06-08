@@ -8,10 +8,7 @@ import com.wisegas.shoppinglists.service.api.ShoppingListItemService;
 import com.wisegas.shoppinglists.service.dto.ShoppingListItemDto;
 
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +26,12 @@ public class ShoppingListItemResource extends JaxrsHalJsonResource {
    @GET
    public Response get(@PathParam("id") final String id) {
       return buildHalResponse(asRepresentationOf(shoppingListItemService.get(id)));
+   }
+
+   @PUT
+   public Response update(@PathParam("id") final String id,
+                          @QueryParam("obtained") final boolean obtained) {
+      return buildHalResponse(asRepresentationOf(shoppingListItemService.update(id, obtained)));
    }
 
    @DELETE

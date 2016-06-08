@@ -9,6 +9,7 @@ public final class ShoppingListItemDtoFactory {
       ShoppingListItemDto shoppingListItemDto = new ShoppingListItemDto();
       shoppingListItemDto.setId(shoppingListItem.getId().toString());
       shoppingListItemDto.setItem(shoppingListItem.getItem().toCodeName());
+      shoppingListItemDto.setObtained(shoppingListItem.isObtained());
       return shoppingListItemDto;
    }
 

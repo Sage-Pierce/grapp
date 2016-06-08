@@ -16,6 +16,8 @@ public class ShoppingListItem extends SimpleEntity<ShoppingListItemId> {
 
    private Item item;
 
+   private boolean obtained;
+
    public ShoppingListItem(ShoppingList shoppingList, Item item) {
       id = ShoppingListItemId.generate();
       setShoppingList(shoppingList);
@@ -33,6 +35,14 @@ public class ShoppingListItem extends SimpleEntity<ShoppingListItemId> {
 
    public Item getItem() {
       return item;
+   }
+
+   public boolean isObtained() {
+      return obtained;
+   }
+
+   public void setObtained(boolean obtained) {
+      this.obtained = obtained;
    }
 
    private void setShoppingList(ShoppingList shoppingList) {

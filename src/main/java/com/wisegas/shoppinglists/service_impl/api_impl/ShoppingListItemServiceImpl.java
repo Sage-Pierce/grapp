@@ -2,6 +2,7 @@ package com.wisegas.shoppinglists.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
+import com.wisegas.shoppinglists.domain.entity.ShoppingListItem;
 import com.wisegas.shoppinglists.domain.repository.ShoppingListItemRepository;
 import com.wisegas.shoppinglists.domain.value.ShoppingListItemId;
 import com.wisegas.shoppinglists.service.api.ShoppingListItemService;
@@ -28,6 +29,13 @@ public class ShoppingListItemServiceImpl implements ShoppingListItemService {
    @Override
    public ShoppingListItemDto get(String id) {
       return ShoppingListItemDtoFactory.createDto(shoppingListItemRepository.get(ShoppingListItemId.fromString(id)));
+   }
+
+   @Override
+   public ShoppingListItemDto update(String id, boolean obtained) {
+      ShoppingListItem shoppingListItem = shoppingListItemRepository.get(ShoppingListItemId.fromString(id));
+      shoppingListItem.setObtained(obtained);
+      return ShoppingListItemDtoFactory.createDto(shoppingListItem);
    }
 
    @Override
