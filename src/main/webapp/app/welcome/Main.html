@@ -3,15 +3,13 @@
       <div class="container">
          <a class="navbar-brand" ui-sref="main.welcome">Grapp</a>
          <a class="btn btn-info btn-raised navbar-btn pull-right"
-                 ng-click="mainVM.logIn('google_plus')"
-                 ng-show="!mainVM.isUserLoggedIn()">
+            ng-click="mainVM.logIn('google_plus')"
+            ng-show="!mainVM.isUserLoggedIn()">
             Log in with Google+
          </a>
-         <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="mainVM.isUserLoggedIn()">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-         </button>
+         <a class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="mainVM.isUserLoggedIn()">
+            <span class="glyphicon glyphicon-menu-hamburger text-white"></span>
+         </a>
          <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav" ng-show="mainVM.isUserLoggedIn()">
                <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>

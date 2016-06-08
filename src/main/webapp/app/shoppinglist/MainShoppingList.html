@@ -8,20 +8,21 @@
                     title="Select Item"
                     md-menu-class="autocomplete-custom-template">
       <md-item-template>
-         <span class="item-title">
-            <span>{{item.name}}</span>
-         </span>
-         <span class="item-metadata">
-            <span class="item-metastat"><small>{{item.hierarchy}}</small></span>
-         </span>
+         <span class="item-title">{{item.name}}</span>
+         <span class="item-metadata"><small>{{item.hierarchy}}</small></span>
       </md-item-template>
-      <md-not-found>
-         There are no matching Items
-      </md-not-found>
+      <md-not-found>There are no matching Items</md-not-found>
    </md-autocomplete>
-   <item-list items="mainShoppingListVM.shoppingList.items"
-              remove="mainShoppingListVM.removeItem"
-              options="{listClass: 'height-300'}">
-   </item-list>
+   <div class="height-scrollable height-300">
+      <div ng-repeat="item in mainShoppingListVM.shoppingList.items" class="card card-entry">
+         <div class="card-body">
+            <md-checkbox class="md-primary v-margin-0" md-no-ink ng-model="item.obtained"></md-checkbox>
+            <span ng-class="{'text-strikethrough': item.obtained}">{{item.name}}</span>
+            <a class="btn btn-sm pull-right v-margin-0" ng-click="mainShoppingListVM.removeItem(item)">
+               <span class="glyphicon glyphicon-trash"></span>
+            </a>
+         </div>
+      </div>
+   </div>
    <a class="btn btn-success width-full" ng-click="mainShoppingListVM.selectStore()">Select Store</a>
 </div>

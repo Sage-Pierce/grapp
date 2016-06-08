@@ -15,10 +15,17 @@
       </div>
    </fieldset>
 </form>
-<item-list items="mainStoreLayoutNodesVM.selectedNodeItems"
-           remove="mainStoreLayoutNodesVM.removeNodeItem"
-           options="{listClass: 'height-150'}">
-</item-list>
+<div class="height-scrollable height-150">
+   <div ng-repeat="item in mainStoreLayoutNodesVM.selectedNodeItems" class="card card-entry">
+      <a class="btn btn-ghost btn-xs">
+         <span class="glyphicon glyphicon-ok"></span>
+      </a>
+      {{item.name}}
+      <a class="btn btn-xs pull-right" ng-click="mainStoreLayoutNodesVM.removeNodeItem(item)">
+         <span class="glyphicon glyphicon-trash"></span>
+      </a>
+   </div>
+</div>
 <div cg-busy="{promise: mainStoreLayoutNodesVM.loadingPromise, delay: 400, minDuration: 200}">
    <item-tree items="mainStoreLayoutNodesVM.generalItems"
               add="mainStoreLayoutNodesVM.addNodeItem"
