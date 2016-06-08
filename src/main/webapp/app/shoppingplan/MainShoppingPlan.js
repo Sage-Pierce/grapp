@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainShoppingPlan", MainShoppingPlan);
 
-   MainShoppingPlan.$inject = ["$uibModal", "StoreMapControl", "shoppingList", "store", "shoppingLayout"];
-   function MainShoppingPlan($uibModal, StoreMapControl, shoppingList, store, shoppingLayout) {
+   MainShoppingPlan.$inject = ["$uibModal", "StoreMapControl", "store", "shoppingItems", "shoppingLayout"];
+   function MainShoppingPlan($uibModal, StoreMapControl, store, shoppingItems, shoppingLayout) {
       var mainShoppingPlanVM = this;
       mainShoppingPlanVM.mapControl = new StoreMapControl();
       mainShoppingPlanVM.location = store.location;
@@ -42,7 +42,7 @@
       }
 
       function findUnmappedItems() {
-         var itemMap = _.fromPairs(shoppingList.items.map(function(item) { return [item.code, item]; }));
+         var itemMap = _.fromPairs(shoppingItems.map(function(item) { return [item.code, item]; }));
          shoppingLayout.getNodes().forEach(function(node) {
             node.getItems().forEach(function(nodeItem) {
                delete itemMap[nodeItem.item.code];

@@ -10,14 +10,14 @@
          .state("main.shoppingPlan", {
             url: "shoppingPlan/:listId/:storeId",
             resolve: {
-               shoppingList: ["$stateParams", "ShoppingList", function($stateParams, ShoppingList) {
-                  return ShoppingList.loadById($stateParams.listId);
-               }],
                store: ["$stateParams", "Store", function($stateParams, Store) {
                   return Store.loadById($stateParams.storeId);
                }],
-               shoppingLayout: ["store", "shoppingList", "ShoppingLayout", function(store, shoppingList, ShoppingLayout) {
-                  return ShoppingLayout.loadByIdForItems(store.layoutId, filterShoppingItemsFromList(shoppingList));
+               shoppingItems: ["$stateParams", "ShoppingList", function($stateParams, ShoppingList) {
+                  return ShoppingList.loadById($stateParams.listId).then(filterShoppingItemsFromList);
+               }],
+               shoppingLayout: ["store", "shoppingItems", "ShoppingLayout", function(store, shoppingItems, ShoppingLayout) {
+                  return ShoppingLayout.loadByIdForItems(store.layoutId, shoppingItems);
                }]
             },
             views: {
