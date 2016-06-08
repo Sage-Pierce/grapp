@@ -13,6 +13,7 @@
       mainShoppingListVM.searchText = null;
       mainShoppingListVM.getFilteredItems = getFilteredItems;
       mainShoppingListVM.itemToAddSelected = itemToAddSelected;
+      mainShoppingListVM.setItemObtainment = setItemObtainment;
       mainShoppingListVM.removeItem = removeItem;
       mainShoppingListVM.selectStore = selectStore;
 
@@ -35,6 +36,10 @@
          mainShoppingListVM.shoppingList.addItem({code: item.primaryCode, name: item.name});
          mainShoppingListVM.searchText = null;
          $document[0].activeElement.blur();
+      }
+
+      function setItemObtainment(item, obtained) {
+         item.setAttributes({obtained: obtained});
       }
 
       function removeItem(item) {

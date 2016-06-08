@@ -17,7 +17,7 @@
                   return Store.loadById($stateParams.storeId);
                }],
                shoppingLayout: ["store", "shoppingList", "ShoppingLayout", function(store, shoppingList, ShoppingLayout) {
-                  return ShoppingLayout.loadByIdForItems(store.layoutId, shoppingList.items.map(function(shoppingListItem) { return shoppingListItem.item; }));
+                  return ShoppingLayout.loadByIdForItems(store.layoutId, filterShoppingItemsFromList(shoppingList));
                }]
             },
             views: {
@@ -28,5 +28,11 @@
                }
             }
          });
+
+      function filterShoppingItemsFromList(shoppingList) {
+         return shoppingList.items.filter(function(shoppingListItem) { return !shoppingListItem.obtained; })
+                                  .map(function(shoppingListItem) { return shoppingListItem.item; });
+
+      }
    }
 })();
