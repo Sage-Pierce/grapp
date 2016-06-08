@@ -30,3 +30,7 @@
    display: block;
    line-height: 2;
 }
+
+.text-item-obtained {
+   text-decoration: line-through;
+}

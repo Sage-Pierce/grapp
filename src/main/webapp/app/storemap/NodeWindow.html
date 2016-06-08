@@ -1,8 +1,8 @@
 <div>
    <p><b>{{(parameter.hasItems() ? 'Items Needed at ' : '') + (parameter.type.isSingleton ? parameter.type.displayString : parameter.name)}}</b></p>
    <div ng-repeat="shoppingItem in parameter.items">
-      <md-checkbox class="md-primary" md-no-ink aria-label="{{item.name}}" ng-model="shoppingItem.obtained">
-         {{shoppingItem.item.name}}
+      <md-checkbox class="md-primary" md-no-ink aria-label="{{shoppingItem.item.name}}" ng-model="shoppingItem.obtained">
+         <span ng-class="{'text-item-obtained': shoppingItem.obtained}">{{shoppingItem.item.name}}</span>
       </md-checkbox>
    </div>
 </div>
