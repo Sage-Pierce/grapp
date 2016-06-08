@@ -49,7 +49,7 @@ public class ShoppingListItemResource extends JaxrsHalJsonResource {
    }
 
    private static List<HalLink> createLinks(ShoppingListItemDto shoppingListItemDto) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(shoppingListItemDto.getId()).withSelfRel());
+      return Collections.singletonList(createSelfLinkBuilder().pathArgs(shoppingListItemDto.getId()).queryParams("obtained").withSelfRel());
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
