@@ -30,10 +30,6 @@
    background-color: rgba(0, 0, 0, 0.05);
 }
 
-.card-body .btn-sm {
-   margin-top: -1px;
-}
-
 .btn-ghost {
    cursor: default;
 }
