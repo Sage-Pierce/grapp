@@ -1,3 +1,7 @@
+.transparent {
+   background-color: transparent !important;
+}
+
 .width-scrollable {
    overflow-x: scroll;
 }
@@ -11,8 +15,8 @@
 }
 
 .card-entry {
-   border: 1px solid rgba(0, 0, 0, 0.1);
    background-color: transparent;
+   border: 1px solid rgba(0, 0, 0, 0.1);
    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -26,14 +30,14 @@
    background-color: rgba(0, 0, 0, 0.05);
 }
 
+.card-body .btn-sm {
+   margin-top: -4px;
+}
+
 .btn-ghost {
    cursor: default;
 }
 
 .btn-ghost:hover {
-   background-color: transparent !important;
-}
-
-.transparent {
    background-color: transparent !important;
 }
