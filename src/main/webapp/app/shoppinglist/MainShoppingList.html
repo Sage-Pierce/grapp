@@ -16,7 +16,7 @@
    <div class="height-scrollable height-300">
       <div ng-repeat="item in mainShoppingListVM.shoppingList.items" class="card card-entry">
          <div class="card-body">
-            <md-checkbox class="md-primary v-margin-0" md-no-ink ng-model="item.obtained" aria-label="{{item.name}}" ng-change="mainShoppingListVM.setItemObtainment(item, item.obtained)"></md-checkbox>
+            <md-checkbox class="md-primary v-margin-0" md-no-ink aria-label="{{item.name}}" ng-model="item.obtained" ng-change="mainShoppingListVM.setItemObtainment(item, item.obtained)"></md-checkbox>
             <span ng-class="{'text-strikethrough': item.obtained}">{{item.name}}</span>
             <a class="btn btn-sm pull-right bv-margin-0 t-nudge-2" style="vertical-align: center" ng-click="mainShoppingListVM.removeItem(item)">
                <span class="glyphicon glyphicon-trash"></span>

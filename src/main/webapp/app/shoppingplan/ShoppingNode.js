@@ -27,7 +27,8 @@
          function createModelForShoppingItem(shoppingItem) {
             return {
                item: shoppingItem.item,
-               type: ShoppingItemType[shoppingItem.type]
+               type: ShoppingItemType[shoppingItem.type],
+               obtained: false
             };
          }
       }
