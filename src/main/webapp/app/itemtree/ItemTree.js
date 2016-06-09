@@ -66,7 +66,7 @@
       }
 
       function doAnyItemsMatchFilter(items) {
-         return !_.isUndefined(_.find(items, doesItemMatchFilter))
+         return !_.isUndefined(_.find(items, doesItemMatchFilter));
       }
 
       function doesItemMatchFilter(item) {
