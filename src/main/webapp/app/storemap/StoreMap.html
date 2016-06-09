@@ -10,7 +10,7 @@
    <ui-gmap-window ng-if="storeMapVM.mapSettings.enableWindow"
                    coords="storeMapVM.window.coords"
                    show="storeMapVM.window.show"
-                   closeClick="storeMapVM.window.closeClick()"
+                   closeClick="storeMapVM.showWindow(false)"
                    templateUrl="storeMapVM.window.templateUrl"
                    templateParameter="storeMapVM.window.templateParameter"
                    options="storeMapVM.window.options">

@@ -21,8 +21,8 @@
       };
    }
 
-   StoreMap.$inject = [];
-   function StoreMap() {
+   StoreMap.$inject = ["uiGmapUtil"];
+   function StoreMap(uiGmapUtil) {
       var storeMapVM = this;
       storeMapVM.mapSettings = null;
       storeMapVM.events = null;
@@ -31,6 +31,7 @@
       storeMapVM.storeFeatures = null;
       storeMapVM.storeNodes = null;
       storeMapVM.window = null;
+      storeMapVM.showWindow = showWindow;
 
       var mapControl = this.mapControl;
       var location = this.location || {lat: 0, lng: 0};
@@ -135,8 +136,7 @@
             options: {
                disableAutoPan: true,
                pixelOffset: new google.maps.Size(0, -20)
-            },
-            closeClick: function() { this.show = false; }
+            }
          };
       }
 
@@ -168,7 +168,13 @@
       function updateWindowForNode(model) {
          storeMapVM.window.coords = model.position;
          storeMapVM.window.templateParameter = model.node;
-         storeMapVM.window.show = true;
+         showWindow(true);
+      }
+
+      function showWindow(show) {
+         uiGmapUtil.onNextAngularTurn().then(function() {
+            storeMapVM.window.show = show;
+         });
       }
    }
 })();
