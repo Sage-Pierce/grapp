@@ -50,15 +50,15 @@
          return visible;
       }
 
+      function collapseAll() {
+         $scope.$broadcast('angular-ui-tree:collapse-all');
+      }
+
       function isItemVisible(itemModel) {
          return isFilterEmpty() ||
                 doesItemMatchFilter(itemModel) ||
                 (itemModel.isRecent() && doAnyItemsMatchFilter(itemModel.lineage)) ||
                 _.reduce(itemModel.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
-      }
-
-      function collapseAll() {
-         $scope.$broadcast('angular-ui-tree:collapse-all');
       }
 
       function isFilterEmpty() {
