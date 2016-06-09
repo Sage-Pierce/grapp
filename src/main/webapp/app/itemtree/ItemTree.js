@@ -31,9 +31,12 @@
       itemTreeVM.filterChanged = filterChanged;
       itemTreeVM.isNodeVisible = isNodeVisible;
 
+      var lowerCaseFilter = itemTreeVM.filter;
+
       ////////////////////
 
       function filterChanged() {
+         lowerCaseFilter = _.lowerCase(itemTreeVM.filter);
          if (isFilterEmpty()) {
             collapseAll();
          }
@@ -67,7 +70,7 @@
       }
 
       function doesItemMatchFilter(item) {
-         return item.name.toLowerCase().indexOf(itemTreeVM.filter.toLowerCase()) >= 0;
+         return item.name.toLowerCase().indexOf(lowerCaseFilter) >= 0;
       }
    }
 })();
