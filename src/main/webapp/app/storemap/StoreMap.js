@@ -136,9 +136,7 @@
                disableAutoPan: true,
                pixelOffset: new google.maps.Size(0, -20)
             },
-            closeClick: function() {
-               this.show = false;
-            }
+            closeClick: function() { this.show = false; }
          };
       }
 
