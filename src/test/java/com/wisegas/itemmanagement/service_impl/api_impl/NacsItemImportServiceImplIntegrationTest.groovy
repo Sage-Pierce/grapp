@@ -19,7 +19,8 @@ class NacsItemImportServiceImplIntegrationTest extends IntegrationTest {
       then:
       result.size() == 1
       result[0].getName() == "General Item"
-      result[0].getSuperItemCode() == null
+      result[0].getLineage().size() == 1
+      result[0].getLineage()[0].getName() == "General Item"
    }
 
    def "Importing a CATEGORY NacsItem with sub-items should result in a 'general' Item with sub-items"() {

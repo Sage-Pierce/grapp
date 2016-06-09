@@ -34,7 +34,6 @@
          self.subItems = item.subItems.map(function(subItem) { return _.mergeLeft(new ItemModel(subItem), subItem); });
          self.addSubItem = addSubItem;
          self.delete = del;
-         self.isGeneralItem = isGeneralItem;
          self.isRecent = isRecent;
 
          ////////////////////
@@ -50,10 +49,6 @@
 
          function del() {
             return ItemManagementRoot.deleteResource("item", {primaryCode: self.primaryCode});
-         }
-
-         function isGeneralItem() {
-            return self.superItemCode === null;
          }
 
          function isRecent() {
