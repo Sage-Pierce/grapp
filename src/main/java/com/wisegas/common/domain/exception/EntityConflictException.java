@@ -1,4 +1,4 @@
-package com.wisegas.common.lang.exception;
+package com.wisegas.common.domain.exception;
 
 public class EntityConflictException extends RuntimeException {
 

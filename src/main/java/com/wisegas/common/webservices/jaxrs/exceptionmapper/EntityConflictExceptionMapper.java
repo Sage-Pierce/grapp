@@ -1,6 +1,6 @@
 package com.wisegas.common.webservices.jaxrs.exceptionmapper;
 
-import com.wisegas.common.lang.exception.EntityConflictException;
+import com.wisegas.common.domain.exception.EntityConflictException;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

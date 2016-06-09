@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.domain_impl.service;
 
-import com.wisegas.common.lang.exception.EntityConflictException;
+import com.wisegas.common.domain.exception.EntityConflictException;
 import com.wisegas.itemmanagement.domain.entity.Item;
 import com.wisegas.itemmanagement.domain.repository.ItemRepository;
 import com.wisegas.itemmanagement.domain.service.ItemCreationService;
