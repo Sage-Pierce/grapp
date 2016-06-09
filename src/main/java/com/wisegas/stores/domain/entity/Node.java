@@ -1,6 +1,6 @@
 package com.wisegas.stores.domain.entity;
 
-import com.wisegas.common.domain.model.DomainEventPublisher;
+import com.wisegas.common.domain.event.DomainEventPublisher;
 import com.wisegas.common.lang.spacial.GeoPoint;
 import com.wisegas.common.persistence.jpa.converter.GeoPointConverter;
 import com.wisegas.common.persistence.jpa.entity.NamedEntity;

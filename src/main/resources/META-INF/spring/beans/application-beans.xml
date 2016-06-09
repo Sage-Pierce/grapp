@@ -21,7 +21,7 @@
     <context:annotation-config/>
 
     <!-- Bean used to reset DomainEventPublisher -->
-    <bean id="domainEventPublisherManager" class="com.wisegas.common.domain.model.DomainEventPublisherManager"/>
+    <bean id="domainEventPublisherManager" class="com.wisegas.common.domain.event.DomainEventPublisherManager"/>
 
     <!-- AOP Advice for DomainEventPublisherManager -->
     <aop:config>

@@ -1,7 +1,7 @@
 package com.wisegas.stores.domain.entity
 
-import com.wisegas.common.domain.model.DomainEventPublisher
-import com.wisegas.common.domain.model.DomainEventSubscriber
+import com.wisegas.common.domain.event.DomainEventPublisher
+import com.wisegas.common.domain.event.DomainEventSubscriber
 import com.wisegas.common.test.base.DomainEventAwareTest
 import com.wisegas.stores.domain.event.NodeModifiedEvent
 import com.wisegas.stores.domain.value.NodeType

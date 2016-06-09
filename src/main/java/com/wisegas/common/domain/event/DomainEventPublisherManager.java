@@ -1,4 +1,4 @@
-package com.wisegas.common.domain.model;
+package com.wisegas.common.domain.event;
 
 public class DomainEventPublisherManager {
    private static final ThreadLocal<Integer> contextCount = ThreadLocal.withInitial(() -> 0);

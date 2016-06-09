@@ -1,4 +1,4 @@
-package com.wisegas.common.domain.model;
+package com.wisegas.common.domain.event;
 
 import java.time.LocalDateTime;
 

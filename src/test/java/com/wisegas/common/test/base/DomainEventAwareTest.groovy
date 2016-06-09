@@ -1,6 +1,6 @@
 package com.wisegas.common.test.base
 
-import com.wisegas.common.domain.model.DomainEventPublisher
+import com.wisegas.common.domain.event.DomainEventPublisher
 import spock.lang.Specification
 
 abstract class DomainEventAwareTest extends Specification {

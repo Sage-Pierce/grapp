@@ -1,6 +1,6 @@
 package com.wisegas.stores.domain.event;
 
-import com.wisegas.common.domain.model.DomainEvent;
+import com.wisegas.common.domain.event.DomainEvent;
 
 import java.time.LocalDateTime;
 
