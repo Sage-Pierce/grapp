@@ -3,8 +3,9 @@
                     zoom="storesMapVM.mapSettings.zoom"
                     events="storesMapVM.events.map"
                     control="storesMapVM.controls.map">
-   <ui-gmap-window show="storesMapVM.window.show"
-                   coords="storesMapVM.window.coords"
+   <ui-gmap-window coords="storesMapVM.window.coords"
+                   show="storesMapVM.window.show"
+                   closeClick="storesMapVM.showWindow(false)"
                    templateUrl="storesMapVM.window.templateUrl"
                    templateParameter="storesMapVM.window.templateParameter"
                    options="storesMapVM.window.options">

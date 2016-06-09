@@ -19,13 +19,14 @@
       };
    }
 
-   StoresMap.$inject = [];
-   function StoresMap() {
+   StoresMap.$inject = ["uiGmapUtil"];
+   function StoresMap(uiGmapUtil) {
       var storesMapVM = this;
       storesMapVM.mapSettings = null;
       storesMapVM.events = null;
       storesMapVM.controls = null;
       storesMapVM.window = null;
+      storesMapVM.showWindow = showWindow;
 
       var mapControl = this.mapControl;
       var stores = this.stores;
@@ -108,7 +109,13 @@
       function updateWindowForStore(model) {
          storesMapVM.window.coords = model.position;
          storesMapVM.window.templateParameter = model.store;
-         storesMapVM.window.show = true;
+         showWindow(true);
+      }
+
+      function showWindow(show) {
+         uiGmapUtil.onNextAngularTurn().then(function() {
+            storesMapVM.window.show = show;
+         });
       }
    }
 })();
