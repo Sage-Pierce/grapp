@@ -1,4 +1,4 @@
-package com.wisegas.common.lang.dto;
+package com.wisegas.common.lang.value;
 
 public class BaseDto {
 

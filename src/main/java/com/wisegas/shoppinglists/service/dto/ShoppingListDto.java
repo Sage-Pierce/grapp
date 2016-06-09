@@ -1,6 +1,6 @@
 package com.wisegas.shoppinglists.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDto;
+import com.wisegas.common.lang.value.BaseDto;
 
 import java.util.List;
 

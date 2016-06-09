@@ -1,6 +1,6 @@
 package com.wisegas.shoppinglists.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDto;
+import com.wisegas.common.lang.value.BaseDto;
 import com.wisegas.common.lang.value.CodeName;
 
 public class ShoppingListItemDto extends BaseDto {

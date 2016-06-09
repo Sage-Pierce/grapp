@@ -1,6 +1,6 @@
 package com.wisegas.stores.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDto;
+import com.wisegas.common.lang.value.BaseDto;
 import com.wisegas.common.lang.value.CodeName;
 
 public class NodeItemDto extends BaseDto {

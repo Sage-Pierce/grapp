@@ -1,7 +1,7 @@
 package com.wisegas.stores.service.dto;
 
-import com.wisegas.common.lang.dto.BaseDto;
 import com.wisegas.common.lang.spacial.GeoPoint;
+import com.wisegas.common.lang.value.BaseDto;
 
 public abstract class AbstractNodeDto extends BaseDto {
 
