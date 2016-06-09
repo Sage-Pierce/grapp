@@ -8,8 +8,9 @@
                             control="storeMapVM.controls.drawingManager">
    </ui-gmap-drawing-manager>
    <ui-gmap-window ng-if="storeMapVM.mapSettings.enableWindow"
-                   show="storeMapVM.window.show"
                    coords="storeMapVM.window.coords"
+                   show="storeMapVM.window.show"
+                   closeClick="storeMapVM.window.closeClick()"
                    templateUrl="storeMapVM.window.templateUrl"
                    templateParameter="storeMapVM.window.templateParameter"
                    options="storeMapVM.window.options">
