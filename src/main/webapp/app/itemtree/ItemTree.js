@@ -49,7 +49,8 @@
 
       function isItemVisible(itemModel) {
          return isFilterEmpty() ||
-                itemModel.name.toLowerCase().indexOf(itemTreeVM.filter.toLowerCase()) >= 0 ||
+                doesItemMatchFilter(itemModel) ||
+                (itemModel.isRecent() && doAnyItemsMatchFilter(itemModel.lineage)) ||
                 _.reduce(itemModel.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
       }
 
@@ -59,6 +60,14 @@
 
       function isFilterEmpty() {
          return !itemTreeVM.filter || itemTreeVM.filter.length === 0;
+      }
+
+      function doAnyItemsMatchFilter(items) {
+         return !_.isUndefined(_.find(items, doesItemMatchFilter))
+      }
+
+      function doesItemMatchFilter(item) {
+         return item.name.toLowerCase().indexOf(itemTreeVM.filter.toLowerCase()) >= 0;
       }
    }
 })();
