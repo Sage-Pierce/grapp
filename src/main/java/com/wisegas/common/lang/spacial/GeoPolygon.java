@@ -1,6 +1,6 @@
 package com.wisegas.common.lang.spacial;
 
-import com.wisegas.common.lang.translation.json.JsonTranslator;
+import com.wisegas.common.domain.translation.json.JsonTranslator;
 
 import javax.json.Json;
 import javax.json.JsonArray;

@@ -1,6 +1,6 @@
 package com.wisegas.stores.service.dto;
 
-import com.wisegas.common.lang.translation.json.JsonTranslator;
+import com.wisegas.common.domain.translation.json.JsonTranslator;
 import com.wisegas.common.lang.value.CodeName;
 
 import javax.json.JsonValue;

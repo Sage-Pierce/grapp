@@ -1,4 +1,4 @@
-package com.wisegas.common.lang.translation.api;
+package com.wisegas.common.domain.translation.api;
 
 import java.util.function.Function;
 
