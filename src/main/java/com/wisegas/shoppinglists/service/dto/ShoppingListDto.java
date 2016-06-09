@@ -1,10 +1,10 @@
 package com.wisegas.shoppinglists.service.dto;
 
-import com.wisegas.common.lang.value.BaseDto;
+import com.wisegas.common.lang.value.AbstractDto;
 
 import java.util.List;
 
-public class ShoppingListDto extends BaseDto {
+public class ShoppingListDto extends AbstractDto {
 
    private String name;
    private List<ShoppingListItemDto> items;

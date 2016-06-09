@@ -1,11 +1,11 @@
 package com.wisegas.stores.service.dto;
 
 import com.wisegas.common.lang.spacial.GeoPolygon;
-import com.wisegas.common.lang.value.BaseDto;
+import com.wisegas.common.lang.value.AbstractDto;
 
 import java.util.List;
 
-public abstract class LayoutDto extends BaseDto {
+public abstract class LayoutDto extends AbstractDto {
 
    private GeoPolygon outerOutline;
    private GeoPolygon innerOutline;
