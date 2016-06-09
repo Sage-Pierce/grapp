@@ -12,6 +12,7 @@ public final class ItemDtoFactory {
       itemDto.setPrimaryCode(item.getPrimaryCode().toString());
       itemDto.setSuperItemCode(item.isGeneralItem() ? null : item.getSuperItem().getPrimaryCode().toString());
       itemDto.setName(item.getName());
+      itemDto.setLineage(item.getLineage().stream().map(Item::toCodeName).collect(Collectors.toList()));
       itemDto.setSubItems(item.getSubItems().stream().map(ItemDtoFactory::createDto).collect(Collectors.toList()));
       return itemDto;
    }

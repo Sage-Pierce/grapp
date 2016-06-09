@@ -1,5 +1,7 @@
 package com.wisegas.itemmanagement.service.dto;
 
+import com.wisegas.common.lang.value.CodeName;
+
 import java.util.List;
 
 public class ItemDto {
@@ -7,6 +9,7 @@ public class ItemDto {
    private String primaryCode;
    private String name;
    private String superItemCode;
+   private List<CodeName> lineage;
    private List<ItemDto> subItems;
 
    public String getPrimaryCode() {
@@ -31,6 +34,14 @@ public class ItemDto {
 
    public void setSuperItemCode(String superItemCode) {
       this.superItemCode = superItemCode;
+   }
+
+   public List<CodeName> getLineage() {
+      return lineage;
+   }
+
+   public void setLineage(List<CodeName> lineage) {
+      this.lineage = lineage;
    }
 
    public List<ItemDto> getSubItems() {

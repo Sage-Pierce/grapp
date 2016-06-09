@@ -1,6 +1,7 @@
 package com.wisegas.itemmanagement.domain.entity;
 
 import com.wisegas.common.domain.entity.SimpleEntity;
+import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.itemmanagement.domain.value.Code;
 
 import javax.persistence.*;
@@ -43,6 +44,10 @@ public class Item extends SimpleEntity<Code> {
          lineage.add(ancestor = ancestor.getSuperItem());
       }
       return lineage;
+   }
+
+   public CodeName toCodeName() {
+      return new CodeName(getPrimaryCode().toString(), getName());
    }
 
    @Override
