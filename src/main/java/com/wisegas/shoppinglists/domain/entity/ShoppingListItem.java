@@ -1,6 +1,6 @@
 package com.wisegas.shoppinglists.domain.entity;
 
-import com.wisegas.common.lang.entity.SimpleEntity;
+import com.wisegas.common.domain.entity.SimpleEntity;
 import com.wisegas.shoppinglists.domain.value.Item;
 import com.wisegas.shoppinglists.domain.value.ShoppingListItemId;
 

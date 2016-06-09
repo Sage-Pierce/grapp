@@ -1,7 +1,7 @@
 package com.wisegas.common.persistence.jpa.impl;
 
-import com.wisegas.common.lang.entity.GenericRepository;
-import com.wisegas.common.lang.entity.SimpleEntity;
+import com.wisegas.common.domain.entity.GenericRepository;
+import com.wisegas.common.domain.entity.SimpleEntity;
 import com.wisegas.common.lang.value.Id;
 
 import javax.persistence.Embeddable;

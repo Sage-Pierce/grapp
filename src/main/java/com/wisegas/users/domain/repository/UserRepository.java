@@ -1,6 +1,6 @@
 package com.wisegas.users.domain.repository;
 
-import com.wisegas.common.lang.entity.GenericRepository;
+import com.wisegas.common.domain.entity.GenericRepository;
 import com.wisegas.common.lang.value.Email;
 import com.wisegas.users.domain.entity.User;
 

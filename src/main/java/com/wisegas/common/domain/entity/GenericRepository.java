@@ -1,4 +1,4 @@
-package com.wisegas.common.lang.entity;
+package com.wisegas.common.domain.entity;
 
 import com.wisegas.common.lang.value.Id;
 

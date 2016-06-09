@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.domain.entity;
 
-import com.wisegas.common.lang.entity.SimpleEntity;
+import com.wisegas.common.domain.entity.SimpleEntity;
 import com.wisegas.itemmanagement.domain.value.Code;
 
 import javax.persistence.*;
