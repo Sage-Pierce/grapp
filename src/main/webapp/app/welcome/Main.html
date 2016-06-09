@@ -2,12 +2,10 @@
    <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
          <a class="navbar-brand" ui-sref="main.welcome">Grapp</a>
-         <a class="btn btn-info btn-raised navbar-btn pull-right"
-            ng-click="mainVM.logIn('google_plus')"
-            ng-show="!mainVM.isUserLoggedIn()">
-            Log in with Google+
+         <a class="btn btn-info btn-raised navbar-btn pull-right" ng-click="mainVM.logIn('google_plus')" ng-if="!mainVM.isUserLoggedIn()">
+            <span>Log in with Google+</span>
          </a>
-         <a class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="mainVM.isUserLoggedIn()">
+         <a class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-if="mainVM.isUserLoggedIn()">
             <span class="glyphicon glyphicon-menu-hamburger text-white"></span>
          </a>
          <div class="navbar-collapse collapse">
