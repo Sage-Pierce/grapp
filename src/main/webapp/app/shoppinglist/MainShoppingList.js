@@ -43,7 +43,7 @@
       }
 
       function removeShoppingItem(item) {
-         mainShoppingListVM.shoppingList.removeShoppingItem(item);
+         mainShoppingListVM.shoppingList.removeItem(item);
       }
 
       function selectStore() {
