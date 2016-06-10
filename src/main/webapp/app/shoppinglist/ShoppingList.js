@@ -22,11 +22,17 @@
       function ShoppingListModel(shoppingListRsc) {
          var self = this;
          self.items = shoppingListRsc.items.map(ShoppingListItem.load);
+         self.isEmpty = function() { return self.items.length <= 0; };
+         self.hasUnobtainedItems = hasUnobtainedItems;
          self.getItems = function() { return self.items; };
          self.addItem = addItem;
          self.removeItem = removeItem;
 
          ////////////////////
+
+         function hasUnobtainedItems() {
+            return !_.isUndefined(_.find(self.items, function(item) { return !item.obtained; }));
+         }
 
          function addItem(item) {
             if (!_.anyMatch(self.items, function(shoppingListItem) { return shoppingListItem.code === item.code; })) {

@@ -13,8 +13,8 @@
       mainShoppingListVM.searchText = null;
       mainShoppingListVM.getFilteredItems = getFilteredItems;
       mainShoppingListVM.itemToAddSelected = itemToAddSelected;
-      mainShoppingListVM.setItemObtainment = setItemObtainment;
-      mainShoppingListVM.removeItem = removeItem;
+      mainShoppingListVM.setShoppingItemObtainment = setShoppingItemObtainment;
+      mainShoppingListVM.removeShoppingItem = removeShoppingItem;
       mainShoppingListVM.selectStore = selectStore;
 
       initialize();
@@ -38,12 +38,12 @@
          $document[0].activeElement.blur();
       }
 
-      function setItemObtainment(item, obtained) {
+      function setShoppingItemObtainment(item, obtained) {
          item.setAttributes({obtained: obtained});
       }
 
-      function removeItem(item) {
-         mainShoppingListVM.shoppingList.removeItem(item);
+      function removeShoppingItem(item) {
+         mainShoppingListVM.shoppingList.removeShoppingItem(item);
       }
 
       function selectStore() {
