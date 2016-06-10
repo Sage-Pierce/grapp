@@ -68,10 +68,10 @@
       }
 
       function deleteSelectedStore() {
-         var selectedStore = mainStoresVM.selectedStore;
-         Messaging.requestConfirmation("Delete Store", "Are you sure you want to delete the Store " + selectedStore.name + "?")
-            .then(selectedStore.delete)
-            .then(function() { _.remove(mainStoresVM.stores, mainStoresVM.selectedStore); });
+         Messaging.requestConfirmation("Delete Store", "Are you sure you want to delete the Store " + mainStoresVM.selectedStore.name + "?")
+            .then(mainStoresVM.selectedStore.delete)
+            .then(function() { _.remove(mainStoresVM.stores, mainStoresVM.selectedStore); })
+            .then(function() { mainStoresVM.selectedStore = null; });
       }
 
       function handleStoreManagerModel(storeManagerModel) {
