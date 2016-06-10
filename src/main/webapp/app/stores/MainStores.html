@@ -1,21 +1,20 @@
 <h4 class="text-center">Your Stores</h4>
 <div cg-busy="{promise: mainStoresVM.transitionPromise, delay: 400, minDuration: 200}">
-   <table class="table table-bordered" ng-class="{'table-hover': mainStoresVM.areAnyStoresExistent()}">
+   <table class="table table-bordered" ng-class="{'table-hover': mainStoresVM.areThereAnyStores()}">
       <thead>
          <tr>
             <th class="col-md-4">Store Name</th>
             <th class="col-md-6">Approx. Address</th>
          </tr>
       </thead>
-      <tbody ng-if="!mainStoresVM.areAnyStoresExistent()">
-         <tr>
-            <td>You have no stores</td>
-         </tr>
-      </tbody>
-      <tbody ng-if="mainStoresVM.areAnyStoresExistent()">
+      <tbody>
          <tr ng-repeat="store in mainStoresVM.stores" class="cursor-clickable" ng-class="{info: mainStoresVM.selectedStore === store}" ng-click="mainStoresVM.setSelectedStore(store)">
             <td>{{store.name}}</td>
             <td>{{store.approximateAddress}}</td>
+         </tr>
+         <tr ng-if="!mainStoresVM.areThereAnyStores()">
+            <td>You have no stores</td>
+            <td></td>
          </tr>
       </tbody>
    </table>

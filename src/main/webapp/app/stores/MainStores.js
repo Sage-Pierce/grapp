@@ -10,7 +10,7 @@
       mainStoresVM.transitionPromise = null;
       mainStoresVM.stores = [];
       mainStoresVM.selectedStore = null;
-      mainStoresVM.areAnyStoresExistent = areAnyStoresExistent;
+      mainStoresVM.areThereAnyStores = areThereAnyStores;
       mainStoresVM.setSelectedStore = setSelectedStore;
       mainStoresVM.isAStoreSelected = isAStoreSelected;
       mainStoresVM.createStore = createStore;
@@ -28,7 +28,7 @@
          mainStoresVM.transitionPromise = StoreManager.load().then(handleStoreManagerModel);
       }
 
-      function areAnyStoresExistent() {
+      function areThereAnyStores() {
          return mainStoresVM.stores.length > 0;
       }
 
