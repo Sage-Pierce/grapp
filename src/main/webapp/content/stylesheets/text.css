@@ -2,6 +2,10 @@
    color: white;
 }
 
+.text-italic {
+   font-style: italic;
+}
+
 .text-strikethrough {
    text-decoration: line-through;
 }
