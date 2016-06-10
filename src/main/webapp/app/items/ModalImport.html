@@ -6,6 +6,6 @@
    <textarea title="CSV Data" class="width-full" rows="20" ng-model="modalImportVM.data"></textarea>
 </div>
 <div class="modal-footer">
-   <a class="btn btn-primary" ng-disabled="!modalImportVM.data || modalImportVM.data.length === 0" ng-click="modalImportVM.finish()">Import</a>
    <a class="btn btn-warning" ng-click="modalImportVM.cancel()">Cancel</a>
+   <a class="btn btn-primary" ng-disabled="!modalImportVM.data || modalImportVM.data.length === 0" ng-click="modalImportVM.finish()">Import</a>
 </div>
