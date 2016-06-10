@@ -9,6 +9,7 @@
       var mainShoppingListsVM = this;
       mainShoppingListsVM.loadingPromise = null;
       mainShoppingListsVM.lists = [];
+      mainShoppingListsVM.areThereAnyLists = areThereAnyLists;
       mainShoppingListsVM.createList = createList;
       mainShoppingListsVM.deleteList = deleteList;
       mainShoppingListsVM.openList = openList;
@@ -21,6 +22,10 @@
 
       function initialize() {
          mainShoppingListsVM.loadingPromise = Shopper.load().then(handleShopperModel);
+      }
+
+      function areThereAnyLists() {
+         return mainShoppingListsVM.lists.length > 0;
       }
 
       function createList() {
