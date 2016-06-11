@@ -25,7 +25,7 @@
          </div>
       </div>
       <div ng-show="mainShoppingListVM.shoppingList.isEmpty()">
-         <p class="text-center text-italic tv-strut-20">There are no items on this list.</p>
+         <p class="text-center tv-strut-20"><i>This list does not have any items</i></p>
       </div>
    </div>
    <a class="btn btn-success btn-raised width-full" ng-click="mainShoppingListVM.shoppingList.hasUnobtainedItems() && mainShoppingListVM.selectStore()" ng-disabled="!mainShoppingListVM.shoppingList.hasUnobtainedItems()">Select Store</a>
