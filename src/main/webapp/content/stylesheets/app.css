@@ -13,6 +13,11 @@
    max-height: 400px;
 }
 
+.entry-pane {
+   overflow-y: scroll;
+   height: 300px;
+}
+
 .autocomplete-custom-template li {
    border-bottom: 1px solid #ccc;
    height: auto;

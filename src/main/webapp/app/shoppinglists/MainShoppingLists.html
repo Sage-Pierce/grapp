@@ -1,6 +1,6 @@
 <h4 class="text-center">Your Shopping Lists</h4>
 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" cg-busy="{promise: mainShoppingListsVM.loadingPromise, delay: 400, minDuration: 200}">
-   <div class="height-scrollable height-200">
+   <div class="entry-pane">
       <div ng-repeat="list in mainShoppingListsVM.lists"
            class="card card-entry card-clickable"
            ng-click="mainShoppingListsVM.openList(list)"

@@ -13,7 +13,7 @@
       </md-item-template>
       <md-not-found>There are no matching Items</md-not-found>
    </md-autocomplete>
-   <div class="height-scrollable height-300">
+   <div class="entry-pane">
       <div ng-repeat="item in mainShoppingListVM.shoppingList.items" class="card card-entry">
          <div class="card-body">
             <md-checkbox class="md-primary v-margin-0" md-no-ink aria-label="{{item.name}}" ng-model="item.obtained" ng-change="mainShoppingListVM.setShoppingItemObtainment(item, item.obtained)">
