@@ -21,9 +21,9 @@
       });
    }
 
-   initialize.$inject = ["$rootScope", "$state", "uiGmapGoogleMapApi", "UsersRoot", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot", "PathGenerationRoot"];
-   function initialize($rootScope, $state, uiGmapGoogleMapApi, UsersRoot, StoresRoot, ItemManagementRoot, ShoppingListsRoot, PathGenerationRoot) {
-      $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+   initialize.$inject = ["$rootScope", "$state", "UsersRoot", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot", "PathGenerationRoot", "Login", "uiGmapGoogleMapApi"];
+   function initialize($rootScope, $state, UsersRoot, StoresRoot, ItemManagementRoot, ShoppingListsRoot, PathGenerationRoot, Login, uiGmapGoogleMapApi) {
+      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
          console.log("Error on state transition:");
          console.log(error);
          $state.go("main.welcome");

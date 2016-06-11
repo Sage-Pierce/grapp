@@ -9,13 +9,13 @@
             <span class="glyphicon glyphicon-menu-hamburger text-white"></span>
          </a>
          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav" ng-if="mainVM.isUserLoggedIn()">
+            <ul class="nav navbar-nav" ng-show="mainVM.isUserLoggedIn()">
                <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showShoppingLists()">Shopping Lists</a></li>
                <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showStores()">Stores</a></li>
                <li><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.showItems()">Items</a></li>
                <li class="hidden-sm hidden-md hidden-lg"><a class="cursor-clickable" data-toggle="collapse" data-target=".navbar-collapse.in" ng-click="mainVM.logOut()">Log Out</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="mainVM.isUserLoggedIn()">
+            <ul class="nav navbar-nav navbar-right" ng-show="mainVM.isUserLoggedIn()">
                <li class="dropdown hidden-xs visible-sm visible-md visible-lg" uib-dropdown>
                   <a class="dropdown-toggle" role="button" uib-dropdown-toggle>
                      {{mainVM.userName}}

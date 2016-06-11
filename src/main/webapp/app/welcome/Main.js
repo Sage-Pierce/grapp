@@ -24,7 +24,7 @@
       ////////////////////
 
       function initialize() {
-         mainVM.loginPromise = Login.afterLogIn().then(initUserVariables);
+         mainVM.loginPromise = Login.afterLogIn().then(initUserVariables, showWelcome);
       }
 
       function logIn(oAuthProvider) {
