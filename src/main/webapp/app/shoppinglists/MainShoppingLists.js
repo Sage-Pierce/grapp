@@ -4,8 +4,8 @@
    angular.module("App")
       .controller("MainShoppingLists", MainShoppingLists);
 
-   MainShoppingLists.$inject = ["$state", "$uibModal", "Shopper"];
-   function MainShoppingLists($state, $uibModal, Shopper) {
+   MainShoppingLists.$inject = ["$state", "$uibModal", "Shopper", "Messaging"];
+   function MainShoppingLists($state, $uibModal, Shopper, Messaging) {
       var mainShoppingListsVM = this;
       mainShoppingListsVM.loadingPromise = null;
       mainShoppingListsVM.lists = [];
@@ -38,7 +38,8 @@
       }
 
       function deleteList(list) {
-         shopper.removeList(list);
+         Messaging.requestConfirmation("Delete Shopping List", "Are you sure you want to delete the list '" + list.name + "'?")
+            .then(function() { shopper.removeList(list); });
       }
 
       function openList(list) {

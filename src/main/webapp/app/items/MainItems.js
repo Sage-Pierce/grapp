@@ -46,7 +46,7 @@
 
       function deleteItem(itemScope) {
          var item = itemScope.$modelValue;
-         Messaging.requestConfirmation("Delete Item", "Are you sure you want to delete the Item " + item.name + "?")
+         Messaging.requestConfirmation("Delete Item", "Are you sure you want to delete the Item '" + item.name + "'?")
             .then(item.delete)
             .then(itemScope.remove);
       }

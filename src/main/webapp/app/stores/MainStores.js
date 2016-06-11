@@ -68,7 +68,7 @@
       }
 
       function deleteSelectedStore() {
-         Messaging.requestConfirmation("Delete Store", "Are you sure you want to delete the Store " + mainStoresVM.selectedStore.name + "?")
+         Messaging.requestConfirmation("Delete Store", "Are you sure you want to delete the Store '" + mainStoresVM.selectedStore.name + "'?")
             .then(mainStoresVM.selectedStore.delete)
             .then(function() { _.remove(mainStoresVM.stores, mainStoresVM.selectedStore); })
             .then(function() { mainStoresVM.selectedStore = null; });
