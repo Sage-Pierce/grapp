@@ -8,6 +8,6 @@
 <div class="modal-footer">
    <div class="btn-group">
       <a class="btn btn-warning" ng-click="modalImportVM.cancel()">Cancel</a>
-      <a class="btn btn-primary" ng-disabled="!modalImportVM.data || modalImportVM.data.length === 0" ng-click="modalImportVM.finish()">Import</a>
+      <a class="btn btn-primary" ng-click="modalImportVM.data.length > 0 && modalImportVM.finish()" ng-disabled="modalImportVM.data.length <= 0">Import</a>
    </div>
 </div>

@@ -32,6 +32,6 @@
 <div class="modal-footer">
    <div class="btn-group">
       <a class="btn btn-warning" ng-click="modalStoreVM.cancel()">Cancel</a>
-      <a class="btn btn-primary" ng-disabled="!modalStoreVM.isDataValid()" ng-click="modalStoreVM.finish()">Finish</a>
+      <a class="btn btn-primary" ng-click="modalStoreVM.isDataValid() && modalStoreVM.finish()" ng-disabled="!modalStoreVM.isDataValid()">Finish</a>
    </div>
 </div>

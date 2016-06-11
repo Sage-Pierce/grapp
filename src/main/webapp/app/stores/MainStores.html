@@ -22,12 +22,12 @@
       <div>
          <div class="btn-group">
             <a class="btn btn-success" ng-click="mainStoresVM.createStore()">Create Store</a>
-            <a class="btn btn-danger" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.deleteSelectedStore()">Delete Store</a>
+            <a class="btn btn-danger" ng-click="mainStoresVM.isAStoreSelected() && mainStoresVM.deleteSelectedStore()" ng-disabled="!mainStoresVM.isAStoreSelected()">Delete Store</a>
          </div>
          <div class="btn-group pull-right">
-            <a class="btn btn-info" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.updateSelectedStore()">Edit Attributes</a>
-            <a class="btn btn-info" ng-disabled="!mainStoresVM.isAStoreSelected()" ng-click="mainStoresVM.editSelectedStore()">Edit Layout</a>
-         </div>
+            <a class="btn btn-info" ng-click="mainStoresVM.isAStoreSelected() && mainStoresVM.updateSelectedStore()" ng-disabled="!mainStoresVM.isAStoreSelected()">Edit Attributes</a>
+            <a class="btn btn-info" ng-click="mainStoresVM.isAStoreSelected() && mainStoresVM.editSelectedStore()" ng-disabled="!mainStoresVM.isAStoreSelected()">Edit Layout</a>
+      </div>
       </div>
    </div>
 </div>

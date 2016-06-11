@@ -47,9 +47,7 @@
       }
 
       function selectStore() {
-         if (mainShoppingListVM.shoppingList.hasUnobtainedItems()) {
-            mainShoppingListVM.transitionPromise = $state.go("main.shoppingListStores", {listId: $stateParams.listId});
-         }
+         mainShoppingListVM.transitionPromise = $state.go("main.shoppingListStores", {listId: $stateParams.listId});
       }
 
       function createItemFilter(searchText) {

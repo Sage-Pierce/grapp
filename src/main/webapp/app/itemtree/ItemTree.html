@@ -31,10 +31,10 @@
          <span class="glyphicon glyphicon-record"></span>
       </a>
       <span ng-include="itemTreeVM.options.itemTemplateUrl || 'ItemNameRenderer.html'"></span>
-      <a class="btn btn-success btn-xs" ng-class="{'pull-right':!itemTreeVM.options.compact}" ng-if="itemTreeVM.add != null" ng-click="itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
+      <a class="btn btn-success btn-xs" ng-class="{'pull-right':!itemTreeVM.options.compact}" ng-if="itemTreeVM.add != null" ng-click="!itemTreeVM.disabled && itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-plus"></span>
       </a>
-      <a class="btn btn-danger btn-xs" ng-class="{'pull-right':!itemTreeVM.options.compact}" ng-if="itemTreeVM.remove != null" ng-click="itemTreeVM.remove(this)" ng-disabled="itemTreeVM.disabled">
+      <a class="btn btn-danger btn-xs" ng-class="{'pull-right':!itemTreeVM.options.compact}" ng-if="itemTreeVM.remove != null" ng-click="!itemTreeVM.disabled && itemTreeVM.remove(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-remove"></span>
       </a>
    </div>

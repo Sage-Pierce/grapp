@@ -19,7 +19,7 @@
             <md-checkbox class="md-primary v-margin-0" md-no-ink aria-label="{{item.name}}" ng-model="item.obtained" ng-change="mainShoppingListVM.setShoppingItemObtainment(item, item.obtained)">
                <span ng-class="{'text-item-obtained': item.obtained}">{{item.name}}</span>
             </md-checkbox>
-            <a class="btn btn-sm pull-right bv-margin-0 t-nudge-2" style="vertical-align: center" ng-click="mainShoppingListVM.removeShoppingItem(item)">
+            <a class="btn btn-sm pull-right bv-margin-0 t-nudge-2" ng-click="mainShoppingListVM.removeShoppingItem(item)">
                <span class="glyphicon glyphicon-trash"></span>
             </a>
          </div>
@@ -28,5 +28,5 @@
          <p class="text-center text-italic tv-strut-20">There are no items on this list.</p>
       </div>
    </div>
-   <a class="btn btn-success btn-raised width-full" ng-click="mainShoppingListVM.selectStore()" ng-disabled="!mainShoppingListVM.shoppingList.hasUnobtainedItems()">Select Store</a>
+   <a class="btn btn-success btn-raised width-full" ng-click="mainShoppingListVM.shoppingList.hasUnobtainedItems() && mainShoppingListVM.selectStore()" ng-disabled="!mainShoppingListVM.shoppingList.hasUnobtainedItems()">Select Store</a>
 </div>
