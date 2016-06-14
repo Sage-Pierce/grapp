@@ -10,6 +10,8 @@ public final class UserDtoFactory {
       userDto.setEmail(user.getEmail().toString());
       userDto.setName(user.getName());
       userDto.setAvatar(user.getAvatar());
+      userDto.setAdmin(user.isAdmin());
+      userDto.setManager(user.isManager());
       return userDto;
    }
 

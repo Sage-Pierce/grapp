@@ -5,6 +5,8 @@ public class UserDto {
    private String email;
    private String name;
    private String avatar;
+   private boolean admin;
+   private boolean manager;
 
    public String getEmail() {
       return email;
@@ -28,5 +30,21 @@ public class UserDto {
 
    public void setAvatar(String avatar) {
       this.avatar = avatar;
+   }
+
+   public boolean isManager() {
+      return manager;
+   }
+
+   public void setManager(boolean manager) {
+      this.manager = manager;
+   }
+
+   public boolean isAdmin() {
+      return admin;
+   }
+
+   public void setAdmin(boolean admin) {
+      this.admin = admin;
    }
 }

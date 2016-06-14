@@ -11,6 +11,8 @@
       mainVM.isUserLoggedIn = Login.isUserLoggedIn;
       mainVM.userName = null;
       mainVM.userAvater = null;
+      mainVM.admin = false;
+      mainVM.manager = false;
       mainVM.logIn = logIn;
       mainVM.logOut = logOut;
       mainVM.showWelcome = showWelcome;
@@ -77,6 +79,8 @@
       function initUserVariables(user) {
          mainVM.userName = user ? user.name : null;
          mainVM.userAvatar = user ? user.avatar : null;
+         mainVM.admin = user ? user.admin : false;
+         mainVM.manager = user ? user.manager : false;
       }
    }
 })();

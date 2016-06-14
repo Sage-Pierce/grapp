@@ -15,6 +15,9 @@ public class User extends NamedEntity<Email> {
 
    private String avatar;
 
+   private boolean admin;
+   private boolean manager;
+
    public User(Email email, String name, String avatar) {
       this.email = email.toString();
       setName(name);
@@ -36,6 +39,14 @@ public class User extends NamedEntity<Email> {
 
    public String getAvatar() {
       return avatar;
+   }
+
+   public boolean isAdmin() {
+      return admin;
+   }
+
+   public boolean isManager() {
+      return manager;
    }
 
    public void setAvatar(String avatar) {
