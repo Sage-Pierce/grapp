@@ -8,30 +8,29 @@ import java.util.*;
 public final class Dijkstra {
 
    public static GraphPath calculatePath(GraphPoint start, GraphPoint finish) {
-      Set<GraphPoint> visitedPoints = new HashSet<>();
-      Map<GraphPoint, GraphPointPath> pointPaths = new HashMap<>();
-      Queue<GraphPointPath> pointPathQueue = new PriorityQueue<>();
       GraphPointPath currentPointPath = new GraphPointPath(start, new GraphPath(start));
-      pointPaths.put(start, currentPointPath);
-      pointPathQueue.add(currentPointPath);
+      Queue<GraphPointPath> pointPathQueue = new PriorityQueue<>(Collections.singleton(currentPointPath));
+      Map<GraphPoint, GraphPointPath> pointPaths = new HashMap<>(Collections.singletonMap(start, currentPointPath));
+      Set<GraphPoint> visitedPoints = new HashSet<>();
       while (!pointPathQueue.isEmpty() && !Objects.equals(finish, (currentPointPath = pointPathQueue.poll()).getPoint())) {
          visitedPoints.add(currentPointPath.getPoint());
          for (GraphPoint neighbor : currentPointPath.getNeighbors()) {
             if (!visitedPoints.contains(neighbor)) {
                GraphPointPath neighborPointPath = currentPointPath.add(neighbor);
-               pointPaths.compute(neighbor, (key, oldPointPath) -> {
-                  if (oldPointPath == null || oldPointPath.compareTo(neighborPointPath) > 0) {
-                     pointPaths.put(key, neighborPointPath);
-                     pointPathQueue.remove(oldPointPath);
-                     pointPathQueue.add(neighborPointPath);
-                     return neighborPointPath;
-                  }
-                  return oldPointPath;
-               });
+               pointPaths.compute(neighbor, (key, oldPointPath) -> computeAndQueueBestPointPath(oldPointPath, neighborPointPath, pointPathQueue));
             }
          }
       }
       return pointPaths.containsKey(finish) ? pointPaths.get(finish).getPath() : new GraphPath(Collections.emptyList());
+   }
+
+   private static GraphPointPath computeAndQueueBestPointPath(GraphPointPath oldPointPath, GraphPointPath newPointPath, Queue<GraphPointPath> pointPathQueue) {
+      if (oldPointPath == null || newPointPath.compareTo(oldPointPath) < 0) {
+         pointPathQueue.remove(oldPointPath);
+         pointPathQueue.add(newPointPath);
+         return newPointPath;
+      }
+      return oldPointPath;
    }
 
    private static final class GraphPointPath implements Comparable<GraphPointPath> {
