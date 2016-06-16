@@ -3,6 +3,7 @@ package com.wisegas.pathgeneration.domain_impl.graph.impl;
 import com.wisegas.pathgeneration.domain_impl.graph.api.GraphPath;
 import com.wisegas.pathgeneration.domain_impl.graph.api.GraphPoint;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 public final class Dijkstra {
@@ -44,7 +45,7 @@ public final class Dijkstra {
       }
 
       @Override
-      public int compareTo(GraphPointPath graphPointPath) {
+      public int compareTo(@Nonnull GraphPointPath graphPointPath) {
          return path.compareTo(graphPointPath.path);
       }
 
