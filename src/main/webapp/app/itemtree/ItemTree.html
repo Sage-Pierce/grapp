@@ -12,7 +12,7 @@
       </div>
    </fieldset>
 </form>
-<div class="scrollable {{itemTreeVM.options.treeClass}}" ui-tree data-empty-placeholder-enabled="false">
+<div class="scrollable {{itemTreeVM.options.treeClass}}" ui-tree="itemTreeVM.treeOptions" data-empty-placeholder-enabled="false">
    <ol ui-tree-nodes ng-model="itemTreeVM.items">
       <li ng-repeat="item in itemTreeVM.items"
           ng-include="'TreeItemRenderer.html'"
@@ -30,7 +30,7 @@
       <a class="btn btn-ghost btn-xs cursor-default" ng-if="item.subItems.length == 0" disabled="true">
          <span class="glyphicon glyphicon-record"></span>
       </a>
-      <span ng-include="itemTreeVM.options.itemTemplateUrl || 'ItemNameRenderer.html'"></span>
+      <span class="text-normal" ui-tree-handle ng-include="itemTreeVM.options.itemTemplateUrl || 'ItemNameRenderer.html'"></span>
       <a class="btn btn-success btn-xs" ng-class="{'pull-right':!itemTreeVM.options.compact}" ng-if="itemTreeVM.add != null" ng-click="!itemTreeVM.disabled && itemTreeVM.add(this)" ng-disabled="itemTreeVM.disabled">
          <span class="glyphicon glyphicon-plus"></span>
       </a>

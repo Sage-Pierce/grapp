@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Item", Item);
 
-   Item.$inject = ["ItemManagementRoot"];
-   function Item(ItemManagementRoot) {
+   Item.$inject = ["$q", "ItemManagementRoot"];
+   function Item($q, ItemManagementRoot) {
       var self = this;
       self.createGeneralItem = createGeneralItem;
       self.loadAllGeneral = loadAllGeneral;
@@ -30,9 +30,12 @@
 
       function ItemModel(item, recent) {
          var self = this;
+         self.resource = null;
          self.recent = recent || false;
          self.subItems = item.subItems.map(function(subItem) { return _.mergeLeft(new ItemModel(subItem), subItem); });
          self.addSubItem = addSubItem;
+         self.makeGeneral = makeGeneral;
+         self.move = move;
          self.delete = del;
          self.isRecent = isRecent;
 
@@ -47,12 +50,33 @@
                });
          }
 
+         function makeGeneral() {
+            return fetchResource().then(function(itemRsc) {
+               return itemRsc.$put("makeGeneral");
+            });
+         }
+
+         function move(superItem) {
+            return fetchResource().then(function(itemRsc) {
+               return itemRsc.$put("move", {superItemCode: superItem.primaryCode});
+            });
+         }
+
          function del() {
             return ItemManagementRoot.deleteResource("item", {primaryCode: self.primaryCode});
          }
 
          function isRecent() {
             return self.recent;
+         }
+
+         function fetchResource() {
+            return self.resource ? $q.resolve(self.resource) : ItemManagementRoot.loadResource("item", {primaryCode: self.primaryCode}).then(cacheResource);
+         }
+
+         function cacheResource(resource) {
+            self.resource = resource;
+            return self.resource;
          }
       }
    }
