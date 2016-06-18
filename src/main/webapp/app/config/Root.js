@@ -13,6 +13,7 @@
          self.createResourceModel = createResourceModel;
          self.loadResourceModels = loadResourceModels;
          self.loadResourceModel = loadResourceModel;
+         self.loadResource = loadResource;
          self.updateResource = updateResource;
          self.deleteResource = deleteResource;
 
@@ -47,6 +48,12 @@
                   .then(function(resource) {
                      return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                   });
+            });
+         }
+
+         function loadResource(resourceName, idParam) {
+            return afterLoad().then(function(rootRsc) {
+               return rootRsc.$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
             });
          }
 
