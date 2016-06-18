@@ -69,7 +69,7 @@ public class ItemServiceImpl implements ItemService {
    @Override
    public ItemDto move(String primaryCode, String superItemCode) {
       Item item = itemRepository.get(Code.fromString(primaryCode));
-      Item superItem = itemRepository.get(Code.fromString(primaryCode));
+      Item superItem = itemRepository.get(Code.fromString(superItemCode));
       superItem.acceptSubItem(item);
       return ItemDtoFactory.createDto(item);
    }
