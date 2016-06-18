@@ -8,12 +8,9 @@ import com.wisegas.itemmanagement.service.api.ItemService;
 import com.wisegas.itemmanagement.service.dto.ItemDto;
 
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 @Path("/items/{primaryCode}/")
@@ -31,6 +28,19 @@ public class ItemResource extends JaxrsHalJsonResource {
       return buildHalResponse(asRepresentationOf(itemService.get(primaryCode)));
    }
 
+   @PUT
+   @Path("makeGeneral")
+   public Response makeGeneral(@PathParam("primaryCode") final String primaryCode) {
+      return buildHalResponse(asRepresentationOf(itemService.makeGeneral(primaryCode)));
+   }
+
+   @PUT
+   @Path("move")
+   public Response move(@PathParam("primaryCode") final String primaryCode,
+                        @QueryParam("superItemCode") final String superItemCode) {
+      return buildHalResponse(asRepresentationOf(itemService.move(primaryCode, superItemCode)));
+   }
+
    @DELETE
    public Response delete(@PathParam("primaryCode") final String primaryCode) {
       itemService.delete(primaryCode);
@@ -46,7 +56,11 @@ public class ItemResource extends JaxrsHalJsonResource {
    }
 
    private static List<HalLink> createLinks(ItemDto itemDto) {
-      return Collections.singletonList(createSelfLinkBuilder().pathArgs(itemDto.getPrimaryCode()).withSelfRel());
+      return Arrays.asList(
+         createSelfLinkBuilder().pathArgs(itemDto.getPrimaryCode()).withSelfRel(),
+         createSelfLinkBuilder().method("makeGeneral").pathArgs(itemDto.getPrimaryCode()).withRel("makeGeneral"),
+         createSelfLinkBuilder().method("move").pathArgs(itemDto.getPrimaryCode()).queryParams("superItemCode").withRel("move")
+      );
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {

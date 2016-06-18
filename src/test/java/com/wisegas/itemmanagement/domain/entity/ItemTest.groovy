@@ -29,8 +29,8 @@ class ItemTest extends Specification {
       Item item = superItem.addSubItem(SUB_CODE, "Item")
 
       expect:
-      superItem.isGeneralItem()
-      !item.isGeneralItem()
+      superItem.isGeneral()
+      !item.isGeneral()
    }
 
    def "The Lineage of an Item can be determined"() {
@@ -47,5 +47,40 @@ class ItemTest extends Specification {
       result[0] == item
       result[1] == superItem
       result[2] == superSuperItem
+   }
+
+   def "An Item can be made a general Item"() {
+      given:
+      Item generalItem = new Item(SUPER_CODE, "General Item")
+      Item item = generalItem.addSubItem(SUB_CODE, "Item")
+
+      when:
+      item.makeGeneral()
+
+      then:
+      item.isGeneral()
+
+      and:
+      generalItem.getSubItems().isEmpty()
+   }
+
+   def "An Item from one Super Item can be accepted by another Super Item"() {
+      given:
+      Item superItem1 = new Item(SUPER_SUPER_CODE, "Super Item 1")
+      Item superItem2 = new Item(SUPER_CODE, "Super Item 2")
+
+      and:
+      Item subItem = superItem1.addSubItem(SUB_CODE, "Sub Item")
+
+      when:
+      superItem2.acceptSubItem(subItem)
+
+      then:
+      superItem2.getSubItems().size() == 1
+      superItem2.getSubItems()[0] == subItem
+      subItem.getSuperItem() == superItem2
+
+      and:
+      superItem1.getSubItems().isEmpty()
    }
 }

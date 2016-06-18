@@ -16,5 +16,9 @@ public interface ItemService {
 
    ItemDto get(String primaryCode);
 
+   ItemDto makeGeneral(String primaryCode);
+
+   ItemDto move(String primaryCode, String superItemCode);
+
    void delete(String primaryCode);
 }

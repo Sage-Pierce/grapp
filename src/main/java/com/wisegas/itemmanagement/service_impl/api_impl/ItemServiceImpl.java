@@ -2,6 +2,7 @@ package com.wisegas.itemmanagement.service_impl.api_impl;
 
 import com.wisegas.common.lang.annotation.ApplicationService;
 import com.wisegas.common.lang.annotation.Transactional;
+import com.wisegas.itemmanagement.domain.entity.Item;
 import com.wisegas.itemmanagement.domain.repository.ItemRepository;
 import com.wisegas.itemmanagement.domain.service.ItemCreationService;
 import com.wisegas.itemmanagement.domain.value.Code;
@@ -56,6 +57,21 @@ public class ItemServiceImpl implements ItemService {
    @Override
    public ItemDto get(String primaryCode) {
       return ItemDtoFactory.createDto(itemRepository.get(Code.fromString(primaryCode)));
+   }
+
+   @Override
+   public ItemDto makeGeneral(String primaryCode) {
+      Item item = itemRepository.get(Code.fromString(primaryCode));
+      item.makeGeneral();
+      return ItemDtoFactory.createDto(item);
+   }
+
+   @Override
+   public ItemDto move(String primaryCode, String superItemCode) {
+      Item item = itemRepository.get(Code.fromString(primaryCode));
+      Item superItem = itemRepository.get(Code.fromString(primaryCode));
+      superItem.acceptSubItem(item);
+      return ItemDtoFactory.createDto(item);
    }
 
    @Override

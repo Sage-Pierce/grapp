@@ -40,7 +40,7 @@ public class Item extends SimpleEntity<Code> {
       List<Item> lineage = new ArrayList<>();
       Item ancestor = this;
       lineage.add(ancestor);
-      while (!ancestor.isGeneralItem()) {
+      while (!ancestor.isGeneral()) {
          lineage.add(ancestor = ancestor.getSuperItem());
       }
       return lineage;
@@ -77,7 +77,24 @@ public class Item extends SimpleEntity<Code> {
       return subItem;
    }
 
-   public boolean isGeneralItem() {
+   public void acceptSubItem(Item subItem) {
+      subItem.makeGeneral();
+      subItem.setSuperItem(this);
+      subItems.add(subItem);
+   }
+
+   public void removeSubItem(Item subItem) {
+      subItems.remove(subItem);
+   }
+
+   public void makeGeneral() {
+      if (!isGeneral()) {
+         superItem.removeSubItem(this);
+         superItem = null;
+      }
+   }
+
+   public boolean isGeneral() {
       return superItem == null;
    }
 
