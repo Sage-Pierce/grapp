@@ -2,10 +2,16 @@
    color: white;
 }
 
+.text-normal {
+   font-weight: normal !important;
+   font-style: normal !important;
+   text-decoration: none !important;
+}
+
 .text-italic {
-   font-style: italic;
+   font-style: italic !important;
 }
 
 .text-strikethrough {
-   text-decoration: line-through;
+   text-decoration: line-through !important;
 }
