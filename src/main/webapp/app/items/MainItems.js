@@ -69,9 +69,9 @@
       function openModalItem(superItem) {
          return $uibModal.open({
             animation: true,
-            templateUrl: "app/items/ModalItem.html",
-            controller: "ModalItem",
-            controllerAs: "modalItemVM",
+            templateUrl: "app/items/ModalCreateItem.html",
+            controller: "ModalCreateItem",
+            controllerAs: "modalCreateItemVM",
             resolve: {
                superItem: function() { return superItem; }
             }
