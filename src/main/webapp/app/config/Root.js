@@ -43,11 +43,8 @@
          }
 
          function loadResourceModel(resourceName, idParam, resourceModelCreatorCallback) {
-            return afterLoad().then(function(rootRsc) {
-               return rootRsc.$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam})
-                  .then(function(resource) {
-                     return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
-                  });
+            return loadResource(resourceName, idParam).then(function(resource) {
+               return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
             });
          }
 
