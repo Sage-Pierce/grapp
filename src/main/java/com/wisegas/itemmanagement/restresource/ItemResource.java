@@ -29,6 +29,12 @@ public class ItemResource extends JaxrsHalJsonResource {
    }
 
    @PUT
+   public Response update(@PathParam("primaryCode") final String primaryCode,
+                          @QueryParam("name") final String name) {
+      return buildHalResponse(asRepresentationOf(itemService.update(primaryCode, name)));
+   }
+
+   @PUT
    @Path("makeGeneral")
    public Response makeGeneral(@PathParam("primaryCode") final String primaryCode) {
       return buildHalResponse(asRepresentationOf(itemService.makeGeneral(primaryCode)));
@@ -58,12 +64,12 @@ public class ItemResource extends JaxrsHalJsonResource {
    private static List<HalLink> createLinks(ItemDto itemDto) {
       return Arrays.asList(
          createSelfLinkBuilder().pathArgs(itemDto.getPrimaryCode()).withSelfRel(),
-         createSelfLinkBuilder().method("makeGeneral").pathArgs(itemDto.getPrimaryCode()).withRel("makeGeneral"),
-         createSelfLinkBuilder().method("move").pathArgs(itemDto.getPrimaryCode()).queryParams("superItemCode").withRel("move")
+         JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class).method("makeGeneral").pathArgs(itemDto.getPrimaryCode()).withRel("makeGeneral"),
+         JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class).method("move").pathArgs(itemDto.getPrimaryCode()).queryParams("superItemCode").withRel("move")
       );
    }
 
    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-      return JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class);
+      return JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class).queryParams("name");
    }
 }

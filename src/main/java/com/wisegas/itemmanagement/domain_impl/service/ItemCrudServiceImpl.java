@@ -4,17 +4,19 @@ import com.wisegas.common.domain.exception.EntityConflictException;
 import com.wisegas.itemmanagement.domain.entity.Item;
 import com.wisegas.itemmanagement.domain.repository.ItemRepository;
 import com.wisegas.itemmanagement.domain.service.ItemCreationService;
+import com.wisegas.itemmanagement.domain.service.ItemUpdateService;
 import com.wisegas.itemmanagement.domain.value.Code;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Named
 @Singleton
-public class ItemCrudServiceImpl implements ItemCreationService {
+public class ItemCrudServiceImpl implements ItemCreationService, ItemUpdateService {
 
    private final ItemRepository itemRepository;
 
@@ -36,6 +38,14 @@ public class ItemCrudServiceImpl implements ItemCreationService {
       assertItemNameUniqueness(name);
       Item superItem = itemRepository.get(superItemCode);
       return superItem.addSubItem(code, name);
+   }
+
+   @Override
+   public void changeItemName(Item item, String name) {
+      if (!Objects.equals(item.getName(), name)) {
+         assertItemNameUniqueness(name);
+         item.setName(name);
+      }
    }
 
    private void assertItemCodeUniqueness(Code code) {

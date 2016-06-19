@@ -5,6 +5,7 @@ import com.wisegas.common.lang.annotation.Transactional;
 import com.wisegas.itemmanagement.domain.entity.Item;
 import com.wisegas.itemmanagement.domain.repository.ItemRepository;
 import com.wisegas.itemmanagement.domain.service.ItemCreationService;
+import com.wisegas.itemmanagement.domain.service.ItemUpdateService;
 import com.wisegas.itemmanagement.domain.value.Code;
 import com.wisegas.itemmanagement.domain.value.CodeType;
 import com.wisegas.itemmanagement.service.api.ItemService;
@@ -26,11 +27,13 @@ import java.util.stream.Collectors;
 public class ItemServiceImpl implements ItemService {
 
    private final ItemCreationService itemCreationService;
+   private final ItemUpdateService itemUpdateService;
    private final ItemRepository itemRepository;
 
    @Inject
-   public ItemServiceImpl(ItemCreationService itemCreationService, ItemRepository itemRepository) {
+   public ItemServiceImpl(ItemCreationService itemCreationService, ItemUpdateService itemUpdateService, ItemRepository itemRepository) {
       this.itemCreationService = itemCreationService;
+      this.itemUpdateService = itemUpdateService;
       this.itemRepository = itemRepository;
    }
 
@@ -57,6 +60,13 @@ public class ItemServiceImpl implements ItemService {
    @Override
    public ItemDto get(String primaryCode) {
       return ItemDtoFactory.createDto(itemRepository.get(Code.fromString(primaryCode)));
+   }
+
+   @Override
+   public ItemDto update(String primaryCode, String name) {
+      Item item = itemRepository.get(Code.fromString(primaryCode));
+      itemUpdateService.changeItemName(item, name);
+      return ItemDtoFactory.createDto(item);
    }
 
    @Override
