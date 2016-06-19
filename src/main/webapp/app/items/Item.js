@@ -79,7 +79,8 @@
          }
 
          function fetchResource() {
-            return self.resource ? $q.resolve(self.resource) : ItemManagementRoot.loadResource("item", {primaryCode: self.primaryCode}).then(cacheResource);
+            return self.resource ? $q.resolve(self.resource)
+                                 : ItemManagementRoot.loadResource("item", {primaryCode: self.primaryCode}).then(cacheResource);
          }
 
          function cacheResource(resource) {
