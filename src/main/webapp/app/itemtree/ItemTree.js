@@ -15,6 +15,7 @@
          bindToController: {
             items: "=",
             add: "=?",
+            edit: "=?",
             remove: "=?",
             options: "=?",
             disabled: "=?"

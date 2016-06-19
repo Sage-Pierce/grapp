@@ -1,0 +1,21 @@
+<div class="modal-header">
+   <h3 class="modal-title">Update Item</h3>
+</div>
+<div class="modal-body">
+   <form>
+      <fieldset>
+         <div class="form-group">
+            <label class="col-xs-2 control-label">Name</label>
+            <div class="col-xs-10">
+               <input type="text" class="form-control" ng-model="modalUpdateItemVM.name" placeholder="Item Name">
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</div>
+<div class="modal-footer">
+   <div class="btn-group">
+      <a class="btn btn-warning" ng-click="modalUpdateItemVM.cancel()">Cancel</a>
+      <a class="btn btn-primary" ng-click="modalUpdateItemVM.isDataValid() && modalUpdateItemVM.finish()" ng-disabled="!modalUpdateItemVM.isDataValid()">Finish</a>
+   </div>
+</div>

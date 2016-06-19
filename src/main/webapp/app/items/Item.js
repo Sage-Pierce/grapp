@@ -36,6 +36,7 @@
          self.addSubItem = addSubItem;
          self.makeGeneral = makeGeneral;
          self.move = move;
+         self.setAttributes = setAttributes;
          self.delete = del;
          self.isRecent = isRecent;
 
@@ -59,6 +60,13 @@
          function move(superItem) {
             return fetchResource().then(function(itemRsc) {
                return itemRsc.$put("move", {superItemCode: superItem.primaryCode});
+            });
+         }
+
+         function setAttributes(attributes) {
+            return ItemManagementRoot.updateResource("item", {primaryCode: self.primaryCode}, _.merge(attributes, self)).then(function(itemRsc) {
+               self.name = itemRsc.name;
+               return cacheResource(itemRsc);
             });
          }
 

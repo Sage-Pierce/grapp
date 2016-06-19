@@ -3,6 +3,7 @@
      cg-busy="{promise: mainItemsVM.loadingPromise, delay: 400, minDuration: 200}">
    <item-tree items="mainItemsVM.items"
               add="mainItemsVM.createSubItem"
+              edit="mainItemsVM.editItem"
               remove="mainItemsVM.deleteItem"
               options="{filterable: true, treeClass: 'height-400'}">
    </item-tree>

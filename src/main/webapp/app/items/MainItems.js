@@ -13,6 +13,7 @@
       mainItemsVM.createGeneralItem = createGeneralItem;
       mainItemsVM.importNacsItems = importNacsItems;
       mainItemsVM.createSubItem = createSubItem;
+      mainItemsVM.editItem = editItem;
       mainItemsVM.deleteItem = deleteItem;
 
       initialize();
@@ -24,7 +25,7 @@
       }
 
       function createGeneralItem() {
-         openModalItem().then(function(result) {
+         openModalCreateItem().then(function(result) {
             Item.createGeneralItem(result).then(function(item) {
                mainItemsVM.items.push(item);
             });
@@ -39,9 +40,14 @@
 
       function createSubItem(itemScope) {
          var item = itemScope.$modelValue;
-         openModalItem(item).then(function(result) {
+         openModalCreateItem(item).then(function(result) {
             item.addSubItem(result);
          });
+      }
+
+      function editItem(itemScope) {
+         var item = itemScope.$modelValue;
+         openModalUpdateItem(item).then(item.setAttributes);
       }
 
       function deleteItem(itemScope) {
@@ -66,7 +72,7 @@
          }).result;
       }
 
-      function openModalItem(superItem) {
+      function openModalCreateItem(superItem) {
          return $uibModal.open({
             animation: true,
             templateUrl: "app/items/ModalCreateItem.html",
@@ -74,6 +80,18 @@
             controllerAs: "modalCreateItemVM",
             resolve: {
                superItem: function() { return superItem; }
+            }
+         }).result;
+      }
+
+      function openModalUpdateItem(item) {
+         return $uibModal.open({
+            animation: true,
+            templateUrl: "app/items/ModalUpdateItem.html",
+            controller: "ModalUpdateItem",
+            controllerAs: "modalUpdateItemVM",
+            resolve: {
+               item: function() { return item; }
             }
          }).result;
       }
