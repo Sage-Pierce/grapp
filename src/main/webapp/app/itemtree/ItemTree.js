@@ -33,6 +33,7 @@
       itemTreeVM.filterChanged = filterChanged;
       itemTreeVM.isNodeVisible = isNodeVisible;
 
+      var visibilityCache = {};
       var lowerCaseFilter = itemTreeVM.filter;
 
       initialize();
@@ -51,6 +52,7 @@
       }
 
       function filterChanged() {
+         visibilityCache = {};
          lowerCaseFilter = _.lowerCase(itemTreeVM.filter);
          if (isFilterEmpty()) {
             collapseAll();
@@ -71,10 +73,17 @@
       }
 
       function isItemVisible(item) {
-         return isFilterEmpty() ||
-                doesItemMatchFilter(item) ||
-                (item.isRecent() && doAnyItemsMatchFilter(item.lineage)) ||
-                _.reduce(item.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
+         var visible = item.primaryCode in visibilityCache ? visibilityCache[item.primaryCode]
+                                                           : isFilterEmpty() ||
+                                                             doesItemMatchFilter(item) ||
+                                                             (item.isRecent() && doAnyItemsMatchFilter(item.lineage)) ||
+                                                             _.reduce(item.subItems, reduceAnySubItemVisibility, false);
+         visibilityCache[item.primaryCode] = visible;
+         return visible;
+      }
+
+      function reduceAnySubItemVisibility(isASubItemVisible, subItem) {
+         return isASubItemVisible || isItemVisible(subItem);
       }
 
       function isFilterEmpty() {
