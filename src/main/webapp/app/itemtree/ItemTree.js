@@ -58,8 +58,9 @@
       }
 
       function isNodeVisible(node) {
-         var visible = isItemVisible(node.$modelValue);
-         if (visible && !isFilterEmpty()) {
+         var item = node.$modelValue;
+         var visible = isItemVisible(item);
+         if (visible && node.collapsed && !isFilterEmpty()) {
             node.expand();
          }
          return visible;
@@ -69,11 +70,11 @@
          $scope.$broadcast('angular-ui-tree:collapse-all');
       }
 
-      function isItemVisible(itemModel) {
+      function isItemVisible(item) {
          return isFilterEmpty() ||
-                doesItemMatchFilter(itemModel) ||
-                (itemModel.isRecent() && doAnyItemsMatchFilter(itemModel.lineage)) ||
-                _.reduce(itemModel.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
+                doesItemMatchFilter(item) ||
+                (item.isRecent() && doAnyItemsMatchFilter(item.lineage)) ||
+                _.reduce(item.subItems, function(isASubItemVisible, subItem) { return isASubItemVisible || isItemVisible(subItem); }, false);
       }
 
       function isFilterEmpty() {
