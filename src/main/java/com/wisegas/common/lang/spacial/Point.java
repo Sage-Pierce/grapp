@@ -36,8 +36,8 @@ public final class Point {
    }
 
    public double distanceTo(Point point) {
+      // NOTE: I am purposefully not using Math.hypot(...). It is surprisingly slower than this manual computation.
       return Math.sqrt(Math.pow(point.x - x, 2d) + Math.pow(point.y - y, 2d));
-//      return Math.hypot(point.x - x, point.y - y);
    }
 
    @Override
