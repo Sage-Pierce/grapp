@@ -92,7 +92,7 @@ public final class LineSegment {
          return Orientation.COLINEAR;
       }
       else {
-         return determinant > 0 ? Orientation.CLOCKWISE : Orientation.COUNTERCLOCKWISE;
+         return determinant > 0 ? Orientation.COUNTERCLOCKWISE : Orientation.CLOCKWISE;
       }
    }
 

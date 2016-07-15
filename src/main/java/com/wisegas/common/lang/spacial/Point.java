@@ -32,7 +32,7 @@ public final class Point {
    }
 
    public static double determinant(Point p, Point q, Point r) {
-      return (q.getY() - p.getY()) * (r.getX() - q.getX()) - (q.getX() - p.getX()) * (r.getY() - q.getY());
+      return (q.getX() - p.getX()) * (r.getY() - q.getY()) - (q.getY() - p.getY()) * (r.getX() - q.getX());
    }
 
    public double distanceTo(Point point) {
