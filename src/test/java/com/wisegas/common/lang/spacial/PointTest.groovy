@@ -1,6 +1,6 @@
 package com.wisegas.common.lang.spacial
 
-import com.wisegas.common.test.util.Comparison
+import com.wisegas.common.lang.compare.Comparison
 import spock.lang.Specification
 
 class PointTest extends Specification {

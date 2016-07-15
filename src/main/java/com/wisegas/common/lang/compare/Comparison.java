@@ -1,4 +1,4 @@
-package com.wisegas.common.test.util;
+package com.wisegas.common.lang.compare;
 
 public final class Comparison {
 

@@ -1,7 +1,7 @@
 package com.wisegas.pathgeneration.domain_impl.graph.api
 
+import com.wisegas.common.lang.compare.Comparison
 import com.wisegas.common.lang.spacial.Point
-import com.wisegas.common.test.util.Comparison
 import spock.lang.Specification
 
 class GraphPathTest extends Specification {
