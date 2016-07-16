@@ -1,5 +1,5 @@
 {
-  "name": "Grapp",
+  "name": "grapp",
   "version": "0.0.1",
   "author": "Sage Pierce",
   "license": "MIT",
@@ -15,6 +15,6 @@
     "grunt-contrib-watch": "^0.6.1"
   },
   "scripts": {
-    "postinstall": "bower install && grunt"
+    "postinstall": "(cd src/main/webapp && npm install) && grunt"
   }
 }
