@@ -13,6 +13,7 @@ public class Main {
       // Port to run on should be an environment variable. Default to 8080 (later on) if not set.
       String port = System.getenv("PORT");
 
+      // Not running WAR and 'root' is the context
       WebAppContext contextHandler = new WebAppContext(null, "/");
       // Parent loader priority is a class loader setting that Jetty accepts. By default Jetty will
       // behave like most web containers in that it will allow your application to replace
