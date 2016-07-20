@@ -13,12 +13,12 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class IntegrationTestEntityManager {
+public class TestEntityManager {
 
    private EntityManager entityManager;
    private TransactionTemplate transactionTemplate;
 
-   public IntegrationTestEntityManager(EntityManager entityManager, PlatformTransactionManager platformTransactionManager) {
+   public TestEntityManager(EntityManager entityManager, PlatformTransactionManager platformTransactionManager) {
       this.entityManager = entityManager;
       this.transactionTemplate = new TransactionTemplate(platformTransactionManager);
    }

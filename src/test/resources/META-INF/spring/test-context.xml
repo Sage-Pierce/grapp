@@ -22,8 +22,8 @@
         <property name="password" value=""/>
     </bean>
 
-    <!-- An IntegrationTestEntityManager to use with Integration Tests -->
-    <bean id="testEntityManager" class="com.wisegas.common.test.entity.IntegrationTestEntityManager">
+    <!-- An TestEntityManager to use with Integration Tests -->
+    <bean id="testEntityManager" class="com.wisegas.common.test.entity.TestEntityManager">
         <constructor-arg>
             <bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
                 <property name="entityManagerFactory" ref="entityManagerFactory"/>

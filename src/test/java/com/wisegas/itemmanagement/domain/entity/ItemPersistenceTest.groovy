@@ -1,11 +1,11 @@
 package com.wisegas.itemmanagement.domain.entity
 
-import com.wisegas.common.persistence.jpa.entity.EntityIntegrationTest
+import com.wisegas.common.persistence.jpa.entity.EntityPersistenceTest
 import com.wisegas.itemmanagement.test.builders.ItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class ItemIntegrationTest extends EntityIntegrationTest<Item> {
+class ItemPersistenceTest extends EntityPersistenceTest<Item> {
 
    @Override
    Item createTestEntity() {

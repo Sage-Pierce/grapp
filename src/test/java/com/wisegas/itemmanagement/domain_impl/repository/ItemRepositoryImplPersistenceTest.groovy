@@ -1,7 +1,7 @@
 package com.wisegas.itemmanagement.domain_impl.repository
 
 import com.wisegas.common.lang.annotation.Transactional
-import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
+import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplPersistenceTest
 import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.repository.ItemRepository
 import com.wisegas.itemmanagement.domain.value.Code
@@ -11,7 +11,7 @@ import com.wisegas.itemmanagement.test.builders.ItemBuilder
 import javax.inject.Inject
 
 @Transactional
-class ItemRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<Item> {
+class ItemRepositoryImplPersistenceTest extends GenericRepositoryImplPersistenceTest<Item> {
 
    @Inject
    private ItemRepository itemRepository

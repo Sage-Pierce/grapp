@@ -1,6 +1,6 @@
 package com.wisegas.shoppinglists.domain_impl.repository
 
-import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
+import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplPersistenceTest
 import com.wisegas.shoppinglists.domain.entity.Shopper
 import com.wisegas.shoppinglists.domain.repository.ShopperRepository
 import com.wisegas.shoppinglists.test.builders.ShopperBuilder
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 import javax.inject.Inject
 
 @Transactional
-class ShopperRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<Shopper> {
+class ShopperRepositoryImplPersistenceTest extends GenericRepositoryImplPersistenceTest<Shopper> {
 
    @Inject
    private ShopperRepository shopperRepository

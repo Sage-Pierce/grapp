@@ -2,13 +2,13 @@ package com.wisegas.common.persistence.jpa.impl
 
 import com.wisegas.common.domain.entity.GenericRepository
 import com.wisegas.common.domain.entity.SimpleEntity
-import com.wisegas.common.test.base.IntegrationTest
+import com.wisegas.common.test.base.PersistenceTest
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
 
 @Transactional
-abstract class GenericRepositoryImplIntegrationTest<T extends SimpleEntity> extends IntegrationTest {
+abstract class GenericRepositoryImplPersistenceTest<T extends SimpleEntity> extends PersistenceTest {
 
    @Inject
    protected GenericRepository<T> repository

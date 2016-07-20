@@ -1,7 +1,7 @@
 package com.wisegas.users.domain_impl.repository
 
 import com.wisegas.common.lang.value.Email
-import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplIntegrationTest
+import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplPersistenceTest
 import com.wisegas.users.domain.entity.User
 import com.wisegas.users.domain.repository.UserRepository
 import com.wisegas.users.test.builders.UserBuilder
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 import javax.inject.Inject
 
 @Transactional
-class UserRepositoryImplIntegrationTest extends GenericRepositoryImplIntegrationTest<User> {
+class UserRepositoryImplPersistenceTest extends GenericRepositoryImplPersistenceTest<User> {
 
    @Inject
    private UserRepository userRepository

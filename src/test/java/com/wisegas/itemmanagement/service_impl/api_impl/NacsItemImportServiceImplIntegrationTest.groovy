@@ -1,13 +1,13 @@
 package com.wisegas.itemmanagement.service_impl.api_impl
 
-import com.wisegas.common.test.base.IntegrationTest
+import com.wisegas.common.test.base.PersistenceTest
 import com.wisegas.itemmanagement.service.api.NacsItemImportService
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
 
 @Transactional
-class NacsItemImportServiceImplIntegrationTest extends IntegrationTest {
+class NacsItemImportServiceImplIntegrationTest extends PersistenceTest {
 
    @Inject
    private NacsItemImportService nacsItemImportService

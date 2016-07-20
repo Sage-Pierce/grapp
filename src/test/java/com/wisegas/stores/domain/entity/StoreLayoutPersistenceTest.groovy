@@ -2,12 +2,12 @@ package com.wisegas.stores.domain.entity
 
 import com.wisegas.common.lang.spacial.GeoPoint
 import com.wisegas.common.lang.spacial.GeoPolygon
-import com.wisegas.common.test.base.IntegrationTest
+import com.wisegas.common.test.base.PersistenceTest
 import com.wisegas.stores.test.builders.StoreBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class StoreLayoutIntegrationTest extends IntegrationTest {
+class StoreLayoutPersistenceTest extends PersistenceTest {
 
    def "Features in a Layout can be reshaped by ID"() {
       given:

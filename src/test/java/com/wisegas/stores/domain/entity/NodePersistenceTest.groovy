@@ -1,13 +1,13 @@
 package com.wisegas.stores.domain.entity
 
 import com.wisegas.common.lang.spacial.GeoPoint
-import com.wisegas.common.persistence.jpa.entity.EntityIntegrationTest
+import com.wisegas.common.persistence.jpa.entity.EntityPersistenceTest
 import com.wisegas.stores.domain.value.Item
 import com.wisegas.stores.test.builders.NodeBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class NodeIntegrationTest extends EntityIntegrationTest<Node> {
+class NodePersistenceTest extends EntityPersistenceTest<Node> {
 
    def "A Node's location is persisted correctly"() {
       given:
