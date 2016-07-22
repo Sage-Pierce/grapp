@@ -11,6 +11,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements GenericRepository<T> {
+
    @PersistenceContext
    protected EntityManager entityManager;
 

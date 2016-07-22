@@ -10,19 +10,12 @@
         <property name="location" value="classpath:properties/test.properties"/>
     </bean>
 
+    <import resource="classpath:META-INF/spring/beans/test-database-beans.xml"/>
     <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
-    <import resource="classpath:META-INF/spring/beans/client-beans.xml"/>
+    <import resource="classpath:META-INF/spring/beans/application-beans-scan.xml"/>
     <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
 
-    <!-- Specify H2 as our datasource (for tests ONLY) -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:./tmp/db/testdb;AUTO_SERVER=TRUE"/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
-    </bean>
-
-    <!-- An TestEntityManager to use with Integration Tests -->
+    <!-- A TestEntityManager to use with Persistence Tests -->
     <bean id="testEntityManager" class="com.wisegas.common.test.entity.TestEntityManager">
         <constructor-arg>
             <bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">

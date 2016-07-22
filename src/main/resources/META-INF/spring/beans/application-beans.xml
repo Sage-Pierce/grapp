@@ -11,14 +11,16 @@
                            http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
-    <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.itemmanagement
-                                          com.wisegas.pathgeneration
-                                          com.wisegas.shoppinglists
-                                          com.wisegas.stores
-                                          com.wisegas.users"/>
-    <context:annotation-config/>
+    <!-- Allows placement of Environment Variables in this XML -->
+    <context:property-placeholder/>
+
+    <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
+    <bean id="client" class="javax.ws.rs.client.ClientBuilder" factory-method="newClient"/>
+
+    <!-- Bean used to communicate with Item Management Bounded Context from any other Bounded Context -->
+    <bean id="itemManagementTarget" factory-bean="client" factory-method="target">
+        <constructor-arg value="${root.itemmanagement}"/>
+    </bean>
 
     <!-- Bean used to reset DomainEventPublisher -->
     <bean id="domainEventPublisherManager" class="com.wisegas.common.domain.event.DomainEventPublisherManager"/>
