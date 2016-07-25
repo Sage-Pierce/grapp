@@ -5,6 +5,7 @@ import com.wisegas.pathgeneration.domain_impl.graph.api.GraphPoint;
 
 import javax.annotation.Nonnull;
 import java.util.*;
+import java.util.function.BiFunction;
 
 public final class Dijkstra {
 
@@ -17,21 +18,22 @@ public final class Dijkstra {
          visitedPoints.add(currentPointPath.getPoint());
          for (GraphPoint neighbor : currentPointPath.getNeighbors()) {
             if (!visitedPoints.contains(neighbor)) {
-               GraphPointPath neighborPointPath = currentPointPath.add(neighbor);
-               pointPaths.compute(neighbor, (key, oldPointPath) -> computeAndQueueBestPointPath(oldPointPath, neighborPointPath, pointPathQueue));
+               pointPaths.compute(neighbor, bestPointPathQueueRemapper(pointPathQueue, currentPointPath.add(neighbor)));
             }
          }
       }
       return pointPaths.containsKey(finish) ? pointPaths.get(finish).getPath() : new GraphPath(Collections.emptyList());
    }
 
-   private static GraphPointPath computeAndQueueBestPointPath(GraphPointPath oldPointPath, GraphPointPath newPointPath, Queue<GraphPointPath> pointPathQueue) {
-      if (oldPointPath == null || newPointPath.compareTo(oldPointPath) < 0) {
-         pointPathQueue.remove(oldPointPath);
-         pointPathQueue.add(newPointPath);
-         return newPointPath;
-      }
-      return oldPointPath;
+   private static BiFunction<GraphPoint, GraphPointPath, GraphPointPath> bestPointPathQueueRemapper(Queue<GraphPointPath> pointPathQueue, GraphPointPath newPointPath) {
+      return (graphPoint, oldPointPath) -> {
+         if (oldPointPath == null || newPointPath.compareTo(oldPointPath) < 0) {
+            pointPathQueue.remove(oldPointPath);
+            pointPathQueue.add(newPointPath);
+            return newPointPath;
+         }
+         return oldPointPath;
+      };
    }
 
    private static final class GraphPointPath implements Comparable<GraphPointPath> {
