@@ -41,7 +41,7 @@ public final class Dijkstra {
       private final GraphPoint point;
       private final GraphPath path;
 
-      private GraphPointPath(GraphPoint point, GraphPath path) {
+      public GraphPointPath(GraphPoint point, GraphPath path) {
          this.point = point;
          this.path = path;
       }

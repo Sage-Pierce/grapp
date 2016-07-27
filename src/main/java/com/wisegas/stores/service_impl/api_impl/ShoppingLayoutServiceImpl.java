@@ -84,7 +84,7 @@ public class ShoppingLayoutServiceImpl implements ShoppingLayoutService {
       private final Node node;
       private final ShoppingItemDto item;
 
-      private ShoppingNodeItem(Node node, CodeName item, ShoppingItemType type) {
+      public ShoppingNodeItem(Node node, CodeName item, ShoppingItemType type) {
          this.node = node;
          this.item = ShoppingItemDtoFactory.createDto(item, type);
       }
