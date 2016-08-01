@@ -9,14 +9,12 @@ public final class FileToStringConverter {
    public static String convert(File file) {
       StringBuilder stringBuilder = new StringBuilder();
       try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-         String line;
-         while ((line = bufferedReader.readLine()) != null) {
+         for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
             stringBuilder.append(line);
          }
       }
       catch (Exception e) {
-         System.err.println("Exception reading File: " + file.getAbsolutePath());
-         e.printStackTrace();
+         throw new RuntimeException("Exception reading File: " + file.getAbsolutePath(), e);
       }
       return stringBuilder.toString();
    }
