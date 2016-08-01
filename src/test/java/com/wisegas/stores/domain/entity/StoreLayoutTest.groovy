@@ -3,7 +3,7 @@ package com.wisegas.stores.domain.entity
 import com.wisegas.common.lang.spacial.GeoPoint
 import com.wisegas.stores.domain.value.Item
 import com.wisegas.stores.domain.value.NodeType
-import com.wisegas.stores.test.builders.StoreLayoutBuilder
+import com.wisegas.stores.test.builder.StoreLayoutBuilder
 import spock.lang.Specification
 
 class StoreLayoutTest extends Specification {

@@ -4,7 +4,7 @@ import com.wisegas.common.lang.value.Email
 import com.wisegas.common.persistence.jpa.impl.GenericRepositoryImplPersistenceTest
 import com.wisegas.users.domain.entity.User
 import com.wisegas.users.domain.repository.UserRepository
-import com.wisegas.users.test.builders.UserBuilder
+import com.wisegas.users.test.builder.UserBuilder
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

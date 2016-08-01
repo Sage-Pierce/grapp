@@ -3,7 +3,7 @@ package com.wisegas.users.service_impl.api_impl
 import com.wisegas.common.test.base.PersistenceTest
 import com.wisegas.users.domain.entity.User
 import com.wisegas.users.service.api.UserService
-import com.wisegas.users.test.builders.UserBuilder
+import com.wisegas.users.test.builder.UserBuilder
 
 import javax.inject.Inject
 

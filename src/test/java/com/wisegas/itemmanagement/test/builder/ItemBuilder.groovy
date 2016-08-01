@@ -1,4 +1,4 @@
-package com.wisegas.itemmanagement.test.builders
+package com.wisegas.itemmanagement.test.builder
 
 import com.wisegas.common.test.builder.Builder
 import com.wisegas.itemmanagement.domain.entity.Item

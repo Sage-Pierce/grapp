@@ -4,7 +4,7 @@ import com.wisegas.common.domain.exception.EntityConflictException
 import com.wisegas.common.test.base.PersistenceTest
 import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.service.ItemUpdateService
-import com.wisegas.itemmanagement.test.builders.ItemBuilder
+import com.wisegas.itemmanagement.test.builder.ItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

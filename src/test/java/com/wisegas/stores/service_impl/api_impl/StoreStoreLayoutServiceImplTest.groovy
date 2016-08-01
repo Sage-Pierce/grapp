@@ -8,7 +8,7 @@ import com.wisegas.stores.domain.entity.StoreLayout
 import com.wisegas.stores.domain.repository.StoreLayoutRepository
 import com.wisegas.stores.domain.value.Item
 import com.wisegas.stores.domain.value.NodeType
-import com.wisegas.stores.test.builders.StoreLayoutBuilder
+import com.wisegas.stores.test.builder.StoreLayoutBuilder
 
 class StoreStoreLayoutServiceImplTest extends ApplicationServiceTest {
 

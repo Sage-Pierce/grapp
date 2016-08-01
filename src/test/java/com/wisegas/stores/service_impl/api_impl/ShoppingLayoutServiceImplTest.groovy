@@ -14,7 +14,7 @@ import com.wisegas.stores.service.dto.ItemLineageDto
 import com.wisegas.stores.service.dto.ShoppingListDto
 import com.wisegas.stores.service.dto.ShoppingNodeDto
 import com.wisegas.stores.service.value.ShoppingItemType
-import com.wisegas.stores.test.builders.StoreLayoutBuilder
+import com.wisegas.stores.test.builder.StoreLayoutBuilder
 import spock.lang.Specification
 
 class ShoppingLayoutServiceImplTest extends Specification {

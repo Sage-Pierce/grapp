@@ -1,7 +1,7 @@
 package com.wisegas.users.service_impl.factory
 
 import com.wisegas.users.domain.entity.User
-import com.wisegas.users.test.builders.UserBuilder
+import com.wisegas.users.test.builder.UserBuilder
 import spock.lang.Specification
 
 class UserDtoFactoryTest extends Specification {

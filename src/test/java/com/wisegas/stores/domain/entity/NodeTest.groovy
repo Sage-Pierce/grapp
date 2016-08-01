@@ -5,7 +5,7 @@ import com.wisegas.common.domain.event.DomainEventSubscriber
 import com.wisegas.common.test.base.DomainEventAwareTest
 import com.wisegas.stores.domain.event.NodeModifiedEvent
 import com.wisegas.stores.domain.value.NodeType
-import com.wisegas.stores.test.builders.NodeBuilder
+import com.wisegas.stores.test.builder.NodeBuilder
 
 class NodeTest extends DomainEventAwareTest {
 
@@ -25,7 +25,7 @@ class NodeTest extends DomainEventAwareTest {
       then:
       1 * eventSubscriber.handleEvent(_ as NodeModifiedEvent) >> { args ->
          NodeModifiedEvent event = args[0]
-         event.getNodeId() == node.getId().toString()
+         assert event.getNodeId() == node.getId().toString()
       }
    }
 }

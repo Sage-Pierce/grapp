@@ -1,6 +1,6 @@
 package com.wisegas.stores.service_impl.factory
 
-import com.wisegas.stores.test.builders.StoreBuilder
+import com.wisegas.stores.test.builder.StoreBuilder
 import spock.lang.Specification
 
 class StoreDtoFactoryTest extends Specification {

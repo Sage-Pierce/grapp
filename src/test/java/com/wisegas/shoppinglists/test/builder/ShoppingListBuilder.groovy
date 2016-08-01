@@ -1,4 +1,4 @@
-package com.wisegas.shoppinglists.test.builders
+package com.wisegas.shoppinglists.test.builder
 
 import com.wisegas.common.test.builder.Builder
 import com.wisegas.shoppinglists.domain.entity.ShoppingList

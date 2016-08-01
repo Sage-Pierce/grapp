@@ -1,7 +1,7 @@
 package com.wisegas.shoppinglists.domain.entity
 
 import com.wisegas.shoppinglists.domain.value.Item
-import com.wisegas.shoppinglists.test.builders.ShoppingListBuilder
+import com.wisegas.shoppinglists.test.builder.ShoppingListBuilder
 import spock.lang.Specification
 
 class ShoppingListTest extends Specification {

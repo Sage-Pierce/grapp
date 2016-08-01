@@ -5,7 +5,7 @@ import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.service.ItemImportService
 import com.wisegas.itemmanagement.domain.value.Code
 import com.wisegas.itemmanagement.domain.value.CodeType
-import com.wisegas.itemmanagement.test.builders.ItemBuilder
+import com.wisegas.itemmanagement.test.builder.ItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

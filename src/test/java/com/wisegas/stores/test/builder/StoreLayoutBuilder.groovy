@@ -1,4 +1,4 @@
-package com.wisegas.stores.test.builders
+package com.wisegas.stores.test.builder
 
 import com.wisegas.stores.domain.entity.StoreLayout
 

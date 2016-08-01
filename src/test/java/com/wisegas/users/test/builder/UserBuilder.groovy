@@ -1,4 +1,4 @@
-package com.wisegas.users.test.builders
+package com.wisegas.users.test.builder
 
 import com.wisegas.common.lang.value.Email
 import com.wisegas.common.test.builder.Builder

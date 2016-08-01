@@ -1,4 +1,4 @@
-package com.wisegas.shoppinglists.test.builders
+package com.wisegas.shoppinglists.test.builder
 
 import com.wisegas.common.lang.value.Email
 import com.wisegas.common.test.builder.Builder
