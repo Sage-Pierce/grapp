@@ -1,13 +1,13 @@
-package com.wisegas.common.test.util
+package com.wisegas.common.test.builder
 
 class Builder {
 
-   static def wrapBuilder(entity) {
+   static <T> T wrapBuilder(T entity) {
       entity.metaClass.having << { block -> having(entity, block) }
       entity
    }
 
-   static def having(entity, block) {
+   static <T> T having(entity, block) {
       entity.with(block)
       entity
    }
