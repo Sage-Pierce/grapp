@@ -1,6 +1,6 @@
-package com.wisegas.common.test.entity
+package com.wisegas.common.test.util
 
-class EntityBuilder {
+class Builder {
 
    static def wrapBuilder(entity) {
       entity.metaClass.having << { block -> having(entity, block) }
