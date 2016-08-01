@@ -10,7 +10,7 @@ class ShopperBuilder {
 
    static Shopper shopper() {
       unique++
-      Builder.wrapBuilder(new Shopper(
+      Builder.wrap(new Shopper(
          Email.fromString("Test${unique}@email.com"),
       ))
    }

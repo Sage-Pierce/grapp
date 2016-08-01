@@ -11,7 +11,7 @@ class NodeBuilder {
 
    static Node node() {
       unique++
-      Builder.wrapBuilder(new Node(
+      Builder.wrap(new Node(
             StoreLayoutBuilder.storeLayout(),
             "Test Node ${unique}",
             NodeType.REGULAR,

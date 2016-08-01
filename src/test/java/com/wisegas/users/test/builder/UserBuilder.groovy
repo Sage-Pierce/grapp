@@ -10,7 +10,7 @@ class UserBuilder {
 
    static User user() {
       unique++
-      Builder.wrapBuilder(new User(
+      Builder.wrap(new User(
          Email.fromString("test${unique}@email.com"),
          "Test User ${unique}",
          "<avatar ${unique}>"

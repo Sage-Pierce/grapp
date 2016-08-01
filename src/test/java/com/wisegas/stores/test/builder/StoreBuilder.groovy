@@ -10,7 +10,7 @@ class StoreBuilder {
 
    static Store store() {
       unique++
-      Builder.wrapBuilder(new Store(
+      Builder.wrap(new Store(
          StoreManagerBuilder.storeManager(),
          "Test Store ${unique}",
          new GeoPoint(0, 0)

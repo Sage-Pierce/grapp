@@ -10,7 +10,7 @@ class NodeItemBuilder {
 
    static NodeItem nodeItem() {
       unique++
-      Builder.wrapBuilder(new NodeItem(
+      Builder.wrap(new NodeItem(
             NodeBuilder.node(),
             new Item("#${unique}", "Item #${unique}")
       ))

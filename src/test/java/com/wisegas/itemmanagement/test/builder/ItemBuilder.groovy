@@ -11,7 +11,7 @@ class ItemBuilder {
 
    static Item item() {
       unique++
-      Builder.wrapBuilder(new Item(
+      Builder.wrap(new Item(
             new Code(CodeType.MANUAL, "${unique}"),
             "Test Item ${unique}"
       ))

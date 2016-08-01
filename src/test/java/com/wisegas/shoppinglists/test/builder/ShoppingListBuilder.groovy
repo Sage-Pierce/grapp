@@ -9,7 +9,7 @@ class ShoppingListBuilder {
 
    static ShoppingList shoppingList() {
       unique++
-      Builder.wrapBuilder(new ShoppingList(
+      Builder.wrap(new ShoppingList(
          ShopperBuilder.shopper(),
          "Test Shopping List ${unique}"
       ))

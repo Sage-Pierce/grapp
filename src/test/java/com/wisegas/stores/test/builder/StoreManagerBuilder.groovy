@@ -10,7 +10,7 @@ class StoreManagerBuilder {
 
    static StoreManager storeManager() {
       unique++
-      Builder.wrapBuilder(new StoreManager(
+      Builder.wrap(new StoreManager(
          Email.fromString("test${unique}@email.com")
       ))
    }
