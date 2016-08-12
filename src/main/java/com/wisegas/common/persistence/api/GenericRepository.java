@@ -1,5 +1,6 @@
-package com.wisegas.common.domain.entity;
+package com.wisegas.common.persistence.api;
 
+import com.wisegas.common.domain.entity.SimpleEntity;
 import com.wisegas.common.lang.value.Id;
 
 import java.util.List;

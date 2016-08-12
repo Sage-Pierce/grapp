@@ -1,7 +1,7 @@
 package com.wisegas.stores.service_impl.translator;
 
-import com.wisegas.common.domain.translation.api.Translator;
-import com.wisegas.common.domain.translation.json.JsonTranslator;
+import com.wisegas.common.translation.api.Translator;
+import com.wisegas.common.translation.json.JsonTranslator;
 import com.wisegas.common.lang.value.CodeName;
 import com.wisegas.stores.service.dto.ItemLineageDto;
 
@@ -10,7 +10,7 @@ import javax.json.JsonValue;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.wisegas.common.domain.translation.json.JsonTranslator.*;
+import static com.wisegas.common.translation.json.JsonTranslator.*;
 
 public class ItemLineagesJsonTranslator implements JsonTranslator<List<ItemLineageDto>> {
 

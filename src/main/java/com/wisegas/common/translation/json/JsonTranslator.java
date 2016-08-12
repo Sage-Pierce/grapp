@@ -1,6 +1,6 @@
-package com.wisegas.common.domain.translation.json;
+package com.wisegas.common.translation.json;
 
-import com.wisegas.common.domain.translation.api.Translator;
+import com.wisegas.common.translation.api.Translator;
 
 import javax.json.Json;
 import javax.json.JsonArray;

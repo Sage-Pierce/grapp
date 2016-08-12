@@ -1,6 +1,6 @@
 package com.wisegas.common.persistence.jpa.impl;
 
-import com.wisegas.common.domain.entity.GenericRepository;
+import com.wisegas.common.persistence.api.GenericRepository;
 import com.wisegas.common.domain.entity.SimpleEntity;
 import com.wisegas.common.lang.value.Id;
 
