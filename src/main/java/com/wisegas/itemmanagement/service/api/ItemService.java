@@ -10,7 +10,7 @@ public interface ItemService {
 
    ItemDto createSubItem(String superItemCode, String codeType, String code, String name);
 
-   List<ItemLineageDto> getAll();
+   List<ItemLineageDto> get();
 
    List<ItemDto> getGeneralItems();
 

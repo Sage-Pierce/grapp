@@ -42,8 +42,8 @@ public class NacsItemImportServiceImpl implements NacsItemImportService {
    }
 
    @Override
-   public List<ItemDto> importItems(String nacsItemCsvData) {
-      Map<NacsItemType, List<NacsItem>> nacsItemsByType = NacsItemCsvParser.parse(nacsItemCsvData).stream().collect(groupingBy(NacsItem::getType));
+   public List<ItemDto> importItems(String csvData) {
+      Map<NacsItemType, List<NacsItem>> nacsItemsByType = NacsItemCsvParser.parse(csvData).stream().collect(groupingBy(NacsItem::getType));
       List<Item> categoryItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.CATEGORY, emptyList()), this::importNacsItemAsGeneralItem);
       List<Item> subCategoryItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.SUB_CATEGORY, emptyList()), this::importNacsItemAsSubItem);
       List<Item> subItemItems = importNacsItems(nacsItemsByType.getOrDefault(NacsItemType.ITEM, emptyList()), this::importNacsItemAsSubItem);

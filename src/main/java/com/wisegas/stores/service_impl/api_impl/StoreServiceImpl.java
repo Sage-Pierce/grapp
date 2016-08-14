@@ -31,7 +31,7 @@ public class StoreServiceImpl implements StoreService {
 
    @Override
    public List<StoreDto> get() {
-      return storeRepository.getAll().stream().map(StoreDtoFactory::createDto).collect(Collectors.toList());
+      return storeRepository.get().stream().map(StoreDtoFactory::createDto).collect(Collectors.toList());
    }
 
    @Override

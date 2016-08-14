@@ -1,8 +1,8 @@
 package com.wisegas.common.persistence.jpa.impl;
 
-import com.wisegas.common.persistence.api.GenericRepository;
 import com.wisegas.common.domain.entity.SimpleEntity;
 import com.wisegas.common.lang.value.Id;
+import com.wisegas.common.persistence.api.GenericRepository;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
@@ -44,7 +44,7 @@ public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements G
    }
 
    @Override
-   public List<T> getAll() {
+   public List<T> get() {
       return entityManager.createQuery(" SELECT entity" +
                                        " FROM " + entityClass.getSimpleName() + " entity",
                                        entityClass)

@@ -40,10 +40,10 @@ public class ShoppingLayoutServiceImpl implements ShoppingLayoutService {
    }
 
    @Override
-   public ShoppingLayoutDto getShoppingLayout(String id, ShoppingListDto shoppingList) {
+   public ShoppingLayoutDto getShoppingLayout(String id, ShoppingListDto shoppingListDto) {
       List<ItemLineageDto> itemLineages = itemLineagesAdapter.getItemLineages();
       StoreLayout storeLayout = storeLayoutRepository.get(StoreLayoutId.fromString(id));
-      return ShoppingLayoutDtoFactory.createDto(storeLayout, generateShoppingNodes(storeLayout, shoppingList.getItems(), itemLineages));
+      return ShoppingLayoutDtoFactory.createDto(storeLayout, generateShoppingNodes(storeLayout, shoppingListDto.getItems(), itemLineages));
    }
 
    private List<ShoppingNodeDto> generateShoppingNodes(StoreLayout storeLayout, List<CodeName> items, List<ItemLineageDto> itemLineages) {

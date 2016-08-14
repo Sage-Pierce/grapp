@@ -43,16 +43,16 @@ public class StoreLayoutServiceImpl implements StoreLayoutService {
    }
 
    @Override
-   public StoreLayoutDto updateOuterOutline(String id, GeoPolygon outerPolygon) {
+   public StoreLayoutDto updateOuterOutline(String id, GeoPolygon polygon) {
       StoreLayout storeLayout = storeLayoutRepository.get(StoreLayoutId.fromString(id));
-      storeLayout.setOuterOutline(outerPolygon);
+      storeLayout.setOuterOutline(polygon);
       return StoreLayoutDtoFactory.createDto(storeLayout);
    }
 
    @Override
-   public StoreLayoutDto updateInnerOutline(String id, GeoPolygon innerPolygon) {
+   public StoreLayoutDto updateInnerOutline(String id, GeoPolygon polygon) {
       StoreLayout storeLayout = storeLayoutRepository.get(StoreLayoutId.fromString(id));
-      storeLayout.setInnerOutline(innerPolygon);
+      storeLayout.setInnerOutline(polygon);
       return StoreLayoutDtoFactory.createDto(storeLayout);
    }
 

@@ -1,7 +1,7 @@
 package com.wisegas.common.persistence.jpa.impl
 
-import com.wisegas.common.persistence.api.GenericRepository
 import com.wisegas.common.domain.entity.SimpleEntity
+import com.wisegas.common.persistence.api.GenericRepository
 import com.wisegas.common.test.base.PersistenceTest
 import org.springframework.transaction.annotation.Transactional
 
@@ -61,7 +61,7 @@ abstract class GenericRepositoryImplPersistenceTest<T extends SimpleEntity> exte
 
    def "All instances of the Entity-under-test can be retrieved"() {
       when:
-      def result = repository.getAll()
+      def result = repository.get()
 
       then:
       result.size() >= 1

@@ -34,7 +34,7 @@ public class ItemsResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get() {
-      return buildHalResponse(halRepresentationFactory.createFor(itemService.getAll()).withLinks(createLinks()));
+      return buildHalResponse(halRepresentationFactory.createFor(itemService.get()).withLinks(createLinks()));
    }
 
    public static HalLink createRootLink(String rel) {

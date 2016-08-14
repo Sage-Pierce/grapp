@@ -8,9 +8,9 @@ import com.wisegas.stores.service.dto.*;
 public interface StoreLayoutService {
    StoreLayoutDto get(String id);
 
-   StoreLayoutDto updateOuterOutline(String id, GeoPolygon outerPolygon);
+   StoreLayoutDto updateOuterOutline(String id, GeoPolygon polygon);
 
-   StoreLayoutDto updateInnerOutline(String id, GeoPolygon innerPolygon);
+   StoreLayoutDto updateInnerOutline(String id, GeoPolygon polygon);
 
    FeatureDto addFeature(String id, GeoPolygon polygon);
 

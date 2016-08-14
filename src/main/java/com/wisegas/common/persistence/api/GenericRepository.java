@@ -14,5 +14,5 @@ public interface GenericRepository<T extends SimpleEntity> {
 
    T get(Id id);
 
-   List<T> getAll();
+   List<T> get();
 }
