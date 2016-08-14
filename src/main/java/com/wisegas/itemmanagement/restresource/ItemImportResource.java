@@ -34,7 +34,7 @@ public class ItemImportResource extends JaxrsHalJsonResource {
                                final String csvData) {
       List<ItemDto> items;
       if (NACS.equals(type)) {
-         items = nacsItemImportService.importCsvItems(csvData);
+         items = nacsItemImportService.importItems(csvData);
       }
       else {
          throw new UnsupportedOperationException("This Import Type is not supported: " + type);

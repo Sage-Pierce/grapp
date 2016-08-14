@@ -14,7 +14,7 @@ class NacsItemImportServiceImplIntegrationTest extends PersistenceTest {
 
    def "Importing a CATEGORY NacsItem should result in a 'general' Item"() {
       when:
-      def result = nacsItemImportService.importCsvItems("01-00-00,General Item,")
+      def result = nacsItemImportService.importItems("01-00-00,General Item,")
 
       then:
       result.size() == 1
@@ -25,7 +25,7 @@ class NacsItemImportServiceImplIntegrationTest extends PersistenceTest {
 
    def "Importing a CATEGORY NacsItem with sub-items should result in a 'general' Item with sub-items"() {
       when:
-      def result = nacsItemImportService.importCsvItems("01-00-00,General Item,\"Sub-Item 1, Sub-Item 2\"")
+      def result = nacsItemImportService.importItems("01-00-00,General Item,\"Sub-Item 1, Sub-Item 2\"")
 
       then:
       result.size() == 1
@@ -35,7 +35,7 @@ class NacsItemImportServiceImplIntegrationTest extends PersistenceTest {
 
    def "Importing a CATEGORY NacsItem with Sub-Category NacsItems should result in a 'general' Item with sub-items"() {
       when:
-      def result = nacsItemImportService.importCsvItems("01-00-00,General Item,\n" +
+      def result = nacsItemImportService.importItems("01-00-00,General Item,\n" +
                                                         "01-01-00,Sub-Item 1,")
 
       then:
@@ -46,7 +46,7 @@ class NacsItemImportServiceImplIntegrationTest extends PersistenceTest {
 
    def "Importing a CATEGORY NacsItem with Sub-Category NacsItems and sub-items for each results in the correct hierarchy"() {
       when:
-      def result = nacsItemImportService.importCsvItems("01-00-00,General Item,Sub-Item 1\n" +
+      def result = nacsItemImportService.importItems("01-00-00,General Item,Sub-Item 1\n" +
                                                         "01-01-00,Sub-Item 2,Item")
 
       then:

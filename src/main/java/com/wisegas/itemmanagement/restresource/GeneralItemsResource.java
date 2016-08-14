@@ -26,14 +26,14 @@ public class GeneralItemsResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   public Response create(@QueryParam("codeType") final String codeType,
-                          @QueryParam("code") final String code,
-                          @QueryParam("name") final String name) {
+   public Response createGeneralItem(@QueryParam("codeType") final String codeType,
+                                     @QueryParam("code") final String code,
+                                     @QueryParam("name") final String name) {
       return buildHalResponse(ItemResource.asRepresentationOf(itemService.createGeneralItem(codeType, code, name)));
    }
 
    @GET
-   public Response get() {
+   public Response getGeneralItems() {
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
                                                       .withEmbeddeds("generalItems", itemService.getGeneralItems().stream()
                                                                                                 .map(ItemResource::asRepresentationOf)

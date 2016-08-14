@@ -14,7 +14,7 @@ import java.util.List;
 public class RootResource extends JaxrsHalJsonResource {
 
    @GET
-   public Response getRoot() {
+   public Response get() {
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks()));
    }
 

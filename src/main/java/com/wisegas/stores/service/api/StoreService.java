@@ -6,7 +6,7 @@ import com.wisegas.stores.service.dto.StoreDto;
 import java.util.List;
 
 public interface StoreService {
-   List<StoreDto> getAll();
+   List<StoreDto> get();
 
    StoreDto get(String id);
 

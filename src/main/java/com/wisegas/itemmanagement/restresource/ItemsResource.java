@@ -25,10 +25,10 @@ public class ItemsResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   public Response create(@QueryParam("superItemCode") final String superItemCode,
-                          @QueryParam("codeType") final String codeType,
-                          @QueryParam("code") final String code,
-                          @QueryParam("name") final String name) {
+   public Response createSubItem(@QueryParam("superItemCode") final String superItemCode,
+                                 @QueryParam("codeType") final String codeType,
+                                 @QueryParam("code") final String code,
+                                 @QueryParam("name") final String name) {
       return buildHalResponse(ItemResource.asRepresentationOf(itemService.createSubItem(superItemCode, codeType, code, name)));
    }
 

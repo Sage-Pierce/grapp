@@ -28,7 +28,7 @@ public class PathGenerationResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response getRoot() {
+   public Response get() {
       return buildHalResponse(halRepresentationFactory.createForLinks(createLinks()));
    }
 
