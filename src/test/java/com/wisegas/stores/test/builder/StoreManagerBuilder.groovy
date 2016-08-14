@@ -1,7 +1,6 @@
 package com.wisegas.stores.test.builder
 
 import com.wisegas.common.lang.value.Email
-import com.wisegas.common.test.builder.Builder
 import com.wisegas.stores.domain.entity.StoreManager;
 
 class StoreManagerBuilder {
@@ -10,8 +9,8 @@ class StoreManagerBuilder {
 
    static StoreManager storeManager() {
       unique++
-      Builder.wrap(new StoreManager(
+      new StoreManager(
          Email.fromString("test${unique}@email.com")
-      ))
+      )
    }
 }
