@@ -1,6 +1,6 @@
 package com.wisegas.itemmanagement.domain.repository;
 
-import com.wisegas.common.domain.entity.GenericRepository;
+import com.wisegas.common.persistence.api.GenericRepository;
 import com.wisegas.itemmanagement.domain.entity.Item;
 import com.wisegas.itemmanagement.domain.value.Code;
 

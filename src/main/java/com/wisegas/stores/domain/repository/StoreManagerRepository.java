@@ -1,6 +1,6 @@
 package com.wisegas.stores.domain.repository;
 
-import com.wisegas.common.domain.entity.GenericRepository;
+import com.wisegas.common.persistence.api.GenericRepository;
 import com.wisegas.common.lang.value.Email;
 import com.wisegas.stores.domain.entity.StoreManager;
 
