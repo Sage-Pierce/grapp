@@ -36,7 +36,7 @@ class ShoppingLayoutServiceImplTest extends Specification {
          new ItemLineageDto(item: apples, lineage: [apples, fruits, edibleGrocery])
       ]
 
-      storeLayout = StoreLayoutBuilder.storeLayout()
+      storeLayout = StoreLayoutBuilder.build()
       storeLayout.setOuterOutline(new GeoPolygon([new GeoPoint(4d, 4d), new GeoPoint(-4d, 4d), new GeoPoint(-4d, -4d), new GeoPoint(4d, -4d)]))
       storeLayout.setInnerOutline(new GeoPolygon([new GeoPoint(3d, 3d), new GeoPoint(-3d, 3d), new GeoPoint(-3d, -3d), new GeoPoint(3d, -3d)]))
       storeLayout.addFeature(new GeoPolygon([new GeoPoint(1d, 1d), new GeoPoint(-1d, 1d), new GeoPoint(-1d, -1d), new GeoPoint(1d, -1d)]))

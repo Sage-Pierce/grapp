@@ -10,7 +10,7 @@ class StoreLayoutTest extends Specification {
 
    def "Adding a singleton-Type Node to a Layout which already has one of that Type causes the original one to become whatever the default non-singleton type is"() {
       given:
-      StoreLayout layout = StoreLayoutBuilder.storeLayout()
+      StoreLayout layout = StoreLayoutBuilder.build()
 
       and:
       Node oldEntrance = layout.addNode(singletonType, new GeoPoint(0, 0))
@@ -28,7 +28,7 @@ class StoreLayoutTest extends Specification {
 
    def "Adding an Item to a Node in a Layout removes that Item from any other Nodes in the Layout"() {
       given:
-      StoreLayout layout = StoreLayoutBuilder.storeLayout()
+      StoreLayout layout = StoreLayoutBuilder.build()
       Item item = new Item("CODE", "ITEM")
 
       and:

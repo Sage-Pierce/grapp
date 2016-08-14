@@ -8,7 +8,7 @@ class UserDtoFactoryTest extends Specification {
 
    def "A UserDto can be created from a User"() {
       given:
-      User user = UserBuilder.user()
+      User user = UserBuilder.build()
 
       when:
       def result = UserDtoFactory.createDto(user)

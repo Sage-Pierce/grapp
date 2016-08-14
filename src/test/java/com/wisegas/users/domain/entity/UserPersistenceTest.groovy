@@ -9,6 +9,6 @@ class UserPersistenceTest extends EntityPersistenceTest<User> {
 
    @Override
    User createTestEntity() {
-      UserBuilder.user()
+      UserBuilder.build()
    }
 }

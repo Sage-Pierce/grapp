@@ -11,7 +11,7 @@ class StoreLayoutPersistenceTest extends PersistenceTest {
 
    def "Features in a Layout can be reshaped by ID"() {
       given:
-      Store store = StoreBuilder.store()
+      Store store = StoreBuilder.build()
       StoreLayout layout = store.getStoreLayout()
       Feature feature = layout.addFeature(new GeoPolygon([]))
       testEntityManager.save(store)

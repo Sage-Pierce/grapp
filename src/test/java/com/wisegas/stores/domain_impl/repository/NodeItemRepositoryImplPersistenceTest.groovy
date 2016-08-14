@@ -8,6 +8,6 @@ class NodeItemRepositoryImplPersistenceTest extends GenericRepositoryImplPersist
 
    @Override
    NodeItem createTestEntity() {
-      return NodeItemBuilder.nodeItem()
+      return NodeItemBuilder.build()
    }
 }

@@ -17,7 +17,7 @@ class UserRepositoryImplPersistenceTest extends GenericRepositoryImplPersistence
 
    def "A User can be found by E-Mail"() {
       given:
-      User user = testEntityManager.save(UserBuilder.user())
+      User user = testEntityManager.save(UserBuilder.build())
 
       when: "We try to find our Test Entity by E-Mail"
       def result = userRepository.findByEmail(shouldBeFound ? user.getId() : Email.fromString("BOGUS@EMAIL.COM"))
@@ -31,6 +31,6 @@ class UserRepositoryImplPersistenceTest extends GenericRepositoryImplPersistence
 
    @Override
    User createTestEntity() {
-      UserBuilder.user()
+      UserBuilder.build()
    }
 }

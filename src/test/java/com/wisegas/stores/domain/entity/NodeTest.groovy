@@ -11,7 +11,7 @@ class NodeTest extends DomainEventAwareTest {
 
    def "Changing a Node's Type causes a Domain Event to be published"() {
       given:
-      Node node = NodeBuilder.node()
+      Node node = NodeBuilder.build()
       node.setType(NodeType.ENTRANCE)
 
       and:

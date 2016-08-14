@@ -11,7 +11,7 @@ class StorePersistenceTest extends EntityPersistenceTest<Store> {
 
    def "A Store's outer outline can be retrieved after saving"() {
       given:
-      Store store = StoreBuilder.store()
+      Store store = StoreBuilder.build()
       store.getStoreLayout().setOuterOutline(new GeoPolygon([new GeoPoint(0, 0), new GeoPoint(0, 1), new GeoPoint(1, 0)]));
       testEntityManager.save(store);
       testEntityManager.flush()
@@ -33,6 +33,6 @@ class StorePersistenceTest extends EntityPersistenceTest<Store> {
 
    @Override
    Store createTestEntity() {
-      StoreBuilder.store()
+      StoreBuilder.build()
    }
 }

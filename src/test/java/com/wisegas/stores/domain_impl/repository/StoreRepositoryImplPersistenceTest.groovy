@@ -10,6 +10,6 @@ class StoreRepositoryImplPersistenceTest extends GenericRepositoryImplPersistenc
 
    @Override
    Store createTestEntity() {
-      StoreBuilder.store()
+      StoreBuilder.build()
    }
 }

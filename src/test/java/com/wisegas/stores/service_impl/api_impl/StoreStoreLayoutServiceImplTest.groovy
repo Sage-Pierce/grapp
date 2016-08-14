@@ -22,7 +22,7 @@ class StoreStoreLayoutServiceImplTest extends ApplicationServiceTest {
 
    def "The result of adding a Node through the Service updates the node and notifies of affected Nodes"() {
       given:
-      StoreLayout layout = StoreLayoutBuilder.storeLayout()
+      StoreLayout layout = StoreLayoutBuilder.build()
       Node oldEntrance = layout.addNode(NodeType.ENTRANCE, new GeoPoint(0, 0))
       Node regularNode = layout.addNode(NodeType.REGULAR, new GeoPoint(0, 1))
 
@@ -43,7 +43,7 @@ class StoreStoreLayoutServiceImplTest extends ApplicationServiceTest {
    def "The result of adding an Item to a Node through the Service updates the Node and notifies of affected Nodes"() {
       given:
       CodeName item = new CodeName("CODE", "ITEM")
-      StoreLayout layout = StoreLayoutBuilder.storeLayout()
+      StoreLayout layout = StoreLayoutBuilder.build()
 
       and:
       layoutRepository.get(layout.getId()) >> layout

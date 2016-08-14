@@ -9,6 +9,6 @@ class NodeItemPersistenceTest extends EntityPersistenceTest<NodeItem> {
 
    @Override
    NodeItem createTestEntity() {
-      NodeItemBuilder.nodeItem()
+      NodeItemBuilder.build()
    }
 }

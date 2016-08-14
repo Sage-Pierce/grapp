@@ -8,7 +8,7 @@ class ShoppingListTest extends Specification {
 
    def "A Shopping List can only have one of a certain Item"() {
       given:
-      ShoppingList shoppingList = ShoppingListBuilder.shoppingList()
+      ShoppingList shoppingList = ShoppingListBuilder.build()
 
       and:
       Item item = new Item("ITEM", "Test Item")

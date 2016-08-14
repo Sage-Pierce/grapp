@@ -16,7 +16,7 @@ class ShopperRepositoryImplPersistenceTest extends GenericRepositoryImplPersiste
 
    def "Shoppers can be found by their Email"() {
       given:
-      Shopper shopper = testEntityManager.save(ShopperBuilder.shopper())
+      Shopper shopper = testEntityManager.save(ShopperBuilder.build())
 
       when:
       def result = shopperRepository.findByEmail(shopper.getId())
@@ -30,6 +30,6 @@ class ShopperRepositoryImplPersistenceTest extends GenericRepositoryImplPersiste
 
    @Override
    Shopper createTestEntity() {
-      ShopperBuilder.shopper()
+      ShopperBuilder.build()
    }
 }

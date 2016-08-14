@@ -11,7 +11,7 @@ class NodePersistenceTest extends EntityPersistenceTest<Node> {
 
    def "A Node's location is persisted correctly"() {
       given:
-      Node node = NodeBuilder.node()
+      Node node = NodeBuilder.build()
       node.setLocation(new GeoPoint(1d, 1d))
       testEntityManager.save(node)
       testEntityManager.flush()
@@ -26,7 +26,7 @@ class NodePersistenceTest extends EntityPersistenceTest<Node> {
 
    def "Nodes have their Items persisted correctly"() {
       given:
-      Node node = NodeBuilder.node()
+      Node node = NodeBuilder.build()
 
       and:
       Item item = new Item("CODE", "ITEM")
@@ -46,6 +46,6 @@ class NodePersistenceTest extends EntityPersistenceTest<Node> {
 
    @Override
    Node createTestEntity() {
-      NodeBuilder.node()
+      NodeBuilder.build()
    }
 }

@@ -14,7 +14,7 @@ public class UserServiceImplIntegrationTest extends PersistenceTest {
 
    def "We can change a User's name and get back an appropriate DTO"() {
       given:
-      User user = testEntityManager.save(UserBuilder.user())
+      User user = testEntityManager.save(UserBuilder.build())
 
       when:
       def result = userService.update(user.getEmail(), "NEW NAME")

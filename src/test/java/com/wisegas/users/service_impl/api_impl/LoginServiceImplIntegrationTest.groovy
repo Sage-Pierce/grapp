@@ -24,7 +24,7 @@ class LoginServiceImplIntegrationTest extends PersistenceTest {
    }
 
    def "a User will be found if it is already in the DB"() {
-      User savedUser = testEntityManager.save(UserBuilder.user())
+      User savedUser = testEntityManager.save(UserBuilder.build())
 
       when:
       UserDto userDto = loginService.logIn(savedUser.getId(), null)

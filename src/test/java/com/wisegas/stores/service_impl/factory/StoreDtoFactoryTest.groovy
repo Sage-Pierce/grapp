@@ -7,7 +7,7 @@ class StoreDtoFactoryTest extends Specification {
 
    def "A StoreDTO can be created from a Store"() {
       given:
-      def store = StoreBuilder.store()
+      def store = StoreBuilder.build()
 
       when:
       def result = StoreDtoFactory.createDto(store)
