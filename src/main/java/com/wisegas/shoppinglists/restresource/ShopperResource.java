@@ -29,8 +29,8 @@ public class ShopperResource extends JaxrsHalJsonResource {
 
    @POST
    @Path("addList")
-   public Response addList(@PathParam("email") final Email email,
-                           @QueryParam("name") final String name) {
+   public Response addList(@PathParam("email") Email email,
+                           @QueryParam("name") String name) {
       return buildHalResponse(ShoppingListResource.asRepresentationOf(shopperService.addList(email, name)));
    }
 

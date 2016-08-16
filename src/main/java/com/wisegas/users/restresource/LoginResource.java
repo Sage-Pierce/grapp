@@ -24,8 +24,8 @@ public class LoginResource extends JaxrsHalJsonResource {
    }
 
    @PUT
-   public Response logIn(@QueryParam(value = "email") final Email email,
-                         @QueryParam(value = "avatar") final String avatar) {
+   public Response logIn(@QueryParam(value = "email") Email email,
+                         @QueryParam(value = "avatar") String avatar) {
       UserDto userDto = loginService.logIn(email, avatar);
       return buildHalResponse(UserResource.asRepresentationOf(userDto));
    }

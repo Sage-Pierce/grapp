@@ -30,8 +30,8 @@ public class ItemImportResource extends JaxrsHalJsonResource {
 
    @PUT
    @Consumes(MediaType.TEXT_PLAIN)
-   public Response importItems(@QueryParam("type") final String type,
-                               final String csvData) {
+   public Response importItems(@QueryParam("type") String type,
+                               String csvData) {
       List<ItemDto> items;
       if (NACS.equals(type)) {
          items = nacsItemImportService.importItems(csvData);

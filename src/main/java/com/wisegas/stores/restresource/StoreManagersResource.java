@@ -23,7 +23,7 @@ public class StoreManagersResource extends JaxrsHalJsonResource {
    }
 
    @PUT
-   public Response loadByEmail(@QueryParam("email") final Email email) {
+   public Response loadByEmail(@QueryParam("email") Email email) {
       return buildHalResponse(StoreManagerResource.asRepresentationOf(storeManagerService.loadByEmail(email)));
    }
 

@@ -28,8 +28,8 @@ public class ShoppingLayoutResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response getShoppingLayout(@PathParam("id") final String id,
-                                     @QueryParam("shoppingList") final ShoppingListDto shoppingListDto) {
+   public Response getShoppingLayout(@PathParam("id") String id,
+                                     @QueryParam("shoppingList") ShoppingListDto shoppingListDto) {
       return buildHalResponse(asRepresentationOf(shoppingLayoutService.getShoppingLayout(id, shoppingListDto)));
    }
 

@@ -30,9 +30,9 @@ public class StoreManagerResource extends JaxrsHalJsonResource {
 
    @POST
    @Path("addStore")
-   public Response addStore(@PathParam("id") final Email email,
-                            @QueryParam("name") final String name,
-                            @QueryParam("location") final GeoPoint location) {
+   public Response addStore(@PathParam("id") Email email,
+                            @QueryParam("name") String name,
+                            @QueryParam("location") GeoPoint location) {
       return buildHalResponse(StoreResource.asRepresentationOf(storeManagerService.addStore(email, name, location)));
    }
 

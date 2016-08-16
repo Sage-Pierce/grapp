@@ -24,31 +24,31 @@ public class ItemResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("primaryCode") final String primaryCode) {
+   public Response get(@PathParam("primaryCode") String primaryCode) {
       return buildHalResponse(asRepresentationOf(itemService.get(primaryCode)));
    }
 
    @PUT
-   public Response update(@PathParam("primaryCode") final String primaryCode,
-                          @QueryParam("name") final String name) {
+   public Response update(@PathParam("primaryCode") String primaryCode,
+                          @QueryParam("name") String name) {
       return buildHalResponse(asRepresentationOf(itemService.update(primaryCode, name)));
    }
 
    @PUT
    @Path("makeGeneral")
-   public Response makeGeneral(@PathParam("primaryCode") final String primaryCode) {
+   public Response makeGeneral(@PathParam("primaryCode") String primaryCode) {
       return buildHalResponse(asRepresentationOf(itemService.makeGeneral(primaryCode)));
    }
 
    @PUT
    @Path("move")
-   public Response move(@PathParam("primaryCode") final String primaryCode,
-                        @QueryParam("superItemCode") final String superItemCode) {
+   public Response move(@PathParam("primaryCode") String primaryCode,
+                        @QueryParam("superItemCode") String superItemCode) {
       return buildHalResponse(asRepresentationOf(itemService.move(primaryCode, superItemCode)));
    }
 
    @DELETE
-   public Response delete(@PathParam("primaryCode") final String primaryCode) {
+   public Response delete(@PathParam("primaryCode") String primaryCode) {
       itemService.delete(primaryCode);
       return Response.ok().build();
    }

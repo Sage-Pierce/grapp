@@ -24,19 +24,19 @@ public class NodeResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String id) {
+   public Response get(@PathParam("id") String id) {
       return buildHalResponse(asRepresentationOf(nodeService.get(id)));
    }
 
    @PUT
-   public Response update(@PathParam("id") final String id,
-                          @QueryParam("name") final String name) {
+   public Response update(@PathParam("id") String id,
+                          @QueryParam("name") String name) {
       NodeDto nodeDto = nodeService.update(id, name);
       return buildHalResponse(asRepresentationOf(nodeDto));
    }
 
    @DELETE
-   public Response delete(@PathParam("id") final String id) {
+   public Response delete(@PathParam("id") String id) {
       nodeService.delete(id);
       return Response.ok().build();
    }

@@ -25,20 +25,20 @@ public class StoreResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam(value = "id") final String id) {
+   public Response get(@PathParam(value = "id") String id) {
       return buildHalResponse(asRepresentationOf(storeService.get(id)));
    }
 
    @PUT
-   public Response update(@PathParam(value = "id") final String id,
-                          @QueryParam(value = "name") final String name,
-                          @QueryParam(value = "location") final GeoPoint location) {
+   public Response update(@PathParam(value = "id") String id,
+                          @QueryParam(value = "name") String name,
+                          @QueryParam(value = "location") GeoPoint location) {
       StoreDto storeDto = storeService.update(id, name, location);
       return buildHalResponse(asRepresentationOf(storeDto));
    }
 
    @DELETE
-   public Response delete(@PathParam(value = "id") final String id) {
+   public Response delete(@PathParam(value = "id") String id) {
       storeService.delete(id);
       return Response.ok().build();
    }

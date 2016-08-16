@@ -26,9 +26,9 @@ public class GeneralItemsResource extends JaxrsHalJsonResource {
    }
 
    @POST
-   public Response createGeneralItem(@QueryParam("codeType") final String codeType,
-                                     @QueryParam("code") final String code,
-                                     @QueryParam("name") final String name) {
+   public Response createGeneralItem(@QueryParam("codeType") String codeType,
+                                     @QueryParam("code") String code,
+                                     @QueryParam("name") String name) {
       return buildHalResponse(ItemResource.asRepresentationOf(itemService.createGeneralItem(codeType, code, name)));
    }
 

@@ -24,18 +24,18 @@ public class ShoppingListItemResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String id) {
+   public Response get(@PathParam("id") String id) {
       return buildHalResponse(asRepresentationOf(shoppingListItemService.get(id)));
    }
 
    @PUT
-   public Response update(@PathParam("id") final String id,
-                          @QueryParam("obtained") final boolean obtained) {
+   public Response update(@PathParam("id") String id,
+                          @QueryParam("obtained") boolean obtained) {
       return buildHalResponse(asRepresentationOf(shoppingListItemService.update(id, obtained)));
    }
 
    @DELETE
-   public Response delete(@PathParam("id") final String id) {
+   public Response delete(@PathParam("id") String id) {
       shoppingListItemService.delete(id);
       return Response.ok().build();
    }

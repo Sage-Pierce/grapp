@@ -28,48 +28,48 @@ public class StoreLayoutResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String id) {
+   public Response get(@PathParam("id") String id) {
       return buildHalResponse(asRepresentationOf(storeLayoutService.get(id)));
    }
 
    @PUT
    @Path("outerOutline")
-   public Response updateOuterOutline(@PathParam("id") final String id,
-                                      @QueryParam("polygon") final GeoPolygon polygon) {
+   public Response updateOuterOutline(@PathParam("id") String id,
+                                      @QueryParam("polygon") GeoPolygon polygon) {
       StoreLayoutDto storeLayoutDto = storeLayoutService.updateOuterOutline(id, polygon);
       return buildHalResponse(asRepresentationOf(storeLayoutDto));
    }
 
    @PUT
    @Path("innerOutline")
-   public Response updateInnerOutline(@PathParam("id") final String id,
-                                      @QueryParam("polygon") final GeoPolygon polygon) {
+   public Response updateInnerOutline(@PathParam("id") String id,
+                                      @QueryParam("polygon") GeoPolygon polygon) {
       StoreLayoutDto storeLayoutDto = storeLayoutService.updateInnerOutline(id, polygon);
       return buildHalResponse(asRepresentationOf(storeLayoutDto));
    }
 
    @POST
    @Path("features")
-   public Response addFeature(@PathParam("id") final String id,
-                              @QueryParam("polygon") final GeoPolygon polygon) {
+   public Response addFeature(@PathParam("id") String id,
+                              @QueryParam("polygon") GeoPolygon polygon) {
       FeatureDto featureDto = storeLayoutService.addFeature(id, polygon);
       return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
    }
 
    @PUT
    @Path("features/reshape")
-   public Response reshapeFeature(@PathParam("id") final String id,
-                                  @QueryParam("featureId") final String featureId,
-                                  @QueryParam("polygon") final GeoPolygon polygon) {
+   public Response reshapeFeature(@PathParam("id") String id,
+                                  @QueryParam("featureId") String featureId,
+                                  @QueryParam("polygon") GeoPolygon polygon) {
       FeatureDto featureDto = storeLayoutService.reshapeFeature(id, featureId, polygon);
       return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
    }
 
    @POST
    @Path("nodes")
-   public Response addNode(@PathParam("id") final String id,
-                           @QueryParam("type") final String type,
-                           @QueryParam("location") final GeoPoint location) {
+   public Response addNode(@PathParam("id") String id,
+                           @QueryParam("type") String type,
+                           @QueryParam("location") GeoPoint location) {
       StoreLayoutUpdateDto<NodeDto> result = storeLayoutService.addNode(id, type, location);
       return buildHalResponse(NodeResource.asRepresentationOf(result.getTarget())
                                           .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
@@ -79,18 +79,18 @@ public class StoreLayoutResource extends JaxrsHalJsonResource {
 
    @PUT
    @Path("nodes/move")
-   public Response moveNode(@PathParam("id") final String id,
-                            @QueryParam("nodeId") final String nodeId,
-                            @QueryParam("location") final GeoPoint location) {
+   public Response moveNode(@PathParam("id") String id,
+                            @QueryParam("nodeId") String nodeId,
+                            @QueryParam("location") GeoPoint location) {
       NodeDto nodeDto = storeLayoutService.moveNode(id, nodeId, location);
       return buildHalResponse(NodeResource.asRepresentationOf(nodeDto));
    }
 
    @POST
    @Path("nodes/items")
-   public Response addNodeItem(@PathParam("id") final String id,
-                               @QueryParam("nodeId") final String nodeId,
-                               @QueryParam("item") final CodeName item) {
+   public Response addNodeItem(@PathParam("id") String id,
+                               @QueryParam("nodeId") String nodeId,
+                               @QueryParam("item") CodeName item) {
       StoreLayoutUpdateDto<NodeItemDto> result = storeLayoutService.addNodeItem(id, nodeId, item);
       return buildHalResponse(NodeItemResource.asRepresentationOf(result.getTarget())
                                               .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()

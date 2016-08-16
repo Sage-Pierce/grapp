@@ -34,9 +34,9 @@ public class PathGenerationResource extends JaxrsHalJsonResource {
 
    @PUT
    @Consumes(MediaType.APPLICATION_JSON)
-   public Response generatePath(@QueryParam("start") final Point start,
-                                @QueryParam("finish") final Point finish,
-                                @QueryParam("waypoints") final WaypointsDto waypoints,
+   public Response generatePath(@QueryParam("start") Point start,
+                                @QueryParam("finish") Point finish,
+                                @QueryParam("waypoints") WaypointsDto waypoints,
                                 final PathPolygonsDto pathPolygons) {
       return buildHalResponse(asRepresentationOf(pathService.generatePath(start, finish, waypoints, pathPolygons)));
    }

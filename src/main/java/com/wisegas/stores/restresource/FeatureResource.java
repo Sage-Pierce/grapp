@@ -27,12 +27,12 @@ public class FeatureResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String id) {
+   public Response get(@PathParam("id") String id) {
       return buildHalResponse(asRepresentationOf(featureService.get(id)));
    }
 
    @DELETE
-   public Response delete(@PathParam("id") final String id) {
+   public Response delete(@PathParam("id") String id) {
       featureService.delete(id);
       return Response.ok().build();
    }

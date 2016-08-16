@@ -27,12 +27,12 @@ public class NodeItemResource extends JaxrsHalJsonResource {
    }
 
    @GET
-   public Response get(@PathParam("id") final String id) {
+   public Response get(@PathParam("id") String id) {
       return buildHalResponse(asRepresentationOf(nodeItemService.get(id)));
    }
 
    @DELETE
-   public Response delete(@PathParam("id") final String id) {
+   public Response delete(@PathParam("id") String id) {
       nodeItemService.delete(id);
       return Response.ok().build();
    }
