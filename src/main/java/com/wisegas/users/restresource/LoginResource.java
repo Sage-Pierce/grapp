@@ -5,7 +5,6 @@ import com.wisegas.common.webservices.hal.api.HalLink;
 import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.users.service.api.LoginService;
-import com.wisegas.users.service.dto.UserDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.PUT;
@@ -26,8 +25,7 @@ public class LoginResource extends JaxrsHalJsonResource {
    @PUT
    public Response logIn(@QueryParam(value = "email") Email email,
                          @QueryParam(value = "avatar") String avatar) {
-      UserDto userDto = loginService.logIn(email, avatar);
-      return buildHalResponse(UserResource.asRepresentationOf(userDto));
+      return buildHalResponse(UserResource.asRepresentationOf(loginService.logIn(email, avatar)));
    }
 
    public static HalLink createRootLink(String rel) {

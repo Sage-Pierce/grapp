@@ -26,15 +26,13 @@ public class UserResource extends JaxrsHalJsonResource {
 
    @GET
    public Response get(@PathParam(value = "email") Email email) {
-      UserDto userDto = userService.get(email);
-      return buildHalResponse(asRepresentationOf(userDto));
+      return buildHalResponse(asRepresentationOf(userService.get(email)));
    }
 
    @PUT
    public Response update(@PathParam(value = "email") Email email,
                           @QueryParam(value = "name") String name) {
-      UserDto userDto = userService.update(email, name);
-      return buildHalResponse(asRepresentationOf(userDto));
+      return buildHalResponse(asRepresentationOf(userService.update(email, name)));
    }
 
    public static HalLink createRootLink(String rel) {

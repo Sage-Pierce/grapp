@@ -31,8 +31,7 @@ public class NodeResource extends JaxrsHalJsonResource {
    @PUT
    public Response update(@PathParam("id") String id,
                           @QueryParam("name") String name) {
-      NodeDto nodeDto = nodeService.update(id, name);
-      return buildHalResponse(asRepresentationOf(nodeDto));
+      return buildHalResponse(asRepresentationOf(nodeService.update(id, name)));
    }
 
    @DELETE

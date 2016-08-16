@@ -8,7 +8,10 @@ import com.wisegas.common.webservices.hal.api.HalRepresentation;
 import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
 import com.wisegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import com.wisegas.stores.service.api.StoreLayoutService;
-import com.wisegas.stores.service.dto.*;
+import com.wisegas.stores.service.dto.NodeDto;
+import com.wisegas.stores.service.dto.NodeItemDto;
+import com.wisegas.stores.service.dto.StoreLayoutDto;
+import com.wisegas.stores.service.dto.StoreLayoutUpdateDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -36,24 +39,21 @@ public class StoreLayoutResource extends JaxrsHalJsonResource {
    @Path("outerOutline")
    public Response updateOuterOutline(@PathParam("id") String id,
                                       @QueryParam("polygon") GeoPolygon polygon) {
-      StoreLayoutDto storeLayoutDto = storeLayoutService.updateOuterOutline(id, polygon);
-      return buildHalResponse(asRepresentationOf(storeLayoutDto));
+      return buildHalResponse(asRepresentationOf(storeLayoutService.updateOuterOutline(id, polygon)));
    }
 
    @PUT
    @Path("innerOutline")
    public Response updateInnerOutline(@PathParam("id") String id,
                                       @QueryParam("polygon") GeoPolygon polygon) {
-      StoreLayoutDto storeLayoutDto = storeLayoutService.updateInnerOutline(id, polygon);
-      return buildHalResponse(asRepresentationOf(storeLayoutDto));
+      return buildHalResponse(asRepresentationOf(storeLayoutService.updateInnerOutline(id, polygon)));
    }
 
    @POST
    @Path("features")
    public Response addFeature(@PathParam("id") String id,
                               @QueryParam("polygon") GeoPolygon polygon) {
-      FeatureDto featureDto = storeLayoutService.addFeature(id, polygon);
-      return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
+      return buildHalResponse(FeatureResource.asRepresentationOf(storeLayoutService.addFeature(id, polygon)));
    }
 
    @PUT
@@ -61,8 +61,7 @@ public class StoreLayoutResource extends JaxrsHalJsonResource {
    public Response reshapeFeature(@PathParam("id") String id,
                                   @QueryParam("featureId") String featureId,
                                   @QueryParam("polygon") GeoPolygon polygon) {
-      FeatureDto featureDto = storeLayoutService.reshapeFeature(id, featureId, polygon);
-      return buildHalResponse(FeatureResource.asRepresentationOf(featureDto));
+      return buildHalResponse(FeatureResource.asRepresentationOf(storeLayoutService.reshapeFeature(id, featureId, polygon)));
    }
 
    @POST
@@ -82,8 +81,7 @@ public class StoreLayoutResource extends JaxrsHalJsonResource {
    public Response moveNode(@PathParam("id") String id,
                             @QueryParam("nodeId") String nodeId,
                             @QueryParam("location") GeoPoint location) {
-      NodeDto nodeDto = storeLayoutService.moveNode(id, nodeId, location);
-      return buildHalResponse(NodeResource.asRepresentationOf(nodeDto));
+      return buildHalResponse(NodeResource.asRepresentationOf(storeLayoutService.moveNode(id, nodeId, location)));
    }
 
    @POST
