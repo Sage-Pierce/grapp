@@ -13,6 +13,5 @@
     <import resource="classpath:META-INF/spring/beans/test-database-beans.xml"/>
     <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
     <import resource="classpath:META-INF/spring/beans/test-persistence-beans.xml"/>
-    <import resource="classpath:META-INF/spring/beans/application-beans-scan.xml"/>
     <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
 </beans>

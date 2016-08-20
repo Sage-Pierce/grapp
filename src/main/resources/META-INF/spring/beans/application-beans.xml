@@ -14,6 +14,15 @@
     <!-- Allows placement of Environment Variables in this XML -->
     <context:property-placeholder/>
 
+    <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
+    <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
+                            base-package="com.wisegas.itemmanagement
+                                          com.wisegas.pathgeneration
+                                          com.wisegas.shoppinglists
+                                          com.wisegas.stores
+                                          com.wisegas.users"/>
+    <context:annotation-config/>
+
     <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
     <bean id="client" class="javax.ws.rs.client.ClientBuilder" factory-method="newClient"/>
 
