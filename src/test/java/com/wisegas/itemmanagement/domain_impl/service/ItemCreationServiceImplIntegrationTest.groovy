@@ -1,7 +1,7 @@
 package com.wisegas.itemmanagement.domain_impl.service
 
 import com.wisegas.common.lang.annotation.Transactional
-import com.wisegas.common.test.base.PersistenceTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.service.ItemCreationService
 import com.wisegas.itemmanagement.domain.value.Code
@@ -11,7 +11,7 @@ import com.wisegas.itemmanagement.test.builder.ItemBuilder
 import javax.inject.Inject
 
 @Transactional
-class ItemCreationServiceImplIntegrationTest extends PersistenceTest {
+class ItemCreationServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
    private ItemCreationService itemCreationService

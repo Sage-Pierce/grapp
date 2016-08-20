@@ -1,7 +1,7 @@
 package com.wisegas.users.service_impl.api_impl
 
 import com.wisegas.common.lang.value.Email
-import com.wisegas.common.test.base.PersistenceTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.users.domain.entity.User
 import com.wisegas.users.service.api.LoginService
 import com.wisegas.users.service.dto.UserDto
@@ -9,7 +9,7 @@ import com.wisegas.users.test.builder.UserBuilder
 
 import javax.inject.Inject
 
-class LoginServiceImplIntegrationTest extends PersistenceTest {
+class LoginServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
    private LoginService loginService

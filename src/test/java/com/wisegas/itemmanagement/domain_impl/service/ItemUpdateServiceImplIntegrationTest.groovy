@@ -1,7 +1,7 @@
 package com.wisegas.itemmanagement.domain_impl.service
 
 import com.wisegas.common.domain.exception.EntityConflictException
-import com.wisegas.common.test.base.PersistenceTest
+import com.wisegas.common.test.base.IntegrationTest
 import com.wisegas.itemmanagement.domain.entity.Item
 import com.wisegas.itemmanagement.domain.service.ItemUpdateService
 import com.wisegas.itemmanagement.test.builder.ItemBuilder
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 import javax.inject.Inject
 
 @Transactional
-class ItemUpdateServiceImplIntegrationTest extends PersistenceTest {
+class ItemUpdateServiceImplIntegrationTest extends IntegrationTest {
 
    @Inject
    private ItemUpdateService itemUpdateService

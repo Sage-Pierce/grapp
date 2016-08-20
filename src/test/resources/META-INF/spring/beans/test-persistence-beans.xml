@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
+    <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
+                            base-package="com.wisegas.itemmanagement.domain_impl.repository
+                                          com.wisegas.shoppinglists.domain_impl.repository
+                                          com.wisegas.stores.domain_impl.repository
+                                          com.wisegas.users.domain_impl.repository"/>
+    <context:annotation-config/>
+
+    <!-- A TestEntityManager to use with Persistence Tests -->
+    <bean id="testEntityManager" class="com.wisegas.common.test.entity.TestEntityManager">
+        <constructor-arg>
+            <bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+                <property name="entityManagerFactory" ref="entityManagerFactory"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg ref="platformTransactionManager"/>
+    </bean>
+</beans>
