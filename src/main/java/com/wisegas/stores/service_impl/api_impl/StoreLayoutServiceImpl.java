@@ -75,7 +75,7 @@ public class StoreLayoutServiceImpl implements StoreLayoutService {
       NodeModificationEventSubscriber nodeModificationEventSubscriber = new NodeModificationEventSubscriber();
       DomainEventPublisher.instance().subscribe(nodeModificationEventSubscriber);
       StoreLayout storeLayout = storeLayoutRepository.get(StoreLayoutId.fromString(id));
-      Node node = storeLayout.addNode(NodeType.fromName(type), location);
+      Node node = storeLayout.addNode(NodeType.valueOf(type), location);
       return StoreLayoutUpdateDtoFactory.createDto(storeLayout, NodeDtoFactory.createDto(node), nodeModificationEventSubscriber.getNodeIds());
    }
 

@@ -5,10 +5,6 @@ public enum NodeType {
    CHECKOUT,
    REGULAR;
 
-   public static NodeType fromName(String name) {
-      return Enum.valueOf(NodeType.class, name);
-   }
-
    public static NodeType defaultNonSingleton() {
       return REGULAR;
    }
