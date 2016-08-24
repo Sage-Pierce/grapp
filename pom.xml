@@ -29,10 +29,10 @@
     </properties>
 
     <groupId>com.wisegas</groupId>
-    <artifactId>grapp_heroku</artifactId>
+    <artifactId>grapp</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>grapp_heroku</name>
+    <name>grapp</name>
 
     <dependencies>
         <!-- Jetty -->
