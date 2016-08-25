@@ -1,7 +1,7 @@
 package com.wisegas.stores.domain.entity
 
 import com.wisegas.common.lang.spacial.GeoPoint
-import com.wisegas.common.persistence.jpa.entity.EntityPersistenceTest
+import com.wisegas.common.test.base.EntityPersistenceTest
 import com.wisegas.stores.domain.value.Item
 import com.wisegas.stores.test.builder.NodeBuilder
 import org.springframework.transaction.annotation.Transactional

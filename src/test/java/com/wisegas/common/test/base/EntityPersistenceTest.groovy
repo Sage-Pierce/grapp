@@ -1,7 +1,6 @@
-package com.wisegas.common.persistence.jpa.entity
+package com.wisegas.common.test.base
 
 import com.wisegas.common.domain.entity.SimpleEntity
-import com.wisegas.common.test.base.PersistenceTest
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional

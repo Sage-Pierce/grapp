@@ -1,6 +1,6 @@
 package com.wisegas.stores.domain.entity
 
-import com.wisegas.common.persistence.jpa.entity.EntityPersistenceTest
+import com.wisegas.common.test.base.EntityPersistenceTest
 import com.wisegas.stores.test.builder.NodeItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
