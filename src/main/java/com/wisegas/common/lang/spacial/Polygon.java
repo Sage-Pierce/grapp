@@ -51,7 +51,7 @@ public final class Polygon {
 
    // "Can this Point only be reached by going 'through' this Polygon?"
    public boolean contains(Point point) {
-      LineSegment outerSegment = generateNonVertexContainingSegmentWithPoint(point);
+      LineSegment outerSegment = generateOuterNonVertexContainingSegmentWithPoint(point);
       List<LineSegment> segments = getSegments();
       return segments.stream().noneMatch(segment -> segment.containsInclusive(point)) &&
              segments.stream().filter(outerSegment::intersectsExclusive).count() % 2 == 1;
@@ -116,7 +116,7 @@ public final class Polygon {
       return vertices.stream().anyMatch(point::equals);
    }
 
-   private LineSegment generateNonVertexContainingSegmentWithPoint(Point point) {
+   private LineSegment generateOuterNonVertexContainingSegmentWithPoint(Point point) {
       Point nonInnerPoint = vertices.stream().reduce(vertices.get(0), maxPoint());
       LineSegment lineSegment;
       do {
