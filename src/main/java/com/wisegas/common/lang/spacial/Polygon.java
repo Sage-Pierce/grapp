@@ -1,5 +1,6 @@
 package com.wisegas.common.lang.spacial;
 
+import com.wisegas.common.lang.collection.CollectionUtil;
 import com.wisegas.common.translation.json.JsonTranslator;
 
 import javax.json.Json;
@@ -141,10 +142,7 @@ public final class Polygon {
    }
 
    private List<Point> doubleVertices() {
-      List<Point> doubledVertices = new ArrayList<>(vertices.size() * 2);
-      doubledVertices.addAll(vertices);
-      doubledVertices.addAll(vertices);
-      return doubledVertices;
+      return CollectionUtil.concat(vertices, vertices);
    }
 
    private static final class Translator implements JsonTranslator<Polygon> {
