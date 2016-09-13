@@ -9,6 +9,10 @@ import java.util.function.BiFunction;
 
 public final class Dijkstra {
 
+   private Dijkstra() {
+
+   }
+
    public static GraphPath calculatePath(GraphPoint start, GraphPoint finish) {
       GraphPointPath currentPointPath = new GraphPointPath(start, new GraphPath(start));
       Queue<GraphPointPath> pointPathQueue = new PriorityQueue<>(Collections.singleton(currentPointPath));
@@ -37,8 +41,8 @@ public final class Dijkstra {
    }
 
    private static final class GraphPointPath implements Comparable<GraphPointPath> {
-
       private final GraphPoint point;
+
       private final GraphPath path;
 
       public GraphPointPath(GraphPoint point, GraphPath path) {
@@ -62,13 +66,9 @@ public final class Dijkstra {
       public GraphPoint getPoint() {
          return point;
       }
-
       public GraphPath getPath() {
          return path;
       }
-   }
-
-   private Dijkstra() {
 
    }
 }

@@ -7,14 +7,14 @@ public final class ShopperBuilder {
 
    private static int unique = 0;
 
+   private ShopperBuilder() {
+
+   }
+
    public static Shopper build() {
       unique++;
       return new Shopper(
          Email.fromString("Test" + unique + "@email.com")
       );
-   }
-
-   private ShopperBuilder() {
-
    }
 }

@@ -7,14 +7,14 @@ public final class StoreManagerBuilder {
 
    private static int unique = 0;
 
+   private StoreManagerBuilder() {
+
+   }
+
    public static StoreManager build() {
       unique++;
       return new StoreManager(
          Email.fromString("test" + unique + "@email.com")
       );
-   }
-
-   private StoreManagerBuilder() {
-
    }
 }

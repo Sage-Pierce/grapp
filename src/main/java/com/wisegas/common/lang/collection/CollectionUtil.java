@@ -4,6 +4,10 @@ import java.util.*;
 
 public final class CollectionUtil {
 
+   private CollectionUtil() {
+
+   }
+
    public static <T> List<T> reverse(Collection<? extends T> collection) {
       List<T> reverse = new ArrayList<>(collection);
       Collections.reverse(reverse);
@@ -42,9 +46,5 @@ public final class CollectionUtil {
       if (permutationIndex == list.size() - 1) {
          permutations.add(new ArrayList<>(list));
       }
-   }
-
-   private CollectionUtil() {
-
    }
 }

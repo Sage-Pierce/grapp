@@ -12,6 +12,10 @@ public final class GraphWaypointPathGenerator {
    private static final int MAX_PATH_SEGMENT_WAYPOINT_LENGTH = 5;
    private static final int PATH_SEGMENT_WAYPOINT_EXTRACTION_LENGTH = 2; // NOTE: MUST be less than MAX_PATH_SEGMENT_WAYPOINT_LENGTH
 
+   private GraphWaypointPathGenerator() {
+
+   }
+
    public static GraphPath generatePath(Graph graph, Point start, Point finish, List<Point> sortedWaypoints) {
       GraphPath currentPath = graph.getSingletonPath(start);
       while (!sortedWaypoints.isEmpty() || !currentPath.finishesWith(finish)) {
@@ -43,10 +47,6 @@ public final class GraphWaypointPathGenerator {
          graphPath = graphPath.link(graph.getPath(waypoints.get(i - 1), waypoints.get(i)));
       }
       return new WaypointsPath(waypoints, graphPath);
-   }
-
-   private GraphWaypointPathGenerator() {
-
    }
 
    private static class WaypointsPath implements Comparable<WaypointsPath> {

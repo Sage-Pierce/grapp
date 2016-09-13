@@ -7,6 +7,10 @@ public final class StoreBuilder {
 
    private static int unique = 0;
 
+   private StoreBuilder() {
+
+   }
+
    public static Store build() {
       unique++;
       return new Store(
@@ -14,9 +18,5 @@ public final class StoreBuilder {
          "Test Store " + unique,
          new GeoPoint(0, 0)
       );
-   }
-
-   private StoreBuilder() {
-
    }
 }

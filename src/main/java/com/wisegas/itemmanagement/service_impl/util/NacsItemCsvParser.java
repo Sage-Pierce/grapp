@@ -18,6 +18,10 @@ public final class NacsItemCsvParser {
    private static final String NACS_ID_DELIMITER_REGEX = "(\\s+)?-(\\s+)?";
    private static final String NACS_SUB_ITEM_DELIMITER_REGEX = "(\\s+)?,(\\s+)?";
 
+   private NacsItemCsvParser() {
+
+   }
+
    public static List<NacsItem> parse(String nacsItemCsvData) {
       try {
          CSVParser parser = CSVParser.parse(nacsItemCsvData, CSVFormat.EXCEL);
@@ -60,9 +64,5 @@ public final class NacsItemCsvParser {
                    .map(WordUtils::capitalize)
                    .sorted()
                    .collect(Collectors.toList());
-   }
-
-   private NacsItemCsvParser() {
-
    }
 }

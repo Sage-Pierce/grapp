@@ -5,6 +5,10 @@ import com.wisegas.users.service.dto.UserDto;
 
 public final class UserDtoFactory {
 
+   private UserDtoFactory() {
+
+   }
+
    public static UserDto createDto(User user) {
       UserDto userDto = new UserDto();
       userDto.setEmail(user.getEmail().toString());
@@ -13,9 +17,5 @@ public final class UserDtoFactory {
       userDto.setAdmin(user.isAdmin());
       userDto.setManager(user.isManager());
       return userDto;
-   }
-
-   private UserDtoFactory() {
-
    }
 }

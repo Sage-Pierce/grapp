@@ -6,14 +6,14 @@ import com.wisegas.stores.service.value.ShoppingItemType;
 
 public final class ShoppingItemDtoFactory {
 
+   private ShoppingItemDtoFactory() {
+
+   }
+
    public static ShoppingItemDto createDto(CodeName item, ShoppingItemType type) {
       ShoppingItemDto shoppingItemDto = new ShoppingItemDto();
       shoppingItemDto.setItem(item);
       shoppingItemDto.setType(type);
       return shoppingItemDto;
-   }
-
-   private ShoppingItemDtoFactory() {
-
    }
 }

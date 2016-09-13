@@ -7,6 +7,10 @@ public final class UserBuilder {
 
    private static int unique = 0;
 
+   private UserBuilder() {
+
+   }
+
    public static User build() {
       unique++;
       return new User(
@@ -14,9 +18,5 @@ public final class UserBuilder {
          "Test User " + unique,
          "<avatar " + unique + ">"
       );
-   }
-
-   private UserBuilder() {
-
    }
 }

@@ -7,6 +7,10 @@ import java.util.function.Function;
 
 public final class FunctionUtil {
 
+   private FunctionUtil() {
+
+   }
+
    public static <T, R> Function<T, R> memoize(Function<T, R> function) {
       return new Function<T, R>() {
          Map<T, R> memoMap = new HashMap<>();
@@ -40,9 +44,5 @@ public final class FunctionUtil {
             return result;
          }
       };
-   }
-
-   private FunctionUtil() {
-
    }
 }

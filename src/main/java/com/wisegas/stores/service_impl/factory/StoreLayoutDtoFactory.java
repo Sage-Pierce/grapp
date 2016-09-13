@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public final class StoreLayoutDtoFactory {
 
+   private StoreLayoutDtoFactory() {
+
+   }
+
    public static StoreLayoutDto createDto(StoreLayout storeLayout) {
       StoreLayoutDto storeLayoutDto = new StoreLayoutDto();
       storeLayoutDto.setId(storeLayout.getId().toString());
@@ -15,9 +19,5 @@ public final class StoreLayoutDtoFactory {
       storeLayoutDto.setFeatures(storeLayout.getFeatures().stream().map(FeatureDtoFactory::createDto).collect(Collectors.toList()));
       storeLayoutDto.setNodes(storeLayout.getNodes().stream().map(NodeDtoFactory::createDto).collect(Collectors.toList()));
       return storeLayoutDto;
-   }
-
-   private StoreLayoutDtoFactory() {
-
    }
 }
