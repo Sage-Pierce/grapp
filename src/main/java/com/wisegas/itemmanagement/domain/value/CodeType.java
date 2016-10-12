@@ -10,11 +10,11 @@ public enum CodeType {
 
    private final String valueFormat;
 
-   public String getValueFormat() {
-      return valueFormat;
-   }
-
    CodeType(String valueFormat) {
       this.valueFormat = valueFormat;
+   }
+
+   public String getValueFormat() {
+      return valueFormat;
    }
 }
