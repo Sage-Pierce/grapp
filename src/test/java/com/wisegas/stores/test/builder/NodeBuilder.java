@@ -8,6 +8,10 @@ public final class NodeBuilder {
 
    private static int unique = 0;
 
+   private NodeBuilder() {
+
+   }
+
    public static Node build() {
       unique++;
       return new Node(
@@ -16,9 +20,5 @@ public final class NodeBuilder {
          NodeType.REGULAR,
          new GeoPoint(0, 0)
       );
-   }
-
-   private NodeBuilder() {
-
    }
 }

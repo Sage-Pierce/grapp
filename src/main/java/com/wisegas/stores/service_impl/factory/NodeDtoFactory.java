@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public final class NodeDtoFactory {
 
+   private NodeDtoFactory() {
+
+   }
+
    public static NodeDto createDto(Node node) {
       NodeDto nodeDto = new NodeDto();
       nodeDto.setId(node.getId().toString());
@@ -15,9 +19,5 @@ public final class NodeDtoFactory {
       nodeDto.setLocation(node.getLocation());
       nodeDto.setItems(node.getItems().stream().map(NodeItemDtoFactory::createDto).collect(Collectors.toList()));
       return nodeDto;
-   }
-
-   private NodeDtoFactory() {
-
    }
 }

@@ -4,11 +4,11 @@ import com.wisegas.stores.domain.entity.StoreLayout;
 
 public final class StoreLayoutBuilder {
 
-   public static StoreLayout build() {
-      return StoreBuilder.build().getStoreLayout();
-   }
-
    private StoreLayoutBuilder() {
 
+   }
+
+   public static StoreLayout build() {
+      return StoreBuilder.build().getStoreLayout();
    }
 }

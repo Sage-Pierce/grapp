@@ -12,6 +12,10 @@ public final class JaxrsHalResourceLinkBuilder {
    private Object[] pathArgs;
    private String[] queryParams;
 
+   private JaxrsHalResourceLinkBuilder(Class resource) {
+      this.resource = resource;
+   }
+
    public static JaxrsHalResourceLinkBuilder linkTo(Class resource) {
       return new JaxrsHalResourceLinkBuilder(resource);
    }
@@ -55,9 +59,5 @@ public final class JaxrsHalResourceLinkBuilder {
          first = false;
       }
       return builder.toString();
-   }
-
-   private JaxrsHalResourceLinkBuilder(Class resource) {
-      this.resource = resource;
    }
 }

@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public final class ItemDtoFactory {
 
+   private ItemDtoFactory() {
+
+   }
+
    public static ItemDto createDto(Item item) {
       ItemDto itemDto = new ItemDto();
       itemDto.setPrimaryCode(item.getPrimaryCode().toString());
@@ -14,9 +18,5 @@ public final class ItemDtoFactory {
       itemDto.setLineage(item.getLineage().stream().map(Item::toCodeName).collect(Collectors.toList()));
       itemDto.setSubItems(item.getSubItems().stream().map(ItemDtoFactory::createDto).collect(Collectors.toList()));
       return itemDto;
-   }
-
-   private ItemDtoFactory() {
-
    }
 }

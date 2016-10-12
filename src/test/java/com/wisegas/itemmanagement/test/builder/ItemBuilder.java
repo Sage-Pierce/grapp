@@ -8,15 +8,15 @@ public final class ItemBuilder {
 
    private static int unique = 0;
 
+   private ItemBuilder() {
+
+   }
+
    public static Item item() {
       unique++;
       return new Item(
          new Code(CodeType.MANUAL, "#" + unique),
          "Test Item " + unique
       );
-   }
-
-   private ItemBuilder() {
-
    }
 }

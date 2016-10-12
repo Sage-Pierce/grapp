@@ -8,6 +8,10 @@ import java.util.List;
 
 public final class ShoppingNodeDtoFactory {
 
+   private ShoppingNodeDtoFactory() {
+
+   }
+
    public static ShoppingNodeDto createDto(Node node, List<ShoppingItemDto> items) {
       ShoppingNodeDto shoppingNodeDto = new ShoppingNodeDto();
       shoppingNodeDto.setId(node.getId().toString());
@@ -16,9 +20,5 @@ public final class ShoppingNodeDtoFactory {
       shoppingNodeDto.setLocation(node.getLocation());
       shoppingNodeDto.setItems(items);
       return shoppingNodeDto;
-   }
-
-   private ShoppingNodeDtoFactory() {
-
    }
 }

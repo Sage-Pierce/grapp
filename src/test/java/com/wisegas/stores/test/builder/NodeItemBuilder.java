@@ -7,15 +7,15 @@ public final class NodeItemBuilder {
 
    private static int unique = 0;
 
+   private NodeItemBuilder() {
+
+   }
+
    public static NodeItem build() {
       unique++;
       return new NodeItem(
          NodeBuilder.build(),
          new Item("#" + unique, "Item #" + unique)
       );
-   }
-
-   private NodeItemBuilder() {
-
    }
 }
