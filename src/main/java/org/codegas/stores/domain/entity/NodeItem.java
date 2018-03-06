@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
-import org.codegas.common.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.SimpleEntity;
 import org.codegas.stores.domain.value.Item;
 import org.codegas.stores.domain.value.NodeItemId;
 

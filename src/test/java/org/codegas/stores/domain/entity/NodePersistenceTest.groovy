@@ -1,10 +1,8 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.common.lang.spacial.GeoPoint
-import org.codegas.common.test.base.EntityPersistenceTest
-import org.codegas.stores.domain.value.Item
+import org.codegas.commons.test.base.EntityPersistenceTest
 import org.codegas.stores.test.builder.NodeBuilder
-import org.codegas.common.lang.spacial.GeoPoint
+import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.stores.domain.value.Item
 import org.springframework.transaction.annotation.Transactional
 

@@ -10,9 +10,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.annotation.Transactional;
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.annotation.Transactional;
+import org.codegas.commons.lang.value.CodeName;
 import org.codegas.stores.domain.entity.Node;
 import org.codegas.stores.domain.entity.NodeItem;
 import org.codegas.stores.domain.entity.StoreLayout;

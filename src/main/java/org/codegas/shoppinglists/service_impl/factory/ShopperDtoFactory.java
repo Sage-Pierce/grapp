@@ -2,7 +2,7 @@ package org.codegas.shoppinglists.service_impl.factory;
 
 import java.util.stream.Collectors;
 
-import org.codegas.common.lang.value.IdName;
+import org.codegas.commons.lang.value.IdName;
 import org.codegas.shoppinglists.domain.entity.Shopper;
 import org.codegas.shoppinglists.service.dto.ShopperDto;
 

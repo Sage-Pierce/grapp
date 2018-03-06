@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.codegas.common.lang.collection.CollectionUtil;
-import org.codegas.common.lang.spacial.LineSegment;
-import org.codegas.common.lang.spacial.Point;
-import org.codegas.common.lang.spacial.Polygon;
+import org.codegas.commons.lang.collection.CollectionUtil;
+import org.codegas.commons.lang.spacial.LineSegment;
+import org.codegas.commons.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Polygon;
 import org.codegas.pathgeneration.domain_impl.graph.api.Graph;
 import org.codegas.pathgeneration.domain_impl.graph.api.GraphPoint;
 

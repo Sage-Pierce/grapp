@@ -1,6 +1,6 @@
 package org.codegas.shoppinglists.service.api;
 
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.value.CodeName;
 import org.codegas.shoppinglists.service.dto.ShoppingListDto;
 import org.codegas.shoppinglists.service.dto.ShoppingListItemDto;
 

@@ -16,10 +16,10 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.codegas.common.domain.entity.SimpleEntity;
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.common.lang.spacial.GeoPolygon;
-import org.codegas.common.persistence.jpa.converter.GeoPolygonConverter;
+import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.spacial.GeoPolygon;
+import org.codegas.commons.persistence.jpa.converter.GeoPolygonConverter;
 import org.codegas.stores.domain.value.FeatureId;
 import org.codegas.stores.domain.value.Item;
 import org.codegas.stores.domain.value.NodeId;

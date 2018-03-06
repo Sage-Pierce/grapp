@@ -12,9 +12,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.codegas.common.webservices.hal.api.HalLink;
-import org.codegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.api.HalLink;
+import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.NacsItemImportService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 

@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import javax.json.JsonValue;
 
-import org.codegas.common.lang.spacial.Polygon;
-import org.codegas.common.translation.json.JsonTranslator;
+import org.codegas.commons.lang.spacial.Polygon;
+import org.codegas.commons.translation.json.JsonTranslator;
 
 public class PathPolygonsDto {
 

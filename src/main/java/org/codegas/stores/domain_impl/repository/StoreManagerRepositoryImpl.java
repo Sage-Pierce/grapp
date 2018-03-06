@@ -5,8 +5,8 @@ import java.util.Optional;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.value.Email;
-import org.codegas.common.persistence.jpa.impl.GenericRepositoryImpl;
+import org.codegas.commons.lang.value.Email;
+import org.codegas.commons.persistence.jpa.impl.GenericRepositoryImpl;
 import org.codegas.stores.domain.entity.StoreManager;
 import org.codegas.stores.domain.repository.StoreManagerRepository;
 

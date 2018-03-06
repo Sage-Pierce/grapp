@@ -1,13 +1,9 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.common.domain.event.DomainEventPublisher
-import org.codegas.common.domain.event.DomainEventSubscriber
-import org.codegas.common.test.base.ApplicationServiceTest
-import org.codegas.stores.domain.event.NodeModifiedEvent
-import org.codegas.stores.domain.value.NodeType
+import org.codegas.commons.test.base.ApplicationServiceTest
 import org.codegas.stores.test.builder.NodeBuilder
-import org.codegas.common.domain.event.DomainEventPublisher
-import org.codegas.common.domain.event.DomainEventSubscriber
+import org.codegas.commons.domain.event.DomainEventPublisher
+import org.codegas.commons.domain.event.DomainEventSubscriber
 import org.codegas.stores.domain.event.NodeModifiedEvent
 import org.codegas.stores.domain.value.NodeType
 

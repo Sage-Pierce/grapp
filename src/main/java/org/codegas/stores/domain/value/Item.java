@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.value.CodeName;
 
 @Embeddable
 public class Item {

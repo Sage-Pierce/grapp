@@ -1,6 +1,6 @@
 package org.codegas.itemmanagement.service_impl.api_impl
 
-import org.codegas.common.test.base.IntegrationTest
+import org.codegas.commons.test.base.IntegrationTest
 import org.codegas.itemmanagement.service.api.NacsItemImportService
 import org.springframework.transaction.annotation.Transactional
 

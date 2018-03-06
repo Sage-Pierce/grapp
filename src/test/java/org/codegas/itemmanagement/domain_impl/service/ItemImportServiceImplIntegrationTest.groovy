@@ -1,6 +1,6 @@
 package org.codegas.itemmanagement.domain_impl.service
 
-import org.codegas.common.test.base.IntegrationTest
+import org.codegas.commons.test.base.IntegrationTest
 import org.codegas.itemmanagement.domain.entity.Item
 import org.codegas.itemmanagement.domain.service.ItemImportService
 import org.codegas.itemmanagement.domain.value.Code

@@ -2,7 +2,7 @@ package org.codegas.stores.domain.event;
 
 import java.time.LocalDateTime;
 
-import org.codegas.common.domain.event.DomainEvent;
+import org.codegas.commons.domain.event.DomainEvent;
 
 public class NodeModifiedEvent implements DomainEvent {
 

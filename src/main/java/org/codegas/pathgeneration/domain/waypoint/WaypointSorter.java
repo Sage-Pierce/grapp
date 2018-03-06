@@ -3,7 +3,7 @@ package org.codegas.pathgeneration.domain.waypoint;
 import java.util.Collection;
 import java.util.List;
 
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Point;
 
 public interface WaypointSorter {
 

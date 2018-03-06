@@ -1,10 +1,6 @@
 package org.codegas.stores.test.builder;
 
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.stores.domain.entity.Node;
-import org.codegas.stores.domain.value.NodeType;
-
-import org.codegas.common.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.stores.domain.entity.Node;
 import org.codegas.stores.domain.value.NodeType;
 

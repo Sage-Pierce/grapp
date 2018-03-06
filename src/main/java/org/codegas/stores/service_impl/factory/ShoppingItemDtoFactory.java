@@ -1,6 +1,6 @@
 package org.codegas.stores.service_impl.factory;
 
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.value.CodeName;
 import org.codegas.stores.service.dto.ShoppingItemDto;
 import org.codegas.stores.service.value.ShoppingItemType;
 

@@ -8,9 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
-import org.codegas.common.domain.entity.SimpleEntity;
-import org.codegas.common.lang.spacial.GeoPolygon;
-import org.codegas.common.persistence.jpa.converter.GeoPolygonConverter;
+import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.lang.spacial.GeoPolygon;
+import org.codegas.commons.persistence.jpa.converter.GeoPolygonConverter;
 import org.codegas.stores.domain.value.FeatureId;
 
 @Entity

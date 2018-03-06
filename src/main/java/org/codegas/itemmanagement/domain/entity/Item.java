@@ -11,8 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.codegas.common.domain.entity.SimpleEntity;
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.lang.value.CodeName;
 import org.codegas.itemmanagement.domain.value.Code;
 
 @Entity

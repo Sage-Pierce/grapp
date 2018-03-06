@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.codegas.common.webservices.jaxrs.translation.ResponseTranslator;
+import org.codegas.commons.webservices.jaxrs.translation.ResponseTranslator;
 import org.codegas.stores.service.dto.ItemLineageDto;
 
 public class ItemLineagesResponseTranslator implements ResponseTranslator<List<ItemLineageDto>> {

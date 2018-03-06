@@ -2,7 +2,7 @@ package org.codegas.stores.service.api;
 
 import java.util.List;
 
-import org.codegas.common.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.stores.service.dto.StoreDto;
 
 public interface StoreService {

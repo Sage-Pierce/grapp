@@ -1,6 +1,6 @@
 package org.codegas.stores.service.dto;
 
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.value.CodeName;
 import org.codegas.stores.service.value.ShoppingItemType;
 
 public class ShoppingItemDto {

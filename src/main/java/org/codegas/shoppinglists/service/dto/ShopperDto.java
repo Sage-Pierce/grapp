@@ -2,7 +2,7 @@ package org.codegas.shoppinglists.service.dto;
 
 import java.util.List;
 
-import org.codegas.common.lang.value.IdName;
+import org.codegas.commons.lang.value.IdName;
 
 public class ShopperDto {
 

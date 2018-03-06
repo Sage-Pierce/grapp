@@ -12,11 +12,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.codegas.common.lang.spacial.Point;
-import org.codegas.common.webservices.hal.api.HalLink;
-import org.codegas.common.webservices.hal.api.HalRepresentation;
-import org.codegas.common.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.common.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.lang.spacial.Point;
+import org.codegas.commons.webservices.hal.api.HalLink;
+import org.codegas.commons.webservices.hal.api.HalRepresentation;
+import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
 import org.codegas.pathgeneration.service.api.PathService;
 import org.codegas.pathgeneration.service.dto.PathDto;
 import org.codegas.pathgeneration.service.dto.PathPolygonsDto;

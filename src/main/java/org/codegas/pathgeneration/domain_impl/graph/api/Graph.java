@@ -6,8 +6,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.codegas.common.lang.function.FunctionUtil;
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.function.FunctionUtil;
+import org.codegas.commons.lang.spacial.Point;
 
 public class Graph {
 

@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import org.codegas.common.lang.value.AbstractId;
+import org.codegas.commons.lang.value.AbstractId;
 
 @Embeddable
 public class Code extends AbstractId {

@@ -16,10 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
-import org.codegas.common.domain.event.DomainEventPublisher;
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.common.persistence.jpa.converter.GeoPointConverter;
-import org.codegas.common.persistence.jpa.entity.NamedEntity;
+import org.codegas.commons.domain.event.DomainEventPublisher;
+import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.commons.persistence.jpa.converter.GeoPointConverter;
+import org.codegas.commons.persistence.jpa.entity.NamedEntity;
 import org.codegas.stores.domain.event.NodeModifiedEvent;
 import org.codegas.stores.domain.value.Item;
 import org.codegas.stores.domain.value.NodeId;

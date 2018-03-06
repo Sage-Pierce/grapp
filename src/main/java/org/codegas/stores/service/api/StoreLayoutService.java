@@ -1,8 +1,8 @@
 package org.codegas.stores.service.api;
 
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.common.lang.spacial.GeoPolygon;
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.spacial.GeoPolygon;
+import org.codegas.commons.lang.value.CodeName;
 import org.codegas.stores.service.dto.FeatureDto;
 import org.codegas.stores.service.dto.NodeDto;
 import org.codegas.stores.service.dto.NodeItemDto;

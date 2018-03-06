@@ -10,8 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.collection.CollectionUtil;
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.collection.CollectionUtil;
+import org.codegas.commons.lang.spacial.Point;
 import org.codegas.pathgeneration.domain.waypoint.WaypointComparatorFactory;
 import org.codegas.pathgeneration.domain.waypoint.WaypointSorter;
 

@@ -1,7 +1,7 @@
 package org.codegas.stores.service.dto;
 
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.common.lang.value.AbstractDto;
+import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.value.AbstractDto;
 
 public abstract class AbstractNodeDto extends AbstractDto {
 

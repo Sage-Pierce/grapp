@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.codegas.common.lang.collection.CollectionUtil;
-import org.codegas.common.lang.function.Invertible;
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.collection.CollectionUtil;
+import org.codegas.commons.lang.function.Invertible;
+import org.codegas.commons.lang.spacial.Point;
 import org.codegas.pathgeneration.domain.value.Path;
 
 public class GraphPath implements Path, Invertible<GraphPath>, Comparable<GraphPath> {

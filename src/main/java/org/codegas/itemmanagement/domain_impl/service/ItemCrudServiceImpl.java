@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.domain.exception.EntityConflictException;
+import org.codegas.commons.domain.exception.EntityConflictException;
 import org.codegas.itemmanagement.domain.entity.Item;
 import org.codegas.itemmanagement.domain.repository.ItemRepository;
 import org.codegas.itemmanagement.domain.service.ItemCreationService;

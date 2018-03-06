@@ -1,10 +1,7 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.common.lang.spacial.GeoPoint
-import org.codegas.stores.domain.value.Item
-import org.codegas.stores.domain.value.NodeType
 import org.codegas.stores.test.builder.StoreLayoutBuilder
-import org.codegas.common.lang.spacial.GeoPoint
+import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.stores.domain.value.Item
 import org.codegas.stores.domain.value.NodeType
 import spock.lang.Specification

@@ -1,11 +1,9 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.common.lang.spacial.GeoPoint
-import org.codegas.common.lang.spacial.GeoPolygon
-import org.codegas.common.test.base.EntityPersistenceTest
+import org.codegas.commons.test.base.EntityPersistenceTest
 import org.codegas.stores.test.builder.StoreBuilder
-import org.codegas.common.lang.spacial.GeoPoint
-import org.codegas.common.lang.spacial.GeoPolygon
+import org.codegas.commons.lang.spacial.GeoPoint
+import org.codegas.commons.lang.spacial.GeoPolygon
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional

@@ -1,6 +1,6 @@
 package org.codegas.shoppinglists.test.builder;
 
-import org.codegas.common.lang.value.Email;
+import org.codegas.commons.lang.value.Email;
 import org.codegas.shoppinglists.domain.entity.Shopper;
 
 public final class ShopperBuilder {

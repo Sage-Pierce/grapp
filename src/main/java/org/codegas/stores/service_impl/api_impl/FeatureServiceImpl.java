@@ -4,8 +4,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.annotation.Transactional;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.annotation.Transactional;
 import org.codegas.stores.domain.repository.FeatureRepository;
 import org.codegas.stores.domain.value.FeatureId;
 import org.codegas.stores.service.api.FeatureService;

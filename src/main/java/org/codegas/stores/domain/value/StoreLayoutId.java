@@ -3,7 +3,7 @@ package org.codegas.stores.domain.value;
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
-import org.codegas.common.lang.value.AbstractId;
+import org.codegas.commons.lang.value.AbstractId;
 
 @Embeddable
 public class StoreLayoutId extends AbstractId {

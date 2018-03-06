@@ -1,22 +1,9 @@
 package org.codegas.stores.service_impl.api_impl
 
-import org.codegas.common.lang.spacial.GeoPoint
-import org.codegas.common.lang.spacial.GeoPolygon
-import org.codegas.common.lang.value.CodeName
-import org.codegas.stores.domain.entity.Node
-import org.codegas.stores.domain.entity.StoreLayout
-import org.codegas.stores.domain.repository.StoreLayoutRepository
-import org.codegas.stores.domain.value.Item
-import org.codegas.stores.domain.value.NodeType
-import org.codegas.stores.service.adapter.ItemLineagesAdapter
-import org.codegas.stores.service.api.ShoppingLayoutService
-import org.codegas.stores.service.dto.ItemLineageDto
-import org.codegas.stores.service.dto.ShoppingListDto
-import org.codegas.stores.service.dto.ShoppingNodeDto
-import org.codegas.stores.service.value.ShoppingItemType
+import org.codegas.commons.lang.value.CodeName
 import org.codegas.stores.test.builder.StoreLayoutBuilder
-import org.codegas.common.lang.spacial.GeoPoint
-import org.codegas.common.lang.spacial.GeoPolygon
+import org.codegas.commons.lang.spacial.GeoPoint
+import org.codegas.commons.lang.spacial.GeoPolygon
 import org.codegas.stores.domain.entity.Node
 import org.codegas.stores.domain.entity.StoreLayout
 import org.codegas.stores.domain.repository.StoreLayoutRepository

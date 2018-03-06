@@ -2,7 +2,7 @@ package org.codegas.stores.service.dto;
 
 import java.util.List;
 
-import org.codegas.common.lang.value.CodeName;
+import org.codegas.commons.lang.value.CodeName;
 
 public class ItemLineageDto {
 

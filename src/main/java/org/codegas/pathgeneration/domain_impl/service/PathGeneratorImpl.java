@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.collection.CollectionUtil;
-import org.codegas.common.lang.spacial.Point;
-import org.codegas.common.lang.spacial.Polygon;
+import org.codegas.commons.lang.collection.CollectionUtil;
+import org.codegas.commons.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Polygon;
 import org.codegas.pathgeneration.domain.service.PathGenerator;
 import org.codegas.pathgeneration.domain.value.Path;
 import org.codegas.pathgeneration.domain.waypoint.WaypointSorter;

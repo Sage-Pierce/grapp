@@ -3,8 +3,8 @@ package org.codegas.pathgeneration.domain_impl.graph.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.codegas.common.lang.collection.CollectionUtil;
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.collection.CollectionUtil;
+import org.codegas.commons.lang.spacial.Point;
 import org.codegas.pathgeneration.domain_impl.graph.api.Graph;
 import org.codegas.pathgeneration.domain_impl.graph.api.GraphPath;
 

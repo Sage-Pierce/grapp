@@ -9,9 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.codegas.common.domain.entity.SimpleEntity;
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.common.lang.value.Email;
+import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.value.Email;
 
 @Entity
 public class StoreManager extends SimpleEntity<Email> {

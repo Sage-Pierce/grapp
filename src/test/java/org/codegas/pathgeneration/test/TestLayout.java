@@ -1,7 +1,7 @@
 package org.codegas.pathgeneration.test;
 
-import org.codegas.common.lang.spacial.Point;
-import org.codegas.common.lang.spacial.Polygon;
+import org.codegas.commons.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Polygon;
 
 import java.util.Arrays;
 import java.util.List;

@@ -4,8 +4,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.spacial.Point;
 import org.codegas.pathgeneration.domain.service.PathGenerator;
 import org.codegas.pathgeneration.service.api.PathService;
 import org.codegas.pathgeneration.service.dto.PathDto;

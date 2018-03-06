@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.codegas.common.lang.value.Email;
-import org.codegas.common.persistence.jpa.entity.NamedEntity;
+import org.codegas.commons.lang.value.Email;
+import org.codegas.commons.persistence.jpa.entity.NamedEntity;
 
 @Entity
 @Table(name = "\"users\"")

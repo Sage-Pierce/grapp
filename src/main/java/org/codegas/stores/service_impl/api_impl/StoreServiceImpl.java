@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.annotation.Transactional;
-import org.codegas.common.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.annotation.Transactional;
+import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.stores.domain.entity.Store;
 import org.codegas.stores.domain.repository.StoreRepository;
 import org.codegas.stores.domain.value.StoreId;

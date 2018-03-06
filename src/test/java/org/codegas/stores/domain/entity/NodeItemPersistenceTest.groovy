@@ -1,6 +1,6 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.common.test.base.EntityPersistenceTest
+import org.codegas.commons.test.base.EntityPersistenceTest
 import org.codegas.stores.test.builder.NodeItemBuilder
 import org.springframework.transaction.annotation.Transactional
 

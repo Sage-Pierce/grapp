@@ -1,6 +1,6 @@
 package org.codegas.pathgeneration.domain_impl.waypoint
 
-import org.codegas.common.lang.spacial.Point
+import org.codegas.commons.lang.spacial.Point
 import org.codegas.pathgeneration.domain.waypoint.WaypointComparatorFactory
 import spock.lang.Specification
 

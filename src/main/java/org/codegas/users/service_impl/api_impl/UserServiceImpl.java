@@ -4,9 +4,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.annotation.Transactional;
-import org.codegas.common.lang.value.Email;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.annotation.Transactional;
+import org.codegas.commons.lang.value.Email;
 import org.codegas.users.domain.entity.User;
 import org.codegas.users.domain.repository.UserRepository;
 import org.codegas.users.service.api.UserService;

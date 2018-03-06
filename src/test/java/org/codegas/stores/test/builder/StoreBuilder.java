@@ -1,9 +1,6 @@
 package org.codegas.stores.test.builder;
 
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.stores.domain.entity.Store;
-
-import org.codegas.common.lang.spacial.GeoPoint;
+import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.stores.domain.entity.Store;
 
 public final class StoreBuilder {

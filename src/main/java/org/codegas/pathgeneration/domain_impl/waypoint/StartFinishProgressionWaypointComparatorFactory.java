@@ -5,7 +5,7 @@ import java.util.Comparator;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Point;
 import org.codegas.pathgeneration.domain.waypoint.WaypointComparatorFactory;
 
 @Named

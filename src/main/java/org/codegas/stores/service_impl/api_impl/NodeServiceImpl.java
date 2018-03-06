@@ -4,8 +4,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.annotation.Transactional;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.annotation.Transactional;
 import org.codegas.stores.domain.entity.Node;
 import org.codegas.stores.domain.repository.NodeRepository;
 import org.codegas.stores.domain.value.NodeId;

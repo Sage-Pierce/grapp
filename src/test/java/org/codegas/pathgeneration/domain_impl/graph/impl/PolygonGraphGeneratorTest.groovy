@@ -1,7 +1,7 @@
 package org.codegas.pathgeneration.domain_impl.graph.impl
 
-import org.codegas.common.lang.spacial.Point
-import org.codegas.common.lang.spacial.Polygon
+import org.codegas.commons.lang.spacial.Point
+import org.codegas.commons.lang.spacial.Polygon
 import org.codegas.pathgeneration.domain_impl.graph.api.Graph
 import org.codegas.pathgeneration.domain_impl.graph.api.GraphPath
 import spock.lang.Specification

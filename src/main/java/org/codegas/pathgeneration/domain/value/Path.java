@@ -2,7 +2,7 @@ package org.codegas.pathgeneration.domain.value;
 
 import java.util.List;
 
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Point;
 
 public interface Path {
 

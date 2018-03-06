@@ -1,7 +1,7 @@
 package org.codegas.itemmanagement.domain_impl.service
 
-import org.codegas.common.lang.annotation.Transactional
-import org.codegas.common.test.base.IntegrationTest
+import org.codegas.commons.lang.annotation.Transactional
+import org.codegas.commons.test.base.IntegrationTest
 import org.codegas.itemmanagement.domain.entity.Item
 import org.codegas.itemmanagement.domain.service.ItemCreationService
 import org.codegas.itemmanagement.domain.value.Code

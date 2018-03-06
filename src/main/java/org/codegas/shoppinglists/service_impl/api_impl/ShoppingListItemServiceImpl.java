@@ -4,8 +4,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.common.lang.annotation.ApplicationService;
-import org.codegas.common.lang.annotation.Transactional;
+import org.codegas.commons.lang.annotation.ApplicationService;
+import org.codegas.commons.lang.annotation.Transactional;
 import org.codegas.shoppinglists.domain.entity.ShoppingListItem;
 import org.codegas.shoppinglists.domain.repository.ShoppingListItemRepository;
 import org.codegas.shoppinglists.domain.value.ShoppingListItemId;

@@ -7,7 +7,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.ws.rs.client.WebTarget;
 
-import org.codegas.common.webservices.jaxrs.translation.ResponseTranslator;
+import org.codegas.commons.webservices.jaxrs.translation.ResponseTranslator;
 import org.codegas.stores.service.adapter.ItemLineagesAdapter;
 import org.codegas.stores.service.dto.ItemLineageDto;
 import org.codegas.stores.service_impl.translator.ItemLineagesResponseTranslator;

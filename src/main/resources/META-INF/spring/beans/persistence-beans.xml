@@ -48,7 +48,7 @@
 
     <!-- How to identify Transactional Beans -->
     <aop:config>
-        <aop:pointcut id="transactional" expression="@annotation(org.codegas.common.lang.annotation.Transactional) || @within(org.codegas.common.lang.annotation.Transactional)"/>
+        <aop:pointcut id="transactional" expression="@annotation(org.codegas.commons.lang.annotation.Transactional) || @within(org.codegas.commons.lang.annotation.Transactional)"/>
         <aop:advisor advice-ref="transactionalAdvice" pointcut-ref="transactional"/>
     </aop:config>
 </beans>

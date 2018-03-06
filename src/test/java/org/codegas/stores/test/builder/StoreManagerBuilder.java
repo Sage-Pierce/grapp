@@ -1,9 +1,6 @@
 package org.codegas.stores.test.builder;
 
-import org.codegas.common.lang.value.Email;
-import org.codegas.stores.domain.entity.StoreManager;
-
-import org.codegas.common.lang.value.Email;
+import org.codegas.commons.lang.value.Email;
 import org.codegas.stores.domain.entity.StoreManager;
 
 public final class StoreManagerBuilder {

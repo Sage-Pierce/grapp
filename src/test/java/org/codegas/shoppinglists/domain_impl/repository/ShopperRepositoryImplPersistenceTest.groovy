@@ -1,9 +1,8 @@
 package org.codegas.shoppinglists.domain_impl.repository
 
-import org.codegas.common.persistence.jpa.impl.GenericRepositoryImplPersistenceTest
+import org.codegas.commons.persistence.jpa.impl.GenericRepositoryImplPersistenceTest
 import org.codegas.shoppinglists.domain.entity.Shopper
 import org.codegas.shoppinglists.domain.repository.ShopperRepository
-import org.codegas.shoppinglists.test.builder.ShopperBuilder
 import org.codegas.shoppinglists.test.builder.ShopperBuilder
 import org.springframework.transaction.annotation.Transactional
 

@@ -9,9 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.codegas.common.lang.spacial.GeoPoint;
-import org.codegas.common.persistence.jpa.converter.GeoPointConverter;
-import org.codegas.common.persistence.jpa.entity.NamedEntity;
+import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.commons.persistence.jpa.converter.GeoPointConverter;
+import org.codegas.commons.persistence.jpa.entity.NamedEntity;
 import org.codegas.stores.domain.value.StoreId;
 
 @Entity

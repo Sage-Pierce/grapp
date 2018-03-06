@@ -1,7 +1,7 @@
 package org.codegas.pathgeneration.domain_impl.graph.api
 
-import org.codegas.common.lang.compare.Comparison
-import org.codegas.common.lang.spacial.Point
+import org.codegas.commons.lang.compare.Comparison
+import org.codegas.commons.lang.spacial.Point
 import spock.lang.Specification
 
 class GraphPathTest extends Specification {

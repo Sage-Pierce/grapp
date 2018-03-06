@@ -3,7 +3,7 @@ package org.codegas.pathgeneration.domain_impl.graph.api;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.codegas.common.lang.spacial.Point;
+import org.codegas.commons.lang.spacial.Point;
 
 public class GraphPoint {
 
