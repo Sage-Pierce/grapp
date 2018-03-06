@@ -10,14 +10,14 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.itemmanagement.domain_impl.repository
-                                          com.wisegas.shoppinglists.domain_impl.repository
-                                          com.wisegas.stores.domain_impl.repository
-                                          com.wisegas.users.domain_impl.repository"/>
+                            base-package="org.codegas.itemmanagement.domain_impl.repository
+                                          org.codegas.shoppinglists.domain_impl.repository
+                                          org.codegas.stores.domain_impl.repository
+                                          org.codegas.users.domain_impl.repository"/>
     <context:annotation-config/>
 
     <!-- A TestEntityManager to use with Persistence Tests -->
-    <bean id="testEntityManager" class="com.wisegas.common.test.entity.TestEntityManager">
+    <bean id="testEntityManager" class="org.codegas.common.test.entity.TestEntityManager">
         <constructor-arg>
             <bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
                 <property name="entityManagerFactory" ref="entityManagerFactory"/>

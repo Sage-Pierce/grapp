@@ -28,7 +28,7 @@
         <spring.version>4.2.5.RELEASE</spring.version>
     </properties>
 
-    <groupId>com.wisegas</groupId>
+    <groupId>org.codegas</groupId>
     <artifactId>grapp</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>

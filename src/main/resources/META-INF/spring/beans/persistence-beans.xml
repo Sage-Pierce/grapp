@@ -16,10 +16,10 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <array>
-                <value>com.wisegas.itemmanagement.domain</value>
-                <value>com.wisegas.shoppinglists.domain</value>
-                <value>com.wisegas.stores.domain</value>
-                <value>com.wisegas.users.domain</value>
+                <value>org.codegas.itemmanagement.domain</value>
+                <value>org.codegas.shoppinglists.domain</value>
+                <value>org.codegas.stores.domain</value>
+                <value>org.codegas.users.domain</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">
@@ -48,7 +48,7 @@
 
     <!-- How to identify Transactional Beans -->
     <aop:config>
-        <aop:pointcut id="transactional" expression="@annotation(com.wisegas.common.lang.annotation.Transactional) || @within(com.wisegas.common.lang.annotation.Transactional)"/>
+        <aop:pointcut id="transactional" expression="@annotation(org.codegas.common.lang.annotation.Transactional) || @within(org.codegas.common.lang.annotation.Transactional)"/>
         <aop:advisor advice-ref="transactionalAdvice" pointcut-ref="transactional"/>
     </aop:config>
 </beans>

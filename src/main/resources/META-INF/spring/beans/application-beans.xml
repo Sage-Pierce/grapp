@@ -16,11 +16,11 @@
 
     <!-- Tell Spring that we are using JSR-330 annotations to denote Beans and where to look for them -->
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
-                            base-package="com.wisegas.itemmanagement
-                                          com.wisegas.pathgeneration
-                                          com.wisegas.shoppinglists
-                                          com.wisegas.stores
-                                          com.wisegas.users"/>
+                            base-package="org.codegas.itemmanagement
+                                          org.codegas.pathgeneration
+                                          org.codegas.shoppinglists
+                                          org.codegas.stores
+                                          org.codegas.users"/>
     <context:annotation-config/>
 
     <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
@@ -32,12 +32,12 @@
     </bean>
 
     <!-- Bean used to reset DomainEventPublisher -->
-    <bean id="domainEventPublisherManager" class="com.wisegas.common.domain.event.DomainEventPublisherManager"/>
+    <bean id="domainEventPublisherManager" class="org.codegas.common.domain.event.DomainEventPublisherManager"/>
 
     <!-- AOP Advice for DomainEventPublisherManager -->
     <aop:config>
         <aop:aspect id="domainEventPublisherResetterAspect" ref="domainEventPublisherManager">
-            <aop:pointcut id="applicationService" expression="@within(com.wisegas.common.lang.annotation.ApplicationService)"/>
+            <aop:pointcut id="applicationService" expression="@within(org.codegas.common.lang.annotation.ApplicationService)"/>
             <aop:before pointcut-ref="applicationService" method="enterPublishingContext"/>
             <aop:after pointcut-ref="applicationService" method="exitPublishingContext"/>
         </aop:aspect>

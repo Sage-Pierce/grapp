@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* com.wisegas.common.webservices.jetty.Main
+web: java -cp target/classes:target/dependency/* org.codegas.common.webservices.jetty.Main
