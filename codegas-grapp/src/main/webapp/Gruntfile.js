@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function (grunt) {
-   var webappRoot = "codegas-grapp/src/main/webapp/";
+   var webappRoot = "./";
    grunt.initConfig({
       pkg: grunt.file.readJSON("package.json"),
       watch: {
@@ -153,8 +153,7 @@ module.exports = function (grunt) {
       connect: {
          server: {
             options: {
-               port: 8000,
-               base: webappRoot
+               port: 8000
             }
          }
       }
