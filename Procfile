@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* org.codegas.common.webservices.jetty.Main
+web: java -cp codegas-grapp/target/classes:codegas-grapp/target/dependency/* org.codegas.commons.webservices.jetty.Main codegas-grapp
