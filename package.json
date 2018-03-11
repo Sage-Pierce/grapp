@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "author": "Sage Pierce",
   "license": "Apache-2.0",
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "^0.1.13"
+  },
   "scripts": {
     "postinstall": "(cd codegas-grapp/src/main/webapp && npm install && grunt)"
   }

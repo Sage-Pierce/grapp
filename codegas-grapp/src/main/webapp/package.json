@@ -4,9 +4,6 @@
   "author": "Sage Pierce",
   "license": "Apache-2.0",
   "dependencies": {
-    "grunt": "~0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-concat": "^0.5.1",
     "angular": "^1.5.7",
     "angular-animate": "^1.5.7",
     "angular-aria": "^1.5.7",
@@ -27,6 +24,9 @@
     "rfc6570": "^0.1.8"
   },
   "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-connect": "^0.10.1",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-watch": "^0.6.1"
