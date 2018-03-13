@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         },
         concat: features.reduce(function (result, feature) {
             result[feature] = {
-                src: [webappRoot + appDirectory + feature + "/**/*.js"],
+                src: [webappRoot + appDirectory + feature + "/**/**/*.js"],
                 dest: webappRoot + "concat/" + feature + "-concat.js"
             };
             return result;
