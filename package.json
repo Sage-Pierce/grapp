@@ -6,7 +6,8 @@
   "dependencies": {
     "grunt": "~0.4.5",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-concat": "^0.5.1"
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.2"
   },
   "scripts": {
     "postinstall": "(cd codegas-grapp/src/main/webapp && npm install && grunt)"
