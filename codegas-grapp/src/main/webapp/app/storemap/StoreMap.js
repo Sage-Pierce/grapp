@@ -38,11 +38,16 @@
       var storeLayout = this.storeLayout;
       var editable = this.editable ? this.editable : false;
 
-      initialize();
+      this.$onInit = function() { initialize(this); };
 
       ////////////////////
 
-      function initialize() {
+      function initialize(binder) {
+         mapControl = binder.mapControl;
+         location = binder.location || {lat: 0, lng: 0};
+         storeLayout = binder.storeLayout;
+         editable = binder.editable ? binder.editable : false;
+
          initializeMapSettings(location);
          initializeControls();
          initializeLayoutObjects(storeLayout);

@@ -36,11 +36,13 @@
       var visibilityCache = {};
       var lowerCaseFilter = itemTreeVM.filter;
 
-      initialize();
+      this.$onInit = function() { initialize(this); };
 
       ////////////////////
 
-      function initialize() {
+      function initialize(binder) {
+         itemTreeVM.items = binder.items;
+         itemTreeVM.options = binder.options || {};
          itemTreeVM.treeOptions = {
             beforeDrop: function(event) {
                var oldSuperItem = event.source.nodesScope.$parent.$modelValue;

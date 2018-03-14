@@ -28,14 +28,17 @@
       storesMapVM.window = null;
       storesMapVM.showWindow = showWindow;
 
-      var mapControl = this.mapControl;
-      var stores = this.stores;
+      var mapControl = null;
+      var stores = [];
 
-      initialize();
+      this.$onInit = function() { initialize(this); };
 
       ////////////////////
 
-      function initialize() {
+      function initialize(binder) {
+         mapControl = binder.mapControl;
+         stores = binder.stores;
+
          initializeMapSettings();
          initializeControls();
          initializeStoreObjects();
