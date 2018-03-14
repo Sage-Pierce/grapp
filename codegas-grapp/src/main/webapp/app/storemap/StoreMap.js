@@ -33,10 +33,10 @@
       storeMapVM.window = null;
       storeMapVM.showWindow = showWindow;
 
-      var mapControl = this.mapControl;
-      var location = this.location || {lat: 0, lng: 0};
-      var storeLayout = this.storeLayout;
-      var editable = this.editable ? this.editable : false;
+      var mapControl = null;
+      var location = null;
+      var storeLayout = null;
+      var editable = false;
 
       this.$onInit = function() { initialize(this); };
 
@@ -44,7 +44,7 @@
 
       function initialize(binder) {
          mapControl = binder.mapControl;
-         location = binder.location || {lat: 0, lng: 0};
+         location = binder.location || { lat: 0, lng: 0 };
          storeLayout = binder.storeLayout;
          editable = binder.editable ? binder.editable : false;
 

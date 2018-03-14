@@ -48,8 +48,7 @@
 
       function initializeMapSettings() {
          storesMapVM.mapSettings = {
-            center: {latitude: 0, longitude: 0},
-            zoom: 18,
+            center: { latitude: 0, longitude: 0 },
             options: {
                maxZoom: 18
             }

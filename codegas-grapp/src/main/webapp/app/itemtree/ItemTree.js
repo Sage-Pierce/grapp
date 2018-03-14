@@ -26,10 +26,10 @@
    ItemTree.$inject = ["$scope"];
    function ItemTree($scope) {
       var itemTreeVM = this;
-      itemTreeVM.items = this.items;
+      itemTreeVM.items = {};
       itemTreeVM.filter = "";
-      itemTreeVM.treeOptions = null;
-      itemTreeVM.options = this.options || {};
+      itemTreeVM.treeOptions = {};
+      itemTreeVM.options = {};
       itemTreeVM.filterChanged = filterChanged;
       itemTreeVM.isNodeVisible = isNodeVisible;
 
