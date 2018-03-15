@@ -1,4 +1,4 @@
-package org.codegas.commons.di.annotation;
+package org.codegas.commons.lang.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -9,6 +9,6 @@ import javax.inject.Scope;
 @Scope
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Session {
+public @interface Request {
 
 }

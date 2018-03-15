@@ -1,4 +1,4 @@
-package org.codegas.commons.webservices.servlet.filter;
+package org.codegas.commons.webservices.spring;
 
 import java.io.IOException;
 

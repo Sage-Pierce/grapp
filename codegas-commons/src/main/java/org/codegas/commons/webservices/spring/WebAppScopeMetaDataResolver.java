@@ -1,7 +1,7 @@
-package org.codegas.commons.di.spring.web;
+package org.codegas.commons.webservices.spring;
 
-import org.codegas.commons.di.annotation.Request;
-import org.codegas.commons.di.annotation.Session;
+import org.codegas.commons.lang.annotation.Request;
+import org.codegas.commons.lang.annotation.Session;
 import org.springframework.context.annotation.Jsr330ScopeMetadataResolver;
 import org.springframework.web.context.WebApplicationContext;
 
