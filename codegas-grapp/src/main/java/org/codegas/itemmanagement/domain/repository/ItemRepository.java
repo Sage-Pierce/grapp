@@ -3,7 +3,7 @@ package org.codegas.itemmanagement.domain.repository;
 import java.util.List;
 import java.util.Optional;
 
-import org.codegas.commons.persistence.api.GenericRepository;
+import org.codegas.commons.persistence.repository.GenericRepository;
 import org.codegas.itemmanagement.domain.entity.Item;
 import org.codegas.itemmanagement.domain.value.Code;
 

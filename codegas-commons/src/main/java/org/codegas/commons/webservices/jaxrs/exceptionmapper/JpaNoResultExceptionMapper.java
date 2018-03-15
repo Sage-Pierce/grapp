@@ -1,4 +1,4 @@
-package org.codegas.commons.persistence.jpa.jaxrs.exceptionmapper;
+package org.codegas.commons.webservices.jaxrs.exceptionmapper;
 
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.MediaType;

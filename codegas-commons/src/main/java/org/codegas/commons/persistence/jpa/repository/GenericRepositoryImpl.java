@@ -1,8 +1,8 @@
-package org.codegas.commons.persistence.jpa.impl;
+package org.codegas.commons.persistence.jpa.repository;
 
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.Id;
-import org.codegas.commons.persistence.api.GenericRepository;
+import org.codegas.commons.persistence.repository.GenericRepository;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
