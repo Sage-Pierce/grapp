@@ -1,10 +1,6 @@
 package org.codegas.commons.lang.collection;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public final class CollectionUtil {
 
@@ -31,7 +27,7 @@ public final class CollectionUtil {
 
     public static <T> List<T> sort(Collection<? extends T> collection, Comparator<? super T> comparator) {
         List<T> sorted = new ArrayList<>(collection);
-        Collections.sort(sorted, comparator);
+        sorted.sort(comparator);
         return sorted;
     }
 

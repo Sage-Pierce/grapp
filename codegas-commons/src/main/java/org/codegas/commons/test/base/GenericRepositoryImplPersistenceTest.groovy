@@ -1,13 +1,13 @@
 package org.codegas.commons.test.base
 
-import org.codegas.commons.domain.entity.SimpleEntity
+import org.codegas.commons.domain.entity.DomainEntity
 import org.codegas.commons.persistence.api.GenericRepository
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
 
 @Transactional
-abstract class GenericRepositoryImplPersistenceTest<T extends SimpleEntity> extends PersistenceTest {
+abstract class GenericRepositoryImplPersistenceTest<T extends DomainEntity> extends PersistenceTest {
 
    @Inject
    protected GenericRepository<T> repository

@@ -40,7 +40,7 @@
         <init-param>
             <param-name>jersey.config.server.provider.classnames</param-name>
             <param-value>
-                org.codegas.commons.webservices.jaxrs.exceptionmapper.EntityConflictExceptionMapper
+                org.codegas.commons.webservices.jaxrs.exceptionmapper.DomainEntityConflictExceptionMapper
                 org.codegas.commons.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
                 org.codegas.commons.webservices.jaxrs.filter.CORSResponseFilter
             </param-value>

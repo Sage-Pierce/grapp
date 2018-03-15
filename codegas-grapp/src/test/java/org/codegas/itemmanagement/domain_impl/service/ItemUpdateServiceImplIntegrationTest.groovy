@@ -1,6 +1,6 @@
 package org.codegas.itemmanagement.domain_impl.service
 
-import org.codegas.commons.domain.exception.EntityConflictException
+import org.codegas.commons.domain.exception.DomainEntityConflictException
 import org.codegas.commons.test.base.IntegrationTest
 import org.codegas.itemmanagement.domain.entity.Item
 import org.codegas.itemmanagement.domain.service.ItemUpdateService
@@ -35,6 +35,6 @@ class ItemUpdateServiceImplIntegrationTest extends IntegrationTest {
       itemUpdateService.changeItemName(existingItem2, existingItem1.getName())
 
       then:
-      thrown(EntityConflictException)
+      thrown(DomainEntityConflictException)
    }
 }

@@ -1,9 +1,8 @@
 package org.codegas.commons.test.entity;
 
-import org.codegas.commons.domain.entity.SimpleEntity;
-import org.codegas.commons.lang.value.Id;
 import groovy.lang.Closure;
-
+import org.codegas.commons.domain.entity.DomainEntity;
+import org.codegas.commons.lang.value.Id;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -60,7 +59,7 @@ public class TestEntityManager {
       return entityManager.createQuery(qlString).getResultList();
    }
 
-   public <T extends SimpleEntity> T getManagedEntity(T detachedEntity) {
+   public <T extends DomainEntity> T getManagedEntity(T detachedEntity) {
       List<T> results = entityManager.createQuery(" SELECT entity" +
                                                   " FROM " + detachedEntity.getClass().getSimpleName() + " entity" +
                                                   " WHERE entity.id = :id")

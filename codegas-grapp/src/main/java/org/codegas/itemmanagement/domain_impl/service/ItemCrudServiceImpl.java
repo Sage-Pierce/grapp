@@ -1,19 +1,18 @@
 package org.codegas.itemmanagement.domain_impl.service;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Singleton;
-
-import org.codegas.commons.domain.exception.EntityConflictException;
+import org.codegas.commons.domain.exception.DomainEntityConflictException;
 import org.codegas.itemmanagement.domain.entity.Item;
 import org.codegas.itemmanagement.domain.repository.ItemRepository;
 import org.codegas.itemmanagement.domain.service.ItemCreationService;
 import org.codegas.itemmanagement.domain.service.ItemUpdateService;
 import org.codegas.itemmanagement.domain.value.Code;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Named
 @Singleton
@@ -52,14 +51,14 @@ public class ItemCrudServiceImpl implements ItemCreationService, ItemUpdateServi
     private void assertItemCodeUniqueness(Code code) {
         Optional<Item> foundItem = itemRepository.findByCode(code);
         if (foundItem.isPresent()) {
-            throw new EntityConflictException("An Item with this code already exists: " + code + ", at " + stringifyItemLineage(foundItem.get()));
+            throw new DomainEntityConflictException("An Item with this code already exists: " + code + ", at " + stringifyItemLineage(foundItem.get()));
         }
     }
 
     private void assertItemNameUniqueness(String name) {
         Optional<Item> foundItem = itemRepository.findByName(name);
         if (foundItem.isPresent()) {
-            throw new EntityConflictException("An Item with this name already exists: " + name + ", at " + stringifyItemLineage(foundItem.get()));
+            throw new DomainEntityConflictException("An Item with this name already exists: " + name + ", at " + stringifyItemLineage(foundItem.get()));
         }
     }
 

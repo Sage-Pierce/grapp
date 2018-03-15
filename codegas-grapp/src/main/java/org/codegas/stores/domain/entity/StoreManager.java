@@ -1,20 +1,15 @@
 package org.codegas.stores.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.value.Email;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class StoreManager extends SimpleEntity<Email> {
+public class StoreManager extends DomainEntity<Email> {
 
     @Id
     private String email;

@@ -1,22 +1,15 @@
 package org.codegas.itemmanagement.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.CodeName;
 import org.codegas.itemmanagement.domain.value.Code;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class Item extends SimpleEntity<Code> {
+public class Item extends DomainEntity<Code> {
 
     @EmbeddedId
     private Code primaryCode;

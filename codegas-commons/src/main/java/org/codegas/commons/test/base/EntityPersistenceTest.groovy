@@ -1,10 +1,10 @@
 package org.codegas.commons.test.base
 
-import org.codegas.commons.domain.entity.SimpleEntity
+import org.codegas.commons.domain.entity.DomainEntity
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-abstract class EntityPersistenceTest<T extends SimpleEntity> extends PersistenceTest {
+abstract class EntityPersistenceTest<T extends DomainEntity> extends PersistenceTest {
 
    protected T testEntity1
    protected T testEntity2

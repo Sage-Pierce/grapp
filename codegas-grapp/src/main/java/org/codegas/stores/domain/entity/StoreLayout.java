@@ -1,33 +1,16 @@
 package org.codegas.stores.domain.entity;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.spacial.GeoPolygon;
 import org.codegas.commons.persistence.jpa.converter.GeoPolygonConverter;
-import org.codegas.stores.domain.value.FeatureId;
-import org.codegas.stores.domain.value.Item;
-import org.codegas.stores.domain.value.NodeId;
-import org.codegas.stores.domain.value.NodeType;
-import org.codegas.stores.domain.value.StoreLayoutId;
+import org.codegas.stores.domain.value.*;
+
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
-public class StoreLayout extends SimpleEntity<StoreLayoutId> {
+public class StoreLayout extends DomainEntity<StoreLayoutId> {
 
     @EmbeddedId
     private StoreLayoutId id;

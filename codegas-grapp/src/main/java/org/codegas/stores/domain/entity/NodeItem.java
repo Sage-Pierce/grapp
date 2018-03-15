@@ -1,17 +1,13 @@
 package org.codegas.stores.domain.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-
-import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.stores.domain.value.Item;
 import org.codegas.stores.domain.value.NodeItemId;
 
+import javax.persistence.*;
+
 @Entity
-public class NodeItem extends SimpleEntity<NodeItemId> {
+public class NodeItem extends DomainEntity<NodeItemId> {
 
     @EmbeddedId
     private NodeItemId id;

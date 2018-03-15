@@ -5,17 +5,15 @@ import java.util.List;
 
 public class DomainEventPublisher {
 
-    private static final ThreadLocal<DomainEventPublisher> instance = new ThreadLocal<DomainEventPublisher>() {
-
-        @Override
-        protected DomainEventPublisher initialValue() {
-            return new DomainEventPublisher();
-        }
-    };
+    private static final ThreadLocal<DomainEventPublisher> instance = ThreadLocal.withInitial(DomainEventPublisher::new);
 
     private final List<DomainEventSubscriber> subscribers = new ArrayList<>();
 
     private boolean publishing;
+
+    private DomainEventPublisher() {
+
+    }
 
     public static DomainEventPublisher instance() {
         return instance.get();

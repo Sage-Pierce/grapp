@@ -1,13 +1,13 @@
 package org.codegas.commons.persistence.jpa.entity;
 
+import org.codegas.commons.domain.entity.DomainEntity;
+import org.codegas.commons.lang.value.Id;
+
 import javax.persistence.Basic;
 import javax.persistence.MappedSuperclass;
 
-import org.codegas.commons.domain.entity.SimpleEntity;
-import org.codegas.commons.lang.value.Id;
-
 @MappedSuperclass
-public abstract class NamedEntity<T extends Id> extends SimpleEntity<T> {
+public abstract class NamedEntity<T extends Id> extends DomainEntity<T> {
 
     @Basic(optional = false)
     private String name;

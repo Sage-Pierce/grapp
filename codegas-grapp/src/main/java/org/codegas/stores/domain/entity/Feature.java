@@ -1,20 +1,14 @@
 package org.codegas.stores.domain.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-
-import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.spacial.GeoPolygon;
 import org.codegas.commons.persistence.jpa.converter.GeoPolygonConverter;
 import org.codegas.stores.domain.value.FeatureId;
 
+import javax.persistence.*;
+
 @Entity
-public class Feature extends SimpleEntity<FeatureId> {
+public class Feature extends DomainEntity<FeatureId> {
 
     @EmbeddedId
     private FeatureId id;

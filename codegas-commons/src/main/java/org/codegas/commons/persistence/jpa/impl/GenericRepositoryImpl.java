@@ -1,17 +1,16 @@
 package org.codegas.commons.persistence.jpa.impl;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
+import org.codegas.commons.domain.entity.DomainEntity;
+import org.codegas.commons.lang.value.Id;
+import org.codegas.commons.persistence.api.GenericRepository;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
-import org.codegas.commons.domain.entity.SimpleEntity;
-import org.codegas.commons.lang.value.Id;
-import org.codegas.commons.persistence.api.GenericRepository;
-
-public abstract class GenericRepositoryImpl<T extends SimpleEntity> implements GenericRepository<T> {
+public abstract class GenericRepositoryImpl<T extends DomainEntity> implements GenericRepository<T> {
 
     @PersistenceContext
     protected EntityManager entityManager;

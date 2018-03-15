@@ -1,17 +1,13 @@
 package org.codegas.shoppinglists.domain.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-
-import org.codegas.commons.domain.entity.SimpleEntity;
+import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.shoppinglists.domain.value.Item;
 import org.codegas.shoppinglists.domain.value.ShoppingListItemId;
 
+import javax.persistence.*;
+
 @Entity
-public class ShoppingListItem extends SimpleEntity<ShoppingListItemId> {
+public class ShoppingListItem extends DomainEntity<ShoppingListItemId> {
 
     @EmbeddedId
     private ShoppingListItemId id;
