@@ -1,7 +1,6 @@
 package org.codegas.stores.service_impl.factory
 
 import org.codegas.stores.test.builder.StoreBuilder
-import org.codegas.stores.test.builder.StoreBuilder
 import spock.lang.Specification
 
 class StoreDtoFactoryTest extends Specification {

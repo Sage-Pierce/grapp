@@ -34,7 +34,7 @@
       storeMapVM.showWindow = showWindow;
 
       var mapControl = null;
-      var location = null;
+      var location = { lat: 0, lng: 0 };
       var storeLayout = null;
       var editable = false;
 
@@ -44,7 +44,7 @@
 
       function initialize(binder) {
          mapControl = binder.mapControl;
-         location = binder.location || { lat: 0, lng: 0 };
+         location = binder.location || location;
          storeLayout = binder.storeLayout;
          editable = binder.editable ? binder.editable : false;
 
