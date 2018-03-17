@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
-import org.codegas.commons.persistence.jpa.entity.NamedEntity;
+import org.codegas.commons.domain.entity.NamedEntity;
 import org.codegas.shoppinglists.domain.value.Item;
 import org.codegas.shoppinglists.domain.value.ShoppingListId;
 

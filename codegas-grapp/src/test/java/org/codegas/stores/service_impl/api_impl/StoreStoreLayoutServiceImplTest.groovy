@@ -1,7 +1,7 @@
 package org.codegas.stores.service_impl.api_impl
 
 import org.codegas.commons.lang.value.CodeName
-import org.codegas.commons.test.base.ApplicationServiceTest
+import org.codegas.commons.test.ApplicationServiceTest
 import org.codegas.stores.test.builder.StoreLayoutBuilder
 import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.stores.domain.entity.Node

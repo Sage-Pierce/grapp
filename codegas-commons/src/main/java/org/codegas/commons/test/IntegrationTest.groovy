@@ -1,4 +1,4 @@
-package org.codegas.commons.test.base
+package org.codegas.commons.test
 
 import org.springframework.test.context.ContextConfiguration
 

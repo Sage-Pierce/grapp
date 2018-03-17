@@ -1,6 +1,6 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.commons.test.base.ApplicationServiceTest
+import org.codegas.commons.test.ApplicationServiceTest
 import org.codegas.stores.test.builder.NodeBuilder
 import org.codegas.commons.domain.event.DomainEventPublisher
 import org.codegas.commons.domain.event.DomainEventSubscriber

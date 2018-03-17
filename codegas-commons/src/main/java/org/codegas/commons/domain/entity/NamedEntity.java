@@ -1,6 +1,5 @@
-package org.codegas.commons.persistence.jpa.entity;
+package org.codegas.commons.domain.entity;
 
-import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.Id;
 
 import javax.persistence.Basic;

@@ -1,4 +1,4 @@
-package org.codegas.commons.test.base
+package org.codegas.commons.test
 
 import org.codegas.commons.domain.entity.DomainEntity
 import org.codegas.commons.persistence.repository.GenericRepository

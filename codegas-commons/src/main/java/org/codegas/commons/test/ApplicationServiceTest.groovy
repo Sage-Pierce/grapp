@@ -1,4 +1,4 @@
-package org.codegas.commons.test.base
+package org.codegas.commons.test
 
 import org.codegas.commons.domain.event.DomainEventPublisher
 import spock.lang.Specification

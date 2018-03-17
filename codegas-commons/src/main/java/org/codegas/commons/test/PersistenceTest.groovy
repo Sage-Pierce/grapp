@@ -1,6 +1,5 @@
-package org.codegas.commons.test.base
+package org.codegas.commons.test
 
-import org.codegas.commons.test.entity.TestEntityManager
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 

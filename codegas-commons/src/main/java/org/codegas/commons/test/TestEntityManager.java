@@ -1,4 +1,4 @@
-package org.codegas.commons.test.entity;
+package org.codegas.commons.test;
 
 import groovy.lang.Closure;
 import org.codegas.commons.domain.entity.DomainEntity;

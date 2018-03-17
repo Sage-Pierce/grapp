@@ -1,6 +1,6 @@
 package org.codegas.users.service_impl.api_impl
 
-import org.codegas.commons.test.base.IntegrationTest
+import org.codegas.commons.test.IntegrationTest
 import org.codegas.users.domain.entity.User
 import org.codegas.users.service.api.UserService
 import org.codegas.users.test.builder.UserBuilder

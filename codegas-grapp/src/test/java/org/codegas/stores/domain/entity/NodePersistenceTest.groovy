@@ -1,6 +1,6 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.commons.test.base.EntityPersistenceTest
+import org.codegas.commons.test.EntityPersistenceTest
 import org.codegas.stores.test.builder.NodeBuilder
 import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.stores.domain.value.Item
