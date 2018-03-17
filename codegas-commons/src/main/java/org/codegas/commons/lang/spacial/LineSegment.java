@@ -114,8 +114,8 @@ public final class LineSegment {
         @Override
         public LineSegment decode(JsonValue jsonValue) {
             return JsonValueDecoder.asObject()
-                .andThen(jsonObject -> new LineSegment(Point.decoder().decode(jsonObject.get("point1")),
-                    Point.decoder().decode(jsonObject.get("point2"))))
+                .andThen(jsonObject -> new LineSegment(Point.jsonDecoder().decode(jsonObject.get("point1")),
+                    Point.jsonDecoder().decode(jsonObject.get("point2"))))
                 .apply(jsonValue);
         }
 

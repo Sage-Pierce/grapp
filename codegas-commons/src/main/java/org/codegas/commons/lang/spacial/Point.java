@@ -14,7 +14,7 @@ public final class Point {
 
     private static final double DOUBLE_EQUALITY_THRESHOLD = .000000000001d;
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private double x;
 
@@ -30,11 +30,11 @@ public final class Point {
     }
 
     public static Point fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<Point> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<Point> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     public static double determinant(Point p, Point q, Point r) {
@@ -72,7 +72,7 @@ public final class Point {
     }
 
     public JsonValue createValue() {
-        return DECODER.toValue(this);
+        return JSON_DECODER.toValue(this);
     }
 
     public double getX() {
@@ -83,7 +83,7 @@ public final class Point {
         return y;
     }
 
-    private static final class Decoder implements JsonValueDecoder<Point> {
+    private static final class JsonDecoder implements JsonValueDecoder<Point> {
 
         @Override
         public Point decode(JsonValue jsonValue) {

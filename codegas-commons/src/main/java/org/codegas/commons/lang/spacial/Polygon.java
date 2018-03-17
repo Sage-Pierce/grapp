@@ -19,7 +19,7 @@ public final class Polygon {
 
     private static final int RANDOM_COORD_GENERATION_RANGE = 16;
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private List<Point> vertices;
 
@@ -32,11 +32,11 @@ public final class Polygon {
     }
 
     public static Polygon fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<Polygon> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<Polygon> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     public boolean areVerticesAdjacent(Point vertex1, Point vertex2) {
@@ -90,7 +90,7 @@ public final class Polygon {
     }
 
     public JsonValue createValue() {
-        return DECODER.toValue(this);
+        return JSON_DECODER.toValue(this);
     }
 
     public List<LineSegment> getSegments() {
@@ -145,13 +145,13 @@ public final class Polygon {
         return CollectionUtil.concat(vertices, vertices);
     }
 
-    private static final class Decoder implements JsonValueDecoder<Polygon> {
+    private static final class JsonDecoder implements JsonValueDecoder<Polygon> {
 
         @Override
         public Polygon decode(JsonValue jsonValue) {
             return JsonValueDecoder.extractValue("vertices")
                 .andThen(JsonValueDecoder.toValueStream())
-                .andThen(stream -> stream.map(pointValue -> Point.decoder().decode(pointValue)).collect(Collectors.toList()))
+                .andThen(stream -> stream.map(pointValue -> Point.jsonDecoder().decode(pointValue)).collect(Collectors.toList()))
                 .andThen(Polygon::new)
                 .apply(jsonValue);
         }

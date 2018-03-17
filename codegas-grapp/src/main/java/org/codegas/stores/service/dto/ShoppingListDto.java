@@ -10,16 +10,16 @@ import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public class ShoppingListDto {
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private List<CodeName> items;
 
     public static ShoppingListDto fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<ShoppingListDto> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<ShoppingListDto> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     public List<CodeName> getItems() {
@@ -30,13 +30,13 @@ public class ShoppingListDto {
         this.items = items;
     }
 
-    private static final class Decoder implements JsonValueDecoder<ShoppingListDto> {
+    private static final class JsonDecoder implements JsonValueDecoder<ShoppingListDto> {
 
         @Override
         public ShoppingListDto decode(JsonValue jsonValue) {
             return JsonValueDecoder.extractValue("items")
                 .andThen(JsonValueDecoder.toValueStream())
-                .andThen(stream -> stream.map(CodeName.decoder()))
+                .andThen(stream -> stream.map(CodeName.jsonDecoder()))
                 .andThen(stream -> stream.collect(Collectors.toList()))
                 .andThen(this::createDto)
                 .apply(jsonValue);

@@ -9,7 +9,7 @@ import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class GeoPoint {
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private double lat;
 
@@ -25,11 +25,11 @@ public final class GeoPoint {
     }
 
     public static GeoPoint fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<GeoPoint> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<GeoPoint> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class GeoPoint {
     }
 
     public JsonValue createValue() {
-        return DECODER.toValue(this);
+        return JSON_DECODER.toValue(this);
     }
 
     public double getLat() {
@@ -69,7 +69,7 @@ public final class GeoPoint {
         return lng;
     }
 
-    private static final class Decoder implements JsonValueDecoder<GeoPoint> {
+    private static final class JsonDecoder implements JsonValueDecoder<GeoPoint> {
 
         @Override
         public GeoPoint decode(JsonValue jsonValue) {

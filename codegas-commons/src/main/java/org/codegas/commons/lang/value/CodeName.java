@@ -9,7 +9,7 @@ import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class CodeName {
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private String code;
 
@@ -25,11 +25,11 @@ public final class CodeName {
     }
 
     public static CodeName fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<CodeName> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<CodeName> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class CodeName {
     }
 
     public JsonValue createValue() {
-        return DECODER.toValue(this);
+        return JSON_DECODER.toValue(this);
     }
 
     public String getCode() {
@@ -69,7 +69,7 @@ public final class CodeName {
         return name;
     }
 
-    private static final class Decoder implements JsonValueDecoder<CodeName> {
+    private static final class JsonDecoder implements JsonValueDecoder<CodeName> {
 
         @Override
         public CodeName decode(JsonValue jsonValue) {

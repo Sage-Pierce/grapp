@@ -15,7 +15,7 @@ import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class GeoPolygon {
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private List<GeoPoint> vertices;
 
@@ -28,11 +28,11 @@ public final class GeoPolygon {
     }
 
     public static GeoPolygon fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<GeoPolygon> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<GeoPolygon> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class GeoPolygon {
     }
 
     public JsonValue createValue() {
-        return DECODER.toValue(this);
+        return JSON_DECODER.toValue(this);
     }
 
     public List<GeoPoint> getVertices() {
@@ -78,13 +78,13 @@ public final class GeoPolygon {
         return doubledVertices;
     }
 
-    private static final class Decoder implements JsonValueDecoder<GeoPolygon> {
+    private static final class JsonDecoder implements JsonValueDecoder<GeoPolygon> {
 
         @Override
         public GeoPolygon decode(JsonValue jsonValue) {
             return JsonValueDecoder.extractValue("vertices")
                 .andThen(JsonValueDecoder.toValueStream())
-                .andThen(stream -> stream.map(geoPointValue -> GeoPoint.decoder().decode(geoPointValue)).collect(Collectors.toList()))
+                .andThen(stream -> stream.map(geoPointValue -> GeoPoint.jsonDecoder().decode(geoPointValue)).collect(Collectors.toList()))
                 .andThen(GeoPolygon::new)
                 .apply(jsonValue);
         }

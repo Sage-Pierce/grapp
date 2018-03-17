@@ -28,7 +28,7 @@ public class ItemLineagesJsonValueDecoder implements JsonValueDecoder<List<ItemL
         return jsonObject -> {
             ItemLineageDto itemLineageDto = new ItemLineageDto();
             itemLineageDto.setItem(new CodeName(jsonObject.getString("primaryCode"), jsonObject.getString("name")));
-            itemLineageDto.setLineage(toValueStream().andThen(stream -> stream.map(CodeName.decoder()))
+            itemLineageDto.setLineage(toValueStream().andThen(stream -> stream.map(CodeName.jsonDecoder()))
                 .andThen(stream -> stream.collect(Collectors.toList()))
                 .apply(jsonObject.get("lineage")));
             return itemLineageDto;

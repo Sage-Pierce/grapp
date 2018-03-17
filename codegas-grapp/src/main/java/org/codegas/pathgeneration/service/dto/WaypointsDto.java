@@ -10,16 +10,16 @@ import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public class WaypointsDto {
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private List<Point> points;
 
     public static WaypointsDto fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<WaypointsDto> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<WaypointsDto> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     public List<Point> getPoints() {
@@ -30,13 +30,13 @@ public class WaypointsDto {
         this.points = points;
     }
 
-    private static final class Decoder implements JsonValueDecoder<WaypointsDto> {
+    private static final class JsonDecoder implements JsonValueDecoder<WaypointsDto> {
 
         @Override
         public WaypointsDto decode(JsonValue jsonValue) {
             return JsonValueDecoder.extractValue("points")
                 .andThen(JsonValueDecoder.toValueStream())
-                .andThen(stream -> stream.map(Point.decoder()))
+                .andThen(stream -> stream.map(Point.jsonDecoder()))
                 .andThen(stream -> stream.collect(Collectors.toList()))
                 .andThen(this::createDto)
                 .apply(jsonValue);

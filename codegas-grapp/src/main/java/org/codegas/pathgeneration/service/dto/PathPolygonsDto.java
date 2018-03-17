@@ -10,18 +10,18 @@ import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public class PathPolygonsDto {
 
-    private static final Decoder DECODER = new Decoder();
+    private static final JsonDecoder JSON_DECODER = new JsonDecoder();
 
     private Polygon enclosure;
 
     private List<Polygon> polygons;
 
     public static PathPolygonsDto fromString(String json) {
-        return decoder().decode(json);
+        return jsonDecoder().decode(json);
     }
 
-    public static JsonValueDecoder<PathPolygonsDto> decoder() {
-        return DECODER;
+    public static JsonValueDecoder<PathPolygonsDto> jsonDecoder() {
+        return JSON_DECODER;
     }
 
     public Polygon getEnclosure() {
@@ -40,19 +40,19 @@ public class PathPolygonsDto {
         this.polygons = polygons;
     }
 
-    private static final class Decoder implements JsonValueDecoder<PathPolygonsDto> {
+    private static final class JsonDecoder implements JsonValueDecoder<PathPolygonsDto> {
 
         @Override
         public PathPolygonsDto decode(JsonValue jsonValue) {
             return JsonValueDecoder.asObject()
-                .andThen(jsonObject -> createDto(Polygon.decoder().decode(jsonObject.get("enclosure")),
+                .andThen(jsonObject -> createDto(Polygon.jsonDecoder().decode(jsonObject.get("enclosure")),
                     decodePolygonsValue(jsonObject.get("polygons"))))
                 .apply(jsonValue);
         }
 
         private List<Polygon> decodePolygonsValue(JsonValue polygonsValue) {
             return JsonValueDecoder.toValueStream()
-                .andThen(stream -> stream.map(polygonValue -> Polygon.decoder().decode(polygonValue)).collect(Collectors.toList()))
+                .andThen(stream -> stream.map(polygonValue -> Polygon.jsonDecoder().decode(polygonValue)).collect(Collectors.toList()))
                 .apply(polygonsValue);
         }
 
