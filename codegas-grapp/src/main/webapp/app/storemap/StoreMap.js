@@ -58,7 +58,6 @@
       function initializeMapSettings(location) {
          storeMapVM.mapSettings = {
             center: _.convertLocationToPosition(location),
-            zoom: 18,
             enableWindow: !editable,
             options: {
                draggableCursor: "pointer",
