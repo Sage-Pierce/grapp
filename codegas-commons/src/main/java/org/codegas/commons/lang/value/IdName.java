@@ -5,11 +5,11 @@ import java.util.Objects;
 import javax.json.Json;
 import javax.json.JsonValue;
 
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class IdName {
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private String id;
 
@@ -25,11 +25,11 @@ public final class IdName {
     }
 
     public static IdName fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<IdName> translator() {
-        return translator;
+    public static JsonValueDecoder<IdName> decoder() {
+        return DECODER;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class IdName {
     }
 
     public JsonValue createValue() {
-        return translator.toValue(this);
+        return DECODER.toValue(this);
     }
 
     public String getId() {
@@ -69,11 +69,11 @@ public final class IdName {
         return name;
     }
 
-    private static final class Translator implements JsonTranslator<IdName> {
+    private static final class Decoder implements JsonValueDecoder<IdName> {
 
         @Override
-        public IdName translate(JsonValue jsonValue) {
-            return JsonTranslator.asObject()
+        public IdName decode(JsonValue jsonValue) {
+            return JsonValueDecoder.asObject()
                 .andThen(idNameObject -> new IdName(idNameObject.getString("id"), idNameObject.getString("name")))
                 .apply(jsonValue);
         }

@@ -6,20 +6,20 @@ import java.util.stream.Collectors;
 import javax.json.JsonValue;
 
 import org.codegas.commons.lang.spacial.Point;
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public class WaypointsDto {
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private List<Point> points;
 
     public static WaypointsDto fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<WaypointsDto> translator() {
-        return translator;
+    public static JsonValueDecoder<WaypointsDto> decoder() {
+        return DECODER;
     }
 
     public List<Point> getPoints() {
@@ -30,13 +30,13 @@ public class WaypointsDto {
         this.points = points;
     }
 
-    private static final class Translator implements JsonTranslator<WaypointsDto> {
+    private static final class Decoder implements JsonValueDecoder<WaypointsDto> {
 
         @Override
-        public WaypointsDto translate(JsonValue jsonValue) {
-            return JsonTranslator.extractValue("points")
-                .andThen(JsonTranslator.toValueStream())
-                .andThen(stream -> stream.map(Point.translator()))
+        public WaypointsDto decode(JsonValue jsonValue) {
+            return JsonValueDecoder.extractValue("points")
+                .andThen(JsonValueDecoder.toValueStream())
+                .andThen(stream -> stream.map(Point.decoder()))
                 .andThen(stream -> stream.collect(Collectors.toList()))
                 .andThen(this::createDto)
                 .apply(jsonValue);

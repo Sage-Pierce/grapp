@@ -30,8 +30,8 @@
       });
 
       var servers = [
-         "https://grapplication.herokuapp.com/rest", // When running on Heroku
-         "http://localhost:8008/rest",               // When running Heroku locally (Need to set PORT Environment Var.)
+         // "https://grapplication.herokuapp.com/rest", // When running on Heroku
+         // "http://localhost:8008/rest",               // When running Heroku locally (Need to set PORT Environment Var.)
          "http://localhost:8080/rest"                // When running the server manually
       ];
       var server = servers[0];

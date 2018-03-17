@@ -13,13 +13,13 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonValue;
 
 import org.codegas.commons.lang.collection.CollectionUtil;
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class Polygon {
 
     private static final int RANDOM_COORD_GENERATION_RANGE = 16;
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private List<Point> vertices;
 
@@ -32,11 +32,11 @@ public final class Polygon {
     }
 
     public static Polygon fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<Polygon> translator() {
-        return translator;
+    public static JsonValueDecoder<Polygon> decoder() {
+        return DECODER;
     }
 
     public boolean areVerticesAdjacent(Point vertex1, Point vertex2) {
@@ -90,7 +90,7 @@ public final class Polygon {
     }
 
     public JsonValue createValue() {
-        return translator.toValue(this);
+        return DECODER.toValue(this);
     }
 
     public List<LineSegment> getSegments() {
@@ -145,13 +145,13 @@ public final class Polygon {
         return CollectionUtil.concat(vertices, vertices);
     }
 
-    private static final class Translator implements JsonTranslator<Polygon> {
+    private static final class Decoder implements JsonValueDecoder<Polygon> {
 
         @Override
-        public Polygon translate(JsonValue jsonValue) {
-            return JsonTranslator.extractValue("vertices")
-                .andThen(JsonTranslator.toValueStream())
-                .andThen(stream -> stream.map(pointValue -> Point.translator().translate(pointValue)).collect(Collectors.toList()))
+        public Polygon decode(JsonValue jsonValue) {
+            return JsonValueDecoder.extractValue("vertices")
+                .andThen(JsonValueDecoder.toValueStream())
+                .andThen(stream -> stream.map(pointValue -> Point.decoder().decode(pointValue)).collect(Collectors.toList()))
                 .andThen(Polygon::new)
                 .apply(jsonValue);
         }

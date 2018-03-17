@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.json.Json;
 import javax.json.JsonValue;
 
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class LineSegment {
 
@@ -13,7 +13,7 @@ public final class LineSegment {
 
     private static final double DOUBLE_EQUALITY_THRESHOLD = .000000000001d;
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private Point point1;
 
@@ -80,7 +80,7 @@ public final class LineSegment {
     }
 
     public JsonValue createValue() {
-        return translator.toValue(this);
+        return DECODER.toValue(this);
     }
 
     public Point getPoint1() {
@@ -109,13 +109,13 @@ public final class LineSegment {
         return o1 == Orientation.COLINEAR || o2 == Orientation.COLINEAR || o3 == Orientation.COLINEAR || o4 == Orientation.COLINEAR;
     }
 
-    private static final class Translator implements JsonTranslator<LineSegment> {
+    private static final class Decoder implements JsonValueDecoder<LineSegment> {
 
         @Override
-        public LineSegment translate(JsonValue jsonValue) {
-            return JsonTranslator.asObject()
-                .andThen(jsonObject -> new LineSegment(Point.translator().translate(jsonObject.get("point1")),
-                    Point.translator().translate(jsonObject.get("point2"))))
+        public LineSegment decode(JsonValue jsonValue) {
+            return JsonValueDecoder.asObject()
+                .andThen(jsonObject -> new LineSegment(Point.decoder().decode(jsonObject.get("point1")),
+                    Point.decoder().decode(jsonObject.get("point2"))))
                 .apply(jsonValue);
         }
 

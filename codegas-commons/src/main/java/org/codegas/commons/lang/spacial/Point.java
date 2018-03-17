@@ -6,7 +6,7 @@ import javax.json.Json;
 import javax.json.JsonValue;
 
 import org.codegas.commons.lang.compare.Comparison;
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class Point {
 
@@ -14,7 +14,7 @@ public final class Point {
 
     private static final double DOUBLE_EQUALITY_THRESHOLD = .000000000001d;
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private double x;
 
@@ -30,11 +30,11 @@ public final class Point {
     }
 
     public static Point fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<Point> translator() {
-        return translator;
+    public static JsonValueDecoder<Point> decoder() {
+        return DECODER;
     }
 
     public static double determinant(Point p, Point q, Point r) {
@@ -72,7 +72,7 @@ public final class Point {
     }
 
     public JsonValue createValue() {
-        return translator.toValue(this);
+        return DECODER.toValue(this);
     }
 
     public double getX() {
@@ -83,11 +83,11 @@ public final class Point {
         return y;
     }
 
-    private static final class Translator implements JsonTranslator<Point> {
+    private static final class Decoder implements JsonValueDecoder<Point> {
 
         @Override
-        public Point translate(JsonValue jsonValue) {
-            return JsonTranslator.asObject()
+        public Point decode(JsonValue jsonValue) {
+            return JsonValueDecoder.asObject()
                 .andThen(pointObject -> new Point(pointObject.getJsonNumber("x").doubleValue(),
                     pointObject.getJsonNumber("y").doubleValue()))
                 .apply(jsonValue);

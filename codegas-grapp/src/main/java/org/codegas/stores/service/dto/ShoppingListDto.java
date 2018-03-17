@@ -6,20 +6,20 @@ import java.util.stream.Collectors;
 import javax.json.JsonValue;
 
 import org.codegas.commons.lang.value.CodeName;
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public class ShoppingListDto {
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private List<CodeName> items;
 
     public static ShoppingListDto fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<ShoppingListDto> translator() {
-        return translator;
+    public static JsonValueDecoder<ShoppingListDto> decoder() {
+        return DECODER;
     }
 
     public List<CodeName> getItems() {
@@ -30,13 +30,13 @@ public class ShoppingListDto {
         this.items = items;
     }
 
-    private static final class Translator implements JsonTranslator<ShoppingListDto> {
+    private static final class Decoder implements JsonValueDecoder<ShoppingListDto> {
 
         @Override
-        public ShoppingListDto translate(JsonValue jsonValue) {
-            return JsonTranslator.extractValue("items")
-                .andThen(JsonTranslator.toValueStream())
-                .andThen(stream -> stream.map(CodeName.translator()))
+        public ShoppingListDto decode(JsonValue jsonValue) {
+            return JsonValueDecoder.extractValue("items")
+                .andThen(JsonValueDecoder.toValueStream())
+                .andThen(stream -> stream.map(CodeName.decoder()))
                 .andThen(stream -> stream.collect(Collectors.toList()))
                 .andThen(this::createDto)
                 .apply(jsonValue);

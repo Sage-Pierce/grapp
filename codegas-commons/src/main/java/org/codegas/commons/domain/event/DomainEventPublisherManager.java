@@ -2,21 +2,21 @@ package org.codegas.commons.domain.event;
 
 public class DomainEventPublisherManager {
 
-    private static final ThreadLocal<Integer> contextCount = ThreadLocal.withInitial(() -> 0);
+    private static final ThreadLocal<Integer> LOCAL_CONTEXT_COUNT = ThreadLocal.withInitial(() -> 0);
 
     public void enterPublishingContext() {
-        int count = contextCount.get();
+        int count = LOCAL_CONTEXT_COUNT.get();
         if (count == 0) {
             DomainEventPublisher.instance().reset();
         }
-        contextCount.set(count + 1);
+        LOCAL_CONTEXT_COUNT.set(count + 1);
     }
 
     public void exitPublishingContext() {
-        int count = contextCount.get() - 1;
+        int count = LOCAL_CONTEXT_COUNT.get() - 1;
         if (count == 0) {
             DomainEventPublisher.instance().reset();
         }
-        contextCount.set(count);
+        LOCAL_CONTEXT_COUNT.set(count);
     }
 }

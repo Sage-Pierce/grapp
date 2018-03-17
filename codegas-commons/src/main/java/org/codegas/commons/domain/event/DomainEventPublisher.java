@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DomainEventPublisher {
 
-    private static final ThreadLocal<DomainEventPublisher> instance = ThreadLocal.withInitial(DomainEventPublisher::new);
+    private static final ThreadLocal<DomainEventPublisher> LOCAL_PUBLISHER = ThreadLocal.withInitial(DomainEventPublisher::new);
 
     private final List<DomainEventSubscriber> subscribers = new ArrayList<>();
 
@@ -16,7 +16,7 @@ public class DomainEventPublisher {
     }
 
     public static DomainEventPublisher instance() {
-        return instance.get();
+        return LOCAL_PUBLISHER.get();
     }
 
     public void reset() {

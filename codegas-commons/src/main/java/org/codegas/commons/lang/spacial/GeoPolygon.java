@@ -11,11 +11,11 @@ import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonValue;
 
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class GeoPolygon {
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private List<GeoPoint> vertices;
 
@@ -28,11 +28,11 @@ public final class GeoPolygon {
     }
 
     public static GeoPolygon fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<GeoPolygon> translator() {
-        return translator;
+    public static JsonValueDecoder<GeoPolygon> decoder() {
+        return DECODER;
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class GeoPolygon {
     }
 
     public JsonValue createValue() {
-        return translator.toValue(this);
+        return DECODER.toValue(this);
     }
 
     public List<GeoPoint> getVertices() {
@@ -78,13 +78,13 @@ public final class GeoPolygon {
         return doubledVertices;
     }
 
-    private static final class Translator implements JsonTranslator<GeoPolygon> {
+    private static final class Decoder implements JsonValueDecoder<GeoPolygon> {
 
         @Override
-        public GeoPolygon translate(JsonValue jsonValue) {
-            return JsonTranslator.extractValue("vertices")
-                .andThen(JsonTranslator.toValueStream())
-                .andThen(stream -> stream.map(geoPointValue -> GeoPoint.translator().translate(geoPointValue)).collect(Collectors.toList()))
+        public GeoPolygon decode(JsonValue jsonValue) {
+            return JsonValueDecoder.extractValue("vertices")
+                .andThen(JsonValueDecoder.toValueStream())
+                .andThen(stream -> stream.map(geoPointValue -> GeoPoint.decoder().decode(geoPointValue)).collect(Collectors.toList()))
                 .andThen(GeoPolygon::new)
                 .apply(jsonValue);
         }

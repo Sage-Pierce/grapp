@@ -7,16 +7,16 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.ws.rs.client.WebTarget;
 
-import org.codegas.commons.webservices.jaxrs.translation.ResponseTranslator;
+import org.codegas.commons.ende.api.JaxrsResponseDecoder;
 import org.codegas.stores.service.adapter.ItemLineagesAdapter;
 import org.codegas.stores.service.dto.ItemLineageDto;
-import org.codegas.stores.service_impl.translator.ItemLineagesResponseTranslator;
+import org.codegas.stores.service_impl.ende.ItemLineagesJaxrsResponseDecoder;
 
 @Named
 @Singleton
 public class HttpItemManagementAdapter implements ItemLineagesAdapter {
 
-    private static final ResponseTranslator<List<ItemLineageDto>> translator = new ItemLineagesResponseTranslator();
+    private static final JaxrsResponseDecoder<List<ItemLineageDto>> DECODER = new ItemLineagesJaxrsResponseDecoder();
 
     private final WebTarget itemManagementTarget;
 
@@ -27,6 +27,6 @@ public class HttpItemManagementAdapter implements ItemLineagesAdapter {
 
     @Override
     public List<ItemLineageDto> getItemLineages() {
-        return translator.translate(itemManagementTarget.path("items").request().get());
+        return DECODER.decode(itemManagementTarget.path("items").request().get());
     }
 }

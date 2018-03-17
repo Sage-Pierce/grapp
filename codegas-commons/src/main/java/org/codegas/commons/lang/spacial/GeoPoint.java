@@ -5,11 +5,11 @@ import java.util.Objects;
 import javax.json.Json;
 import javax.json.JsonValue;
 
-import org.codegas.commons.translation.json.JsonTranslator;
+import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public final class GeoPoint {
 
-    private static final Translator translator = new Translator();
+    private static final Decoder DECODER = new Decoder();
 
     private double lat;
 
@@ -25,11 +25,11 @@ public final class GeoPoint {
     }
 
     public static GeoPoint fromString(String json) {
-        return translator().translate(json);
+        return decoder().decode(json);
     }
 
-    public static JsonTranslator<GeoPoint> translator() {
-        return translator;
+    public static JsonValueDecoder<GeoPoint> decoder() {
+        return DECODER;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class GeoPoint {
     }
 
     public JsonValue createValue() {
-        return translator.toValue(this);
+        return DECODER.toValue(this);
     }
 
     public double getLat() {
@@ -69,11 +69,11 @@ public final class GeoPoint {
         return lng;
     }
 
-    private static final class Translator implements JsonTranslator<GeoPoint> {
+    private static final class Decoder implements JsonValueDecoder<GeoPoint> {
 
         @Override
-        public GeoPoint translate(JsonValue jsonValue) {
-            return JsonTranslator.asObject()
+        public GeoPoint decode(JsonValue jsonValue) {
+            return JsonValueDecoder.asObject()
                 .andThen(geoPointObject -> new GeoPoint(geoPointObject.getJsonNumber("lat").doubleValue(),
                     geoPointObject.getJsonNumber("lng").doubleValue()))
                 .applyNullSafe(jsonValue);
