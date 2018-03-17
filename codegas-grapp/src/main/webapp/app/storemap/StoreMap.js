@@ -62,8 +62,6 @@
             options: {
                draggableCursor: "pointer",
                draggingCursor: "pointer",
-               disableDefaultUI: true,
-               zoomControl: true,
                drawingControl: false,
                polygonOptions: {
                   strokeWeight: 1,
