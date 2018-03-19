@@ -9,6 +9,6 @@ import javax.inject.Scope;
 @Scope
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Session {
+public @interface RequestScope {
 
 }
