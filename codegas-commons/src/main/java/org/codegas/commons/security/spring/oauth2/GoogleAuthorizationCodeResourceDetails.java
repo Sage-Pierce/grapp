@@ -1,4 +1,4 @@
-package org.codegas.commons.security.spring.oauth2.google;
+package org.codegas.commons.security.spring.oauth2;
 
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.common.AuthenticationScheme;

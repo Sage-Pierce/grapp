@@ -1,4 +1,4 @@
-package org.codegas.commons.persistence.jpa.repository;
+package org.codegas.commons.persistence.jpa;
 
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.Id;

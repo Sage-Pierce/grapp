@@ -1,4 +1,4 @@
-package org.codegas.commons.security.spring.jaxrs.provider;
+package org.codegas.commons.security.spring.jaxrs;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;

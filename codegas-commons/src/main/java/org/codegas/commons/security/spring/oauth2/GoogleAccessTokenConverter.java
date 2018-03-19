@@ -1,4 +1,4 @@
-package org.codegas.commons.security.spring.oauth2.google;
+package org.codegas.commons.security.spring.oauth2;
 
 import java.util.Arrays;
 import java.util.Collection;

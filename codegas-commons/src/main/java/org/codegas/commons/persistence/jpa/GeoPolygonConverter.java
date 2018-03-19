@@ -1,4 +1,4 @@
-package org.codegas.commons.persistence.jpa.converter;
+package org.codegas.commons.persistence.jpa;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
