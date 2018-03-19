@@ -1,4 +1,4 @@
-package org.codegas.commons.webservices.jaxrs.hal;
+package org.codegas.commons.webservices.hal.jaxrs;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;

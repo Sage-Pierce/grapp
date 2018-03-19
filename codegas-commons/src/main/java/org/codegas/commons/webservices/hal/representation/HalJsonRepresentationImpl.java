@@ -1,4 +1,4 @@
-package org.codegas.commons.webservices.hal.impl;
+package org.codegas.commons.webservices.hal.representation;
 
 import java.io.Writer;
 import java.net.URI;
@@ -17,7 +17,7 @@ import com.theoryinpractise.halbuilder.api.Representable;
 import com.theoryinpractise.halbuilder.api.Representation;
 import com.theoryinpractise.halbuilder.api.RepresentationFactory;
 
-public class HalJsonRepresentationImpl implements HalRepresentation, Representation {
+class HalJsonRepresentationImpl implements HalRepresentation, Representation {
 
     private final Representation delegate;
 

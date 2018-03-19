@@ -1,4 +1,4 @@
-package org.codegas.commons.webservices.hal.impl;
+package org.codegas.commons.webservices.hal.representation;
 
 import java.io.Serializable;
 import java.util.Collection;

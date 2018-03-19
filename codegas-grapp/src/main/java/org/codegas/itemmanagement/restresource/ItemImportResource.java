@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.NacsItemImportService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 

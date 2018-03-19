@@ -14,8 +14,8 @@ import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.value.Email;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreManagerService;
 import org.codegas.stores.service.dto.StoreManagerDto;
 

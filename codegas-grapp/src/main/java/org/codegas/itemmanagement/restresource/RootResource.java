@@ -8,8 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
 
 @Path("/itemManagement/root/")
 public class RootResource extends JaxrsHalJsonResource {

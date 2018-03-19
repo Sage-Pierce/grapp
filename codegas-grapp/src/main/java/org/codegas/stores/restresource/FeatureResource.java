@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
 import org.codegas.stores.service.api.FeatureService;
 import org.codegas.stores.service.dto.FeatureDto;
 

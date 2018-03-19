@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.value.CodeName;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.jaxrs.hal.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
 import org.codegas.shoppinglists.service.api.ShoppingListService;
 import org.codegas.shoppinglists.service.dto.ShoppingListDto;
 

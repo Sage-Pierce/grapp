@@ -1,6 +1,6 @@
 package org.codegas.commons.webservices.hal.api;
 
-public class HalLink {
+public final class HalLink {
 
     private final String rel;
 
