@@ -1,7 +1,5 @@
 package org.codegas.itemmanagement.domain.value;
 
-import java.util.Objects;
-
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -43,6 +41,6 @@ public class Code extends AbstractId {
 
     @Override
     public Object idHash() {
-        return Objects.hash(value, type);
+        return type + value;
     }
 }

@@ -66,7 +66,7 @@ public class TestEntityManager {
                                      .setParameter("id", convertIdToQueryObject(detachedEntity.getId()))
                                      .getResultList();
       if (results.size() > 1) {
-         throw new RuntimeException("There was more than one result when trying to fetch a Managed Entity for this Detached Entity: " + detachedEntity);
+         throw new IllegalStateException("There was more than one result when trying to fetch a Managed Entity for this Detached Entity: " + detachedEntity);
       }
       else {
          return results.isEmpty() ? null : results.get(0);
@@ -74,8 +74,7 @@ public class TestEntityManager {
    }
 
    private Object convertIdToQueryObject(Id id) {
-      Class idClass = id.getClass();
-      return idClass.isPrimitive() || idClass.isAnnotationPresent(Embeddable.class) ? id : id.toString();
+      return id.getClass().isPrimitive() || id.getClass().isAnnotationPresent(Embeddable.class) ? id : id.toString();
    }
 
    private <T> T runInTransaction(final Callable<T> callable) {
@@ -86,10 +85,8 @@ public class TestEntityManager {
                return callable.call();
             }
             catch (Exception e) {
-               System.err.println("Error running transaction in Integration Test.");
-               e.printStackTrace();
+               throw new IllegalStateException("Error running transaction in Integration Test.", e);
             }
-            return null;
          }
       });
    }
