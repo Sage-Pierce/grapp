@@ -1,7 +1,7 @@
 package org.codegas.itemmanagement.domain_impl.repository
 
 import org.codegas.commons.lang.annotation.Transactional
-import org.codegas.commons.test.GenericRepositoryImplPersistenceTest
+import org.codegas.test.GenericRepositoryImplPersistenceTest
 import org.codegas.itemmanagement.domain.entity.Item
 import org.codegas.itemmanagement.domain.repository.ItemRepository
 import org.codegas.itemmanagement.domain.value.Code

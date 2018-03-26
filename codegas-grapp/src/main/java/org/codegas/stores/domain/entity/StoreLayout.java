@@ -3,7 +3,7 @@ package org.codegas.stores.domain.entity;
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.spacial.GeoPolygon;
-import org.codegas.commons.persistence.jpa.GeoPolygonConverter;
+import org.codegas.persistence.jpa.GeoPolygonConverter;
 import org.codegas.stores.domain.value.*;
 
 import javax.persistence.*;

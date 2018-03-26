@@ -1,7 +1,7 @@
 package org.codegas.users.domain_impl.repository
 
 import org.codegas.commons.lang.value.Email
-import org.codegas.commons.test.GenericRepositoryImplPersistenceTest
+import org.codegas.test.GenericRepositoryImplPersistenceTest
 import org.codegas.users.domain.entity.User
 import org.codegas.users.domain.repository.UserRepository
 import org.codegas.users.test.builder.UserBuilder

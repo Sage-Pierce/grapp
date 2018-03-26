@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 
 import org.codegas.commons.domain.event.DomainEventPublisher;
 import org.codegas.commons.lang.spacial.GeoPoint;
-import org.codegas.commons.persistence.jpa.GeoPointConverter;
+import org.codegas.persistence.jpa.GeoPointConverter;
 import org.codegas.commons.domain.entity.NamedEntity;
 import org.codegas.stores.domain.event.NodeModifiedEvent;
 import org.codegas.stores.domain.value.Item;

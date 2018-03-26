@@ -13,10 +13,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.value.CodeName;
-import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservices.hal.api.HalLink;
+import org.codegas.webservices.hal.api.HalRepresentation;
+import org.codegas.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.shoppinglists.service.api.ShoppingListService;
 import org.codegas.shoppinglists.service.dto.ShoppingListDto;
 

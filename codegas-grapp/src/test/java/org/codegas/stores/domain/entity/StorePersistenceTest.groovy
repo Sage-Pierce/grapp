@@ -1,7 +1,7 @@
 package org.codegas.stores.domain.entity
 
 import org.codegas.stores.test.builder.StoreBuilder
-import org.codegas.commons.test.EntityPersistenceTest
+import org.codegas.test.EntityPersistenceTest
 import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.commons.lang.spacial.GeoPolygon
 import org.springframework.transaction.annotation.Transactional

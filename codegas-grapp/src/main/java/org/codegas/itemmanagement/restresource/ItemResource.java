@@ -12,10 +12,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservices.hal.api.HalLink;
+import org.codegas.webservices.hal.api.HalRepresentation;
+import org.codegas.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 

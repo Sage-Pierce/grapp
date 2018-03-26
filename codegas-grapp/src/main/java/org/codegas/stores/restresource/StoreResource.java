@@ -13,10 +13,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.spacial.GeoPoint;
-import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservices.hal.api.HalLink;
+import org.codegas.webservices.hal.api.HalRepresentation;
+import org.codegas.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreService;
 import org.codegas.stores.service.dto.StoreDto;
 

@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.codegas.commons.lang.spacial.GeoPoint;
-import org.codegas.commons.persistence.jpa.GeoPointConverter;
+import org.codegas.persistence.jpa.GeoPointConverter;
 import org.codegas.commons.domain.entity.NamedEntity;
 import org.codegas.stores.domain.value.StoreId;
 

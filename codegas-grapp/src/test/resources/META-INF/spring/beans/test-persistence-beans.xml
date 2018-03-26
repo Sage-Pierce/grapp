@@ -17,7 +17,7 @@
     <context:annotation-config/>
 
     <!-- A TestEntityManager to use with Persistence Tests -->
-    <bean id="testEntityManager" class="org.codegas.commons.test.TestEntityManager">
+    <bean id="testEntityManager" class="org.codegas.test.TestEntityManager">
         <constructor-arg>
             <bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
                 <property name="entityManagerFactory" ref="entityManagerFactory"/>

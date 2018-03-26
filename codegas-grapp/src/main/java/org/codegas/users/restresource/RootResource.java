@@ -7,9 +7,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
-import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservices.hal.api.HalLink;
+import org.codegas.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.webservices.hal.jaxrs.HalResourceLinkBuilder;
 
 @Path("/users/root/")
 public class RootResource extends HalJsonResource {

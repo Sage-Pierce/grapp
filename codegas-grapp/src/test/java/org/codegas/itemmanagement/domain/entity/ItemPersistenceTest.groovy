@@ -1,6 +1,6 @@
 package org.codegas.itemmanagement.domain.entity
 
-import org.codegas.commons.test.EntityPersistenceTest
+import org.codegas.test.EntityPersistenceTest
 import org.codegas.itemmanagement.test.builder.ItemBuilder
 import org.springframework.transaction.annotation.Transactional
 
