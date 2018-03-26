@@ -14,8 +14,9 @@ import java.util.concurrent.Callable;
 
 public class TestEntityManager {
 
-   private EntityManager entityManager;
-   private TransactionTemplate transactionTemplate;
+   private final EntityManager entityManager;
+
+   private final TransactionTemplate transactionTemplate;
 
    public TestEntityManager(EntityManager entityManager, PlatformTransactionManager platformTransactionManager) {
       this.entityManager = entityManager;
