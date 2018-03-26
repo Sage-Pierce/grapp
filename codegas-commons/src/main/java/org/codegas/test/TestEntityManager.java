@@ -1,6 +1,5 @@
 package org.codegas.test;
 
-import groovy.lang.Closure;
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.Id;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -71,15 +70,6 @@ public class TestEntityManager {
       else {
          return results.isEmpty() ? null : results.get(0);
       }
-   }
-
-   public <T> T runInTransaction(final Closure<T> closure) {
-      return runInTransaction(new Callable<T>() {
-         @Override
-         public T call() throws Exception {
-            return closure.call();
-         }
-      });
    }
 
    private Object convertIdToQueryObject(Id id) {
