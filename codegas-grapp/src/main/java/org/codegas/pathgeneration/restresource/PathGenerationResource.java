@@ -15,15 +15,15 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.spacial.Point;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.pathgeneration.service.api.PathService;
 import org.codegas.pathgeneration.service.dto.PathDto;
 import org.codegas.pathgeneration.service.dto.PathPolygonsDto;
 import org.codegas.pathgeneration.service.dto.WaypointsDto;
 
 @Path("/pathGeneration/")
-public class PathGenerationResource extends JaxrsHalJsonResource {
+public class PathGenerationResource extends HalJsonResource {
 
     private final PathService pathService;
 
@@ -58,7 +58,7 @@ public class PathGenerationResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(PathGenerationResource.class).queryParams("start", "finish", "waypoints");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(PathGenerationResource.class).queryParams("start", "finish", "waypoints");
     }
 }

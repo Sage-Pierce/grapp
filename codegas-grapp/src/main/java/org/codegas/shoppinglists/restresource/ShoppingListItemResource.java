@@ -14,13 +14,13 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.shoppinglists.service.api.ShoppingListItemService;
 import org.codegas.shoppinglists.service.dto.ShoppingListItemDto;
 
 @Path("/shoppingListItem/{id}/")
-public class ShoppingListItemResource extends JaxrsHalJsonResource {
+public class ShoppingListItemResource extends HalJsonResource {
 
     private final ShoppingListItemService shoppingListItemService;
 
@@ -58,7 +58,7 @@ public class ShoppingListItemResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().pathArgs(shoppingListItemDto.getId()).withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(ShoppingListItemResource.class).queryParams("obtained");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(ShoppingListItemResource.class).queryParams("obtained");
     }
 }

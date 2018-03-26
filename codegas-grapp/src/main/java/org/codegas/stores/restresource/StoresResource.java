@@ -9,12 +9,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreService;
 
 @Path("/stores/")
-public class StoresResource extends JaxrsHalJsonResource {
+public class StoresResource extends HalJsonResource {
 
     private final StoreService storeService;
 
@@ -36,7 +36,7 @@ public class StoresResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(StoresResource.class);
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(StoresResource.class);
     }
 }

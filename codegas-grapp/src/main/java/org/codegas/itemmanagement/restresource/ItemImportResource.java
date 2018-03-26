@@ -13,13 +13,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.NacsItemImportService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 
 @Path("/items/import")
-public class ItemImportResource extends JaxrsHalJsonResource {
+public class ItemImportResource extends HalJsonResource {
 
     private static final String NACS = "NACS";
 
@@ -55,7 +55,7 @@ public class ItemImportResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(ItemImportResource.class).queryParams("type");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(ItemImportResource.class).queryParams("type");
     }
 }

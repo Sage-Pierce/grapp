@@ -13,13 +13,13 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.value.Email;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.shoppinglists.service.api.ShopperService;
 import org.codegas.shoppinglists.service.dto.ShopperDto;
 
 @Path("/shoppers/{email}/")
-public class ShopperResource extends JaxrsHalJsonResource {
+public class ShopperResource extends HalJsonResource {
 
     private final ShopperService shopperService;
 
@@ -50,7 +50,7 @@ public class ShopperResource extends JaxrsHalJsonResource {
         );
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(ShopperResource.class);
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(ShopperResource.class);
     }
 }

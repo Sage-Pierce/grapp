@@ -15,13 +15,13 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreService;
 import org.codegas.stores.service.dto.StoreDto;
 
 @Path("/stores/{id}/")
-public class StoreResource extends JaxrsHalJsonResource {
+public class StoreResource extends HalJsonResource {
 
     private final StoreService storeService;
 
@@ -60,7 +60,7 @@ public class StoreResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().pathArgs(storeDto.getId()).withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(StoreResource.class).queryParams("name", "location");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(StoreResource.class).queryParams("name", "location");
     }
 }

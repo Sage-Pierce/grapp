@@ -12,13 +12,13 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.FeatureService;
 import org.codegas.stores.service.dto.FeatureDto;
 
 @Path("/features/{id}/")
-public class FeatureResource extends JaxrsHalJsonResource {
+public class FeatureResource extends HalJsonResource {
 
     private final FeatureService featureService;
 
@@ -50,7 +50,7 @@ public class FeatureResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().pathArgs(featureDto.getId()).withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(FeatureResource.class);
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(FeatureResource.class);
     }
 }

@@ -11,12 +11,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 
 @Path("/items/")
-public class ItemsResource extends JaxrsHalJsonResource {
+public class ItemsResource extends HalJsonResource {
 
     private final ItemService itemService;
 
@@ -46,7 +46,7 @@ public class ItemsResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(ItemsResource.class).queryParams("superItemCode", "codeType", "code", "name");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(ItemsResource.class).queryParams("superItemCode", "codeType", "code", "name");
     }
 }

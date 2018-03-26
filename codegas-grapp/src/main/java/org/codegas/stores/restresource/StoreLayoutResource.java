@@ -18,8 +18,8 @@ import org.codegas.commons.lang.spacial.GeoPolygon;
 import org.codegas.commons.lang.value.CodeName;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreLayoutService;
 import org.codegas.stores.service.dto.NodeDto;
 import org.codegas.stores.service.dto.NodeItemDto;
@@ -27,7 +27,7 @@ import org.codegas.stores.service.dto.StoreLayoutDto;
 import org.codegas.stores.service.dto.StoreLayoutUpdateDto;
 
 @Path("/storeLayouts/{id}/")
-public class StoreLayoutResource extends JaxrsHalJsonResource {
+public class StoreLayoutResource extends HalJsonResource {
 
     private final StoreLayoutService storeLayoutService;
 
@@ -113,21 +113,21 @@ public class StoreLayoutResource extends JaxrsHalJsonResource {
     private static List<HalLink> createLinks(StoreLayoutDto storeLayoutDto) {
         return Arrays.asList(
             createSelfLinkBuilder().pathArgs(storeLayoutDto.getId()).withSelfRel(),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("updateOuterOutline").pathArgs(storeLayoutDto.getId()).queryParams("polygon")
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("updateOuterOutline").pathArgs(storeLayoutDto.getId()).queryParams("polygon")
                 .withRel("outerOutline"),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("updateInnerOutline").pathArgs(storeLayoutDto.getId()).queryParams("polygon")
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("updateInnerOutline").pathArgs(storeLayoutDto.getId()).queryParams("polygon")
                 .withRel("innerOutline"),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addFeature").pathArgs(storeLayoutDto.getId()).queryParams("polygon").withRel("addFeature"),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("reshapeFeature").pathArgs(storeLayoutDto.getId()).queryParams("featureId", "polygon")
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addFeature").pathArgs(storeLayoutDto.getId()).queryParams("polygon").withRel("addFeature"),
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("reshapeFeature").pathArgs(storeLayoutDto.getId()).queryParams("featureId", "polygon")
                 .withRel("reshapeFeature"),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addNode").pathArgs(storeLayoutDto.getId()).queryParams("type", "location").withRel("addNode"),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("moveNode").pathArgs(storeLayoutDto.getId()).queryParams("nodeId", "location").withRel("moveNode"),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addNodeItem").pathArgs(storeLayoutDto.getId()).queryParams("nodeId", "item")
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addNode").pathArgs(storeLayoutDto.getId()).queryParams("type", "location").withRel("addNode"),
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("moveNode").pathArgs(storeLayoutDto.getId()).queryParams("nodeId", "location").withRel("moveNode"),
+            HalResourceLinkBuilder.linkTo(StoreLayoutResource.class).method("addNodeItem").pathArgs(storeLayoutDto.getId()).queryParams("nodeId", "item")
                 .withRel("addNodeItem")
         );
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(StoreLayoutResource.class);
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(StoreLayoutResource.class);
     }
 }

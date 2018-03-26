@@ -8,12 +8,12 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.value.Email;
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.users.service.api.LoginService;
 
 @Path("/login/")
-public class LoginResource extends JaxrsHalJsonResource {
+public class LoginResource extends HalJsonResource {
 
     private final LoginService loginService;
 
@@ -29,6 +29,6 @@ public class LoginResource extends JaxrsHalJsonResource {
     }
 
     public static HalLink createRootLink(String rel) {
-        return JaxrsHalResourceLinkBuilder.linkTo(LoginResource.class).queryParams("email", "avatar").withRel(rel);
+        return HalResourceLinkBuilder.linkTo(LoginResource.class).queryParams("email", "avatar").withRel(rel);
     }
 }

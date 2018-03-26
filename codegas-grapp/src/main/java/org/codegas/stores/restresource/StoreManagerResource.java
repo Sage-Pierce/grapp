@@ -14,13 +14,13 @@ import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.value.Email;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreManagerService;
 import org.codegas.stores.service.dto.StoreManagerDto;
 
 @Path("/storeManagers/{id}/")
-public class StoreManagerResource extends JaxrsHalJsonResource {
+public class StoreManagerResource extends HalJsonResource {
 
     private final StoreManagerService storeManagerService;
 
@@ -48,12 +48,12 @@ public class StoreManagerResource extends JaxrsHalJsonResource {
     private static List<HalLink> createLinks(StoreManagerDto storeManagerDto) {
         return Arrays.asList(
             createSelfLinkBuilder().pathArgs(storeManagerDto.getEmail()).withSelfRel(),
-            JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class).method("addStore").pathArgs(storeManagerDto.getEmail()).queryParams("name", "location")
+            HalResourceLinkBuilder.linkTo(StoreManagerResource.class).method("addStore").pathArgs(storeManagerDto.getEmail()).queryParams("name", "location")
                 .withRel("addStore")
         );
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(StoreManagerResource.class);
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(StoreManagerResource.class);
     }
 }

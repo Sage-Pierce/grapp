@@ -12,13 +12,13 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.NodeItemService;
 import org.codegas.stores.service.dto.NodeItemDto;
 
 @Path("/nodeItems/{id}")
-public class NodeItemResource extends JaxrsHalJsonResource {
+public class NodeItemResource extends HalJsonResource {
 
     private final NodeItemService nodeItemService;
 
@@ -50,7 +50,7 @@ public class NodeItemResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().pathArgs(nodeItemDto.getId()).withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(NodeItemResource.class);
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(NodeItemResource.class);
     }
 }

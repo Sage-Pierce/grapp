@@ -6,7 +6,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
 
-public abstract class JaxrsHalResource {
+public abstract class HalResource {
 
     @Context
     protected UriInfo uriInfo;

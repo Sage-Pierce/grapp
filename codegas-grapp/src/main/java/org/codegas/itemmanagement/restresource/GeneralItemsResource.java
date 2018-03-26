@@ -12,12 +12,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 
 @Path("/generalItems/")
-public class GeneralItemsResource extends JaxrsHalJsonResource {
+public class GeneralItemsResource extends HalJsonResource {
 
     private final ItemService itemService;
 
@@ -49,7 +49,7 @@ public class GeneralItemsResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(GeneralItemsResource.class).queryParams("codeType", "code", "name");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(GeneralItemsResource.class).queryParams("codeType", "code", "name");
     }
 }

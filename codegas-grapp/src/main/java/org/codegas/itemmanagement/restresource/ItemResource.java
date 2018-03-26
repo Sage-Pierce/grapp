@@ -14,13 +14,13 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 
 @Path("/items/{primaryCode}/")
-public class ItemResource extends JaxrsHalJsonResource {
+public class ItemResource extends HalJsonResource {
 
     private final ItemService itemService;
 
@@ -70,12 +70,12 @@ public class ItemResource extends JaxrsHalJsonResource {
     private static List<HalLink> createLinks(ItemDto itemDto) {
         return Arrays.asList(
             createSelfLinkBuilder().pathArgs(itemDto.getPrimaryCode()).withSelfRel(),
-            JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class).method("makeGeneral").pathArgs(itemDto.getPrimaryCode()).withRel("makeGeneral"),
-            JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class).method("move").pathArgs(itemDto.getPrimaryCode()).queryParams("superItemCode").withRel("move")
+            HalResourceLinkBuilder.linkTo(ItemResource.class).method("makeGeneral").pathArgs(itemDto.getPrimaryCode()).withRel("makeGeneral"),
+            HalResourceLinkBuilder.linkTo(ItemResource.class).method("move").pathArgs(itemDto.getPrimaryCode()).queryParams("superItemCode").withRel("move")
         );
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(ItemResource.class).queryParams("name");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(ItemResource.class).queryParams("name");
     }
 }

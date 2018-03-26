@@ -8,11 +8,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 
 @Path("/stores/root/")
-public class RootResource extends JaxrsHalJsonResource {
+public class RootResource extends HalJsonResource {
 
     @GET
     public Response get() {
@@ -21,7 +21,7 @@ public class RootResource extends JaxrsHalJsonResource {
 
     private static List<HalLink> createLinks() {
         return Arrays.asList(
-            JaxrsHalResourceLinkBuilder.linkTo(RootResource.class).withSelfRel(),
+            HalResourceLinkBuilder.linkTo(RootResource.class).withSelfRel(),
             StoreManagersResource.createRootLink("storeManagers"),
             StoreManagerResource.createRootLink("storeManager"),
             StoresResource.createRootLink("stores"),

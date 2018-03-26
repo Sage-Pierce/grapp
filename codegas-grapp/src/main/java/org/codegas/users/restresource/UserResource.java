@@ -14,13 +14,13 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.value.Email;
 import org.codegas.commons.webservices.hal.api.HalLink;
 import org.codegas.commons.webservices.hal.api.HalRepresentation;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.users.service.api.UserService;
 import org.codegas.users.service.dto.UserDto;
 
 @Path("/users/{email}/")
-public class UserResource extends JaxrsHalJsonResource {
+public class UserResource extends HalJsonResource {
 
     private final UserService userService;
 
@@ -52,7 +52,7 @@ public class UserResource extends JaxrsHalJsonResource {
         return Collections.singletonList(createSelfLinkBuilder().pathArgs(userDto.getEmail()).withSelfRel());
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(UserResource.class).queryParams("name");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(UserResource.class).queryParams("name");
     }
 }

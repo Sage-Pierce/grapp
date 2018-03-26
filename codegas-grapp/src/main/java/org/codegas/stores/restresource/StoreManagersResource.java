@@ -8,12 +8,12 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.value.Email;
 import org.codegas.commons.webservices.hal.api.HalLink;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalJsonResource;
-import org.codegas.commons.webservices.hal.jaxrs.JaxrsHalResourceLinkBuilder;
+import org.codegas.commons.webservices.hal.jaxrs.HalJsonResource;
+import org.codegas.commons.webservices.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreManagerService;
 
 @Path("/storeManagers/")
-public class StoreManagersResource extends JaxrsHalJsonResource {
+public class StoreManagersResource extends HalJsonResource {
 
     private final StoreManagerService storeManagerService;
 
@@ -31,7 +31,7 @@ public class StoreManagersResource extends JaxrsHalJsonResource {
         return createSelfLinkBuilder().withRel(rel);
     }
 
-    private static JaxrsHalResourceLinkBuilder createSelfLinkBuilder() {
-        return JaxrsHalResourceLinkBuilder.linkTo(StoreManagersResource.class).queryParams("email");
+    private static HalResourceLinkBuilder createSelfLinkBuilder() {
+        return HalResourceLinkBuilder.linkTo(StoreManagersResource.class).queryParams("email");
     }
 }

@@ -4,7 +4,7 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.codegas.commons.webservices.hal.api.HalLink;
 
-public final class JaxrsHalResourceLinkBuilder {
+public final class HalResourceLinkBuilder {
 
     private static final String SELF_REL = "self";
 
@@ -16,25 +16,25 @@ public final class JaxrsHalResourceLinkBuilder {
 
     private String[] queryParams;
 
-    private JaxrsHalResourceLinkBuilder(Class resource) {
+    private HalResourceLinkBuilder(Class resource) {
         this.resource = resource;
     }
 
-    public static JaxrsHalResourceLinkBuilder linkTo(Class resource) {
-        return new JaxrsHalResourceLinkBuilder(resource);
+    public static HalResourceLinkBuilder linkTo(Class resource) {
+        return new HalResourceLinkBuilder(resource);
     }
 
-    public JaxrsHalResourceLinkBuilder method(String methodName) {
+    public HalResourceLinkBuilder method(String methodName) {
         this.methodName = methodName;
         return this;
     }
 
-    public JaxrsHalResourceLinkBuilder pathArgs(Object... pathArgs) {
+    public HalResourceLinkBuilder pathArgs(Object... pathArgs) {
         this.pathArgs = pathArgs;
         return this;
     }
 
-    public JaxrsHalResourceLinkBuilder queryParams(String... queryParams) {
+    public HalResourceLinkBuilder queryParams(String... queryParams) {
         this.queryParams = queryParams;
         return this;
     }
