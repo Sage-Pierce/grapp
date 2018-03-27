@@ -40,7 +40,7 @@ public abstract class GenericRepositoryImpl<T extends DomainEntity> implements G
 
     @Override
     public T get(Id id) {
-        return entityManager.find(entityClass, convertIdToQueryObject(id));
+        return entityManager.find(entityClass, id.toJpaQueryObject());
     }
 
     @Override
@@ -49,10 +49,5 @@ public abstract class GenericRepositoryImpl<T extends DomainEntity> implements G
                 " FROM " + entityClass.getSimpleName() + " entity",
             entityClass)
             .getResultList();
-    }
-
-    protected Object convertIdToQueryObject(Id id) {
-        Class idClass = id.getClass();
-        return idClass.isPrimitive() || idClass.isAnnotationPresent(Embeddable.class) ? id : id.toString();
     }
 }

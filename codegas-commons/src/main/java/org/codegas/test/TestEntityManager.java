@@ -53,7 +53,7 @@ public class TestEntityManager {
       List<T> results = entityManager.createQuery(" SELECT entity" +
                                                   " FROM " + detachedEntity.getClass().getSimpleName() + " entity" +
                                                   " WHERE entity.id = :id")
-                                     .setParameter("id", convertIdToQueryObject(detachedEntity.getId()))
+                                     .setParameter("id", detachedEntity.getId().toJpaQueryObject())
                                      .getResultList();
       if (results.size() > 1) {
          throw new IllegalStateException("There was more than one result when trying to fetch a Managed Entity for this Detached Entity: " + detachedEntity);
@@ -61,10 +61,6 @@ public class TestEntityManager {
       else {
          return results.isEmpty() ? null : results.get(0);
       }
-   }
-
-   private Object convertIdToQueryObject(Id id) {
-      return id.getClass().isPrimitive() || id.getClass().isAnnotationPresent(Embeddable.class) ? id : id.toString();
    }
 
    private <T> T runInTransaction(Callable<T> callable) {
