@@ -23,18 +23,6 @@ public class TestEntityManager {
       this.transactionTemplate = new TransactionTemplate(platformTransactionManager);
    }
 
-   public void save(final Iterable<?> entities) {
-      runInTransaction(new Callable<Void>() {
-         @Override
-         public Void call() throws Exception {
-            for (Object entity : entities) {
-               entityManager.persist(entity);
-            }
-            return null;
-         }
-      });
-   }
-
    public <T> T save(final T entity) {
       return runInTransaction(new Callable<T>() {
          @Override
@@ -49,7 +37,9 @@ public class TestEntityManager {
       entityManager.flush();
    }
 
-   public void clear() { entityManager.clear(); }
+   public void clear() {
+      entityManager.clear();
+   }
 
    public boolean contains(Object entity) {
       return entityManager.contains(entity);
