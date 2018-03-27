@@ -23,7 +23,7 @@ public class TestEntityManager {
       this.transactionTemplate = new TransactionTemplate(platformTransactionManager);
    }
 
-   public <T> T save(final T entity) {
+   public <T> T save(T entity) {
       return runInTransaction(new Callable<T>() {
          @Override
          public T call() throws Exception {
@@ -67,7 +67,7 @@ public class TestEntityManager {
       return id.getClass().isPrimitive() || id.getClass().isAnnotationPresent(Embeddable.class) ? id : id.toString();
    }
 
-   private <T> T runInTransaction(final Callable<T> callable) {
+   private <T> T runInTransaction(Callable<T> callable) {
       return transactionTemplate.execute(new TransactionCallback<T>() {
          @Override
          public T doInTransaction(TransactionStatus status) {

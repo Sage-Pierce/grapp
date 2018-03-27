@@ -31,7 +31,7 @@ public class DomainEventPublisher {
         }
     }
 
-    public <T extends DomainEvent> void publish(final T domainEvent) {
+    public <T extends DomainEvent> void publish(T domainEvent) {
         if (!publishing && !subscribers.isEmpty()) {
             try {
                 publishing = true;
