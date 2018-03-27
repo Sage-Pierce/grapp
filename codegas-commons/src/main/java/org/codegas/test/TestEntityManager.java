@@ -1,13 +1,11 @@
 package org.codegas.test;
 
 import org.codegas.commons.domain.entity.DomainEntity;
-import org.codegas.commons.lang.value.Id;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.concurrent.Callable;
