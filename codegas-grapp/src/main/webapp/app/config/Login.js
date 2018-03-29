@@ -5,8 +5,8 @@
       .service("Login", Login)
       .run(logInCachedUser);
 
-   Login.$inject = ["$cookies", "$q", "UsersRoot", "User"];
-   function Login($cookies, $q, UsersRoot, User) {
+   Login.$inject = ["$cookies", "$q", "UsersRoot", "User", "Config", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot"];
+   function Login($cookies, $q, UsersRoot, User, Config, StoresRoot, ItemManagementRoot, ShoppingListsRoot) {
       var self = this;
       self.logInCachedUser = logInCachedUser;
       self.logInWithOAuth = logInWithOAuth;
@@ -48,6 +48,11 @@
       }
 
       function logOut() {
+         // Unload secured Resources
+         StoresRoot.unload();
+         ItemManagementRoot.unload();
+         ShoppingListsRoot.unload();
+
          $cookies.remove("user-email");
          deferred = $q.defer();
          deferred.reject("NO USER LOGGED IN");
@@ -68,6 +73,11 @@
       }
 
       function resolveUser(userRsc) {
+         // Load secured Resources
+         StoresRoot.loadFromServer(Config.getStoresServer());
+         ItemManagementRoot.loadFromServer(Config.getItemManagementServer());
+         ShoppingListsRoot.loadFromServer(Config.getShoppingListsServer());
+
          deferred.resolve(userRsc);
          userLoggedIn = true;
       }

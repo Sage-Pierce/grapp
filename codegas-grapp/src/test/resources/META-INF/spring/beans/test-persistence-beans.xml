@@ -23,6 +23,6 @@
                 <property name="entityManagerFactory" ref="entityManagerFactory"/>
             </bean>
         </constructor-arg>
-        <constructor-arg ref="platformTransactionManager"/>
+        <constructor-arg ref="transactionTemplate"/>
     </bean>
 </beans>

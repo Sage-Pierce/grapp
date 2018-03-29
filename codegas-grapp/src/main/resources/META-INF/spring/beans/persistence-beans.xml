@@ -39,6 +39,11 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
+    <!-- Configure Transaction Template for manual Transactions -->
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="platformTransactionManager"/>
+    </bean>
+
     <!-- AOP Advice for Transactional Beans -->
     <tx:advice id="transactionalAdvice" transaction-manager="platformTransactionManager">
         <tx:attributes>

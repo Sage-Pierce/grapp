@@ -9,6 +9,7 @@
       return function(apiRootRef) {
          var self = this;
          self.loadFromServer = loadFromServer;
+         self.unload = unload;
          self.afterLoad = afterLoad;
          self.createResourceModel = createResourceModel;
          self.loadResourceModels = loadResourceModels;
@@ -23,6 +24,10 @@
 
          function loadFromServer(serverHref) {
             halClient.$get(apiRootRef || "/", { transformUrl: function(href) { return serverHref + href; } }).then(deferred.resolve, console.log);
+         }
+
+         function unload() {
+            deferred = $q.defer();
          }
 
          function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {

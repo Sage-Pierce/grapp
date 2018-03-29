@@ -1,7 +1,6 @@
 package org.codegas.test;
 
 import org.codegas.commons.domain.entity.DomainEntity;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -10,15 +9,15 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class TestEntityManager {
+public final class TestEntityManager {
 
    private final EntityManager entityManager;
 
    private final TransactionTemplate transactionTemplate;
 
-   public TestEntityManager(EntityManager entityManager, PlatformTransactionManager platformTransactionManager) {
+   public TestEntityManager(EntityManager entityManager, TransactionTemplate transactionTemplate) {
       this.entityManager = entityManager;
-      this.transactionTemplate = new TransactionTemplate(platformTransactionManager);
+      this.transactionTemplate = transactionTemplate;
    }
 
    public <T> T save(T entity) {

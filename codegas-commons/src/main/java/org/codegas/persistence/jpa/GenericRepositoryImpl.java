@@ -4,11 +4,11 @@ import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.Id;
 import org.codegas.persistence.repository.GenericRepository;
 
-import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class GenericRepositoryImpl<T extends DomainEntity> implements GenericRepository<T> {
 
@@ -41,6 +41,11 @@ public abstract class GenericRepositoryImpl<T extends DomainEntity> implements G
     @Override
     public T get(Id id) {
         return entityManager.find(entityClass, id.toJpaQueryObject());
+    }
+
+    @Override
+    public Optional<T> find(Id id) {
+        return Optional.ofNullable(get(id));
     }
 
     @Override
