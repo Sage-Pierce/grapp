@@ -13,11 +13,19 @@ public final class Email extends AbstractId {
     }
 
     public Email(String value) {
-        this.value = validateEmail(value);
+        this.value = validate(value);
     }
 
     protected Email() {
 
+    }
+
+    public static String validate(String value) {
+        if (EMAIL_VALIDATOR.isValid(value)) {
+            return value;
+        } else {
+            throw new IllegalArgumentException("This is not a valid E-Mail Address: " + value);
+        }
     }
 
     @Override
@@ -27,13 +35,5 @@ public final class Email extends AbstractId {
 
     public String getValue() {
         return value;
-    }
-
-    private static String validateEmail(String value) {
-        if (EMAIL_VALIDATOR.isValid(value)) {
-            return value;
-        } else {
-            throw new IllegalArgumentException("This is not a valid E-Mail Address: " + value);
-        }
     }
 }
