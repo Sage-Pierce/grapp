@@ -70,7 +70,8 @@ public class AuthResource extends HalJsonResource {
         return Arrays.asList(
             createSelfLinkBuilder().withSelfRel(),
             HalResourceLinkBuilder.linkTo(AuthResource.class).method("logIn").queryParams("redirectUri", "authCode").withRel("logIn"),
-            HalResourceLinkBuilder.linkTo(AuthResource.class).method("authenticate").withRel("authenticate")
+            HalResourceLinkBuilder.linkTo(AuthResource.class).method("authenticate").withRel("authenticate"),
+            HalResourceLinkBuilder.linkTo(AuthResource.class).method("logOut").queryParams("redirectUri").withRel("logOut")
         );
     }
 
