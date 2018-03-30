@@ -13,6 +13,7 @@
     <modules>
         <module>codegas-commons</module>
         <module>codegas-grapp</module>
+        <module>codegas-security</module>
     </modules>
 
     <properties>
@@ -31,6 +32,11 @@
             <dependency>
                 <groupId>org.codegas</groupId>
                 <artifactId>codegas-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
+                <artifactId>codegas-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -54,6 +60,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
