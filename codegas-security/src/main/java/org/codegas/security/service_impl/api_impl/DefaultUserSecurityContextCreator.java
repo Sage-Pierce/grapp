@@ -22,6 +22,6 @@ public class DefaultUserSecurityContextCreator implements UserSecurityContextCre
     }
 
     protected UserPrincipal createUserPrincipal(UserDto userDto) {
-        return new UserPrincipal(userDto.getAttribute(principalNameAttribute), userDto.getRoles());
+        return new UserPrincipal(userDto.getAttributes().get(principalNameAttribute), userDto.getRoles());
     }
 }

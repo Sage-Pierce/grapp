@@ -11,10 +11,6 @@ public class UserDto extends AbstractDto {
 
     private Collection<String> roles;
 
-    public String getAttribute(String key) {
-        return attributes.get(key);
-    }
-
     public Map<String, String> getAttributes() {
         return attributes;
     }

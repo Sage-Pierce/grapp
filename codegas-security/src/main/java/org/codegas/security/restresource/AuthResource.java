@@ -41,13 +41,13 @@ public class AuthResource extends HalJsonResource {
     @POST
     @Path("logIn")
     public Response logIn(@QueryParam("redirectUri") String redirectUri, @QueryParam("authCode") String authCode) throws AuthorizationException {
-        return buildHalResponse(asRepresentationOf(authorizationService.logIn(redirectUri, authCode)).withLinks(createLinks()));
+        return buildHalResponse(asRepresentationOf(authorizationService.logIn(redirectUri, authCode)));
     }
 
     @GET
     @Path("authenticate")
     public Response authenticate(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization) throws AuthorizationException {
-        return buildHalResponse(asRepresentationOf(authorizationService.authenticate(Authorization.parse(authorization))).withLinks(createLinks()));
+        return buildHalResponse(asRepresentationOf(authorizationService.authenticate(Authorization.parse(authorization))));
     }
 
     @DELETE
