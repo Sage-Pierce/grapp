@@ -10,8 +10,7 @@ public final class AuthenticatedUserDtoFactory {
     }
 
     public static AuthenticatedUserDto createDto(UserCredential userCredential) {
-        AuthenticatedUserDto authenticatedUserDto = new AuthenticatedUserDto();
-        authenticatedUserDto.setUserId(userCredential.getUser().getId().toString());
+        AuthenticatedUserDto authenticatedUserDto = UserDtoFactory.createDto(userCredential.getUser(), AuthenticatedUserDto::new);
         authenticatedUserDto.setAccessToken(userCredential.getCredential().getAccessToken());
         return authenticatedUserDto;
     }

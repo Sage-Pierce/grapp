@@ -1,6 +1,6 @@
 package org.codegas.security.domain.value;
 
-public enum UserAttributeType {
+public enum UserAttribute {
     EMAIL,
     AVATAR
 }

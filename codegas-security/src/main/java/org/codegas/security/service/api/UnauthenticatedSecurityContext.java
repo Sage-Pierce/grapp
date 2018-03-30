@@ -1,10 +1,10 @@
-package org.codegas.security.service_impl.api_impl;
+package org.codegas.security.service.api;
 
 import java.security.Principal;
 
 import javax.ws.rs.core.SecurityContext;
 
-public class UnauthenticatedSecurityContext implements SecurityContext {
+public final class UnauthenticatedSecurityContext implements SecurityContext {
 
     @Override
     public Principal getUserPrincipal() {

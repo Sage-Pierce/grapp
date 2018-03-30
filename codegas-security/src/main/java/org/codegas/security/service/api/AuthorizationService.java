@@ -1,10 +1,10 @@
 package org.codegas.security.service.api;
 
 import java.net.URI;
-
-import javax.ws.rs.core.SecurityContext;
+import java.util.Optional;
 
 import org.codegas.security.service.dto.AuthenticatedUserDto;
+import org.codegas.security.service.dto.UserDto;
 
 public interface AuthorizationService {
 
@@ -12,5 +12,5 @@ public interface AuthorizationService {
 
     AuthenticatedUserDto logIn(String redirectUri, String authCode);
 
-    SecurityContext authenticate(String requestScheme, String authorization);
+    Optional<UserDto> authenticate(Authorization<String> authorization);
 }
