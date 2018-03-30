@@ -4,7 +4,6 @@ import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +18,7 @@ import org.codegas.security.domain.repository.UserRepository;
 import org.codegas.security.domain.value.CredentialId;
 import org.codegas.security.domain.value.UserAttribute;
 import org.codegas.security.domain.value.UserId;
-import org.codegas.security.service.api.AuthenticationException;
+import org.codegas.security.service.api.AuthorizationException;
 import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationService;
 import org.codegas.security.service.dto.AuthenticatedUserDto;
@@ -64,7 +63,7 @@ public class GoogleAuthorizationService implements AuthorizationService {
     }
 
     @Override
-    public AuthenticatedUserDto logIn(String redirectUri, String authCode) {
+    public AuthenticatedUserDto logIn(String redirectUri, String authCode) throws AuthorizationException {
         try {
             GoogleTokenResponse tokenResponse = authorizationCodeFlow.newTokenRequest(authCode).setRedirectUri(redirectUri).execute();
             GoogleIdToken.Payload tokenPayload = tokenResponse.parseIdToken().getPayload();
@@ -75,16 +74,27 @@ public class GoogleAuthorizationService implements AuthorizationService {
 
             return AuthenticatedUserDtoFactory.createDto(userCredential);
         } catch (Exception e) {
-            throw new AuthenticationException(e);
+            throw new AuthorizationException(e);
         }
     }
 
     @Override
-    public Optional<UserDto> authenticate(Authorization<String> authorization) {
+    public UserDto authenticate(Authorization<String> authorization) throws AuthorizationException {
         return credentialRepository.findByAccessToken(authorization.getToken())
             .filter(Credential::isFresh)
             .flatMap(userRepository::findByCredential)
-            .map(UserDtoFactory::createDto);
+            .map(UserDtoFactory::createDto)
+            .orElseThrow(AuthorizationException::new);
+    }
+
+    @Override
+    public UserDto logOut(Authorization<String> authorization) throws AuthorizationException {
+        User user = credentialRepository.findByAccessToken(authorization.getToken())
+            .filter(Credential::isFresh)
+            .flatMap(userRepository::findByCredential)
+            .orElseThrow(AuthorizationException::new);
+        user.logOut();
+        return UserDtoFactory.createDto(user);
     }
 
     private Credential getCredential(TokenResponse tokenResponse, GoogleIdToken.Payload tokenPayload) {

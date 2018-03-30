@@ -16,8 +16,10 @@ import javax.ws.rs.ext.Provider;
 
 import org.codegas.security.service.api.Authentication;
 import org.codegas.security.service.api.Authorization;
+import org.codegas.security.service.api.AuthorizationException;
 import org.codegas.security.service.api.AuthorizationService;
 import org.codegas.security.service.api.UserSecurityContextCreator;
+import org.codegas.security.service.dto.UserDto;
 
 @Named
 @Provider
@@ -40,13 +42,18 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException {
         requestContext.setSecurityContext(Optional.ofNullable(requestContext.getHeaderString(HttpHeaders.AUTHORIZATION))
             .map(Authorization::parse)
-            .flatMap(authorization -> authenticate(new Authentication(isSecure(requestContext), authorization)))
+            .flatMap(authorization -> authenticate(requestContext, authorization))
             .orElseGet(userSecurityContextCreator::unauthenticated));
     }
 
-    protected final Optional<SecurityContext> authenticate(Authentication authentication) {
-        return authorizationService.authenticate(authentication.getAuthorization())
-            .map(userDto -> userSecurityContextCreator.apply(authentication, userDto));
+    protected final Optional<SecurityContext> authenticate(ContainerRequestContext requestContext, Authorization<String> authorization) {
+        try {
+            boolean secure = isSecure(requestContext);
+            UserDto userDto = authorizationService.authenticate(authorization);
+            return Optional.of(userSecurityContextCreator.apply(new Authentication(secure, authorization), userDto));
+        } catch (AuthorizationException e) {
+            return Optional.empty();
+        }
     }
 
     protected boolean isSecure(ContainerRequestContext requestContext) {

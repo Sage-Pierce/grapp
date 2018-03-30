@@ -43,6 +43,14 @@ public class Credential extends DomainEntity<CredentialId> {
         return this;
     }
 
+    public boolean isFresh() {
+        return expiration.isAfter(OffsetDateTime.now());
+    }
+
+    public void expire() {
+        this.expiration = OffsetDateTime.MIN;
+    }
+
     @Override
     public CredentialId getId() {
         return id;
@@ -54,10 +62,6 @@ public class Credential extends DomainEntity<CredentialId> {
 
     public String getRefreshToken() {
         return refreshToken;
-    }
-
-    public boolean isFresh() {
-        return expiration.isAfter(OffsetDateTime.now());
     }
 
     public OffsetDateTime getExpiration() {

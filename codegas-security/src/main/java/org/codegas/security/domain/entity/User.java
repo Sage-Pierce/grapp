@@ -61,6 +61,11 @@ public class User extends DomainEntity<UserId> {
             .orElseGet(() -> addCredential(credential));
     }
 
+    public void logOut() {
+        credentials.forEach(UserCredential::expire);
+        credentials.clear();
+    }
+
     @Override
     public UserId getId() {
         return id;

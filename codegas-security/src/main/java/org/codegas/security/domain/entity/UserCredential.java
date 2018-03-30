@@ -37,6 +37,10 @@ public class UserCredential extends DomainEntity<UserCredentialId> {
         return this;
     }
 
+    public void expire() {
+        credential.expire();
+    }
+
     @Override
     public UserCredentialId getId() {
         return id;
