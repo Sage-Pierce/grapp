@@ -13,18 +13,21 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class Main {
 
-    private static final String WEB_APP_DIRECTORY_OPT = "wad";
-
     private static final String PORT_OPT = "p";
 
+    private static final String WEB_APP_DIRECTORY_OPT = "wad";
+
     private static final Options OPTIONS = new Options()
-        .addOption(Option.builder(WEB_APP_DIRECTORY_OPT).argName("webAppDirectory").hasArg()
-            .desc("Base directory of web app (containing WEB-INF directory)").build())
         .addOption(Option.builder(PORT_OPT).argName("port").hasArg()
-            .desc("Port on which to run Application").build());
+            .desc("Port on which to run Application").build())
+        .addOption(Option.builder(WEB_APP_DIRECTORY_OPT).argName("webAppDirectory").hasArg()
+            .desc("Base directory of web app (containing WEB-INF directory)").build());
 
     public static void main(String[] args) throws Exception {
         CommandLine commandLine = new DefaultParser().parse(OPTIONS, args);
+
+        // Port to run on should be an argument or environment variable. Default to 8080 if not set.
+        String port = commandLine.getOptionValue(PORT_OPT, System.getenv().getOrDefault("PORT", "8080"));
 
         // Point at web app directory as the root context
         WebAppContext contextHandler = new WebAppContext(commandLine.getOptionValue(WEB_APP_DIRECTORY_OPT, "src/main/webapp"), "/");
@@ -34,9 +37,6 @@ public class Main {
         // true changes this behavior. Read more: wiki.eclipse.org/Jetty/Reference/Jetty_Classloading
         contextHandler.setParentLoaderPriority(true);
         contextHandler.setDescriptor("WEB-INF/web.xml");
-
-        // Port to run on should be an argument or environment variable. Default to 8080 if not set.
-        String port = commandLine.getOptionValue(PORT_OPT, System.getenv().getOrDefault("PORT", "8080"));
 
         Server server = new Server(Integer.valueOf(port));
         server.setHandler(contextHandler);
