@@ -1,6 +1,5 @@
 package org.codegas.security.service_impl.api_impl;
 
-import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,8 +17,8 @@ import org.codegas.security.domain.repository.UserRepository;
 import org.codegas.security.domain.value.CredentialId;
 import org.codegas.security.domain.value.UserAttribute;
 import org.codegas.security.domain.value.UserId;
-import org.codegas.security.service.api.AuthorizationException;
 import org.codegas.security.service.api.Authorization;
+import org.codegas.security.service.api.AuthorizationException;
 import org.codegas.security.service.api.AuthorizationService;
 import org.codegas.security.service.dto.AuthenticatedUserDto;
 import org.codegas.security.service.dto.UserDto;
@@ -58,8 +57,8 @@ public class GoogleAuthorizationService implements AuthorizationService {
     }
 
     @Override
-    public URI authorize(String redirectUri) {
-        return URI.create(authorizationCodeFlow.newAuthorizationUrl().setRedirectUri(redirectUri).build());
+    public String authorize(String redirectUri) {
+        return authorizationCodeFlow.newAuthorizationUrl().setRedirectUri(redirectUri).build();
     }
 
     @Override

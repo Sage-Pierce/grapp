@@ -1,13 +1,11 @@
 package org.codegas.security.service.api;
 
-import java.net.URI;
-
 import org.codegas.security.service.dto.AuthenticatedUserDto;
 import org.codegas.security.service.dto.UserDto;
 
 public interface AuthorizationService {
 
-    URI authorize(String redirectUri);
+    String authorize(String redirectUri);
 
     AuthenticatedUserDto logIn(String redirectUri, String authCode) throws AuthorizationException;
 

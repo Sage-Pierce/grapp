@@ -35,7 +35,7 @@ public class AuthResource extends HalJsonResource {
 
     @GET
     public Response authorize(@QueryParam("redirectUri") String redirectUri) {
-        return Response.seeOther(authorizationService.authorize(redirectUri)).build();
+        return Response.seeOther(URI.create(authorizationService.authorize(redirectUri))).build();
     }
 
     @POST
