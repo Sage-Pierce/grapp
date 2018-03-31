@@ -28,7 +28,26 @@ public final class HalJsonRepresentationFactory extends JsonRepresentationFactor
     }
 
     private Object wrapResource(Object resource) {
-        return resource instanceof Collection ? new CollectionWrapper((Collection) resource) : resource;
+        if (resource == null || resource.getClass().isPrimitive() || CharSequence.class.isInstance(resource)) {
+            return new PrimitiveWrapper(resource);
+        } else if (Collection.class.isInstance(resource)) {
+            return new CollectionWrapper(Collection.class.cast(resource));
+        } else {
+            return resource;
+        }
+    }
+
+    protected static class PrimitiveWrapper implements Serializable {
+
+        private final Object value;
+
+        public PrimitiveWrapper(Object value) {
+            this.value = value;
+        }
+
+        public Object getValue() {
+            return value;
+        }
     }
 
     protected static class CollectionWrapper implements Serializable {
