@@ -34,17 +34,17 @@ public class AuthResource extends HalJsonResource {
         this.authorizationService = authorizationService;
     }
 
-    @GET
+    @POST
     public Response authorize(@QueryParam("redirectUri") String redirectUri) {
-        return Response.seeOther(URI.create(authorizationService.authorize(redirectUri))).build();
+        return Response.created(URI.create(authorizationService.authorize(redirectUri))).build();
     }
 
-    @POST
+    @PUT
     public Response logIn(@QueryParam("redirectUri") String redirectUri, @QueryParam("authCode") String authCode) throws AuthorizationException {
         return buildHalResponse(asRepresentationOf(authorizationService.logIn(redirectUri, authCode)));
     }
 
-    @PUT
+    @GET
     public Response authenticate(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization) throws AuthorizationException {
         return buildHalResponse(asRepresentationOf(authorizationService.authenticate(Authorization.parse(authorization))));
     }

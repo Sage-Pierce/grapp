@@ -35,6 +35,13 @@ public class Credential extends DomainEntity<CredentialId> {
 
     }
 
+    public void expire() {
+        if (isFresh()) {
+            this.expiration = OffsetDateTime.MIN;
+            this.updated = OffsetDateTime.now();
+        }
+    }
+
     public Credential apply(String accessToken, String refreshToken, OffsetDateTime expiration) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
@@ -45,10 +52,6 @@ public class Credential extends DomainEntity<CredentialId> {
 
     public boolean isFresh() {
         return expiration.isAfter(OffsetDateTime.now());
-    }
-
-    public void expire() {
-        this.expiration = OffsetDateTime.MIN;
     }
 
     @Override
