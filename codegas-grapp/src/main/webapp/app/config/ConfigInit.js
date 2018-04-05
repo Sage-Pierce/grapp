@@ -49,7 +49,7 @@
       // Necessary to make UI Router work in certain environments
       angular.element(document.getElementsByTagName("head")).append(angular.element("<base href='" + window.location.pathname + "'/>"));
 
-      $urlRouterProvider.otherwise("/welcome");
+      $urlRouterProvider.otherwise("/");
 
       OAuth.initialize("lqAgua7gEL9Rf-DF-Qm1jxBst6g");
 
