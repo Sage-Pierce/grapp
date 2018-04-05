@@ -18,7 +18,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.version>5.2.4.Final</hibernate.version>
         <jackson.version>2.9.1</jackson.version>
         <jersey.version>2.26</jersey.version>
         <jetty.version>9.3.7.v20160115</jetty.version>
@@ -168,7 +167,7 @@
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
+                <artifactId>hibernate-core</artifactId>
                 <version>5.2.14.Final</version>
             </dependency>
             <dependency>
