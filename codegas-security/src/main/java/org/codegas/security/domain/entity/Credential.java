@@ -37,7 +37,7 @@ public class Credential extends DomainEntity<CredentialId> {
 
     public void expire() {
         if (isFresh()) {
-            this.expiration = OffsetDateTime.MIN;
+            this.expiration = OffsetDateTime.now();
             this.updated = OffsetDateTime.now();
         }
     }

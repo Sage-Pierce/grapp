@@ -38,10 +38,8 @@ public class AuthUserResource extends HalJsonResource {
     }
 
     @DELETE
-    public Response logOut(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization, @QueryParam("redirectUri") String redirectUri) throws AuthorizationException {
-        return Response.seeOther(URI.create(redirectUri))
-            .entity(asRepresentationOf(authorizationService.logOut(Authorization.parse(authorization))))
-            .build();
+    public Response logOut(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization) throws AuthorizationException {
+        return buildHalResponse(asRepresentationOf(authorizationService.logOut(Authorization.parse(authorization))));
     }
 
     public static HalLink createRootLink(String rel) {
