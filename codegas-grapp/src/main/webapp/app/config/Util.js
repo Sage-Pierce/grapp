@@ -55,6 +55,11 @@
       },
       stringifyVerticesIntoPolygon: function(vertices) {
          return JSON.stringify({vertices: vertices});
+      },
+      urlTransformer: function(baseHref) {
+         return function(url) {
+            return baseHref + url;
+         };
       }
    });
 

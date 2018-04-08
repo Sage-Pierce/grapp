@@ -8,7 +8,7 @@ public final class Authorization<T> {
 
     private final T token;
 
-    private Authorization(String scheme, T token) {
+    public Authorization(String scheme, T token) {
         this.scheme = scheme;
         this.token = token;
     }
@@ -20,6 +20,11 @@ public final class Authorization<T> {
     public static <T> Authorization<T> parse(String authorization, Function<? super String, T> tokenParser) {
         String[] splitAuthorization = authorization.split("\\s+", 2);
         return new Authorization<>(splitAuthorization[0], tokenParser.apply(splitAuthorization[1]));
+    }
+
+    @Override
+    public String toString() {
+        return scheme + " " + token;
     }
 
     public String getScheme() {

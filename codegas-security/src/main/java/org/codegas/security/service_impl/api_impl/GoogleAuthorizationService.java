@@ -1,9 +1,9 @@
 package org.codegas.security.service_impl.api_impl;
 
+import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,7 +12,6 @@ import javax.inject.Singleton;
 import org.codegas.commons.lang.annotation.Transactional;
 import org.codegas.security.domain.entity.Credential;
 import org.codegas.security.domain.entity.User;
-import org.codegas.security.domain.entity.UserCredential;
 import org.codegas.security.domain.repository.CredentialRepository;
 import org.codegas.security.domain.repository.UserRepository;
 import org.codegas.security.domain.value.CredentialId;
@@ -21,9 +20,7 @@ import org.codegas.security.domain.value.UserId;
 import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationException;
 import org.codegas.security.service.api.AuthorizationService;
-import org.codegas.security.service.dto.AuthenticatedUserDto;
 import org.codegas.security.service.dto.UserDto;
-import org.codegas.security.service_impl.factory.AuthenticatedUserDtoFactory;
 import org.codegas.security.service_impl.factory.UserDtoFactory;
 
 import com.google.api.client.auth.oauth2.TokenResponse;
@@ -58,31 +55,32 @@ public class GoogleAuthorizationService implements AuthorizationService {
     }
 
     @Override
-    public String authorize(String redirectUri) {
-        return authorizationCodeFlow.newAuthorizationUrl().setRedirectUri(redirectUri).build();
+    public URI authorize(String redirectUri) {
+        return URI.create(authorizationCodeFlow.newAuthorizationUrl().setRedirectUri(redirectUri).build());
     }
 
     @Override
-    public AuthenticatedUserDto logIn(String redirectUri, String authCode) throws AuthorizationException {
+    public Authorization<String> logIn(String redirectUri, String authCode) throws AuthorizationException {
         try {
             GoogleTokenResponse tokenResponse = authorizationCodeFlow.newTokenRequest(authCode).setRedirectUri(redirectUri).execute();
             GoogleIdToken.Payload tokenPayload = tokenResponse.parseIdToken().getPayload();
 
             Credential credential = getCredential(tokenResponse, tokenPayload);
             User user = getUser(tokenPayload);
-            UserCredential userCredential = user.refreshCredential(credential);
+            user.refreshCredential(credential);
 
-            return AuthenticatedUserDtoFactory.createDto(userCredential);
+            return new Authorization<>("Bearer", credential.getAccessToken());
         } catch (Exception e) {
             throw new AuthorizationException(e);
         }
     }
 
     @Override
-    public AuthenticatedUserDto authenticate(Authorization<String> authorization) throws AuthorizationException {
+    public UserDto authenticate(Authorization<String> authorization) throws AuthorizationException {
         return credentialRepository.findByAccessToken(authorization.getToken())
             .filter(Credential::isFresh)
-            .flatMap(this::findAuthenticatedUser)
+            .flatMap(userRepository::findByCredential)
+            .map(UserDtoFactory::createDto)
             .orElseThrow(AuthorizationException::new);
     }
 
@@ -109,11 +107,6 @@ public class GoogleAuthorizationService implements AuthorizationService {
         user.setAttribute(UserAttribute.EMAIL, tokenPayload.getEmail());
         user.setAttribute(UserAttribute.AVATAR, String.class.cast(tokenPayload.get("picture")));
         return user;
-    }
-
-    private Optional<AuthenticatedUserDto> findAuthenticatedUser(Credential credential) {
-        return userRepository.findByCredential(credential)
-            .map(user -> AuthenticatedUserDtoFactory.createDto(user, credential));
     }
 
     private static OffsetDateTime calculateExpiration(Long expiresInSeconds) {

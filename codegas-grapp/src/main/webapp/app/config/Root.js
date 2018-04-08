@@ -23,7 +23,7 @@
          ////////////////////
 
          function loadFromServer(serverHref) {
-            halClient.$get(apiRootRef || "/", { transformUrl: function(href) { return serverHref + href; } }).then(deferred.resolve, console.log);
+            halClient.$get(apiRootRef || "/root/", { transformUrl: _.urlTransformer(serverHref) }).then(deferred.resolve, console.log);
          }
 
          function unload() {

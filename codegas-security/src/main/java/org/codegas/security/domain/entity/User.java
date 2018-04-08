@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,20 +46,17 @@ public class User extends DomainEntity<UserId> {
 
     }
 
-    public String getAttribute(UserAttribute attribute) {
-        return attributes.get(attribute);
-    }
-
     public boolean setAttribute(UserAttribute type, String value) {
         return value != null && !Objects.equals(attributes.put(type, value), value);
     }
 
-    public UserCredential refreshCredential(Credential credential) {
+    public Credential refreshCredential(Credential credential) {
         return credentials.stream()
             .filter(userCredential -> Objects.equals(credential, userCredential.getCredential()))
             .findFirst()
             .map(userCredential -> userCredential.refreshCredential(credential))
-            .orElseGet(() -> addCredential(credential));
+            .orElseGet(() -> addCredential(credential))
+            .getCredential();
     }
 
     public void logOut() {

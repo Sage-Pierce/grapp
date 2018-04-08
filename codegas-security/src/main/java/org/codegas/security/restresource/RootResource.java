@@ -22,7 +22,8 @@ public class RootResource extends HalJsonResource {
     private static List<HalLink> createLinks() {
         return Arrays.asList(
             HalResourceLinkBuilder.linkTo(RootResource.class).withSelfRel(),
-            AuthResource.createRootLink("auth")
+            AuthResource.createRootLink("auth"),
+            AuthUserResource.createRootLink("authUser")
         );
     }
 }
