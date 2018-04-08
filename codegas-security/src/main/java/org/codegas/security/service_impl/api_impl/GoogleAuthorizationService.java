@@ -3,6 +3,7 @@ package org.codegas.security.service_impl.api_impl;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -78,11 +79,10 @@ public class GoogleAuthorizationService implements AuthorizationService {
     }
 
     @Override
-    public UserDto authenticate(Authorization<String> authorization) throws AuthorizationException {
+    public AuthenticatedUserDto authenticate(Authorization<String> authorization) throws AuthorizationException {
         return credentialRepository.findByAccessToken(authorization.getToken())
             .filter(Credential::isFresh)
-            .flatMap(userRepository::findByCredential)
-            .map(UserDtoFactory::createDto)
+            .flatMap(this::findAuthenticatedUser)
             .orElseThrow(AuthorizationException::new);
     }
 
@@ -109,6 +109,11 @@ public class GoogleAuthorizationService implements AuthorizationService {
         user.setAttribute(UserAttribute.EMAIL, tokenPayload.getEmail());
         user.setAttribute(UserAttribute.AVATAR, String.class.cast(tokenPayload.get("picture")));
         return user;
+    }
+
+    private Optional<AuthenticatedUserDto> findAuthenticatedUser(Credential credential) {
+        return userRepository.findByCredential(credential)
+            .map(user -> AuthenticatedUserDtoFactory.createDto(user, credential));
     }
 
     private static OffsetDateTime calculateExpiration(Long expiresInSeconds) {

@@ -9,7 +9,7 @@ public interface AuthorizationService {
 
     AuthenticatedUserDto logIn(String redirectUri, String authCode) throws AuthorizationException;
 
-    UserDto authenticate(Authorization<String> authorization) throws AuthorizationException;
+    AuthenticatedUserDto authenticate(Authorization<String> authorization) throws AuthorizationException;
 
     UserDto logOut(Authorization<String> authorization) throws AuthorizationException;
 }
