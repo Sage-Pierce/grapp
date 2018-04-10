@@ -15,7 +15,7 @@
 
    function Config() {
       var self = this;
-      self.getUsersServer = getUsersServer;
+      self.getAuthServer = getAuthServer;
       self.getItemManagementServer = getItemManagementServer;
       self.getStoresServer = getStoresServer;
       self.getShoppingListsServer = getShoppingListsServer;
@@ -23,7 +23,7 @@
 
       ////////////////////
 
-      function getUsersServer() {
+      function getAuthServer() {
          return defaultServer;
       }
 
@@ -49,9 +49,7 @@
       // Necessary to make UI Router work in certain environments
       angular.element(document.getElementsByTagName("head")).append(angular.element("<base href='" + window.location.pathname + "'/>"));
 
-      $urlRouterProvider.otherwise("/");
-
-      OAuth.initialize("lqAgua7gEL9Rf-DF-Qm1jxBst6g");
+      $urlRouterProvider.otherwise("/welcome");
 
       uiGmapGoogleMapApiProvider.configure({
          key: "AIzaSyBXdSdaWFJdrh1JBLK5lGXgQHB64Ip9esM",
@@ -60,8 +58,8 @@
       });
    }
 
-   initialize.$inject = ["$rootScope", "$state", "Config", "UsersRoot", "PathGenerationRoot", "uiGmapGoogleMapApi"];
-   function initialize($rootScope, $state, Config, UsersRoot, PathGenerationRoot, uiGmapGoogleMapApi) {
+   initialize.$inject = ["$rootScope", "$state", "Config", "AuthRoot", "PathGenerationRoot", "uiGmapGoogleMapApi"];
+   function initialize($rootScope, $state, Config, AuthRoot, PathGenerationRoot, uiGmapGoogleMapApi) {
       $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
          console.log("Error on state transition:");
          console.log(error);
@@ -69,7 +67,7 @@
       });
 
       // Load unsecured Resources
-      UsersRoot.loadFromServer(Config.getUsersServer());
+      AuthRoot.loadFromServer(Config.getAuthServer());
       PathGenerationRoot.loadFromServer(Config.getPathGenerationServer());
 
       // Leaving this in as a hint to future-me if GMap behaves strangely due to not being fully loaded before having attributes set

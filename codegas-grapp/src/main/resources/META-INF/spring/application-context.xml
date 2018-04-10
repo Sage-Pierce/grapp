@@ -23,5 +23,6 @@
         <import resource="classpath:META-INF/spring/beans/database-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
+        <import resource="classpath:META-INF/spring/beans/security-beans.xml"/>
     </beans>
 </beans>

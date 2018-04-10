@@ -4,16 +4,16 @@
    angular.module("App")
       .service("Shopper", Shopper);
 
-   Shopper.$inject = ["Login", "ShoppingListsRoot"];
-   function Shopper(Login, ShoppingListsRoot) {
+   Shopper.$inject = ["Auth", "ShoppingListsRoot"];
+   function Shopper(Auth, ShoppingListsRoot) {
       var self = this;
       self.load = load;
 
       ////////////////////
 
       function load() {
-         return Login.afterLogIn().then(function(user) {
-            return ShoppingListsRoot.loadShopperByEmail(user.email).then(createModel);
+         return Auth.afterLogIn().then(function(user) {
+            return ShoppingListsRoot.loadShopperByEmail(user.getEmail()).then(createModel);
          });
       }
 

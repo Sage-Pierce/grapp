@@ -9,6 +9,7 @@
       $stateProvider
          .state("main", {
             abstract: true,
+            url: "/",
             views: {
                "main": {
                   templateUrl: "app/welcome/Main.html",
@@ -18,7 +19,7 @@
             }
          })
          .state("main.welcome", {
-            url: "/",
+            url: "welcome",
             views: {
                "content": {
                   templateUrl: "app/welcome/MainWelcome.html"

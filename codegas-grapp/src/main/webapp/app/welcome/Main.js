@@ -4,16 +4,16 @@
    angular.module("App")
       .controller("Main", Main);
 
-   Main.$inject = ["$state", "$uibModal", "Login"];
-   function Main($state, $uibModal, Login) {
+   Main.$inject = ["$state", "$uibModal", "Auth"];
+   function Main($state, $uibModal, Auth) {
       var mainVM = this;
       mainVM.loginPromise = null;
-      mainVM.isUserLoggedIn = Login.isUserLoggedIn;
+      mainVM.isUserLoggedIn = Auth.isUserLoggedIn;
       mainVM.userName = null;
       mainVM.userAvater = null;
       mainVM.admin = false;
       mainVM.manager = false;
-      mainVM.logIn = logIn;
+      mainVM.logIn = Auth.logIn;
       mainVM.logOut = logOut;
       mainVM.showWelcome = showWelcome;
       mainVM.showShoppingLists = showShoppingLists;
@@ -26,15 +26,11 @@
       ////////////////////
 
       function initialize() {
-         mainVM.loginPromise = Login.afterLogIn().then(initUserVariables, showWelcome);
-      }
-
-      function logIn(oAuthProvider) {
-         mainVM.loginPromise = Login.logInWithOAuth(oAuthProvider).then(initUserVariables).then(showShoppingLists);
+         mainVM.loginPromise = Auth.afterLogIn().then(initUserVariables, showWelcome);
       }
 
       function logOut() {
-         Login.logOut();
+         Auth.logOut();
          mainVM.showWelcome();
       }
 
@@ -69,18 +65,18 @@
       }
 
       function updateUserAttributes(attributes) {
-         Login.afterLogIn().then(function(user) {
+         Auth.afterLogIn().then(function(user) {
             return user.setAttributes(attributes);
          }).then(function(user) {
-            mainVM.userName = user.name;
+            mainVM.userName = user.getName();
          });
       }
 
       function initUserVariables(user) {
-         mainVM.userName = user ? user.name : null;
-         mainVM.userAvatar = user ? user.avatar : null;
-         mainVM.admin = user ? user.admin : false;
-         mainVM.manager = user ? user.manager : false;
+         mainVM.userName = user.getName();
+         mainVM.userAvatar = user.getAvatar();
+         mainVM.admin = user.hasRole("ADMIN");
+         mainVM.manager = user.hasRole("STORE_MANAGER");
       }
    }
 })();

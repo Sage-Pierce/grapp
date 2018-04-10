@@ -18,10 +18,16 @@
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
                             base-package="org.codegas.itemmanagement
                                           org.codegas.pathgeneration
+                                          org.codegas.security
                                           org.codegas.shoppinglists
                                           org.codegas.stores
                                           org.codegas.users"/>
     <context:annotation-config/>
+
+    <!-- Bean used to create SecurityContexts from Un-/Authenticated Users -->
+    <bean id="userSecurityContextCreator" class="org.codegas.security.service_impl.api_impl.DefaultUserSecurityContextCreator">
+        <constructor-arg value="EMAIL"/>
+    </bean>
 
     <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
     <bean id="client" class="javax.ws.rs.client.ClientBuilder" factory-method="newClient"/>

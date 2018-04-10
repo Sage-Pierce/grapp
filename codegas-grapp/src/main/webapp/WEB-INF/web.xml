@@ -35,6 +35,7 @@
                 org.codegas.shoppinglists.restresource
                 org.codegas.stores.restresource
                 org.codegas.users.restresource
+                org.codegas.security.restresource
             </param-value>
         </init-param>
         <init-param>
@@ -43,6 +44,9 @@
                 org.codegas.webservices.jaxrs.exceptionmapper.DomainEntityConflictExceptionMapper
                 org.codegas.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
                 org.codegas.webservices.jaxrs.filter.CORSResponseFilter
+                org.codegas.security.restexceptionmapper.AuthorizationExceptionMapper
+                org.codegas.security.restfilter.AuthenticationFilter
+                org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

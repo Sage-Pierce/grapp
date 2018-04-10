@@ -4,16 +4,16 @@
    angular.module("App")
       .service("StoreManager", StoreManager);
 
-   StoreManager.$inject = ["Login", "StoresRoot", "Store"];
-   function StoreManager(Login, StoresRoot, Store) {
+   StoreManager.$inject = ["Auth", "StoresRoot", "Store"];
+   function StoreManager(Auth, StoresRoot, Store) {
       var self = this;
       self.load = load;
 
       ////////////////////
 
       function load() {
-         return Login.afterLogIn().then(function(user) {
-            return StoresRoot.loadManagerByEmail(user.email).then(createModel);
+         return Auth.afterLogIn().then(function(user) {
+            return StoresRoot.loadManagerByEmail(user.getEmail()).then(createModel);
          });
       }
 
