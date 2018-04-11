@@ -50,6 +50,10 @@ public class User extends DomainEntity<UserId> {
         return value != null && !Objects.equals(attributes.put(type, value), value);
     }
 
+    public boolean setAttributeIfAbsent(UserAttribute type, String value) {
+        return value != null && !Objects.equals(attributes.putIfAbsent(type, value), value);
+    }
+
     public Credential refreshCredential(Credential credential) {
         return credentials.stream()
             .filter(userCredential -> Objects.equals(credential, userCredential.getCredential()))

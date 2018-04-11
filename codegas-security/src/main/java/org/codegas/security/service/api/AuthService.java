@@ -4,11 +4,13 @@ import java.net.URI;
 
 import org.codegas.security.service.dto.UserDto;
 
-public interface AuthorizationService {
+public interface AuthService {
 
-    URI authorize(String redirectUri);
+    URI authorize(URI callbackUri, URI appStateUri);
 
-    Authorization<String> logIn(String redirectUri, String authCode) throws AuthorizationException;
+    Authorization<String> logIn(URI callbackUri, String authCode) throws AuthorizationException;
+
+    Authorization<String> reauthenticate(Authorization<String> authorization) throws AuthorizationException;
 
     UserDto authenticate(Authorization<String> authorization) throws AuthorizationException;
 

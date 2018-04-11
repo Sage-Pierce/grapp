@@ -1,6 +1,5 @@
 package org.codegas.security.restresource;
 
-import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,13 +8,12 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationException;
-import org.codegas.security.service.api.AuthorizationService;
+import org.codegas.security.service.api.AuthService;
 import org.codegas.security.service.dto.UserDto;
 import org.codegas.webservices.hal.api.HalLink;
 import org.codegas.webservices.hal.api.HalRepresentation;
@@ -25,21 +23,21 @@ import org.codegas.webservices.hal.jaxrs.HalResourceLinkBuilder;
 @Path("/auth/user/")
 public class AuthUserResource extends HalJsonResource {
 
-    private final AuthorizationService authorizationService;
+    private final AuthService authService;
 
     @Inject
-    public AuthUserResource(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
+    public AuthUserResource(AuthService authService) {
+        this.authService = authService;
     }
 
     @GET
     public Response authenticate(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization) throws AuthorizationException {
-        return buildHalResponse(asRepresentationOf(authorizationService.authenticate(Authorization.parse(authorization))));
+        return buildHalResponse(asRepresentationOf(authService.authenticate(Authorization.parse(authorization))));
     }
 
     @DELETE
     public Response logOut(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization) throws AuthorizationException {
-        return buildHalResponse(asRepresentationOf(authorizationService.logOut(Authorization.parse(authorization))));
+        return buildHalResponse(asRepresentationOf(authService.logOut(Authorization.parse(authorization))));
     }
 
     public static HalLink createRootLink(String rel) {

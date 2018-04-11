@@ -4,12 +4,12 @@
    angular.module("App")
       .service("AuthRoot", AuthRoot);
 
-   AuthRoot.$inject = ["$q", "$http"];
-   function AuthRoot($q, $http) {
+   AuthRoot.$inject = ["$q", "$http", "$location"];
+   function AuthRoot($q, $http, $location) {
       var self = this;
       self.loadFromServer = loadFromServer;
       self.authorize = authorize;
-      self.logIn = logIn;
+      self.reauthenticate = reauthenticate;
       self.afterLoad = afterLoad;
 
       var deferred = $q.defer();
@@ -20,13 +20,13 @@
          deferred.resolve(authServer);
       }
 
-      function authorize(redirectUri) {
+      function authorize() {
          afterLoad().then(function(authHref) {
             $http({
                method: "POST",
                url: authHref + "/auth",
                params: {
-                  redirectUri: redirectUri
+                  appStateUri: $location.absUrl()
                }
             }).then(function(response) {
                window.location = response.headers("Location");
@@ -34,14 +34,13 @@
          });
       }
 
-      function logIn(redirectUri, authCode) {
+      function reauthenticate(authorization) {
          return afterLoad().then(function(authHref) {
             return $http({
                method: "PUT",
                url: authHref + "/auth",
-               params: {
-                  redirectUri: redirectUri,
-                  authCode: authCode
+               headers: {
+                  Authorization: authorization
                }
             });
          }).then(function(response) {

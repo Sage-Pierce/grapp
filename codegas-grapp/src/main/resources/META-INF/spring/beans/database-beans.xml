@@ -6,7 +6,7 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Instantiate DB URI (For Production and Development) -->
-    <bean class="java.net.URI" id="dbUrl">
+    <bean id="dbUrl" class="java.net.URI">
         <constructor-arg value="${DATABASE_URL}"/>
     </bean>
 

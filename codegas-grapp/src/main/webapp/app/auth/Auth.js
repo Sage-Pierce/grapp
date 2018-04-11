@@ -5,8 +5,8 @@
       .service("Auth", Auth)
       .run(autoLogIn);
 
-   Auth.$inject = ["$location", "$cookies", "$q", "Config", "AuthRoot", "AuthUser", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot"];
-   function Auth($location, $cookies, $q, Config, AuthRoot, AuthUser, StoresRoot, ItemManagementRoot, ShoppingListsRoot) {
+   Auth.$inject = ["$cookies", "$q", "Config", "AuthUser", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot"];
+   function Auth($cookies, $q, Config, AuthUser, StoresRoot, ItemManagementRoot, ShoppingListsRoot) {
       var self = this;
       self.autoLogIn = autoLogIn;
       self.logIn = logIn;
@@ -19,31 +19,24 @@
 
       ////////////////////
 
-      function autoLogIn() {
-         var queryParams = parseQueryParams(window.location.search);
-         if (queryParams.code) {
-            AuthRoot.logIn(getRedirectUri(), queryParams.code).then(authenticate, logInCachedUser);
+      function autoLogIn(queryParams) {
+         var codegasAuth = $cookies.get("codegas-auth");
+         if (queryParams.auth) {
+            authenticate(atob(queryParams.auth));
+         } else if (codegasAuth) {
+            reauthenticate(codegasAuth);
          } else {
-            logInCachedUser();
+            deferred.reject("NO CACHED AUTHENTICATED USER.");
          }
       }
 
       function logIn() {
-         AuthRoot.authorize(getRedirectUri());
+         AuthUser.authorize();
       }
 
       function logOut() {
          afterLogIn().then(function(user) {
-            user.logOut().then(function() {
-               // Unload secured Resources
-               StoresRoot.unload();
-               ItemManagementRoot.unload();
-               ShoppingListsRoot.unload();
-
-               $cookies.remove("codegas-auth");
-               deferred = $q.reject("NO USER LOGGED IN");
-               userLoggedIn = false;
-            });
+            user.logOut().then(unresolve);
          });
       }
 
@@ -55,55 +48,22 @@
          return userLoggedIn;
       }
 
-      function parseQueryParams(search) {
-         var params = {};
-         var query = search.length > 0 && search.charAt(0) === "?" ? search.substring(1) : search;
-         query.split("&").forEach(function(variable) {
-            var pair = variable.split("=");
-            params[pair[0]] = decodeURIComponent(pair[1]);
-         });
-         return params;
-      }
-
-      function getRedirectUri() {
-         var url = $location.absUrl();
-         var redirectEndingIndex = findRedirectEndingIndex(url);
-         return url.substring(0, redirectEndingIndex < 0 ? url.length : redirectEndingIndex);
-      }
-
-      function findRedirectEndingIndex(url) {
-         var fragmentIndex = url.indexOf("#");
-         var queryIndex = url.indexOf("?");
-         if (fragmentIndex < 0) {
-            return queryIndex;
-         } else if (queryIndex < 0) {
-            return fragmentIndex;
-         } else {
-            return Math.min(fragmentIndex, queryIndex);
-         }
-      }
-
       function authenticate(codegasAuth) {
-         return AuthUser.authenticate(codegasAuth)
-            .then(function(user) { resolveUser(codegasAuth, user); }, logInCachedUser);
+         AuthUser.authenticate(codegasAuth).then(function(user) {
+            resolve(codegasAuth, user);
+         });
       }
 
-      function logInCachedUser() {
-         var codegasAuth = $cookies.get("codegas-auth");
-         if (codegasAuth) {
-            AuthUser.authenticate(codegasAuth).then(function(user) { resolveUser(codegasAuth, user); }, function() {
-               deferred.reject("Problem authenticating User on Server.");
-               $cookies.remove("codegas-auth");
-            });
-         }
-         else {
-            deferred.reject("NO CACHED USER.");
-         }
+      function reauthenticate(codegasAuth) {
+         AuthUser.reauthenticate(codegasAuth).then(function(user) {
+            resolve(codegasAuth, user);
+         }, function() {
+            deferred.reject("Problem reauthenticating User on Server.");
+            $cookies.remove("codegas-auth");
+         });
       }
 
-      function resolveUser(codegasAuth, user) {
-         console.log(user);
-
+      function resolve(codegasAuth, user) {
          // Load secured Resources
          StoresRoot.loadFromServer(Config.getStoresServer(), codegasAuth);
          ItemManagementRoot.loadFromServer(Config.getItemManagementServer(), codegasAuth);
@@ -113,10 +73,21 @@
          deferred.resolve(user);
          userLoggedIn = true;
       }
+
+      function unresolve() {
+         // Unload secured Resources
+         StoresRoot.unload();
+         ItemManagementRoot.unload();
+         ShoppingListsRoot.unload();
+
+         $cookies.remove("codegas-auth");
+         deferred = $q.reject("NO USER LOGGED IN");
+         userLoggedIn = false;
+      }
    }
 
-   autoLogIn.$inject = ["Auth"];
-   function autoLogIn(Auth) {
-      Auth.autoLogIn();
+   autoLogIn.$inject = ["$location", "Auth"];
+   function autoLogIn($location, Auth) {
+      Auth.autoLogIn($location.search());
    }
 })();
