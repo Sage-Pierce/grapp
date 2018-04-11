@@ -20,10 +20,10 @@ import javax.ws.rs.core.UriInfo;
 import org.codegas.security.service.api.AuthService;
 import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationException;
-import org.codegas.webservices.hal.api.HalLink;
-import org.codegas.webservices.hal.api.HalRepresentation;
-import org.codegas.webservices.hal.jaxrs.HalJsonResource;
-import org.codegas.webservices.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservice.hal.api.HalLink;
+import org.codegas.webservice.hal.api.HalRepresentation;
+import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 
 @Path("/auth/")
 public class AuthResource extends HalJsonResource {

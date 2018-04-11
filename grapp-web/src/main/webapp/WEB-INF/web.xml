@@ -40,9 +40,9 @@
         <init-param>
             <param-name>jersey.config.server.provider.classnames</param-name>
             <param-value>
-                org.codegas.webservices.jaxrs.exceptionmapper.DomainEntityConflictExceptionMapper
-                org.codegas.webservices.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
-                org.codegas.webservices.jaxrs.filter.CORSResponseFilter
+                org.codegas.webservice.jaxrs.exceptionmapper.DomainEntityConflictExceptionMapper
+                org.codegas.webservice.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
+                org.codegas.webservice.jaxrs.filter.CORSResponseFilter
                 org.codegas.security.restexceptionmapper.AuthorizationExceptionMapper
                 org.codegas.security.restfilter.AuthenticationFilter
                 org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature

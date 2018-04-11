@@ -1,1 +1,1 @@
-web: java -cp grapp-web\target\classes;grapp-web\target\dependency\* org.codegas.webservices.jetty.Main -wad grapp-web\src\main\webapp
+web: java -cp grapp-web\target\classes;grapp-web\target\dependency\* Main -wad grapp-web\src\main\webapp

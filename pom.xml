@@ -12,7 +12,9 @@
 
     <modules>
         <module>codegas-commons</module>
+        <module>codegas-pathgeneration</module>
         <module>codegas-security</module>
+        <module>codegas-webservice</module>
         <module>grapp-web</module>
     </modules>
 
@@ -35,7 +37,17 @@
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
+                <artifactId>codegas-pathgeneration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
                 <artifactId>codegas-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
+                <artifactId>codegas-webservice</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
