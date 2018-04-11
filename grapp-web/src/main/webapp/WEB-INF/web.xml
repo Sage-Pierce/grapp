@@ -30,21 +30,17 @@
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
-                org.codegas.itemmanagement.restresource
-                org.codegas.pathgeneration.restresource
-                org.codegas.shoppinglists.restresource
-                org.codegas.stores.restresource
-                org.codegas.security.restresource
+                org.codegas.itemmanagement.jaxrs
+                org.codegas.pathgeneration.jaxrs
+                org.codegas.security.jaxrs
+                org.codegas.shoppinglists.jaxrs
+                org.codegas.stores.jaxrs
+                org.codegas.webservice.jaxrs
             </param-value>
         </init-param>
         <init-param>
             <param-name>jersey.config.server.provider.classnames</param-name>
             <param-value>
-                org.codegas.webservice.jaxrs.exceptionmapper.DomainEntityConflictExceptionMapper
-                org.codegas.webservice.jaxrs.exceptionmapper.IllegalArgumentExceptionMapper
-                org.codegas.webservice.jaxrs.filter.CORSResponseFilter
-                org.codegas.security.restexceptionmapper.AuthorizationExceptionMapper
-                org.codegas.security.restfilter.AuthenticationFilter
                 org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
             </param-value>
         </init-param>
