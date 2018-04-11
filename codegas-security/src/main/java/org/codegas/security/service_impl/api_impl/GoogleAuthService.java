@@ -78,8 +78,8 @@ public class GoogleAuthService extends AbstractAuthService {
     private Credential getCredential(TokenResponse tokenResponse, GoogleIdToken.Payload tokenPayload) {
         CredentialId credentialId = CredentialId.oauth2("GOOGLE", tokenPayload.getSubject());
         return credentialRepository.find(credentialId)
-            .orElseGet(() -> credentialRepository.add(new Credential(credentialId)))
-            .apply(tokenResponse.getAccessToken(), tokenResponse.getRefreshToken(), calculateExpiration(tokenResponse.getExpiresInSeconds()));
+            .map(credential -> refresh(credential, tokenResponse))
+            .orElseGet(() -> credentialRepository.add(refresh(new Credential(credentialId), tokenResponse)));
     }
 
     private User getUser(GoogleIdToken.Payload tokenPayload) {
@@ -89,6 +89,10 @@ public class GoogleAuthService extends AbstractAuthService {
         user.setAttribute(UserAttribute.AVATAR, String.class.cast(tokenPayload.get("picture")));
         user.setAttributeIfAbsent(UserAttribute.NAME, String.class.cast(tokenPayload.get("name")));
         return user;
+    }
+
+    private static Credential refresh(Credential credential, TokenResponse tokenResponse) {
+        return credential.apply(tokenResponse.getAccessToken(), tokenResponse.getRefreshToken(), calculateExpiration(tokenResponse.getExpiresInSeconds()));
     }
 
     private static OffsetDateTime calculateExpiration(Long expiresInSeconds) {
