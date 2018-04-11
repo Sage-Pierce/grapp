@@ -53,7 +53,7 @@
 
       uiGmapGoogleMapApiProvider.configure({
          key: "AIzaSyBXdSdaWFJdrh1JBLK5lGXgQHB64Ip9esM",
-         v: "3.22",
+         v: "3.31",
          libraries: "drawing,places"
       });
    }
