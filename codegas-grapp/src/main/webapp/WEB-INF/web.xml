@@ -34,7 +34,6 @@
                 org.codegas.pathgeneration.restresource
                 org.codegas.shoppinglists.restresource
                 org.codegas.stores.restresource
-                org.codegas.users.restresource
                 org.codegas.security.restresource
             </param-value>
         </init-param>

@@ -12,8 +12,7 @@
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
                             base-package="org.codegas.itemmanagement.domain_impl.repository
                                           org.codegas.shoppinglists.domain_impl.repository
-                                          org.codegas.stores.domain_impl.repository
-                                          org.codegas.users.domain_impl.repository"/>
+                                          org.codegas.stores.domain_impl.repository"/>
     <context:annotation-config/>
 
     <!-- A TestEntityManager to use with Persistence Tests -->

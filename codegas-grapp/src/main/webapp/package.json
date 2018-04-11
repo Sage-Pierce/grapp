@@ -24,7 +24,6 @@
     "bootstrap-material-design": "^0.5.10",
     "jquery": "^2.2.4",
     "lodash": "^4.13.1",
-    "oauthio-web": "^0.5.2",
     "rfc6570": "^0.1.8"
   },
   "devDependencies": {

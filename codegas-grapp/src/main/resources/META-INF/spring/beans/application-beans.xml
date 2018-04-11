@@ -20,8 +20,7 @@
                                           org.codegas.pathgeneration
                                           org.codegas.security
                                           org.codegas.shoppinglists
-                                          org.codegas.stores
-                                          org.codegas.users"/>
+                                          org.codegas.stores"/>
     <context:annotation-config/>
 
     <!-- Bean used to create SecurityContexts from Un-/Authenticated Users -->

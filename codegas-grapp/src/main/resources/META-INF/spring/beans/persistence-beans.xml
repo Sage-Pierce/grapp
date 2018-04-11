@@ -20,7 +20,6 @@
                 <value>org.codegas.security.domain</value>
                 <value>org.codegas.shoppinglists.domain</value>
                 <value>org.codegas.stores.domain</value>
-                <value>org.codegas.users.domain</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">
