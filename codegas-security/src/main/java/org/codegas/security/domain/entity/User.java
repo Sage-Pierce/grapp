@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,12 +16,14 @@ import javax.persistence.EnumType;
 import javax.persistence.FetchType;
 import javax.persistence.MapKeyEnumerated;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.security.domain.value.UserAttribute;
 import org.codegas.security.domain.value.UserId;
 
-@Entity(name = "secureuser")
+@Entity
+@Table(name = "\"users\"")
 public class User extends DomainEntity<UserId> {
 
     @EmbeddedId

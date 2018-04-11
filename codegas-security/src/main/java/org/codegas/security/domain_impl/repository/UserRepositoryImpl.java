@@ -12,7 +12,7 @@ import org.codegas.security.domain.repository.UserRepository;
 
 @Named
 @Singleton
-public class SecureUserRepositoryImpl extends GenericRepositoryImpl<User> implements UserRepository {
+public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements UserRepository {
 
     @Override
     public Optional<User> findByCredential(Credential credential) {

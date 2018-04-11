@@ -14,7 +14,7 @@
     <beans profile="development">
         <bean id="staticAuthService" class="org.codegas.security.service_impl.api_impl.StaticAuthService">
             <constructor-arg index="0" ref="credentialRepositoryImpl"/>
-            <constructor-arg index="1" ref="secureUserRepositoryImpl"/>
+            <constructor-arg index="1" ref="userRepositoryImpl"/>
             <constructor-arg index="2" value="static@codegas.org"/>
         </bean>
     </beans>
@@ -30,7 +30,7 @@
 
         <bean id="googleAuthService" class="org.codegas.security.service_impl.api_impl.GoogleAuthService">
             <constructor-arg index="0" ref="credentialRepositoryImpl"/>
-            <constructor-arg index="1" ref="secureUserRepositoryImpl"/>
+            <constructor-arg index="1" ref="userRepositoryImpl"/>
             <constructor-arg index="2" ref="googleAuthConfig"/>
         </bean>
     </beans>
