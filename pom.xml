@@ -12,8 +12,8 @@
 
     <modules>
         <module>codegas-commons</module>
-        <module>codegas-grapp</module>
         <module>codegas-security</module>
+        <module>grapp-web</module>
     </modules>
 
     <properties>
@@ -39,7 +39,7 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <!-- Third Party Compile Dependencies -->
+            <!-- Third Party Dependencies -->
             <dependency>
                 <groupId>com.fasterxml</groupId>
                 <artifactId>classmate</artifactId>
