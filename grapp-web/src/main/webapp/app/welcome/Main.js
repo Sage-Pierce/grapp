@@ -26,7 +26,15 @@
       ////////////////////
 
       function initialize() {
-         mainVM.loginPromise = Auth.afterLogIn().then(initUserVariables, showWelcome);
+         mainVM.loginPromise = Auth.afterLogIn().then(showUserShoppingLists, showWelcome);
+      }
+
+      function showUserShoppingLists(user) {
+         mainVM.userName = user.getName();
+         mainVM.userAvatar = user.getAvatar();
+         mainVM.admin = user.hasRole("ADMIN");
+         mainVM.manager = user.hasRole("STORE_MANAGER");
+         showShoppingLists();
       }
 
       function logOut() {
@@ -70,13 +78,6 @@
          }).then(function(user) {
             mainVM.userName = user.getName();
          });
-      }
-
-      function initUserVariables(user) {
-         mainVM.userName = user.getName();
-         mainVM.userAvatar = user.getAvatar();
-         mainVM.admin = user.hasRole("ADMIN");
-         mainVM.manager = user.hasRole("STORE_MANAGER");
       }
    }
 })();
