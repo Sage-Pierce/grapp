@@ -26,15 +26,10 @@
       ////////////////////
 
       function initialize() {
-         mainVM.loginPromise = Auth.afterLogIn().then(showUserShoppingLists, showWelcome);
-      }
-
-      function showUserShoppingLists(user) {
-         mainVM.userName = user.getName();
-         mainVM.userAvatar = user.getAvatar();
-         mainVM.admin = user.hasRole("ADMIN");
-         mainVM.manager = user.hasRole("STORE_MANAGER");
-         showShoppingLists();
+         mainVM.loginPromise = Auth.afterLogIn().then(initUser, showWelcome);
+         if ($state.current.name === "main.welcome") {
+            Auth.afterLogIn().then(showShoppingLists);
+         }
       }
 
       function logOut() {
@@ -78,6 +73,13 @@
          }).then(function(user) {
             mainVM.userName = user.getName();
          });
+      }
+
+      function initUser(user) {
+         mainVM.userName = user.getName();
+         mainVM.userAvatar = user.getAvatar();
+         mainVM.admin = user.hasRole("ADMIN");
+         mainVM.manager = user.hasRole("STORE_MANAGER");
       }
    }
 })();

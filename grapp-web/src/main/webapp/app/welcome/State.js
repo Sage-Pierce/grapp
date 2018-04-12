@@ -8,8 +8,8 @@
    function state($stateProvider) {
       $stateProvider
          .state("main", {
-            abstract: true,
             url: "/",
+            abstract: true,
             views: {
                "main": {
                   templateUrl: "app/welcome/Main.html",
