@@ -64,6 +64,7 @@
                draggableCursor: "pointer",
                draggingCursor: "pointer",
                drawingControl: false,
+               gestureHandling: "greedy",
                polygonOptions: {
                   strokeWeight: 1,
                   fillColor: "#00332e",

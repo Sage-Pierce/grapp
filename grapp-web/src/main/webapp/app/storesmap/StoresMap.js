@@ -50,6 +50,7 @@
          storesMapVM.mapSettings = {
             center: { latitude: 0, longitude: 0 },
             options: {
+               gestureHandling: "greedy",
                maxZoom: 18
             }
          };
@@ -87,6 +88,7 @@
             templateParameter: null,
             options: {
                disableAutoPan: true,
+               gestureHandling: "greedy",
                pixelOffset: new google.maps.Size(0, -25)
             }
          };
