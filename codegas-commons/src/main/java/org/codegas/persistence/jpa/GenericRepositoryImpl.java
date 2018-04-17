@@ -2,7 +2,7 @@ package org.codegas.persistence.jpa;
 
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.value.Id;
-import org.codegas.persistence.repository.GenericRepository;
+import org.codegas.persistence.api.GenericRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

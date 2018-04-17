@@ -1,7 +1,7 @@
 package org.codegas.test
 
 import org.codegas.commons.domain.entity.DomainEntity
-import org.codegas.persistence.repository.GenericRepository
+import org.codegas.persistence.api.GenericRepository
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
