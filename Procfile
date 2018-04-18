@@ -1,1 +1,1 @@
-web: java -cp grapp-web/target/classes:grapp-web/target/dependency/* -Dspring.profiles.active=production org.codegas.webservice.jetty.Main -wad grapp-web/src/main/webapp
+web: java -cp grapp-web/target/dependency/*:grapp-web/target/classes -Dspring.profiles.active=production org.codegas.webservice.jetty.Main -wad grapp-web/src/main/webapp
