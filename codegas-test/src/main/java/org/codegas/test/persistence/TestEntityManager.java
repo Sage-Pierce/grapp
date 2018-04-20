@@ -1,4 +1,4 @@
-package org.codegas.test;
+package org.codegas.test.persistence;
 
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.springframework.transaction.TransactionStatus;

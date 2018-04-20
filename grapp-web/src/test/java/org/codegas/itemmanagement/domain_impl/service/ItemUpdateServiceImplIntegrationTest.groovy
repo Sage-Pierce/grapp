@@ -1,7 +1,7 @@
 package org.codegas.itemmanagement.domain_impl.service
 
 import org.codegas.commons.domain.exception.DomainEntityConflictException
-import org.codegas.test.IntegrationTest
+import org.codegas.test.spock.IntegrationTest
 import org.codegas.itemmanagement.domain.entity.Item
 import org.codegas.itemmanagement.domain.service.ItemUpdateService
 import org.codegas.itemmanagement.test.builder.ItemBuilder

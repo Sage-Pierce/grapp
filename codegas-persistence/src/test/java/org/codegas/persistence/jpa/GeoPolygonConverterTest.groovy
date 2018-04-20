@@ -1,8 +1,7 @@
-package org.codegas.persistence.jpa.converter
+package org.codegas.persistence.jpa
 
 import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.commons.lang.spacial.GeoPolygon
-import org.codegas.persistence.jpa.GeoPolygonConverter
 import spock.lang.Specification
 
 class GeoPolygonConverterTest extends Specification {

@@ -10,38 +10,31 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>codegas-pathgeneration</artifactId>
+    <artifactId>codegas-persistence</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- Project Dependencies -->
+        <!-- Codegas Compile Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
             <artifactId>codegas-commons</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.codegas</groupId>
-            <artifactId>codegas-webservice</artifactId>
-        </dependency>
 
         <!-- Third Party Compile Dependencies -->
         <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.json</groupId>
-            <artifactId>javax.json-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
         </dependency>
 
         <!-- Third Party Test Dependencies -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

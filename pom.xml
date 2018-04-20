@@ -14,8 +14,10 @@
         <module>codegas-commons</module>
         <module>codegas-pathgeneration</module>
         <module>codegas-security</module>
+        <module>codegas-test</module>
         <module>codegas-webservice</module>
         <module>grapp-web</module>
+        <module>codegas-persistence</module>
     </modules>
 
     <properties>
@@ -42,7 +44,17 @@
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
+                <artifactId>codegas-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
                 <artifactId>codegas-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
+                <artifactId>codegas-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -121,6 +133,11 @@
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.json</groupId>
+                <artifactId>javax.json-api</artifactId>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>javax.persistence</groupId>
