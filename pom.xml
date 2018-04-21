@@ -12,11 +12,11 @@
 
     <modules>
         <module>codegas-pathgeneration</module>
+        <module>codegas-persistence</module>
         <module>codegas-security</module>
         <module>codegas-test</module>
         <module>codegas-webservice</module>
         <module>grapp-web</module>
-        <module>codegas-persistence</module>
     </modules>
 
     <properties>
