@@ -1,23 +1,25 @@
 package org.codegas.persistence.jpa;
 
-import org.codegas.commons.domain.entity.DomainEntity;
-import org.codegas.commons.lang.value.Id;
-import org.codegas.persistence.api.GenericRepository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-public abstract class GenericRepositoryImpl<T extends DomainEntity> implements GenericRepository<T> {
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.codegas.commons.domain.entity.DomainEntity;
+import org.codegas.commons.domain.entity.Repository;
+import org.codegas.commons.lang.value.Id;
+
+public abstract class RepositoryImpl<T extends DomainEntity> implements Repository<T> {
 
     @PersistenceContext
     protected EntityManager entityManager;
 
     protected final Class<T> entityClass;
 
-    public GenericRepositoryImpl() {
+    public RepositoryImpl() {
         entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
@@ -28,31 +30,21 @@ public abstract class GenericRepositoryImpl<T extends DomainEntity> implements G
     }
 
     @Override
-    public T remove(Id id) {
-        return remove(get(id));
-    }
-
-    @Override
     public T remove(T t) {
         entityManager.remove(t);
         return t;
     }
 
     @Override
-    public T get(Id id) {
-        return entityManager.find(entityClass, id.toJpaQueryObject());
-    }
-
-    @Override
     public Optional<T> find(Id id) {
-        return Optional.ofNullable(get(id));
+        return Optional.ofNullable(entityManager.find(entityClass, id.toJpaQueryObject()));
     }
 
     @Override
-    public List<T> get() {
+    public Stream<T> get() {
         return entityManager.createQuery(" SELECT entity" +
                 " FROM " + entityClass.getSimpleName() + " entity",
             entityClass)
-            .getResultList();
+            .getResultStream();
     }
 }

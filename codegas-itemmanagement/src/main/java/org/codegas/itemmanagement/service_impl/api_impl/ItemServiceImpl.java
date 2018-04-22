@@ -52,7 +52,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemLineageDto> get() {
-        return itemRepository.get().stream().map(ItemLineageDtoFactory::createDto).collect(Collectors.toList());
+        return itemRepository.get().map(ItemLineageDtoFactory::createDto).collect(Collectors.toList());
     }
 
     @Override

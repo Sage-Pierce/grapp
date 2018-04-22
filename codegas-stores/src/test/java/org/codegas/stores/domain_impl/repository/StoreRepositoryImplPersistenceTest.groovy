@@ -1,12 +1,12 @@
 package org.codegas.stores.domain_impl.repository
 
-import org.codegas.test.spock.GenericRepositoryImplPersistenceTest
+import org.codegas.test.spock.RepositoryImplPersistenceTest
 import org.codegas.stores.domain.entity.Store
 import org.codegas.stores.test.builder.StoreBuilder
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class StoreRepositoryImplPersistenceTest extends GenericRepositoryImplPersistenceTest<Store> {
+class StoreRepositoryImplPersistenceTest extends RepositoryImplPersistenceTest<Store> {
 
    @Override
    Store createTestEntity() {

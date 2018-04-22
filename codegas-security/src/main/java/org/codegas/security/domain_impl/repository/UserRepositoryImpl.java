@@ -5,14 +5,14 @@ import java.util.Optional;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.persistence.jpa.GenericRepositoryImpl;
+import org.codegas.persistence.jpa.RepositoryImpl;
 import org.codegas.security.domain.entity.Credential;
 import org.codegas.security.domain.entity.User;
 import org.codegas.security.domain.repository.UserRepository;
 
 @Named
 @Singleton
-public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements UserRepository {
+public class UserRepositoryImpl extends RepositoryImpl<User> implements UserRepository {
 
     @Override
     public Optional<User> findByCredential(Credential credential) {

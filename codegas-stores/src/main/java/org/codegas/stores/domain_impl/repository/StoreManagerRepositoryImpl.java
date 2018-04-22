@@ -6,13 +6,13 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.codegas.commons.lang.value.Email;
-import org.codegas.persistence.jpa.GenericRepositoryImpl;
+import org.codegas.persistence.jpa.RepositoryImpl;
 import org.codegas.stores.domain.entity.StoreManager;
 import org.codegas.stores.domain.repository.StoreManagerRepository;
 
 @Named
 @Singleton
-public class StoreManagerRepositoryImpl extends GenericRepositoryImpl<StoreManager> implements StoreManagerRepository {
+public class StoreManagerRepositoryImpl extends RepositoryImpl<StoreManager> implements StoreManagerRepository {
 
     @Override
     public Optional<StoreManager> findByEmail(Email email) {

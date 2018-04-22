@@ -1,16 +1,17 @@
 package org.codegas.test.spock
 
 import org.codegas.commons.domain.entity.DomainEntity
-import org.codegas.persistence.api.GenericRepository
+import org.codegas.commons.domain.entity.Repository
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject
+import java.util.stream.Collectors
 
 @Transactional
-abstract class GenericRepositoryImplPersistenceTest<T extends DomainEntity> extends PersistenceTest {
+abstract class RepositoryImplPersistenceTest<T extends DomainEntity> extends PersistenceTest {
 
    @Inject
-   protected GenericRepository<T> repository
+   protected Repository<T> repository
 
    protected T testEntity
 
@@ -60,7 +61,7 @@ abstract class GenericRepositoryImplPersistenceTest<T extends DomainEntity> exte
 
    def "All instances of the Entity-under-test can be retrieved"() {
       when:
-      def result = repository.get()
+      def result = repository.get().collect(Collectors.toList())
 
       then:
       result.size() >= 1

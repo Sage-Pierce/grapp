@@ -1,7 +1,7 @@
 package org.codegas.itemmanagement.domain_impl.repository
 
 import org.codegas.commons.lang.annotation.Transactional
-import org.codegas.test.spock.GenericRepositoryImplPersistenceTest
+import org.codegas.test.spock.RepositoryImplPersistenceTest
 import org.codegas.itemmanagement.domain.entity.Item
 import org.codegas.itemmanagement.domain.repository.ItemRepository
 import org.codegas.itemmanagement.domain.value.Code
@@ -11,7 +11,7 @@ import org.codegas.itemmanagement.test.builder.ItemBuilder
 import javax.inject.Inject
 
 @Transactional
-class ItemRepositoryImplPersistenceTest extends GenericRepositoryImplPersistenceTest<Item> {
+class ItemRepositoryImplPersistenceTest extends RepositoryImplPersistenceTest<Item> {
 
    @Inject
    private ItemRepository itemRepository

@@ -6,14 +6,14 @@ import java.util.Optional;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.persistence.jpa.GenericRepositoryImpl;
+import org.codegas.persistence.jpa.RepositoryImpl;
 import org.codegas.itemmanagement.domain.entity.Item;
 import org.codegas.itemmanagement.domain.repository.ItemRepository;
 import org.codegas.itemmanagement.domain.value.Code;
 
 @Named
 @Singleton
-public class ItemRepositoryImpl extends GenericRepositoryImpl<Item> implements ItemRepository {
+public class ItemRepositoryImpl extends RepositoryImpl<Item> implements ItemRepository {
 
     @Override
     public List<Item> getGeneralItems() {
