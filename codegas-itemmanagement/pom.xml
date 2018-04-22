@@ -53,7 +53,7 @@
         <!-- Codegas Test Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-test</artifactId>
+            <artifactId>codegas-test-spock</artifactId>
             <scope>test</scope>
         </dependency>
 
