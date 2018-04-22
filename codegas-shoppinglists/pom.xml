@@ -10,11 +10,11 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>codegas-test</artifactId>
+    <artifactId>codegas-shoppinglists</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- Codegas Compile Dependencies -->
+        <!-- Codegas Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
             <artifactId>codegas-commons</artifactId>
@@ -22,6 +22,10 @@
         <dependency>
             <groupId>org.codegas</groupId>
             <artifactId>codegas-persistence</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codegas</groupId>
+            <artifactId>codegas-webservice</artifactId>
         </dependency>
 
         <!-- Third Party Compile Dependencies -->
@@ -34,32 +38,67 @@
             <artifactId>javax.persistence-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency>
+
+        <!-- Codegas Test Dependencies -->
+        <dependency>
+            <groupId>org.codegas</groupId>
+            <artifactId>codegas-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Third Party Test Dependencies -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <artifactId>spring-aspects</artifactId>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-
-        <!-- Third Party Provided Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <scope>provided</scope>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -18,6 +18,8 @@
         <module>codegas-test</module>
         <module>codegas-webservice</module>
         <module>grapp-web</module>
+        <module>codegas-shoppinglists</module>
+        <module>codegas-stores</module>
     </modules>
 
     <properties>
