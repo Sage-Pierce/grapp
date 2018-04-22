@@ -11,6 +11,7 @@
     <name>grapp</name>
 
     <modules>
+        <module>codegas-itemmanagement</module>
         <module>codegas-pathgeneration</module>
         <module>codegas-persistence</module>
         <module>codegas-security</module>
@@ -33,6 +34,11 @@
             <!-- Project Dependencies -->
             <dependency>
                 <groupId>org.codegas</groupId>
+                <artifactId>codegas-itemmanagement</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
                 <artifactId>codegas-pathgeneration</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -44,6 +50,16 @@
             <dependency>
                 <groupId>org.codegas</groupId>
                 <artifactId>codegas-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
+                <artifactId>codegas-shoppinglists</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
+                <artifactId>codegas-stores</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

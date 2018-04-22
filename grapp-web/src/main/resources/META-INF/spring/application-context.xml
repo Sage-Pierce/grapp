@@ -20,8 +20,8 @@
     <beans>
         <context:property-placeholder location="classpath:properties/application.properties" system-properties-mode="FALLBACK"/>
 
-        <import resource="classpath:META-INF/spring/beans/database-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
+        <import resource="classpath:META-INF/spring/beans/transaction-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/security-beans.xml"/>
     </beans>

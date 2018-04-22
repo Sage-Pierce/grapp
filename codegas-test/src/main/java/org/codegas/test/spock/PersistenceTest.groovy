@@ -6,7 +6,7 @@ import spock.lang.Specification
 
 import javax.inject.Inject
 
-@ContextConfiguration(["classpath*:META-INF/spring/test-persistence-context.xml"])
+@ContextConfiguration(["classpath*:META-INF/spring/test-context.xml"])
 abstract class PersistenceTest extends Specification {
 
    @Inject

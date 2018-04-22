@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- Project Dependencies -->
+        <!-- Codegas Compile Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
             <artifactId>codegas-commons</artifactId>

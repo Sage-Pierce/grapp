@@ -18,8 +18,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <array>
-                <value>org.codegas.shoppinglists.domain</value>
-                <value>org.codegas.stores.domain</value>
+                <value>org.codegas.itemmanagement.domain</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">
