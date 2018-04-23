@@ -8,6 +8,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
@@ -22,6 +23,7 @@ import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.webservice.hal.representation.HalJsonRepresentationFactory;
 
 @Path("/auth/user/")
+@Produces(HalJsonRepresentationFactory.HAL_JSON)
 public class AuthUserResource extends HalResource {
 
     private final AuthService authService;
