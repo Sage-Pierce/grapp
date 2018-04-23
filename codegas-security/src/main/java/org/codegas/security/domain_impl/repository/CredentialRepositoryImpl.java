@@ -5,7 +5,7 @@ import java.util.Optional;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.persistence.jpa.RepositoryImpl;
+import org.codegas.service.jpa.RepositoryImpl;
 import org.codegas.security.domain.entity.Credential;
 import org.codegas.security.domain.repository.CredentialRepository;
 

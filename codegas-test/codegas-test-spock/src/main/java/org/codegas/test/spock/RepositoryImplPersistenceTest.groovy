@@ -1,7 +1,7 @@
 package org.codegas.test.spock
 
 import org.codegas.commons.domain.entity.DomainEntity
-import org.codegas.commons.domain.entity.Repository
+import org.codegas.service.api.Repository
 import org.springframework.transaction.annotation.Transactional
 
 import javax.inject.Inject

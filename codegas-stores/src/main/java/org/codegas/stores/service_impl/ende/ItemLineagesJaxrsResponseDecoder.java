@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.codegas.commons.ende.api.JaxrsResponseDecoder;
+import org.codegas.commons.ende.api.Decoder;
 import org.codegas.stores.service.dto.ItemLineageDto;
 
-public class ItemLineagesJaxrsResponseDecoder implements JaxrsResponseDecoder<List<ItemLineageDto>> {
+public class ItemLineagesJaxrsResponseDecoder implements Decoder<Response, List<ItemLineageDto>> {
 
     private static final ItemLineagesJsonValueDecoder DECODER = new ItemLineagesJsonValueDecoder();
 

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import javax.json.JsonValue;
 
 import org.codegas.commons.lang.spacial.Polygon;
-import org.codegas.commons.ende.api.JsonValueDecoder;
+import org.codegas.commons.ende.json.JsonValueDecoder;
 
 public class PathPolygonsDto {
 

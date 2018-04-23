@@ -8,10 +8,10 @@ import javax.json.JsonValue;
 
 import org.codegas.commons.lang.value.CodeName;
 import org.codegas.commons.ende.api.Decoder;
-import org.codegas.commons.ende.api.JsonValueDecoder;
+import org.codegas.commons.ende.json.JsonValueDecoder;
 import org.codegas.stores.service.dto.ItemLineageDto;
 
-import static org.codegas.commons.ende.api.JsonValueDecoder.*;
+import static org.codegas.commons.ende.json.JsonValueDecoder.*;
 
 public class ItemLineagesJsonValueDecoder implements JsonValueDecoder<List<ItemLineageDto>> {
 

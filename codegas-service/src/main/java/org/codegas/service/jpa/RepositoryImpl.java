@@ -1,4 +1,4 @@
-package org.codegas.persistence.jpa;
+package org.codegas.service.jpa;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.codegas.commons.domain.entity.DomainEntity;
-import org.codegas.commons.domain.entity.Repository;
+import org.codegas.service.api.Repository;
 import org.codegas.commons.lang.value.Id;
 
 public abstract class RepositoryImpl<T extends DomainEntity> implements Repository<T> {

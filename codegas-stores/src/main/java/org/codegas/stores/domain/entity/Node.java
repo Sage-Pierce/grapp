@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 
 import org.codegas.commons.domain.event.DomainEventPublisher;
 import org.codegas.commons.lang.spacial.GeoPoint;
-import org.codegas.persistence.jpa.GeoPointConverter;
+import org.codegas.commons.jpa.converter.GeoPointStringConverter;
 import org.codegas.commons.domain.entity.NamedEntity;
 import org.codegas.stores.domain.event.NodeModifiedEvent;
 import org.codegas.stores.domain.value.Item;
@@ -35,7 +35,7 @@ public class Node extends NamedEntity<NodeId> {
     private StoreLayout storeLayout;
 
     @Column(length = 63)
-    @Convert(converter = GeoPointConverter.class)
+    @Convert(converter = GeoPointStringConverter.class)
     private GeoPoint location;
 
     @Enumerated(EnumType.STRING)

@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-persistence</artifactId>
+            <artifactId>codegas-service</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>

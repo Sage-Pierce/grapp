@@ -12,9 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
+import org.codegas.security.service.api.AuthService;
 import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationException;
-import org.codegas.security.service.api.AuthService;
 import org.codegas.security.service.dto.UserDto;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
@@ -30,7 +30,6 @@ public class AuthUserResource extends HalResource {
 
     @Inject
     public AuthUserResource(AuthService authService) {
-        super(new HalJsonRepresentationFactory(Collections.emptyMap()));
         this.authService = authService;
     }
 
@@ -45,7 +44,7 @@ public class AuthUserResource extends HalResource {
     }
 
     protected HalRepresentation asRepresentationOf(UserDto userDto) {
-        return halRepresentationFactory.createFor(userDto).withLinks(createLinks());
+        return new HalJsonRepresentationFactory().createFor(userDto).withLinks(createLinks());
     }
 
     private static List<HalLink> createLinks() {

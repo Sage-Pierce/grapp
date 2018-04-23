@@ -35,7 +35,6 @@ public class AuthResource extends HalResource {
 
     @Inject
     public AuthResource(AuthService authService) {
-        super(new HalJsonRepresentationFactory(Collections.emptyMap()));
         this.authService = authService;
     }
 
@@ -57,7 +56,7 @@ public class AuthResource extends HalResource {
     }
 
     protected HalRepresentation asRepresentationOf(Authorization authorization) {
-        return halRepresentationFactory.createFor(authorization.toString()).withLinks(createLinks());
+        return new HalJsonRepresentationFactory().createFor(authorization.toString()).withLinks(createLinks());
     }
 
     private static List<HalLink> createLinks() {

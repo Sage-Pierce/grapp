@@ -1,11 +1,17 @@
 package org.codegas.stores.domain.entity;
 
-import org.codegas.commons.domain.entity.DomainEntity;
-import org.codegas.commons.lang.spacial.GeoPolygon;
-import org.codegas.persistence.jpa.GeoPolygonConverter;
-import org.codegas.stores.domain.value.FeatureId;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.*;
+import org.codegas.commons.domain.entity.DomainEntity;
+import org.codegas.commons.jpa.converter.GeoPolygonStringConverter;
+import org.codegas.commons.lang.spacial.GeoPolygon;
+import org.codegas.stores.domain.value.FeatureId;
 
 @Entity
 public class Feature extends DomainEntity<FeatureId> {
@@ -17,7 +23,7 @@ public class Feature extends DomainEntity<FeatureId> {
     private StoreLayout storeLayout;
 
     @Column(length = 2047)
-    @Convert(converter = GeoPolygonConverter.class)
+    @Convert(converter = GeoPolygonStringConverter.class)
     private GeoPolygon polygon;
 
     public Feature(StoreLayout storeLayout, GeoPolygon polygon) {

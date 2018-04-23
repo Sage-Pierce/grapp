@@ -6,7 +6,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.codegas.commons.lang.value.Email;
-import org.codegas.persistence.jpa.RepositoryImpl;
+import org.codegas.service.jpa.RepositoryImpl;
 import org.codegas.stores.domain.entity.StoreManager;
 import org.codegas.stores.domain.repository.StoreManagerRepository;
 

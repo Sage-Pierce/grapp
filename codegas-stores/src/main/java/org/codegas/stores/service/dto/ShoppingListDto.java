@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import javax.json.JsonValue;
 
+import org.codegas.commons.ende.json.JsonValueDecoder;
 import org.codegas.commons.lang.value.CodeName;
-import org.codegas.commons.ende.api.JsonValueDecoder;
 
 public class ShoppingListDto {
 

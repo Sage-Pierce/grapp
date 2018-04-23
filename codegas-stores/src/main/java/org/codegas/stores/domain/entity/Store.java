@@ -9,9 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.codegas.commons.lang.spacial.GeoPoint;
-import org.codegas.persistence.jpa.GeoPointConverter;
 import org.codegas.commons.domain.entity.NamedEntity;
+import org.codegas.commons.jpa.converter.GeoPointStringConverter;
+import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.stores.domain.value.StoreId;
 
 @Entity
@@ -24,7 +24,7 @@ public class Store extends NamedEntity<StoreId> {
     private StoreManager manager;
 
     @Column(length = 63)
-    @Convert(converter = GeoPointConverter.class)
+    @Convert(converter = GeoPointStringConverter.class)
     private GeoPoint location;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "store", orphanRemoval = true)

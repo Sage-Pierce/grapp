@@ -2,6 +2,7 @@ package org.codegas.webservice.hal.representation;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 import org.codegas.webservice.hal.api.HalLink;
@@ -11,6 +12,10 @@ import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import com.theoryinpractise.halbuilder.json.JsonRepresentationFactory;
 
 public final class HalJsonRepresentationFactory extends JsonRepresentationFactory implements HalRepresentationFactory {
+
+    public HalJsonRepresentationFactory() {
+        this(Collections.emptyMap());
+    }
 
     public HalJsonRepresentationFactory(Map<String, String> curies) {
         curies.forEach(this::withNamespace);

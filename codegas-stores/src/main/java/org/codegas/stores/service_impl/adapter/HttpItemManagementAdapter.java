@@ -6,8 +6,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
-import org.codegas.commons.ende.api.JaxrsResponseDecoder;
+import org.codegas.commons.ende.api.Decoder;
 import org.codegas.stores.service.adapter.ItemLineagesAdapter;
 import org.codegas.stores.service.dto.ItemLineageDto;
 import org.codegas.stores.service_impl.ende.ItemLineagesJaxrsResponseDecoder;
@@ -16,7 +17,7 @@ import org.codegas.stores.service_impl.ende.ItemLineagesJaxrsResponseDecoder;
 @Singleton
 public class HttpItemManagementAdapter implements ItemLineagesAdapter {
 
-    private static final JaxrsResponseDecoder<List<ItemLineageDto>> DECODER = new ItemLineagesJaxrsResponseDecoder();
+    private static final Decoder<Response, List<ItemLineageDto>> DECODER = new ItemLineagesJaxrsResponseDecoder();
 
     private final WebTarget itemManagementTarget;
 
