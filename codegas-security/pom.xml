@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-webservice</artifactId>
+            <artifactId>codegas-webservice-hal</artifactId>
         </dependency>
 
         <!-- Third Party Compile Dependencies -->

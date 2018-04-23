@@ -40,6 +40,16 @@
             <artifactId>codegas-stores</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.codegas</groupId>
+            <artifactId>codegas-webservice-jaxrs</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codegas</groupId>
+            <artifactId>codegas-webservice-jetty</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- Third Party Runtime Dependencies -->
         <dependency>
