@@ -1,7 +1,6 @@
 package org.codegas.persistence.jpa;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 

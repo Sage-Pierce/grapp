@@ -17,16 +17,18 @@ import org.codegas.security.service.api.AuthService;
 import org.codegas.security.service.dto.UserDto;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.jaxrs.HalResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservice.hal.representation.HalJsonRepresentationFactory;
 
 @Path("/auth/user/")
-public class AuthUserResource extends HalJsonResource {
+public class AuthUserResource extends HalResource {
 
     private final AuthService authService;
 
     @Inject
     public AuthUserResource(AuthService authService) {
+        super(new HalJsonRepresentationFactory(Collections.emptyMap()));
         this.authService = authService;
     }
 
@@ -40,11 +42,7 @@ public class AuthUserResource extends HalJsonResource {
         return buildHalResponse(asRepresentationOf(authService.logOut(Authorization.parse(authorization))));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
-    }
-
-    protected static HalRepresentation asRepresentationOf(UserDto userDto) {
+    protected HalRepresentation asRepresentationOf(UserDto userDto) {
         return halRepresentationFactory.createFor(userDto).withLinks(createLinks());
     }
 

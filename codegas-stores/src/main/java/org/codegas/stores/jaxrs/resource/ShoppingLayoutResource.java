@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.ShoppingLayoutService;
 import org.codegas.stores.service.dto.ShoppingLayoutDto;
@@ -34,12 +34,16 @@ public class ShoppingLayoutResource extends HalJsonResource {
         return buildHalResponse(asRepresentationOf(shoppingLayoutService.getShoppingLayout(id, shoppingListDto)));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
+    protected HalRepresentation asRepresentationOf(ShoppingLayoutDto shoppingLayoutDto) {
+        return asRepresentationOf(halRepresentationFactory, shoppingLayoutDto);
     }
 
-    protected static HalRepresentation asRepresentationOf(ShoppingLayoutDto shoppingLayoutDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, ShoppingLayoutDto shoppingLayoutDto) {
         return halRepresentationFactory.createFor(shoppingLayoutDto).withLinks(createLinks(shoppingLayoutDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(ShoppingLayoutDto shoppingLayoutDto) {

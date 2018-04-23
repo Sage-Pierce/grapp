@@ -14,7 +14,7 @@ import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.value.Email;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreManagerService;
 import org.codegas.stores.service.dto.StoreManagerDto;
@@ -34,15 +34,15 @@ public class StoreManagerResource extends HalJsonResource {
     public Response addStore(@PathParam("id") Email email,
         @QueryParam("name") String name,
         @QueryParam("location") GeoPoint location) {
-        return buildHalResponse(StoreResource.asRepresentationOf(storeManagerService.addStore(email, name, location)));
+        return buildHalResponse(StoreResource.asRepresentationOf(halRepresentationFactory, storeManagerService.addStore(email, name, location)));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
-    }
-
-    protected static HalRepresentation asRepresentationOf(StoreManagerDto storeManagerDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, StoreManagerDto storeManagerDto) {
         return halRepresentationFactory.createFor(storeManagerDto).withLinks(createLinks(storeManagerDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(StoreManagerDto storeManagerDto) {

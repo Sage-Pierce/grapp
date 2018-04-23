@@ -2,6 +2,7 @@ package org.codegas.webservice.hal.representation;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Map;
 
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
@@ -11,20 +12,18 @@ import com.theoryinpractise.halbuilder.json.JsonRepresentationFactory;
 
 public final class HalJsonRepresentationFactory extends JsonRepresentationFactory implements HalRepresentationFactory {
 
-    public HalJsonRepresentationFactory() {
-        // Curies
-        //      withNamespace("base", UriBuilder.fromUri("").scheme("http").host("localhost").port(8008).segment("rest").segment("{rel}").toTemplate());
-        //      withNamespace("docs", UriBuilder.fromUri("/").segment("docs").segment("{rel}").toTemplate());
+    public HalJsonRepresentationFactory(Map<String, String> curies) {
+        curies.forEach(this::withNamespace);
         withFlag(JsonRepresentationFactory.PRETTY_PRINT);
         withFlag(JsonRepresentationFactory.COALESCE_ARRAYS);
     }
 
     public HalRepresentation createFor(Object resource) {
-        return new HalJsonRepresentationImpl(newRepresentation()).withBean(wrapResource(resource));
+        return new HalRepresentationImpl(HAL_JSON, newRepresentation()).withBean(wrapResource(resource));
     }
 
     public HalRepresentation createForLinks(Iterable<HalLink> links) {
-        return new HalJsonRepresentationImpl(newRepresentation()).withLinks(links);
+        return new HalRepresentationImpl(HAL_JSON, newRepresentation()).withLinks(links);
     }
 
     private Object wrapResource(Object resource) {

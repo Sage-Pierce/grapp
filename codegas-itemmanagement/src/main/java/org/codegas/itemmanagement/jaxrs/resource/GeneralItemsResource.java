@@ -12,7 +12,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.webservice.hal.api.HalLink;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 
@@ -30,18 +29,18 @@ public class GeneralItemsResource extends HalJsonResource {
     public Response createGeneralItem(@QueryParam("codeType") String codeType,
         @QueryParam("code") String code,
         @QueryParam("name") String name) {
-        return buildHalResponse(ItemResource.asRepresentationOf(itemService.createGeneralItem(codeType, code, name)));
+        return buildHalResponse(ItemResource.asRepresentationOf(halRepresentationFactory, itemService.createGeneralItem(codeType, code, name)));
     }
 
     @GET
     public Response getGeneralItems() {
         return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
             .withEmbeddeds("generalItems", itemService.getGeneralItems().stream()
-                .map(ItemResource::asRepresentationOf)
+                .map(itemDto -> ItemResource.asRepresentationOf(halRepresentationFactory, itemDto))
                 .collect(Collectors.toList())));
     }
 
-    public static HalLink createRootLink(String rel) {
+    protected static HalLink createRootLink(String rel) {
         return createSelfLinkBuilder().withRel(rel);
     }
 

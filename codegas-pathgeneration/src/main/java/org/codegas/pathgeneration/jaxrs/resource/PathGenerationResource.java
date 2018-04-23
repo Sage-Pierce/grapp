@@ -8,27 +8,31 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.spacial.Point;
-import org.codegas.webservice.hal.api.HalLink;
-import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
-import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.pathgeneration.service.api.PathService;
 import org.codegas.pathgeneration.service.dto.PathDto;
 import org.codegas.pathgeneration.service.dto.PathPolygonsDto;
 import org.codegas.pathgeneration.service.dto.WaypointsDto;
+import org.codegas.webservice.hal.api.HalLink;
+import org.codegas.webservice.hal.api.HalRepresentation;
+import org.codegas.webservice.hal.jaxrs.HalResource;
+import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservice.hal.representation.HalJsonRepresentationFactory;
 
 @Path("/pathGeneration/")
-public class PathGenerationResource extends HalJsonResource {
+@Produces(HalJsonRepresentationFactory.HAL_JSON)
+public class PathGenerationResource extends HalResource {
 
     private final PathService pathService;
 
     @Inject
     public PathGenerationResource(PathService pathService) {
+        super(new HalJsonRepresentationFactory(Collections.emptyMap()));
         this.pathService = pathService;
     }
 
@@ -46,11 +50,7 @@ public class PathGenerationResource extends HalJsonResource {
         return buildHalResponse(asRepresentationOf(pathService.generatePath(start, finish, waypoints, pathPolygons)));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
-    }
-
-    protected static HalRepresentation asRepresentationOf(PathDto pathDto) {
+    protected HalRepresentation asRepresentationOf(PathDto pathDto) {
         return halRepresentationFactory.createFor(pathDto).withLinks(createLinks());
     }
 

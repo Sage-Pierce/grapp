@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import org.codegas.webservice.hal.api.HalLink;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 
 @Path("/itemManagement/root/")

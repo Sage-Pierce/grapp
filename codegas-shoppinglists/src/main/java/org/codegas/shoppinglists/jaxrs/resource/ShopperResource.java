@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.value.Email;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.shoppinglists.service.api.ShopperService;
 import org.codegas.shoppinglists.service.dto.ShopperDto;
@@ -32,15 +32,15 @@ public class ShopperResource extends HalJsonResource {
     @Path("addList")
     public Response addList(@PathParam("email") Email email,
         @QueryParam("name") String name) {
-        return buildHalResponse(ShoppingListResource.asRepresentationOf(shopperService.addList(email, name)));
+        return buildHalResponse(ShoppingListResource.asRepresentationOf(halRepresentationFactory, shopperService.addList(email, name)));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
-    }
-
-    protected static HalRepresentation asRepresentationOf(ShopperDto shopperDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, ShopperDto shopperDto) {
         return halRepresentationFactory.createFor(shopperDto).withLinks(createLinks(shopperDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(ShopperDto shopperDto) {

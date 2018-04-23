@@ -11,6 +11,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -22,16 +23,19 @@ import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationException;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.jaxrs.HalResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
+import org.codegas.webservice.hal.representation.HalJsonRepresentationFactory;
 
 @Path("/auth/")
-public class AuthResource extends HalJsonResource {
+@Produces(HalJsonRepresentationFactory.HAL_JSON)
+public class AuthResource extends HalResource {
 
     private final AuthService authService;
 
     @Inject
     public AuthResource(AuthService authService) {
+        super(new HalJsonRepresentationFactory(Collections.emptyMap()));
         this.authService = authService;
     }
 
@@ -52,11 +56,7 @@ public class AuthResource extends HalJsonResource {
         return buildHalResponse(asRepresentationOf(authService.reauthenticate(Authorization.parse(authorization))));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
-    }
-
-    protected static HalRepresentation asRepresentationOf(Authorization authorization) {
+    protected HalRepresentation asRepresentationOf(Authorization authorization) {
         return halRepresentationFactory.createFor(authorization.toString()).withLinks(createLinks());
     }
 

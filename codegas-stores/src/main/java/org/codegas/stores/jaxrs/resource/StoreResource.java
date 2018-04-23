@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreService;
 import org.codegas.stores.service.dto.StoreDto;
@@ -48,12 +48,16 @@ public class StoreResource extends HalJsonResource {
         return Response.ok().build();
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
+    protected HalRepresentation asRepresentationOf(StoreDto storeDto) {
+        return asRepresentationOf(halRepresentationFactory, storeDto);
     }
 
-    protected static HalRepresentation asRepresentationOf(StoreDto storeDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, StoreDto storeDto) {
         return halRepresentationFactory.createFor(storeDto).withLinks(createLinks(storeDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(StoreDto storeDto) {

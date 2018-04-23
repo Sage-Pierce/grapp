@@ -8,7 +8,6 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.value.Email;
 import org.codegas.webservice.hal.api.HalLink;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreManagerService;
 
@@ -24,10 +23,10 @@ public class StoreManagersResource extends HalJsonResource {
 
     @PUT
     public Response loadByEmail(@QueryParam("email") Email email) {
-        return buildHalResponse(StoreManagerResource.asRepresentationOf(storeManagerService.loadByEmail(email)));
+        return buildHalResponse(StoreManagerResource.asRepresentationOf(halRepresentationFactory, storeManagerService.loadByEmail(email)));
     }
 
-    public static HalLink createRootLink(String rel) {
+    protected static HalLink createRootLink(String rel) {
         return createSelfLinkBuilder().withRel(rel);
     }
 

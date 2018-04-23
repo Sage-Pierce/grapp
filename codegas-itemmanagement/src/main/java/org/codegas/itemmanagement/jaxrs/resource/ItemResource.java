@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
@@ -59,12 +59,16 @@ public class ItemResource extends HalJsonResource {
         return Response.ok().build();
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
+    protected HalRepresentation asRepresentationOf(ItemDto itemDto) {
+        return asRepresentationOf(halRepresentationFactory, itemDto);
     }
 
-    protected static HalRepresentation asRepresentationOf(ItemDto itemDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, ItemDto itemDto) {
         return halRepresentationFactory.createFor(itemDto).withLinks(createLinks(itemDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(ItemDto itemDto) {

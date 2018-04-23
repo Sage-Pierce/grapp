@@ -18,7 +18,7 @@ import org.codegas.commons.lang.spacial.GeoPolygon;
 import org.codegas.commons.lang.value.CodeName;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreLayoutService;
 import org.codegas.stores.service.dto.NodeDto;
@@ -59,7 +59,7 @@ public class StoreLayoutResource extends HalJsonResource {
     @Path("features")
     public Response addFeature(@PathParam("id") String id,
         @QueryParam("polygon") GeoPolygon polygon) {
-        return buildHalResponse(FeatureResource.asRepresentationOf(storeLayoutService.addFeature(id, polygon)));
+        return buildHalResponse(FeatureResource.asRepresentationOf(halRepresentationFactory, storeLayoutService.addFeature(id, polygon)));
     }
 
     @PUT
@@ -67,7 +67,7 @@ public class StoreLayoutResource extends HalJsonResource {
     public Response reshapeFeature(@PathParam("id") String id,
         @QueryParam("featureId") String featureId,
         @QueryParam("polygon") GeoPolygon polygon) {
-        return buildHalResponse(FeatureResource.asRepresentationOf(storeLayoutService.reshapeFeature(id, featureId, polygon)));
+        return buildHalResponse(FeatureResource.asRepresentationOf(halRepresentationFactory, storeLayoutService.reshapeFeature(id, featureId, polygon)));
     }
 
     @POST
@@ -76,9 +76,9 @@ public class StoreLayoutResource extends HalJsonResource {
         @QueryParam("type") String type,
         @QueryParam("location") GeoPoint location) {
         StoreLayoutUpdateDto<NodeDto> result = storeLayoutService.addNode(id, type, location);
-        return buildHalResponse(NodeResource.asRepresentationOf(result.getTarget())
+        return buildHalResponse(NodeResource.asRepresentationOf(halRepresentationFactory, result.getTarget())
             .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
-                .map(NodeResource::asRepresentationOf)
+                .map(nodeDto -> NodeResource.asRepresentationOf(halRepresentationFactory, nodeDto))
                 .collect(Collectors.toList())));
     }
 
@@ -87,7 +87,7 @@ public class StoreLayoutResource extends HalJsonResource {
     public Response moveNode(@PathParam("id") String id,
         @QueryParam("nodeId") String nodeId,
         @QueryParam("location") GeoPoint location) {
-        return buildHalResponse(NodeResource.asRepresentationOf(storeLayoutService.moveNode(id, nodeId, location)));
+        return buildHalResponse(NodeResource.asRepresentationOf(halRepresentationFactory, storeLayoutService.moveNode(id, nodeId, location)));
     }
 
     @POST
@@ -96,18 +96,22 @@ public class StoreLayoutResource extends HalJsonResource {
         @QueryParam("nodeId") String nodeId,
         @QueryParam("item") CodeName item) {
         StoreLayoutUpdateDto<NodeItemDto> result = storeLayoutService.addNodeItem(id, nodeId, item);
-        return buildHalResponse(NodeItemResource.asRepresentationOf(result.getTarget())
+        return buildHalResponse(NodeItemResource.asRepresentationOf(halRepresentationFactory, result.getTarget())
             .withEmbeddeds("affectedNodes", result.getAffectedNodes().stream()
-                .map(NodeResource::asRepresentationOf)
+                .map(nodeDto -> NodeResource.asRepresentationOf(halRepresentationFactory, nodeDto))
                 .collect(Collectors.toList())));
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
+    protected HalRepresentation asRepresentationOf(StoreLayoutDto storeLayoutDto) {
+        return asRepresentationOf(halRepresentationFactory, storeLayoutDto);
     }
 
-    protected static HalRepresentation asRepresentationOf(StoreLayoutDto storeLayoutDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, StoreLayoutDto storeLayoutDto) {
         return halRepresentationFactory.createFor(storeLayoutDto).withLinks(createLinks(storeLayoutDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(StoreLayoutDto storeLayoutDto) {

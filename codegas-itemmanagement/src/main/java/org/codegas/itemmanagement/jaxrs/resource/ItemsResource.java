@@ -11,7 +11,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.webservice.hal.api.HalLink;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 
@@ -30,7 +29,7 @@ public class ItemsResource extends HalJsonResource {
         @QueryParam("codeType") String codeType,
         @QueryParam("code") String code,
         @QueryParam("name") String name) {
-        return buildHalResponse(ItemResource.asRepresentationOf(itemService.createSubItem(superItemCode, codeType, code, name)));
+        return buildHalResponse(ItemResource.asRepresentationOf(halRepresentationFactory, itemService.createSubItem(superItemCode, codeType, code, name)));
     }
 
     @GET
@@ -38,7 +37,7 @@ public class ItemsResource extends HalJsonResource {
         return buildHalResponse(halRepresentationFactory.createFor(itemService.get()).withLinks(createLinks()));
     }
 
-    public static HalLink createRootLink(String rel) {
+    protected static HalLink createRootLink(String rel) {
         return createSelfLinkBuilder().withRel(rel);
     }
 

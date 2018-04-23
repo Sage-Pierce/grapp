@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.codegas.webservice.hal.api.HalLink;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.NacsItemImportService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
@@ -43,11 +42,11 @@ public class ItemImportResource extends HalJsonResource {
 
         return buildHalResponse(halRepresentationFactory.createForLinks(createLinks())
             .withEmbeddeds("importedItems", items.stream()
-                .map(ItemResource::asRepresentationOf)
+                .map(itemDto -> ItemResource.asRepresentationOf(halRepresentationFactory, itemDto))
                 .collect(Collectors.toList())));
     }
 
-    public static HalLink createRootLink(String rel) {
+    protected static HalLink createRootLink(String rel) {
         return createSelfLinkBuilder().withRel(rel);
     }
 

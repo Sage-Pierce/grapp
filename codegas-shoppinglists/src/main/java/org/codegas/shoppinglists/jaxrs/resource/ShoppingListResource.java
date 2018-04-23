@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.value.CodeName;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
-import org.codegas.webservice.hal.jaxrs.HalJsonResource;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.shoppinglists.service.api.ShoppingListService;
 import org.codegas.shoppinglists.service.dto.ShoppingListDto;
@@ -39,7 +39,7 @@ public class ShoppingListResource extends HalJsonResource {
     @Path("addItem")
     public Response addItem(@PathParam("id") String id,
         @QueryParam("item") CodeName item) {
-        return buildHalResponse(ShoppingListItemResource.asRepresentationOf(shoppingListService.addItem(id, item)));
+        return buildHalResponse(ShoppingListItemResource.asRepresentationOf(halRepresentationFactory, shoppingListService.addItem(id, item)));
     }
 
     @DELETE
@@ -48,12 +48,16 @@ public class ShoppingListResource extends HalJsonResource {
         return Response.ok().build();
     }
 
-    public static HalLink createRootLink(String rel) {
-        return createSelfLinkBuilder().withRel(rel);
+    protected HalRepresentation asRepresentationOf(ShoppingListDto shoppingListDto) {
+        return asRepresentationOf(halRepresentationFactory, shoppingListDto);
     }
 
-    protected static HalRepresentation asRepresentationOf(ShoppingListDto shoppingListDto) {
+    protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, ShoppingListDto shoppingListDto) {
         return halRepresentationFactory.createFor(shoppingListDto).withLinks(createLinks(shoppingListDto));
+    }
+
+    protected static HalLink createRootLink(String rel) {
+        return createSelfLinkBuilder().withRel(rel);
     }
 
     private static List<HalLink> createLinks(ShoppingListDto shoppingListDto) {
