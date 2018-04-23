@@ -19,8 +19,8 @@ public final class HalJsonRepresentationFactory extends JsonRepresentationFactor
 
     public HalJsonRepresentationFactory(Map<String, String> curies) {
         curies.forEach(this::withNamespace);
-        withFlag(JsonRepresentationFactory.PRETTY_PRINT);
-        withFlag(JsonRepresentationFactory.COALESCE_ARRAYS);
+        withFlag(PRETTY_PRINT);
+        withFlag(COALESCE_ARRAYS);
     }
 
     public HalRepresentation createFor(Object resource) {
@@ -41,7 +41,7 @@ public final class HalJsonRepresentationFactory extends JsonRepresentationFactor
         }
     }
 
-    protected static class PrimitiveWrapper implements Serializable {
+    protected static final class PrimitiveWrapper implements Serializable {
 
         private final Object value;
 
@@ -54,7 +54,7 @@ public final class HalJsonRepresentationFactory extends JsonRepresentationFactor
         }
     }
 
-    protected static class CollectionWrapper implements Serializable {
+    protected static final class CollectionWrapper implements Serializable {
 
         private final Collection values;
 

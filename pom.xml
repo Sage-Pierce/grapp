@@ -14,7 +14,6 @@
         <module>codegas-itemmanagement</module>
         <module>codegas-pathgeneration</module>
         <module>codegas-security</module>
-        <module>codegas-service</module>
         <module>codegas-shoppinglists</module>
         <module>codegas-stores</module>
         <module>codegas-test</module>
@@ -46,11 +45,6 @@
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
-                <artifactId>codegas-service</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codegas</groupId>
                 <artifactId>codegas-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -75,6 +69,11 @@
                 <groupId>org.codegas</groupId>
                 <artifactId>codegas-commons</artifactId>
                 <version>2.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codegas</groupId>
+                <artifactId>codegas-service</artifactId>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
