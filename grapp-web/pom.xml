@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>grapp-web</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- Codegas Runtime Dependencies -->
@@ -110,8 +110,6 @@
     </dependencies>
 
     <build>
-        <!-- "ROOT" means Tomcat will map the result WAR at "/" -->
-        <finalName>ROOT</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
