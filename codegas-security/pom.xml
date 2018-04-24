@@ -25,7 +25,11 @@
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service</artifactId>
+            <artifactId>codegas-service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codegas</groupId>
+            <artifactId>codegas-service-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>

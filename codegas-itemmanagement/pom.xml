@@ -21,7 +21,11 @@
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service</artifactId>
+            <artifactId>codegas-service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codegas</groupId>
+            <artifactId>codegas-service-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
@@ -53,7 +57,7 @@
         <!-- Codegas Test Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-test-spock</artifactId>
+            <artifactId>codegas-service-spock</artifactId>
             <scope>test</scope>
         </dependency>
 

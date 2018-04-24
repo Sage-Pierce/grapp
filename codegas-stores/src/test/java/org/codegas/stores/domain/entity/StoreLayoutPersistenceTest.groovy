@@ -1,6 +1,6 @@
 package org.codegas.stores.domain.entity
 
-import org.codegas.test.spock.PersistenceTest
+import org.codegas.service.spock.PersistenceTest
 import org.codegas.stores.test.builder.StoreBuilder
 import org.codegas.commons.lang.spacial.GeoPoint
 import org.codegas.commons.lang.spacial.GeoPolygon
