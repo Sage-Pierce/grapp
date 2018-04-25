@@ -44,7 +44,7 @@
                }
             });
          }).then(function(response) {
-            return response.data.value;
+            return response.value;
          });
       }
 
