@@ -22,13 +22,6 @@ public final class Authorization<T> {
         return new Authorization<>(splitAuthorization[0], tokenParser.apply(splitAuthorization[1]));
     }
 
-    private static String validate(String authorization) {
-        if (authorization == null || authorization.isEmpty()) {
-            throw new IllegalArgumentException("Invalid authorization=" + authorization);
-        }
-        return authorization;
-    }
-
     @Override
     public String toString() {
         return scheme + " " + token;
@@ -40,5 +33,12 @@ public final class Authorization<T> {
 
     public T getToken() {
         return token;
+    }
+
+    private static String validate(String authorization) {
+        if (authorization == null || authorization.isEmpty()) {
+            throw new IllegalArgumentException("Invalid authorization=" + authorization);
+        }
+        return authorization;
     }
 }
