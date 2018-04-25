@@ -14,12 +14,19 @@ public final class Authorization<T> {
     }
 
     public static Authorization<String> parse(String authorization) {
-        return parse(authorization, Function.identity());
+        return parse(validate(authorization), Function.identity());
     }
 
     public static <T> Authorization<T> parse(String authorization, Function<? super String, T> tokenParser) {
-        String[] splitAuthorization = authorization.split("\\s+", 2);
+        String[] splitAuthorization = validate(authorization).split("\\s+", 2);
         return new Authorization<>(splitAuthorization[0], tokenParser.apply(splitAuthorization[1]));
+    }
+
+    private static String validate(String authorization) {
+        if (authorization == null || authorization.isEmpty()) {
+            throw new IllegalArgumentException("Invalid authorization=" + authorization);
+        }
+        return authorization;
     }
 
     @Override

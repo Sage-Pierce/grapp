@@ -4,8 +4,8 @@
    angular.module("App")
       .factory("Root", Root);
 
-   Root.$inject = ["$q", "halClient"];
-   function Root($q, halClient) {
+   Root.$inject = ["$q", "$http"];
+   function Root($q, $http) {
       return function(apiRootRef) {
          var self = this;
          self.loadFromServer = loadFromServer;
@@ -23,7 +23,11 @@
          ////////////////////
 
          function loadFromServer(serverHref) {
-            halClient.$get(apiRootRef || "/root/", { transformUrl: _.urlTransformer(serverHref) }).then(deferred.resolve, console.log);
+            return $http({
+               method: "GET",
+               url: serverHref + apiRootRef
+            }).then(deferred.resolve, console.log);
+            // $http.$get(apiRootRef || "/root/", { transformUrl: _.urlTransformer(serverHref) });
          }
 
          function unload() {
@@ -32,7 +36,7 @@
 
          function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$post(pluralResourceName, params).then(function(resource) {
+               return rootRsc.$request().$post(pluralResourceName, params).then(function(resource) {
                   return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                });
             });
@@ -40,7 +44,7 @@
 
          function loadResourceModels(pluralResourceName, resourceModelCreatorCallback) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$get(pluralResourceName).then(function(pluralResource) {
+               return rootRsc.$request().$get(pluralResourceName).then(function(pluralResource) {
                   return pluralResource.$has(pluralResourceName) ? createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback)
                                                                  : convertResourcesToModels(pluralResource.values || [], resourceModelCreatorCallback);
                });
@@ -55,19 +59,19 @@
 
          function loadResource(resourceName, idParam) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
+               return rootRsc.$request().$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
             });
          }
 
          function updateResource(resourceName, idParam, attributes) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$put(resourceName, _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
+               return rootRsc.$request().$put(resourceName, _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
             });
          }
 
          function deleteResource(resourceName, idParam) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$del(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
+               return rootRsc.$request().$delete(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
             });
          }
 
@@ -76,7 +80,7 @@
          }
 
          function createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback) {
-            return pluralResource.$get(pluralResourceName)
+            return pluralResource.$request().$get(pluralResourceName)
                .then(function(resources) {
                   return convertResourcesToModels(resources, resourceModelCreatorCallback);
                });
@@ -93,7 +97,7 @@
          }
 
          function decorateResourceModel(resource, model) {
-            model.delete = model.delete || resource.$del && function() { return resource.$del("self"); };
+            model.delete = model.delete || resource.$request().$delete && function() { return resource.$request().$delete("self"); };
             return model;
          }
       };

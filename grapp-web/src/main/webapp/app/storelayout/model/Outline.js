@@ -25,7 +25,7 @@
          ////////////////////
 
          function setVertices(vertices) {
-            return storeLayoutRsc.$put(outlineProp, {polygon: _.stringifyVerticesIntoPolygon(vertices)})
+            return storeLayoutRsc.$request().$put(outlineProp, {polygon: _.stringifyVerticesIntoPolygon(vertices)})
                .then(function() { self.vertices = vertices; });
          }
       }

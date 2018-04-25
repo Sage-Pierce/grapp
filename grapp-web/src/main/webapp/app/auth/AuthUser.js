@@ -4,8 +4,8 @@
    angular.module("App")
       .service("AuthUser", AuthUser);
 
-   AuthUser.$inject = ["AuthRoot", "halClient"];
-   function AuthUser(AuthRoot, halClient) {
+   AuthUser.$inject = ["AuthRoot", "$http"];
+   function AuthUser(AuthRoot, $http) {
       var self = this;
       self.authorize = authorize;
       self.authenticate = authenticate;
@@ -20,7 +20,7 @@
       function authenticate(authorization) {
          return AuthRoot.afterLoad().then(function(authHref) {
             return getAuthUser(authHref, authorization);
-         }).then(createModel);
+         });
       }
 
       function reauthenticate(authorization) {
@@ -28,11 +28,17 @@
             return AuthRoot.reauthenticate(authorization).then(function(reauthenticatedAuthorization) {
                return getAuthUser(authHref, reauthenticatedAuthorization);
             });
-         }).then(createModel);
+         });
       }
 
       function getAuthUser(authHref, authorization) {
-         return halClient.$get("/auth/user", {transformUrl: _.urlTransformer(authHref), headers: {Authorization: authorization}});
+         return $http({
+            method: "GET",
+            url: authHref + "/auth/user",
+            headers: {
+               Authorization: authorization
+            }
+         }).then(createModel);
       }
 
       function createModel(authUserRsc) {
@@ -57,7 +63,7 @@
          }
 
          function logOut() {
-            return authUserRsc.$del("self");
+            return authUserRsc.$request().$delete("self");
          }
 
          function getName() {
@@ -73,7 +79,7 @@
          }
 
          function setAttributes(attributes) {
-            return authUserRsc.$put("self", attributes)
+            return authUserRsc.$request().$put("self", attributes)
                .then(function (userRsc) {
                   self.attributes = userRsc.attributes;
                   return self;

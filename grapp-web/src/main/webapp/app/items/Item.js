@@ -53,13 +53,13 @@
 
          function makeGeneral() {
             return fetchResource().then(function(itemRsc) {
-               return itemRsc.$put("makeGeneral");
+               return itemRsc.$request().$put("makeGeneral");
             });
          }
 
          function move(superItem) {
             return fetchResource().then(function(itemRsc) {
-               return itemRsc.$put("move", {superItemCode: superItem.primaryCode});
+               return itemRsc.$request().$put("move", {superItemCode: superItem.primaryCode});
             });
          }
 

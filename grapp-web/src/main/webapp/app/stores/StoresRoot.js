@@ -13,7 +13,7 @@
 
       function loadManagerByEmail(email) {
          return self.afterLoad().then(function(rootRsc) {
-            return rootRsc.$put("storeManagers", {email: email});
+            return rootRsc.$request().$put("storeManagers", {email: email});
          });
       }
    }

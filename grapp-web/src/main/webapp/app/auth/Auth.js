@@ -5,8 +5,8 @@
       .service("Auth", Auth)
       .run(autoLogIn);
 
-   Auth.$inject = ["$cookies", "$q", "Config", "AuthUser", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot"];
-   function Auth($cookies, $q, Config, AuthUser, StoresRoot, ItemManagementRoot, ShoppingListsRoot) {
+   Auth.$inject = ["$cookies", "$q", "$http", "Config", "AuthUser", "StoresRoot", "ItemManagementRoot", "ShoppingListsRoot"];
+   function Auth($cookies, $q, $http, Config, AuthUser, StoresRoot, ItemManagementRoot, ShoppingListsRoot) {
       var self = this;
       self.autoLogIn = autoLogIn;
       self.logIn = logIn;
@@ -64,6 +64,9 @@
       }
 
       function resolve(codegasAuth, user) {
+         // Set the common Authorization Header
+         $http.defaults.headers.common.Authorization = codegasAuth;
+
          // Load secured Resources
          StoresRoot.loadFromServer(Config.getStoresServer(), codegasAuth);
          ItemManagementRoot.loadFromServer(Config.getItemManagementServer(), codegasAuth);
@@ -75,6 +78,9 @@
       }
 
       function unresolve() {
+         // Delete the common Authorization Header
+         delete $http.defaults.headers.common.Authorization;
+
          // Unload secured Resources
          StoresRoot.unload();
          ItemManagementRoot.unload();
