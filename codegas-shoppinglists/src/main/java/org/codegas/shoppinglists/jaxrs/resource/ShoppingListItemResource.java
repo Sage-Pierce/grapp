@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -25,7 +26,8 @@ public class ShoppingListItemResource extends HalJsonResource {
     private final ShoppingListItemService shoppingListItemService;
 
     @Inject
-    public ShoppingListItemResource(ShoppingListItemService shoppingListItemService) {
+    public ShoppingListItemResource(HalConfig halConfig, ShoppingListItemService shoppingListItemService) {
+        super(halConfig);
         this.shoppingListItemService = shoppingListItemService;
     }
 

@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -25,7 +26,8 @@ public class NodeResource extends HalJsonResource {
     private final NodeService nodeService;
 
     @Inject
-    public NodeResource(NodeService nodeService) {
+    public NodeResource(HalConfig halConfig, NodeService nodeService) {
+        super(halConfig);
         this.nodeService = nodeService;
     }
 

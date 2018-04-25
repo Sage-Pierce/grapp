@@ -18,6 +18,7 @@ import org.codegas.pathgeneration.service.api.PathService;
 import org.codegas.pathgeneration.service.dto.PathDto;
 import org.codegas.pathgeneration.service.dto.PathPolygonsDto;
 import org.codegas.pathgeneration.service.dto.WaypointsDto;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -34,8 +35,8 @@ public class PathGenerationResource extends HalResource {
     private final PathService pathService;
 
     @Inject
-    public PathGenerationResource(PathService pathService) {
-        this.halRepresentationFactory = new HalJsonRepresentationFactory();
+    public PathGenerationResource(HalConfig halConfig, PathService pathService) {
+        this.halRepresentationFactory = new HalJsonRepresentationFactory(halConfig);
         this.pathService = pathService;
     }
 

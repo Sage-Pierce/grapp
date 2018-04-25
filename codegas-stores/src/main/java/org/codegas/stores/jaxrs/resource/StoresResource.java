@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreService;
@@ -18,7 +19,8 @@ public class StoresResource extends HalJsonResource {
     private final StoreService storeService;
 
     @Inject
-    public StoresResource(StoreService storeService) {
+    public StoresResource(HalConfig halConfig, StoreService storeService) {
+        super(halConfig);
         this.storeService = storeService;
     }
 

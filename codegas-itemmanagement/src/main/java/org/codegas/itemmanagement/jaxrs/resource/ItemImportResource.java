@@ -12,6 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.NacsItemImportService;
@@ -25,7 +26,8 @@ public class ItemImportResource extends HalJsonResource {
     private final NacsItemImportService nacsItemImportService;
 
     @Inject
-    public ItemImportResource(NacsItemImportService nacsItemImportService) {
+    public ItemImportResource(HalConfig halConfig, NacsItemImportService nacsItemImportService) {
+        super(halConfig);
         this.nacsItemImportService = nacsItemImportService;
     }
 

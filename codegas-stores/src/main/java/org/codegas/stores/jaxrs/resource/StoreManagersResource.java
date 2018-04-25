@@ -7,6 +7,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.value.Email;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.stores.service.api.StoreManagerService;
@@ -17,7 +18,8 @@ public class StoreManagersResource extends HalJsonResource {
     private final StoreManagerService storeManagerService;
 
     @Inject
-    public StoreManagersResource(StoreManagerService storeManagerService) {
+    public StoreManagersResource(HalConfig halConfig, StoreManagerService storeManagerService) {
+        super(halConfig);
         this.storeManagerService = storeManagerService;
     }
 

@@ -28,6 +28,12 @@
         <constructor-arg value="EMAIL"/>
     </bean>
 
+    <!-- Bean used to configure HAL Representation construction -->
+    <bean id="halConfig" class="org.codegas.webservice.hal.api.HalConfig">
+        <constructor-arg index="0"><map/></constructor-arg>
+        <constructor-arg index="1" value="/rest"/>
+    </bean>
+
     <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
     <bean id="client" class="javax.ws.rs.client.ClientBuilder" factory-method="newClient"/>
 

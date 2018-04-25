@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
@@ -21,7 +22,8 @@ public class GeneralItemsResource extends HalJsonResource {
     private final ItemService itemService;
 
     @Inject
-    public GeneralItemsResource(ItemService itemService) {
+    public GeneralItemsResource(HalConfig halConfig, ItemService itemService) {
+        super(halConfig);
         this.itemService = itemService;
     }
 

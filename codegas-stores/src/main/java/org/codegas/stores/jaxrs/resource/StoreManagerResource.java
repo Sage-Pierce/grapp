@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.value.Email;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -25,7 +26,8 @@ public class StoreManagerResource extends HalJsonResource {
     private final StoreManagerService storeManagerService;
 
     @Inject
-    public StoreManagerResource(StoreManagerService storeManagerService) {
+    public StoreManagerResource(HalConfig halConfig, StoreManagerService storeManagerService) {
+        super(halConfig);
         this.storeManagerService = storeManagerService;
     }
 

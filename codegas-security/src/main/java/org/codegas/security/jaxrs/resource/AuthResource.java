@@ -21,8 +21,10 @@ import javax.ws.rs.core.UriInfo;
 import org.codegas.security.service.api.AuthService;
 import org.codegas.security.service.api.Authorization;
 import org.codegas.security.service.api.AuthorizationException;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
+import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResource;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.webservice.hal.representation.HalJsonRepresentationFactory;
@@ -31,10 +33,13 @@ import org.codegas.webservice.hal.representation.HalJsonRepresentationFactory;
 @Produces(HalJsonRepresentationFactory.HAL_JSON)
 public class AuthResource extends HalResource {
 
+    private final HalRepresentationFactory halRepresentationFactory;
+
     private final AuthService authService;
 
     @Inject
-    public AuthResource(AuthService authService) {
+    public AuthResource(HalConfig halConfig, AuthService authService) {
+        this.halRepresentationFactory = new HalJsonRepresentationFactory(halConfig);
         this.authService = authService;
     }
 
@@ -56,7 +61,7 @@ public class AuthResource extends HalResource {
     }
 
     protected HalRepresentation asRepresentationOf(Authorization authorization) {
-        return new HalJsonRepresentationFactory().createFor(authorization.toString()).withLinks(createLinks());
+        return halRepresentationFactory.createFor(authorization.toString()).withLinks(createLinks());
     }
 
     private static List<HalLink> createLinks() {

@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import org.codegas.commons.lang.spacial.GeoPoint;
 import org.codegas.commons.lang.spacial.GeoPolygon;
 import org.codegas.commons.lang.value.CodeName;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -32,7 +33,8 @@ public class StoreLayoutResource extends HalJsonResource {
     private final StoreLayoutService storeLayoutService;
 
     @Inject
-    public StoreLayoutResource(StoreLayoutService storeLayoutService) {
+    public StoreLayoutResource(HalConfig halConfig, StoreLayoutService storeLayoutService) {
+        super(halConfig);
         this.storeLayoutService = storeLayoutService;
     }
 

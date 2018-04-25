@@ -11,6 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.value.Email;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -24,7 +25,8 @@ public class ShopperResource extends HalJsonResource {
     private final ShopperService shopperService;
 
     @Inject
-    public ShopperResource(ShopperService shopperService) {
+    public ShopperResource(HalConfig halConfig, ShopperService shopperService) {
+        super(halConfig);
         this.shopperService = shopperService;
     }
 

@@ -13,6 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.codegas.commons.lang.spacial.GeoPoint;
+import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
@@ -26,7 +27,8 @@ public class StoreResource extends HalJsonResource {
     private final StoreService storeService;
 
     @Inject
-    public StoreResource(StoreService storeService) {
+    public StoreResource(HalConfig halConfig, StoreService storeService) {
+        super(halConfig);
         this.storeService = storeService;
     }
 
