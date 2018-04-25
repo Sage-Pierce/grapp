@@ -31,7 +31,7 @@
     <!-- Bean used to configure HAL Representation construction -->
     <bean id="halConfig" class="org.codegas.webservice.hal.api.HalConfig">
         <constructor-arg index="0"><map/></constructor-arg>
-        <constructor-arg index="1" value="/rest"/>
+        <constructor-arg index="1" value="/rest"/> <!-- Note that this must be where the Jersey servlet is mapped to -->
     </bean>
 
     <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
