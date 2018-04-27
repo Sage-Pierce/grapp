@@ -21,7 +21,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <codegas-service.version>2.0.0</codegas-service.version>
+        <codegas-service.version>2.1.0</codegas-service.version>
         <codegas-webservice.version>2.0.0</codegas-webservice.version>
         <jackson.version>2.9.5</jackson.version>
         <jersey.version>2.27</jersey.version>

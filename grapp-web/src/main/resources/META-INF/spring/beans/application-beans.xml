@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/aop
-                           http://www.springframework.org/schema/aop/spring-aop.xsd
-                           http://www.springframework.org/schema/context
+       xsi:schemaLocation="http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -41,16 +38,4 @@
     <bean id="itemManagementTarget" factory-bean="client" factory-method="target">
         <constructor-arg value="${root.itemmanagement}"/>
     </bean>
-
-    <!-- Bean used to reset DomainEventPublisher -->
-    <bean id="domainEventPublisherManager" class="org.codegas.commons.domain.event.DomainEventPublisherManager"/>
-
-    <!-- AOP Advice for DomainEventPublisherManager -->
-    <aop:config>
-        <aop:aspect id="domainEventPublisherResetterAspect" ref="domainEventPublisherManager">
-            <aop:pointcut id="applicationService" expression="@within(org.codegas.commons.lang.annotation.ApplicationService)"/>
-            <aop:before pointcut-ref="applicationService" method="enterPublishingContext"/>
-            <aop:after pointcut-ref="applicationService" method="exitPublishingContext"/>
-        </aop:aspect>
-    </aop:config>
 </beans>
