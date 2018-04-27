@@ -3,6 +3,7 @@ package org.codegas.itemmanagement.jaxrs.resource;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -35,6 +36,7 @@ public class ItemsResource extends HalJsonResource {
     }
 
     @GET
+    @PermitAll
     public Response get() {
         return buildHalResponse(halRepresentationFactory.createFor(itemService.get()).withLinks(createLinks()));
     }
