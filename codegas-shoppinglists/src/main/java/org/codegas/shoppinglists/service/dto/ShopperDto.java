@@ -6,16 +6,16 @@ import org.codegas.commons.lang.value.IdName;
 
 public class ShopperDto {
 
-    private String email;
+    private String name;
 
     private List<IdName> lists;
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<IdName> getLists() {

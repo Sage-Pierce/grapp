@@ -7,13 +7,17 @@
    StoresRoot.$inject = ["Root"];
    function StoresRoot(Root) {
       var self = angular.extend(this, new Root("/stores/root/"));
-      self.loadManagerByEmail = loadManagerByEmail;
+      self.loadManager = loadManager;
 
       ////////////////////
 
-      function loadManagerByEmail(email) {
+      function loadManager() {
          return self.afterLoad().then(function(rootRsc) {
-            return rootRsc.$request().$put("storeManagers", {email: email});
+            return rootRsc.$request().$get("storeManager").then(
+               function(response) { return response; },
+               function(response) {
+                  return response.status === 404 ? rootRsc.$request().$post("storeManager") : response;
+               });
          });
       }
    }

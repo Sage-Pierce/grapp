@@ -2,23 +2,23 @@ package org.codegas.stores.domain.entity;
 
 import org.codegas.commons.domain.entity.DomainEntity;
 import org.codegas.commons.lang.spacial.GeoPoint;
-import org.codegas.commons.lang.value.Email;
+import org.codegas.commons.lang.value.PrincipalName;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class StoreManager extends DomainEntity<Email> {
+public class StoreManager extends DomainEntity<PrincipalName> {
 
     @Id
-    private String email;
+    private String name;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "manager", orphanRemoval = true)
     private List<Store> stores = new ArrayList<>();
 
-    public StoreManager(Email email) {
-        this.email = email.toString();
+    public StoreManager(PrincipalName name) {
+        this.name = name.toString();
     }
 
     protected StoreManager() {
@@ -26,12 +26,12 @@ public class StoreManager extends DomainEntity<Email> {
     }
 
     @Override
-    public Email getId() {
-        return getEmail();
+    public PrincipalName getId() {
+        return getName();
     }
 
-    public Email getEmail() {
-        return Email.fromString(email);
+    public PrincipalName getName() {
+        return PrincipalName.fromString(name);
     }
 
     public List<Store> getStores() {

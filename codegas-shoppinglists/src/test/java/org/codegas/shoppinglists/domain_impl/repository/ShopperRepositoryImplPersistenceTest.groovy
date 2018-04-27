@@ -14,12 +14,12 @@ class ShopperRepositoryImplPersistenceTest extends RepositoryImplPersistenceTest
    @Inject
    private ShopperRepository shopperRepository
 
-   def "Shoppers can be found by their Email"() {
+   def "Shoppers can be found by their Name"() {
       given:
       Shopper shopper = testEntityManager.save(ShopperBuilder.build())
 
       when:
-      def result = shopperRepository.findByEmail(shopper.getId())
+      def result = shopperRepository.find(shopper.getId())
 
       then:
       result.isPresent()

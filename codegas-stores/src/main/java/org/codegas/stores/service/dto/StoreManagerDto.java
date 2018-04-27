@@ -4,16 +4,16 @@ import java.util.List;
 
 public class StoreManagerDto {
 
-    private String email;
+    private String name;
 
     private List<StoreDto> stores;
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<StoreDto> getStores() {

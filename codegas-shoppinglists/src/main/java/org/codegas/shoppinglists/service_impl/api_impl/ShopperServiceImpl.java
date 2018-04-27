@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 import org.codegas.commons.lang.annotation.ApplicationService;
 import org.codegas.commons.lang.annotation.Transactional;
-import org.codegas.commons.lang.value.Email;
+import org.codegas.commons.lang.value.PrincipalName;
 import org.codegas.shoppinglists.domain.entity.Shopper;
 import org.codegas.shoppinglists.domain.repository.ShopperRepository;
 import org.codegas.shoppinglists.service.api.ShopperService;
@@ -29,16 +29,14 @@ public class ShopperServiceImpl implements ShopperService {
     }
 
     @Override
-    public ShopperDto loadByEmail(Email email) {
-        return ShopperDtoFactory.createDto(shopperRepository.findByEmail(email).orElseGet(() -> persistShopperWithEmail(email)));
+    public ShopperDto load(PrincipalName name) {
+        return shopperRepository.find(name)
+            .map(ShopperDtoFactory::createDto)
+            .orElseGet(() -> ShopperDtoFactory.createDto(shopperRepository.add(new Shopper(name))));
     }
 
     @Override
-    public ShoppingListDto addList(Email email, String name) {
-        return ShoppingListDtoFactory.createDto(shopperRepository.get(email).addList(name));
-    }
-
-    private Shopper persistShopperWithEmail(Email email) {
-        return shopperRepository.add(new Shopper(email));
+    public ShoppingListDto addList(PrincipalName shopperName, String listName) {
+        return ShoppingListDtoFactory.createDto(shopperRepository.get(shopperName).addList(listName));
     }
 }

@@ -78,6 +78,6 @@ public class StaticAuthService extends AbstractAuthService {
     }
 
     private static Credential refresh(Credential credential) {
-        return credential.apply(UUID.randomUUID().toString(), UUID.randomUUID().toString(), OffsetDateTime.now().plusHours(1L));
+        return credential.apply(AUTH_CODE, AUTH_CODE, OffsetDateTime.now().plusHours(1L));
     }
 }

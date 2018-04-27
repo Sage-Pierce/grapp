@@ -28,7 +28,6 @@ public class RootResource extends HalJsonResource {
     private static List<HalLink> createLinks() {
         return Arrays.asList(
             HalResourceLinkBuilder.linkTo(RootResource.class).withSelfRel(),
-            StoreManagersResource.createRootLink("storeManagers"),
             StoreManagerResource.createRootLink("storeManager"),
             StoresResource.createRootLink("stores"),
             StoreResource.createRootLink("store"),

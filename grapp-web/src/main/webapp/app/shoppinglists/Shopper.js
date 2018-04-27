@@ -12,9 +12,7 @@
       ////////////////////
 
       function load() {
-         return Auth.afterLogIn().then(function(user) {
-            return ShoppingListsRoot.loadShopperByEmail(user.getEmail()).then(createModel);
-         });
+         return ShoppingListsRoot.loadShopper().then(createModel);
       }
 
       function createModel(shopperRsc) {

@@ -5,21 +5,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
-import org.codegas.commons.lang.value.Email;
+import org.codegas.commons.lang.value.PrincipalName;
+import org.codegas.shoppinglists.service.api.ShopperService;
+import org.codegas.shoppinglists.service.dto.ShopperDto;
 import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
-import org.codegas.shoppinglists.service.api.ShopperService;
-import org.codegas.shoppinglists.service.dto.ShopperDto;
 
-@Path("/shoppers/{email}/")
+@Path("/shoppers/")
 public class ShopperResource extends HalJsonResource {
 
     private final ShopperService shopperService;
@@ -30,11 +32,17 @@ public class ShopperResource extends HalJsonResource {
         this.shopperService = shopperService;
     }
 
+    @PUT
+    public Response load(@Context SecurityContext securityContext) {
+        PrincipalName shopperName = PrincipalName.fromPrincipal(securityContext.getUserPrincipal());
+        return buildHalResponse(ShopperResource.asRepresentationOf(halRepresentationFactory, shopperService.load(shopperName)));
+    }
+
     @POST
     @Path("addList")
-    public Response addList(@PathParam("email") Email email,
-        @QueryParam("name") String name) {
-        return buildHalResponse(ShoppingListResource.asRepresentationOf(halRepresentationFactory, shopperService.addList(email, name)));
+    public Response addList(@Context SecurityContext securityContext, @QueryParam("name") String name) {
+        PrincipalName shopperName = PrincipalName.fromPrincipal(securityContext.getUserPrincipal());
+        return buildHalResponse(ShoppingListResource.asRepresentationOf(halRepresentationFactory, shopperService.addList(shopperName, name)));
     }
 
     protected static HalRepresentation asRepresentationOf(HalRepresentationFactory halRepresentationFactory, ShopperDto shopperDto) {
@@ -47,8 +55,8 @@ public class ShopperResource extends HalJsonResource {
 
     private static List<HalLink> createLinks(ShopperDto shopperDto) {
         return Arrays.asList(
-            createSelfLinkBuilder().pathArgs(shopperDto.getEmail()).withSelfRel(),
-            createSelfLinkBuilder().pathArgs(shopperDto.getEmail()).method("addList").queryParams("name").withRel("addList")
+            createSelfLinkBuilder().pathArgs(shopperDto.getName()).withSelfRel(),
+            createSelfLinkBuilder().pathArgs(shopperDto.getName()).method("addList").queryParams("name").withRel("addList")
         );
     }
 

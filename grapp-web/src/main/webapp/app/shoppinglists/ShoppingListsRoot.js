@@ -7,13 +7,13 @@
    ShoppingListsRoot.$inject = ["Root"];
    function ShoppingListsRoot(Root) {
       var self = angular.extend(this, new Root("/shoppingLists/root/"));
-      self.loadShopperByEmail = loadShopperByEmail;
+      self.loadShopper = loadShopper;
 
       ////////////////////
 
-      function loadShopperByEmail(email) {
+      function loadShopper() {
          return self.afterLoad().then(function(rootRsc) {
-            return rootRsc.$request().$put("shoppers", {email: email});
+            return rootRsc.$request().$put("shopper");
          });
       }
    }

@@ -12,9 +12,7 @@
       ////////////////////
 
       function load() {
-         return Auth.afterLogIn().then(function(user) {
-            return StoresRoot.loadManagerByEmail(user.getEmail()).then(createModel);
-         });
+         return StoresRoot.loadManager().then(createModel);
       }
 
       function createModel(storeManagerRsc) {

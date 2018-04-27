@@ -97,7 +97,7 @@
          }
 
          function decorateResourceModel(resource, model) {
-            model.delete = model.delete || resource.$request().$delete && function() { return resource.$request().$delete("self"); };
+            model.delete = model.delete || resource.$request && resource.$request().$delete && function() { return resource.$request().$delete("self"); };
             return model;
          }
       };
