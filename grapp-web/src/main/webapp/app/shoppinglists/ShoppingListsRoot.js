@@ -13,7 +13,7 @@
 
       function loadShopper() {
          return self.afterLoad().then(function(rootRsc) {
-            return rootRsc.$request().$put("shopper");
+            return rootRsc.$put("shopper");
          });
       }
    }

@@ -13,7 +13,7 @@
 
       function importItems(type, data) {
          return self.afterLoad().then(function(rootRsc) {
-            return rootRsc.$request().$put("importItems", {type: type}, data, {headers: {"Content-Type": "text/plain"}});
+            return rootRsc.$put("importItems", {type: type}, data, {headers: {"Content-Type": "text/plain"}});
          });
       }
    }

@@ -38,7 +38,7 @@
          ////////////////////
 
          function addFeature(vertices) {
-            return storeLayoutRsc.$request().$post("addFeature", {polygon: _.stringifyVerticesIntoPolygon(vertices)})
+            return storeLayoutRsc.$post("addFeature", {polygon: _.stringifyVerticesIntoPolygon(vertices)})
                .then(function(featureRsc) {
                   self.features[featureRsc.id] = Feature.load(storeLayoutRsc, featureRsc);
                   return self.features[featureRsc.id];
@@ -51,9 +51,9 @@
          }
 
          function addNode(nodeType, location) {
-            return storeLayoutRsc.$request().$post("addNode", {type: _.findKey(NodeType, nodeType), location: JSON.stringify(location)})
+            return storeLayoutRsc.$post("addNode", {type: _.findKey(NodeType, nodeType), location: JSON.stringify(location)})
                .then(function(result) {
-                  return result.$request().$get("affectedNodes")
+                  return result.$get("affectedNodes")
                      .then(function(affectedNodeRscs) {
                         return {node: replaceNodeForResource(result), affectedNodes: _.arrayify(affectedNodeRscs).map(replaceNodeForResource)};
                      }, function() {

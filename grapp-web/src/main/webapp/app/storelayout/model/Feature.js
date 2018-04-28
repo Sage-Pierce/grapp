@@ -23,7 +23,7 @@
          ////////////////////
 
          function setVertices(vertices) {
-            return storeLayoutRsc.$request().$put("reshapeFeature", {featureId: feature.id, polygon: _.stringifyVerticesIntoPolygon(vertices)})
+            return storeLayoutRsc.$put("reshapeFeature", {featureId: feature.id, polygon: _.stringifyVerticesIntoPolygon(vertices)})
                .then(function() {
                   self.polygon.vertices = vertices;
                });

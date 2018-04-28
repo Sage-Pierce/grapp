@@ -13,10 +13,10 @@
 
       function loadManager() {
          return self.afterLoad().then(function(rootRsc) {
-            return rootRsc.$request().$get("storeManager").then(
+            return rootRsc.$get("storeManager").then(
                function(response) { return response; },
                function(response) {
-                  return response.status === 404 ? rootRsc.$request().$post("storeManager") : response;
+                  return response.status === 404 ? rootRsc.$post("storeManager") : response;
                });
          });
       }

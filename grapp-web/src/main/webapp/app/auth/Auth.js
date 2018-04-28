@@ -64,13 +64,10 @@
       }
 
       function resolve(codegasAuth, user) {
-         // Set the common Authorization Header
-         $http.defaults.headers.common.Authorization = codegasAuth;
-
          // Load secured Resources
-         StoresRoot.loadFromServer(Config.getStoresServer(), codegasAuth);
-         ItemManagementRoot.loadFromServer(Config.getItemManagementServer(), codegasAuth);
-         ShoppingListsRoot.loadFromServer(Config.getShoppingListsServer(), codegasAuth);
+         StoresRoot.loadFromServer(Config.getStoresServer(), {Authorization: codegasAuth});
+         ItemManagementRoot.loadFromServer(Config.getItemManagementServer(), {Authorization: codegasAuth});
+         ShoppingListsRoot.loadFromServer(Config.getShoppingListsServer(), {Authorization: codegasAuth});
 
          $cookies.put("codegas-auth", codegasAuth);
          deferred.resolve(user);
@@ -78,9 +75,6 @@
       }
 
       function unresolve() {
-         // Delete the common Authorization Header
-         delete $http.defaults.headers.common.Authorization;
-
          // Unload secured Resources
          StoresRoot.unload();
          ItemManagementRoot.unload();

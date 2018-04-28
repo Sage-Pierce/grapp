@@ -37,7 +37,7 @@
          }
 
          function setLocation(location) {
-            return storeLayoutRsc.$request().$put("moveNode", {nodeId: node.id, location: JSON.stringify(location)})
+            return storeLayoutRsc.$put("moveNode", {nodeId: node.id, location: JSON.stringify(location)})
                .then(function(nodeRsc) { self.location = nodeRsc.location; });
          }
 
@@ -45,10 +45,10 @@
             if (_.anyMatch(self.getItems(), function(nodeItem) { return nodeItem.code === item.code; })) {
                return $q.reject("Item already in Node.");
             }
-            return storeLayoutRsc.$request().$post("addNodeItem", {nodeId: node.id, item: JSON.stringify(item)})
+            return storeLayoutRsc.$post("addNodeItem", {nodeId: node.id, item: JSON.stringify(item)})
                .then(function(result) {
                   self.items[result.id] = createModelForNodeItem(result);
-                  return result.$request().$get("affectedNodes")
+                  return result.$get("affectedNodes")
                      .then(function(affectedNodeRscs) {
                         return {item: self.items[result.id], affectedNodeRscs: _.arrayify(affectedNodeRscs)};
                      }, function() {

@@ -35,17 +35,17 @@
          return $http({
             method: "GET",
             url: authHref + "/auth/user",
-            headers: {
-               Authorization: authorization
-            }
-         }).then(createModel);
+            headers: {Authorization: authorization}
+         }).then(modelCreator(authorization));
       }
 
-      function createModel(authUserRsc) {
-         return _.mergeLeft(new AuthUserModel(authUserRsc), authUserRsc);
+      function modelCreator(authorization) {
+         return function(authUserRsc) {
+            return _.mergeLeft(new AuthUserModel(authorization, authUserRsc), authUserRsc);
+         };
       }
 
-      function AuthUserModel(authUserRsc) {
+      function AuthUserModel(authorization, authUserRsc) {
          var self = this;
          self.attributes = authUserRsc.attributes;
          self.roles = authUserRsc.roles;
@@ -63,7 +63,7 @@
          }
 
          function logOut() {
-            return authUserRsc.$request().$delete("self");
+            return authUserRsc.$request().$delete("self", {}, {headers: {Authorization: authorization}});
          }
 
          function getName() {
@@ -79,7 +79,7 @@
          }
 
          function setAttributes(attributes) {
-            return authUserRsc.$request().$put("self", attributes)
+            return authUserRsc.$request().$put("self", attributes, {}, {headers: {Authorization: authorization}})
                .then(function (userRsc) {
                   self.attributes = userRsc.attributes;
                   return self;

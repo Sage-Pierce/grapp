@@ -27,7 +27,7 @@
          ////////////////////
 
          function addStore(name, location) {
-            return storeManagerRsc.$request().$post("addStore", {name: name, location: JSON.stringify(location)})
+            return storeManagerRsc.$post("addStore", {name: name, location: JSON.stringify(location)})
                .then(function(storeRsc) {
                   var storeModel = Store.load(storeRsc);
                   self.stores.push(storeModel);

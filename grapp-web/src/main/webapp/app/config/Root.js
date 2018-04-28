@@ -22,12 +22,12 @@
 
          ////////////////////
 
-         function loadFromServer(serverHref) {
+         function loadFromServer(serverHref, headers) {
             return $http({
                method: "GET",
-               url: serverHref + apiRootRef
-            }).then(deferred.resolve, console.log);
-            // $http.$get(apiRootRef || "/root/", { transformUrl: _.urlTransformer(serverHref) });
+               url: serverHref + apiRootRef,
+               headers: headers || {}
+            }).then(resourceDecorator(headers)).then(deferred.resolve, console.log);
          }
 
          function unload() {
@@ -36,7 +36,7 @@
 
          function createResourceModel(pluralResourceName, params, resourceModelCreatorCallback) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$request().$post(pluralResourceName, params).then(function(resource) {
+               return rootRsc.$post(pluralResourceName, params).then(function(resource) {
                   return mergeResourceIntoModel(resource, resourceModelCreatorCallback ? resourceModelCreatorCallback(resource) : {});
                });
             });
@@ -44,7 +44,7 @@
 
          function loadResourceModels(pluralResourceName, resourceModelCreatorCallback) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$request().$get(pluralResourceName).then(function(pluralResource) {
+               return rootRsc.$get(pluralResourceName).then(function(pluralResource) {
                   return pluralResource.$has(pluralResourceName) ? createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback)
                                                                  : convertResourcesToModels(pluralResource.values || [], resourceModelCreatorCallback);
                });
@@ -59,19 +59,19 @@
 
          function loadResource(resourceName, idParam) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$request().$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
+               return rootRsc.$get(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
             });
          }
 
          function updateResource(resourceName, idParam, attributes) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$request().$put(resourceName, _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
+               return rootRsc.$put(resourceName, _.merge(attributes, _.isObject(idParam) ? idParam : {id: idParam}));
             });
          }
 
          function deleteResource(resourceName, idParam) {
             return afterLoad().then(function(rootRsc) {
-               return rootRsc.$request().$delete(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
+               return rootRsc.$delete(resourceName, _.isObject(idParam) ? idParam : {id: idParam});
             });
          }
 
@@ -79,8 +79,40 @@
             return deferred.promise;
          }
 
+         // Directly define HTTP operations on Resources, propagating all original request headers
+         // (i.e. Authorization) to subsequent Requests made on those Resources
+         function resourceDecorator(requestHeaders) {
+            return function(rsc) {
+               rsc.$post = function() {
+                  arguments.length = Math.max(4, arguments.length);
+                  arguments[3] = _.mergeLeft({headers: requestHeaders}, arguments[3] || {});
+                  return rsc.$request().$post.apply(undefined, arguments)
+                     .then(resourceDecorator(requestHeaders));
+               };
+               rsc.$get = function() {
+                  arguments.length = Math.max(3, arguments.length);
+                  arguments[2] = _.mergeLeft({headers: requestHeaders}, arguments[2] || {});
+                  return rsc.$request().$get.apply(undefined, arguments)
+                     .then(resourceDecorator(requestHeaders));
+               };
+               rsc.$put = function() {
+                  arguments.length = Math.max(4, arguments.length);
+                  arguments[3] = _.mergeLeft({headers: requestHeaders}, arguments[3] || {});
+                  return rsc.$request().$put.apply(undefined, arguments)
+                     .then(resourceDecorator(requestHeaders));
+               };
+               rsc.$delete = function() {
+                  arguments.length = Math.max(3, arguments.length);
+                  arguments[2] = _.mergeLeft({headers: requestHeaders}, arguments[2] || {});
+                  return rsc.$request().$delete.apply(undefined, arguments)
+                     .then(resourceDecorator(requestHeaders));
+               };
+               return rsc;
+            };
+         }
+
          function createModelsForPluralResource(pluralResource, pluralResourceName, resourceModelCreatorCallback) {
-            return pluralResource.$request().$get(pluralResourceName)
+            return pluralResource.$get(pluralResourceName)
                .then(function(resources) {
                   return convertResourcesToModels(resources, resourceModelCreatorCallback);
                });
@@ -97,7 +129,7 @@
          }
 
          function decorateResourceModel(resource, model) {
-            model.delete = model.delete || resource.$request && resource.$request().$delete && function() { return resource.$request().$delete("self"); };
+            model.delete = model.delete || resource.$delete && function() { return resource.$delete("self"); };
             return model;
          }
       };

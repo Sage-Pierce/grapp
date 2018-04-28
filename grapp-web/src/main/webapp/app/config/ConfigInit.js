@@ -11,7 +11,7 @@
       "http://localhost:8008/rest",               // When running Heroku locally (Need to set PORT Environment Var.)
       "http://localhost:8080/rest"                // When running the server manually
    ];
-   var defaultServer = servers[0];
+   var defaultServer = servers[2];
 
    function Config() {
       var self = this;

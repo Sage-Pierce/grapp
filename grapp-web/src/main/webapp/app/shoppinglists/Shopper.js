@@ -28,7 +28,7 @@
          ////////////////////
 
          function addList(name) {
-            return shopperRsc.$request().$post("addList", {name: name})
+            return shopperRsc.$post("addList", {name: name})
                .then(function(shoppingListRsc) { self.lists.push(shoppingListRsc); });
          }
 
