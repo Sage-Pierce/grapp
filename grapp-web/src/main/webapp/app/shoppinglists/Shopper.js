@@ -4,8 +4,8 @@
    angular.module("App")
       .service("Shopper", Shopper);
 
-   Shopper.$inject = ["Auth", "ShoppingListsRoot"];
-   function Shopper(Auth, ShoppingListsRoot) {
+   Shopper.$inject = ["ShoppingListsRoot"];
+   function Shopper(ShoppingListsRoot) {
       var self = this;
       self.load = load;
 

@@ -4,8 +4,8 @@
    angular.module("App")
       .service("StoreManager", StoreManager);
 
-   StoreManager.$inject = ["Auth", "StoresRoot", "Store"];
-   function StoreManager(Auth, StoresRoot, Store) {
+   StoreManager.$inject = ["StoresRoot", "Store"];
+   function StoreManager(StoresRoot, Store) {
       var self = this;
       self.load = load;
 
