@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,6 +18,7 @@ import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 import org.codegas.itemmanagement.service.api.ItemService;
 
 @Path("/generalItems/")
+@RolesAllowed("ADMIN")
 public class GeneralItemsResource extends HalJsonResource {
 
     private final ItemService itemService;

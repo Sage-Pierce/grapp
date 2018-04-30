@@ -3,6 +3,7 @@ package org.codegas.itemmanagement.jaxrs.resource;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,6 +22,7 @@ import org.codegas.itemmanagement.service.api.ItemService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 
 @Path("/items/{primaryCode}/")
+@RolesAllowed("ADMIN")
 public class ItemResource extends HalJsonResource {
 
     private final ItemService itemService;

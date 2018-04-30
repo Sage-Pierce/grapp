@@ -3,6 +3,7 @@ package org.codegas.stores.jaxrs.resource;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,6 +22,7 @@ import org.codegas.stores.service.api.NodeService;
 import org.codegas.stores.service.dto.NodeDto;
 
 @Path("/nodes/{id}/")
+@RolesAllowed("STORE_MANAGER")
 public class NodeResource extends HalJsonResource {
 
     private final NodeService nodeService;

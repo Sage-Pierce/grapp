@@ -3,6 +3,7 @@ package org.codegas.stores.jaxrs.resource;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,6 +25,7 @@ import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
 
 @Path("/storeManagers/")
+@RolesAllowed({ "ADMIN", "STORE_MANAGER" })
 public class StoreManagerResource extends HalJsonResource {
 
     private final StoreManagerService storeManagerService;

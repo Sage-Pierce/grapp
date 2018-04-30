@@ -10,14 +10,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.codegas.stores.service.api.ShoppingLayoutService;
+import org.codegas.stores.service.dto.ShoppingLayoutDto;
+import org.codegas.stores.service.dto.ShoppingListDto;
 import org.codegas.webservice.hal.api.HalConfig;
 import org.codegas.webservice.hal.api.HalLink;
 import org.codegas.webservice.hal.api.HalRepresentation;
 import org.codegas.webservice.hal.api.HalRepresentationFactory;
 import org.codegas.webservice.hal.jaxrs.HalResourceLinkBuilder;
-import org.codegas.stores.service.api.ShoppingLayoutService;
-import org.codegas.stores.service.dto.ShoppingLayoutDto;
-import org.codegas.stores.service.dto.ShoppingListDto;
 
 @Path("/storeLayouts/{id}/shopping")
 public class ShoppingLayoutResource extends HalJsonResource {

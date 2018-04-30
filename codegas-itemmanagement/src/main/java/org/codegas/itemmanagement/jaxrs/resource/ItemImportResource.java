@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
@@ -19,6 +20,7 @@ import org.codegas.itemmanagement.service.api.NacsItemImportService;
 import org.codegas.itemmanagement.service.dto.ItemDto;
 
 @Path("/items/import")
+@RolesAllowed("ADMIN")
 public class ItemImportResource extends HalJsonResource {
 
     private static final String NACS = "NACS";

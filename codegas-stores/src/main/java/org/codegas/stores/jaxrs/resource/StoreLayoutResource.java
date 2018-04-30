@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,6 +29,7 @@ import org.codegas.stores.service.dto.StoreLayoutDto;
 import org.codegas.stores.service.dto.StoreLayoutUpdateDto;
 
 @Path("/storeLayouts/{id}/")
+@RolesAllowed("STORE_MANAGER")
 public class StoreLayoutResource extends HalJsonResource {
 
     private final StoreLayoutService storeLayoutService;
