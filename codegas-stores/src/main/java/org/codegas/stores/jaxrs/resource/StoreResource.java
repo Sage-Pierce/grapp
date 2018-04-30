@@ -3,6 +3,7 @@ package org.codegas.stores.jaxrs.resource;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -35,6 +36,7 @@ public class StoreResource extends HalJsonResource {
     }
 
     @GET
+    @PermitAll
     public Response get(@PathParam(value = "id") String id) {
         return buildHalResponse(asRepresentationOf(storeService.get(id)));
     }
