@@ -1,4 +1,4 @@
-package org.codegas.security.service_impl.api_impl;
+package org.codegas.security.service_impl.api;
 
 import org.codegas.commons.lang.annotation.Transactional;
 import org.codegas.security.domain.entity.Credential;

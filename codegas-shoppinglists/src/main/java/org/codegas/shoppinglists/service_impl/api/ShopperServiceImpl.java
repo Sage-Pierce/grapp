@@ -1,4 +1,4 @@
-package org.codegas.shoppinglists.service_impl.api_impl;
+package org.codegas.shoppinglists.service_impl.api;
 
 import javax.inject.Inject;
 import javax.inject.Named;

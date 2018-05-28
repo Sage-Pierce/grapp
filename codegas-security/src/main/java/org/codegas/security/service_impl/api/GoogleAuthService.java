@@ -1,4 +1,4 @@
-package org.codegas.security.service_impl.api_impl;
+package org.codegas.security.service_impl.api;
 
 import java.net.URI;
 import java.time.OffsetDateTime;

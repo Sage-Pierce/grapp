@@ -1,4 +1,4 @@
-package org.codegas.security.service_impl.api_impl;
+package org.codegas.security.service_impl.api;
 
 import com.google.api.client.http.HttpTransport;
 

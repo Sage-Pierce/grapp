@@ -21,7 +21,7 @@
     <context:annotation-config/>
 
     <!-- Bean used to create SecurityContexts from Un-/Authenticated Users -->
-    <bean id="userSecurityContextCreator" class="org.codegas.security.service_impl.api_impl.DefaultUserSecurityContextCreator">
+    <bean id="userSecurityContextCreator" class="org.codegas.security.service_impl.api.DefaultUserSecurityContextCreator">
         <constructor-arg value="EMAIL"/>
     </bean>
 

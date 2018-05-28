@@ -1,4 +1,4 @@
-package org.codegas.pathgeneration.service_impl.api_impl;
+package org.codegas.pathgeneration.service_impl.api;
 
 import javax.inject.Inject;
 import javax.inject.Named;

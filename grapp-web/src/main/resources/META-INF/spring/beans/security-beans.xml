@@ -12,7 +12,7 @@
     <context:property-placeholder/>
 
     <beans profile="development">
-        <bean id="staticAuthService" class="org.codegas.security.service_impl.api_impl.StaticAuthService">
+        <bean id="staticAuthService" class="org.codegas.security.service_impl.api.StaticAuthService">
             <constructor-arg index="0" ref="credentialRepositoryImpl"/>
             <constructor-arg index="1" ref="userRepositoryImpl"/>
             <constructor-arg index="2" value="static@codegas.org"/>
@@ -20,7 +20,7 @@
     </beans>
 
     <beans profile="production">
-        <bean id="googleAuthConfig" class="org.codegas.security.service_impl.api_impl.GoogleAuthConfig">
+        <bean id="googleAuthConfig" class="org.codegas.security.service_impl.api.GoogleAuthConfig">
             <constructor-arg index="0">
                 <bean class="com.google.api.client.http.javanet.NetHttpTransport"/>
             </constructor-arg>
@@ -28,7 +28,7 @@
             <constructor-arg index="2" value="${GOOGLE_CLIENT_SECRET}"/>
         </bean>
 
-        <bean id="googleAuthService" class="org.codegas.security.service_impl.api_impl.GoogleAuthService">
+        <bean id="googleAuthService" class="org.codegas.security.service_impl.api.GoogleAuthService">
             <constructor-arg index="0" ref="credentialRepositoryImpl"/>
             <constructor-arg index="1" ref="userRepositoryImpl"/>
             <constructor-arg index="2" ref="googleAuthConfig"/>

@@ -1,4 +1,4 @@
-package org.codegas.itemmanagement.service_impl.api_impl
+package org.codegas.itemmanagement.service_impl.api
 
 import org.codegas.service.spock.IntegrationTest
 import org.codegas.itemmanagement.service.api.NacsItemImportService

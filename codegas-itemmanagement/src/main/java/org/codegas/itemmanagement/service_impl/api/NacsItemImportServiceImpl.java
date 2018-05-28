@@ -1,4 +1,4 @@
-package org.codegas.itemmanagement.service_impl.api_impl;
+package org.codegas.itemmanagement.service_impl.api;
 
 import java.util.Collection;
 import java.util.List;
