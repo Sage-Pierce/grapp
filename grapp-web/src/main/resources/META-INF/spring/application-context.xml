@@ -22,7 +22,7 @@
 
         <import resource="classpath:META-INF/spring/beans/persistence-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/domain-event-beans.xml"/>
-        <import resource="classpath:META-INF/spring/beans/transaction-beans-jpa.xml"/>
+        <import resource="classpath:META-INF/spring/beans/transaction-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/application-beans.xml"/>
         <import resource="classpath:META-INF/spring/beans/security-beans.xml"/>
     </beans>

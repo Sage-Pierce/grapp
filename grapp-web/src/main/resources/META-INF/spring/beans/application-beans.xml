@@ -34,8 +34,11 @@
     <!-- Bean used to build RESTful API targets to other Bounded Contexts -->
     <bean id="client" class="javax.ws.rs.client.ClientBuilder" factory-method="newClient"/>
 
-    <!-- Bean used to communicate with Item Management Bounded Context from any other Bounded Context -->
+    <!-- Beans used to communicate with Item Management Bounded Context from any other Bounded Context -->
     <bean id="itemManagementTarget" factory-bean="client" factory-method="target">
         <constructor-arg value="${root.itemmanagement}"/>
+    </bean>
+    <bean id="httpItemManageAdapter" class="org.codegas.stores.service_impl.adapter.HttpItemManagementAdapter">
+        <constructor-arg ref="itemManagementTarget"/>
     </bean>
 </beans>

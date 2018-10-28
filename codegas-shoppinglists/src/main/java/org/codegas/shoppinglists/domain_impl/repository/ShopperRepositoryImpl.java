@@ -3,7 +3,7 @@ package org.codegas.shoppinglists.domain_impl.repository;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.service.jpa.RepositoryImpl;
+import org.codegas.commons.jpa.domain.persistence.RepositoryImpl;
 import org.codegas.shoppinglists.domain.entity.Shopper;
 import org.codegas.shoppinglists.domain.repository.ShopperRepository;
 

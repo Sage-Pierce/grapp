@@ -17,15 +17,15 @@
         <!-- Codegas Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-commons</artifactId>
+            <artifactId>codegas-commons-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service-api</artifactId>
+            <artifactId>codegas-commons-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service-jpa</artifactId>
+            <artifactId>codegas-commons-lang</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
@@ -49,7 +49,7 @@
         <!-- Codegas Test Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service-spock</artifactId>
+            <artifactId>codegas-commons-spock</artifactId>
             <scope>test</scope>
         </dependency>
 

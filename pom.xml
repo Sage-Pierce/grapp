@@ -21,12 +21,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <codegas-service.version>2.1.0</codegas-service.version>
-        <codegas-webservice.version>2.0.0</codegas-webservice.version>
+        <codegas-commons.version>3.0.0</codegas-commons.version>
+        <codegas-webservice.version>2.1.0</codegas-webservice.version>
         <jackson.version>2.9.5</jackson.version>
         <jersey.version>2.27</jersey.version>
         <jetty.version>9.4.9.v20180320</jetty.version>
-        <spock.version>1.0-groovy-2.4</spock.version>
+        <spock.version>1.1-groovy-2.4</spock.version>
     </properties>
 
     <dependencyManagement>
@@ -70,28 +70,28 @@
             <!-- Codegas Dependencies -->
             <dependency>
                 <groupId>org.codegas</groupId>
-                <artifactId>codegas-commons</artifactId>
-                <version>2.2.1</version>
+                <artifactId>codegas-commons-domain</artifactId>
+                <version>${codegas-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
-                <artifactId>codegas-service-api</artifactId>
-                <version>${codegas-service.version}</version>
+                <artifactId>codegas-commons-jpa</artifactId>
+                <version>${codegas-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
-                <artifactId>codegas-service-jpa</artifactId>
-                <version>${codegas-service.version}</version>
+                <artifactId>codegas-commons-lang</artifactId>
+                <version>${codegas-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
-                <artifactId>codegas-service-spock</artifactId>
-                <version>${codegas-service.version}</version>
+                <artifactId>codegas-commons-spock</artifactId>
+                <version>${codegas-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
-                <artifactId>codegas-service-test</artifactId>
-                <version>${codegas-service.version}</version>
+                <artifactId>codegas-commons-test</artifactId>
+                <version>${codegas-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codegas</groupId>
@@ -188,7 +188,7 @@
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
-                <version>2.4.1</version>
+                <version>2.4.15</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish</groupId>

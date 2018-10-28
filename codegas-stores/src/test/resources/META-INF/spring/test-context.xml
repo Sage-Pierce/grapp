@@ -16,4 +16,6 @@
     <context:component-scan scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"
                             base-package="org.codegas.stores"/>
     <context:annotation-config/>
+
+    <bean id="emptyItemLineagesAdapter" class="org.codegas.stores.service_impl.adapter.EmptyItemLineagesAdapter"/>
 </beans>

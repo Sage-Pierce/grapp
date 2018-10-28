@@ -21,15 +21,15 @@
         <!-- Codegas Compile Dependencies -->
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-commons</artifactId>
+            <artifactId>codegas-commons-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service-api</artifactId>
+            <artifactId>codegas-commons-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>
-            <artifactId>codegas-service-jpa</artifactId>
+            <artifactId>codegas-commons-lang</artifactId>
         </dependency>
         <dependency>
             <groupId>org.codegas</groupId>

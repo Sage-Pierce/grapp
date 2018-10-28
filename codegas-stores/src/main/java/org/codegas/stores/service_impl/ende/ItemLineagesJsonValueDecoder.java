@@ -6,19 +6,17 @@ import java.util.stream.Collectors;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 
+import org.codegas.commons.lang.ende.Decoder;
+import org.codegas.commons.lang.ende.JsonValueDecoder;
 import org.codegas.commons.lang.value.CodeName;
-import org.codegas.commons.ende.api.Decoder;
-import org.codegas.commons.ende.json.JsonValueDecoder;
 import org.codegas.stores.service.dto.ItemLineageDto;
-
-import static org.codegas.commons.ende.json.JsonValueDecoder.*;
 
 public class ItemLineagesJsonValueDecoder implements JsonValueDecoder<List<ItemLineageDto>> {
 
     @Override
     public List<ItemLineageDto> decode(JsonValue jsonValue) {
-        return extractValue("values").andThen(toValueStream())
-            .andThen(stream -> stream.map(asObject()))
+        return JsonValueDecoder.extractValue("values").andThen(JsonValueDecoder.toValueStream())
+            .andThen(stream -> stream.map(JsonValueDecoder.asObject()))
             .andThen(stream -> stream.map(itemLineageJsonDecoder()))
             .andThen(stream -> stream.collect(Collectors.toList()))
             .apply(jsonValue);
@@ -28,7 +26,7 @@ public class ItemLineagesJsonValueDecoder implements JsonValueDecoder<List<ItemL
         return jsonObject -> {
             ItemLineageDto itemLineageDto = new ItemLineageDto();
             itemLineageDto.setItem(new CodeName(jsonObject.getString("primaryCode"), jsonObject.getString("name")));
-            itemLineageDto.setLineage(toValueStream().andThen(stream -> stream.map(CodeName.jsonDecoder()))
+            itemLineageDto.setLineage(JsonValueDecoder.toValueStream().andThen(stream -> stream.map(CodeName.jsonDecoder()))
                 .andThen(stream -> stream.collect(Collectors.toList()))
                 .apply(jsonObject.get("lineage")));
             return itemLineageDto;

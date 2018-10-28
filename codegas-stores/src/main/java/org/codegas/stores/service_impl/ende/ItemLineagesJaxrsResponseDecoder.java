@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.codegas.commons.ende.api.Decoder;
+import org.codegas.commons.lang.ende.Decoder;
 import org.codegas.stores.service.dto.ItemLineageDto;
 
 public class ItemLineagesJaxrsResponseDecoder implements Decoder<Response, List<ItemLineageDto>> {

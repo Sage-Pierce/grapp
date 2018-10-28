@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.codegas.service.jpa.RepositoryImpl;
+import org.codegas.commons.jpa.domain.persistence.RepositoryImpl;
 import org.codegas.itemmanagement.domain.entity.Item;
 import org.codegas.itemmanagement.domain.repository.ItemRepository;
 import org.codegas.itemmanagement.domain.value.Code;
