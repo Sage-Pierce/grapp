@@ -25,7 +25,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-material-design": "^0.5.10",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "rfc6570": "^0.1.8"
   },
   "devDependencies": {
