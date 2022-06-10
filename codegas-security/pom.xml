@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <google-client.version>1.23.0</google-client.version>
+        <google-client.version>1.33.3</google-client.version>
     </properties>
 
     <dependencies>
